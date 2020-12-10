@@ -2,6 +2,7 @@ import { OpsZeeopsStatus, OpsZeeopsTutorialsStatus } from './ops/zeeops';
 import { User } from './user/main';
 import { UserDeploys } from './user/deploys';
 import { UserCapturesSpecial, UserCaptures } from './user/captures';
+import { StatzeePlayerDay } from './statzee/player/day';
 import { MunzeeSpecials, MunzeeSpecialsBouncers, MunzeeSpecialsFlat, MunzeeSpecialsMythological, MunzeeSpecialsPouchCreatures, MunzeeSpecialsRetired } from './munzee/specials';
 import { Endpoint } from './common';
 
@@ -18,6 +19,7 @@ export type Endpoints = {
   "munzee/specials/retired": MunzeeSpecialsRetired;
   "munzee/specials/flat": MunzeeSpecialsFlat;
   "munzee/specials/bouncers": MunzeeSpecialsBouncers;
+  "statzee/player/day": StatzeePlayerDay;
 }
 
 export interface FetchRequest<

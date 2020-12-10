@@ -1,6 +1,4 @@
-
-// @ts-expect-error ts-migrate(2451) FIXME: Cannot redeclare block-scoped variable 'retrieve'.
-var { retrieve, request } = require("../util");
+import { retrieve, request } from "../util";
 var rndKey = (length: any) => {
   var x = '';
   for (var i = 0; i < length; i++) {
@@ -9,7 +7,7 @@ var rndKey = (length: any) => {
   return x;
 };
 
-module.exports = {
+export default {
   path: "user/activity",
   latest: 1,
   versions: [
@@ -31,7 +29,7 @@ module.exports = {
             error_message: "missing_login"
           }
         }
-        var data = await request('statzee/player/day', { day }, token.access_token)
+        var data = (await request('statzee/player/day', { day }, token.access_token))?.data;
         if (!data) {
           return {
             status: "error",
@@ -40,20 +38,21 @@ module.exports = {
         }
         return {
           status: "success",
-          data: Object.assign({}, data, {
-            captures: data.captures.map((i: any) => ({
+          data: {
+            ...data,
+            captures: data.captures.map(i => ({
               ...i,
               key: rndKey(3)
             })),
-            deploys: data.deploys.map((i: any) => ({
+            deploys: data.deploys.map(i => ({
               ...i,
               key: rndKey(3)
             })),
-            captures_on: data.captures_on.map((i: any) => ({
+            captures_on: data.captures_on.map(i => ({
               ...i,
               key: rndKey(3)
             }))
-          })
+          }
         };
       },
     },
