@@ -1,0 +1,10 @@
+{
+  "indexes": [],
+  "fieldOverrides": [
+    {
+      "collectionGroup": "data",
+      "fieldPath": "bouncer_notifications",
+      "indexes": []
+    }
+  ]
+}

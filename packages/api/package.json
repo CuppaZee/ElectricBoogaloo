@@ -1,0 +1,16 @@
+{
+  "name": "@cuppazee/api",
+  "version": "0.0.1",
+  "main": "index.ts",
+  "types": "api.d.ts",
+  "license": "MPL2",
+  "keywords": [
+    "munzee",
+    "cuppazee"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CuppaZee/ElectricBoogaloo.git"
+  },
+  "author": "CuppaZee"
+}

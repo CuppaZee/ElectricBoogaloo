@@ -1,0 +1,283 @@
+{
+  "meta": {
+    "base_health": 1000,
+    "max_health": 1000
+  },
+  "healing": [
+    {
+      "name": "Spyderbot",
+      "icon": "spyderbot",
+      "id": 2589,
+      "health": 5,
+      "type": "capture"
+    },
+    {
+      "name": "PEAR Agent",
+      "icon": "pearagent",
+      "id": 2615,
+      "health": 5,
+      "type": "capture"
+    },
+    {
+      "name": "PINE Agent",
+      "icon": "pineagent",
+      "id": 2616,
+      "health": 5,
+      "type": "capture"
+    },
+    {
+      "name": "Pear",
+      "icon": "pear",
+      "id": 2531,
+      "health": 1,
+      "type": "capture"
+    },
+    {
+      "name": "Pecan",
+      "icon": "pecan",
+      "id": 2603,
+      "health": 1,
+      "type": "capture"
+    },
+    {
+      "name": "Acorn",
+      "icon": "acorn",
+      "id": 2604,
+      "health": 1,
+      "type": "capture"
+    },
+    {
+      "name": "Briefcase",
+      "icon": "briefcase",
+      "id": 1246,
+      "health": 1,
+      "type": "capture"
+    },
+    {
+      "name": "Night Vision Goggles",
+      "icon": "nightvisiongoggles",
+      "id": 1359,
+      "health": 1,
+      "type": "capture"
+    },
+    {
+      "name": "Laser Pen",
+      "icon": "laserpen",
+      "id": 2607,
+      "health": 1,
+      "type": "capture"
+    },
+    {
+      "name": "Spyderbot",
+      "icon": "spyderbot",
+      "id": 2589,
+      "health": 5,
+      "type": "deploy"
+    },
+    {
+      "name": "Briefcase",
+      "icon": "briefcase",
+      "id": 1246,
+      "health": 2,
+      "type": "deploy"
+    }
+  ],
+  "damaging": [
+    {
+      "name": "Squashed Spyderbot",
+      "icon": "squashedspyderbot",
+      "id": 2590,
+      "damage": 10,
+      "type": "capture"
+    },
+    {
+      "name": "Bowling - 2nd Roll",
+      "icon": "bowling-2ndroll",
+      "id": 2245,
+      "damage": 5,
+      "type": "capture"
+    },
+    {
+      "name": "Physical Pear Bomb",
+      "icon": "physicalpearbomb",
+      "id": 2611,
+      "damage": 3,
+      "type": "capture"
+    },
+    {
+      "name": "Physical Pineamite",
+      "icon": "physicalpineamite",
+      "id": 2613,
+      "damage": 3,
+      "type": "capture"
+    },
+    {
+      "name": "Dossier",
+      "icon": "dossier",
+      "id": 1247,
+      "damage": 3,
+      "type": "capture"
+    },
+    {
+      "name": "Laser Trail 2",
+      "icon": "lasertrail2",
+      "id": 2609,
+      "damage": 3,
+      "type": "capture"
+    },
+    {
+      "name": "Laser Trail 3",
+      "icon": "lasertrail3",
+      "id": 2610,
+      "damage": 3,
+      "type": "capture"
+    },
+    {
+      "name": "Trojan Unicorn",
+      "icon": "trojanunicorn",
+      "id": 2610,
+      "damage": 3,
+      "type": "capture"
+    },
+    {
+      "name": "Flaming Arrow",
+      "icon": "flamingarrow",
+      "id": 2503,
+      "damage": 2,
+      "type": "capture"
+    },
+    {
+      "name": "Rainbow Unicorn",
+      "icon": "rainbowunicorn",
+      "id": 1118,
+      "damage": 2,
+      "type": "capture"
+    },
+    {
+      "name": "Gnome Leprechaun",
+      "icon": "gnomeleprechaun",
+      "id": 1151,
+      "damage": 2,
+      "type": "capture"
+    },
+    {
+      "name": "Ice Dragon",
+      "icon": "icedragon",
+      "id": 1164,
+      "damage": 2,
+      "type": "capture"
+    },
+    {
+      "name": "Sasquatch Yeti",
+      "icon": "sasquatchyeti",
+      "id": 1210,
+      "damage": 2,
+      "type": "capture"
+    },
+    {
+      "name": "Fire Pegasus",
+      "icon": "firepegasus",
+      "id": 1229,
+      "damage": 2,
+      "type": "capture"
+    },
+    {
+      "name": "Cherub",
+      "icon": "cherub",
+      "id": 1237,
+      "damage": 2,
+      "type": "capture"
+    },
+    {
+      "name": "Ogre",
+      "icon": "ogre",
+      "id": 1268,
+      "damage": 2,
+      "type": "capture"
+    },
+    {
+      "name": "Chimera",
+      "icon": "chimera",
+      "id": 1329,
+      "damage": 2,
+      "type": "capture"
+    },
+    {
+      "name": "Siren",
+      "icon": "siren",
+      "id": 1485,
+      "damage": 2,
+      "type": "capture"
+    },
+    {
+      "name": "Fairy Godmother",
+      "icon": "fairygodmother",
+      "id": 1630,
+      "damage": 2,
+      "type": "capture"
+    },
+    {
+      "name": "Gorgon",
+      "icon": "gorgon",
+      "id": 1929,
+      "damage": 2,
+      "type": "capture"
+    },
+    {
+      "name": "Mother Earth",
+      "icon": "motherearth",
+      "id": 2337,
+      "damage": 2,
+      "type": "capture"
+    },
+    {
+      "name": "Hadavale",
+      "icon": "hadavale",
+      "id": 1745,
+      "damage": 2,
+      "type": "capture"
+    },
+    {
+      "name": "Night Vision Goggles",
+      "icon": "nightvisiongoggles",
+      "id": 1359,
+      "damage": 2,
+      "type": "deploy"
+    },
+    {
+      "name": "Trojan Unicorn",
+      "icon": "trojanunicorn",
+      "id": 1359,
+      "damage": 2,
+      "type": "deploy"
+    },
+    {
+      "name": "Virtual Pear Bomb",
+      "icon": "virtualpearbomb",
+      "id": 2612,
+      "damage": 1,
+      "type": "capture"
+    },
+    {
+      "name": "Virtual Pineamite",
+      "icon": "virtualpineamite",
+      "id": 2614,
+      "damage": 1,
+      "type": "capture"
+    },
+    {
+      "name": "Infrared Virtual",
+      "icon": "infraredvirtual",
+      "id": 1360,
+      "damage": 1,
+      "type": "capture"
+    },
+    {
+      "name": "Laser Trail 1",
+      "icon": "lasertrail1",
+      "id": 2608,
+      "damage": 1,
+      "type": "capture"
+    }
+  ]
+}

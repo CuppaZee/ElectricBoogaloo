@@ -1,0 +1,22 @@
+{
+  "name": "cuppazee",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/CuppaZee/ElectricBoogaloo",
+  "author": "Sam Hindess <mail@sohcah.dev>",
+  "license": "MPL2",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "server": "yarn workspace @cuppazee/functions lint && yarn workspace @cuppazee/functions build && firebase serve",
+    "web": "yarn workspace @cuppazee/app web",
+    "start": "run-p server web"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}

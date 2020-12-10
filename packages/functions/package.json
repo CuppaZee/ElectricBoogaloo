@@ -1,0 +1,37 @@
+{
+  "name": "@cuppazee/functions",
+  "version": "1.0.0",
+  "scripts": {
+    "lint": "tslint --project tsconfig.json",
+    "build": "tsc",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "10"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "@types/object.fromentries": "^2.0.0",
+    "cors": "^2.8.5",
+    "dayjs": "^1.9.7",
+    "firebase-admin": "^8.10.0",
+    "firebase-functions": "^3.6.1",
+    "form-data": "^3.0.0",
+    "moment": "^2.29.1",
+    "moment-timezone": "^0.5.32",
+    "node-fetch": "^2.6.1",
+    "object.fromentries": "^2.0.3"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.8",
+    "@types/node-fetch": "^2.5.7",
+    "firebase-functions-test": "^0.2.0",
+    "tslint": "^5.12.0",
+    "typescript": "^3.8.0"
+  },
+  "private": true
+}
