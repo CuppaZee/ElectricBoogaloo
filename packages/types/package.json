@@ -1,0 +1,19 @@
+{
+  "name": "@cuppazee/types",
+  "version": "0.0.2",
+  "main": "lib",
+  "license": "MPL2",
+  "keywords": [
+    "munzee",
+    "cuppazee"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CuppaZee/ElectricBoogaloo.git"
+  },
+  "author": "CuppaZee",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc && node lib/index"
+  }
+}
