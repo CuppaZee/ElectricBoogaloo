@@ -23,7 +23,10 @@ for(const e of events) {
       TypeTags.TypeEvent,
       TypeTags.TypeEventCustom,
     ],
-    hidden: [
+    hidden: e.missingicon ? [
+      TypeHidden.IconApp,
+      TypeHidden.IconServer,
+    ] : [
       TypeHidden.IconApp,
     ]
   })

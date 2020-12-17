@@ -10,6 +10,9 @@
         ],
         "server": [
           "cuppazee-server-beta"
+        ],
+        "icons": [
+          "cuppazee-icons"
         ]
       }
     }

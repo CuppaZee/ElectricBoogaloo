@@ -12,6 +12,10 @@
   },
   "hosting": [
     {
+      "target": "icons",
+      "public": "packages/icons/dist"
+    },
+    {
       "target": "server",
       "public": "public",
       "ignore": [

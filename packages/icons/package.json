@@ -1,7 +1,7 @@
 {
-  "name": "@cuppazee/typesviewer",
+  "name": "@cuppazee/icons",
   "version": "0.0.1",
-  "main": "index.js",
+  "main": "lib",
   "license": "MPL2",
   "keywords": [
     "munzee",
@@ -13,6 +13,9 @@
   },
   "author": "CuppaZee",
   "scripts": {
-    "dev": "node index"
+    "build": "node index"
+  },
+  "dependencies": {
+    "jimp": "^0.16.1"
   }
 }

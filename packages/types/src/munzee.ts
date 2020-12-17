@@ -383,24 +383,8 @@ export class Type {
     return this.i.icon;
   }
 
-  get iconURL() {
-    return `https://server.cuppazee.app/pins/64/${this.d.strip(
-      this.i.icon
-    )}.png`;
-  }
-
-  get iconURL128() {
-    return `https://server.cuppazee.app/pins/128/${this.d.strip(
-      this.i.icon
-    )}.png`;
-  }
-
-  get iconReactNative() {
-    return {
-      uri: `https://server.cuppazee.app/pins/64/${this.d.strip(
-        this.i.icon
-      )}.png`,
-    };
+  get strippedIcon() {
+    return this.d.strip(this.i.icon);
   }
 
   get id() {

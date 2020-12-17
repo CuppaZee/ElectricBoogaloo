@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.6 - 17/12/2020
+- Fixed event types with missing icons
+- Remove `iconURL64`, `iconURL128` and `iconReactNative` properties from Type class
+- Added `strippedIcon` property to Type class
 ## 0.0.5 - 17/12/2020
 - Added support for getting types by alt icons
 - Fixed issues with underscores in icons
