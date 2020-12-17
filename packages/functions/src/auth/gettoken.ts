@@ -1,21 +1,18 @@
 import { retrieve } from "../util";
 import config from '../config.json';
+import { Route } from "../types";
 
-export default {
+const route: Route = {
   path: "auth/get",
   latest: 1,
   versions: [
     {
       version: 1,
-      params: {
-        user_id: {
-          type: "userid",
-        },
-      },
       async function({
-        params: { teaken, user_id, time },
+        params: { teaken: teake, user_id, time },
         db
       }: any) {
+        let teaken = teake;
         if (Date.now() > 1593227045659) return {
           status: "error",
           data: null
@@ -38,15 +35,11 @@ export default {
     },
     {
       version: 2,
-      params: {
-        user_id: {
-          type: "userid",
-        },
-      },
       async function({
-        params: { teaken, user_id, time },
+        params: { teaken: teake, user_id, time },
         db
       }: any) {
+        let teaken = teake;
         if (config.bypass_teakens.includes(teaken)) {
           teaken = false;
         }
@@ -65,3 +58,4 @@ export default {
     },
   ],
 };
+export default route;

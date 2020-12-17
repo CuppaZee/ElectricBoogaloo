@@ -1,20 +1,40 @@
-module.exports = function (db: any) {
-  let devices: any = [];
+import { firestore } from "firebase-admin";
+
+export type Device = {
+  bouncers?: {
+    dynamic: boolean;
+    enabled: boolean;
+    locations: {
+      latitude: number;
+      longitude: number;
+      name: string;
+    }[]
+  }
+  munzee_blog?: boolean;
+  token: string;
+  users?: {
+    [user_id: string]: {
+      inventory?: boolean;
+    }
+  }
+}
+
+export default function (db: firestore.Firestore) {
+  let devices: Device[] = [];
 
   let hasData = false;
 
-  let waiting: any = [];
+  let waiting: (() => void)[] = [];
 
   db.collection('push')
     .onSnapshot((querySnapshot: any) => {
       devices = querySnapshot.docs.map((i: any) => i.data());
       hasData = true;
-      // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'i' implicitly has an 'any' type.
       waiting.forEach(i=>i());
       waiting = [];
     });
 
-  return function () {
+  return function (): Promise<Device[]> {
     return new Promise((resolve, reject) => {
       if(hasData) {
         resolve(devices);

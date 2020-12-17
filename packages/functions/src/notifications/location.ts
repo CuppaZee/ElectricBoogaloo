@@ -1,18 +1,16 @@
+import { Expo } from 'expo-server-sdk';
+import { Route } from '../types';
 
-// @ts-expect-error ts-migrate(2451) FIXME: Cannot redeclare block-scoped variable 'Expo'.
-var { Expo } = require('expo-server-sdk');
-
-module.exports = {
+const route: Route = {
   path: "notifications/location",
   latest: 1,
   versions: [
     {
       version: 1,
-      params: {},
       async function({
         params: { latitude, longitude, token },
         db
-      }: any) {
+      }) {
         if (!Expo.isExpoPushToken(token)) {
           console.error(`Push token ${token} is not a valid Expo push token`);
           return {
@@ -34,3 +32,5 @@ module.exports = {
     },
   ],
 };
+
+export default route;

@@ -1,10 +1,11 @@
-module.exports = {
+import { Route } from "../types";
+
+const route: Route = {
   path: "user/list",
   latest: 1,
   versions: [
     {
       version: 1,
-      params: {},
       async function({
         db
       }: any) {
@@ -17,3 +18,4 @@ module.exports = {
     }
   ]
 }
+export default route;

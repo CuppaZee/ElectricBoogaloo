@@ -9,7 +9,8 @@
     "lib": ["es2018"],
     "target": "es2018",
     "esModuleInterop": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "skipLibCheck": true
   },
   "compileOnSave": true,
   "include": [

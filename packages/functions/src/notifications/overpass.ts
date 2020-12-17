@@ -1,18 +1,16 @@
+import fetch from "node-fetch";
+import spherical from "spherical-geometry-js";
+import { Route } from "../types";
 
-// @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'fetch'.
-var fetch = require("node-fetch");
-var spherical = require("spherical");
-
-module.exports = {
+const route: Route = {
   path: "overpass",
   latest: 1,
   versions: [
     {
       version: 1,
-      params: {},
       async function({
         params: { longitude, latitude }
-      }: any) {
+      }) {
         var output = {
             name: null,
             latitude: null,
@@ -32,7 +30,7 @@ module.exports = {
         var elements = data.elements;
         const nodes = elements.filter((i: any) => i.type === "node").map((i: any) => ({
           ...i,
-          distance: spherical.distance([i.lon,i.lat],[lon,lat])
+          distance: spherical.computeDistanceBetween([i.lat,i.lon],[lat,lon])
         })).sort((a: any,b: any)=>a.distance-b.distance);
         var node = nodes[0];
         var way = elements.find((i: any) => (i.nodes||[]).includes(node.id));
@@ -61,3 +59,5 @@ module.exports = {
     },
   ],
 };
+
+export default route;

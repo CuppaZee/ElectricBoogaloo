@@ -1,10 +1,8 @@
+import config from '../config.json';
+import fetch from 'node-fetch';
+import { Route } from '../types';
 
-// @ts-expect-error ts-migrate(2451) FIXME: Cannot redeclare block-scoped variable 'config'.
-var config = require('../config.json');
-// @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'fetch'.
-var fetch = require('node-fetch');
-
-module.exports = {
+const route: Route = {
   path: "user/universal/report",
   latest: 1,
   versions: [
@@ -12,7 +10,7 @@ module.exports = {
       version: 1,
       async function({
         params: { report }
-      }: any) {
+      }) {
         await fetch(
           config.discord.universal_report,
           {
@@ -30,3 +28,4 @@ module.exports = {
     },
   ],
 };
+export default route;

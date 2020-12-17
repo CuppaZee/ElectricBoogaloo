@@ -1,14 +1,12 @@
+import { Route } from "../types";
+import { Expo } from 'expo-server-sdk';
 
-// @ts-expect-error ts-migrate(2451) FIXME: Cannot redeclare block-scoped variable 'Expo'.
-var { Expo } = require('expo-server-sdk');
-
-module.exports = {
+const route: Route = {
   path: "notifications/signup",
   latest: 1,
   versions: [
     {
       version: 1,
-      params: {},
       async function({
         params: { data },
         db
@@ -30,3 +28,4 @@ module.exports = {
     },
   ],
 };
+export default route;

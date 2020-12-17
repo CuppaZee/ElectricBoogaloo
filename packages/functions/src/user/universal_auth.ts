@@ -1,30 +1,21 @@
+import { Route } from "../types";
+import fetch from "node-fetch";
+import crypto from "crypto";
+import { URLSearchParams } from "url";
+import config from '../config.json';
+import firebase from "firebase-admin";
 
-// @ts-expect-error ts-migrate(2300) FIXME: Duplicate identifier 'fetch'.
-var fetch = require("node-fetch");
-// @ts-expect-error ts-migrate(2403) FIXME: Subsequent variable declarations must have the sam... Remove this comment to see the full error message
-var crypto = require("crypto");
-// @ts-expect-error ts-migrate(2403) FIXME: Subsequent variable declarations must have the sam... Remove this comment to see the full error message
-var { URLSearchParams } = require("url");
-// @ts-expect-error ts-migrate(2451) FIXME: Cannot redeclare block-scoped variable 'config'.
-var config = require('../config.json');
-var firebase = require("firebase-admin");
-
-module.exports = {
+const route: Route = {
   path: "auth/auth/universal",
   latest: 1,
   versions: [
     {
       version: 1,
-      params: {
-        user_id: {
-          type: "userid",
-        },
-      },
       async function({
         params: { code, state },
         res,
         db
-      }: any) {
+      }) {
         try {
 
           var state_data = JSON.parse(state || "{}");
@@ -39,7 +30,6 @@ module.exports = {
             }),
           });
           var data = await d.json();
-          // @ts-expect-error ts-migrate(2339) FIXME: Property 'randomBytes' does not exist on type 'Cry... Remove this comment to see the full error message
           var teaken = crypto.randomBytes(20).toString("hex");
           var user_d = await fetch("https://api.munzee.com/user", {
             method: "POST",
@@ -72,19 +62,18 @@ module.exports = {
           );
 
 
-          // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
           var platform = {
             android: "🤖",
             ios: "🍎",
             web: "🌐"
-          }[state_data.platform] || `[${state_data.platform}] `;
-          var { list } = (await db.collection('data').doc('user_list_universal').get()).data();
+          }[state_data.platform as "android" | "ios" | "web"] || `[${state_data.platform}] `;
+          var { list } = (await db.collection('data').doc('user_list_universal').get()).data() ?? {list:[]};
           var discordmessage = "n/a";
           if (list.includes(username)) {
             discordmessage = `${platform}🔁 ${username} | ${list.length} Users [#${list.indexOf(username) + 1}]`
           } else {
             discordmessage = `${platform}🆕 ${username} | User #${list.length + 1}`;
-            db.collection('data').doc('user_list_universal').update({
+            await db.collection('data').doc('user_list_universal').update({
               list: firebase.firestore.FieldValue.arrayUnion(username)
             })
           }
@@ -140,3 +129,5 @@ module.exports = {
     },
   ],
 };
+
+export default route;

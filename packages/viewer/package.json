@@ -1,0 +1,18 @@
+{
+  "name": "@cuppazee/typesviewer",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MPL2",
+  "keywords": [
+    "munzee",
+    "cuppazee"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CuppaZee/ElectricBoogaloo.git"
+  },
+  "author": "CuppaZee",
+  "scripts": {
+    "dev": "node index"
+  }
+}

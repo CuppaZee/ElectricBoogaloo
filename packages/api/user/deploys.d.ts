@@ -6,7 +6,7 @@ export interface UserDeploys extends Endpoint {
     params: {
       user_id: number;
       page?: number;
-      type_id?: string;
+      type_id?: number;
     };
   }
   response: Response<{

@@ -1,3 +1,4 @@
+import { Route } from "../types";
 import { retrieve, request } from "../util";
 var rndKey = (length: any) => {
   var x = '';
@@ -7,17 +8,12 @@ var rndKey = (length: any) => {
   return x;
 };
 
-export default {
+const route: Route = {
   path: "user/activity",
   latest: 1,
   versions: [
     {
       version: 1,
-      params: {
-        user_id: {
-          type: "userid",
-        },
-      },
       async function({
         params: { user_id, day },
         db
@@ -58,3 +54,4 @@ export default {
     },
   ],
 };
+export default route;

@@ -1,10 +1,8 @@
+import config from '../config.json';
+import nodemailer from 'nodemailer';
+const transporter = nodemailer.createTransport(config.nodemailer);
 
-// @ts-expect-error ts-migrate(2451) FIXME: Cannot redeclare block-scoped variable 'config'.
-const config = require('../config.json');
-const nodemailer = require('nodemailer');
-var transporter = nodemailer.createTransport(config.nodemailer);
-
-module.exports = function sendEmail(data: any) {
+export default function sendEmail(data: any) {
   return transporter.sendMail({
     from: {
         name: data.name||'CuppaZee App',

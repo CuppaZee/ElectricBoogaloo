@@ -3,23 +3,19 @@ import crypto from "crypto";
 import { URLSearchParams } from "url";
 import config from '../config.json';
 import firebase from "firebase-admin";
+import { Route } from "../types";
 
-export default {
+const route: Route = {
   path: "auth/auth",
   latest: 1,
   versions: [
     {
       version: 1,
-      params: {
-        user_id: {
-          type: "userid",
-        },
-      },
       async function({
         params: { code, state },
         res,
         db
-      }: any) {
+      }) {
         try {
 
           var state_data = JSON.parse(state || "{}");
@@ -71,13 +67,13 @@ export default {
             ios: "🍎",
             web: "🌐"
           }[state_data.platform as "android" | "ios" | "web"]||`[${state_data.platform}] `;
-          var {list} = (await db.collection('data').doc('user_list').get()).data();
+          var {list} = (await db.collection('data').doc('user_list').get()).data() ?? {list:[]};
           let discordmessage = ``;
           if(list.includes(username)){
               discordmessage = `${platform}🔁 ${username} | ${list.length} Users [#${list.indexOf(username)+1}]`
           } else {
               discordmessage = `${platform}🆕 ${username} | User #${list.length+1}`;
-              db.collection('data').doc('user_list').update({
+              await db.collection('data').doc('user_list').update({
                   list: firebase.firestore.FieldValue.arrayUnion(username)
               })
           }
@@ -132,3 +128,4 @@ export default {
     },
   ],
 };
+export default route;

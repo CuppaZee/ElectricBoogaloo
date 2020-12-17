@@ -1,3 +1,4 @@
-module.exports = [
-  require('./blast'),
+import blast from './blast';
+export default [
+  blast,
 ]

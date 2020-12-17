@@ -1,35 +1,37 @@
+import { Route } from "../types";
 
-// @ts-expect-error ts-migrate(2451) FIXME: Cannot redeclare block-scoped variable 'retrieve'.
-var { retrieve, request } = require("../util");
+import { retrieve, request } from "../util";
 
-module.exports = {
+const route: Route = {
   path: "munzee/deploytime",
   latest: 1,
   versions: [
     {
       version: 1,
-      params: {
-        user_id: {
-          type: "userid",
-        },
-      },
-      async function({
-        params: { url },
-        db,
-        res
-      }: any) {
+      async function({ params: { url }, db, res }: any) {
         if (!url) {
-          return res.send('Missing URL')
+          return res.send("Missing URL");
         }
-        url = url.match(/\/m\/([^/]+)\/([0-9]+)/)||url.match(/\bm\/([^/]+)\/([0-9]+)/);
-        if(!url) return res.send('Invalid URL');
-        url = `/m/${url[1]}/${url[2]}`;
+        let modifiedURL = url;
+        modifiedURL =
+          modifiedURL.match(/\/m\/([^/]+)\/([0-9]+)/) ||
+          modifiedURL.match(/\bm\/([^/]+)\/([0-9]+)/);
+        if (!modifiedURL) return res.send("Invalid URL");
+        modifiedURL = `/m/${url[1]}/${url[2]}`;
         var token = await retrieve(db, { user_id: 125914, teaken: false }, 60);
-        res.send((await request('munzee', { url: url }, token.access_token)).deployed_at.replace('T',' ').replace(/-0[56]:00/,''));
+        res.send(
+          (
+            await request("munzee", { url: url }, token.access_token)
+          )?.data?.deployed_at
+            ?.replace("T", " ")
+            .replace(/-0[56]:00/, "")
+        );
         return {
           norespond: true,
-        }
+        };
       },
     },
   ],
 };
+
+export default route;

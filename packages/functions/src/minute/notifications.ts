@@ -1,18 +1,14 @@
+import { Expo, ExpoPushReceipt } from 'expo-server-sdk';
+import { Route } from '../types';
 
-// @ts-expect-error ts-migrate(2451) FIXME: Cannot redeclare block-scoped variable 'Expo'.
-const { Expo } = require('expo-server-sdk');
+const expo = new Expo();
 
-// Create a new Expo SDK client
-// @ts-expect-error ts-migrate(2451) FIXME: Cannot redeclare block-scoped variable 'expo'.
-let expo = new Expo();
-
-module.exports = {
+const route: Route = {
   path: "minute/notifications",
   latest: 1,
   versions: [
     {
       version: 1,
-      params: {},
       async function({
         db
       }: any) {
@@ -26,22 +22,22 @@ module.exports = {
           }
           notificationBatch.ref.delete();
         }
-        var allReceipts: any = [];
+        var allReceipts: ExpoPushReceipt[] = [];
         let receiptIdChunks = expo.chunkPushNotificationReceiptIds(receiptIds);
         for (let chunk of receiptIdChunks) {
           try {
             let receipts = await expo.getPushNotificationReceiptsAsync(chunk);
-            allReceipts = allReceipts.concat(receipts);
+            allReceipts = allReceipts.concat(Object.values(receipts));
             console.log(receipts);
             for (let receiptId in receipts) {
-              let { status, message, details } = receipts[receiptId];
+              let { status, details, ...rest } = receipts[receiptId];
               if (status === 'ok') {
                 continue;
               } else if (status === 'error') {
                 console.error(
-                  `There was an error sending a notification: ${message}`
+                  `There was an error sending a notification: ${"message" in rest ? rest.message : ""}`
                 );
-                if (details && details.error) {
+                if (details && "error" in details) {
                   // The error codes are listed in the Expo documentation:
                   // https://docs.expo.io/versions/latest/guides/push-notifications/#individual-errors
                   // You must handle the errors appropriately.
@@ -61,3 +57,4 @@ module.exports = {
     }
   ]
 }
+export default route;

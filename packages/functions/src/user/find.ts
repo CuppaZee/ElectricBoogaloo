@@ -1,18 +1,12 @@
+import { Route } from "../types";
+import { retrieve, request } from "../util";
 
-// @ts-expect-error ts-migrate(2451) FIXME: Cannot redeclare block-scoped variable 'retrieve'.
-var { retrieve, request } = require("../util");
-
-module.exports = {
+const route: Route = {
   path: "user/find",
   latest: 1,
   versions: [
     {
       version: 1,
-      params: {
-        user_id: {
-          type: "userid",
-        },
-      },
       async function({
         params: { text },
         db
@@ -39,3 +33,5 @@ module.exports = {
     },
   ],
 };
+
+export default route;

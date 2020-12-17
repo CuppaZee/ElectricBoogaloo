@@ -79,3 +79,7 @@ web-build/
 
 # macOS
 .DS_Store
+
+public/
+
+db.sqlite

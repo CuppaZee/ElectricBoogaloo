@@ -1,35 +1,37 @@
-import {
-  MunzeeSpecial,
-  MunzeeSpecialBouncer,
-} from "@cuppazee/api/munzee/specials";
-import { retrieve, request } from "../util";
+// import {
+//   MunzeeSpecial,
+//   MunzeeSpecialBouncer,
+// } from "@cuppazee/api/munzee/specials";
+import { Route } from "../types";
+// import { retrieve, request } from "../util";
+import { getBouncers } from "../util/cache";
 
-export default {
+const route: Route = {
   path: "bouncers/overview",
   latest: 1,
   versions: [
     {
       version: 1,
-      params: {},
-      async function({ db }: any) {
-        const token = await retrieve(
-          db,
-          { user_id: 125914, teaken: false },
-          60
-        );
-        const data = await Promise.all([
-          request("munzee/specials", {}, token.access_token),
-          request("munzee/specials/mythological", {}, token.access_token),
-          request("munzee/specials/pouchcreatures", {}, token.access_token),
-          request("munzee/specials/flat", {}, token.access_token),
-          request("munzee/specials/bouncers", {}, token.access_token),
-          request("munzee/specials/retired", {}, token.access_token),
-        ]);
-        let body: (MunzeeSpecial | MunzeeSpecialBouncer)[] = [];
-        for (let endpointData of data) {
-          body = body.concat(endpointData?.data ?? []);
-        }
-        var overview = body.reduce((a, b) => {
+      async function() {
+        // const token = await retrieve(
+        //   db,
+        //   { user_id: 125914, teaken: false },
+        //   60
+        // );
+        // const data = await Promise.all([
+        //   request("munzee/specials", {}, token.access_token),
+        //   request("munzee/specials/mythological", {}, token.access_token),
+        //   request("munzee/specials/pouchcreatures", {}, token.access_token),
+        //   request("munzee/specials/flat", {}, token.access_token),
+        //   request("munzee/specials/bouncers", {}, token.access_token),
+        //   request("munzee/specials/retired", {}, token.access_token),
+        // ]);
+        // let body: (MunzeeSpecial | MunzeeSpecialBouncer)[] = [];
+        // for (let endpointData of data) {
+        //   body = body.concat(endpointData?.data ?? []);
+        // }
+        const bouncers = await getBouncers();
+        var overview = bouncers.reduce((a, b) => {
           const logo =
             ("mythological_munzee" in b
               ? b.mythological_munzee.munzee_logo
@@ -47,3 +49,4 @@ export default {
     },
   ],
 };
+export default route;

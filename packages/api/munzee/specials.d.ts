@@ -37,8 +37,8 @@ export interface MunzeeSpecials extends Endpoint {
   }
   response: Response<MunzeeSpecial[]>
 }
-export interface MunzeeSpecialsMythological extends Endpoint {request: {endpoint: "munzee/specials/mythological";params: {}};response: Response<MunzeeSpecial[]>}
-export interface MunzeeSpecialsPouchCreatures extends Endpoint {request: {endpoint: "munzee/specials/pouchcreatures";params: {}};response: Response<MunzeeSpecial[]>}
-export interface MunzeeSpecialsRetired extends Endpoint {request: {endpoint: "munzee/specials/retired";params: {}};response: Response<MunzeeSpecial[]>}
-export interface MunzeeSpecialsFlat extends Endpoint {request: {endpoint: "munzee/specials/flat";params: {}};response: Response<MunzeeSpecial[]>}
-export interface MunzeeSpecialsBouncers extends Endpoint {request: {endpoint: "munzee/specials/bouncers";params: {}};response: Response<MunzeeSpecial[]>}
+export interface MunzeeSpecialsMythological extends Endpoint {request: {endpoint: "munzee/specials/mythological";params: {}};response: Response<MunzeeSpecialBouncer[]>}
+export interface MunzeeSpecialsPouchCreatures extends Endpoint {request: {endpoint: "munzee/specials/pouchcreatures";params: {}};response: Response<MunzeeSpecialBouncer[]>}
+export interface MunzeeSpecialsRetired extends Endpoint {request: {endpoint: "munzee/specials/retired";params: {}};response: Response<MunzeeSpecialBouncer[]>}
+export interface MunzeeSpecialsFlat extends Endpoint {request: {endpoint: "munzee/specials/flat";params: {}};response: Response<MunzeeSpecialBouncer[]>}
+export interface MunzeeSpecialsBouncers extends Endpoint {request: {endpoint: "munzee/specials/bouncers";params: {}};response: Response<MunzeeSpecialBouncer[]>}

@@ -3,27 +3,31 @@ import { Route } from "./types";
 import corsImport from "cors";
 const cors = corsImport({ origin: true });
 
+import db from './util/db';
+import notificationDataImport from './util/notificationSettings'
+const notificationData = notificationDataImport(db);
+
 import auth_routes from './auth';
 import bouncers_routes from './bouncers';
 import clan_routes from './clan';
-import competition_routes from './competition';
+// import competition_routes from './competition';
 import map_routes from './map';
 import minute_routes from './minute';
 import munzee_routes from './munzee';
 import notifications_routes from './notifications';
 import user_routes from './user';
-import weekly_routes from './weekly';
+// import weekly_routes from './weekly';
 var routes: Route[] = [
   ...auth_routes,
   ...bouncers_routes,
   ...clan_routes,
-  ...competition_routes,
+  // ...competition_routes,
   ...map_routes,
   ...minute_routes,
   ...munzee_routes,
   ...notifications_routes,
   ...user_routes,
-  ...weekly_routes,
+  // ...weekly_routes,
 ];
 
 export const apibeta = functions
@@ -38,6 +42,8 @@ export const apibeta = functions
     }
     cors(req, res, async () => {
       try {
+        functions.logger.log('REQUEST');
+        functions.logger.log(req, res);
         var path = req.path.split("/").filter(Boolean);
         var version = null;
         var route = path.join("/");
@@ -106,6 +112,8 @@ export const apibeta = functions
         var response = await Promise.resolve(use.function({
           params: params,
           res,
+          db,
+          notificationData,
         }));
         if (response.norespond) return;
         return res

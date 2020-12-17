@@ -1,5 +1,17 @@
 {
   "projects": {
     "default": "cuppazee-app"
+  },
+  "targets": {
+    "cuppazee-app": {
+      "hosting": {
+        "app": [
+          "cuppazee-app-beta"
+        ],
+        "server": [
+          "cuppazee-server-beta"
+        ]
+      }
+    }
   }
 }

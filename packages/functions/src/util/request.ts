@@ -9,7 +9,9 @@ export default async function <Path extends keyof Endpoints>(
   logMessage?: string,
 ): Promise<FetchResponse<Path> | null> {
   try {
-    var data = await fetch('https://api.munzee.com/' + endpoint, {
+    var data = await fetch('https://api.munzee.com/' + endpoint?.replace(/{([A-Za-z0-9_]+)}/g,(string) => {
+      return params?.[string[1] as keyof FetchRequest<Path>["params"]] || "";
+    }), {
       method: 'POST',
       body: new URLSearchParams({
         data: JSON.stringify(params),

@@ -1,4 +1,6 @@
+import { firestore } from "firebase-admin";
 import { Response } from "firebase-functions"
+import { Device } from "./util/notificationSettings";
 
 export type Route = {
   path: string;
@@ -17,13 +19,15 @@ export type RouteData = {
     [key:string]: any;
   };
   res: Response;
+  db: firestore.Firestore;
+  notificationData: () => Promise<Device[]>;
 }
 
 export type RouteResponse = {
   norespond: true;
-  status: undefined;
+  status?: undefined;
   error_message?: string;
-  data: undefined;
+  data?: undefined;
 } | {
   norespond?: false;
   status: "success" | "error" | {
