@@ -127,8 +127,9 @@ for (const t of destinations) {
       destination_size: t.size,
       destination_star_level: t.star_level,
       destination_temporary: t.temporary,
+      destination_type: t.type,
     },
-    hidden: t.hidden ?? [],
+    hidden: t.hidden ?? ((t.room_of || (t.star_level && t.star_level > 1)) ? [TypeHidden.Inventory] : []),
   });
 }
 
@@ -287,7 +288,7 @@ for (const t of virtuals) {
     icon: t.icon,
     id: t.id,
     alt_icons: t.alt_icons ?? [],
-    state: TypeState.Physical,
+    state: TypeState.Virtual,
     category: `virtual`,
     tags: [
       TypeTags.TypeVirtual,

@@ -39,6 +39,7 @@ export default [
     extra: {
       social: true,
     },
+    hidden: [TypeHidden.Inventory],
   },
   {
     name: "Event Pin",
@@ -46,6 +47,7 @@ export default [
     id: 60,
     state: TypeState.Physical,
     tags: [TypeTags.TypeEvent, TypeTags.TypeEventStandard],
+    hidden: [TypeHidden.Inventory],
   },
   {
     name: "Trail Munzee",
@@ -66,6 +68,7 @@ export default [
       split: 50,
       min: 10,
     },
+    hidden: [TypeHidden.Inventory],
   },
   {
     name: "Event Indicator",
@@ -73,6 +76,7 @@ export default [
     id: 294,
     state: TypeState.Physical,
     tags: [TypeTags.TypeEvent, TypeTags.TypeEventStandard],
+    hidden: [TypeHidden.Inventory],
   },
   {
     name: "Virtual Trail",
@@ -95,6 +99,7 @@ export default [
     id: 600,
     tags: [TypeTags.TypeEvent, TypeTags.TypeEventStandard, TypeTags.TypeTrail],
     state: TypeState.Virtual,
+    hidden: [TypeHidden.Inventory],
   },
   {
     name: "Premium Personal",
@@ -108,6 +113,7 @@ export default [
       split: 100,
       min: 20,
     },
+    hidden: [TypeHidden.Inventory],
   },
   {
     name: "Spring Seasonal",
@@ -167,12 +173,14 @@ export default [
     icon: "qrewzee",
     id: 1880,
     state: TypeState.Physical,
+    hidden: [TypeHidden.Inventory,TypeHidden.Deploy],
   },
   {
     name: "Renovation",
     icon: "renovation",
     id: 2390,
-    state: "other",
+    state: TypeState.Locationless,
+    hidden: [TypeHidden.Inventory,TypeHidden.Deploy],
   },
 ] as {
   name: string;

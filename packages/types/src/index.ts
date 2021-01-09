@@ -6,7 +6,19 @@ const categories: TypeCategoryInterface[] = [
     name: "Events",
     id: "event",
     icon: "event",
-    parents: ["root"]
+    parents: []
+  },
+  {
+    name: "Credits",
+    id: "credit",
+    icon: "zeds",
+    parents: []
+  },
+  {
+    name: "Other",
+    id: "other",
+    icon: "mystery",
+    parents: []
   }
 ];
 
@@ -26,8 +38,10 @@ for(const e of events) {
     hidden: e.missingicon ? [
       TypeHidden.IconApp,
       TypeHidden.IconServer,
+      TypeHidden.Inventory,
     ] : [
       TypeHidden.IconApp,
+      TypeHidden.Inventory,
     ]
   })
 }
@@ -94,4 +108,5 @@ const db = new TypeDatabase([
   ...EvoCategories,
 ]);
 
+export * from './munzee';
 export default db;

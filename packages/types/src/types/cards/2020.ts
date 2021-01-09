@@ -136,6 +136,121 @@ export default [
     icon: "coalholidaycard",
     id: "null_coalholidaycard",
   },
+  {
+    name: "Pickle Holiday Card",
+    icon: "pickleholidaycard",
+    id: "null_pickleholidaycard",
+  },
+  {
+    name: "Mistletoe Holiday Card",
+    icon: "mistletoeholidaycard",
+    id: "null_mistletoeholidaycard",
+  },
+  {
+    name: "Scarf Holiday Card",
+    icon: "scarfholidaycard",
+    id: "null_scarfholidaycard",
+  },
+  {
+    name: "Light Holiday Card",
+    icon: "lightholidaycard",
+    id: "null_lightholidaycard",
+  },
+  {
+    name: "Gingerbread Man Holiday Card",
+    icon: "gingerbreadmanholidaycard",
+    id: "null_gingerbreadmanholidaycard",
+  },
+  {
+    name: "Tree Holiday Card",
+    icon: "treeholidaycard",
+    id: "null_treeholidaycard",
+  },
+  {
+    name: "Reindeer Holiday Card",
+    icon: "reindeerholidaycard",
+    id: "null_reindeerholidaycard",
+  },
+  {
+    name: "Jumper Holiday Card",
+    icon: "jumperholidaycard",
+    id: "null_jumperholidaycard",
+  },
+  {
+    name: "Sleigh Holiday Card",
+    icon: "sleighholidaycard",
+    id: "null_sleighholidaycard",
+  },
+  {
+    name: "Hanukkah Holiday Card",
+    icon: "hanukkahholidaycard",
+    id: "null_hanukkahholidaycard",
+  },
+  {
+    name: "Silver Bell Holiday Card",
+    icon: "silverbellholidaycard",
+    id: "null_silverbellholidaycard",
+  },
+  {
+    name: "Snow Globe Holiday Card",
+    icon: "snowglobeholidaycard",
+    id: "null_snowglobeholidaycard",
+  },
+  {
+    name: "Drummer Boy Holiday Card",
+    icon: "drummerboyholidaycard",
+    id: "null_drummerboyholidaycard",
+  },
+  {
+    name: "Tin Soldier Holiday Card",
+    icon: "tinsoldierholidaycard",
+    id: "null_tinsoldierholidaycard",
+  },
+  {
+    name: "Elf Holiday Card",
+    icon: "elfholidaycard",
+    id: "null_elfholidaycard",
+  },
+  {
+    name: "Stocking Holiday Card",
+    icon: "stockingholidaycard",
+    id: "null_stockingholidaycard",
+  },
+  {
+    name: "Present Holiday Card",
+    icon: "presentholidaycard",
+    id: "null_presentholidaycard",
+  },
+  {
+    name: "Boxing Day Holiday Card",
+    icon: "boxingdayholidaycard",
+    id: "null_boxingdayholidaycard",
+  },
+  {
+    name: "Party Horn Holiday Card",
+    icon: "partyhornholidaycard",
+    id: "null_partyhornholidaycard",
+  },
+  {
+    name: "Baby New Year Holiday Card",
+    icon: "babynewyearholidaycard",
+    id: "null_babynewyearholidaycard",
+  },
+  {
+    name: "Baby New Year Holiday Card",
+    icon: "babynewyearholidaycard",
+    id: "null_babynewyearholidaycard",
+  },
+  {
+    name: "Cheers Holiday Card",
+    icon: "cheersholidaycard",
+    id: "null_cheersholidaycard",
+  },
+  {
+    name: "Calendar Holiday Card",
+    icon: "calendarholidaycard",
+    id: "null_calendarholidaycard",
+  },
 ] as {
   name: string;
   icon: string;

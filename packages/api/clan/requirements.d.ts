@@ -44,7 +44,7 @@ export interface ClanV2Requirements extends Endpoint {
           completed: 0 | 1;
           percent_completed: number;
         }
-      }
+      } | [];
     },
     battle: {
       game_id: number;

@@ -352,7 +352,7 @@ export class TypeDatabase {
 
   strip(icon: string) {
     if (icon.startsWith("https://munzee.global")) icon = icon.slice(49, -4);
-    var x = decodeURIComponent(icon).replace(/[^a-zA-Z0-9]/g, "");
+    var x = decodeURIComponent(icon).replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
     if (x !== "munzee" && x.endsWith("munzee")) return x.replace(/munzee$/, "");
     return x;
   }

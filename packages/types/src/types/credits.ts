@@ -68,7 +68,7 @@ export default [
   },
   {
     icon: "physicalcapturebooster",
-    name: "physical Capture Booster",
+    name: "Physical Capture Booster",
   },
   {
     icon: "virtualcapturebooster",

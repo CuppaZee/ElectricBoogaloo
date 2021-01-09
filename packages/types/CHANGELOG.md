@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.0.14 - 30/12/2020
+- Fixed hidden tags on `social`, `qrewzee` and `renovation` types
+- Fixed capitalisation on `physicalcapturebooster` type name
+## 0.0.13 - 30/12/2020
+- Added `Inventory` hidden tag to event types and various others
+## 0.0.12 - 30/12/2020
+- Fix `other` and `credit` categories
+- Renamed Seasonal Special categories
+## 0.0.11 - 30/12/2020
+- Added more 2020 Holiday Cards
+- Added more Christmas 2020 Specials
+- Fix `strip` function on `TypeDatabase` class
+## 0.0.10 - 19/12/2020
+- Fixed `state` value for Virtuals
+## 0.0.9 - 19/12/2020
+- Fixed `state` and `hidden` values for Cards
+## 0.0.8 - 19/12/2020
+- Moved main exports to `index.js`
+## 0.0.7 - 19/12/2020
+- Fixed `destination_type` meta to be included correctly
 ## 0.0.6 - 17/12/2020
 - Fixed event types with missing icons
 - Remove `iconURL64`, `iconURL128` and `iconReactNative` properties from Type class

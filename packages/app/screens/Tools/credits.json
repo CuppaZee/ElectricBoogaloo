@@ -1,0 +1,655 @@
+[
+  {
+    "username": "sohcah",
+    "user_id": 125914,
+    "type": "dev",
+    "title": "primary_dev",
+    "large": true
+  },
+  {
+    "username": "Megachip",
+    "user_id": 93331,
+    "type": "dev",
+    "title": "code"
+  },
+  {
+    "": "Add yourself here if you contribute to CuppaZee!"
+  },
+
+  
+  {
+    "username": "sohcah",
+    "user_id": 125914,
+    "type": "db"
+  },
+  {
+    "username": "Technical13",
+    "user_id": 341096,
+    "type": "db"
+  },
+  {
+    "username": "BrianMoos",
+    "user_id": 324648,
+    "type": "db"
+  },
+  {
+    "username": "Megachip",
+    "user_id": 93331,
+    "type": "db"
+  },
+  {
+    "": "Add yourself here if you contribute to the Munzee Database!"
+  },
+
+
+  {
+    "username": "stebu",
+    "user_id": 68322,
+    "type": "translator",
+    "title": "finnish"
+  },
+  {
+    "username": "sverlaan",
+    "user_id": 131912,
+    "type": "translator",
+    "title": "dutch"
+  },
+  {
+    "username": "Bungi",
+    "user_id": 179285,
+    "type": "translator",
+    "title": "german"
+  },
+  {
+    "username": "Bambusznad",
+    "user_id": 134242,
+    "type": "translator",
+    "title": "hungarian"
+  },
+  {
+    "username": "Lanyasummer",
+    "user_id": 296880,
+    "type": "translator",
+    "title": "swedish"
+  },
+  {
+    "username": "XeresDan",
+    "user_id": 6584,
+    "type": "translator",
+    "title": "french"
+  },
+  {
+    "username": "jakuje",
+    "user_id": 106818,
+    "type": "translator",
+    "title": "czech"
+  },
+  {
+    "username": "BrianMoos",
+    "user_id": 324648,
+    "type": "translator",
+    "title": "danish"
+  },
+  {
+    "username": "Cidinho",
+    "user_id": 360189,
+    "type": "translator",
+    "title": "portugese"
+  },
+  {
+    "username": "LY2KW",
+    "user_id": 87272,
+    "type": "translator",
+    "title": "lithuanian"
+  },
+
+
+  {
+    "username": "Vike91",
+    "type": "supporter",
+    "user_id": 360027
+  },
+  {
+    "username": "3newsomes",
+    "type": "supporter",
+    "user_id": 168149
+  },
+  {
+    "username": "Brandikorte",
+    "type": "supporter",
+    "user_id": 281195
+  },
+  {
+    "username": "skindo",
+    "type": "supporter",
+    "user_id": 148941
+  },
+  {
+    "username": "Benandlou",
+    "type": "supporter",
+    "user_id": 49731
+  },
+  {
+    "username": "PelicanRouge",
+    "type": "supporter",
+    "user_id": 381564
+  },
+  {
+    "username": "WriteAndMane",
+    "type": "supporter",
+    "user_id": 148677
+  },
+  {
+    "username": "marvin42",
+    "type": "supporter",
+    "user_id": 423998
+  },
+  {
+    "username": "Arendsoog",
+    "type": "supporter",
+    "user_id": 27923
+  },
+  {
+    "username": "boompa",
+    "type": "supporter",
+    "user_id": 75621
+  },
+  {
+    "username": "roughdraft",
+    "type": "supporter",
+    "user_id": 60454
+  },
+  {
+    "username": "sverlaan",
+    "type": "supporter",
+    "user_id": 131912
+  },
+  {
+    "username": "prmarks1391",
+    "type": "supporter",
+    "user_id": 76297
+  },
+  {
+    "username": "FrankBroughton",
+    "type": "supporter",
+    "user_id": 60415
+  },
+  {
+    "username": "Sidcup",
+    "type": "supporter",
+    "user_id": 346263
+  },
+  {
+    "username": "CambridgeHannons",
+    "type": "supporter",
+    "user_id": 307029
+  },
+  {
+    "username": "ahagmann",
+    "type": "supporter",
+    "user_id": 7628
+  },
+  {
+    "username": "WE4NCS",
+    "type": "supporter",
+    "user_id": 10997
+  },
+  {
+    "username": "xlud",
+    "type": "supporter",
+    "user_id": 107375
+  },
+  {
+    "username": "iAllyAnne",
+    "type": "supporter",
+    "user_id": 129543
+  },
+  {
+    "username": "GunnerSteve",
+    "type": "supporter",
+    "user_id": 125932
+  },
+  {
+    "username": "BrotherWilliam",
+    "type": "supporter",
+    "user_id": 66880
+  },
+  {
+    "username": "mierischclan",
+    "type": "supporter",
+    "user_id": 186057
+  },
+  {
+    "username": "gelada",
+    "type": "supporter",
+    "user_id": 7672
+  },
+  {
+    "username": "Alzarius",
+    "type": "supporter",
+    "user_id": 97723
+  },
+  {
+    "username": "J1Huisman",
+    "type": "supporter",
+    "user_id": 134188
+  },
+  {
+    "username": "Starman99",
+    "type": "supporter",
+    "user_id": 376084
+  },
+  {
+    "username": "Volotec",
+    "type": "supporter",
+    "user_id": 369143
+  },
+  {
+    "username": "lostsole68",
+    "type": "supporter",
+    "user_id": 139742
+  },
+  {
+    "username": "Sandcat63",
+    "type": "supporter",
+    "user_id": 309285
+  },
+  {
+    "username": "Tabata2",
+    "type": "supporter",
+    "user_id": 10602
+  },
+  {
+    "username": "Bumble",
+    "type": "supporter",
+    "user_id": 4365
+  },
+  {
+    "username": "cosmickingdom",
+    "type": "supporter",
+    "user_id": 369912
+  },
+  {
+    "username": "mtbiker64",
+    "type": "supporter",
+    "user_id": 293955
+  },
+  {
+    "username": "SJClyde",
+    "type": "supporter",
+    "user_id": 113342
+  },
+  {
+    "username": "kelkavcvt",
+    "type": "supporter",
+    "user_id": 122505
+  },
+  {
+    "username": "EmileP68",
+    "type": "supporter",
+    "user_id": 297309
+  },
+  {
+    "username": "aufbau",
+    "type": "supporter",
+    "user_id": 11336
+  },
+  {
+    "username": "madtux",
+    "type": "supporter",
+    "user_id": 137855
+  },
+  {
+    "username": "OldSchoolSkater",
+    "type": "supporter",
+    "user_id": 93491
+  },
+  {
+    "username": "TheFatCats",
+    "type": "supporter",
+    "user_id": 18699
+  },
+  {
+    "username": "nuttynan",
+    "type": "supporter",
+    "user_id": 243712
+  },
+  {
+    "username": "Lannies",
+    "type": "supporter",
+    "user_id": 372536
+  },
+  {
+    "username": "MattHoward",
+    "type": "supporter",
+    "user_id": 265174
+  },
+  {
+    "username": "Wekivamom",
+    "type": "supporter",
+    "user_id": 266264
+  },
+  {
+    "username": "Sneakersthesnail",
+    "type": "supporter-quit",
+    "user_id": 301743
+  },
+  {
+    "username": "FIWN",
+    "type": "supporter",
+    "user_id": 82886
+  },
+  {
+    "username": "FoundItWhereNext",
+    "type": "supporter",
+    "user_id": 73577
+  },
+  {
+    "username": "3Tiger",
+    "type": "supporter",
+    "user_id": 24349
+  },
+  {
+    "username": "barbie657",
+    "type": "supporter",
+    "user_id": 167779
+  },
+  {
+    "username": "halizwein",
+    "type": "supporter",
+    "user_id": 28834
+  },
+  {
+    "username": "waypoint51x",
+    "type": "supporter",
+    "user_id": 155451
+  },
+  {
+    "username": "listom",
+    "type": "supporter",
+    "user_id": 105182
+  },
+  {
+    "username": "EagleDadandXenia",
+    "type": "supporter",
+    "user_id": 115960
+  },
+  {
+    "username": "utilitymanjoe",
+    "type": "supporter",
+    "user_id": 123997
+  },
+  {
+    "username": "Billthebear",
+    "type": "supporter",
+    "user_id": 270968
+  },
+  {
+    "username": "Noisette",
+    "type": "supporter",
+    "user_id": 283391
+  },
+  {
+    "username": "Rynee",
+    "no": true,
+    "type": "supporter",
+    "user_id": 979
+  },
+  {
+    "username": "Gwendy",
+    "no": true,
+    "type": "supporter",
+    "user_id": 359679
+  },
+  {
+    "username": "MyraTX",
+    "type": "supporter",
+    "user_id": 115765
+  },
+  {
+    "username": "geoffallemand",
+    "no": true,
+    "type": "supporter",
+    "user_id": 246753
+  },
+  {
+    "username": "Bisquick2",
+    "type": "supporter",
+    "user_id": 368059
+  },
+  {
+    "username": "sunnydae",
+    "type": "supporter",
+    "user_id": 27017
+  },
+  {
+    "username": "Norkie",
+    "type": "supporter",
+    "user_id": 290789
+  },
+  {
+    "username": "c-bn",
+    "type": "supporter",
+    "user_id": 6730
+  },
+  {
+    "username": "iamfull",
+    "type": "supporter",
+    "user_id": 96298
+  },
+  {
+    "username": "RMNedrow",
+    "type": "supporter",
+    "user_id": 356203
+  },
+  {
+    "username": "Obi-Cal",
+    "type": "supporter",
+    "user_id": 12916
+  },
+  {
+    "username": "CzPeet",
+    "type": "supporter",
+    "user_id": 192472
+  },
+  {
+    "username": "teamsnook",
+    "type": "supporter",
+    "user_id": 172112
+  },
+  {
+    "username": "Lolbot",
+    "type": "supporter",
+    "user_id": 96473
+  },
+  {
+    "username": "Thegenie18",
+    "type": "supporter",
+    "user_id": 51311
+  },
+  {
+    "username": "granitente",
+    "type": "supporter",
+    "user_id": 203115
+  },
+  {
+    "username": "tonydev",
+    "type": "supporter",
+    "user_id": 54088
+  },
+  {
+    "username": "rodz",
+    "type": "supporter",
+    "user_id": 150
+  },
+  {
+    "username": "CarlisleCachers",
+    "type": "supporter",
+    "user_id": 40806
+  },
+  {
+    "username": "TSwag",
+    "type": "supporter",
+    "user_id": 432755
+  },
+  {
+    "username": "Roman",
+    "type": "supporter",
+    "user_id": 970
+  },
+  {
+    "username": "gdb",
+    "type": "supporter",
+    "user_id": 428215
+  },
+  {
+    "username": "MMarshall",
+    "type": "supporter",
+    "user_id": 243874
+  },
+  {
+    "username": "EmeraldAngel",
+    "type": "supporter",
+    "user_id": 338281
+  },
+  {
+    "username": "Traverto",
+    "type": "supporter",
+    "user_id": 453896
+  },
+  {
+    "username": "fsafranek",
+    "type": "supporter",
+    "user_id": 4660
+  },
+  {
+    "username": "coachV",
+    "type": "supporter",
+    "user_id": 4281
+  },
+  {
+    "username": "drew637",
+    "type": "supporter",
+    "user_id": 163647
+  },
+  {
+    "username": "coolant",
+    "type": "supporter",
+    "user_id": 9
+  },
+  {
+    "username": "GateGeek",
+    "type": "supporter",
+    "user_id": 68839
+  },
+  {
+    "username": "Neta",
+    "type": "supporter",
+    "user_id": 260339
+  },
+  {
+    "username": "AgentHop",
+    "type": "supporter",
+    "user_id": 62854
+  },
+  {
+    "username": "zip61348",
+    "type": "supporter",
+    "user_id": 132363
+  },
+  {
+    "username": "nzseries1",
+    "type": "supporter",
+    "user_id": 416222
+  },
+  {
+    "username": "Rhaegal",
+    "type": "supporter",
+    "user_id": 453287
+  },
+  {
+    "username": "Marc54140",
+    "type": "supporter",
+    "user_id": 435586
+  },
+  {
+    "username": "HtV",
+    "type": "supporter",
+    "user_id": 95937
+  },
+  {
+    "username": "jnorval",
+    "type": "supporter",
+    "user_id": 9579
+  },
+  {
+    "username": "Aniara",
+    "type": "supporter",
+    "user_id": 207317
+  },
+  {
+    "username": "poppejoppe",
+    "type": "supporter",
+    "user_id": 60079
+  },
+  {
+    "username": "dreiengel",
+    "type": "supporter",
+    "user_id": 58248
+  },
+  {
+    "username": "Norballe",
+    "type": "supporter",
+    "user_id": 110373
+  },
+  {
+    "username": "reej",
+    "type": "supporter",
+    "user_id": 83272
+  },
+  {
+    "username": "G1enter",
+    "type": "supporter",
+    "user_id": 190897
+  },
+  {
+    "username": "joroma80",
+    "type": "supporter",
+    "user_id": 204667
+  },
+  {
+    "username": "PeterandGloria",
+    "type": "supporter",
+    "user_id": 50530
+  },
+  {
+    "username": "Cidinho",
+    "user_id": 360189,
+    "type": "supporter"
+  },
+  {
+    "username": "denali0407",
+    "user_id": 104127,
+    "type": "supporter"
+  },
+  {
+    "username": "OdinsFiRe",
+    "user_id": 30981,
+    "type": "supporter"
+  },
+  {
+    "username": "10pmMeerkat",
+    "user_id": 221297,
+    "type": "supporter"
+  },
+  {
+    "username": "vmbiohazard",
+    "user_id": 64509,
+    "type": "supporter"
+  },
+  {
+    "username": "Roedii",
+    "user_id": 53071,
+    "type": "supporter"
+  }
+]

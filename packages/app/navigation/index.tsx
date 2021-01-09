@@ -1,11 +1,11 @@
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
-import { ColorSchemeName } from 'react-native';
+import { ColorSchemeName, Platform } from 'react-native';
 
-import NotFoundScreen from '../screens/NotFoundScreen';
+import SomewhereWithoutCoffeeScreen from '../screens/SomewhereWithoutCoffee';
 import { RootStackParamList } from '../types';
-import BottomTabNavigator from './BottomTabNavigator';
+import StackNavigator from './MainNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
 
 // If you are not familiar with React Navigation, we recommend going through the
@@ -26,9 +26,14 @@ const Stack = createStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Root" component={BottomTabNavigator} />
-      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+    <Stack.Navigator screenOptions={{
+      headerShown: false,
+      cardStyle: {
+        maxHeight: Platform.OS === "web" ? "100vh" : undefined,
+      },
+    }}>
+      <Stack.Screen name="Root" component={StackNavigator} />
+      <Stack.Screen name="somewherewithoutcoffee" component={SomewhereWithoutCoffeeScreen} options={{ title: 'Somewhere without Coffee' }} />
     </Stack.Navigator>
   );
 }

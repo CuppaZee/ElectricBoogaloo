@@ -1,34 +1,95 @@
 {
   "expo": {
-    "name": "@cuppazee/app",
-    "slug": "cuppazeeapp",
-    "version": "1.0.0",
+    "name": "CuppaZee",
+    "owner": "sohcah",
+    "slug": "PaperZee",
+    "privacy": "public",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "version": "2.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "githubUrl": "https://github.com/CuppaZee/CuppaZee",
+    "scheme": "cuppazee",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#00C35B"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 30000
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "bundleIdentifier": "uk.cuppazee.paper",
+      "buildNumber": "2.0.0",
+      "icon": "./assets/images/icon.png",
+      "requireFullScreen": false,
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "CuppaZee uses the camera to scan Munzees.",
+        "NSLocationWhenInUseUsageDescription": "CuppaZee uses your location when in use for maps.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "CuppaZee uses your location when in use for maps, and in the background for notifications.",
+        "NSLocationAlwaysUsageDescription": "CuppaZee uses your location when in use for maps, and in the background for notifications.",
+        "NSPhotoLibraryUsageDescription": "CuppaZee uses your photo library to save screenshots."
+      },
+      "config": {
+        "googleMapsApiKey": "AIzaSyAT1J1Z5S02Avk9p4IqUKPtEYOV7gI8-PA"
+      },
+      "associatedDomains": [
+        "applinks:cuppazee.app"
+      ]
     },
     "android": {
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyBDgPXi66fB9Yd4XyAhEnDaA0XrqdbvEDo"
+        }
+      },
+      "package": "uk.cuppazee.paper",
+      "versionCode": 9,
+      "icon": "./assets/images/icon.png",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
+        "backgroundColor": "#00C35B"
+      },
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "CAMERA",
+        "VIBRATE",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ],
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "data": {
+            "scheme": "https",
+            "host": "cuppazee.app"
+          },
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
+        }
+      ]
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
+    },
+    "notification": {
+      "icon": "./assets/images/notification.png",
+      "color": "#00C35B",
+      "iosDisplayInForeground": true,
+      "androidMode": "default",
+      "androidCollapsedTitle": "#{unread_notifications} Alerts"
     }
   }
 }

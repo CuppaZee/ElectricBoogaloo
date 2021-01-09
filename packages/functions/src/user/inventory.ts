@@ -34,9 +34,9 @@ const route: Route = {
         return {
           status: "success",
           data: {
-            credits,
-            history,
-            boosters,
+            credits: credits?.data,
+            history: history?.data,
+            boosters: boosters?.data,
             undeployed: formattedUndeployed,
           },
         };

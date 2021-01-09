@@ -7,7 +7,6 @@ export default [
     id: 510,
     state: TypeState.Physical,
     alt_icons: ["munzeemadness"],
-    hidden: [TypeHidden.Inventory],
   },
   {
     name: "GeoStuff Reseller",

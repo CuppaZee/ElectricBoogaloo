@@ -58,7 +58,7 @@ for (const year of Object.keys(years) as (keyof typeof years)[]) {
   for (const c of years[year].categories) {
     categories.push({
       name: c.name,
-      id: `seasonal_${year}_${c.name}`,
+      id: `seasonal_${year}_${c.name.toLowerCase().replace(/\s/g,'-').replace(/[^-a-z0-9]+/g, '')}`,
       icon: (c.specials || c.types)?.[0].icon || "expiring_specials_filter",
       parents: [`seasonal_${year}`],
     })

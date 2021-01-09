@@ -70,6 +70,18 @@ const groupsdata: {
           { clan_id: 1870, clan_name: "horlicks" },
           { clan_id: -1, clan_name: "shadow", shadow_name: "CuppaClans Shadow Crew" },
         ]
+      },
+      94: {
+        name: "January 2021",
+        clans: [
+          { clan_id: 1349, clan_name: "coffee" },
+          { clan_id: 457, clan_name: "tea" },
+          { clan_id: 2042, clan_name: "mocha" },
+          { clan_id: 1441, clan_name: "cocoa" },
+          { clan_id: 1902, clan_name: "hot choc" },
+          { clan_id: 1870, clan_name: "horlicks" },
+          { clan_id: -1, clan_name: "shadow", shadow_name: "CuppaClans Shadow Crew" },
+        ]
       }
     }
   },
@@ -111,11 +123,11 @@ const route: Route = {
       async function({
         db,
         params: { game_id, group = "cuppaclans" }
-      }: any) {
+      }) {
         const clansdata = groupsdata[group as keyof typeof groupsdata];
         var base = new Airtable({apiKey: config.airtable_key}).base(clansdata.base_id);
         var token = await retrieve(db, {user_id:455935,teaken:false},60);
-        var all_users = (await base(clansdata[game_id as Exclude<keyof typeof clansdata, "base_id" | "admins">].name).select({
+        var all_users = (await base(clansdata.months[game_id].name).select({
           view: 'Table'
         }).all()).map((i: any) => ({
           ...i.fields

@@ -6,19 +6,32 @@ export default {
     screens: {
       Root: {
         screens: {
-          TabOne: {
+          Dashboard: "",
+          User: {
+            path: "user",
             screens: {
-              TabOneScreen: 'one',
+              Profile: ':username',
+              Activity: ':username/activity/:date?',
+              Inventory: ':username/inventory'
             },
           },
-          TabTwo: {
+          Clan: {
+            path: "clan",
             screens: {
-              TabTwoScreen: 'two',
+              Stats: ':clanid/:year?/:month?'
             },
           },
+          Tools: {
+            path: "tools",
+            screens: {
+              Calendar: 'calendar',
+              Credits: 'credits'
+            },
+          },
+          Auth: 'login',
         },
       },
-      NotFound: '*',
+      somewherewithoutcoffee: '*',
     },
   },
 };

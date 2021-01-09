@@ -43,15 +43,11 @@ for (const year of Object.keys(years) as (keyof typeof years)[]) {
       icon: t.icon,
       id: t.id,
       alt_icons: [],
-      state: t.state ?? TypeState.Bouncer,
+      state: t.state ?? TypeState.Virtual,
       category: `card_${year}`,
       tags: [TypeTags.Card, years[year].tag, ...(t.tags ?? [])],
-      meta: {
-        bouncer_duration: t.duration,
-        bouncer_lands_on: t.lands_on,
-        ...(t.meta ?? {}),
-      },
-      hidden: [TypeHidden.Deploy, TypeHidden.Inventory, ...(t.hidden ?? [])],
+      meta: t.meta ?? {},
+      hidden: (year === "2020" || year === "open") ? (t.hidden ?? []) : [TypeHidden.Inventory, ...(t.hidden ?? [])],
     });
   }
 }

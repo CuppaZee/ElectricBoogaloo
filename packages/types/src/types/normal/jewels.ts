@@ -18,7 +18,7 @@ export default [
       type: PointsType.Split,
       split: 80,
       min: 20,
-    },
+    }
   },
   {
     name: "Ruby",
@@ -42,9 +42,8 @@ export default [
       capture: 40,
       capon: 50,
     },
-    extra: {
-      alt_icons: ["gardenpin"],
-    },
+    alt_icons: ["gardenpin"],
+    hidden: [TypeHidden.Inventory]
   },
   {
     name: "Aquamarine",

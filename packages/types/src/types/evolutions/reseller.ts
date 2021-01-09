@@ -31,7 +31,6 @@ export default [
     state: TypeState.Physical,
     stage: 3,
     base: "coin",
-    hidden: [],
   },
 ] as {
   name: string;

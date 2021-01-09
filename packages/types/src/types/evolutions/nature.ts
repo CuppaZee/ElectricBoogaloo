@@ -620,7 +620,7 @@ export default [
     ],
     stage: 5,
     base: "planulalarva",
-    hidden: [TypeHidden.Capture, TypeHidden.Deploy],
+    hidden: [TypeHidden.Capture, TypeHidden.Deploy, TypeHidden.Inventory],
   },
   {
     name: "Box Jellyfish",

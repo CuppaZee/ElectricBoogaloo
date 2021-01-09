@@ -11,7 +11,7 @@ export default [
       "earthmystery",
       "icemystery",
       "flatlou",
-      type =>
+      (type) =>
         type.has_tag(TypeTags.TypeVirtual) &&
         ![
           "virtual",
@@ -33,7 +33,7 @@ export default [
       "earthmystery",
       "icemystery",
       "flatlou",
-      type =>
+      (type) =>
         type.has_tag(TypeTags.TypeVirtual) &&
         ![
           "virtual",
@@ -159,6 +159,69 @@ export default [
     name: "Cybersaurus Rex",
     icon: "cybersaurusrex",
     id: "null_cybersaurusrex",
+    lands_on: [],
+    category: "christmas_2020",
+  },
+  {
+    name: "GingerMech Man",
+    icon: "gingermechman",
+    id: "null_gingermechman",
+    lands_on: [],
+    category: "christmas_2020",
+  },
+  {
+    name: "GingerSnapped Man",
+    icon: "gingersnappedman",
+    id: "null_gingersnappedman",
+    lands_on: [],
+    category: "christmas_2020",
+  },
+  {
+    name: "ReinDroid",
+    icon: "reindroid",
+    id: "null_reindroid",
+    lands_on: [],
+    category: "christmas_2020",
+  },
+  {
+    name: "Fleeting ReinDroid",
+    icon: "fleetingreindroid",
+    id: "null_fleetingreindroid",
+    lands_on: [],
+    category: "christmas_2020",
+  },
+  {
+    name: "RUD01PH",
+    icon: "rud01ph",
+    id: "null_rud01ph",
+    lands_on: [],
+    category: "christmas_2020",
+  },
+  {
+    name: "Fleeting RUD01PH",
+    icon: "fleetingrud01ph",
+    id: "null_fleetingrud01ph",
+    lands_on: [],
+    category: "christmas_2020",
+  },
+  {
+    name: "31F",
+    icon: "31f",
+    id: "null_31f",
+    lands_on: [],
+    category: "christmas_2020",
+  },
+  {
+    name: "KrampBot",
+    icon: "krampbot",
+    id: "null_krampbot",
+    lands_on: [],
+    category: "christmas_2020",
+  },
+  {
+    name: "Fr057y",
+    icon: "fr057y",
+    id: "null_fr057y",
     lands_on: [],
     category: "christmas_2020",
   },

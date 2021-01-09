@@ -56,7 +56,6 @@ export const apibeta = functions
           version: version || "latest",
           raw: path.join("/"),
           params: null,
-          routes
         };
         var use_route = routes.find((i) => i.path === route);
         if (!use_route) {
