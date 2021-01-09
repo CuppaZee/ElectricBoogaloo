@@ -2,7 +2,7 @@ import * as React from "react";
 import { StyleSheet, Platform } from "react-native";
 import * as AuthSession from "expo-auth-session";
 import * as WebBrowser from "expo-web-browser";
-import { Button, Icon, Layout, Text } from "@ui-kitten/components";
+import { Button, Icon, Layout, Spinner, Text } from "@ui-kitten/components";
 import { useAtom } from "jotai";
 import { teakensAtom } from "../hooks/useToken";
 import { MainDrawerParamList } from "../types";
@@ -22,22 +22,6 @@ var config_main = {
 //   redirect_uri: "https://server.cuppazee.app/auth/auth/universal/v1"
 // }
 var config = config_main;
-
-// const Oconfig = Platform.OS == "web" ? (
-//   __DEV__ ? {
-//     useProxy: false,
-//     redirect_uri: "http://localhost:19006/auth"
-//   } : {
-//       useProxy: false,
-//       redirect_uri: "https://cuppazee.app/auth"
-//     }
-// ) : ((__DEV__ || Platform.OS == "android" || (Platform.OS == "ios" && Number(Platform.Version) < 12)) ? {
-//   useProxy: true,
-//   redirect_uri: 'https://auth.expo.io/@sohcah/PaperZee'
-// } : {
-//     useProxy: false,
-//     redirect_uri: 'cuppazee://auth'
-//   });
 
 WebBrowser.maybeCompleteAuthSession({
   skipRedirectCheck: true,
@@ -63,6 +47,7 @@ export default function AuthScreen() {
   };
 
   const [loading, setLoading] = React.useState<any>(false);
+  const [redirect, setRedirect] = React.useState<string | null>(null);
 
   // Create and load an auth request
   const [request, result, promptAsyncc] = AuthSession.useAuthRequest(
@@ -106,17 +91,19 @@ export default function AuthScreen() {
             teaken: response.params.teaken
           }
         }));
-        // addUser({
-        //   user_id: response.params.user_id,
-        //   username: response.params.username
-        // });
+        setRedirect(response.params.username);
         setLoading(false);
-        nav.navigate('User', {screen: "Profile", params: {username: response.params.username}} as any);
       })();
     }
   }, [result]);
+  if(redirect && Object.keys(teakens.data).length > 0) {
+    setRedirect("");
+    nav.navigate('User', {screen: "Profile", params: {username: redirect}} as any);
+  }
   if (loading === true) {
-    return null;
+    <Layout level="4" style={styles.page}>
+      <Spinner />
+    </Layout>
   }
   return (
     <Layout level="4" style={styles.page}>

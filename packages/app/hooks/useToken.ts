@@ -29,30 +29,43 @@ export const teakensAtom = atom<{
   loaded: false,
 });
 
+export function useTeakens() {
+  const [teakens, setTeakens] = useAtom(teakensAtom);
+  useEffect(() => {
+    if (!teakens.loaded) {
+      AsyncStorage.getItem("CUPPAZEE_TEAKENS").then((data) => {
+        console.log("Teakens", data);
+        setTeakens({
+          data: JSON.parse(data || "{}"),
+          loaded: true,
+        });
+      });
+    }
+  }, [teakens.loaded]);
+  return teakens;
+}
+
 export default function useToken(user_id?: number) {
   const [teakens, setTeakens] = useAtom(teakensAtom);
   useEffect(() => {
     if (!teakens.loaded) {
-      AsyncStorage.getItem("CUPPAZEE_TEAKENS").then((data) =>{
-        console.log('Teakens',data);
+      AsyncStorage.getItem("CUPPAZEE_TEAKENS").then((data) => {
+        console.log("Teakens", data);
         setTeakens({
           data: JSON.parse(data || "{}"),
           loaded: true,
-        })
-      }
-      );
+        });
+      });
     }
   }, [teakens.loaded]);
+  const teaken =
+    teakens.data[user_id ?? Object.keys(teakens.data)[0]]?.teaken ??
+    teakens.data["*"]?.teaken;
   return useQuery(
-    ["token", teakens.data[user_id ?? Object.keys(teakens.data)[0]]?.teaken, user_id],
-    () =>
-      getToken(
-        teakens.data[user_id ?? Object.keys(teakens.data)[0]].teaken,
-        Number(user_id ?? Object.keys(teakens.data)[0])
-      ),
+    ["token", teaken, user_id],
+    () => getToken(teaken, Number(user_id ?? Object.keys(teakens.data)[0])),
     {
-      enabled:
-        teakens.data[user_id ?? Object.keys(teakens.data)[0]] !== undefined,
+      enabled: teaken !== undefined,
     }
   );
 }
