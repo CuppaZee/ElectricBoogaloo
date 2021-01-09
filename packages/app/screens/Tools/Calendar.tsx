@@ -84,7 +84,7 @@ function CalendarCell({ date }: { date: Dayjs }) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   return (
-    <View style={{ width: 70, padding: 2, flexGrow: 1 }}>
+    <View style={{ width: 68, padding: 2, flexGrow: 1 }}>
       <Popover
         visible={open}
         onBackdropPress={() => setOpen(false)}
@@ -220,7 +220,7 @@ function DayCell({ day }: { day: number }) {
   ][day];
   const [open, setOpen] = React.useState(false);
   return (
-    <View style={{ width: 70, padding: 2, flexGrow: 1 }}>
+    <View style={{ width: 68, padding: 2, flexGrow: 1 }}>
       <Popover
         visible={open}
         onBackdropPress={() => setOpen(false)}
@@ -341,7 +341,9 @@ export default function CalendarScreen() {
           contentContainerStyle={{
             flexDirection: "row",
             flexWrap: "wrap",
+            minWidth: 476,
             width: 490,
+            maxWidth: "100%",
             alignSelf: "center",
           }}
         >
@@ -352,13 +354,13 @@ export default function CalendarScreen() {
               <DayCell day={i} />
             ))}
           {new Array((monthStart.day() + offset) % 7).fill(1).map((_) => (
-            <View style={{ width: 64, flexGrow: 1 }} />
+            <View style={{ width: 68, flexGrow: 1 }} />
           ))}
           {array.map((i) => (
             <CalendarCell date={i} />
           ))}
           {new Array((6 + 7 - monthEnd.day() - offset) % 7).fill(1).map((_) => (
-            <View style={{ width: 64, flexGrow: 1 }} />
+            <View style={{ width: 68, flexGrow: 1 }} />
           ))}
         </ScrollView>
       </ScrollView>
