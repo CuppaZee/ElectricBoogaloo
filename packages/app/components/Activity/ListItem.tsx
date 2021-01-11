@@ -11,7 +11,7 @@ export default React.memo(
     const day = useDay();
     return (
       <Layout
-        level="2"
+        level="3"
         style={{
           margin: 4,
           borderRadius: 4,

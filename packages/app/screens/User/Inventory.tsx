@@ -42,7 +42,7 @@ export default function UserInventoryScreen() {
       <ScrollView style={{ flex: 1 }} contentContainerStyle={styles.grid}>
         {categories?.map((c) => (
           <Layout
-            level="2"
+            level="3"
             style={{
               width: 400,
               flexGrow: 1,

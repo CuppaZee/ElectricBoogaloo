@@ -1,6 +1,7 @@
 import { useQuery } from "react-query";
 import useToken from "./useToken";
 import stringify from "fast-json-stable-stringify";
+import { useIsFocused } from "@react-navigation/native";
 
 const getCuppaZeeData = async <T>(
   endpoint: string,
@@ -25,12 +26,17 @@ export default function useCuppaZeeRequest<T = any>(
   run?: boolean,
   user_id?: number,
 ) {
-  const { data: token } = useToken(user_id);
-  return useQuery(
+  const isFocused = useIsFocused();
+  const token = useToken(user_id);
+  const data = useQuery(
     ["cuppazee", endpoint, stringify(params), user_id],
-    () => getCuppaZeeData<T>(endpoint, params, token?.data?.access_token),
+    () => getCuppaZeeData<T>(endpoint, params, token?.token?.access_token),
     {
-      enabled: (run ?? true) && token !== undefined,
+      enabled: isFocused && (run ?? true) && token.status === "valid",
     }
   );
+  return {
+    tokenStatus: token,
+    ...data,
+  }
 }

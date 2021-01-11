@@ -39,7 +39,7 @@ export default function UserActivityList({
       contentContainerStyle={{ padding: 8, alignItems: "stretch" }}
       ListHeaderComponent={() => (
         <Layout
-          level="2"
+          level="3"
           style={{
             margin: 4,
             borderRadius: 4,

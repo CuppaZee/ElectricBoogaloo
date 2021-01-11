@@ -12,6 +12,7 @@ import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 
 import { StyleSheet } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import * as themes from "./themes";
 
 export const MaterialCommunityIconsPack = {
   name: 'mci',
@@ -53,7 +54,7 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <IconRegistry icons={MaterialCommunityIconsPack} />
-      <ApplicationProvider {...eva} theme={{dark: colorScheme === "dark", ...eva[colorScheme ?? "light"]}}>
+      <ApplicationProvider {...eva} theme={themes.green_light}>
         <JotaiProvider>
           <QueryClientProvider client={queryClient}>
             <Navigation colorScheme={colorScheme} />

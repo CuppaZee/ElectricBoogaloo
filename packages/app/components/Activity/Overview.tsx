@@ -74,7 +74,7 @@ export default function UserActivityOverview({
   return (
     <View style={{ padding: 4 }}>
       <Text category="h6" style={{ textAlign: "center" }}>
-        {d.points} {JSON.stringify({user_id, day})}
+        {d.points} Points
       </Text>
       <Text category="s1" style={{ textAlign: "center" }}>
         {d.captures.count} Captures ({d.captures.points} Points)

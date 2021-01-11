@@ -202,7 +202,7 @@ export function RequirementDataCell({
                 height: 16,
                 width: 16,
                 marginRight: 4,
-                color: theme.dark ? "white" : "black",
+                color: theme.style === "dark" ? "white" : "black",
               }}
             />
             {reverse ? (
@@ -374,7 +374,7 @@ export function LevelCell({
               height: 12,
               width: 12,
               marginRight: 4,
-              color: theme.dark ? "white" : "black",
+              color: theme.style === "dark" ? "white" : "black",
             }}
           />
           <Text numberOfLines={1} ellipsizeMode="tail" category="s2">
@@ -515,7 +515,7 @@ export function RequirementCell({
                 height: 16,
                 width: 16,
                 marginRight: 4,
-                color: theme.dark ? "white" : "black",
+                color: theme.style === "dark" ? "white" : "black",
               }}
             />
           )}

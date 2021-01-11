@@ -101,12 +101,12 @@ export default function AuthScreen() {
     nav.navigate('User', {screen: "Profile", params: {username: redirect}} as any);
   }
   if (loading === true) {
-    <Layout level="4" style={styles.page}>
+    <Layout style={styles.page}>
       <Spinner />
     </Layout>
   }
   return (
-    <Layout level="4" style={styles.page}>
+    <Layout style={styles.page}>
       <Text category="h1">Welcome</Text>
       <Button
         accessoryLeft={(props) => (

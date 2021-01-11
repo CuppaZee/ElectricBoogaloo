@@ -16,7 +16,7 @@ export default function TabOneScreen() {
   return (
     <Layout style={{ flex: 1 }}>
       <ScrollView style={{ flex: 1 }}>
-        <Layout level="4" style={{ margin: 4, borderRadius: 4 }}>
+        <Layout style={{ margin: 4, borderRadius: 4 }}>
           <UserActivityOverview user_id={125914} day="2020-12-18" />
         </Layout>
       </ScrollView>

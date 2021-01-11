@@ -91,7 +91,7 @@ function CalendarCell({ date }: { date: Dayjs }) {
         anchor={() => (
           <Pressable onPress={() => setOpen(true)}>
             <Layout
-              level="2"
+              level="3"
               style={{
                 borderRadius: 8,
                 flexDirection: "row",
@@ -142,7 +142,7 @@ function CalendarCell({ date }: { date: Dayjs }) {
                     <Text>
                       <Icon
                         name="close"
-                        style={{ height: 24, width: 24, color: theme.dark ? "#ff7777" : "#ff0000" }}
+                        style={{ height: 24, width: 24, color: theme.style === "dark" ? "#ff7777" : "#ff0000" }}
                       />
                     </Text>
                   </View>
@@ -199,9 +199,6 @@ function CalendarCell({ date }: { date: Dayjs }) {
           <Text category="s2">QRewZees: {data.qrewzee ? "On" : "Off"}</Text>
           <Text category="s2">Egyptian: {data.egyptian.toUpperCase()}</Text>
           <Text category="s2">Western: {data.western.toUpperCase()}</Text>
-          {/* <Image source={{uri: "https://munzee.global.ssl.fastly.net/images/pins/qrewzee.png"}} style={{ height: 28, width: 28, margin: 2, opacity: data.qrewzee ? 1 : 0.2 }} />
-        <Image source={{uri: `https://munzee.global.ssl.fastly.net/images/pins/${data.egyptian}.png`}} style={{ height: 28, width: 28, margin: 2, opacity: data.egyptian === "egyptianzodiacsun" ? 0.2 : 1 }} />
-        <Image source={{uri: `https://munzee.global.ssl.fastly.net/images/pins/${data.western}.png`}} style={{ height: 28, width: 28, margin: 2 }} /> */}
         </Layout>
       </Popover>
     </View>
@@ -227,7 +224,7 @@ function DayCell({ day }: { day: number }) {
         anchor={() => (
           <Pressable onPress={() => setOpen(true)}>
             <Layout
-              level="2"
+              level="3"
               style={{
                 borderRadius: 8,
                 flexDirection: "row",
@@ -307,7 +304,7 @@ export default function CalendarScreen() {
           }}
         >
           <Layout
-            level="2"
+            level="3"
             style={{
               borderRadius: 8,
               flexDirection: "row",

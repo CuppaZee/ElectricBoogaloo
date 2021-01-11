@@ -1,9 +1,10 @@
 import React from "react";
 import { Pack, hierarchy } from "@visx/hierarchy";
 import useComponentSize from "../../hooks/useComponentSize";
-import { Image} from "react-native";
+import { Image, Pressable } from "react-native";
 import credits from "./credits.json";
 import { Layout } from "@ui-kitten/components";
+import { useNavigation } from "@react-navigation/native";
 
 export type Datum = {
   username: string;
@@ -21,6 +22,7 @@ const priorities = {
 
 const pack = {
   children: credits
+    .filter((a, b, c) => c.findIndex((i) => i.username === a.username) === b)
     .filter((i) => i.username)
     .map((i) => ({
       ...i,
@@ -43,6 +45,7 @@ export type PackProps = {
 };
 
 function CreditsCircles({ width, height }: PackProps) {
+  const navigation = useNavigation();
   return (
     <Pack<Datum> root={root} size={[width, height]}>
       {(packData) => {
@@ -54,24 +57,33 @@ function CreditsCircles({ width, height }: PackProps) {
               height: circle.r * 1.8,
               width: circle.r * 1.8,
               position: "absolute",
-              left: circle.x - (circle.r * 0.9),
-              top: circle.y - (circle.r * 0.9),
+              left: circle.x - circle.r * 0.9,
+              top: circle.y - circle.r * 0.9,
               borderRadius: circle.r * 0.9,
             }}
           >
-            <Image
-              key={`circle-${i}`}
-              source={{
-                uri: `https://munzee.global.ssl.fastly.net/images/avatars/ua${circle.data.user_id.toString(
-                  36
-                )}.png`,
-              }}
-              style={{
-                height: circle.r * 1.8,
-                width: circle.r * 1.8,
-                borderRadius: circle.r * 0.9,
-              }}
-            />
+            <Pressable
+              onPress={() =>
+                navigation.navigate("User", {
+                  screen: "Profile",
+                  params: { username: circle.data.username },
+                })
+              }
+            >
+              <Image
+                key={`circle-${i}`}
+                source={{
+                  uri: `https://munzee.global.ssl.fastly.net/images/avatars/ua${circle.data.user_id.toString(
+                    36
+                  )}.png`,
+                }}
+                style={{
+                  height: circle.r * 1.8,
+                  width: circle.r * 1.8,
+                  borderRadius: circle.r * 0.9,
+                }}
+              />
+            </Pressable>
           </Layout>
         ));
       }}

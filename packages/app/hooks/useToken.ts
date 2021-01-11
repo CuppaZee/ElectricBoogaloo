@@ -34,7 +34,6 @@ export function useTeakens() {
   useEffect(() => {
     if (!teakens.loaded) {
       AsyncStorage.getItem("CUPPAZEE_TEAKENS").then((data) => {
-        console.log("Teakens", data);
         setTeakens({
           data: JSON.parse(data || "{}"),
           loaded: true,
@@ -50,7 +49,6 @@ export default function useToken(user_id?: number) {
   useEffect(() => {
     if (!teakens.loaded) {
       AsyncStorage.getItem("CUPPAZEE_TEAKENS").then((data) => {
-        console.log("Teakens", data);
         setTeakens({
           data: JSON.parse(data || "{}"),
           loaded: true,
@@ -61,11 +59,16 @@ export default function useToken(user_id?: number) {
   const teaken =
     teakens.data[user_id ?? Object.keys(teakens.data)[0]]?.teaken ??
     teakens.data["*"]?.teaken;
-  return useQuery(
+  const data = useQuery(
     ["token", teaken, user_id],
     () => getToken(teaken, Number(user_id ?? Object.keys(teakens.data)[0])),
     {
       enabled: teaken !== undefined,
     }
   );
+  return {
+    status: (teakens.loaded && teaken) ? (data.isSuccess ? "valid" : "expired") : (teakens.loaded ? "missing" : "loading"),
+    user_id: user_id ?? Object.keys(teakens.data)[0],
+    token: data.data?.data,
+  };
 }

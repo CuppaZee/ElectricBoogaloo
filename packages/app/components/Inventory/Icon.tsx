@@ -11,7 +11,7 @@ export function InventoryIcon(data: UserInventoryConvertedType) {
     <Popover
       visible={visible}
       anchor={() => <Pressable onPress={() => setVisible(true)}>
-        <Layout level="2" style={[styles.card, {opacity: data.amount > 0 ? 1 : 0.2}]}>
+        <Layout level="3" style={[styles.card, {opacity: data.amount > 0 ? 1 : 0.2}]}>
           <Image
             source={icons[db.strip(data.icon || "")] ?? (data.type ? { uri: `https://icons.cuppazee.app/64/${data.icon}.png` } : { uri: `https://munzee.global.ssl.fastly.net/images/pins/${data.icon}.png` })}
             style={{ height: 32, width: 32 }}

@@ -21,7 +21,7 @@ export default function StackNavigator() {
       drawerType={dimensions.width > 1000 ? "permanent" : "front"}
       drawerStyle={{ width: Object.keys(teakens.data).length > 0 ? 256 : 0 }}
     >
-      {Object.keys(teakens.data).length > 0 && <>
+      {(!teakens.loaded || Object.keys(teakens.data).length > 0) && <>
         <Drawer.Screen name="Dashboard" component={AuthScreen} />
         <Drawer.Screen name="User" component={UserNavigator} />
         <Drawer.Screen name="Clan" component={ClanNavigator} />

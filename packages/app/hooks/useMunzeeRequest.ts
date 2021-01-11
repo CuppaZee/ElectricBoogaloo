@@ -3,6 +3,7 @@ import useToken from "./useToken";
 import stringify from "fast-json-stable-stringify";
 
 import { FetchRequest, FetchResponse, Endpoints } from '@cuppazee/api';
+import { useIsFocused } from "@react-navigation/native";
 
 const getMunzeeData = async <Path extends keyof Endpoints>(
   endpoint: FetchRequest<Path>["endpoint"],
@@ -29,12 +30,17 @@ export default function useMunzeeRequest<Path extends keyof Endpoints>(
   run?: boolean,
   user_id?: number
 ) {
-  const { data: token } = useToken(user_id);
-  return useQuery(
+  const isFocused = useIsFocused();
+  const token = useToken(user_id);
+  const data = useQuery(
     ["munzee", endpoint, stringify(params), user_id],
-    () => getMunzeeData(endpoint, params, token?.data?.access_token),
+    () => getMunzeeData(endpoint, params, token?.token?.access_token),
     {
-      enabled: (run ?? true) && token !== undefined,
+      enabled: isFocused && (run ?? true) && token.status === "valid",
     }
   );
+  return {
+    tokenStatus: token,
+    ...data,
+  }
 }

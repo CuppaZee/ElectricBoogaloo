@@ -63,7 +63,7 @@ export default function UserActivityScreen() {
         user_id={user.data?.data?.user_id ?? 0}
       />
       {(size?.width || 0) > 720 ? (
-        <Layout level="2" style={{ width: 300 }}>
+        <Layout level="3" style={{ width: 300 }}>
           <UserActivityFilter d={d} filters={filters} setFilters={setFilters} />
         </Layout>
       ) : (
@@ -72,7 +72,7 @@ export default function UserActivityScreen() {
           backdropStyle={{ backgroundColor: "#0007" }}
           onBackdropPress={() => setVisible(false)}
         >
-          <Layout level="2" style={{ width: 300 }}>
+          <Layout level="3" style={{ width: 300 }}>
             <UserActivityFilter
               d={d}
               filters={filters}

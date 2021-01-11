@@ -51,6 +51,7 @@ export default function Header(props: StackHeaderProps) {
             onPress={() =>
               queryClient.refetchQueries({
                 predicate: (query) => query.queryKey[0] !== "token",
+                active: true,
               })
             }
           />
