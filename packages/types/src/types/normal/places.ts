@@ -6,7 +6,16 @@ const PlacesPoints = {
   "capon": 10
 };
 
-export default [
+const places: {
+  name: string;
+  icon: string;
+  id: TypeID;
+  state?: TypeState;
+  alt_icons?: string[];
+  tags?: TypeTags[];
+  hidden?: TypeHidden[];
+  points?: PointsInterface;
+}[] = [
   {
     name: "POI Airport",
     icon: "poiairport",
@@ -42,9 +51,7 @@ export default [
     icon: "poihistoricalplace",
     id: 1339,
     points: PlacesPoints,
-    extra: {
-      alt_icons: ["poihistorical"],
-    },
+    alt_icons: ["poihistorical"],
   },
   {
     name: "POI Library",
@@ -63,9 +70,7 @@ export default [
     icon: "poifaithplace",
     id: 1342,
     points: PlacesPoints,
-    extra: {
-      alt_icons: ["poifaith"],
-    },
+    alt_icons: ["poifaith"],
   },
   {
     name: "POI Hospital",
@@ -149,13 +154,6 @@ export default [
     id: "null_poidrinkdepot",
     points: PlacesPoints,
   },
-] as {
-  name: string;
-  icon: string;
-  id: TypeID;
-  state?: TypeState;
-  alt_icons?: string[];
-  tags?: TypeTags[];
-  hidden?: TypeHidden[];
-  points?: PointsInterface;
-}[];
+];
+
+export default places;

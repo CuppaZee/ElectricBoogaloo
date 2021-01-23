@@ -6,6 +6,7 @@ import {
   TypeState,
   TypeTags,
 } from "../../munzee";
+import pouchhosts from "../hosts/pouch";
 
 const points: {
   [key: string]: PointsInterface;
@@ -47,7 +48,19 @@ const points: {
   },
 };
 
-export default [
+const pouch: {
+  name: string;
+  icon: string;
+  id: TypeID;
+  stage?: number;
+  set: "season_1" | "season_2" | "funfinity";
+  points?: PointsInterface;
+  tags?: TypeTags[];
+  lands_on: TypeID[];
+  hidden?: TypeHidden[];
+  meta?: TypeMeta;
+  base?: string;
+}[] = [
   {
     name: "Tuli",
     icon: "tuli",
@@ -193,7 +206,7 @@ export default [
     icon: "gleamingmuru",
     id: 1850,
     base: "muru",
-    gleaming: true,
+    tags: [TypeTags.BouncerPCGleaming],
     hidden: [TypeHidden.Bouncers, TypeHidden.Deploy],
     stage: 1,
     lands_on: ["treehouse", "munzee", "earthmystery"],
@@ -205,7 +218,7 @@ export default [
     icon: "gleamingmuruchi",
     id: 1851,
     base: "muru",
-    gleaming: true,
+    tags: [TypeTags.BouncerPCGleaming],
     hidden: [TypeHidden.Bouncers, TypeHidden.Deploy],
     stage: 2,
     lands_on: ["munzee", "earthmystery"],
@@ -217,7 +230,7 @@ export default [
     icon: "gleamingmurutain",
     id: 1852,
     base: "muru",
-    gleaming: true,
+    tags: [TypeTags.BouncerPCGleaming],
     hidden: [TypeHidden.Bouncers, TypeHidden.Deploy],
     stage: 3,
     lands_on: ["munzee", "earthmystery"],
@@ -229,7 +242,7 @@ export default [
     icon: "gleamingtuli",
     id: 1853,
     base: "tuli",
-    gleaming: true,
+    tags: [TypeTags.BouncerPCGleaming],
     hidden: [TypeHidden.Bouncers, TypeHidden.Deploy],
     stage: 1,
     lands_on: ["treehouse", "munzee", "firemystery"],
@@ -241,7 +254,7 @@ export default [
     icon: "gleamingtulimber",
     id: 1854,
     base: "tuli",
-    gleaming: true,
+    tags: [TypeTags.BouncerPCGleaming],
     hidden: [TypeHidden.Bouncers, TypeHidden.Deploy],
     stage: 2,
     lands_on: ["munzee", "firemystery"],
@@ -253,7 +266,7 @@ export default [
     icon: "gleamingtuliferno",
     id: 1855,
     base: "tuli",
-    gleaming: true,
+    tags: [TypeTags.BouncerPCGleaming],
     hidden: [TypeHidden.Bouncers, TypeHidden.Deploy],
     stage: 3,
     lands_on: ["munzee", "firemystery"],
@@ -265,7 +278,7 @@ export default [
     icon: "gleamingvesi",
     id: 1856,
     base: "vesi",
-    gleaming: true,
+    tags: [TypeTags.BouncerPCGleaming],
     hidden: [TypeHidden.Bouncers, TypeHidden.Deploy],
     stage: 1,
     lands_on: ["treehouse", "munzee", "watermystery"],
@@ -277,7 +290,7 @@ export default [
     icon: "gleamingvesial",
     id: 1857,
     base: "vesi",
-    gleaming: true,
+    tags: [TypeTags.BouncerPCGleaming],
     hidden: [TypeHidden.Bouncers, TypeHidden.Deploy],
     stage: 2,
     lands_on: ["munzee", "watermystery"],
@@ -289,7 +302,7 @@ export default [
     icon: "gleamingvesisaur",
     id: 1858,
     base: "vesi",
-    gleaming: true,
+    tags: [TypeTags.BouncerPCGleaming],
     hidden: [TypeHidden.Bouncers, TypeHidden.Deploy],
     stage: 3,
     lands_on: ["munzee", "watermystery"],
@@ -305,7 +318,7 @@ export default [
       "treehouse",
       "munzee",
       ":reseller",
-      (type) => type.has_tag(TypeTags.TypeZodiacChinese),
+      type => type.has_tag(TypeTags.TypeZodiacChinese),
       "virtual_sapphire",
       "briefcase",
       "thehammer",
@@ -320,11 +333,7 @@ export default [
     id: 2240,
     base: "puffle",
     stage: 1,
-    lands_on: [
-      "skyland",
-      (type) => type.has_tag(TypeTags.TypeVirtual),
-      "airmystery",
-    ],
+    lands_on: ["skyland", type => type.has_tag(TypeTags.TypeVirtual), "airmystery"],
     set: "season_2",
     points: points.bouncer_pc_1,
   },
@@ -334,7 +343,7 @@ export default [
     id: 2241,
     base: "puffle",
     stage: 2,
-    lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual), "airmystery"],
+    lands_on: [type => type.has_tag(TypeTags.TypeVirtual), "airmystery"],
     set: "season_2",
     points: points.bouncer_pc_2,
   },
@@ -344,7 +353,7 @@ export default [
     id: 2242,
     base: "puffle",
     stage: 3,
-    lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual), "airmystery"],
+    lands_on: [type => type.has_tag(TypeTags.TypeVirtual), "airmystery"],
     set: "season_2",
     points: points.bouncer_pc_3,
   },
@@ -357,8 +366,8 @@ export default [
       "treehouse",
       "munzee",
       "airmystery",
-      (type) => type.has_tag(TypeTags.VirtualColourBlue),
-      (type) => type.has_tag(TypeTags.VirtualColourRed),
+      type => type.has_tag(TypeTags.VirtualColourBlue),
+      type => type.has_tag(TypeTags.VirtualColourRed),
       "watermystery",
       "joystickvirtual",
       "joystick",
@@ -382,7 +391,7 @@ export default [
     id: 2367,
     lands_on: [
       "skyland",
-      (type) => type.has_tag(TypeTags.TypeVirtual),
+      type => type.has_tag(TypeTags.TypeVirtual),
       "earthmystery",
       "virtual_amethyst",
       "treehouse",
@@ -396,7 +405,7 @@ export default [
     id: 2368,
     lands_on: [
       "skyland",
-      (type) => type.has_tag(TypeTags.TypeVirtual),
+      type => type.has_tag(TypeTags.TypeVirtual),
       "earthmystery",
       "virtual_onyx",
       "treehouse",
@@ -410,11 +419,7 @@ export default [
     id: 2407,
     base: "elekter",
     stage: 1,
-    lands_on: [
-      "skyland",
-      (type) => type.has_tag(TypeTags.TypeVirtual),
-      "electricmystery",
-    ],
+    lands_on: ["skyland", type => type.has_tag(TypeTags.TypeVirtual), "electricmystery"],
     set: "season_2",
     points: points.ouncer_pc_1,
   },
@@ -424,7 +429,7 @@ export default [
     id: 2408,
     base: "elekter",
     stage: 2,
-    lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual), "electricmystery"],
+    lands_on: [type => type.has_tag(TypeTags.TypeVirtual), "electricmystery"],
     set: "season_2",
     points: points.ouncer_pc_2,
   },
@@ -434,7 +439,7 @@ export default [
     id: 2409,
     base: "elekter",
     stage: 3,
-    lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual), "electricmystery"],
+    lands_on: [type => type.has_tag(TypeTags.TypeVirtual), "electricmystery"],
     set: "season_2",
     points: points.ouncer_pc_3,
   },
@@ -452,7 +457,7 @@ export default [
     id: 2370,
     lands_on: [
       "skyland",
-      (type) => type.has_tag(TypeTags.VirtualColourGreen),
+      type => type.has_tag(TypeTags.VirtualColourGreen),
       "airmystery",
       "virtual_emerald",
     ],
@@ -481,7 +486,7 @@ export default [
     id: "null_safiir",
     lands_on: [
       "skyland",
-      (type) => type.has_tag(TypeTags.TypeVirtual),
+      type => type.has_tag(TypeTags.TypeVirtual),
       "airmystery",
       "virtual_sapphire",
     ],
@@ -501,7 +506,7 @@ export default [
     icon: "tsitriin",
     id: "null_tsitriin",
     lands_on: [
-      (type) => type.has_tag(TypeTags.TypeVirtual),
+      type => type.has_tag(TypeTags.TypeVirtual),
       "airmystery",
       "virtual_citrine",
       "skyland",
@@ -509,14 +514,6 @@ export default [
     set: "funfinity",
     points: points.funfinity,
   },
-] as {
-  name: string;
-  icon: string;
-  id: TypeID;
-  stage?: number;
-  set: "season_1" | "season_2" | "funfinity";
-  points?: PointsInterface;
-  tags?: TypeTags[];
-  lands_on: TypeID[];
-  meta?: TypeMeta;
-}[];
+  ];
+
+export default pouch;

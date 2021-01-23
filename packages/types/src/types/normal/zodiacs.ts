@@ -1,6 +1,12 @@
 import { TypeID, TypeState } from "../../munzee";
 
-export default [
+const zodiacs: {
+  name: string;
+  icon: string;
+  id: TypeID;
+  state: TypeState;
+  zodiac: "western" | "chinese" | "egyptian";
+}[] = [
   {
     name: "Scorpio",
     icon: "scorpio",
@@ -169,10 +175,13 @@ export default [
     state: TypeState.Physical,
     zodiac: "chinese",
   },
-] as {
-  name: string;
-  icon: string;
-  id: TypeID;
-  state: TypeState;
-  zodiac: "chinese" | "western";
-}[];
+  {
+    name: "The Nile",
+    icon: "nile",
+    id: "null_nile",
+    state: TypeState.Virtual,
+    zodiac: "egyptian",
+  },
+];
+
+export default zodiacs;

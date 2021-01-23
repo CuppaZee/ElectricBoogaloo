@@ -1,6 +1,14 @@
 import { TypeHidden, TypeID, TypeState, TypeTags } from "../../munzee";
 
-export default [
+const resellers: {
+  name: string;
+  icon: string;
+  id: TypeID;
+  state: TypeState;
+  alt_icons?: string[];
+  tags?: TypeTags[];
+  hidden?: TypeHidden[];
+}[] = [
   {
     name: "Munzee Madness Reseller",
     icon: "munzeemadnessreseller",
@@ -73,12 +81,6 @@ export default [
     id: 696,
     state: TypeState.Physical,
   },
-] as {
-  name: string;
-  icon: string;
-  id: TypeID;
-  state: TypeState;
-  alt_icons?: string[];
-  tags?: TypeTags[];
-  hidden?: TypeHidden[];
-}[];
+];
+
+export default resellers;

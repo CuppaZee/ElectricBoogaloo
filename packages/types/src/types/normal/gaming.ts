@@ -6,7 +6,16 @@ import {
   TypeTags,
 } from "../../munzee";
 
-export default [
+const gaming: {
+  name: string;
+  icon: string;
+  id: TypeID;
+  state: TypeState;
+  alt_icons?: string[];
+  tags?: TypeTags[];
+  hidden?: TypeHidden[];
+  points?: PointsInterface;
+}[] = [
   {
     name: "Surprise",
     icon: "surprise",
@@ -48,9 +57,7 @@ export default [
     icon: "joystick",
     id: 1976,
     state: TypeState.Physical,
-    extra: {
-      alt_icons: ["joystickphysical"],
-    },
+    alt_icons: ["joystickphysical"],
   },
   {
     name: "Joystick Virtual",
@@ -64,13 +71,6 @@ export default [
     id: 2412,
     state: TypeState.Virtual,
   },
-] as {
-  name: string;
-  icon: string;
-  id: TypeID;
-  state: TypeState;
-  alt_icons?: string[];
-  tags?: TypeTags[];
-  hidden?: TypeHidden[];
-  points?: PointsInterface;
-}[];
+];
+
+export default gaming;

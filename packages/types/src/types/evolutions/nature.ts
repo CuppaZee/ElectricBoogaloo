@@ -1,13 +1,20 @@
-import {
-  PointsInterface,
-  TypeHidden,
-  TypeID,
-  TypeMeta,
-  TypeState,
-  TypeTags,
-} from "../../munzee";
+import { PointsInterface, TypeHidden, TypeID, TypeMeta, TypeState, TypeTags } from "../../munzee";
 
-export default [
+const nature: {
+  name: string;
+  icon: string;
+  id: TypeID;
+  state: TypeState;
+  stage?: number;
+  base?: string;
+
+  meta?: TypeMeta;
+  alt_icons?: string[];
+  points?: PointsInterface;
+  tags?: TypeTags[];
+  hidden?: TypeHidden[];
+  lands_on?: TypeID[];
+}[] = [
   {
     name: "Rose",
     icon: "rose",
@@ -345,11 +352,11 @@ export default [
       "goldencarrotplant",
       "tomatoplant",
       "cornstalk",
-      (type) =>
+      type =>
         ["tulipseed", "roseseed", "carnationseed", "lilyseed"].includes(
           type.meta.evolution_base || ""
         ) && (type.meta.evolution_stage || 0) >= 3,
-      (type) => type.has_tag(TypeTags.TypeSeasonal),
+      type => type.has_tag(TypeTags.TypeSeasonal),
       "trail",
       "munzee",
       "virtual_rainbow",
@@ -376,11 +383,11 @@ export default [
       "goldencarrotplant",
       "tomatoplant",
       "cornstalk",
-      (type) =>
+      type =>
         ["tulipseed", "roseseed", "carnationseed", "lilyseed"].includes(
           type.meta.evolution_base || ""
         ) && (type.meta.evolution_stage || 0) >= 3,
-      (type) => type.has_tag(TypeTags.TypeSeasonal),
+      type => type.has_tag(TypeTags.TypeSeasonal),
       "trail",
       "munzee",
       "virtual_rainbow",
@@ -406,11 +413,11 @@ export default [
       "goldencarrotplant",
       "tomatoplant",
       "cornstalk",
-      (type) =>
+      type =>
         ["tulipseed", "roseseed", "carnationseed", "lilyseed"].includes(
           type.meta.evolution_base || ""
         ) && (type.meta.evolution_stage || 0) >= 3,
-      (type) => type.has_tag(TypeTags.TypeSeasonal),
+      type => type.has_tag(TypeTags.TypeSeasonal),
       "trail",
       "munzee",
       "virtual_rainbow",
@@ -436,11 +443,11 @@ export default [
       "goldencarrotplant",
       "tomatoplant",
       "cornstalk",
-      (type) =>
+      type =>
         ["tulipseed", "roseseed", "carnationseed", "lilyseed"].includes(
           type.meta.evolution_base || ""
         ) && (type.meta.evolution_stage || 0) >= 3,
-      (type) => type.has_tag(TypeTags.TypeSeasonal),
+      type => type.has_tag(TypeTags.TypeSeasonal),
       "trail",
       "munzee",
       "virtual_rainbow",
@@ -489,15 +496,14 @@ export default [
     state: TypeState.Bouncer,
     lands_on: [
       "musclecar",
-      (type) =>
-        ["seaweed", "canoe", "safaritruck"].includes(
-          type.meta.evolution_base || ""
-        ) && (type.meta.evolution_stage || 0) >= 3,
+      type =>
+        ["seaweed", "canoe", "safaritruck"].includes(type.meta.evolution_base || "") &&
+        (type.meta.evolution_stage || 0) >= 3,
       "earthmystery",
       "watermystery",
       "trail",
       "munzee",
-      (type) => type.has_tag(TypeTags.VirtualColourGreen),
+      type => type.has_tag(TypeTags.VirtualColourGreen),
     ],
     stage: 5,
     base: "frogegg",
@@ -511,15 +517,14 @@ export default [
     lands_on: [
       "skyland",
       "musclecar",
-      (type) =>
-        ["seaweed", "canoe", "safaritruck"].includes(
-          type.meta.evolution_base || ""
-        ) && (type.meta.evolution_stage || 0) >= 3,
+      type =>
+        ["seaweed", "canoe", "safaritruck"].includes(type.meta.evolution_base || "") &&
+        (type.meta.evolution_stage || 0) >= 3,
       "earthmystery",
       "watermystery",
       "trail",
       "munzee",
-      (type) => type.has_tag(TypeTags.VirtualColourGreen),
+      type => type.has_tag(TypeTags.VirtualColourGreen),
     ],
     stage: 5,
     base: "frogegg",
@@ -532,15 +537,14 @@ export default [
     lands_on: [
       "skyland",
       "musclecar",
-      (type) =>
-        ["seaweed", "canoe", "safaritruck"].includes(
-          type.meta.evolution_base || ""
-        ) && (type.meta.evolution_stage || 0) >= 3,
+      type =>
+        ["seaweed", "canoe", "safaritruck"].includes(type.meta.evolution_base || "") &&
+        (type.meta.evolution_stage || 0) >= 3,
       "earthmystery",
       "watermystery",
       "trail",
       "munzee",
-      (type) => type.has_tag(TypeTags.VirtualColourGreen),
+      type => type.has_tag(TypeTags.VirtualColourGreen),
     ],
     stage: 5,
     base: "frogegg",
@@ -553,15 +557,14 @@ export default [
     lands_on: [
       "skyland",
       "musclecar",
-      (type) =>
-        ["seaweed", "canoe", "safaritruck"].includes(
-          type.meta.evolution_base || ""
-        ) && (type.meta.evolution_stage || 0) >= 3,
+      type =>
+        ["seaweed", "canoe", "safaritruck"].includes(type.meta.evolution_base || "") &&
+        (type.meta.evolution_stage || 0) >= 3,
       "earthmystery",
       "watermystery",
       "trail",
       "munzee",
-      (type) => type.has_tag(TypeTags.VirtualColourGreen),
+      type => type.has_tag(TypeTags.VirtualColourGreen),
     ],
     stage: 5,
     base: "frogegg",
@@ -609,14 +612,11 @@ export default [
     lands_on: [
       "treehouse",
       "skyland",
-      (type) =>
-        ["seaweed", "canoe", "safaritruck"].includes(
-          type.meta.evolution_base || ""
-        ),
+      type => ["seaweed", "canoe", "safaritruck"].includes(type.meta.evolution_base || ""),
       "earthmystery",
       "watermystery",
       "munzee",
-      (type) => type.has_tag(TypeTags.VirtualColourGreen),
+      type => type.has_tag(TypeTags.VirtualColourGreen),
     ],
     stage: 5,
     base: "planulalarva",
@@ -630,16 +630,12 @@ export default [
     lands_on: [
       "treehouse",
       "skyland",
-      (type) =>
-        ["seaweed", "canoe", "safaritruck"].includes(
-          type.meta.evolution_base || ""
-        ),
+      type => ["seaweed", "canoe", "safaritruck"].includes(type.meta.evolution_base || ""),
       "earthmystery",
       "watermystery",
       "munzee",
-      (type) => type.has_tag(TypeTags.VirtualColourGreen),
+      type => type.has_tag(TypeTags.VirtualColourGreen),
     ],
-    set: "nature",
     stage: 5,
     base: "planulalarva",
   },
@@ -651,14 +647,11 @@ export default [
     lands_on: [
       "treehouse",
       "skyland",
-      (type) =>
-        ["seaweed", "canoe", "safaritruck"].includes(
-          type.meta.evolution_base || ""
-        ),
+      type => ["seaweed", "canoe", "safaritruck"].includes(type.meta.evolution_base || ""),
       "earthmystery",
       "watermystery",
       "munzee",
-      (type) => type.has_tag(TypeTags.VirtualColourGreen),
+      type => type.has_tag(TypeTags.VirtualColourGreen),
     ],
     stage: 5,
     base: "planulalarva",
@@ -671,14 +664,11 @@ export default [
     lands_on: [
       "treehouse",
       "skyland",
-      (type) =>
-        ["seaweed", "canoe", "safaritruck"].includes(
-          type.meta.evolution_base || ""
-        ),
+      type => ["seaweed", "canoe", "safaritruck"].includes(type.meta.evolution_base || ""),
       "earthmystery",
       "watermystery",
       "munzee",
-      (type) => type.has_tag(TypeTags.VirtualColourGreen),
+      type => type.has_tag(TypeTags.VirtualColourGreen),
     ],
     stage: 5,
     base: "planulalarva",
@@ -725,14 +715,11 @@ export default [
     lands_on: [
       "treehouse",
       "skyland",
-      (type) =>
-        ["seaweed", "canoe", "safaritruck"].includes(
-          type.meta.evolution_base || ""
-        ),
+      type => ["seaweed", "canoe", "safaritruck"].includes(type.meta.evolution_base || ""),
       "earthmystery",
       "watermystery",
       "munzee",
-      (type) => type.has_tag(TypeTags.VirtualColourGreen),
+      type => type.has_tag(TypeTags.VirtualColourGreen),
     ],
     stage: 5,
     base: "turtleegg",
@@ -746,14 +733,11 @@ export default [
     lands_on: [
       "treehouse",
       "skyland",
-      (type) =>
-        ["seaweed", "canoe", "safaritruck"].includes(
-          type.meta.evolution_base || ""
-        ),
+      type => ["seaweed", "canoe", "safaritruck"].includes(type.meta.evolution_base || ""),
       "earthmystery",
       "watermystery",
       "munzee",
-      (type) => type.has_tag(TypeTags.VirtualColourGreen),
+      type => type.has_tag(TypeTags.VirtualColourGreen),
     ],
     stage: 5,
     base: "turtleegg",
@@ -766,14 +750,11 @@ export default [
     lands_on: [
       "treehouse",
       "skyland",
-      (type) =>
-        ["seaweed", "canoe", "safaritruck"].includes(
-          type.meta.evolution_base || ""
-        ),
+      type => ["seaweed", "canoe", "safaritruck"].includes(type.meta.evolution_base || ""),
       "earthmystery",
       "watermystery",
       "munzee",
-      (type) => type.has_tag(TypeTags.VirtualColourGreen),
+      type => type.has_tag(TypeTags.VirtualColourGreen),
     ],
     stage: 5,
     base: "turtleegg",
@@ -786,31 +767,15 @@ export default [
     lands_on: [
       "treehouse",
       "skyland",
-      (type) =>
-        ["seaweed", "canoe", "safaritruck"].includes(
-          type.meta.evolution_base || ""
-        ),
+      type => ["seaweed", "canoe", "safaritruck"].includes(type.meta.evolution_base || ""),
       "earthmystery",
       "watermystery",
       "munzee",
-      (type) => type.has_tag(TypeTags.VirtualColourGreen),
+      type => type.has_tag(TypeTags.VirtualColourGreen),
     ],
     stage: 5,
     base: "turtleegg",
   },
-] as {
-  name: string;
-  icon: string;
-  id: TypeID;
-  state: TypeState;
-  stage?: number;
-  base?: string;
-  lands_on?: TypeID[];
-  duration?: number;
+];
 
-  meta?: TypeMeta;
-  alt_icons?: string[];
-  points?: PointsInterface;
-  tags?: TypeTags[];
-  hidden?: TypeHidden[];
-}[];
+export default nature;

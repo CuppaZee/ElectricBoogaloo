@@ -1,6 +1,13 @@
 import { TypeID, PointsInterface, TypeTags, PointsType } from "../../munzee";
 
-export default [
+const universals: {
+  name: string;
+  icon: string;
+  id: TypeID;
+  alt_icons?: string[];
+  tags?: TypeTags[];
+  points?: PointsInterface;
+}[] = [
   {
     name: "Universal Bash",
     icon: "universal_bash",
@@ -13,11 +20,6 @@ export default [
       interval: 5,
     },
   },
-] as {
-  name: string;
-  icon: string;
-  id: TypeID;
-  alt_icons?: string[];
-  tags?: TypeTags[];
-  points?: PointsInterface;
-}[];
+];
+
+export default universals;

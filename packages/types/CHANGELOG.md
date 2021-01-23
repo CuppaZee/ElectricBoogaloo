@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.0.16 - 23/01/2021
+- Fixed Categories for Rainbow Trail ZED Scatters
+## 0.0.15 - 23/01/2021
+- Fixed type checking on Munzee Types, and fixed type issues.
+- Added categories for Retired Bouncers, Pouch Creatures and tPOBs
+- Added `evolution_base` meta tag to evolving Pouch Creatures
+- Added Zombie Elekter, Puffle, Magnetus and Pimedus
+- Added Phantom Flat Rob, Matt and Lou
+- Added Retired Nymph
+- Added Fireworks Holiday Card
+- Added Motivational Message Cards and 2021 Cards Category
+- Fixed `temporary` tag on Destinations
+- Added Nile Egyptian Zodiac and Egyptian Zodiac Category
+- Added Artifact Scatters
+- Added SleepZee
+- Added Gnome Hockey Helmet Scatter
+- Added Undercover and Liaison Agent Scatters
+- Fixed ZeeCret Weapons Category
+- Added tPOBs to Seasonal Specials
+- Added Garden Gnomes tPOBs and 2021 Seasonal Specials Category
+- Added Dead Branch and Cardinal Feather Scatters
+- Added Hamilton Hamzee tPOB
+- Added `TypeZodiacEgyptian`, `BouncerFlatPhantom` and `Card2021` TypeTags
 ## 0.0.14 - 30/12/2020
 - Fixed hidden tags on `social`, `qrewzee` and `renovation` types
 - Fixed capitalisation on `physicalcapturebooster` type name

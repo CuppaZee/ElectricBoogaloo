@@ -7,7 +7,16 @@ import {
   TypeTags,
 } from "../../munzee";
 
-export default [
+const mysteries: {
+  name: string;
+  icon: string;
+  id: TypeID;
+  state: TypeState;
+  alt_icons?: string[];
+  tags?: TypeTags[];
+  hidden?: TypeHidden[];
+  points?: PointsInterface;
+}[] = [
   {
     name: "Mystery",
     icon: "mystery",
@@ -104,13 +113,6 @@ export default [
       interval: 5,
     },
   },
-] as {
-  name: string;
-  icon: string;
-  id: TypeID;
-  state: TypeState;
-  alt_icons?: string[];
-  tags?: TypeTags[];
-  hidden?: TypeHidden[];
-  points?: PointsInterface;
-}[];
+];
+
+export default mysteries;

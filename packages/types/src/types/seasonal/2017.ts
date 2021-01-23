@@ -1,3 +1,4 @@
+import { SeasonalCategory } from ".";
 import {
   PointsInterface,
   TypeHidden,
@@ -7,8 +8,9 @@ import {
   TypeState,
   TypeTags,
 } from "../../munzee";
+import s2016 from "./2016";
 
-export default [
+const s2017: SeasonalCategory[] = [
   {
     name: "Christmas 2017",
     id: "christmas20172017",
@@ -200,23 +202,6 @@ export default [
       },
     ],
   },
-] as {
-  name: string;
-  id: string;
-  starts: string;
-  ends: string;
-  specials?: {
-    name: string;
-    icon: string;
-    id: TypeID;
-    duration?: number;
-    lands_on?: TypeID[];
-    meta?: TypeMeta;
-    state?: TypeState;
-    alt_icons?: string[];
-    points?: PointsInterface;
-    tags?: TypeTags[];
-    hidden?: TypeHidden[];
-  }[];
-  types?: Partial<TypeInterface>[];
-}[];
+];
+
+export default s2017;

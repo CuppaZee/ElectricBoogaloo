@@ -1,6 +1,16 @@
 import { PointsInterface, TypeHidden, TypeID, TypeState, TypeTags } from "../../munzee";
 
-export default [
+const weapons: {
+  name: string;
+  icon: string;
+  id: TypeID;
+  state: TypeState;
+  weapon: "zeecret" | "clan";
+  alt_icons?: TypeID[];
+  points?: PointsInterface;
+  tags?: TypeTags[];
+  hidden?: TypeHidden[];
+}[] = [
   {
     name: "Mace",
     icon: "mace",
@@ -76,14 +86,13 @@ export default [
     weapon: "zeecret",
     hidden: [TypeHidden.Deploy, TypeHidden.Inventory],
   },
-] as {
-  name: string;
-  icon: string;
-  id: TypeID;
-  state: TypeState;
-  weapon: "zeecret" | "clan";
-  alt_icons?: TypeID[];
-  points?: PointsInterface;
-  tags?: TypeTags[];
-  hidden?: TypeHidden[];
-}[];
+  {
+    name: "Walkie Talkie Watch",
+    icon: "walkietalkiewatch",
+    id: "null_walkietalkiewatch",
+    state: TypeState.Physical,
+    weapon: "zeecret",
+  },
+];
+
+export default weapons;

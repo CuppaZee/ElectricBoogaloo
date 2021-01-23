@@ -94,7 +94,7 @@ export const categories: TypeCategoryInterface[] = [
   },
   {
     name: "Zeecret Weapons",
-    id: "weapon_zeeops",
+    id: "weapon_zeecret",
     icon: "laserpen",
     parents: ["normal"],
   },
@@ -108,6 +108,12 @@ export const categories: TypeCategoryInterface[] = [
     name: "Chinese Zodiacs",
     id: "zodiac_chinese",
     icon: "chinese_zodiac",
+    parents: ["normal"],
+  },
+  {
+    name: "Egyptian Zodiacs",
+    id: "zodiac_egyptian",
+    icon: "egyptian_zodiac",
     parents: ["normal"],
   },
 ];
@@ -334,6 +340,7 @@ for (const t of zodiacs) {
       {
         western: TypeTags.TypeZodiacWestern,
         chinese: TypeTags.TypeZodiacChinese,
+        egyptian: TypeTags.TypeZodiacEgyptian,
       }[t.zodiac],
     ],
     hidden: [TypeHidden.Inventory],

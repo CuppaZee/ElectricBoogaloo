@@ -4,7 +4,14 @@ import {
   TypeTags,
 } from "../../munzee";
 
-export default [
+const pouchhosts: {
+  name: string;
+  icon: string;
+  id: TypeID;
+  state: TypeState;
+  hosts: TypeID[];
+  tags?: TypeTags[];
+}[] = [
   {
     name: "Water Pouch Creature Host",
     icon: "waterpouchcreaturehost",
@@ -47,11 +54,6 @@ export default [
     state: TypeState.Virtual,
     hosts: [2240, 2241, 2242],
   },
-] as {
-  name: string;
-  icon: string;
-  id: TypeID;
-  state: TypeState;
-  hosts: TypeID[];
-  tags?: TypeTags[];
-}[];
+];
+
+export default pouchhosts;

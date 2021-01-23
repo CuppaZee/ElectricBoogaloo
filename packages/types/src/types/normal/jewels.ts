@@ -7,7 +7,16 @@ import {
   TypeTags,
 } from "../../munzee";
 
-export default [
+const jewels: {
+  name: string;
+  icon: string;
+  id: TypeID;
+  state: TypeState;
+  alt_icons?: string[];
+  tags?: TypeTags[];
+  hidden?: TypeHidden[];
+  points?: PointsInterface;
+}[] = [
   {
     name: "Diamond",
     icon: "diamond",
@@ -18,7 +27,7 @@ export default [
       type: PointsType.Split,
       split: 80,
       min: 20,
-    }
+    },
   },
   {
     name: "Ruby",
@@ -43,7 +52,7 @@ export default [
       capon: 50,
     },
     alt_icons: ["gardenpin"],
-    hidden: [TypeHidden.Inventory]
+    hidden: [TypeHidden.Inventory],
   },
   {
     name: "Aquamarine",
@@ -126,13 +135,6 @@ export default [
       capon: 40,
     },
   },
-] as {
-  name: string;
-  icon: string;
-  id: TypeID;
-  state: TypeState;
-  alt_icons?: string[];
-  tags?: TypeTags[];
-  hidden?: TypeHidden[];
-  points?: PointsInterface;
-}[];
+];
+
+export default jewels;

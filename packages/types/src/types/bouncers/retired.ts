@@ -1,6 +1,14 @@
 import { TypeID, TypeMeta, TypeState, TypeTags } from "../../munzee";
 
-export default module.exports = [
+const retired: {
+  name: string;
+  icon: string;
+  id: TypeID;
+  tags?: TypeTags[];
+  lands_on: TypeID[];
+  meta?: TypeMeta;
+  duration?: number;
+}[] = [
   {
     name: "Retired Unicorn",
     icon: "retiredunicorn",
@@ -93,7 +101,6 @@ export default module.exports = [
     icon: "zombietuli",
     id: 2053,
     lands_on: ["munzee", "firemystery"],
-    pouch: true,
     duration: 6,
     tags: [TypeTags.BouncerPC, TypeTags.BouncerPCZombie, TypeTags.BouncerRetired],
   },
@@ -102,7 +109,6 @@ export default module.exports = [
     icon: "zombievesi",
     id: 2054,
     lands_on: ["munzee", "watermystery"],
-    pouch: true,
     duration: 6,
     tags: [TypeTags.BouncerPC, TypeTags.BouncerPCZombie, TypeTags.BouncerRetired],
   },
@@ -111,15 +117,104 @@ export default module.exports = [
     icon: "zombiemuru",
     id: 2055,
     lands_on: ["munzee", "earthmystery"],
-    pouch: true,
     duration: 6,
     tags: [TypeTags.BouncerPC, TypeTags.BouncerPCZombie, TypeTags.BouncerRetired],
   },
-] as {
-  name: string;
-  icon: string;
-  id: TypeID;
-  tags?: TypeTags[];
-  lands_on: TypeID[];
-  meta?: TypeMeta;
-}[];
+  {
+    name: "Zombie Elekter",
+    icon: "zombieelekter",
+    id: "null_zombieelekter",
+    lands_on: ["skyland", type => type.has_tag(TypeTags.TypeVirtual), "electricmystery"],
+    duration: 6,
+    tags: [TypeTags.BouncerPC, TypeTags.BouncerPCZombie, TypeTags.BouncerRetired],
+  },
+  {
+    name: "Zombie Puffle",
+    icon: "zombiepuffle",
+    id: "null_zombiepuffle",
+    lands_on: ["skyland", type => type.has_tag(TypeTags.TypeVirtual), "airmystery"],
+    duration: 6,
+    tags: [TypeTags.BouncerPC, TypeTags.BouncerPCZombie, TypeTags.BouncerRetired],
+  },
+  {
+    name: "Zombie Magnetus",
+    icon: "zombiemagnetus",
+    id: "null_zombiemagnetus",
+    lands_on: [
+      "skyland",
+      "treehouse",
+      "munzee",
+      "airmystery",
+      type => type.has_tag(TypeTags.VirtualColourBlue),
+      type => type.has_tag(TypeTags.VirtualColourRed),
+      "watermystery",
+      "joystickvirtual",
+      "joystick",
+      "virtual_yellow",
+      "virtual_goldenrod",
+      "virtual_dandelion",
+    ],
+    duration: 6,
+    tags: [TypeTags.BouncerPC, TypeTags.BouncerPCZombie, TypeTags.BouncerRetired],
+  },
+  {
+    name: "Zombie Pimedus",
+    icon: "zombiepimedus",
+    id: "null_zombiepimedus",
+    lands_on: [
+      "skyland",
+      "treehouse",
+      "munzee",
+      ":reseller",
+      type => type.has_tag(TypeTags.TypeZodiacChinese),
+      "virtual_sapphire",
+      "briefcase",
+      "thehammer",
+      "crossbow",
+      "catapult",
+    ],
+    duration: 6,
+    tags: [TypeTags.BouncerPC, TypeTags.BouncerPCZombie, TypeTags.BouncerRetired],
+  },
+  {
+    name: "Retired Nymph",
+    icon: "retirednymph",
+    id: "null_retirednymph",
+    lands_on: [
+      "skyland",
+      "treehouse",
+      "munzee",
+      "earthmystery",
+      type => type.has_tag(TypeTags.VirtualColourBrown),
+      type => type.has_tag(TypeTags.VirtualColourBlack),
+      type => type.has_tag(TypeTags.VirtualColourGreen),
+    ],
+    tags: [TypeTags.BouncerMyth, TypeTags.BouncerRetired],
+  },
+  {
+    name: "Phantom Flat Rob",
+    icon: "phantomflatrob",
+    id: "null_phantomflatrob",
+    lands_on: [],
+    duration: 6,
+    tags: [TypeTags.BouncerPC, TypeTags.BouncerFlatPhantom, TypeTags.BouncerRetired],
+  },
+  {
+    name: "Phantom Flat Matt",
+    icon: "phantomflatmatt",
+    id: "null_phantomflatmatt",
+    lands_on: [],
+    duration: 6,
+    tags: [TypeTags.BouncerPC, TypeTags.BouncerFlatPhantom, TypeTags.BouncerRetired],
+  },
+  {
+    name: "Phantom Flat Lou",
+    icon: "phantomflatlou",
+    id: "null_phantomflatlou",
+    lands_on: [],
+    duration: 6,
+    tags: [TypeTags.BouncerPC, TypeTags.BouncerFlatPhantom, TypeTags.BouncerRetired],
+  },
+];
+
+export default retired;

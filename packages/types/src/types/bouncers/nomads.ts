@@ -6,7 +6,14 @@ import {
   TypeTags,
 } from "../../munzee";
 
-export default [
+const nomads: {
+  name: string;
+  icon: string;
+  id: TypeID;
+  state: "bouncer";
+  lands_on: TypeID[];
+  hidden?: TypeHidden[];
+}[] = [
   {
     name: "Nomad",
     icon: "nomad",
@@ -33,10 +40,7 @@ export default [
     icon: "jewelthiefnomad",
     id: 822,
     state: "bouncer",
-    lands_on: [
-      (type) =>
-        type.has_tag(TypeTags.TypeJewel) && type.state === TypeState.Physical,
-    ],
+    lands_on: [type => type.has_tag(TypeTags.TypeJewel) && type.state === TypeState.Physical],
   },
   {
     name: "Bellhop Nomad",
@@ -44,7 +48,7 @@ export default [
     id: 823,
     state: "bouncer",
     lands_on: [
-      (type) =>
+      type =>
         type.has_tags(TypeTags.TypeDestination) &&
         type.meta.destination_type === DestinationType.Rooms &&
         type.state === TypeState.Physical,
@@ -62,11 +66,7 @@ export default [
     icon: "warriornomad",
     id: 999,
     state: "bouncer",
-    lands_on: [
-      (type) =>
-        type.has_tag(TypeTags.TypeWeaponClan) &&
-        type.state === TypeState.Physical,
-    ],
+    lands_on: [type => type.has_tag(TypeTags.TypeWeaponClan) && type.state === TypeState.Physical],
   },
   {
     name: "Traveler Nomad",
@@ -80,21 +80,14 @@ export default [
     icon: "seasonalnomad",
     id: 1637,
     state: "bouncer",
-    lands_on: [
-      (type) =>
-        type.has_tag(TypeTags.TypeSeasonal) &&
-        type.state === TypeState.Physical,
-    ],
+    lands_on: [type => type.has_tag(TypeTags.TypeSeasonal) && type.state === TypeState.Physical],
   },
   {
     name: "Virtual Flat Nomad",
     icon: "virtualflatnomad",
     id: 1691,
     state: "bouncer",
-    lands_on: [
-      (type) =>
-        type.has_tag(TypeTags.TypeFlat) && type.state === TypeState.Virtual,
-    ],
+    lands_on: [type => type.has_tag(TypeTags.TypeFlat) && type.state === TypeState.Virtual],
   },
   {
     name: "Coupe Champion Nomad",
@@ -307,7 +300,7 @@ export default [
     id: "null_virtualgamingnomad",
     state: "bouncer",
     lands_on: [
-      (type) =>
+      type =>
         type.has_tag(TypeTags.TypeGaming) &&
         !type.has_tag(TypeTags.Scatter) &&
         type.state === TypeState.Virtual,
@@ -319,7 +312,7 @@ export default [
     id: "null_gamingnomad",
     state: "bouncer",
     lands_on: [
-      (type) =>
+      type =>
         type.has_tag(TypeTags.TypeGaming) &&
         !type.has_tag(TypeTags.Scatter) &&
         type.state === TypeState.Physical,
@@ -330,27 +323,15 @@ export default [
     icon: "virtualjewelthiefnomad",
     id: "null_virtualjewelthiefnomad",
     state: "bouncer",
-    lands_on: [
-      (type) =>
-        type.has_tag(TypeTags.TypeJewel) && type.state === TypeState.Virtual,
-    ],
+    lands_on: [type => type.has_tag(TypeTags.TypeJewel) && type.state === TypeState.Virtual],
   },
   {
     name: "Virtual Warrior Nomad",
     icon: "virtualwarriornomad",
     id: "null_virtualwarriornomad",
     state: "bouncer",
-    lands_on: [
-      (type) =>
-        type.has_tag(TypeTags.TypeWeaponClan) &&
-        type.state === TypeState.Virtual,
-    ],
+    lands_on: [type => type.has_tag(TypeTags.TypeWeaponClan) && type.state === TypeState.Virtual],
   },
-] as {
-  name: string;
-  icon: string;
-  id: TypeID;
-  state: "bouncer";
-  lands_on: TypeID[];
-  hidden?: TypeHidden[];
-}[];
+];
+
+export default nomads;

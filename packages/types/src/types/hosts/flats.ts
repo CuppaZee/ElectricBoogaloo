@@ -1,6 +1,13 @@
 import { TypeID, TypeState, TypeTags } from "../../munzee";
 
-export default [
+const flathosts: {
+  name: string;
+  icon: string;
+  id: TypeID;
+  state: TypeState;
+  hosts: TypeID[];
+  tags?: TypeTags[];
+}[] = [
   {
     name: "Fancy Flat Rob Host",
     icon: "fancyflatrobhost",
@@ -43,10 +50,6 @@ export default [
     state: TypeState.Virtual,
     hosts: ["null_iflatlou", "null_gbflatlou", "null_pflatlou"],
   },
-] as {
-  name: string;
-  icon: string;
-  id: TypeID;
-  state: TypeState;
-  hosts: TypeID[];
-}[];
+];
+
+export default flathosts;

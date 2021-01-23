@@ -1,6 +1,13 @@
 import { TypeID, TypeMeta, TypeState, TypeTags } from "../../munzee";
 
-export default [
+const tpobhosts: {
+  name: string;
+  icon: string;
+  id: TypeID;
+  state: TypeState;
+  hosts: TypeID[];
+  tags?: TypeTags[];
+}[] = [
   {
     name: "Butterfly Host",
     icon: "butterflyhost",
@@ -29,11 +36,6 @@ export default [
     state: TypeState.Virtual,
     hosts: [2110, 2111, 2112],
   },
-] as {
-  name: string;
-  icon: string;
-  id: TypeID;
-  state: TypeState;
-  hosts: TypeID[];
-  tags?: TypeTags[];
-}[];
+];
+
+export default tpobhosts;

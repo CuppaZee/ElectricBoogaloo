@@ -1,4 +1,8 @@
-export default [
+const other: {
+  icon: string;
+  name: string;
+  cuppazeeExtra?: boolean;
+}[] = [
   {
     icon: "zeecred",
     name: "ZeeCred",
@@ -23,3 +27,5 @@ export default [
     cuppazeeExtra: true,
   },
 ];
+
+export default other;

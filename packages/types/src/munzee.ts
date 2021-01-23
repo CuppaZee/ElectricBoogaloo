@@ -11,6 +11,7 @@ export enum TypeTags {
   TypeZodiac,
   TypeZodiacWestern,
   TypeZodiacChinese,
+  TypeZodiacEgyptian,
 
   TypeMystery,
   TypeMysteryElemental,
@@ -54,6 +55,7 @@ export enum TypeTags {
   BouncerMythVariant,
   BouncerRetired,
   BouncerFlat,
+  BouncerFlatPhantom,
   BouncerEvolution,
   BouncerTPOB,
   BouncerTPOBBabyAnimal,
@@ -103,6 +105,7 @@ export enum TypeTags {
   Card,
   CardOpen,
   Card2020,
+  Card2021,
 
   // Evolution
   Evolution,

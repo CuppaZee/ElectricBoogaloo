@@ -1,6 +1,12 @@
 import { TypeID, TypeTags } from "../../munzee";
 
-export default [
+const virtuals: {
+  name: string;
+  icon: string;
+  id: TypeID;
+  virtual_colors?: TypeTags[];
+  alt_icons?: string[];
+}[] = [
   {
     name: "Virtual",
     icon: "virtual",
@@ -15,25 +21,25 @@ export default [
     name: "Virtual Timberwolf",
     icon: "virtual_timberwolf",
     id: 1411,
-    virtual_colors: ["black"],
+    virtual_colors: [TypeTags.VirtualColourBlack],
   },
   {
     name: "Virtual Silver",
     icon: "virtual_silver",
     id: 1412,
-    virtual_colors: ["black"],
+    virtual_colors: [TypeTags.VirtualColourBlack],
   },
   {
     name: "Virtual Gray",
     icon: "virtual_gray",
     id: 1413,
-    virtual_colors: ["black"],
+    virtual_colors: [TypeTags.VirtualColourBlack],
   },
   {
     name: "Virtual Black",
     icon: "virtual_black",
     id: 1414,
-    virtual_colors: ["black"],
+    virtual_colors: [TypeTags.VirtualColourBlack],
   },
   {
     name: "Virtual Orchid",
@@ -356,10 +362,6 @@ export default [
     id: 1473,
     virtual_colors: [TypeTags.VirtualColourBrown],
   },
-] as {
-  name: string;
-  icon: string;
-  id: TypeID;
-  virtual_colors?: TypeTags[];
-  alt_icons?: string[];
-}[];
+]
+
+export default virtuals;

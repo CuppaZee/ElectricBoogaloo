@@ -7,7 +7,19 @@ import {
   TypeTags,
 } from "../../munzee";
 
-export default [
+const c2020: {
+  name: string;
+  icon: string;
+  id: TypeID;
+  duration?: number;
+  lands_on?: TypeID[];
+  meta?: TypeMeta;
+  state?: TypeState;
+  alt_icons?: string[];
+  points?: PointsInterface;
+  tags?: TypeTags[];
+  hidden?: TypeHidden[];
+}[] = [
   {
     name: "Earth Day Card 1",
     icon: "earthdaycard1",
@@ -251,16 +263,11 @@ export default [
     icon: "calendarholidaycard",
     id: "null_calendarholidaycard",
   },
-] as {
-  name: string;
-  icon: string;
-  id: TypeID;
-  duration?: number;
-  lands_on?: TypeID[];
-  meta?: TypeMeta;
-  state?: TypeState;
-  alt_icons?: string[];
-  points?: PointsInterface;
-  tags?: TypeTags[];
-  hidden?: TypeHidden[];
-}[];
+  {
+    name: "Fireworks Holiday Card",
+    icon: "fireworksholidaycard",
+    id: "null_fireworksholidaycard",
+  },
+];
+
+export default c2020;

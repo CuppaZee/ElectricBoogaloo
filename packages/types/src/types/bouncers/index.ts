@@ -56,6 +56,36 @@ export const categories: TypeCategoryInterface[] = [
     icon: "aphrodite",
     parents: ["bouncer"],
   },
+  {
+    name: "Retired Bouncers",
+    id: "bouncer_retired",
+    icon: "retiredpegasus",
+    parents: ["bouncer"],
+  },
+  {
+    name: "Pouch Creature S1",
+    id: "bouncer_pouch_season_1",
+    icon: "tuli",
+    parents: ["bouncer"],
+  },
+  {
+    name: "Pouch Creature S2",
+    id: "bouncer_pouch_season_2",
+    icon: "elekter",
+    parents: ["bouncer"],
+  },
+  {
+    name: "Funfinity Stones",
+    id: "bouncer_pouch_funfinity",
+    icon: "oniks",
+    parents: ["bouncer"],
+  },
+  {
+    name: "tPOB Bouncers",
+    id: "bouncer_tpob",
+    icon: "spyderbot",
+    parents: ["bouncer"],
+  },
 ];
 
 import flats from "./flats";
@@ -108,6 +138,7 @@ for (const t of pouch) {
     meta: {
       bouncer_duration: 12,
       bouncer_lands_on: t.lands_on,
+      evolution_base: t.base,
       ...(t.meta ?? {}),
     },
     hidden: [TypeHidden.Inventory],
@@ -160,7 +191,7 @@ for (const t of tpobs) {
     id: t.id,
     alt_icons: [],
     state: TypeState.Bouncer,
-    category: `bouncer_tpob_${t.category}`,
+    category: `bouncer_tpob`,
     tags: [TypeTags.Bouncer, TypeTags.BouncerTPOB, ...(t.tags ?? [])],
     meta: {
       bouncer_duration: t.duration || 12,
@@ -182,7 +213,7 @@ for (const t of retired) {
     category: `bouncer_retired`,
     tags: [TypeTags.Bouncer, ...(t.tags ?? [])],
     meta: {
-      bouncer_duration: 12,
+      bouncer_duration: t.duration ?? 12,
       bouncer_lands_on: t.lands_on,
       ...(t.meta ?? {}),
     },

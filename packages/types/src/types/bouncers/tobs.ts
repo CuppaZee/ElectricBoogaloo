@@ -1,6 +1,13 @@
 import { TypeID, TypeMeta, TypeState, TypeTags } from "../../munzee";
 
-export default module.exports = [
+const tobs: {
+  name: string;
+  icon: string;
+  id: TypeID;
+  tags?: TypeTags[];
+  lands_on: TypeID[];
+  meta?: TypeMeta;
+}[] = [
   {
     name: "Rainbow Unicorn",
     icon: "rainbowunicorn",
@@ -48,15 +55,7 @@ export default module.exports = [
     icon: "ogre",
     id: 1268,
     tags: [TypeTags.BouncerMyth, TypeTags.BouncerMythAlterna, TypeTags.BouncerMythClassical],
-    lands_on: [
-      "munzee",
-      ":jewel",
-      "mace",
-      "longsword",
-      "battleaxe",
-      "thehammer",
-      "crossbow",
-    ],
+    lands_on: ["munzee", ":jewel", "mace", "longsword", "battleaxe", "thehammer", "crossbow"],
   },
   {
     name: "Chimera",
@@ -152,11 +151,6 @@ export default module.exports = [
       "virtual_emerald",
     ],
   },
-] as {
-  name: string;
-  icon: string;
-  id: TypeID;
-  tags?: TypeTags[];
-  lands_on: TypeID[];
-  meta?: TypeMeta;
-}[];
+];
+
+export default tobs;

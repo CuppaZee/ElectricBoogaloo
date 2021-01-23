@@ -8,7 +8,22 @@ import {
   TypeTags,
 } from "../../munzee";
 
-export default [
+const scatters: {
+  name: string;
+  icon: string;
+  id: TypeID;
+  state: TypeState;
+  scatter: {
+    duration: number;
+    standalone?: boolean;
+    lands_on?: string[];
+  };
+  alt_icons?: string[];
+  tags?: TypeTags[];
+  hidden?: TypeHidden[];
+  meta?: TypeMeta;
+  points?: PointsInterface;
+}[] = [
   {
     name: "Scattered",
     icon: "scattered",
@@ -18,7 +33,7 @@ export default [
       duration: 2,
       lands_on: ["munzee"],
     },
-    tags:[TypeTags.TypeGaming],
+    tags: [TypeTags.TypeGaming],
   },
   {
     name: "Fire",
@@ -29,7 +44,7 @@ export default [
       duration: 2,
       lands_on: ["munzee"],
     },
-    tags:[TypeTags.TypeMysteryElemental],
+    tags: [TypeTags.TypeMysteryElemental],
   },
   {
     name: "Frozen Greenie",
@@ -40,7 +55,7 @@ export default [
       duration: 2,
       lands_on: ["munzee"],
     },
-    tags:[TypeTags.TypeMysteryElemental],
+    tags: [TypeTags.TypeMysteryElemental],
   },
   {
     name: "Water Droplet",
@@ -51,7 +66,7 @@ export default [
       duration: 2,
       lands_on: ["munzee"],
     },
-    tags:[TypeTags.TypeMysteryElemental],
+    tags: [TypeTags.TypeMysteryElemental],
   },
   {
     name: "Feather",
@@ -62,12 +77,12 @@ export default [
       standalone: true,
       duration: 2,
     },
-    tags:[TypeTags.TypeMysteryElemental],
+    tags: [TypeTags.TypeMysteryElemental],
     meta: {
       scatterer_types: [1088],
       scatterer_min: 0,
       scatterer_max: 3,
-      scatterer_radius: null,
+      scatterer_radius: undefined,
     },
   },
   {
@@ -79,7 +94,7 @@ export default [
       standalone: true,
       duration: 2,
     },
-    tags:[TypeTags.TypeMysteryElemental],
+    tags: [TypeTags.TypeMysteryElemental],
   },
   {
     name: "Dossier",
@@ -120,7 +135,7 @@ export default [
       duration: 2,
       lands_on: ["munzee"],
     },
-    tags:[TypeTags.TypeGaming],
+    tags: [TypeTags.TypeGaming],
   },
   {
     name: "2nd Roll",
@@ -131,7 +146,7 @@ export default [
       duration: 2,
       lands_on: ["munzee"],
     },
-    tags:[TypeTags.TypeGaming],
+    tags: [TypeTags.TypeGaming],
   },
   {
     name: "Runzee Rob",
@@ -142,7 +157,7 @@ export default [
       duration: 2,
       lands_on: ["munzee"],
     },
-    tags:[TypeTags.TypeGaming],
+    tags: [TypeTags.TypeGaming],
   },
   {
     name: "Gold Coin",
@@ -153,7 +168,7 @@ export default [
       duration: 2,
       standalone: true,
     },
-    tags:[TypeTags.TypeGaming],
+    tags: [TypeTags.TypeGaming],
   },
   {
     name: "Leap Frog",
@@ -164,7 +179,7 @@ export default [
       duration: 2,
       lands_on: ["munzee"],
     },
-    tags:[TypeTags.TypeGaming],
+    tags: [TypeTags.TypeGaming],
   },
   {
     name: "Fly",
@@ -175,7 +190,7 @@ export default [
       duration: 2,
       standalone: true,
     },
-    tags:[TypeTags.TypeGaming],
+    tags: [TypeTags.TypeGaming],
   },
   {
     name: "Munch-Man",
@@ -186,7 +201,7 @@ export default [
       duration: 2,
       lands_on: ["munzee"],
     },
-    tags:[TypeTags.TypeGaming],
+    tags: [TypeTags.TypeGaming],
   },
   {
     name: "Ghostzee",
@@ -197,7 +212,7 @@ export default [
       duration: 2,
       standalone: true,
     },
-    tags:[TypeTags.TypeGaming],
+    tags: [TypeTags.TypeGaming],
   },
   {
     name: "Bowling - 1st Roll",
@@ -208,7 +223,7 @@ export default [
       duration: 2,
       standalone: true,
     },
-    tags:[TypeTags.TypeGaming],
+    tags: [TypeTags.TypeGaming],
   },
   {
     name: "Bowling - 2nd Roll",
@@ -219,7 +234,7 @@ export default [
       duration: 2,
       standalone: true,
     },
-    tags:[TypeTags.TypeGaming],
+    tags: [TypeTags.TypeGaming],
   },
   {
     name: "Tree",
@@ -230,7 +245,7 @@ export default [
       duration: 1,
       lands_on: ["munzee"],
     },
-    tags:[TypeTags.TypeMysteryElemental],
+    tags: [TypeTags.TypeMysteryElemental],
   },
   {
     name: "Red Apple",
@@ -241,7 +256,7 @@ export default [
       duration: 1,
       standalone: true,
     },
-    tags:[TypeTags.TypeMysteryElemental],
+    tags: [TypeTags.TypeMysteryElemental],
   },
   {
     name: "Cherry Blossom",
@@ -252,7 +267,7 @@ export default [
       duration: 1,
       standalone: true,
     },
-    tags:[TypeTags.TypeMysteryElemental],
+    tags: [TypeTags.TypeMysteryElemental],
   },
   {
     name: "Charge",
@@ -263,7 +278,7 @@ export default [
       duration: 2,
       lands_on: [":virtual"],
     },
-    tags:[TypeTags.TypeMysteryElemental],
+    tags: [TypeTags.TypeMysteryElemental],
   },
   {
     name: "Flaming Arrow",
@@ -274,9 +289,7 @@ export default [
       duration: 2,
       standalone: true,
     },
-    extra: {
-      weapon: "clan",
-    },
+    tags: [TypeTags.TypeWeaponClan],
   },
   {
     name: "Trident",
@@ -307,7 +320,7 @@ export default [
       duration: 1,
       standalone: true,
     },
-    tags:[TypeTags.TypeMysteryElemental],
+    tags: [TypeTags.TypeMysteryElemental],
   },
   {
     name: "Pear",
@@ -318,7 +331,7 @@ export default [
       duration: 1,
       standalone: true,
     },
-    tags:[TypeTags.TypeMysteryElemental],
+    tags: [TypeTags.TypeMysteryElemental],
   },
   {
     name: "Glasses",
@@ -349,7 +362,7 @@ export default [
       duration: 1,
       standalone: true,
     },
-    tags:[TypeTags.TypeMysteryElemental],
+    tags: [TypeTags.TypeMysteryElemental],
   },
   {
     name: "Acorn",
@@ -360,7 +373,7 @@ export default [
       duration: 1,
       standalone: true,
     },
-    tags:[TypeTags.TypeMysteryElemental],
+    tags: [TypeTags.TypeMysteryElemental],
   },
   {
     name: "Laser Trail 1",
@@ -397,7 +410,6 @@ export default [
     icon: "pixelpresent",
     id: "null_pixelpresent",
     state: TypeState.Virtual,
-    category: "temppob_christmas_2020",
     scatter: {
       duration: 2,
       standalone: true,
@@ -424,18 +436,108 @@ export default [
     },
     alt_icons: ["snowballhidden"],
   },
-] as {
-  name: string;
-  icon: string;
-  id: TypeID;
-  state: TypeState;
-  scatter: {
-    duration: number;
-    standalone?: boolean;
-  };
-  alt_icons?: string[];
-  tags?: TypeTags[];
-  hidden?: TypeHidden[];
-  meta?: TypeMeta;
-  points?: PointsInterface;
-}[];
+  {
+    name: "ChristmaZ Tree",
+    icon: "christmaztree",
+    id: "null_christmaztree",
+    state: TypeState.Virtual,
+    scatter: {
+      duration: 36,
+      standalone: true,
+    },
+  },
+  {
+    name: "ChristmaZ Pickle",
+    icon: "christmazpickle",
+    id: "null_christmazpickle",
+    state: TypeState.Virtual,
+    scatter: {
+      duration: 36,
+      standalone: true,
+    },
+  },
+  {
+    name: "Ankh Artifact",
+    icon: "ankhartifact",
+    id: "null_ankhartifact",
+    state: TypeState.Virtual,
+    scatter: {
+      duration: 2,
+      standalone: true,
+    },
+  },
+  {
+    name: "Ouroboros Artifact",
+    icon: "ouroborosartifact",
+    id: "null_ouroborosartifact",
+    state: TypeState.Virtual,
+    scatter: {
+      duration: 2,
+      standalone: true,
+    },
+  },
+  {
+    name: "Djed Artifact",
+    icon: "djedartifact",
+    id: "null_djedartifact",
+    state: TypeState.Virtual,
+    scatter: {
+      duration: 2,
+      standalone: true,
+    },
+  },
+  {
+    name: "Gnome Hockey Helmet",
+    icon: "gnomehockeyhelmet",
+    id: "null_gnomehockeyhelmet",
+    state: TypeState.Virtual,
+    scatter: {
+      duration: 2,
+      standalone: true,
+    },
+  },
+  {
+    name: "Undercover Agent",
+    icon: "undercoveragent",
+    id: "null_undercoveragent",
+    state: TypeState.Virtual,
+    scatter: {
+      duration: 2,
+      standalone: true,
+    },
+  },
+  {
+    name: "Liaison Agent",
+    icon: "liaisonagent",
+    id: "null_liaisonagent",
+    state: TypeState.Virtual,
+    scatter: {
+      duration: 2,
+      standalone: true,
+    },
+  },
+  {
+    name: "Dead Branch",
+    icon: "deadbranch",
+    id: "null_deadbranch",
+    state: TypeState.Virtual,
+    scatter: {
+      duration: 1,
+      standalone: true,
+    },
+    tags: [TypeTags.TypeMysteryElemental],
+  },
+  {
+    name: "Cardinal Feather",
+    icon: "cardinalfeather",
+    id: "null_cardinalfeather",
+    state: TypeState.Virtual,
+    scatter: {
+      duration: 1,
+      standalone: true,
+    },
+    tags: [TypeTags.TypeMysteryElemental],
+  },
+];
+
+export default scatters;

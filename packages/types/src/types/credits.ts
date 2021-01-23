@@ -1,4 +1,9 @@
-export default [
+const credits: {
+  icon: string;
+  name: string;
+  alt_icons?: string[];
+  category?: string;
+}[] = [
   {
     icon: "magnet",
     name: "Magnet",
@@ -75,3 +80,5 @@ export default [
     name: "Virtual Capture Booster",
   },
 ];
+
+export default credits;

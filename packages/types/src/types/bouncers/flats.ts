@@ -1,6 +1,13 @@
 import { TypeID, TypeTags } from "../../munzee";
 
-export default [
+const flats: {
+  name: string;
+  icon: string;
+  id: TypeID;
+  color: TypeTags;
+  flat_type: TypeID;
+  lands_on: TypeID[];
+}[] = [
   {
     name: "Beach Flat Rob",
     icon: "beachflatrob",
@@ -94,11 +101,6 @@ export default [
       "skyland",
     ],
   },
-] as {
-  name: string;
-  icon: string;
-  id: TypeID;
-  color: TypeTags;
-  flat_type: TypeID;
-  lands_on: TypeID[];
-}[];
+];
+
+export default flats;

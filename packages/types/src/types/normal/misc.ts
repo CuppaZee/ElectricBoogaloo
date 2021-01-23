@@ -7,7 +7,16 @@ import {
   TypeTags,
 } from "../../munzee";
 
-export default [
+const misc: {
+  name: string;
+  icon: string;
+  id: TypeID;
+  state: TypeState;
+  alt_icons?: string[];
+  tags?: TypeTags[];
+  hidden?: TypeHidden[];
+  points?: PointsInterface;
+}[] = [
   {
     name: "Greenie",
     icon: "munzee",
@@ -35,10 +44,8 @@ export default [
     name: "Social",
     icon: "social",
     id: 32,
-    state: "universal",
-    extra: {
-      social: true,
-    },
+    state: TypeState.Locationless,
+    tags: [TypeTags.TypeSocial],
     hidden: [TypeHidden.Inventory],
   },
   {
@@ -60,11 +67,11 @@ export default [
     name: "Personal Munzee",
     icon: "personalmunzee",
     id: 200,
-    state: "personal",
+    state: TypeState.Locationless,
     tags: [TypeTags.TypePersonal],
     points: {
       deploy: 10,
-      type: "split",
+      type: PointsType.Split,
       split: 50,
       min: 10,
     },
@@ -83,9 +90,7 @@ export default [
     icon: "virtual_trail",
     id: 390,
     state: TypeState.Virtual,
-    extra: {
-      trail: true,
-    },
+    tags: [TypeTags.TypeTrail],
   },
   {
     name: "Shamrock",
@@ -105,11 +110,11 @@ export default [
     name: "Premium Personal",
     icon: "premiumpersonal",
     id: 1107,
-    state: "physical",
+    state: TypeState.Locationless,
     tags: [TypeTags.TypePersonal],
     points: {
       deploy: 25,
-      type: "split",
+      type: PointsType.Split,
       split: 100,
       min: 20,
     },
@@ -163,7 +168,7 @@ export default [
     alt_icons: ["tempvirt"],
     points: {
       deploy: 30,
-      type: "split",
+      type: PointsType.Split,
       split: 75,
       min: 25,
     },
@@ -173,22 +178,22 @@ export default [
     icon: "qrewzee",
     id: 1880,
     state: TypeState.Physical,
-    hidden: [TypeHidden.Inventory,TypeHidden.Deploy],
+    hidden: [TypeHidden.Inventory, TypeHidden.Deploy],
   },
   {
     name: "Renovation",
     icon: "renovation",
     id: 2390,
     state: TypeState.Locationless,
-    hidden: [TypeHidden.Inventory,TypeHidden.Deploy],
+    hidden: [TypeHidden.Inventory, TypeHidden.Deploy],
   },
-] as {
-  name: string;
-  icon: string;
-  id: TypeID;
-  state: TypeState;
-  alt_icons?: string[];
-  tags?: TypeTags[];
-  hidden?: TypeHidden[];
-  points?: PointsInterface;
-}[];
+  {
+    name: "SleepZee",
+    icon: "sleepzee",
+    id: "null_sleepzee",
+    state: TypeState.Physical,
+    hidden: [TypeHidden.Inventory, TypeHidden.Deploy],
+  },
+];
+
+export default misc;

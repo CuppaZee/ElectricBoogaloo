@@ -1,13 +1,19 @@
-import {
-  PointsInterface,
-  TypeHidden,
-  TypeID,
-  TypeMeta,
-  TypeState,
-  TypeTags,
-} from "../../munzee";
+import { PointsInterface, TypeHidden, TypeID, TypeMeta, TypeState, TypeTags } from "../../munzee";
 
-export default [
+const reseller: {
+  name: string;
+  icon: string;
+  id: TypeID;
+  state: TypeState;
+  stage?: number;
+  base?: string;
+
+  meta?: TypeMeta;
+  alt_icons?: string[];
+  points?: PointsInterface;
+  tags?: TypeTags[];
+  hidden?: TypeHidden[];
+}[] = [
   {
     name: "Coin",
     icon: "coin",
@@ -32,17 +38,6 @@ export default [
     stage: 3,
     base: "coin",
   },
-] as {
-  name: string;
-  icon: string;
-  id: TypeID;
-  state: TypeState;
-  stage?: number;
-  base?: string;
+];
 
-  meta?: TypeMeta;
-  alt_icons?: string[];
-  points?: PointsInterface;
-  tags?: TypeTags[];
-  hidden?: TypeHidden[];
-}[];
+export default reseller;

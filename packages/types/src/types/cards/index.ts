@@ -17,6 +17,7 @@ export const categories: TypeCategoryInterface[] = [
 ];
 
 import y2020 from "./2020";
+import y2021 from "./2021";
 import open from "./open";
 const years = {
   open: {
@@ -28,6 +29,11 @@ const years = {
     name: "2020 Cards",
     types: y2020,
     tag: TypeTags.Card2020,
+  },
+  "2021": {
+    name: "2021 Cards",
+    types: y2021,
+    tag: TypeTags.Card2021,
   },
 };
 for (const year of Object.keys(years) as (keyof typeof years)[]) {

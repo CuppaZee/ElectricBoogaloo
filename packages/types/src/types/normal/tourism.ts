@@ -1,6 +1,13 @@
 import { TypeID, TypeState, TypeTags } from "../../munzee";
 
-export default [
+const tourism: {
+  name: string;
+  icon: string;
+  id: TypeID;
+  state?: TypeState;
+  alt_icons?: string[];
+  tags?: TypeTags[];
+}[] = [
   {
     name: "TX Historical Location",
     icon: "txhistoricallocation",
@@ -87,11 +94,6 @@ export default [
     icon: "internationellesvirtual",
     id: 2047,
   },
-] as {
-  name: string;
-  icon: string;
-  id: TypeID;
-  state?: TypeState;
-  alt_icons?: string[];
-  tags: TypeTags[];
-}[];
+];
+
+export default tourism;

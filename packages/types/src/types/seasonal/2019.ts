@@ -1,14 +1,6 @@
-import {
-  PointsInterface,
-  TypeHidden,
-  TypeID,
-  TypeInterface,
-  TypeMeta,
-  TypeState,
-  TypeTags,
-} from "../../munzee";
+import { SeasonalCategory } from ".";
 
-export default [
+const s2019: SeasonalCategory[] = [
   {
     name: "Global Grub",
     id: "globalgrub2019",
@@ -1115,23 +1107,6 @@ export default [
       },
     ],
   },
-] as {
-  name: string;
-  id: string;
-  starts: string;
-  ends: string;
-  specials?: {
-    name: string;
-    icon: string;
-    id: TypeID;
-    duration?: number;
-    lands_on?: TypeID[];
-    meta?: TypeMeta;
-    state?: TypeState;
-    alt_icons?: string[];
-    points?: PointsInterface;
-    tags?: TypeTags[];
-    hidden?: TypeHidden[];
-  }[];
-  types?: Partial<TypeInterface>[];
-}[];
+];
+
+export default s2019;

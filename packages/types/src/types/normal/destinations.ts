@@ -8,7 +8,22 @@ import {
   TypeTags,
 } from "../../munzee";
 
-export default [
+const destinations: {
+  name: string;
+  icon: string;
+  id: TypeID;
+  state: TypeState;
+  type: DestinationType;
+  size?: number;
+  star_level?: number;
+  room_of?: number;
+  temporary?: boolean;
+
+  alt_icons?: string[];
+  tags?: TypeTags[];
+  hidden?: TypeHidden[];
+  points?: PointsInterface;
+}[] = [
   {
     name: "1 Star Motel",
     icon: "1starmotel",
@@ -63,7 +78,7 @@ export default [
     name: "Time Share",
     icon: "timeshare",
     id: 970,
-    temp: true,
+    temporary: true,
     size: 5,
     type: DestinationType.Rooms,
     state: TypeState.Physical,
@@ -73,7 +88,7 @@ export default [
     icon: "timeshareroom",
     id: 971,
     room_of: 970,
-    temp: true,
+    temporary: true,
     type: DestinationType.Room,
     state: TypeState.Physical,
   },
@@ -89,7 +104,7 @@ export default [
     name: "Vacation Condo",
     icon: "vacationcondo",
     id: 2183,
-    temp: true,
+    temporary: true,
     type: DestinationType.Rooms,
     size: 5,
     state: TypeState.Virtual,
@@ -99,7 +114,7 @@ export default [
     icon: "vacationcondoroom",
     id: 2184,
     room_of: 2183,
-    temp: true,
+    temporary: true,
     type: DestinationType.Room,
     state: TypeState.Virtual,
   },
@@ -147,19 +162,6 @@ export default [
     size: 6,
     state: TypeState.Virtual,
   },
-] as {
-  name: string;
-  icon: string;
-  id: TypeID;
-  state: TypeState;
-  type: DestinationType;
-  size?: number;
-  star_level?: number;
-  room_of?: number;
-  temporary?: boolean;
+];
 
-  alt_icons?: string[];
-  tags?: TypeTags[];
-  hidden?: TypeHidden[];
-  points?: PointsInterface;
-}[];
+export default destinations;

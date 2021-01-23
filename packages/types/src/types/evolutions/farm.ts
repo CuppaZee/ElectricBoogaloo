@@ -1,13 +1,19 @@
-import {
-  PointsInterface,
-  TypeHidden,
-  TypeID,
-  TypeMeta,
-  TypeState,
-  TypeTags,
-} from "../../munzee";
+import { PointsInterface, TypeHidden, TypeID, TypeMeta, TypeState, TypeTags } from "../../munzee";
 
-export default [
+const farm: {
+  name: string;
+  icon: string;
+  id: TypeID;
+  state: TypeState;
+  stage?: number;
+  base?: string;
+
+  meta?: TypeMeta;
+  alt_icons?: string[];
+  points?: PointsInterface;
+  tags?: TypeTags[];
+  hidden?: TypeHidden[];
+}[] = [
   {
     name: "Tomato",
     icon: "tomato",
@@ -190,9 +196,7 @@ export default [
     state: TypeState.Virtual,
     stage: 3,
     base: "colt",
-    extra: {
-      alt_icons: ["horse"],
-    },
+    alt_icons: ["horse"],
   },
   {
     name: "Eggs",
@@ -336,17 +340,6 @@ export default [
     stage: 2,
     base: "pottedplant",
   },
-] as {
-  name: string;
-  icon: string;
-  id: TypeID;
-  state: TypeState;
-  stage?: number;
-  base?: string;
+];
 
-  meta?: TypeMeta;
-  alt_icons?: string[];
-  points?: PointsInterface;
-  tags?: TypeTags[];
-  hidden?: TypeHidden[];
-}[];
+export default farm;

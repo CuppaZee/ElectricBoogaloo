@@ -1,4 +1,9 @@
-export default [
+const events: {
+  icon: string;
+  name: string;
+  id: number;
+  missingicon?: boolean;
+}[] = [
   {
     name: "Landmachtdagen",
     icon: "landmachtdagen",
@@ -6464,3 +6469,5 @@ export default [
     id: 2261,
   },
 ];
+
+export default events;

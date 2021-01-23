@@ -1,14 +1,11 @@
+import { SeasonalCategory } from ".";
 import {
-  PointsInterface,
   TypeHidden,
-  TypeID,
-  TypeInterface,
-  TypeMeta,
   TypeState,
   TypeTags,
 } from "../../munzee";
 
-export default [
+const s2020: SeasonalCategory[] = [
   {
     name: "20/20 Vision",
     id: "vision2020",
@@ -27,7 +24,7 @@ export default [
         icon: "theking'ssunglasses2020vision",
         id: 2283,
         duration: 12,
-        lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual)],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual)],
       },
       {
         name: "Welding Goggles",
@@ -41,7 +38,7 @@ export default [
         icon: "flipglasses2020vision",
         id: 2285,
         duration: 12,
-        lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual)],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual)],
       },
       {
         name: "Ski Goggles",
@@ -55,7 +52,7 @@ export default [
         icon: "theatrebinoculars2020vision",
         id: 2287,
         duration: 12,
-        lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual)],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual)],
       },
       {
         name: "Joke Glasses",
@@ -69,7 +66,7 @@ export default [
         icon: "3dglasses2020vision",
         id: 2289,
         duration: 12,
-        lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual)],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual)],
       },
       {
         name: "Viewfinder",
@@ -83,7 +80,7 @@ export default [
         icon: "vrgoggles2020vision",
         id: 2291,
         duration: 12,
-        lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual)],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual)],
       },
       {
         name: "Jeweler Loupe",
@@ -91,19 +88,15 @@ export default [
         id: 2292,
         duration: 12,
         lands_on: ["munzee"],
-        extra: {
-          alt_icons: ["jewelerloupe2020glasses"],
-        },
+        alt_icons: ["jewelerloupe2020glasses"],
       },
       {
         name: "Aviator",
         icon: "aviator2020vision",
         id: 2293,
         duration: 12,
-        lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual)],
-        extra: {
-          alt_icons: ["aviators2020vision"],
-        },
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual)],
+        alt_icons: ["aviators2020vision"],
       },
       {
         name: "Summer Shades",
@@ -117,7 +110,7 @@ export default [
         icon: "partyglasses2020vision",
         id: 2295,
         duration: 12,
-        lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual)],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual)],
       },
       {
         name: "Broken Glasses",
@@ -131,7 +124,7 @@ export default [
         icon: "emeraldcityglasses2020vision",
         id: 2297,
         duration: 12,
-        lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual)],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual)],
       },
       {
         name: "Peace Glasses",
@@ -145,7 +138,7 @@ export default [
         icon: "huntingglasses2020vision",
         id: 2299,
         duration: 12,
-        lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual)],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual)],
       },
       {
         name: "Cat-Eye Glasses",
@@ -159,7 +152,7 @@ export default [
         icon: "disguiseglasses2020vision",
         id: 2301,
         duration: 12,
-        lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual)],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual)],
       },
       {
         name: "Microscope Glasses",
@@ -173,7 +166,7 @@ export default [
         icon: "memeglasses2020vision",
         id: 2303,
         duration: 12,
-        lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual)],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual)],
       },
       {
         name: "Glow in the Dark Glasses",
@@ -181,6 +174,95 @@ export default [
         id: 2304,
         duration: 12,
         lands_on: ["munzee"],
+      },
+      {
+        name: "Eclipse Glasses",
+        icon: "eclipseglasses2020vision",
+        id: 2305,
+        duration: 12,
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual)],
+      },
+    ],
+  },
+  {
+    name: "Fr057y",
+    id: "christmas2020",
+    starts: "2020-12-01T00:00:00-05:00",
+    ends: "2020-12-31T23:59:00-05:00",
+    pobs: [
+      {
+        name: "Fr057y",
+        icon: "fr057y",
+        id: "null_fr057y",
+        lands_on: [],
+      },
+    ],
+  },
+  {
+    name: "Christmas 2020",
+    id: "christmas2020",
+    starts: "2020-12-01T00:00:00-05:00",
+    ends: "2020-12-31T23:59:00-05:00",
+    pobs: [
+      {
+        name: "Cyborg Santa",
+        icon: "cyborgsanta",
+        id: "null_cyborgsanta",
+        lands_on: [],
+      },
+      {
+        name: "Cybersaurus Rex",
+        icon: "cybersaurusrex",
+        id: "null_cybersaurusrex",
+        lands_on: [],
+      },
+      {
+        name: "GingerMech Man",
+        icon: "gingermechman",
+        id: "null_gingermechman",
+        lands_on: [],
+      },
+      {
+        name: "GingerSnapped Man",
+        icon: "gingersnappedman",
+        id: "null_gingersnappedman",
+        lands_on: [],
+      },
+      {
+        name: "ReinDroid",
+        icon: "reindroid",
+        id: "null_reindroid",
+        lands_on: [],
+      },
+      {
+        name: "Fleeting ReinDroid",
+        icon: "fleetingreindroid",
+        id: "null_fleetingreindroid",
+        lands_on: [],
+      },
+      {
+        name: "RUD01PH",
+        icon: "rud01ph",
+        id: "null_rud01ph",
+        lands_on: [],
+      },
+      {
+        name: "Fleeting RUD01PH",
+        icon: "fleetingrud01ph",
+        id: "null_fleetingrud01ph",
+        lands_on: [],
+      },
+      {
+        name: "31F",
+        icon: "31f",
+        id: "null_31f",
+        lands_on: [],
+      },
+      {
+        name: "KrampBot",
+        icon: "krampbot",
+        id: "null_krampbot",
+        lands_on: [],
       },
     ],
   },
@@ -196,11 +278,9 @@ export default [
         id: "null_wallajoyegg",
         duration: 4,
         lands_on: [
-          (type) => type.has_tag(TypeTags.TypeVirtual),
+          type => type.has_tag(TypeTags.TypeVirtual),
           "eggs",
-          (type) =>
-            type.has_tag(TypeTags.TypeGaming) &&
-            type.state === TypeState.Virtual,
+          type => type.has_tag(TypeTags.TypeGaming) && type.state === TypeState.Virtual,
         ],
         hidden: [TypeHidden.Capture],
       },
@@ -212,9 +292,7 @@ export default [
         lands_on: [
           "munzee",
           "egg",
-          (type) =>
-            type.has_tag(TypeTags.TypeGaming) &&
-            type.state === TypeState.Physical,
+          type => type.has_tag(TypeTags.TypeGaming) && type.state === TypeState.Physical,
         ],
         hidden: [TypeHidden.Capture],
       },
@@ -285,6 +363,32 @@ export default [
     ],
   },
   {
+    name: "Christmas Critters",
+    id: "christmascritter2020",
+    starts: "2020-11-01T00:00:00-05:00",
+    ends: "2020-12-31T23:59:00-05:00",
+    pobs: [
+      {
+        name: "Baby Hippo",
+        icon: "babyhippo",
+        id: "null_babyhippo",
+        lands_on: ["treehouse", "munzee", "watermystery"],
+      },
+      {
+        name: "Baby Alpaca",
+        icon: "babyalpaca",
+        id: "null_babyalpaca",
+        lands_on: ["skyland", ":virtual", "electricmystery"],
+      },
+      {
+        name: "Baby Reindeer",
+        icon: "babyreindeer",
+        id: "null_babyreindeer",
+        lands_on: ["treehouse", "munzee", "icemystery", "skyland", ":virtual"],
+      },
+    ],
+  },
+  {
     name: "Deathly DeeZert",
     id: "halloween2020",
     starts: "2020-10-27T12:00:00-05:00",
@@ -296,7 +400,7 @@ export default [
         id: "null_creepycauldron",
         duration: 4,
         lands_on: [
-          (type) => type.has_tag(TypeTags.TypeVirtual),
+          type => type.has_tag(TypeTags.TypeVirtual),
           "airmystery",
           "electricmystery",
           "flatrob",
@@ -325,7 +429,7 @@ export default [
         id: "null_mummymacaron",
         duration: 4,
         lands_on: [
-          (type) => type.has_tag(TypeTags.TypeVirtual),
+          type => type.has_tag(TypeTags.TypeVirtual),
           "airmystery",
           "electricmystery",
           "flatrob",
@@ -340,7 +444,7 @@ export default [
         id: "null_pumpkinpop",
         duration: 4,
         lands_on: [
-          (type) => type.has_tag(TypeTags.TypeVirtual),
+          type => type.has_tag(TypeTags.TypeVirtual),
           "airmystery",
           "electricmystery",
           "flatrob",
@@ -355,7 +459,7 @@ export default [
         id: "null_bloodsucker",
         duration: 4,
         lands_on: [
-          (type) => type.has_tag(TypeTags.TypeVirtual),
+          type => type.has_tag(TypeTags.TypeVirtual),
           "airmystery",
           "electricmystery",
           "flatrob",
@@ -370,7 +474,7 @@ export default [
         id: "null_rock",
         duration: 4,
         lands_on: [
-          (type) => type.has_tag(TypeTags.TypeVirtual),
+          type => type.has_tag(TypeTags.TypeVirtual),
           "airmystery",
           "electricmystery",
           "flatrob",
@@ -452,7 +556,7 @@ export default [
           "munzee",
           "mystery",
           "earthmystery",
-          (type) => type.has_tag(TypeTags.TypeVirtual),
+          type => type.has_tag(TypeTags.TypeVirtual),
           "selfdestructcard",
           "briefcase",
           "nightvisiongoggles",
@@ -469,7 +573,7 @@ export default [
           "munzee",
           "mystery",
           "earthmystery",
-          (type) => type.has_tag(TypeTags.TypeVirtual),
+          type => type.has_tag(TypeTags.TypeVirtual),
           "selfdestructcard",
           "briefcase",
           "nightvisiongoggles",
@@ -483,7 +587,7 @@ export default [
         id: "null_virtualpineamite",
         duration: 4,
         lands_on: [
-          (type) => type.has_tag(TypeTags.TypeVirtual),
+          type => type.has_tag(TypeTags.TypeVirtual),
           "selfdestructcard",
           "nightvisiongoggles",
         ],
@@ -501,7 +605,7 @@ export default [
         id: "null_virtualpearbomb",
         duration: 6,
         lands_on: [
-          (type) => type.has_tag(TypeTags.TypeVirtual),
+          type => type.has_tag(TypeTags.TypeVirtual),
           "selfdestructcard",
           "nightvisiongoggles",
         ],
@@ -526,11 +630,7 @@ export default [
         icon: "oktoberfestbash-beerboot",
         id: "null_oktoberfestbash-beerboot",
         duration: 6,
-        lands_on: [
-          (type) => type.has_tag(TypeTags.TypeVirtual),
-          "airmystery",
-          "electricmystery",
-        ],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual), "airmystery", "electricmystery"],
       },
       {
         name: "Paint Pallette",
@@ -551,11 +651,7 @@ export default [
         icon: "lonestarbash-yellowrose",
         id: "null_lonestarbash-yellowrose",
         duration: 6,
-        lands_on: [
-          (type) => type.has_tag(TypeTags.TypeVirtual),
-          "airmystery",
-          "electricmystery",
-        ],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual), "airmystery", "electricmystery"],
       },
       {
         name: "Playing Cards",
@@ -576,11 +672,7 @@ export default [
         icon: "mh-boobash-ghost",
         id: "null_mh-boobash-ghost",
         duration: 6,
-        lands_on: [
-          (type) => type.has_tag(TypeTags.TypeVirtual),
-          "airmystery",
-          "electricmystery",
-        ],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual), "airmystery", "electricmystery"],
       },
       {
         name: "Unicorn Stick Horse",
@@ -601,11 +693,7 @@ export default [
         icon: "bashfromthepast-zeeopstransmission",
         id: "null_bashfromthepast-zeeopstransmission",
         duration: 6,
-        lands_on: [
-          (type) => type.has_tag(TypeTags.TypeVirtual),
-          "airmystery",
-          "electricmystery",
-        ],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual), "airmystery", "electricmystery"],
       },
     ],
   },
@@ -627,11 +715,57 @@ export default [
         icon: "stroopwafel",
         id: "null_stroopwafel",
         duration: 4,
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual), "chick", "chicken", "egg"],
+      },
+    ],
+  },
+  {
+    name: "Camp Critters",
+    id: "campcritter2020",
+    starts: "2020-08-01T00:00:00-05:00",
+    ends: "2020-09-31T23:59:00-05:00",
+    pobs: [
+      {
+        name: "Baby Fox",
+        icon: "babyfox",
+        id: 2561,
+        lands_on: ["skyland", ":virtual", "airmystery", "poicampground"],
+        alt_icons: ["undefined"],
+      },
+      {
+        name: "Baby Moose",
+        icon: "babymoose",
+        id: "null_babymoose",
+        lands_on: ["treehouse", "munzee", "earthmystery", "watermystery"],
+      },
+      {
+        name: "Baby Squirrel",
+        icon: "babysquirrel",
+        id: "null_babysquirrel",
         lands_on: [
-          (type) => type.has_tag(TypeTags.TypeVirtual),
-          "chick",
-          "chicken",
-          "egg",
+          "treehouse",
+          "munzee",
+          "earthmystery",
+          "watermystery",
+          "skyland",
+          ":virtual",
+          "airmystery",
+          "poicampground",
+        ],
+      },
+      {
+        name: "Bear Cub",
+        icon: "bearcub",
+        id: "null_bearcub",
+        lands_on: [
+          "treehouse",
+          "munzee",
+          "earthmystery",
+          "watermystery",
+          "skyland",
+          ":virtual",
+          "airmystery",
+          "poicampground",
         ],
       },
     ],
@@ -650,9 +784,9 @@ export default [
         lands_on: [
           "treehouse",
           "skyland",
-          (type) => type.has_tag(TypeTags.TypeMystery),
+          type => type.has_tag(TypeTags.TypeMystery),
           "munzee",
-          (type) => type.has_tag(TypeTags.TypeVirtual),
+          type => type.has_tag(TypeTags.TypeVirtual),
         ],
       },
       {
@@ -663,9 +797,9 @@ export default [
         lands_on: [
           "treehouse",
           "skyland",
-          (type) => type.has_tag(TypeTags.TypeMystery),
+          type => type.has_tag(TypeTags.TypeMystery),
           "munzee",
-          (type) => type.has_tag(TypeTags.TypeVirtual),
+          type => type.has_tag(TypeTags.TypeVirtual),
         ],
       },
       {
@@ -676,9 +810,9 @@ export default [
         lands_on: [
           "treehouse",
           "skyland",
-          (type) => type.has_tag(TypeTags.TypeMystery),
+          type => type.has_tag(TypeTags.TypeMystery),
           "munzee",
-          (type) => type.has_tag(TypeTags.TypeVirtual),
+          type => type.has_tag(TypeTags.TypeVirtual),
         ],
       },
       {
@@ -689,9 +823,9 @@ export default [
         lands_on: [
           "treehouse",
           "skyland",
-          (type) => type.has_tag(TypeTags.TypeMystery),
+          type => type.has_tag(TypeTags.TypeMystery),
           "munzee",
-          (type) => type.has_tag(TypeTags.TypeVirtual),
+          type => type.has_tag(TypeTags.TypeVirtual),
         ],
       },
     ],
@@ -707,28 +841,28 @@ export default [
         icon: "redwaterballoon",
         id: 2545,
         duration: 4,
-        lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual)],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual)],
       },
       {
         name: "Green Water Balloon",
         icon: "greenwaterballoon",
         id: 2546,
         duration: 4,
-        lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual)],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual)],
       },
       {
         name: "Blue Water Balloon",
         icon: "bluewaterballoon",
         id: 2547,
         duration: 4,
-        lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual)],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual)],
       },
       {
         name: "Yellow Water Balloon",
         icon: "yellowwaterballoon",
         id: 2548,
         duration: 4,
-        lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual)],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual)],
       },
       {
         name: "Camp Cap-A-Lot Flag",
@@ -740,7 +874,7 @@ export default [
           "earthmystery",
           "treehouse",
           "skyland",
-          (type) => type.has_tag(TypeTags.TypeVirtual),
+          type => type.has_tag(TypeTags.TypeVirtual),
         ],
       },
       {
@@ -753,7 +887,7 @@ export default [
           "earthmystery",
           "treehouse",
           "skyland",
-          (type) => type.has_tag(TypeTags.TypeVirtual),
+          type => type.has_tag(TypeTags.TypeVirtual),
         ],
       },
       {
@@ -766,7 +900,7 @@ export default [
           "earthmystery",
           "treehouse",
           "skyland",
-          (type) => type.has_tag(TypeTags.TypeVirtual),
+          type => type.has_tag(TypeTags.TypeVirtual),
         ],
       },
       {
@@ -779,7 +913,7 @@ export default [
           "earthmystery",
           "treehouse",
           "skyland",
-          (type) => type.has_tag(TypeTags.TypeVirtual),
+          type => type.has_tag(TypeTags.TypeVirtual),
         ],
       },
     ],
@@ -796,7 +930,7 @@ export default [
         id: "null_cucumber",
         duration: 3,
         lands_on: [
-          (type) => type.has_tag(TypeTags.TypeVirtual),
+          type => type.has_tag(TypeTags.TypeVirtual),
           "eggs",
           "farmer",
           "farmerandwife",
@@ -809,7 +943,7 @@ export default [
         id: "null_friedegg",
         duration: 4,
         lands_on: [
-          (type) => type.has_tag(TypeTags.TypeVirtual),
+          type => type.has_tag(TypeTags.TypeVirtual),
           "eggs",
           "farmer",
           "farmerandwife",
@@ -822,7 +956,7 @@ export default [
         id: "null_pufferfish",
         duration: 9,
         lands_on: [
-          (type) => type.has_tag(TypeTags.TypeVirtual),
+          type => type.has_tag(TypeTags.TypeVirtual),
           "eggs",
           "farmer",
           "farmerandwife",
@@ -835,7 +969,7 @@ export default [
         id: "null_rice",
         duration: 1,
         lands_on: [
-          (type) => type.has_tag(TypeTags.TypeVirtual),
+          type => type.has_tag(TypeTags.TypeVirtual),
           "eggs",
           "farmer",
           "farmerandwife",
@@ -848,7 +982,7 @@ export default [
         id: "null_roe",
         duration: 7,
         lands_on: [
-          (type) => type.has_tag(TypeTags.TypeVirtual),
+          type => type.has_tag(TypeTags.TypeVirtual),
           "eggs",
           "farmer",
           "farmerandwife",
@@ -861,7 +995,7 @@ export default [
         id: "null_salmon",
         duration: 6,
         lands_on: [
-          (type) => type.has_tag(TypeTags.TypeVirtual),
+          type => type.has_tag(TypeTags.TypeVirtual),
           "eggs",
           "farmer",
           "farmerandwife",
@@ -873,39 +1007,21 @@ export default [
         icon: "nori",
         id: "null_nori",
         duration: 2,
-        lands_on: [
-          "watermystery",
-          "mystery",
-          "aquamarine",
-          "longsword",
-          "battleaxe",
-        ],
+        lands_on: ["watermystery", "mystery", "aquamarine", "longsword", "battleaxe"],
       },
       {
         name: "Prawn",
         icon: "prawn",
         id: "null_prawn",
         duration: 5,
-        lands_on: [
-          "watermystery",
-          "mystery",
-          "aquamarine",
-          "longsword",
-          "battleaxe",
-        ],
+        lands_on: ["watermystery", "mystery", "aquamarine", "longsword", "battleaxe"],
       },
       {
         name: "Tuna",
         icon: "tuna",
         id: "null_tuna",
         duration: 8,
-        lands_on: [
-          "watermystery",
-          "mystery",
-          "aquamarine",
-          "longsword",
-          "battleaxe",
-        ],
+        lands_on: ["watermystery", "mystery", "aquamarine", "longsword", "battleaxe"],
       },
     ],
   },
@@ -926,7 +1042,7 @@ export default [
           "aquamarine",
           "longsword",
           "battleaxe",
-          (type) => type.has_tag(TypeTags.TypeVirtual),
+          type => type.has_tag(TypeTags.TypeVirtual),
           "eggs",
           "farmer",
           "farmerandwife",
@@ -944,7 +1060,7 @@ export default [
           "aquamarine",
           "longsword",
           "battleaxe",
-          (type) => type.has_tag(TypeTags.TypeVirtual),
+          type => type.has_tag(TypeTags.TypeVirtual),
           "eggs",
           "farmer",
           "farmerandwife",
@@ -962,7 +1078,7 @@ export default [
           "aquamarine",
           "longsword",
           "battleaxe",
-          (type) => type.has_tag(TypeTags.TypeVirtual),
+          type => type.has_tag(TypeTags.TypeVirtual),
           "eggs",
           "farmer",
           "farmerandwife",
@@ -983,7 +1099,7 @@ export default [
         id: "null_babynarwhal",
         duration: 6,
         lands_on: [
-          (type) => type.has_tag(TypeTags.VirtualColourBlue),
+          type => type.has_tag(TypeTags.VirtualColourBlue),
           "seaweed",
           "fish",
           "shark",
@@ -1000,7 +1116,7 @@ export default [
         id: "null_babypenguin",
         duration: 5,
         lands_on: [
-          (type) => type.has_tag(TypeTags.VirtualColourBlue),
+          type => type.has_tag(TypeTags.VirtualColourBlue),
           "seaweed",
           "fish",
           "shark",
@@ -1031,7 +1147,7 @@ export default [
         id: "null_sealpup",
         duration: 3,
         lands_on: [
-          (type) => type.has_tag(TypeTags.VirtualColourBlue),
+          type => type.has_tag(TypeTags.VirtualColourBlue),
           "seaweed",
           "fish",
           "shark",
@@ -1048,7 +1164,7 @@ export default [
         id: "null_babyshark",
         duration: 2,
         lands_on: [
-          (type) => type.has_tag(TypeTags.VirtualColourBlue),
+          type => type.has_tag(TypeTags.VirtualColourBlue),
           "seaweed",
           "fish",
           "shark",
@@ -1079,35 +1195,35 @@ export default [
         icon: "groceryhero",
         id: 2485,
         duration: 4,
-        lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual)],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual)],
       },
       {
         name: "First Responder Hero",
         icon: "firstresponderhero",
         id: 2487,
         duration: 4,
-        lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual)],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual)],
       },
       {
         name: "Healthcare Hero",
         icon: "healthcarehero",
         id: 2486,
         duration: 4,
-        lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual)],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual)],
       },
       {
         name: "Education Hero",
         icon: "educationhero",
         id: 2484,
         duration: 4,
-        lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual)],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual)],
       },
       {
         name: "Delivery Hero",
         icon: "deliveryhero",
         id: 2483,
         duration: 4,
-        lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual)],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual)],
       },
       {
         name: "Grocery Hero Mask",
@@ -1187,6 +1303,69 @@ export default [
     ],
   },
   {
+    name: "Baby Animals",
+    id: "babyanimals2020",
+    starts: "2020-05-01T00:00:00-05:00",
+    ends: "2020-06-30T23:59:00-05:00",
+    pobs: [
+      {
+        name: "Hedgehog",
+        icon: "hedgehog",
+        id: 2427,
+        lands_on: [
+          "skyland",
+          "treehouse",
+          "earthmystery",
+          "icemystery",
+          "flatlou",
+          type =>
+            type.has_tag(TypeTags.TypeVirtual) &&
+            ![
+              "virtual",
+              "virtual_black",
+              "virtual_timberwolf",
+              "virtual_gray",
+              "virtual_silver",
+            ].includes(type.icon),
+        ],
+      },
+      {
+        name: "Polar Bear",
+        icon: "polarbear",
+        id: 2428,
+        lands_on: [
+          "skyland",
+          "treehouse",
+          "earthmystery",
+          "icemystery",
+          "flatlou",
+          type =>
+            type.has_tag(TypeTags.TypeVirtual) &&
+            ![
+              "virtual",
+              "virtual_black",
+              "virtual_timberwolf",
+              "virtual_gray",
+              "virtual_silver",
+            ].includes(type.icon),
+        ],
+      },
+      {
+        name: "Owlet",
+        icon: "owlet",
+        id: 2429,
+        lands_on: [
+          "skyland",
+          "treehouse",
+          "virtual",
+          "airmystery",
+          "electricmystery",
+          "flathammock",
+        ],
+      },
+    ],
+  },
+  {
     name: "World Laughter Day 2020",
     id: "worldlaughterday2020",
     starts: "2020-05-01T10:00:00-05:00",
@@ -1197,70 +1376,70 @@ export default [
         icon: "bisonjoke",
         id: 2437,
         duration: 5.05,
-        lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual)],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual)],
       },
       {
         name: "Chilly Joke",
         icon: "chillyjoke",
         id: 2441,
         duration: 5.05,
-        lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual)],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual)],
       },
       {
         name: "Librarian Joke",
         icon: "librarianjoke",
         id: 2436,
         duration: 5.05,
-        lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual)],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual)],
       },
       {
         name: "Cyclist Joke",
         icon: "cyclistjoke",
         id: 2442,
         duration: 5.05,
-        lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual)],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual)],
       },
       {
         name: "Pirate Joke",
         icon: "piratejoke",
         id: 2435,
         duration: 5.05,
-        lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual)],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual)],
       },
       {
         name: "Dad Joke",
         icon: "dadjoke",
         id: 2439,
         duration: 5.05,
-        lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual)],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual)],
       },
       {
         name: "Unicorn Joke",
         icon: "unicornjoke",
         id: 2444,
         duration: 5.05,
-        lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual)],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual)],
       },
       {
         name: "Grape Joke",
         icon: "grapejoke",
         id: 2440,
         duration: 5.05,
-        lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual)],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual)],
       },
       {
         name: "Ninja Joke",
         icon: "ninjajoke",
         id: 2443,
         duration: 5.05,
-        lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual)],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual)],
       },
       {
         name: "Fishy Joke",
         icon: "fishyjoke",
         id: 2438,
         duration: 5.05,
-        lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual)],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual)],
       },
     ],
   },
@@ -1276,7 +1455,7 @@ export default [
         id: 2417,
         duration: 1,
         lands_on: [
-          (type) => type.has_tag(TypeTags.TypeVirtual),
+          type => type.has_tag(TypeTags.TypeVirtual),
           "electricmystery",
           "surprise",
           "virtual_onyx",
@@ -1289,7 +1468,7 @@ export default [
         id: 2419,
         duration: 1,
         lands_on: [
-          (type) => type.has_tag(TypeTags.TypeVirtual),
+          type => type.has_tag(TypeTags.TypeVirtual),
           "electricmystery",
           "surprise",
           "virtual_onyx",
@@ -1302,7 +1481,7 @@ export default [
         id: 2418,
         duration: 1,
         lands_on: [
-          (type) => type.has_tag(TypeTags.TypeVirtual),
+          type => type.has_tag(TypeTags.TypeVirtual),
           "electricmystery",
           "surprise",
           "virtual_onyx",
@@ -1315,7 +1494,7 @@ export default [
         id: 2416,
         duration: 1,
         lands_on: [
-          (type) => type.has_tag(TypeTags.TypeVirtual),
+          type => type.has_tag(TypeTags.TypeVirtual),
           "electricmystery",
           "surprise",
           "virtual_onyx",
@@ -1328,7 +1507,7 @@ export default [
         id: 2415,
         duration: 1,
         lands_on: [
-          (type) => type.has_tag(TypeTags.TypeVirtual),
+          type => type.has_tag(TypeTags.TypeVirtual),
           "electricmystery",
           "surprise",
           "virtual_onyx",
@@ -1348,7 +1527,7 @@ export default [
         icon: "louroll",
         id: 2411,
         duration: 4,
-        lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual), "flatlou"],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual), "flatlou"],
       },
     ],
   },
@@ -1364,11 +1543,11 @@ export default [
         id: 2394,
         duration: 7,
         lands_on: ["munzee", "shamrock", "earthmystery"],
-        scatters: {
-          radius: 1000,
-          types: [2395, 2396, 2397, 2398, 2399, 2400, 2401],
-          min: 1,
-          max: 3,
+        meta: {
+          scatterer_radius: 1000,
+          scatterer_types: [2395, 2396, 2397, 2398, 2399, 2400, 2401],
+          scatterer_min: 1,
+          scatterer_max: 3,
         },
       },
     ],
@@ -1378,7 +1557,6 @@ export default [
         icon: "redzed",
         id: 2395,
         state: TypeState.Virtual,
-        category: "seasonal_2020_rainbowtrail2020",
         tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
         hidden: [],
         meta: {
@@ -1390,7 +1568,6 @@ export default [
         icon: "orangezed",
         id: 2396,
         state: TypeState.Virtual,
-        category: "seasonal_2020_rainbowtrail2020",
         tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
         hidden: [],
         meta: {
@@ -1402,7 +1579,6 @@ export default [
         icon: "yellowzed",
         id: 2397,
         state: TypeState.Virtual,
-        category: "seasonal_2020_rainbowtrail2020",
         tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
         hidden: [],
         meta: {
@@ -1414,7 +1590,6 @@ export default [
         icon: "greenzed",
         id: 2398,
         state: TypeState.Virtual,
-        category: "seasonal_2020_rainbowtrail2020",
         tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
         hidden: [],
         meta: {
@@ -1426,7 +1601,6 @@ export default [
         icon: "bluezed",
         id: 2399,
         state: TypeState.Virtual,
-        category: "seasonal_2020_rainbowtrail2020",
         tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
         hidden: [],
         meta: {
@@ -1438,7 +1612,6 @@ export default [
         icon: "indigozed",
         id: 2400,
         state: TypeState.Virtual,
-        category: "seasonal_2020_rainbowtrail2020",
         tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
         hidden: [],
         meta: {
@@ -1450,7 +1623,6 @@ export default [
         icon: "violetzed",
         id: 2401,
         state: TypeState.Virtual,
-        category: "seasonal_2020_rainbowtrail2020",
         tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
         hidden: [],
         meta: {
@@ -1492,14 +1664,14 @@ export default [
         icon: "zeeloreontimetraveler",
         id: 2364,
         duration: 4,
-        lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual)],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual)],
       },
       {
         name: "TARDY Time Traveler",
         icon: "tardytimetraveler",
         id: 2365,
         duration: 4,
-        lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual)],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual)],
       },
     ],
   },
@@ -1514,21 +1686,21 @@ export default [
         icon: "coralcatcherboomerang",
         id: 2346,
         duration: 6,
-        lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual), "airmystery"],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual), "airmystery"],
       },
       {
         name: "Sunsetter Boomerang",
         icon: "sunsetterboomerang",
         id: 2345,
         duration: 6,
-        lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual), "airmystery"],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual), "airmystery"],
       },
       {
         name: "Parting Sea Boomerang",
         icon: "partingseaboomerang",
         id: 2344,
         duration: 6,
-        lands_on: [(type) => type.has_tag(TypeTags.TypeVirtual), "airmystery"],
+        lands_on: [type => type.has_tag(TypeTags.TypeVirtual), "airmystery"],
       },
       {
         name: "Great Dividing Boomerang",
@@ -1553,23 +1725,6 @@ export default [
       },
     ],
   },
-] as {
-  name: string;
-  id: string;
-  starts: string;
-  ends: string;
-  specials?: {
-    name: string;
-    icon: string;
-    id: TypeID;
-    duration?: number;
-    lands_on?: TypeID[];
-    meta?: TypeMeta;
-    state?: TypeState;
-    alt_icons?: string[];
-    points?: PointsInterface;
-    tags?: TypeTags[];
-    hidden?: TypeHidden[];
-  }[];
-  types?: Partial<TypeInterface>[];
-}[];
+];
+
+export default s2020;

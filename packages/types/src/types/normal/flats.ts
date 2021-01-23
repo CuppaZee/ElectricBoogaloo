@@ -7,7 +7,16 @@ import {
   TypeTags,
 } from "../../munzee";
 
-export default [
+const flats: {
+  name: string;
+  icon: string;
+  id: TypeID;
+  state: TypeState;
+  alt_icons?: string[];
+  tags?: TypeTags[];
+  hidden?: TypeHidden[];
+  points?: PointsInterface;
+}[] = [
   {
     name: "Flat Rob",
     icon: "flatrob",
@@ -15,7 +24,7 @@ export default [
     state: TypeState.Virtual,
     points: {
       deploy: 19,
-      type: "split",
+      type: PointsType.Split,
       split: 76,
       min: 10,
     },
@@ -27,7 +36,7 @@ export default [
     state: TypeState.Virtual,
     points: {
       deploy: 19,
-      type: "split",
+      type: PointsType.Split,
       split: 92,
       min: 10,
     },
@@ -39,7 +48,7 @@ export default [
     state: TypeState.Virtual,
     points: {
       deploy: 19,
-      type: "split",
+      type: PointsType.Split,
       split: 78,
       min: 10,
     },
@@ -56,13 +65,6 @@ export default [
       min: 10,
     },
   },
-] as {
-  name: string;
-  icon: string;
-  id: TypeID;
-  state: TypeState;
-  alt_icons?: string[];
-  tags?: TypeTags[];
-  hidden?: TypeHidden[];
-  points?: PointsInterface;
-}[];
+];
+
+export default flats;

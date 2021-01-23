@@ -7,7 +7,20 @@ import {
   TypeTags,
 } from "../../munzee";
 
-export default [
+const education: {
+  name: string;
+  icon: string;
+  id: TypeID;
+  state: TypeState;
+  stage?: number;
+  base?: string;
+
+  meta?: TypeMeta;
+  alt_icons?: string[];
+  points?: PointsInterface;
+  tags?: TypeTags[];
+  hidden?: TypeHidden[];
+}[] = [
   {
     name: "Shark",
     icon: "shark",
@@ -158,17 +171,6 @@ export default [
     stage: 2,
     base: "safaritruck",
   },
-] as {
-  name: string;
-  icon: string;
-  id: TypeID;
-  state: TypeState;
-  stage?: number;
-  base?: string;
+];
 
-  meta?: TypeMeta;
-  alt_icons?: string[];
-  points?: PointsInterface;
-  tags?: TypeTags[];
-  hidden?: TypeHidden[];
-}[];
+export default education;

@@ -1,6 +1,14 @@
 import { TypeID, TypeState, TypeTags } from "../../munzee";
+import flathosts from "./flats";
 
-export default [
+const mythhosts: {
+  name: string;
+  icon: string;
+  id: TypeID;
+  state: TypeState;
+  hosts: TypeID[];
+  tags?: TypeTags[];
+}[] = [
   {
     name: "Unicorn Host",
     icon: "unicornhost",
@@ -169,11 +177,6 @@ export default [
     hosts: [2118],
     tags: [TypeTags.BouncerHostMythMirror],
   },
-] as {
-  name: string;
-  icon: string;
-  id: TypeID;
-  state: TypeState;
-  hosts: TypeID[];
-  tags?: TypeTags[];
-}[];
+];
+
+export default flathosts;

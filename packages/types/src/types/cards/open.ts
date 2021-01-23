@@ -7,7 +7,19 @@ import {
   TypeTags,
 } from "../../munzee";
 
-export default [
+const copen: {
+  name: string;
+  icon: string;
+  id: TypeID;
+  duration?: number;
+  lands_on?: TypeID[];
+  meta?: TypeMeta;
+  state?: TypeState;
+  alt_icons?: string[];
+  points?: PointsInterface;
+  tags?: TypeTags[];
+  hidden?: TypeHidden[];
+}[] = [
   {
     name: "Get Well Card",
     icon: "getwellcard",
@@ -83,16 +95,6 @@ export default [
     icon: "techissuescard",
     id: "null_techissuescard",
   },
-] as {
-  name: string;
-  icon: string;
-  id: TypeID;
-  duration?: number;
-  lands_on?: TypeID[];
-  meta?: TypeMeta;
-  state?: TypeState;
-  alt_icons?: string[];
-  points?: PointsInterface;
-  tags?: TypeTags[];
-  hidden?: TypeHidden[];
-}[];
+];
+
+export default copen;

@@ -1,12 +1,23 @@
 import { TypeID, TypeMeta, TypeState, TypeTags } from "../../munzee";
 
-export default [
+const tobhosts: {
+  name: string;
+  icon: string;
+  id: TypeID;
+  state: TypeState;
+  hosts: TypeID[];
+  tags?: TypeTags[];
+}[] = [
   {
     name: "Fire Pegasus Physical Host",
     icon: "firepegasusphysicalhost",
     id: 1232,
     state: TypeState.Physical,
-    tags: [TypeTags.BouncerHostMyth, TypeTags.BouncerHostMythAlterna, TypeTags.BouncerHostMythClassical],
+    tags: [
+      TypeTags.BouncerHostMyth,
+      TypeTags.BouncerHostMythAlterna,
+      TypeTags.BouncerHostMythClassical,
+    ],
     hosts: [1229],
   },
   {
@@ -14,7 +25,11 @@ export default [
     icon: "cherub_virtual_host",
     id: 1238,
     state: TypeState.Virtual,
-    tags: [TypeTags.BouncerHostMyth, TypeTags.BouncerHostMythAlterna, TypeTags.BouncerHostMythClassical],
+    tags: [
+      TypeTags.BouncerHostMyth,
+      TypeTags.BouncerHostMythAlterna,
+      TypeTags.BouncerHostMythClassical,
+    ],
     hosts: [1237],
   },
   {
@@ -22,7 +37,11 @@ export default [
     icon: "ogrehost",
     id: 1269,
     state: TypeState.Physical,
-    tags: [TypeTags.BouncerHostMyth, TypeTags.BouncerHostMythAlterna, TypeTags.BouncerHostMythClassical],
+    tags: [
+      TypeTags.BouncerHostMyth,
+      TypeTags.BouncerHostMythAlterna,
+      TypeTags.BouncerHostMythClassical,
+    ],
     hosts: [1268],
   },
   {
@@ -30,7 +49,11 @@ export default [
     icon: "ogre_virtual_host",
     id: 1270,
     state: TypeState.Virtual,
-    tags: [TypeTags.BouncerHostMyth, TypeTags.BouncerHostMythAlterna, TypeTags.BouncerHostMythClassical],
+    tags: [
+      TypeTags.BouncerHostMyth,
+      TypeTags.BouncerHostMythAlterna,
+      TypeTags.BouncerHostMythClassical,
+    ],
     hosts: [1268],
   },
   {
@@ -38,7 +61,11 @@ export default [
     icon: "chimera_virtual_host",
     id: 1330,
     state: TypeState.Virtual,
-    tags: [TypeTags.BouncerHostMyth, TypeTags.BouncerHostMythAlterna, TypeTags.BouncerHostMythClassical],
+    tags: [
+      TypeTags.BouncerHostMyth,
+      TypeTags.BouncerHostMythAlterna,
+      TypeTags.BouncerHostMythClassical,
+    ],
     hosts: [1329],
   },
   {
@@ -57,11 +84,6 @@ export default [
     tags: [TypeTags.BouncerHostPC, TypeTags.BouncerHostPCEscaped],
     hosts: [1745],
   },
-] as {
-  name: string;
-  icon: string;
-  id: TypeID;
-  state: TypeState;
-  hosts: TypeID[];
-  tags?: TypeTags[];
-}[];
+];
+
+export default tobhosts;
