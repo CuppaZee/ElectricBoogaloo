@@ -7,45 +7,53 @@ import Navigation from "./navigation";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Provider as JotaiProvider } from "jotai";
 
-import * as eva from '@eva-design/eva';
-import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
+import * as eva from "@eva-design/eva";
+import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
 
-import { StyleSheet } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { StyleSheet } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as themes from "./themes";
 
-export const MaterialCommunityIconsPack = {
-  name: 'mci',
-  icons: createIconsMap(),
-};
-
-function createIconsMap() {
-  return new Proxy({}, {
-    get(target, name) {
-      return IconProvider(name);
-    },
-  });
+function MCIcon({ name, style }: { name: string | number | symbol; style: any }) {
+  const { height, tintColor, ...iconStyle } = StyleSheet.flatten(style);
+  return (
+    <View style={{ height }}>
+      <MaterialCommunityIcons
+        name={name as any}
+        size={height}
+        color={tintColor}
+        style={iconStyle}
+      />
+    </View>
+  );
 }
 
 const IconProvider = (name: string | number | symbol) => ({
   toReactElement: (props: any) => MCIcon({ name, ...props }),
 });
 
-function MCIcon({ name, style }: {name: string | number | symbol, style: any}) {
-  const { height, tintColor, ...iconStyle } = StyleSheet.flatten(style);
-  return (
-    <View style={{ height }}><MaterialCommunityIcons name={name as any} size={height} color={tintColor} style={iconStyle} /></View>
-  );
+function createIconsMap() {
+  const x: { [key: string]: any } = {};
+  for (const glyph of Object.keys(MaterialCommunityIcons.glyphMap)) {
+    console.log('Adding', glyph, IconProvider);
+    x[glyph] = IconProvider(glyph);
+  }
+  return x;
 }
+
+export const MaterialCommunityIconsPack = {
+  name: "mci",
+  icons: createIconsMap(),
+};
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       refetchOnMount: true,
       refetchOnWindowFocus: true,
-      staleTime: 900000
-    }
-  }
+      staleTime: 900000,
+    },
+  },
 });
 
 export default function App() {

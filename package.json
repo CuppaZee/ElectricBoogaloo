@@ -9,13 +9,17 @@
   "workspaces": {
     "packages": [
       "packages/*"
+    ],
+    "nohoist": [
+      "packages/app/**"
     ]
   },
   "scripts": {
     "server": "yarn workspace @cuppazee/functions lint && yarn workspace @cuppazee/functions build && firebase serve",
     "web": "yarn workspace @cuppazee/app web",
     "start": "run-p server web",
-    "postinstall": "cd ./packages/app && expo-yarn-workspaces postinstall"
+    "postinstall": "cd ./packages/app && expo-yarn-workspaces postinstall",
+    "deploy-server": "firebase deploy --only functions:apibeta"
   },
   "devDependencies": {
     "npm-run-all": "^4.1.5"

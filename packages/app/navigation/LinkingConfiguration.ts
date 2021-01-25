@@ -1,7 +1,8 @@
-import * as Linking from 'expo-linking';
+import * as Linking from "expo-linking";
+import { Platform } from "react-native";
 
 export default {
-  prefixes: [Linking.makeUrl("/")],
+  prefixes: Platform.OS === "web" ? [Linking.makeUrl("/")] : ["cuppazee://", "cuppazee:/"],
   config: {
     screens: {
       Root: {

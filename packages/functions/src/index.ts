@@ -16,6 +16,7 @@ import minute_routes from './minute';
 import munzee_routes from './munzee';
 import notifications_routes from './notifications';
 import user_routes from './user';
+import widget_routes from "./widget";
 // import weekly_routes from './weekly';
 var routes: Route[] = [
   ...auth_routes,
@@ -27,6 +28,7 @@ var routes: Route[] = [
   ...munzee_routes,
   ...notifications_routes,
   ...user_routes,
+  ...widget_routes,
   // ...weekly_routes,
 ];
 

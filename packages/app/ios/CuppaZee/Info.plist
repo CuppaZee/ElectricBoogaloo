@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>en</string>
+    <key>CFBundleExecutable</key>
+    <string>$(EXECUTABLE_NAME)</string>
+    <key>CFBundleIdentifier</key>
+    <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleName</key>
+    <string>$(PRODUCT_NAME)</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleShortVersionString</key>
+    <string>2.0.0</string>
+    <key>CFBundleSignature</key>
+    <string>????</string>
+    <key>CFBundleVersion</key>
+    <string>2.0.0</string>
+    <key>LSRequiresIPhoneOS</key>
+    <true/>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+      <key>NSAllowsArbitraryLoads</key>
+      <true/>
+      <key>NSExceptionDomains</key>
+      <dict>
+        <key>localhost</key>
+        <dict>
+          <key>NSExceptionAllowsInsecureHTTPLoads</key>
+          <true/>
+        </dict>
+      </dict>
+    </dict>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>CuppaZee uses your location when in use for maps.</string>
+    <key>UILaunchStoryboardName</key>
+    <string>SplashScreen</string>
+    <key>UIRequiredDeviceCapabilities</key>
+    <array>
+      <string>armv7</string>
+    </array>
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+      <string>UIInterfaceOrientationPortrait</string>
+      <string>UIInterfaceOrientationPortraitUpsideDown</string>
+    </array>
+    <key>UIViewControllerBasedStatusBarAppearance</key>
+    <false/>
+    <key>NSCameraUsageDescription</key>
+    <string>CuppaZee uses the camera to scan Munzees.</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>CuppaZee uses your location when in use for maps, and in the background for notifications.</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>CuppaZee uses your location when in use for maps, and in the background for notifications.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>CuppaZee uses your photo library to save screenshots.</string>
+    <key>UIUserInterfaceStyle</key>
+    <string>Automatic</string>
+    <key>CFBundleURLTypes</key>
+    <array>
+      <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>cuppazee</string>
+          <string>uk.cuppazee.paper</string>
+        </array>
+      </dict>
+    </array>
+    <key>UIRequiresFullScreen</key>
+    <false/>
+    <key>CFBundleDisplayName</key>
+    <string>CuppaZee</string>
+    <key>GMSApiKey</key>
+    <string>AIzaSyAT1J1Z5S02Avk9p4IqUKPtEYOV7gI8-PA</string>
+  </dict>
+</plist>
