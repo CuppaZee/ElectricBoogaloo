@@ -42,7 +42,7 @@ export const apibeta = functions
     }
     cors(req, res, async () => {
       try {
-        functions.logger.log('REQUEST');
+        functions.logger.log('REQUEST', req.url);
         functions.logger.log(req, res);
         var path = req.path.split("/").filter(Boolean);
         var version = null;

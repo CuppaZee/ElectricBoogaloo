@@ -4,7 +4,7 @@ import {
   StatzeePlayerDayCaptureOn,
   StatzeePlayerDayDeploy,
 } from "@cuppazee/api/statzee/player/day";
-import db, { TypeCategory, TypeState, TypeTags, DestinationType } from "@cuppazee/types";
+import db, { TypeCategory, TypeState, TypeTags, DestinationType, Type } from "@cuppazee/types";
 
 export type UserActivityData = Omit<
   StatzeePlayerDay["response"]["data"],
@@ -28,6 +28,7 @@ export type UserActivityItem = {
   bouncerHost?: boolean;
   key: string;
   sub?: boolean;
+  munzee_type?: Type | null | undefined;
 };
 
 export type UserActivityOverviewType = {
@@ -116,6 +117,7 @@ export function ActivityConverter(
       time: capture.captured_at,
       bouncerHost: true,
       key: capture.key,
+      munzee_type: db.getType(capture.pin),
     });
   }
   for (const capture of data.captures.filter(
@@ -135,6 +137,7 @@ export function ActivityConverter(
       time: capture.captured_at,
       bouncerHost: true,
       key: capture.key,
+      munzee_type: db.getType(capture.pin),
     });
   }
   for (const capture of data.captures.filter(
@@ -158,6 +161,7 @@ export function ActivityConverter(
         time: capture.captured_at,
         key: capture.key,
         sub: true,
+          munzee_type: db.getType(capture.pin),
       });
     } else {
       activityList.push({
@@ -171,6 +175,7 @@ export function ActivityConverter(
         subCaptures: [],
         time: capture.captured_at,
         key: capture.key,
+        munzee_type: db.getType(capture.pin),
       });
     }
   }
@@ -198,6 +203,7 @@ export function ActivityConverter(
         subCaptures: [],
         time: capture.captured_at,
         key: capture.key,
+        munzee_type: db.getType(capture.pin),
       });
     }
   }
@@ -213,6 +219,7 @@ export function ActivityConverter(
       subCaptures: [],
       time: deploy.deployed_at,
       key: deploy.key,
+      munzee_type: db.getType(deploy.pin),
     });
   }
   activityList.sort(

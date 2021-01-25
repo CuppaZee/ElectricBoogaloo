@@ -19,7 +19,7 @@ const route: Route = {
             data: "Invalid Token"
           }
         }
-        await db.collection('push').doc(d.token).set(d);
+        await db.collection("notification_settings").doc(d.token).set(d);
         return {
           status: "success",
           data: d

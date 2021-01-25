@@ -7,15 +7,14 @@ import config from "../config.json";
 import notification from "../util/notification";
 import sendEmail from "../util/nodemailer";
 import { Route } from "../types";
+import { DeviceNotificationSettings } from "../util/notificationSettings";
+import { firestore } from "firebase-admin";
 
-async function sendNotifications({ link, title }: any, db: any) {
-  var tokens = (
-    await db.collection("push").where("munzee_blog", "==", true).get()
-  ).docs;
+async function sendNotifications({ link, title }: any, db: firestore.Firestore, tokens: Promise<DeviceNotificationSettings[]>) {
   await notification(
     db,
-    tokens.map((i: any) => ({
-      to: i.data().token,
+    (await tokens).filter(i=>i.munzee_blog).map(i => ({
+      to: i.token,
       sound: "default",
       title: "Munzee Blog Post",
       body: title,
@@ -34,7 +33,7 @@ const route: Route = {
   versions: [
     {
       version: 1,
-      async function({ db }) {
+      async function({ db, notificationData }) {
         var data = (await db.collection("data").doc("blog").get()).data() ?? {};
         if (!data.run) return {
           status: "success",
@@ -52,7 +51,7 @@ const route: Route = {
             let img = cheerio.load(feed.items[0]["content:encoded"] || "")(
               "img"
             )[0];
-            if (!data.dev) sendNotifications(feed.items[0], db).catch(()=>console.log('Sending Notifications Failed'));
+            if (!data.dev) sendNotifications(feed.items[0], db, notificationData()).catch(()=>console.log('Sending Notifications Failed'));
             if (
               !feed.items[0].title?.match(/clan/i) ||
               !feed.items[0].title?.match(/requirement/i)

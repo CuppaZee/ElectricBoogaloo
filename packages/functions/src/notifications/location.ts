@@ -18,8 +18,8 @@ const route: Route = {
             data: "Invalid Token"
           }
         }
-        await db.collection('push').doc(token).update({
-          location: {
+        await db.collection('notification_settings').doc(token).update({
+          "location.dynamic": {
             latitude: Number(latitude),
             longitude: Number(longitude),
           }

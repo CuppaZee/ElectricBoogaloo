@@ -306,6 +306,13 @@ export class TypeCategory {
   get children() {
     return this.d.getChildren(this);
   }
+
+  get active() {
+    return (
+      !this.i.seasonal ||
+      ((this.seasonal?.start || 0) > Date.now() && (this.seasonal?.end || 0) < Date.now())
+    );
+  }
 }
 
 export class TypeDatabase {

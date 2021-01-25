@@ -15,8 +15,9 @@ export type Datum = {
 
 const priorities = {
   supporter: 1,
+  major_suggestions: 1.2,
   translator: 1.5,
-  dev: 1.5,
+  dev: 1.7,
   db: 1.5,
 };
 
@@ -38,6 +39,7 @@ const pack = {
 
 const root = hierarchy<Datum>(pack)
   .sum((d) => d.priority * d.priority)
+  .sort((a, b) => Math.random() < 0.5 ? -1 : 1)
   .sort((a, b) => b.data.priority - a.data.priority);
 export type PackProps = {
   width: number;

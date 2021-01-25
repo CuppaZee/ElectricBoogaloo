@@ -3,6 +3,7 @@ import * as React from "react";
 
 import CalendarScreen from "../screens/Tools/Calendar";
 import CreditsScreen from "../screens/Tools/Credits";
+import BouncersScreen from "../screens/Tools/Bouncers";
 import { ToolsStackParamList } from "../types";
 import Header from "./Header";
 
@@ -12,14 +13,14 @@ export default function ToolsNavigator() {
   return (
     <ToolsStack.Navigator
       screenOptions={{
-        header: (props) => <Header {...props} />,
+        header: props => <Header {...props} />,
         cardStyle: {
-          maxHeight: "100%"
-        }
-      }}
-    >
+          maxHeight: "100%",
+        },
+      }}>
       <ToolsStack.Screen name="Calendar" component={CalendarScreen} />
       <ToolsStack.Screen name="Credits" component={CreditsScreen} />
+      <ToolsStack.Screen name="Bouncers" component={BouncersScreen} />
     </ToolsStack.Navigator>
   );
 }

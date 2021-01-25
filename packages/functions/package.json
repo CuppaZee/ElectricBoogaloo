@@ -11,15 +11,17 @@
     "logs": "firebase functions:log"
   },
   "engines": {
-    "node": "10"
+    "node": "12"
   },
   "main": "lib/index.js",
   "dependencies": {
     "@cuppazee/api": "^0.0.5",
-    "@cuppazee/types": "^0.0.12",
+    "@cuppazee/types": "^0.0.16",
     "@types/cheerio": "^0.22.23",
     "@types/nodemailer": "^6.4.0",
     "@types/object.fromentries": "^2.0.0",
+    "@types/power-radix": "^2.5.0",
+    "@webkitty/geo-rev": "^1.1.1",
     "airtable": "^0.10.1",
     "cheerio": "^1.0.0-rc.3",
     "cors": "^2.8.5",
@@ -35,7 +37,8 @@
     "node-fetch": "^2.6.1",
     "nodemailer": "^6.4.17",
     "object.fromentries": "^2.0.3",
-    "offline-geocoder": "^1.0.0",
+    "power-radix": "^2.5.6",
+    "power-radix-encodings": "^1.1.0",
     "radix-64": "^1.0.4",
     "rss-parser": "^3.10.0",
     "spherical-geometry-js": "^2.0.0",

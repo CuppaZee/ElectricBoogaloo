@@ -1,6 +1,6 @@
 import { firestore } from "firebase-admin";
 import { Response } from "firebase-functions"
-import { Device } from "./util/notificationSettings";
+import { DeviceNotificationSettings } from "./util/notificationSettings";
 
 export type Route = {
   path: string;
@@ -20,7 +20,7 @@ export type RouteData = {
   };
   res: Response;
   db: firestore.Firestore;
-  notificationData: () => Promise<Device[]>;
+  notificationData: () => Promise<DeviceNotificationSettings[]>;
 }
 
 export type RouteResponse = {

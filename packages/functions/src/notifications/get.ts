@@ -1,5 +1,6 @@
 import { Route } from "../types";
 import { Expo } from 'expo-server-sdk';
+import { DeviceNotificationSettings } from "../util/notificationSettings";
 
 const route: Route = {
   path: "notifications/get",
@@ -18,7 +19,13 @@ const route: Route = {
             data: "Invalid Token"
           }
         }
-        var d = (await db.collection('push').doc(token).get()).data();
+        const data = (await db.collection("notification_settings").doc(token).get()).data() as Partial<DeviceNotificationSettings> | null;
+        var d: DeviceNotificationSettings = {
+          type: "expo",
+          token,
+          users: [],
+          ...data || {},
+        };
         return {
           status: "success",
           data: d

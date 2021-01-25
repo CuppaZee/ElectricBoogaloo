@@ -12,10 +12,7 @@ function g(a: { pin?: string; pin_icon?: string; icon?: string }) {
   return db.getType(a.pin || a.pin_icon || a.icon || "");
 }
 function points(a: any, b: any) {
-  return (
-    a +
-    Number(b.points_for_creator !== undefined ? b.points_for_creator : b.points)
-  );
+  return a + Number(b.points_for_creator !== undefined ? b.points_for_creator : b.points);
 }
 
 var tasks = {
@@ -28,9 +25,7 @@ var tasks = {
     function: ({ cap, dep }: any) =>
       [...cap, ...dep]
         .filter(
-          (i) =>
-            !g(i)?.has_tag(TypeTags.TypePersonal) &&
-            !g(i)?.has_tag(TypeTags.TypeUniversal)
+          i => !g(i)?.has_tag(TypeTags.TypePersonal) && !g(i)?.has_tag(TypeTags.TypeUniversal)
         )
         .reduce((a, b) => {
           a[(b.captured_at || b.deployed_at).slice(8, 10)] = true;
@@ -42,8 +37,7 @@ var tasks = {
     top: "Total",
     bottom: "Points",
     icon: "https://i.ibb.co/K5ZmXqc/Total-1.png",
-    function: ({ cap, dep, con }: any) =>
-      [...cap, ...dep, ...con].reduce(points, 0),
+    function: ({ cap, dep, con }: any) => [...cap, ...dep, ...con].reduce(points, 0),
   },
   6: {
     task_id: 6,
@@ -52,7 +46,7 @@ var tasks = {
     icon: "https://munzee.global.ssl.fastly.net/images/pins/owned.png",
     function: ({ dep, arc, no_reduce }: any) => {
       return [...dep, ...arc]
-        .filter((i) => !g(i)?.has_tag(TypeTags.TypePersonal))
+        .filter(i => !g(i)?.has_tag(TypeTags.TypePersonal))
         .reduce((a, b) => {
           if (b.archived_at) {
             if (no_reduce) {
@@ -78,7 +72,7 @@ var tasks = {
     ],
     function: ({ cap, dep, con }: any) =>
       [...cap, ...dep, ...con]
-        .filter((i) => g(i)?.has_tag(TypeTags.TypeDestination))
+        .filter(i => g(i)?.has_tag(TypeTags.TypeDestination))
         .reduce(points, 0),
   },
   10: {
@@ -87,9 +81,7 @@ var tasks = {
     bottom: "Points",
     icon: "https://munzee.global.ssl.fastly.net/images/pins/owned.png",
     function: ({ dep }: any) =>
-      dep
-        .filter((i: any) => !g(i)?.has_tag(TypeTags.TypePersonal))
-        .reduce(points, 0),
+      dep.filter((i: any) => !g(i)?.has_tag(TypeTags.TypePersonal)).reduce(points, 0),
   },
   12: {
     task_id: 12,
@@ -101,17 +93,14 @@ var tasks = {
       "https://munzee.global.ssl.fastly.net/images/pins/evolution_filter_physical.png",
     ],
     function: ({ cap, dep, con }: any) =>
-      [...cap, ...dep, ...con]
-        .filter((i) => g(i)?.has_tag(TypeTags.Evolution))
-        .reduce(points, 0),
+      [...cap, ...dep, ...con].filter(i => g(i)?.has_tag(TypeTags.Evolution)).reduce(points, 0),
   },
   13: {
     task_id: 13,
     top: "Places",
     bottom: "Captures",
     icon: "https://munzee.global.ssl.fastly.net/images/pins/poi_filter.png",
-    function: ({ cap }: any) =>
-      cap.filter((i: any) => g(i)?.has_tag(TypeTags.TypePOI)).length,
+    function: ({ cap }: any) => cap.filter((i: any) => g(i)?.has_tag(TypeTags.TypePOI)).length,
   },
   14: {
     task_id: 14,
@@ -123,7 +112,7 @@ var tasks = {
       "https://munzee.global.ssl.fastly.net/images/pins/virtualonyx.png",
     ],
     function: ({ cap, dep }: any) =>
-      [...dep, ...cap].filter((i) => g(i)?.has_tag(TypeTags.TypeJewel)).length,
+      [...dep, ...cap].filter(i => g(i)?.has_tag(TypeTags.TypeJewel)).length,
   },
   17: {
     task_id: 17,
@@ -135,7 +124,7 @@ var tasks = {
       "https://munzee.global.ssl.fastly.net/images/pins/evolution_filter_physical.png",
     ],
     function: ({ cap, dep }: any) =>
-      [...dep, ...cap].filter((i) => g(i)?.has_tag(TypeTags.Evolution)).length,
+      [...dep, ...cap].filter(i => g(i)?.has_tag(TypeTags.Evolution)).length,
   },
   19: {
     task_id: 19,
@@ -147,9 +136,7 @@ var tasks = {
       "https://munzee.global.ssl.fastly.net/images/pins/virtual_citrine.png",
     ],
     function: ({ cap, dep, con }: any) =>
-      [...cap, ...dep, ...con]
-        .filter((i) => g(i)?.has_tag(TypeTags.TypeJewel))
-        .reduce(points, 0),
+      [...cap, ...dep, ...con].filter(i => g(i)?.has_tag(TypeTags.TypeJewel)).reduce(points, 0),
   },
   23: {
     task_id: 23,
@@ -162,23 +149,21 @@ var tasks = {
     ],
     function: ({ cap, dep, con }: any) =>
       [...cap, ...dep, ...con]
-        .filter((i) => g(i)?.has_tag(TypeTags.TypeWeaponClan))
+        .filter(i => g(i)?.has_tag(TypeTags.TypeWeaponClan))
         .reduce(points, 0),
   },
   24: {
     task_id: 24,
     top: "Bouncer",
     bottom: "Captures",
-    icon:
-      "https://munzee.global.ssl.fastly.net/images/pins/expiring_specials_filter.png",
+    icon: "https://munzee.global.ssl.fastly.net/images/pins/expiring_specials_filter.png",
     icons: [
       "https://munzee.global.ssl.fastly.net/images/pins/expiring_specials_filter.png",
       "https://munzee.global.ssl.fastly.net/images/pins/theunicorn.png",
       "https://munzee.global.ssl.fastly.net/images/pins/nomad.png",
       "https://munzee.global.ssl.fastly.net/images/pins/muru.png",
     ],
-    function: ({ cap }: any) =>
-      cap.filter((i: any) => g(i)?.has_tag(TypeTags.Bouncer)).length,
+    function: ({ cap }: any) => cap.filter((i: any) => g(i)?.has_tag(TypeTags.Bouncer)).length,
   },
   25: {
     task_id: 25,
@@ -190,8 +175,7 @@ var tasks = {
       "https://munzee.global.ssl.fastly.net/images/pins/airmystery.png",
     ],
     function: ({ cap, dep }: any) =>
-      [...cap, ...dep].filter((i) => g(i)?.has_tag(TypeTags.TypeMystery))
-        .length,
+      [...cap, ...dep].filter(i => g(i)?.has_tag(TypeTags.TypeMystery)).length,
   },
   26: {
     task_id: 26,
@@ -203,8 +187,7 @@ var tasks = {
       "https://munzee.global.ssl.fastly.net/images/pins/crossbow.png",
     ],
     function: ({ cap, dep }: any) =>
-      [...cap, ...dep].filter((i) => g(i)?.has_tag(TypeTags.TypeWeaponClan))
-        .length,
+      [...cap, ...dep].filter(i => g(i)?.has_tag(TypeTags.TypeWeaponClan)).length,
   },
   27: {
     task_id: 27,
@@ -216,7 +199,7 @@ var tasks = {
       "https://munzee.global.ssl.fastly.net/images/pins/scorpio.png",
     ],
     function: ({ cap, dep }: any) =>
-      [...cap, ...dep].filter((i) => g(i)?.has_tag(TypeTags.TypeZodiac)).length,
+      [...cap, ...dep].filter(i => g(i)?.has_tag(TypeTags.TypeZodiac)).length,
   },
   28: {
     task_id: 28,
@@ -228,9 +211,7 @@ var tasks = {
       "https://munzee.global.ssl.fastly.net/images/pins/flatlou.png",
     ],
     function: ({ cap, dep, con }: any) =>
-      [...cap, ...dep, ...con]
-        .filter((i) => g(i)?.has_tag(TypeTags.TypeFlat))
-        .reduce(points, 0),
+      [...cap, ...dep, ...con].filter(i => g(i)?.has_tag(TypeTags.TypeFlat)).reduce(points, 0),
   },
   29: {
     task_id: 29,
@@ -244,12 +225,9 @@ var tasks = {
     function: ({ cap, dep, con }: any) =>
       [...cap, ...dep, ...con]
         .filter(
-          (i) =>
-            (g(i)?.has_tag(TypeTags.TypeMysteryElemental) &&
-              !g(i)?.has_tag(TypeTags.Scatter)) ||
-            ["fire", "waterdroplet", "frozengreenie", "charge"].includes(
-              g(i)?.icon || ""
-            )
+          i =>
+            (g(i)?.has_tag(TypeTags.TypeMysteryElemental) && !g(i)?.has_tag(TypeTags.Scatter)) ||
+            ["fire", "waterdroplet", "frozengreenie", "charge"].includes(g(i)?.icon || "")
         )
         .reduce(points, 0),
   },
@@ -260,38 +238,33 @@ var tasks = {
     icon: "https://munzee.global.ssl.fastly.net/images/pins/reseller.png",
     icons: ["https://munzee.global.ssl.fastly.net/images/pins/reseller.png"],
     function: ({ cap, dep }: any) =>
-      [...cap, ...dep].filter((i) => g(i)?.has_tag(TypeTags.TypeReseller))
-        .length,
+      [...cap, ...dep].filter(i => g(i)?.has_tag(TypeTags.TypeReseller)).length,
   },
   31: {
     task_id: 32,
     top: "Gaming",
     bottom: "Points",
-    icon:
-      "https://munzee.global.ssl.fastly.net/images/pins/joystickvirtual.png",
+    icon: "https://munzee.global.ssl.fastly.net/images/pins/joystickvirtual.png",
     icons: [
       "https://munzee.global.ssl.fastly.net/images/pins/joystickvirtual.png",
       "https://munzee.global.ssl.fastly.net/images/pins/prizewheel.png",
       "https://munzee.global.ssl.fastly.net/images/pins/urbanfit.png",
     ],
     function: ({ cap, dep, con }: any) =>
-      [...cap, ...dep, ...con]
-        .filter((i) => g(i)?.has_tag(TypeTags.TypeGaming))
-        .reduce(points, 0),
+      [...cap, ...dep, ...con].filter(i => g(i)?.has_tag(TypeTags.TypeGaming)).reduce(points, 0),
   },
   32: {
     task_id: 32,
     top: "Gaming",
     bottom: "Activity",
-    icon:
-      "https://munzee.global.ssl.fastly.net/images/pins/joystickvirtual.png",
+    icon: "https://munzee.global.ssl.fastly.net/images/pins/joystickvirtual.png",
     icons: [
       "https://munzee.global.ssl.fastly.net/images/pins/joystickvirtual.png",
       "https://munzee.global.ssl.fastly.net/images/pins/prizewheel.png",
       "https://munzee.global.ssl.fastly.net/images/pins/urbanfit.png",
     ],
     function: ({ cap, dep }: any) =>
-      [...cap, ...dep].filter((i) => g(i)?.has_tag(TypeTags.TypeGaming)).length,
+      [...cap, ...dep].filter(i => g(i)?.has_tag(TypeTags.TypeGaming)).length,
   },
   33: {
     task_id: 32,
@@ -302,8 +275,7 @@ var tasks = {
       "https://munzee.global.ssl.fastly.net/images/pins/destination.png",
       "https://munzee.global.ssl.fastly.net/images/pins/2starmotel.png",
     ],
-    function: ({ cap }: any) =>
-      cap.filter((i: any) => g(i)?.icon === "renovation").length,
+    function: ({ cap }: any) => cap.filter((i: any) => g(i)?.icon === "renovation").length,
   },
   34: {
     task_id: 34,
@@ -311,17 +283,14 @@ var tasks = {
     bottom: "Points",
     icon: "https://i.ibb.co/YdRQ3Sf/Split-Mystery.png",
     function: ({ cap, dep, con }: any) =>
-      [...cap, ...dep, ...con]
-        .filter((i) => g(i)?.has_tag(TypeTags.TypeMystery))
-        .reduce(points, 0),
+      [...cap, ...dep, ...con].filter(i => g(i)?.has_tag(TypeTags.TypeMystery)).reduce(points, 0),
   },
   35: {
     task_id: 35,
     top: "QRewZee",
     bottom: "Captures",
     icon: "https://munzee.global.ssl.fastly.net/images/pins/qrewzee.png",
-    function: ({ cap }: any) =>
-      cap.filter((i: any) => g(i)?.icon === "qrewzee").length,
+    function: ({ cap }: any) => cap.filter((i: any) => g(i)?.icon === "qrewzee").length,
   },
   36: {
     task_id: 36,
@@ -329,9 +298,7 @@ var tasks = {
     bottom: "Points",
     icon: "https://munzee.global.ssl.fastly.net/images/pins/envelope.png",
     function: ({ cap, dep, con }: any) =>
-      [...cap, ...dep, ...con]
-        .filter((i) => g(i)?.has_tag(TypeTags.Card))
-        .reduce(points, 0),
+      [...cap, ...dep, ...con].filter(i => g(i)?.has_tag(TypeTags.Card)).reduce(points, 0),
   },
 };
 
@@ -345,13 +312,14 @@ var all_tasks: {
   90: [1, 13, 14, 24, 3, 35, 19, 25, 26, 32, 33],
   91: [1, 19, 23, 29, 3, 35, 7, 12, 13, 24, 27, 28, 31, 33],
   92: [1, 3, 13, 24, 28, 35, 12, 23, 30, 36],
-  93: [1,3,12,13,24,28,23,30,34,35,36],
+  93: [1, 3, 12, 13, 24, 28, 23, 30, 34, 35, 36],
+  94: [1, 3, 13, 24, 35, 6, 7, 12, 23, 27, 31, 36],
 };
 
 export default function calculate(
   data: StatzeePlayerDay["response"]["data"][] = [],
   no_reduce?: boolean,
-  gid?: number,
+  gid?: number
 ) {
   const current_month = gid || gameID();
   const current_tasks = all_tasks[current_month];

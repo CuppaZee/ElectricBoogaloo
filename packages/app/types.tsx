@@ -15,6 +15,12 @@ export type UserStackParamList = {
   Profile: { username: string };
   Activity: { username: string; date?: string };
   Inventory: { username: string };
+  Challenges: { username: string; date?: string };
+  ZeeOps: { username: string };
+};
+
+export type DashStackParamList = {
+  Dash: undefined;
 };
 
 
@@ -26,5 +32,6 @@ export type ClanStackParamList = {
 export type ToolsStackParamList = {
   Calendar: undefined;
   Credits: undefined;
+  Bouncers: undefined;
   // Activity: { username: string; date?: string };
 };

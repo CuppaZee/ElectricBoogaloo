@@ -7,6 +7,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import DrawerContent from "./Drawer";
 import { useWindowDimensions } from "react-native";
 import ClanNavigator from "./ClanNavigator";
+import DashNavigator from "./DashNavigator";
 import AuthScreen from "../screens/Auth";
 import { useTeakens } from "../hooks/useToken";
 
@@ -22,7 +23,7 @@ export default function StackNavigator() {
       drawerStyle={{ width: Object.keys(teakens.data).length > 0 ? 256 : 0 }}
     >
       {(!teakens.loaded || Object.keys(teakens.data).length > 0) && <>
-        <Drawer.Screen name="Dashboard" component={AuthScreen} />
+        <Drawer.Screen name="Dashboard" component={DashNavigator} />
         <Drawer.Screen name="User" component={UserNavigator} />
         <Drawer.Screen name="Clan" component={ClanNavigator} />
         <Drawer.Screen name="Tools" component={ToolsNavigator} />
