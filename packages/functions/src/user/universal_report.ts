@@ -1,6 +1,7 @@
 import config from '../config.json';
 import fetch from 'node-fetch';
 import { Route } from '../types';
+import { URLSearchParams } from 'url';
 
 const route: Route = {
   path: "user/universal/report",

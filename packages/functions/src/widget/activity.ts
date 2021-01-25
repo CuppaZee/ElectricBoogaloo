@@ -1,5 +1,5 @@
 import { Route } from "../types";
-import { retrieve, request } from "../util";
+import { retrieve, request, mhqStr } from "../util";
 
 const route: Route = {
   path: "widget/activity",
@@ -8,7 +8,7 @@ const route: Route = {
     {
       version: 1,
       async function({
-        params: { username, day },
+        params: { username },
         db
       }: any) {
         var token = await retrieve(db, { user_id: 125914, teaken: false }, 60);
@@ -32,7 +32,7 @@ const route: Route = {
             error_message: "missing_login"
           }
         }
-        var data = (await request('statzee/player/day', { day }, token.access_token))?.data;
+        var data = (await request('statzee/player/day', { day: mhqStr() }, token.access_token))?.data;
         if (!data) {
           return {
             status: "error",
