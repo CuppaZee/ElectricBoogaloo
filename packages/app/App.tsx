@@ -14,6 +14,9 @@ import { StyleSheet } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as themes from "./themes";
 
+import { NativeModules } from "react-native";
+const SharedStorage = NativeModules.SharedStorage;
+
 function MCIcon({ name, style }: { name: string | number | symbol; style: any }) {
   const { height, tintColor, ...iconStyle } = StyleSheet.flatten(style);
   return (
@@ -58,6 +61,13 @@ const queryClient = new QueryClient({
 
 export default function App() {
   const colorScheme = useColorScheme();
+
+  React.useEffect(() => {
+    SharedStorage.set(
+      "activity_widget_settings",
+      JSON.stringify({ 4: "sohcah" })
+    );
+  })
 
   return (
     <SafeAreaProvider>

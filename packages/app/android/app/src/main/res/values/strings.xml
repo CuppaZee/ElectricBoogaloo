@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <resources>
-  <string name="app_name">CuppaZee</string>
+    <string name="app_name">CuppaZee</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="configure">Configure</string>
+    <string name="add_widget">Add widget</string>
+    <string name="activity_widget_configure">Configure Activity Widget</string>
+    <string name="activity_widget_confirm">Confirm Username</string>
 </resources>
