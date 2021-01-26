@@ -1,6 +1,7 @@
 package uk.cuppazee.paper;
 
 import com.facebook.react.bridge.NativeModule;
+import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
@@ -44,8 +45,8 @@ public class SharedStorage extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public String get(String key, String defaultValue) {
-        SharedPreferences editor = context.getSharedPreferences("CUPPAZEE_SHARED_STORAGE", Context.MODE_PRIVATE);
-        return editor.getString(key, defaultValue);
+    public void get(String key, String defaultValue, Promise promise) {
+        SharedPreferences pref = context.getSharedPreferences("CUPPAZEE_SHARED_STORAGE", Context.MODE_PRIVATE);
+        promise.resolve(pref.getString(key, defaultValue));
     }
 }

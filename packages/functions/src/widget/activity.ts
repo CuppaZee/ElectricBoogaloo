@@ -55,6 +55,7 @@ const route: Route = {
               data.captures.reduce((a, b) => a + Number(b.points), 0) +
               data.deploys.reduce((a, b) => a + Number(b.points), 0) +
               data.captures_on.reduce((a, b) => a + Number(b.points_for_creator), 0),
+            total_points: user.points,
           },
         };
       },

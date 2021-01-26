@@ -1,17 +1,35 @@
 package uk.cuppazee.paper;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.transition.Visibility;
+import android.view.View;
 import android.widget.RemoteViews;
 
 import android.content.SharedPreferences;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Picasso;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+import jp.wasabeef.picasso.transformations.CropCircleTransformation;
+
 /**
  * Implementation of App Widget functionality.
- * App Widget Configuration implemented in {@link ActivityWidgetConfigureActivity ActivityWidgetConfigureActivity}
  */
 public class ActivityWidget extends AppWidgetProvider {
 
@@ -25,10 +43,77 @@ public class ActivityWidget extends AppWidgetProvider {
 
             // Construct the RemoteViews object
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.activity_widget);
-            String text = appData.optString(String.valueOf(appWidgetId), "Tap to Setup");
-            views.setTextViewText(R.id.appwidget_text, text);
-            // Instruct the widget manager to update the widget
-            appWidgetManager.updateAppWidget(appWidgetId, views);
+
+
+            String username = appData.optString(String.valueOf(appWidgetId), "Tap to Setup");
+            Calendar calendar = Calendar.getInstance();
+            SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+
+            if(username == "Tap to Setup") {
+                views.setViewVisibility(R.id.activity_widget_image_avatar, 0);
+                views.setTextViewText(R.id.activity_widget_text_daily_points, username);
+                views.setTextViewText(R.id.activity_widget_text_username, "");
+                views.setTextViewText(R.id.activity_widget_text_captures, "");
+                views.setTextViewText(R.id.activity_widget_text_deploys, "");
+                views.setTextViewText(R.id.activity_widget_text_capon, "");
+                views.setTextViewText(R.id.activity_widget_text_total_points, "");
+                views.setTextViewText(R.id.activity_widget_text_time, formatter.format(calendar.getTime()));
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("uk.cuppazee.paper://tools/widget_configure_activity_widget/" + appWidgetId));
+                PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+                views.setOnClickPendingIntent(R.id.activity_widget, pendingIntent);
+                appWidgetManager.updateAppWidget(appWidgetId, views);
+            } else {
+                RequestQueue queue = Volley.newRequestQueue(context);
+                String url = "https://server.beta.cuppazee.app/widget/activity?username=" + Uri.encode(username);
+
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                        (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try {
+                                    JSONObject data = response.getJSONObject("data");
+                                    views.setViewVisibility(R.id.activity_widget_image_avatar, View.VISIBLE);
+                                    Picasso.get().load("https://munzee.global.ssl.fastly.net/images/avatars/ua" + Integer.toString(data.getInt("user_id"), 36) + ".png").transform(new CropCircleTransformation()).into(views, R.id.activity_widget_image_avatar, new int[] {appWidgetId});
+                                    views.setTextViewText(R.id.activity_widget_text_daily_points, data.getInt("daily_points") + " Pts");
+                                    views.setTextViewText(R.id.activity_widget_text_username, data.getString("username"));
+                                    views.setTextViewText(R.id.activity_widget_text_captures, data.getInt("capture_count") + " Caps  (" + data.getInt("capture_points") + " Pts)");
+                                    views.setTextViewText(R.id.activity_widget_text_deploys, data.getInt("deploy_count") + " Deps  (" + data.getInt("deploy_points") + " Pts)");
+                                    views.setTextViewText(R.id.activity_widget_text_capon, data.getInt("capon_count") + " Capons  (" + data.getInt("capon_points") + " Pts)");
+                                    views.setTextViewText(R.id.activity_widget_text_total_points, data.getInt("total_points") + " Pts");
+                                    views.setTextViewText(R.id.activity_widget_text_time, formatter.format(calendar.getTime()));
+                                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("uk.cuppazee.paper://user/" + data.getString("username") + "/activity"));
+                                    PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+                                    views.setOnClickPendingIntent(R.id.activity_widget, pendingIntent);
+                                    appWidgetManager.updateAppWidget(appWidgetId, views);
+                                } catch (JSONException e) {
+                                    views.setViewVisibility(R.id.activity_widget_image_avatar, View.INVISIBLE);
+                                    views.setTextViewText(R.id.activity_widget_text_daily_points, e.toString());
+                                    views.setTextViewText(R.id.activity_widget_text_username, "");
+                                    views.setTextViewText(R.id.activity_widget_text_captures, "");
+                                    views.setTextViewText(R.id.activity_widget_text_deploys, "");
+                                    views.setTextViewText(R.id.activity_widget_text_capon, "");
+                                    views.setTextViewText(R.id.activity_widget_text_total_points, "");
+                                    views.setTextViewText(R.id.activity_widget_text_time, formatter.format(calendar.getTime()));
+                                    appWidgetManager.updateAppWidget(appWidgetId, views);
+                                }
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                views.setViewVisibility(R.id.activity_widget_image_avatar, View.INVISIBLE);
+                                views.setTextViewText(R.id.activity_widget_text_daily_points, "Error");
+                                views.setTextViewText(R.id.activity_widget_text_username, "");
+                                views.setTextViewText(R.id.activity_widget_text_captures, "");
+                                views.setTextViewText(R.id.activity_widget_text_deploys, "");
+                                views.setTextViewText(R.id.activity_widget_text_capon, "");
+                                views.setTextViewText(R.id.activity_widget_text_total_points, "");
+                                views.setTextViewText(R.id.activity_widget_text_time, formatter.format(calendar.getTime()));
+                                appWidgetManager.updateAppWidget(appWidgetId, views);
+                            }
+                        });
+
+                queue.add(jsonObjectRequest);
+            }
         }catch (JSONException e) {
             e.printStackTrace();
         }
@@ -45,9 +130,6 @@ public class ActivityWidget extends AppWidgetProvider {
     @Override
     public void onDeleted(Context context, int[] appWidgetIds) {
         // When the user deletes the widget, delete the preference associated with it.
-        for (int appWidgetId : appWidgetIds) {
-            ActivityWidgetConfigureActivity.deleteTitlePref(context, appWidgetId);
-        }
     }
 
     @Override

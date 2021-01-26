@@ -1,21 +1,116 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#09C"
+    android:background="@drawable/widget_rect"
+    android:id="@+id/activity_widget"
     android:padding="@dimen/widget_margin">
-
-    <TextView
-        android:id="@+id/appwidget_text"
+    <LinearLayout
+        android:layout_weight="1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_margin="8dp"
-        android:background="#09C"
-        android:contentDescription="@string/appwidget_text"
-        android:text="@string/appwidget_text"
-        android:textColor="#ffffff"
-        android:textSize="24sp"
-        android:textStyle="bold|italic" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/activity_widget_text_daily_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
+            android:contentDescription="@string/appwidget_text"
+            android:text="@string/activity_widget_loading"
+            android:textColor="#ffffff"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/activity_widget_text_captures"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
+            android:contentDescription="@string/appwidget_text"
+            android:text="@string/activity_widget_loading"
+            android:textColor="#ffffff"
+            android:textSize="12dp" />
+        <TextView
+            android:id="@+id/activity_widget_text_deploys"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
+            android:contentDescription="@string/appwidget_text"
+            android:text="@string/activity_widget_loading"
+            android:textColor="#ffffff"
+            android:textSize="12dp" />
+        <TextView
+            android:id="@+id/activity_widget_text_capon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
+            android:contentDescription="@string/appwidget_text"
+            android:text="@string/activity_widget_loading"
+            android:textColor="#ffffff"
+            android:textSize="12dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/activity_widget_text_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_gravity="end"
+            android:contentDescription="@string/appwidget_text"
+            android:text="@string/activity_widget_loading"
+            android:textColor="#ffffff"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="end"/>
+        <TextView
+            android:id="@+id/activity_widget_text_total_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_gravity="end"
+            android:contentDescription="@string/appwidget_text"
+            android:text="@string/activity_widget_loading"
+            android:textColor="#ffffff"
+            android:textSize="12dp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
 
-</RelativeLayout>
+        <LinearLayout
+            android:layout_gravity="end"
+            android:gravity="end"
+            android:layout_width="match_parent"
+            android:layout_height="24dp">
+            <TextView
+                android:id="@+id/activity_widget_text_time"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="2dp"
+                android:gravity="end|bottom"
+                android:layout_weight="1"
+                android:contentDescription="@string/appwidget_text"
+                android:text="@string/activity_widget_loading"
+                android:textColor="#ffffff"
+                android:textSize="10dp"
+                android:maxLines="1"
+                android:ellipsize="end"/>
+            <ImageView
+                android:id="@+id/activity_widget_image_avatar"
+                android:layout_width="24dp"
+                android:layout_gravity="center_vertical"
+                android:layout_height="24dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,7 +1,7 @@
 import { OpsZeeopsStatus, OpsZeeopsTutorialsStatus } from './ops/zeeops';
 import { User } from './user/main';
 import { UserDeploys } from './user/deploys';
-import { UserUndeploys } from './user/undeploys';
+import { UserUndeploys, UserUndeploysCount } from './user/undeploys';
 import { UserArchived } from './user/archived';
 import { UserCapturesSpecial, UserCaptures } from './user/captures';
 import { UserCredits, UserCreditsHistory } from './user/credits';
@@ -24,18 +24,19 @@ import { Endpoint } from './common';
 export type Endpoints = {
   "ops/zeeops/status": OpsZeeopsStatus;
   "ops/zeeops/tutorials/status": OpsZeeopsTutorialsStatus;
-  "user": User;
+  user: User;
   "user/captures": UserCaptures;
   "user/captures/special": UserCapturesSpecial;
   "user/deploys": UserDeploys;
   "user/undeploys": UserUndeploys;
+  "user/undeploys/count": UserUndeploysCount;
   "user/archived": UserArchived;
   "user/find": UserFind;
   "user/credits": UserCredits;
   "user/credits/history": UserCreditsHistory;
   "user/boosters/active": UserBoostersActive;
   "user/boosters/credits": UserBoostersCredits;
-  "munzee": Munzee;
+  munzee: Munzee;
   "munzee/hascaptured": MunzeeHascaptured;
   "munzee/specials": MunzeeSpecials;
   "munzee/specials/mythological": MunzeeSpecialsMythological;
@@ -56,7 +57,7 @@ export type Endpoints = {
   "clan/v2/requirements": ClanV2Requirements;
   "clan/v2/challenges/{game_id}": ClanV2Challenges;
   "map/boundingbox/v4": MapBoundingboxV4;
-}
+};
 
 export interface FetchRequest<
   Path extends keyof Endpoints,

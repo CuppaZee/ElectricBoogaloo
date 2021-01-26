@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.7/.8 - 26/01/2021
+- Bug Fixes
+## 0.0.6 - 26/01/2021
+- Added `/user/undeploys/count` endpoint definitions
 ## 0.0.5 - 15/12/2020
 - Fixed `statzee/player/day` endpoint definitions
 - Added `user/find` endpoint definitions

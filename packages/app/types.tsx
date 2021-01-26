@@ -33,5 +33,6 @@ export type ToolsStackParamList = {
   Calendar: undefined;
   Credits: undefined;
   Bouncers: undefined;
+  WidgetConfigureActivityWidget: { id: string };
   // Activity: { username: string; date?: string };
 };

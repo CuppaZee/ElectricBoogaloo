@@ -30,9 +30,26 @@ export interface UserUndeploys extends Endpoint {
     params: {
       page?: number;
     };
-  }
+  };
   response: Response<{
     has_more: 0 | 1;
     munzees: UserUndeploysMunzee[];
-  }>
+  }>;
+}
+export interface UserUndeploysCountType {
+  name: string;
+  capture_type_id: string;
+  count: string;
+  pin_icon: string;
+}
+
+export interface UserUndeploysCount extends Endpoint {
+  request: {
+    endpoint: "user/undeploys/count";
+    params: {
+      quickdeploy?: boolean;
+      all_types?: boolean;
+    };
+  };
+  response: Response<UserUndeploysCountType[]>;
 }

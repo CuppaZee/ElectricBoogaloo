@@ -6,4 +6,5 @@
     <string name="add_widget">Add widget</string>
     <string name="activity_widget_configure">Configure Activity Widget</string>
     <string name="activity_widget_confirm">Confirm Username</string>
+    <string name="activity_widget_loading">...</string>
 </resources>
