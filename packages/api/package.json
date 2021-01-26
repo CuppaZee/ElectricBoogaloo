@@ -1,6 +1,6 @@
 {
   "name": "@cuppazee/api",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "main": "index.ts",
   "types": "api.d.ts",
   "license": "MPL2",
