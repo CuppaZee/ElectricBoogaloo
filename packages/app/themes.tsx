@@ -17,7 +17,7 @@ const light = {
 
 type Theme = typeof dark & { style: "light" | "dark" };
 
-export const white_light: Theme = { ...light, style: "light" };
+// export const white_light: Theme = { ...light, style: "light" };
 
 export const green_light: Theme = generateLightTheme(
   light,
@@ -155,12 +155,19 @@ export const gray_light: Theme = generateLightTheme(
   "light"
 );
 
-export const blue_dark: Theme = { ...dark, style: "dark" };
-
 export const green_dark: Theme = generateTheme(
   dark,
-  (c) => color(c).rotate(-70),
-  (c) => color(c).rotate(-70).saturationv(90),
+  c => color(c).rotate(-70),
+  c => color(c).rotate(-70).saturationv(90),
+  "dark"
+);
+
+export const blue_dark: Theme = { ...dark, style: "dark" };
+
+export const teal_dark: Theme = generateTheme(
+  dark,
+  c => color(c).rotate(-35).lighten(0.5),
+  c => color(c).rotate(-35).lighten(0.5).saturationv(100),
   "dark"
 );
 
@@ -175,13 +182,6 @@ export const gray_dark: Theme = generateTheme(
   dark,
   (c) => color(c).rotate(70).saturationv(0),
   (c) => color(c).rotate(70).saturationv(0).darken(0.5),
-  "dark"
-);
-
-export const teal_dark: Theme = generateTheme(
-  dark,
-  (c) => color(c).rotate(-35).lighten(0.5),
-  (c) => color(c).rotate(-35).lighten(0.5).saturationv(100),
   "dark"
 );
 

@@ -268,8 +268,14 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
         {/* Settings */}
         <DrawerGroup title="Settings" accessoryLeft={props => <Icon {...props} name="cog" />}>
           <DrawerItem
+            selected={page[1]?.name === "Settings" && page[2]?.name === "Personalisation"}
             title="Personalisation"
             accessoryLeft={props => <Icon {...props} name="palette" />}
+            onPress={() =>
+              props.navigation.navigate("Settings", {
+                screen: "Personalisation",
+              })
+            }
           />
           <DrawerItem
             title="Notifications"

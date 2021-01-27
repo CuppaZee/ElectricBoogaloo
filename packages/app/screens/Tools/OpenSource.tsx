@@ -3,6 +3,7 @@ import * as React from "react";
 import { FlatList, Linking, View } from "react-native";
 // @ts-ignore
 import dependencies from "../../assets/dependencies.json";
+import useTitle from "../../hooks/useTitle";
 
 type Lib = {
   Name: string;
@@ -75,9 +76,8 @@ for (const dep of dependencies.data.body) {
 }
 libs.sort((a, b) => ([a.Name, b.Name].sort()[0] === a.Name ? -1 : 1));
 
-console.log(libs.length);
-
 export default function OpenSourceScreen() {
+  useTitle("☕ Open Source");
   return (
     <Layout style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <List

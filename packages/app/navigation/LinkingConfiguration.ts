@@ -40,6 +40,12 @@ export default {
               WidgetConfigureActivityWidget: "widget_configure_activity_widget/:id",
             },
           },
+          Settings: {
+            path: "settings",
+            screens: {
+              Personalisation: "personalisation",
+            },
+          },
           Auth: "login",
         },
       },

@@ -10,6 +10,7 @@ import ClanNavigator from "./ClanNavigator";
 import DashNavigator from "./DashNavigator";
 import AuthScreen from "../screens/Auth";
 import { useTeakens } from "../hooks/useToken";
+import SettingsNavigator from "./SettingsNavigator";
 
 const Drawer = createDrawerNavigator<MainDrawerParamList>();
 
@@ -18,16 +19,20 @@ export default function StackNavigator() {
   const teakens = useTeakens();
   return (
     <Drawer.Navigator
-      drawerContent={(props) => (Object.keys(teakens.data).length > 0 ? <DrawerContent {...props} /> : null)}
+      drawerContent={props =>
+        Object.keys(teakens.data).length > 0 ? <DrawerContent {...props} /> : null
+      }
       drawerType={dimensions.width > 1000 ? "permanent" : "front"}
-      drawerStyle={{ width: Object.keys(teakens.data).length > 0 ? 256 : 0 }}
-    >
-      {(!teakens.loaded || Object.keys(teakens.data).length > 0) && <>
-        <Drawer.Screen name="Dashboard" component={DashNavigator} />
-        <Drawer.Screen name="User" component={UserNavigator} />
-        <Drawer.Screen name="Clan" component={ClanNavigator} />
-        <Drawer.Screen name="Tools" component={ToolsNavigator} />
-      </>}
+      drawerStyle={{ width: Object.keys(teakens.data).length > 0 ? 256 : 0 }}>
+      {(!teakens.loaded || Object.keys(teakens.data).length > 0) && (
+        <>
+          <Drawer.Screen name="Dashboard" component={DashNavigator} />
+          <Drawer.Screen name="User" component={UserNavigator} />
+          <Drawer.Screen name="Clan" component={ClanNavigator} />
+          <Drawer.Screen name="Tools" component={ToolsNavigator} />
+          <Drawer.Screen name="Settings" component={SettingsNavigator} />
+        </>
+      )}
       <Drawer.Screen name="Auth" component={AuthScreen} />
     </Drawer.Navigator>
   );

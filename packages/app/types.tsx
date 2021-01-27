@@ -8,6 +8,7 @@ export type MainDrawerParamList = {
   User: undefined;
   Clan: undefined;
   Tools: undefined;
+  Settings: undefined;
   Auth: undefined;
 };
 
@@ -36,4 +37,8 @@ export type ToolsStackParamList = {
   Bouncers: undefined;
   WidgetConfigureActivityWidget: { id: string };
   // Activity: { username: string; date?: string };
+};
+
+export type SettingsStackParamList = {
+  Personalisation: undefined;
 };

@@ -32,7 +32,6 @@ export default function BouncersScreen() {
         style={{ margin: 8, width: 400, maxWidth: "100%" }}
         onPress={async () => {
           const data = await SharedStorage.get("activity_widget_settings", "{}");
-          console.log(data);
           SharedStorage.set(
             "activity_widget_settings",
             JSON.stringify({ ...JSON.parse(data), [route.params.id]: username })

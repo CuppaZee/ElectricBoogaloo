@@ -13,6 +13,7 @@ import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
 import { StyleSheet } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as themes from "./themes";
+import { useSettings } from "./hooks/useSettings";
 
 function MCIcon({ name, style }: { name: string | number | symbol; style: any }) {
   try {
@@ -57,20 +58,26 @@ const queryClient = new QueryClient({
   },
 });
 
-export default function App() {
+function AppB() {
   const colorScheme = useColorScheme();
+  const [settings] = useSettings();
+  return <>
+    <IconRegistry icons={MaterialCommunityIconsPack} />
+    <ApplicationProvider {...eva} theme={themes[settings.theme]}>
+      <QueryClientProvider client={queryClient}>
+        <Navigation colorScheme={colorScheme} />
+        <StatusBar />
+      </QueryClientProvider>
+    </ApplicationProvider>
+    </>
+}
 
+export default function App() {
   return (
     <SafeAreaProvider>
-      <IconRegistry icons={MaterialCommunityIconsPack} />
-      <ApplicationProvider {...eva} theme={themes.green_light}>
-        <JotaiProvider>
-          <QueryClientProvider client={queryClient}>
-            <Navigation colorScheme={colorScheme} />
-            <StatusBar />
-          </QueryClientProvider>
-        </JotaiProvider>
-      </ApplicationProvider>
+      <JotaiProvider>
+        <AppB />
+      </JotaiProvider>
     </SafeAreaProvider>
   );
 }

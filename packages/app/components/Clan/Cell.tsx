@@ -35,6 +35,7 @@ export function DataCell({
   stack,
   height,
 }: DataCellProps) {
+  const theme = useTheme();
   return (
     <Layout
       level={compact === 2 ? "0" : "2"}
@@ -52,7 +53,6 @@ export function DataCell({
         style={{
           width: 4,
           alignSelf: "stretch",
-          // minHeight: compact === 2 ? 34 : 40,
           borderTopLeftRadius: compact === 2 ? 0 : 8,
           borderBottomLeftRadius: compact === 2 ? 0 : 8,
           backgroundColor:
@@ -84,7 +84,7 @@ export function DataCell({
               height: 24,
               width: 24,
               marginHorizontal: 8,
-              color: "#fff",
+              color: theme.style === "dark" ? "#fff" : "#000",
             }}
             name="shield-half-full"
           />
@@ -237,6 +237,7 @@ export function UserCell({
   stack,
   height,
 }: UserCellProps) {
+  const theme = useTheme();
   return (
     <Layout
       level={compact === 2 ? "0" : "2"}
@@ -247,8 +248,7 @@ export function UserCell({
           flexDirection: stack ? "column" : "row",
           alignItems: "center",
         },
-      ]}
-    >
+      ]}>
       {!stack && (
         <View
           style={{
@@ -282,7 +282,7 @@ export function UserCell({
               width: 24,
               height: 24,
               marginHorizontal: compact === 2 ? 4 : 8,
-              color: "#fff",
+              color: theme.style === "dark" ? "#fff" : "#000",
             }}
             name="shield-half-full"
           />
@@ -295,8 +295,7 @@ export function UserCell({
           flex: 1,
           alignItems: stack ? "center" : "stretch",
           maxWidth: "100%",
-        }}
-      >
+        }}>
         <Text numberOfLines={1} ellipsizeMode="tail" category="s2">
           {"user_id" in user ? user.username ?? user.user_id : "Clan Total"}
         </Text>

@@ -5,6 +5,7 @@ import { Image, Pressable } from "react-native";
 import credits from "./credits.json";
 import { Layout } from "@ui-kitten/components";
 import { useNavigation } from "@react-navigation/native";
+import useTitle from "../../hooks/useTitle";
 
 export type Datum = {
   username: string;
@@ -95,6 +96,7 @@ function CreditsCircles({ width, height }: PackProps) {
 
 export default function CreditsScreen() {
   const [size, onLayout] = useComponentSize();
+  useTitle("☕ Credits");
   return (
     <Layout style={{ flex: 1 }} onLayout={onLayout}>
       {size && <CreditsCircles width={size.width} height={size.height} />}
