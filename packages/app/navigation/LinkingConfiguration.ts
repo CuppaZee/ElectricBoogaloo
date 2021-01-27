@@ -2,7 +2,8 @@ import * as Linking from "expo-linking";
 import { Platform } from "react-native";
 
 export default {
-  prefixes: Platform.OS === "web" ? [Linking.makeUrl("/")] : ["cuppazee://", "uk.cuppazee.paper://"],
+  prefixes:
+    Platform.OS === "web" ? [Linking.makeUrl("/")] : ["cuppazee://", "uk.cuppazee.paper://"],
   config: {
     screens: {
       Root: {
@@ -35,6 +36,7 @@ export default {
               Calendar: "calendar",
               Bouncers: "bouncers",
               Credits: "credits",
+              OpenSource: "opensource",
               WidgetConfigureActivityWidget: "widget_configure_activity_widget/:id",
             },
           },

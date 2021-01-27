@@ -108,6 +108,11 @@ for (const year of Object.keys(years) as (keyof typeof years)[]) {
         .replace(/[^-a-z0-9]+/g, "")}`,
       icon: (c.specials || c.types)?.[0].icon || "expiring_specials_filter",
       parents: [`seasonal_${year}`],
+      seasonal: {
+        year: Number(year),
+        start: new Date(c.starts).valueOf(),
+        end: new Date(c.ends).valueOf(),
+      },
     });
     for (const t of c.specials ?? []) {
       types.push({

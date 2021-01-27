@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.18 - 27/01/2021
+- Fixed `active` property on Type Categories
+## 0.0.17 - 27/01/2021
+- Fixed `seasonal` property on Seasonal Special Categories
 ## 0.0.16 - 23/01/2021
 - Fixed Categories for Rainbow Trail ZED Scatters
 ## 0.0.15 - 23/01/2021

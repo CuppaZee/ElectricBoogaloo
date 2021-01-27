@@ -310,7 +310,7 @@ export class TypeCategory {
   get active() {
     return (
       !this.i.seasonal ||
-      ((this.seasonal?.start || 0) > Date.now() && (this.seasonal?.end || 0) < Date.now())
+      ((this.seasonal?.start || 0) < Date.now() && (this.seasonal?.end || 0) > Date.now())
     );
   }
 }

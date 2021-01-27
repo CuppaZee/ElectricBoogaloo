@@ -41,10 +41,12 @@ export default function AuthScreen() {
   const [redirect, setRedirect] = React.useState<string | null>(null);
 
   React.useEffect(() => {
-    WebBrowser.warmUpAsync();
-    return () => {
-      WebBrowser.coolDownAsync();
-    };
+    if (Platform.OS !== "web") {
+      WebBrowser.warmUpAsync();
+      return () => {
+        WebBrowser.coolDownAsync();
+      };
+    }
   });
 
   async function login() {

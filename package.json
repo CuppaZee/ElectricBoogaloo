@@ -4,21 +4,21 @@
   "main": "index.js",
   "repository": "https://github.com/CuppaZee/ElectricBoogaloo",
   "author": "Sam Hindess <mail@sohcah.dev>",
-  "license": "MPL2",
+  "license": "MPL-2.0",
   "private": true,
   "workspaces": {
     "packages": [
       "packages/*"
     ],
     "nohoist": [
-      "packages/app/**"
+      "**"
     ]
   },
   "scripts": {
     "server": "yarn workspace @cuppazee/functions lint && yarn workspace @cuppazee/functions build && firebase serve",
     "web": "yarn workspace @cuppazee/app web",
     "start": "run-p server web",
-    "postinstall": "cd ./packages/app && expo-yarn-workspaces postinstall",
+    "postinstall": "yarn licenses list --json -s | node tail > packages/app/assets/dependencies.json",
     "deploy-server": "firebase deploy --only functions:apibeta"
   },
   "devDependencies": {

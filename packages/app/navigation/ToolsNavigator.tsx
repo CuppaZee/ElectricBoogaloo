@@ -3,6 +3,7 @@ import * as React from "react";
 
 import CalendarScreen from "../screens/Tools/Calendar";
 import CreditsScreen from "../screens/Tools/Credits";
+import OpenSourceScreen from "../screens/Tools/OpenSource";
 import BouncersScreen from "../screens/Tools/Bouncers";
 import ActivityWidgetScreen from "../screens/Tools/WidgetConfigure/ActivityWidget";
 import { ToolsStackParamList } from "../types";
@@ -21,6 +22,7 @@ export default function ToolsNavigator() {
       }}>
       <ToolsStack.Screen name="Calendar" component={CalendarScreen} />
       <ToolsStack.Screen name="Credits" component={CreditsScreen} />
+      <ToolsStack.Screen name="OpenSource" component={OpenSourceScreen} />
       <ToolsStack.Screen name="Bouncers" component={BouncersScreen} />
       <ToolsStack.Screen name="WidgetConfigureActivityWidget" component={ActivityWidgetScreen} />
     </ToolsStack.Navigator>

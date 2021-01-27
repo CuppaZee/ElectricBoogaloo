@@ -15,17 +15,19 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as themes from "./themes";
 
 function MCIcon({ name, style }: { name: string | number | symbol; style: any }) {
-  const { height, tintColor, ...iconStyle } = StyleSheet.flatten(style);
-  return (
-    <View style={{ height }}>
-      <MaterialCommunityIcons
-        name={name as any}
-        size={height}
-        color={tintColor}
-        style={iconStyle}
-      />
-    </View>
-  );
+  try {
+    const { height, tintColor, ...iconStyle } = StyleSheet.flatten(style);
+    return (
+      <View style={{ height }}>
+        <MaterialCommunityIcons
+          name={name as any}
+          size={height}
+          color={tintColor}
+          style={iconStyle}
+        />
+      </View>
+    );
+  } catch (e) {}
 }
 
 const IconProvider = (name: string | number | symbol) => ({
@@ -35,7 +37,6 @@ const IconProvider = (name: string | number | symbol) => ({
 function createIconsMap() {
   const x: { [key: string]: any } = {};
   for (const glyph of Object.keys(MaterialCommunityIcons.glyphMap)) {
-    console.log('Adding', glyph, IconProvider);
     x[glyph] = IconProvider(glyph);
   }
   return x;

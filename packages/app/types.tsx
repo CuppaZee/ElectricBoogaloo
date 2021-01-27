@@ -32,6 +32,7 @@ export type ClanStackParamList = {
 export type ToolsStackParamList = {
   Calendar: undefined;
   Credits: undefined;
+  OpenSource: undefined;
   Bouncers: undefined;
   WidgetConfigureActivityWidget: { id: string };
   // Activity: { username: string; date?: string };

@@ -3,7 +3,7 @@
   "version": "0.0.8",
   "main": "index.ts",
   "types": "api.d.ts",
-  "license": "MPL2",
+  "license": "MPL-2.0",
   "keywords": [
     "munzee",
     "cuppazee"
