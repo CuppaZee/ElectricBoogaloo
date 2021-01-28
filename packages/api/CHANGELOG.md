@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.0.9 - 28/01/2021
+- Added `/assets/news` endpoint definitions
 ## 0.0.7/.8 - 26/01/2021
 - Bug Fixes
 ## 0.0.6 - 26/01/2021

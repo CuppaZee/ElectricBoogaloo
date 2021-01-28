@@ -7,4 +7,5 @@
     <string name="activity_widget_configure">Configure Activity Widget</string>
     <string name="activity_widget_confirm">Confirm Username</string>
     <string name="activity_widget_loading">...</string>
+    <string name="news_widget_loading">...</string>
 </resources>

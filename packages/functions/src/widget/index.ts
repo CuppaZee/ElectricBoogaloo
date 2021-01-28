@@ -1,4 +1,3 @@
-import activity from './activity'
-export default [
-  activity,
-];
+import activity from "./activity";
+import news from "./news";
+export default [activity, news];

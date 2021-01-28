@@ -14,6 +14,7 @@ This library provides TypeScript typings for the Munzee API.
 - `user/deploys`
 - `user/find`
 - `user/undeploys`
+- `user/undeploys/count`
 - `user/archived`
 - `user/credits`
 - `user/credits/history`
@@ -48,3 +49,6 @@ This library provides TypeScript typings for the Munzee API.
 - `clan/v2/leaderboard`
 - `clan/v2/requirements`
 - `clan/v2/challenges/{game_id}`
+
+### Assets
+- `assets/news`

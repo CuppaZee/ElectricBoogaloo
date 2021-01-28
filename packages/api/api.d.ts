@@ -19,9 +19,11 @@ import { Munzee } from './munzee/main';
 import { MunzeeHascaptured } from './munzee/hascaptured';
 import { MunzeeSpecials, MunzeeSpecialsBouncers, MunzeeSpecialsFlat, MunzeeSpecialsMythological, MunzeeSpecialsPouchCreatures, MunzeeSpecialsRetired } from './munzee/specials';
 import { MapBoundingboxV4 } from './map/v4';
+import { AssetsNews } from './assets/news';
 import { Endpoint } from './common';
 
 export type Endpoints = {
+  "assets/news": AssetsNews;
   "ops/zeeops/status": OpsZeeopsStatus;
   "ops/zeeops/tutorials/status": OpsZeeopsTutorialsStatus;
   user: User;
