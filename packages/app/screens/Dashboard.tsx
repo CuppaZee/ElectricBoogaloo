@@ -1,40 +1,116 @@
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { Layout, ViewPager } from "@ui-kitten/components";
+import dayjs from "dayjs";
 import * as React from "react";
-import { ScrollView, View } from "react-native";
+import { FlatList, Platform, ScrollView, StyleSheet, View } from "react-native";
 import UserActivityOverview from "../components/Activity/Overview";
 import ZeeOpsOverview from "../components/ZeeOps/Overview";
 import { useUserBookmarks } from "../hooks/useBookmarks";
+import useComponentSize from "../hooks/useComponentSize";
 import useTitle from "../hooks/useTitle";
 import { DashStackParamList, UserStackParamList } from "../types";
+
+function WheelWrapper({ onWheel, children }: React.PropsWithChildren<{ onWheel: (event: React.WheelEvent<HTMLDivElement>) => void }>) {
+  if(Platform.OS === "web") return (
+    <div className="snap-item-center" onWheel={onWheel}>
+      <style>{".snap-item-center > div > div > div { scroll-snap-align: center !important }"}</style>
+      {children}
+    </div>
+  );
+  return <>{children}</>;
+}
 
 export default function DashboardScreen() {
   const nav = useNavigation<StackNavigationProp<DashStackParamList, "Dash">>();
   const route = useRoute<RouteProp<DashStackParamList, "Dash">>();
+  const scrollRef = React.useRef<FlatList>();
+  const position = React.useRef<number>();
   const [users] = useUserBookmarks();
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const [touched, setTouched] = React.useState<number[]>([0]);
+  const [size, onLayout] = useComponentSize();
+  const width = size?.width ?? 0;
   useTitle(`☕ Dashboard`);
+  if (users.length === 0) return null;
   return (
-    <Layout style={{ flex: 1 }}>
+    <Layout onLayout={onLayout} style={{ flex: 1 }}>
       <ScrollView style={{ flex: 1 }}>
-        <ViewPager
-          selectedIndex={selectedIndex}
-          onSelect={index => setSelectedIndex((index % users.length) || users.length)}>
-          {[null, ...users, null].map((i, ind) => (
-            <Layout level="3" style={{ margin: 4, borderRadius: 4 }}>
-              {ind === selectedIndex ? (
-                <>
-                  <UserActivityOverview user_id={Number(i?.user_id)} day="2020-01-13" />
-                  <ZeeOpsOverview user_id={Number(i?.user_id)} />
-                </>
-              ) : (
-                <View style={{ height: 400 }} />
-              )}
-            </Layout>
-          ))}
-        </ViewPager>
+        <WheelWrapper
+          onWheel={ev => {
+            scrollRef.current?.scrollToOffset({
+              offset:
+                (position.current || 0) +
+                (ev.nativeEvent.deltaY / 100) * Math.min(600, width * 0.9),
+            });
+          }}>
+          <FlatList
+            ref={sv => (scrollRef.current = sv || undefined)}
+            horizontal={true}
+            pagingEnabled={Platform.OS === "web"}
+            onScroll={ev => {
+              if (ev.nativeEvent.contentOffset.x !== undefined) {
+                if (position.current === undefined) {
+                  scrollRef.current?.scrollToOffset({
+                    offset: 0,
+                    animated: false,
+                  });
+                }
+                position.current = ev.nativeEvent.contentOffset.x;
+                const pos = Math.floor(
+                  (ev.nativeEvent.contentOffset.x + 10) / Math.min(600, width * 0.9)
+                );
+                if (!touched.includes(pos)) setTouched([...touched, pos]);
+              }
+            }}
+            scrollEventThrottle={4}
+            snapToInterval={Math.min(600, width * 0.9)}
+            snapToAlignment="center"
+            showsHorizontalScrollIndicator={false}
+            snapToStart={true}
+            data={users}
+            renderItem={({ item, index }) => (
+              <View
+                style={{
+                  width: Math.min(600, width * 0.9),
+                  padding: 8,
+                  zIndex: -index,
+                }}>
+                <Layout
+                  level="3"
+                  style={[
+                    styles.card,
+                    {
+                      // marginLeft: (width - Math.min(600, width * 0.9)) / 2,
+                      // marginRight: -(width - Math.min(600, width * 0.9)) / 2,
+                    },
+                  ]}>
+                  {touched.includes(index) ? (
+                    <>
+                      <UserActivityOverview
+                        user_id={Number(item?.user_id)}
+                        day={dayjs().tz("America/Chicago").format("YYYY-MM-DD")}
+                      />
+                      <ZeeOpsOverview user_id={Number(item?.user_id)} />
+                    </>
+                  ) : (
+                    <View style={{ height: 200 }} />
+                  )}
+                </Layout>
+              </View>
+            )}
+            ListFooterComponent={
+              <View style={{ width: (width - Math.min(600, width * 0.9)) / 2 }} />
+            }
+            ListHeaderComponent={
+              <View style={{ width: (width - Math.min(600, width * 0.9)) / 2 }} />
+            }
+          />
+        </WheelWrapper>
       </ScrollView>
     </Layout>
   );
 }
+
+const styles = StyleSheet.create({
+  card: { margin: 4, borderRadius: 4 },
+});

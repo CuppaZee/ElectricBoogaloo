@@ -26,6 +26,7 @@
     "@react-navigation/native": "^5.8.9",
     "@react-navigation/stack": "^5.12.6",
     "@types/color": "^3.0.1",
+    "@types/react-native-snap-carousel": "^3.8.2",
     "@ui-kitten/components": "^5.0.0",
     "@ui-kitten/eva-icons": "^5.0.0",
     "@visx/group": "^1.0.0",
@@ -55,9 +56,11 @@
     "react-native-reanimated": "^2.0.0-rc.2",
     "react-native-safe-area-context": "3.1.9",
     "react-native-screens": "~2.15.0",
+    "react-native-snap-carousel": "^3.9.1",
     "react-native-svg": "12.1.0",
     "react-native-unimodules": "~0.12.0",
     "react-native-web": "~0.13.12",
+    "react-native-web-swiper": "^2.1.9",
     "react-query": "^3.3.0"
   },
   "devDependencies": {

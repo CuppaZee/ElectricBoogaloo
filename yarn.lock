@@ -1043,6 +1043,11 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@cuppazee/api@0.0.8":
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/@cuppazee/api/-/api-0.0.8.tgz#38ee721ac7c026ea87328b8bbd4ba112d6c2339e"
+  integrity sha512-Kol/q/I0hfSJS9LxU1zqmPQTV+e+wF17zCobLlHkxAfugVsevTyUuZTH55s7CYZysWNNMvFULyCl1BRa9f4d8Q==
+
 "@cuppazee/types@^0.0.16":
   version "0.0.16"
   resolved "https://registry.yarnpkg.com/@cuppazee/types/-/types-0.0.16.tgz#2b068940fa61c4ee548b0e2aed1c912e38b62371"
@@ -2870,7 +2875,15 @@
   resolved "https://registry.yarnpkg.com/@types/range-parser/-/range-parser-1.2.3.tgz#7ee330ba7caafb98090bece86a5ee44115904c2c"
   integrity sha512-ewFXqrQHlFsgc09MK5jP5iR7vumV/BYayNC6PgJO2LPe8vrnNFyjQjSppfEngITi0qvfKtzFvgKymGheFM9UOA==
 
-"@types/react-native@~0.63.2":
+"@types/react-native-snap-carousel@^3.8.2":
+  version "3.8.2"
+  resolved "https://registry.yarnpkg.com/@types/react-native-snap-carousel/-/react-native-snap-carousel-3.8.2.tgz#31fb91530198183c658db0d23935ca79850419f5"
+  integrity sha512-ItvLo19gQstxcir6wIXJxwohxdYj9t/lXv+MXfqhwMSYaR+Xa3vOP7b6TYQCe9GqDPH3sEgEg/uH6CLV+fhcWA==
+  dependencies:
+    "@types/react" "*"
+    "@types/react-native" "*"
+
+"@types/react-native@*", "@types/react-native@~0.63.2":
   version "0.63.46"
   resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.63.46.tgz#942df5af29046c6f22227495e00d5297cc1cea73"
   integrity sha512-SnBnWRErpISIaWk4K8kAfIKqSPdZ8fdH6HIw7kVdz6jMl/5FAf6iXeIwRfVZg1bCMh+ymNPCpSENNNEVprxj/w==
@@ -11421,6 +11434,14 @@ rc@^1.0.1, rc@^1.1.6:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-addons-shallow-compare@15.6.2:
+  version "15.6.2"
+  resolved "https://registry.yarnpkg.com/react-addons-shallow-compare/-/react-addons-shallow-compare-15.6.2.tgz#198a00b91fc37623db64a28fd17b596ba362702f"
+  integrity sha1-GYoAuR/DdiPbZKKP0XtZa6NicC8=
+  dependencies:
+    fbjs "^0.8.4"
+    object-assign "^4.1.0"
+
 react-dev-utils@~11.0.1:
   version "11.0.1"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-11.0.1.tgz#30106c2055acfd6b047d2dc478a85c356e66fe45"
@@ -11523,6 +11544,14 @@ react-native-screens@~2.15.0:
   resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-2.15.2.tgz#a449700e895b462937211ec72ed6f09652758f06"
   integrity sha512-CagNf2APXkVoRlF3Mugr264FbKbrBg9eXUkqhIPVeZB8EsdS8XPrnt99yj/pzmT+yJMBY0dGrjXT8+68WYh6YQ==
 
+react-native-snap-carousel@^3.9.1:
+  version "3.9.1"
+  resolved "https://registry.yarnpkg.com/react-native-snap-carousel/-/react-native-snap-carousel-3.9.1.tgz#6fd9bd8839546c2c6043a41d2035afbc6fe0443e"
+  integrity sha512-xWEGusacIgK1YaDXLi7Gao2+ISLoGPVEBR8fcMf4tOOJQufutlNwkoLu0l6B8Qgsrre0nTxoVZikRgGRDWlLaQ==
+  dependencies:
+    prop-types "^15.6.1"
+    react-addons-shallow-compare "15.6.2"
+
 react-native-svg@12.1.0:
   version "12.1.0"
   resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-12.1.0.tgz#acfe48c35cd5fca3d5fd767abae0560c36cfc03d"
@@ -11555,6 +11584,13 @@ react-native-unimodules@~0.12.0:
     unimodules-permissions-interface "~5.4.0"
     unimodules-sensors-interface "~5.4.0"
     unimodules-task-manager-interface "~5.4.0"
+
+react-native-web-swiper@^2.1.9:
+  version "2.1.9"
+  resolved "https://registry.yarnpkg.com/react-native-web-swiper/-/react-native-web-swiper-2.1.9.tgz#47827a18544f4c167e22704ceee1abeebaa013dd"
+  integrity sha512-/gA4+iMWqrFsvPODswyH4T85QrZZASBgyDF1XB0VJG3DKBLSzrgOiZoCEKC7SHtkXr8p3y/L2UYbou01ocEB+g==
+  dependencies:
+    prop-types "^15.6.2"
 
 react-native-web@~0.13.12:
   version "0.13.18"
