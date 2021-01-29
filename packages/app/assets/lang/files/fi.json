@@ -1,0 +1,27 @@
+{
+  "pages": {
+    "dashboard_dashboard": "kojelauta",
+    "user_profile": "",
+    "user_activity": "Aktiviteetit",
+    "user_inventory": "Omistuksesi",
+    "user_zeeops": "",
+    "user_clan_progress": "Edistymisesi klaanissa",
+    "user_bouncers": "Pomppijat",
+    "user_blast_checker": "Pommitarkastin",
+    "user_qrew_checker": "QRew-tarkastin",
+    "user_universal_capper": "",
+    "user_challenges": "Haasteet",
+    "clan_requirements": "Klaanivaatimukset",
+    "tools_bouncers": "Pomppijat",
+    "tools_munzee_types": "Munzee tyypit",
+    "tools_calendar": "Kalenteri",
+    "tools_evo_planner": "Evojen kehitys",
+    "tools_search": "Etsi",
+    "settings_personalisation": "",
+    "settings_notifications": "Ilmoitukset",
+    "settings_accounts": "",
+    "settings_bookmarks": "",
+    "tools_credits": "Crediitit",
+    "tools_open_source": ""
+  }
+}

@@ -1,9 +1,9 @@
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { Layout, ViewPager } from "@ui-kitten/components";
+import { Layout, Text, ViewPager } from "@ui-kitten/components";
 import dayjs from "dayjs";
 import * as React from "react";
-import { FlatList, Platform, ScrollView, StyleSheet, View } from "react-native";
+import { FlatList, Image, Platform, ScrollView, StyleSheet, View } from "react-native";
 import UserActivityOverview from "../components/Activity/Overview";
 import ZeeOpsOverview from "../components/ZeeOps/Overview";
 import { useUserBookmarks } from "../hooks/useBookmarks";
@@ -31,11 +31,10 @@ export default function DashboardScreen() {
   const [size, onLayout] = useComponentSize();
   const width = size?.width ?? 0;
   useTitle(`☕ Dashboard`);
-  if (users.length === 0) return null;
   return (
     <Layout onLayout={onLayout} style={{ flex: 1 }}>
       <ScrollView style={{ flex: 1 }}>
-        <WheelWrapper
+        {users.length > 0 && <WheelWrapper
           onWheel={ev => {
             scrollRef.current?.scrollToOffset({
               offset:
@@ -84,6 +83,10 @@ export default function DashboardScreen() {
                       // marginRight: -(width - Math.min(600, width * 0.9)) / 2,
                     },
                   ]}>
+                  <View style={{ flexDirection: "row", alignItems: "center", padding: 4 }}>
+                    <Image style={{ height: 32, width: 32, borderRadius: 16, marginRight: 8 }} source={{ uri: `https://munzee.global.ssl.fastly.net/images/avatars/ua${Number(item.user_id).toString(36)}.png` }} />
+                    <Text category="h6">{item.username}</Text>
+                  </View>
                   {touched.includes(index) ? (
                     <>
                       <UserActivityOverview
@@ -93,8 +96,8 @@ export default function DashboardScreen() {
                       <ZeeOpsOverview user_id={Number(item?.user_id)} />
                     </>
                   ) : (
-                    <View style={{ height: 200 }} />
-                  )}
+                      <View style={{ height: 200 }} />
+                    )}
                 </Layout>
               </View>
             )}
@@ -105,7 +108,7 @@ export default function DashboardScreen() {
               <View style={{ width: (width - Math.min(600, width * 0.9)) / 2 }} />
             }
           />
-        </WheelWrapper>
+        </WheelWrapper>}
       </ScrollView>
     </Layout>
   );

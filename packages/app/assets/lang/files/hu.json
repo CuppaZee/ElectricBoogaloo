@@ -1,0 +1,24 @@
+{
+  "pages": {
+    "dashboard_dashboard": "Műszerfal",
+    "user_profile": "",
+    "user_activity": "Aktivitás",
+    "user_inventory": "Készletem",
+    "user_zeeops": "",
+    "user_clan_progress": "Klán fejlődés",
+    "user_bouncers": "Ugrálók",
+    "user_universal_capper": "",
+    "user_challenges": "Kihívások",
+    "clan_requirements": "Klán követelmények",
+    "tools_bouncers": "Ugrálók",
+    "tools_munzee_types": "Munzee típusok",
+    "tools_calendar": "Naptár",
+    "tools_search": "Keresés",
+    "settings_personalisation": "",
+    "settings_notifications": "Értesítések",
+    "settings_accounts": "",
+    "settings_bookmarks": "",
+    "tools_credits": "Kreditek",
+    "tools_open_source": ""
+  }
+}

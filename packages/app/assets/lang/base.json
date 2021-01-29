@@ -1,0 +1,27 @@
+{
+  "pages": {
+    "dashboard_dashboard": "$common.dashboard",
+    "user_profile": "Profile",
+    "user_activity": "$user.activity",
+    "user_inventory": "$user.inventory",
+    "user_zeeops": "ZeeOps",
+    "user_clan_progress": "$user.clan_progress",
+    "user_bouncers": "$common.bouncers",
+    "user_blast_checker": "$user.blast_checker",
+    "user_qrew_checker": "$user.qrew_checker",
+    "user_universal_capper": "Universal Capper",
+    "user_challenges": "$user.challenges",
+    "clan_requirements": "$screens.ClanRequirements",
+    "tools_bouncers": "$common.bouncers",
+    "tools_munzee_types": "$common.munzee_types",
+    "tools_calendar": "$common.calendar",
+    "tools_evo_planner": "$common.evo_planner",
+    "tools_search": "$common.search",
+    "settings_personalisation": "Personalisation",
+    "settings_notifications": "$common.notifications",
+    "settings_accounts": "Accounts",
+    "settings_bookmarks": "Bookmarks",
+    "tools_credits": "$common.credits",
+    "tools_open_source": "Open Source"
+  }
+}

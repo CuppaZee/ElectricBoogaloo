@@ -1,0 +1,27 @@
+{
+  "pages": {
+    "dashboard_dashboard": "Tableau de bord",
+    "user_profile": "",
+    "user_activity": "Activité",
+    "user_inventory": "Inventaire",
+    "user_zeeops": "",
+    "user_clan_progress": "Progression du clan",
+    "user_bouncers": "Bouncers",
+    "user_blast_checker": "",
+    "user_qrew_checker": "",
+    "user_universal_capper": "",
+    "user_challenges": "Défis",
+    "clan_requirements": "Exigences du Clan",
+    "tools_bouncers": "Bouncers",
+    "tools_munzee_types": "Types de Munzees",
+    "tools_calendar": "Calendrier",
+    "tools_evo_planner": "",
+    "tools_search": "Recherche",
+    "settings_personalisation": "",
+    "settings_notifications": "Notifications",
+    "settings_accounts": "",
+    "settings_bookmarks": "",
+    "tools_credits": "Crédits",
+    "tools_open_source": ""
+  }
+}

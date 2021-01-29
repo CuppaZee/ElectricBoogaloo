@@ -1,0 +1,433 @@
+{
+    "common": {
+        "dashboard": "Dashboard",
+        "search": "Search",
+        "map": "Map",
+        "tools": "Tools",
+        "settings": "Settings",
+        "authenticate": "Authenticate",
+        "auth_success": "Authentication Successful",
+        "scanner": "Scanner",
+        "maps": "Maps",
+        "credits": "Credits",
+        "app_info": "App Info",
+        "donate": "Donate",
+        "build_info": "CuppaZee App Build {count}",
+        "user": {
+            "one": "User",
+            "other": "Users"
+        },
+        "clan": {
+            "one": "Clan",
+            "other": "Clans"
+        },
+        "more": "More",
+        "find_user": "Find a User",
+        "munzee_types": "Munzee Types",
+        "show_more": "Show More",
+        "show_less": "Show Less",
+        "help": "Help",
+        "users": "Users",
+        "calendar": "Calendar",
+        "bouncers": "Bouncers",
+        "notifications": "Notifications",
+        "contact": {
+            "facebook": "You can contact us via Facebook",
+            "email": "or email us at support@cuppazee.app"
+        },
+        "clans": "Clans",
+        "logging_in": "Logging in...",
+        "evo_planner": "Evo Planner",
+        "weekly_challenge": "Weekly Challenge"
+    },
+    "activity": {
+        "user_captured": "{user} captured",
+        "user_deployed": "{user} deployed",
+        "you_captured": "You captured",
+        "you_deployed": "You deployed",
+        "by_user": "by {user}",
+        "by_you": "by you",
+        "total_point": {
+            "one": "{count} Total Point",
+            "other": "{count} Total Points"
+        },
+        "capture": {
+            "one": "{count} Capture",
+            "other": "{count} Captures"
+        },
+        "deploy": {
+            "one": "{count} Deploy",
+            "other": "{count} Deploys"
+        },
+        "capon": {
+            "one": "{count} Capon",
+            "other": "{count} Capons"
+        },
+        "point": {
+            "one": "{count} Point",
+            "other": "{count} Points"
+        },
+        "none": "None",
+        "user_today": "{user} Today",
+        "user_renovated": "{user} renovated your Motel",
+        "you_renovated": "You renovated a Motel",
+        "renovation": {
+            "one": "{count} Renovation",
+            "other": "{count} Renovations"
+        },
+        "renovon": {
+            "one": "{count} Renov-on",
+            "other": "{count} Renov-ons"
+        },
+        "filters": {
+            "update": "Update Filters",
+            "activity": "Activity",
+            "state": "State",
+            "category": "Category"
+        }
+    },
+    "user": {
+        "level_n": "Level {level}",
+        "rank_n": "Rank #{rank}",
+        "points": {
+            "one":"{n} Point",
+            "other":"{n} Points"
+        },
+        "inventory": "Inventory",
+        "your_bouncers": "Your Bouncers",
+        "clan_progress": "Clan Progress",
+        "quebec_quest_progress": "Quebec Quest Progress",
+        "special_hunter_challenge": "Special Hunter Challenge",
+        "captured_types": "Captured Types",
+        "activity": "Activity",
+        "clan_stats": "Clan Stats",
+        "clan_progress_desc": "See what level you can reach!",
+        "clan_info": "Clan War Info FB Group",
+        "clan_info_desc": "A great place to find a clan or ask questions!",
+        "challenges": "Challenges",
+        "sh_lite": "Special Hunter Lite",
+        "sh_pro": "Special Hunter Pro",
+        "blast_checker": "Blast Checker",
+        "qrew_checker": "QRew Checker",
+        "poi_challenge": "POI Challenge",
+        "colour_challenge": "Colour Challenge",
+        "your_clan": "Your Clan",
+        "no_clan": "You're not in a Clan",
+        "no_clan_desc": "View your Progress Below"
+    },
+    "inventory": {
+        "undeployed": "Undeployed",
+        "credits": "Credits",
+        "history": "History",
+        "unknown_name": "Unknown Name"
+    },
+    "app_info": {
+        "credits": "Credits",
+        "primary_developer": "Primary Developer",
+        "translators": "Translators",
+        "database_contributors": "Database Contributors",
+        "patrons_and_supporters": "Patrons and Supporters",
+        "build_n": "Build {build}",
+        "patreon_donate": "Monthly via Patreon",
+        "paypal_donate": "One-Time via PayPal",
+        "kofi_donate": "One-Time via Ko-Fi",
+        "paypal_donate_desc": "PayPal donations can be sent to donate@cuppazee.app",
+        "custom_titles": {
+            "code": "Code Contributor",
+            "primary_dev": "Primary Developer",
+            "finnish": "Finnish",
+            "dutch": "Dutch",
+            "german": "German",
+            "hungarian": "Hungarian",
+            "swedish": "Swedish",
+            "french": "French",
+            "czech": "Czech",
+            "danish": "Danish",
+            "portugese": "Portugese",
+            "lithuanian": "Lithuanian"
+        }
+    },
+    "your_bouncers": {
+        "capture": {
+            "one": "{count} Capture",
+            "other": "{count} Captures"
+        },
+        "last_captured": "Last Captured: {time}",
+        "in_limbo": "Taking a Rest",
+        "host": "At {munzee} by {username}"
+    },
+    "calendar": {
+        "days": {
+            "monday": "M",
+            "tuesday": "T",
+            "wednesday": "W",
+            "thursday": "T",
+            "friday": "F",
+            "saturday": "S",
+            "sunday": "S"
+        },
+        "off": "Off"
+    },
+    "clan": {
+        "requirements": "Requirements",
+        "rewards": "Rewards",
+        "individual": "Individual",
+        "group": "Group",
+        "level_n": "Level {level}",
+        "shadow": "Shadow Clan",
+        "goal": "Goal",
+        "view": {
+            "subtract": "Subtract View",
+            "total": "Total View"
+        },
+        "share": "Share",
+        "indiv": "Indiv",
+        "group_total": "Group Total",
+        "level": {
+            "one": "Level",
+            "other": "Levels"
+        },
+        "rank": "Rank #{rank}",
+        "players": {
+            "one": "{count} Player",
+            "other": "{count} Players"
+        }
+    },
+    "search": {
+        "clan": "Search for a Clan",
+        "type": "Search for a Munzee Type",
+        "empty": "No Results :(",
+        "user": "Search for a User"
+    },
+    "db": {
+        "go_back": "Go Back",
+        "types_search": "Types Search",
+        "category": "Category",
+        "type": {
+            "info": "Icon: {icon} - ID: {id}",
+            "evo": "Evolution Stages",
+            "pouch": "Pouch Creature Stages",
+            "can_host": "Can Host",
+            "lands_on": "Lands On",
+            "hosts": "Hosts",
+            "possible_types": "Possible Types",
+            "possible_hosts": "Possible Hosts",
+            "host_types": "Hosted By",
+            "points": "Points",
+            "capture": "Capture",
+            "capon": "Capon",
+            "deploy": "Deploy",
+            "split": "Cap/Capon Split",
+            "split_val": "{split} (Min {min})"
+        },
+        "type_info": "Type Info"
+    },
+    "auth": {
+        "add": "Add a new User",
+        "welcome": "Welcome to CuppaZee",
+        "tap": "Tap below to log in"
+    },
+    "shc": {
+        "lite": {
+            "tob": "AlternaMyth or Escaped PC",
+            "nomad": "Nomad or RetireMyth",
+            "myth_1": "Original or Classical Myth",
+            "myth_2": "Mirror or Modern Myth",
+            "pc_1": "Pouch Creature S1",
+            "pc_2": "Pouch Creature S2",
+            "flat": "Fancy Flat",
+            "temp": "Evo Bouncer / tPOB",
+            "scatter": "Scatter"
+        },
+        "pro": {
+            "tob": "AlternaMyth or Escaped PC",
+            "nomad": "Nomad",
+            "retire": "RetireMyth",
+            "myth_1": "Original Myth",
+            "myth_2": "Classical Myth",
+            "myth_3": "Mirror Myth",
+            "myth_4": "Modern Myth",
+            "pc_1": "Pouch Creature S1",
+            "pc_2": "Pouch Creature S2",
+            "pc_fun": "Funfinity Stone",
+            "flat": "Fancy Flat",
+            "temp": "Evo Bouncer / tPOB",
+            "pscatter": "Physical Scatter",
+            "vscatter": "Virtual Scatter"
+        }
+    },
+    "notifications": {
+        "munzee_blog": "Munzee Blog",
+        "save": "Save",
+        "unavailable_web": "Notifications are unavailable on Web",
+        "unavailable_generic": "Notifications are unavailable. Did you accept the permissions?"
+    },
+    "settings": {
+        "add_user": "Add User",
+        "update": "Force Update",
+        "theme": "Theme: {name}",
+        "language": "Language: {name}",
+        "logout": "Logout",
+        "save": "Save Settings"
+    },
+    "bouncers": {
+        "duration": "Duration: {duration}"
+    },
+    "scanner": {
+        "scan_new": "Scan New Munzee",
+        "munzee": "{name} by {username}",
+        "type": "Type: {type}"
+    },
+    "quest": {
+        "task_1": "Mystery Caps/Deps",
+        "task_2": "Evo Caps/Deps",
+        "task_3": "Weapon Caps/Deps",
+        "task_4": "Jewel Caps/Deps",
+        "task_5": "Capture /m/XeresDan/1707",
+        "task_6": "Flat Friend Deps",
+        "task_7": "Destination Caps/Deps",
+        "task_8": "Bouncer Caps",
+        "task_9": "Flat Friend Caps/Deps",
+        "task_10": "Capture \"/m/GPSmAQ/1\""
+    },
+    "themes": {
+        "black": "Black",
+        "blue": "Blue",
+        "bluegrey": "Blue Grey",
+        "darkblue": "Dark Blue",
+        "green": "Green",
+        "grey": "Grey",
+        "purple": "Purple",
+        "white": "White"
+    },
+    "screens": {
+        "_redirect": "_redirect",
+        "Map": "Map",
+        "Tools": "Tools",
+        "Settings": "Settings",
+        "Notifications": "Notifications",
+        "Info": "Info",
+        "Scanner": "Scanner",
+        "Calendar": "Calendar",
+        "Bouncers": "Bouncers",
+        "BouncerMap": "Bouncer Map",
+        "MunzeeDetails": "Munzee Details",
+        "MunzeeDetailsID": "Munzee Details",
+        "AllClans": "All Clans",
+        "ClanRequirements": "Clan Requirements",
+        "ClanSearch": "Clan Search",
+        "Clan": "Clan Stats",
+        "UserSearch": "User Search",
+        "UserDetails": "User Details",
+        "UserActivity": "Activity",
+        "UserInventory": "Inventory",
+        "UserClan": "Clan Progress",
+        "UserQuest": "Quest Progress",
+        "UserCapturesCategory": "Captures Category",
+        "UserSHCPro": "SHC Pro",
+        "UserSHCLite": "SHC Lite",
+        "UserSHC": "SHC Classic",
+        "UserPOI": "POI Challenge",
+        "UserColour": "Colour Challenge",
+        "UserBouncers": "User Bouncers",
+        "UserQRew": "QRew Checker",
+        "UserBlast": "Blast Checker",
+        "UserBlastMap": "Blast Checker",
+        "DBType": "Database Type",
+        "DBSearch": "Database Search",
+        "DBCategory": "Database Category",
+        "Auth": "Authenticate",
+        "WeeklyWeeks": "Weekly Challenge",
+        "WeeklyLeaderboard": "Weekly Leaderboard",
+        "AllUsers": "All Users"
+    },
+    "changelog": {
+        "build_n": "Build {n}",
+        "continue": "Continue to CuppaZee",
+        "continue_and_agree": "Agree and Continue to CuppaZee",
+        "no_changelog": "No Changelog"
+    },
+    "clan_req": {
+        "Captures": "Captures",
+        "Points": "Points",
+        "Deploys": "Deploys",
+        "Activity": "Activity",
+        "Days of": "Days of",
+        "Total": "Total",
+        "Renovate": "Renovate"
+    },
+    "weekly": {
+        "ended_at": "Ended at {time}",
+        "starts_at": "Starts at {time}",
+        "ends_at": "Ends at {time}",
+        "results_at": "Results at {time}",
+        "points": {
+            "one": "{count} Pt",
+            "other": "{count} Pts"
+        },
+        "week": "Week {n}",
+        "status": {
+            "comingsoon": "Not Started Yet",
+            "preparing": "Preparing",
+            "ongoing": "Ongoing",
+            "resultssoon": "Calculating Results",
+            "finalresults": "Final Results"
+        }
+    },
+    "qrew": {
+        "check_time": "Checking Eligibility for Next Check",
+        "captures": "Captures",
+        "deploys": "Deploys",
+        "premium": "Premium",
+        "physical_captures": "Physical Captures",
+        "physical_deploys": "Physical Deploys",
+        "total_points": "Total Points",
+        "recent_capture": "Recent Capture",
+        "recent_deploy": "Recent Deploy",
+        "no_capture": "No Capture from {from} to {to}",
+        "no_deploy": "No Deploy from {from} to {to}"
+    },
+    "evo_planner": {
+        "days": {
+            "one": "{count} Day",
+            "other": "{count} Days"
+        },
+        "stage": "Stage {n}",
+        "types": {
+            "original": "3 Stages (eg. Farm, Education)",
+            "nature": "5 Stages (eg. Carnation, Rose)",
+            "bouncer": "5 Stages (eg. Butterfly, Turtle)"
+        }
+    },
+    "blast_checker": {
+        "types": {
+            "mini": "Mini",
+            "normal": "Normal",
+            "mega": "Mega"
+        },
+        "blast": "Blast {n}",
+        "munzees": {
+            "one": "{count} Munzee",
+            "other": "{count} Munzees"
+        },
+        "points": "{min} - {max} Points",
+        "average": "Avg. {avg}",
+        "type_points": "{min} - {max} (Avg. {avg}) Points"
+    },
+    "error": {
+        "cuppazee_503": "Sorry, this feature is temporarily disabled. Check back later.",
+        "cuppazee_5xx": "Oops, CuppaZee's servers responsed with an error. Try again later.",
+        "cuppazee_404": "Oops, CuppaZee's servers couldn't figure out what you wanted. Try again later.",
+        "cuppazee_generic": "Oops, something went wrong when requesting data from CuppaZee's servers. Try again later.",
+        "munzee_api_5xx": "Oops, Munzee's servers responsed with an error. Try again later.",
+        "munzee_api_404": "Oops, Munzee's servers couldn't figure out what you wanted. Try again later.",
+        "munzee_api_generic": "Oops, something went wrong when requesting data from Munzee's servers. Try again later.",
+        "need_reauth": "Oops, It looks like your authentication may have expired. Please login in again by pressing \"Add User\" on the settings page.",
+        "missing_login": "Oops, this user needs to log into CuppaZee for this feature to work!",
+        "missing_data": {
+            "user": "Oops, it looks like this user doesn't exist.",
+            "locked": "Oops, you need to log in as this user to access this feature."
+        },
+        "page_load": "Oops, it looks like this page failed to load. Try reloading the app/webpage."
+    }
+}

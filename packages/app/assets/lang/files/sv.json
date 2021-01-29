@@ -1,0 +1,24 @@
+{
+  "pages": {
+    "dashboard_dashboard": "Instrumentpanel",
+    "user_profile": "",
+    "user_activity": "Aktivitet",
+    "user_inventory": "",
+    "user_zeeops": "",
+    "user_clan_progress": "Klanens framsteg",
+    "user_bouncers": "Hoppare",
+    "user_universal_capper": "",
+    "user_challenges": "Utmaningar",
+    "clan_requirements": "",
+    "tools_bouncers": "Hoppare",
+    "tools_munzee_types": "Munzeetyper",
+    "tools_calendar": "Kalender",
+    "tools_search": "Sök\n",
+    "settings_personalisation": "",
+    "settings_notifications": "",
+    "settings_accounts": "",
+    "settings_bookmarks": "",
+    "tools_credits": "Samverkande",
+    "tools_open_source": ""
+  }
+}

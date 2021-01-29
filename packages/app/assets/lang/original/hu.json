@@ -1,0 +1,326 @@
+{
+    "common": {
+        "dashboard": "Műszerfal",
+        "search": "Keresés",
+        "map": "Térkép",
+        "tools": "Eszközök",
+        "settings": "Beállítások",
+        "authenticate": "Hitelesítés",
+        "auth_success": "Sikeres hitelesítés",
+        "scanner": "Szkenner",
+        "maps": "Térképek",
+        "credits": "Kreditek",
+        "app_info": "App infó",
+        "donate": "Adományozás",
+        "build_info": "CuppaZee App Build {count}",
+        "user": {
+            "one": "Felhasználó",
+            "other": "Felhasználó"
+        },
+        "clan": {
+            "one": "Klán",
+            "other": "Klánok"
+        },
+        "more": "Több",
+        "find_user": "Felhasználó keresése",
+        "munzee_types": "Munzee típusok",
+        "show_more": "Több",
+        "show_less": "Kevesebb",
+        "help": "Segítség",
+        "users": "Felhasználók",
+        "calendar": "Naptár",
+        "bouncers": "Ugrálók",
+        "notifications": "Értesítések",
+        "contact": {
+            "facebook": "Kapcsolatba léphetsz velünk Facebook-on",
+            "email": "vagy írj emailt a support@cuppazee.app címre."
+        },
+        "clans": "Klánok",
+        "logging_in": "Bejelentkezés folyamtban"
+    },
+    "activity": {
+        "user_captured": "{user} megtalálta",
+        "user_deployed": "{user} telepítette",
+        "you_captured": "Megtaláltad",
+        "you_deployed": "Telepítetted",
+        "by_user": ":",
+        "by_you": "Saját",
+        "total_point": {
+            "one": "{count} Össz pont\n",
+            "other": "{count} Össz pont"
+        },
+        "capture": {
+            "one": "{count} Megtalálás",
+            "other": "{count} Megtalálás"
+        },
+        "deploy": {
+            "one": "{count} Telepítés",
+            "other": "{count} Telepítés"
+        },
+        "capon": {
+            "one": "{count} Capon",
+            "other": "{count} Capon"
+        },
+        "point": {
+            "one": "{count} Pont",
+            "other": "{count} Pont"
+        },
+        "none": "Nincs",
+        "user_today": "Ma",
+        "user_renovated": "{user} felújította a moteled.",
+        "you_renovated": "Felújítottál egy motelt.",
+        "renovation": {
+            "one": "{count} felújítás",
+            "other": "{count} felújítás"
+        },
+        "renovon": {
+            "one": "{count} Renov-on",
+            "other": "{count} Renov-on"
+        }
+    },
+    "user": {
+        "level_n": "Szint",
+        "rank_n": "Helyezés",
+        "inventory": "Készletem",
+        "your_bouncers": "Saját ugrálók",
+        "clan_progress": "Klán fejlődés",
+        "quebec_quest_progress": "Quebec kihívás",
+        "special_hunter_challenge": "Vadászat a speciálisokra kihívás",
+        "captured_types": "Megtalált típusok",
+        "activity": "Aktivitás",
+        "clan_stats": "Klán statisztika",
+        "clan_progress_desc": "Nézd meg milyen szintet érhetsz el!",
+        "clan_info": "Klán hard információs FB Csoport",
+        "clan_info_desc": "Nagyszerű hely, hogy találj magadnak egy klánt, vagy hogy a kérdéseidre választ kapj.",
+        "challenges": "Kihívások",
+        "sh_lite": "Vadászat a speciálisokra light verzió",
+        "sh_pro": "Vadászat a speciálisokra pro verzió",
+        "your_clan": "Saját klánod",
+        "no_clan": "Nem vagy klán tagja",
+        "no_clan_desc": ""
+    },
+    "inventory": {
+        "undeployed": "Nem telepített munzee-k",
+        "credits": "Kreditek",
+        "history": "Történet",
+        "unknown_name": "Ismeretlen név"
+    },
+    "app_info": {
+        "credits": "Közreműködők",
+        "primary_developer": "Vezető fejlesztő",
+        "translators": "Fordítók",
+        "database_contributors": "Adatbázis-közreműködők",
+        "patrons_and_supporters": "Mecénások és támogatók",
+        "build_n": "Build",
+        "patreon_donate": "Havi adomány a Patreon-on keresztül",
+        "paypal_donate": "Egyszeri PayPal adomány",
+        "paypal_donate_desc": "Paypal adományokat a donate@cuppazee.app címre tudsz küldeni",
+        "custom_titles": {
+            "primary_dev": "Elsődleges fejlesztő",
+            "finnish": "Finn",
+            "dutch": "Holland",
+            "german": "Német",
+            "hungarian": "Magyar",
+            "swedish": "Svéd",
+            "french": "Francia",
+            "czech": "Cseh",
+            "danish": "Dán",
+            "portugese": "Portugál",
+            "lithuanian": "Litván"
+        }
+    },
+    "your_bouncers": {
+        "capture": {
+            "one": "Megtalálás",
+            "other": "Megtalálás"
+        },
+        "last_captured": "Legutoljára megtalálva:",
+        "in_limbo": "Pihen",
+        "host": "{munzee}-n, telepítette: {username}"
+    },
+    "calendar": {
+        "days": {
+            "monday": "H",
+            "tuesday": "K",
+            "wednesday": "Sze",
+            "thursday": "Cs",
+            "friday": "P",
+            "saturday": "Szo",
+            "sunday": "V"
+        },
+        "off": "Kikapcsolás"
+    },
+    "clan": {
+        "requirements": "Követelmények",
+        "rewards": "Jutalmak",
+        "individual": "Egyéni",
+        "group": "Csoportos",
+        "level_n": "Szint {level}",
+        "shadow": "",
+        "goal": "Cél",
+        "view": {
+            "subtract": "",
+            "total": "Teljes nézet"
+        },
+        "share": "Megosztás",
+        "indiv": "Egyéni",
+        "group_total": "Klán összesen",
+        "level": {
+            "one": "Szint",
+            "other": "Szint"
+        },
+        "rank": "Helyezés #{rank}",
+        "players": {
+            "one": "{count} Játékos",
+            "other": "{count} Játékos"
+        }
+    },
+    "search": {
+        "clan": "Klán keresése",
+        "type": "Munzee típus keresése",
+        "empty": "Nincs eredmény :(",
+        "user": "Felhasználó keresése"
+    },
+    "db": {
+        "go_back": "Vissza",
+        "types_search": "Típus keresése",
+        "category": "Kategória",
+        "type": {
+            "info": "Ikon: {icon} - ID: {id}",
+            "evo": "Evolúciós szintek",
+            "pouch": "Zseb lény szintek",
+            "can_host": "",
+            "lands_on": "",
+            "hosts": "",
+            "possible_types": "",
+            "possible_hosts": "",
+            "host_types": ""
+        },
+        "type_info": ""
+    },
+    "auth": {
+        "add": "Új felhasználó hozzáadása",
+        "welcome": "Üdvözlünk a CuppaZee-n",
+        "tap": "A bejelentkezéshez kattints alább"
+    },
+    "shc": {
+        "lite": {
+            "tob": "",
+            "nomad": "Nomád vagy yyugdíjs mitológiai",
+            "myth_1": "Eredeti vagy klassikus mitológiai",
+            "myth_2": "",
+            "pc_1": "Zseb lény S1",
+            "pc_2": "Zseb lény S2",
+            "flat": "",
+            "temp": "",
+            "scatter": ""
+        },
+        "pro": {
+            "tob": "",
+            "nomad": "Nomád\n",
+            "retire": "Nyugdíjas mitológiai",
+            "myth_1": "Eredeti Mitológiai\n",
+            "myth_2": "Klasszikus mitológiai",
+            "myth_3": "Tükör Mitologóiai",
+            "myth_4": "Modern mitológiai",
+            "pc_1": "Zseb lény S1",
+            "pc_2": "Zseb lény S2",
+            "pc_fun": "",
+            "flat": "",
+            "temp": "",
+            "pscatter": "",
+            "vscatter": ""
+        }
+    },
+    "notifications": {
+        "munzee_blog": "Munzee Blog",
+        "save": "Mentés",
+        "unavailable_web": "Az értesítések nem érhetők el a Weben.",
+        "unavailable_generic": "Az értesítések nem elérhetők. Elfogadtad az engedélyeket?"
+    },
+    "settings": {
+        "add_user": "Felhasználó hozzáadása",
+        "update": "Frissítés kényszerítése",
+        "theme": "Téma: {name}",
+        "language": "Nyelv: {name}",
+        "logout": "Kijelentkezés",
+        "save": "Beállítások mentése"
+    },
+    "bouncers": {
+        "duration": "Időtartam: {duration}"
+    },
+    "scanner": {
+        "scan_new": "Új Munzee beolvasása",
+        "munzee": "{name} : {username}",
+        "type": "Típus"
+    },
+    "quest": {
+        "task_1": "",
+        "task_2": "Evo megtalálás/telepítés",
+        "task_3": "Fegyvert megtalálás/telepítés",
+        "task_4": "Ékszer Beolvasás/Telepítés",
+        "task_5": "",
+        "task_6": "",
+        "task_7": "",
+        "task_8": "Ugráló megtalálás",
+        "task_9": "",
+        "task_10": ""
+    },
+    "themes": {
+        "black": "Fekete",
+        "blue": "Kék",
+        "bluegrey": "Kékes szürke",
+        "darkblue": "Sötét kék",
+        "green": "Zöld",
+        "grey": "Szürke",
+        "purple": "Lila",
+        "white": "Fehér"
+    },
+    "screens": {
+        "_redirect": "_átirányítás",
+        "Map": "Térkép",
+        "Tools": "Eszközök",
+        "Settings": "Beállítások",
+        "Notifications": "Értesítések",
+        "Info": "Infó",
+        "Scanner": "Szkenner",
+        "Calendar": "Naptár",
+        "Bouncers": "Ugrálók",
+        "BouncerMap": "Ugráló térkép",
+        "MunzeeDetails": "Munzee részletek",
+        "MunzeeDetailsID": "Munzee részletek",
+        "AllClans": "Minden klán",
+        "ClanRequirements": "Klán követelmények",
+        "ClanSearch": "Klán keresése",
+        "Clan": "Klán statisztika",
+        "UserSearch": "Felhasználó keresés",
+        "UserDetails": "Felhasználói adatok",
+        "UserActivity": "Aktivitás",
+        "UserInventory": "Készletem",
+        "UserClan": "Klán haladás",
+        "UserQuest": "",
+        "UserCapturesCategory": "Megtalálás kategória",
+        "UserSHCPro": "SHC Pro",
+        "UserSHCLite": "SHC Lite",
+        "UserSHC": "SHC Klasszikus",
+        "UserBouncers": "Felhasználó ugrálók",
+        "DBType": "Adatbázis típus",
+        "DBSearch": "Adatbázis keresés",
+        "DBCategory": "Adatbázis kategória",
+        "Auth": "Hitelesítés"
+    },
+    "changelog": {
+        "build_n": "Build {n}",
+        "continue": "Tovább a CuppaZee-re",
+        "no_changelog": "Nincsen változás"
+    },
+    "clan_req": {
+        "Captures": "Megtalálás",
+        "Points": "Pont",
+        "Deploys": "Telepítés",
+        "Activity": "Aktivitás",
+        "Days of": "Napok",
+        "Total": "Össz",
+        "Renovate": "Renoválás"
+    }
+}

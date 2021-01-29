@@ -1,0 +1,24 @@
+{
+  "pages": {
+    "dashboard_dashboard": "Oversigt",
+    "user_profile": "",
+    "user_activity": "Aktivitet",
+    "user_inventory": "Beholdning",
+    "user_zeeops": "",
+    "user_clan_progress": "Klan-fremskridt",
+    "user_bouncers": "Springere",
+    "user_universal_capper": "",
+    "user_challenges": "Udfordringer",
+    "clan_requirements": "Klan-krav",
+    "tools_bouncers": "Springere",
+    "tools_munzee_types": "Munzee-typer",
+    "tools_calendar": "Kalender",
+    "tools_search": "Søg",
+    "settings_personalisation": "",
+    "settings_notifications": "Notifikationer",
+    "settings_accounts": "",
+    "settings_bookmarks": "",
+    "tools_credits": "Anerkendelser",
+    "tools_open_source": ""
+  }
+}

@@ -35,7 +35,10 @@ export function useUserBookmarks() {
     if (!user.loaded) {
       AsyncStorage.getItem("USER_BOOKMARKS").then((data) => {
         setUser({
-          data: JSON.parse(data || "[]"),
+          data: JSON.parse(
+            data ||
+              `[{"user_id":"125914","username":"sohcah"},{"user_id":"234392","username":"AmyJoy"},{"user_id":"51311","username":"Thegenie18"}]`
+          ),
           loaded: true,
         });
       });

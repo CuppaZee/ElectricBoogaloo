@@ -1,0 +1,424 @@
+{
+    "common": {
+        "dashboard": "Dashboard\n",
+        "search": "Zoeken",
+        "map": "Kaart",
+        "tools": "Tools",
+        "settings": "Opties",
+        "authenticate": "Autorisatie",
+        "auth_success": "Autorisatie is succesvol",
+        "scanner": "Scanner",
+        "maps": "Maps",
+        "credits": "Credits",
+        "app_info": "App Info",
+        "donate": "Doneren",
+        "build_info": "CuppaZee App Versie {count}",
+        "user": {
+            "one": "Speler",
+            "other": "Spelers"
+        },
+        "clan": {
+            "one": "Clan",
+            "other": "Clans"
+        },
+        "more": "Meer",
+        "find_user": "Vind een speler",
+        "munzee_types": "Soorten Munzee",
+        "show_more": "Laat meer zien",
+        "show_less": "Laat minder zien",
+        "help": "Help",
+        "users": "Spelers",
+        "calendar": "Kalender",
+        "bouncers": "Bouncers",
+        "notifications": "Notificaties",
+        "contact": {
+            "facebook": "Je kunt ons bereiken via Facebook",
+            "email": "of mail ons via support@cuppazee.app"
+        },
+        "clans": "Clans",
+        "logging_in": "Inloggen...",
+        "evo_planner": "Evo Planner",
+        "weekly_challenge": "Wekelijkse Challenge"
+    },
+    "activity": {
+        "user_captured": "{user} captured",
+        "user_deployed": "{user} deployed",
+        "you_captured": "Je hebt captured",
+        "you_deployed": "Je hebt deployed",
+        "by_user": "door {user}",
+        "by_you": "door jou",
+        "total_point": {
+            "one": "{count} Totaal aantal punten",
+            "other": "{count} Totaal aantal punten"
+        },
+        "capture": {
+            "one": "{count} Capture",
+            "other": "{count} Captures"
+        },
+        "deploy": {
+            "one": "{count} Deploy",
+            "other": "{count} Deploys"
+        },
+        "capon": {
+            "one": "{count} Capon",
+            "other": "{count} Capons"
+        },
+        "point": {
+            "one": "{count} Punt",
+            "other": "{count} Punten"
+        },
+        "none": "Geen",
+        "user_today": "{user} Vandaag",
+        "user_renovated": "{User} renoveerde jouw Motel",
+        "you_renovated": "Je hebt een Motel gerenoveerd",
+        "renovation": {
+            "one": "{count} Renovatie",
+            "other": "{count} Renovaties"
+        },
+        "renovon": {
+            "one": "{count} Renov-on",
+            "other": "{count} Renov-ons"
+        },
+        "filters": {
+            "update": "Update Filters",
+            "activity": "Activiteit",
+            "state": "Status",
+            "category": "Categorie"
+        }
+    },
+    "user": {
+        "level_n": "Level {level}",
+        "rank_n": "Rang #{rank}",
+        "inventory": "Inventaris",
+        "your_bouncers": "Mijn Bouncers",
+        "clan_progress": "Clan voortgang",
+        "quebec_quest_progress": "Quebec Quest voortgang",
+        "special_hunter_challenge": "Special Hunter uitdaging",
+        "captured_types": "Soorten Captured",
+        "activity": "Activiteit",
+        "clan_stats": "Clan Stats",
+        "clan_progress_desc": "Bekijk welk niveau je kunt behalen!",
+        "clan_info": "Clan War Info FB Groep",
+        "clan_info_desc": "Een goede plek om een clan te vinden of om vragen te stellen!",
+        "challenges": "Uitdagingen",
+        "sh_lite": "Special Hunter Lite",
+        "sh_pro": "Special Hunter Pro",
+        "your_clan": "Jouw Clan",
+        "no_clan": "Je zit niet in een Clan",
+        "no_clan_desc": "Bekijk jouw voortgang hier beneden",
+        "points": {
+            "one": "Punt",
+            "other": "Punten"
+        },
+        "blast_checker": "Blast Checker",
+        "qrew_checker": "QRew Checker",
+        "poi_challenge": "POI Challenge",
+        "colour_challenge": "Kleur Challenge"
+    },
+    "inventory": {
+        "undeployed": "Niet gedeployed",
+        "credits": "Kredieten",
+        "history": "Geschiedenis",
+        "unknown_name": "Onbekende naam"
+    },
+    "app_info": {
+        "credits": "Kredieten",
+        "primary_developer": "Primaire ontwikkelaar",
+        "translators": "Vertalers",
+        "database_contributors": "Database-bijdragers",
+        "patrons_and_supporters": "Patrons and supporters",
+        "build_n": "Versie {build}",
+        "patreon_donate": "Maandelijks via Patreon",
+        "paypal_donate": "Eenmalig via PayPal",
+        "paypal_donate_desc": "PayPal donaties kunnen naar donate@cuppazee.app worden verzonden",
+        "custom_titles": {
+            "primary_dev": "Primaire Ontwikkelaar",
+            "finnish": "Fins",
+            "dutch": "Nederlands",
+            "german": "Duits",
+            "hungarian": "Hongaars",
+            "swedish": "Zweeds",
+            "french": "Frans",
+            "czech": "Tsjech",
+            "danish": "Deens",
+            "portugese": "Portugees",
+            "lithuanian": "Lithuanian"
+        },
+        "kofi_donate": "Eenmalig via Ko-Fi"
+    },
+    "your_bouncers": {
+        "capture": {
+            "one": "{count} Capture",
+            "other": "{count} Captures"
+        },
+        "last_captured": "Laatst ge-Captured: {time}",
+        "in_limbo": "Doet een dutje",
+        "host": "Op {munzee} van {username}"
+    },
+    "calendar": {
+        "days": {
+            "monday": "M",
+            "tuesday": "D",
+            "wednesday": "W",
+            "thursday": "D",
+            "friday": "V",
+            "saturday": "Z",
+            "sunday": "Z"
+        },
+        "off": "Uit"
+    },
+    "clan": {
+        "requirements": "Vereisten",
+        "rewards": "Beloningen",
+        "individual": "Individueel",
+        "group": "Groep",
+        "level_n": "Niveau {level}",
+        "shadow": "Schaduw Clan",
+        "goal": "Doel",
+        "view": {
+            "subtract": "Subtract Overzicht",
+            "total": "Totaal Overzicht"
+        },
+        "share": "Delen",
+        "indiv": "Indiv",
+        "group_total": "Groep Totaal",
+        "level": {
+            "one": "Niveau",
+            "other": "Niveaus"
+        },
+        "rank": "Rang #{rank}",
+        "players": {
+            "one": "{count} Speler",
+            "other": "{count} Spelers"
+        }
+    },
+    "search": {
+        "clan": "Zoek een Clan",
+        "type": "Zoek een Munzee Type",
+        "empty": "Geen resultaat :(",
+        "user": "Zoek een speler"
+    },
+    "db": {
+        "go_back": "Ga terug",
+        "types_search": "Types Zoeken",
+        "category": "Categorie",
+        "type": {
+            "info": "Icoon: {icon} - ID: {id}",
+            "evo": "Stadia Evoluties",
+            "pouch": "Stadia Pouch Creature",
+            "can_host": "Is Host voor",
+            "lands_on": "Kan landen op",
+            "hosts": "Hosts",
+            "possible_types": "Mogelijke Types",
+            "possible_hosts": "Mogelijke Hosts",
+            "host_types": "Hosted door",
+            "points": "Punten",
+            "capture": "Capture",
+            "capon": "Capon",
+            "deploy": "Deploy",
+            "split": "Cap/Capon Splitsing",
+            "split_val": "{splitsing} (Min {min})"
+        },
+        "type_info": "Type Info"
+    },
+    "auth": {
+        "add": "Toevoegen nieuwe speler",
+        "welcome": "Welkom bij CuppaZee",
+        "tap": "Tik hieronder om in te loggen"
+    },
+    "shc": {
+        "lite": {
+            "tob": "AlternaMyth of Ontsnapte PC",
+            "nomad": "Nomad of RetireMyth",
+            "myth_1": "Origineel of klassieke Myth",
+            "myth_2": "Spiegel van Moderne Myth",
+            "pc_1": "Pouch Creature S1",
+            "pc_2": "Pouch Creature S2",
+            "flat": "Fancy Flat",
+            "temp": "Evo Bouncer / tPOB",
+            "scatter": "Scatter"
+        },
+        "pro": {
+            "tob": "AlterMyth or Ontsnapte PC\n",
+            "nomad": "Nomad",
+            "retire": "RetireMyth",
+            "myth_1": "Originele Myth",
+            "myth_2": "Klassieke Myth",
+            "myth_3": "Spiegel Myth",
+            "myth_4": "Moderne Myth",
+            "pc_1": "Pouch Creature S1",
+            "pc_2": "Pouch Creature S2",
+            "pc_fun": "Funfinity Stone",
+            "flat": "Fancy Flat",
+            "temp": "Evo Bouncer / tPOB",
+            "pscatter": "Fysieke Scatter",
+            "vscatter": "Virtuele Scatter"
+        }
+    },
+    "notifications": {
+        "munzee_blog": "Munzee Blog",
+        "save": "Opslaan",
+        "unavailable_web": "Notificaties zijn niet beschikbaar op het Web",
+        "unavailable_generic": "Notificaties zijn niet beschikbaar. Heb je de toestemmingen geaccepteerd?"
+    },
+    "settings": {
+        "add_user": "Gebruiker Toevoegen",
+        "update": "Update forceren",
+        "theme": "Thema: {name}",
+        "language": "Taal: {name}",
+        "logout": "Uitloggen",
+        "save": "Instellingen opslaan"
+    },
+    "bouncers": {
+        "duration": "Tijdsduur: {duration}"
+    },
+    "scanner": {
+        "scan_new": "Scan nieuwe Munzee",
+        "munzee": "{name} door {username}",
+        "type": "Type: {type}"
+    },
+    "quest": {
+        "task_1": "Mystery Caps/Deps",
+        "task_2": "Evo Caps/Deps",
+        "task_3": "Weapon Caps/Deps",
+        "task_4": "Jewel Caps/Deps",
+        "task_5": "Capture /m/XeresDan/1707",
+        "task_6": "Flat Friends Deps",
+        "task_7": "Destination Caps/Deps",
+        "task_8": "Bouncer Caps",
+        "task_9": "Flat Friends Caps/Deps",
+        "task_10": "Capture “/m/GPSmAQ/1”"
+    },
+    "themes": {
+        "black": "Zwart",
+        "blue": "Blauw",
+        "bluegrey": "Blauw Grijs",
+        "darkblue": "Donker Blauw",
+        "green": "Groen",
+        "grey": "Grijs",
+        "purple": "Paars",
+        "white": "Wit"
+    },
+    "screens": {
+        "_redirect": "_redirect",
+        "Map": "Kaart",
+        "Tools": "Tools",
+        "Settings": "Instellingen",
+        "Notifications": "Notificaties",
+        "Info": "Info",
+        "Scanner": "Scanner",
+        "Calendar": "Kalender",
+        "Bouncers": "Bouncers",
+        "BouncerMap": "Bouncer Kaart",
+        "MunzeeDetails": "Munzee Details",
+        "MunzeeDetailsID": "Munzee Details",
+        "AllClans": "Alle Clans",
+        "ClanRequirements": "Clan Vereisten",
+        "ClanSearch": "Clan Zoeken",
+        "Clan": "Clan Statistiek",
+        "UserSearch": "Speler Zoeken",
+        "UserDetails": "Details Speler",
+        "UserActivity": "Activiteit",
+        "UserInventory": "Inventaris",
+        "UserClan": "Clan Voortgang",
+        "UserQuest": "Quest Voortgang",
+        "UserCapturesCategory": "Capture Categorieën",
+        "UserSHCPro": "SHC Pro",
+        "UserSHCLite": "SHC Lite",
+        "UserSHC": "SHC Classic",
+        "UserBouncers": "Bouncers Speler",
+        "DBType": "Database Types",
+        "DBSearch": "Database doorzoeken",
+        "DBCategory": "Database Categorie",
+        "Auth": "Autoriseren",
+        "UserPOI": "POI Challenge",
+        "UserColour": "Kleur Challenge",
+        "UserQRew": "QRew Checker",
+        "UserBlast": "Blast Checker",
+        "UserBlastMap": "Blast Checker",
+        "WeeklyWeeks": "Wekelijkse Challange",
+        "WeeklyLeaderboard": "Wekelijkse Leaderboard",
+        "AllUsers": "Alle gebruikers"
+    },
+    "changelog": {
+        "build_n": "Versie {n}",
+        "continue": "Verdergaan naar CuppaZee",
+        "no_changelog": "Geen Changelog"
+    },
+    "clan_req": {
+        "Captures": "Captures",
+        "Points": "Punten",
+        "Deploys": "Deploys",
+        "Activity": "Activiteit",
+        "Days of": "Dagen met",
+        "Total": "Totaal ",
+        "Renovate": "Renoveren"
+    },
+    "weekly": {
+        "ended_at": "Eindigde op {time}",
+        "starts_at": "Start op {time}",
+        "ends_at": "Eindige op {time}",
+        "results_at": "Resultaten komen om {time}",
+        "points": {
+            "one": "{count} Pnt",
+            "other": "{count} Pntn"
+        },
+        "week": "Week",
+        "status": {
+            "comingsoon": "Nog niet gestart",
+            "preparing": "Aan het voorbereiden",
+            "ongoing": "Lopend",
+            "resultssoon": "Berekenen resultaten",
+            "finalresults": "Eindresultaat"
+        }
+    },
+    "qrew": {
+        "check_time": "Controleren mogelijkheden voor de volgende check",
+        "captures": "Captures",
+        "deploys": "Deploys",
+        "premium": "Premium",
+        "physical_captures": "Fysieke Captures",
+        "physical_deploys": "Fysieke Deploys",
+        "total_points": "Totale Punten",
+        "recent_capture": "Recente Capture",
+        "recent_deploy": "Recente Deploy",
+        "no_capture": "Geen captures van {from} tot {to}",
+        "no_deploy": "Geen Deploy van {from} tot {to}"
+    },
+    "evo_planner": {
+        "days": {
+            "one": "{count} Dag",
+            "other": "{count} Dagen"
+        },
+        "stage": "Stage {n}",
+        "types": {
+            "original": "3 Stages (bijv. Farm, Education)",
+            "nature": "5 Stages (bijv. Carnation, Roos)",
+            "bouncer": "5 Stages (bijv. Butterfly, Turtle)"
+        }
+    },
+    "blast_checker": {
+        "types": {
+            "mini": "Mini",
+            "normal": "Normaal",
+            "mega": "Mega"
+        },
+        "blast": "Blast {n}",
+        "munzees": {
+            "one": "{count} Munzee",
+            "other": "{count} Munzee"
+        },
+        "points": "{min} - {max} Punten",
+        "average": "Gem. {avg}",
+        "type_points": "{min} - {max} (Gem. {avg}) Punten"
+    },
+    "error": {
+        "cuppazee_5xx": "Oeps, CuppaZee servers reageren met een error. Probeer het later nogmaals.",
+        "cuppazee_404": "Oeps, CuppaZee servers begrijpen niet wat je wilde. Probeer het later nogmaals.",
+        "cuppazee_generic": "Oeps, iets ging verkeerd met het opvragen van de data uit de CuppaZee servers. Probeer het later nogmaals.",
+        "munzee_api_5xx": "Oeps, Munzee’s severs reageren met een error. Probeer het later nogmaals.",
+        "munzee_api_404": "Oeps, Munzee’s servers begrijpen niet wat je wilde. Probeer het later nogmaals.",
+        "munzee_api_generic": "Oeps, iets ging verkeerd bij het opvragen dan data bij de Munzee servers. Probeer het later nogmaals.",
+        "missing_login": "Oeps, deze gebruiker moet inloggen bij CuppaZee om deze functie te laten werken."
+    }
+}

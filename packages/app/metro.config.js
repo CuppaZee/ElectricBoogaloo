@@ -4,7 +4,7 @@ function getConfig(appDir, options = {}) {
     transformer: {
       assetPlugins: ["expo-asset/tools/hashAssetFiles"],
     },
-    watchFolders: [path.resolve(appDir, "../../node_modules")],
+    watchFolders: [path.resolve(appDir, "../..")],
   };
 }
 
