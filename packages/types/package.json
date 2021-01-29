@@ -15,5 +15,8 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc && node lib/index"
+  },
+  "devDependencies": {
+    "typescript": "^4.1.3"
   }
 }
