@@ -1,10 +1,9 @@
 import React from "react";
 import { Layout, Text } from "@ui-kitten/components";
-import icons from "@cuppazee/icons";
-import db from "@cuppazee/types";
-import { Image, View } from "react-native";
+import { View } from "react-native";
 import { UserActivityItem } from "./Data";
 import useDay from "../../hooks/useDay";
+import TypeImage from "../Common/TypeImage";
 
 export default React.memo(
   function UserActivityListItem(item: UserActivityItem) {
@@ -43,9 +42,9 @@ export default React.memo(
                   {i.points > 0 ? "+" : ""}
                   {i.points || "None"}
                 </Text>
-                <Image
-                  source={icons[db.strip(i.pin)] ?? i.pin}
-                  style={{ height: i.sub ? 24 : 32, width: i.sub ? 24 : 32 }}
+                <TypeImage
+                  icon={i.pin}
+                  style={{ size: i.sub ? 24 : 32 }}
                 />
               </View>
               <View style={{ padding: 4, flex: 1 }}>

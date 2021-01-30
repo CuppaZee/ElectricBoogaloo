@@ -1,10 +1,10 @@
 import React, { useMemo } from "react";
 import { Layout, Popover, Spinner, Text } from "@ui-kitten/components";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
-import icons from "@cuppazee/icons";
 import db from "@cuppazee/types";
-import { Image, Pressable, View } from "react-native";
+import { Pressable, View } from "react-native";
 import { ActivityConverter, UserActivityData } from "./Data";
+import TypeImage from "../Common/TypeImage";
 
 export type UserActivityOverviewProps = {
   user_id: number;
@@ -31,9 +31,9 @@ const UserActivityOverviewItem = React.memo(function ({
       visible={visible}
       anchor={() => <Pressable onPress={() => setVisible(true)}>
         <View style={{ padding: 0, alignItems: "center" }}>
-          <Image
-            source={icons[db.strip(icon)] ?? icon}
-            style={{ height: count > 30 ? 24 : 32, width: count > 30 ? 24 : 32 }}
+          <TypeImage
+            icon={icon}
+            style={{ size: count > 30 ? 24 : 32 }}
           />
           <Text style={{ textAlign: "center", fontSize: count > 30 ? 12 : 16 }}>{data.count.toLocaleString()}</Text>
         </View>

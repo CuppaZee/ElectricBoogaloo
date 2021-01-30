@@ -8,23 +8,21 @@ import DrawerContent from "./Drawer";
 import { useWindowDimensions } from "react-native";
 import ClanNavigator from "./ClanNavigator";
 import DashNavigator from "./DashNavigator";
-import AuthScreen from "../screens/Auth";
-import { useTeakens } from "../hooks/useToken";
+import WelcomeScreen from "../screens/Welcome";
 import SettingsNavigator from "./SettingsNavigator";
+import { useSettings } from "../hooks/useSettings";
 
 const Drawer = createDrawerNavigator<MainDrawerParamList>();
 
 export default function StackNavigator() {
   const dimensions = useWindowDimensions();
-  const teakens = useTeakens();
+  const [{ready}, , loaded] = useSettings();
   return (
     <Drawer.Navigator
-      drawerContent={props =>
-        Object.keys(teakens.data).length > 0 ? <DrawerContent {...props} /> : null
-      }
+      drawerContent={props => (ready ? <DrawerContent {...props} /> : null)}
       drawerType={dimensions.width > 1000 ? "permanent" : "front"}
-      drawerStyle={{ width: Object.keys(teakens.data).length > 0 ? 256 : 0 }}>
-      {(!teakens.loaded || Object.keys(teakens.data).length > 0) && (
+      drawerStyle={{ width: ready ? 256 : 0 }}>
+      {(!loaded || ready) && (
         <>
           <Drawer.Screen name="Dashboard" component={DashNavigator} />
           <Drawer.Screen name="User" component={UserNavigator} />
@@ -33,7 +31,7 @@ export default function StackNavigator() {
           <Drawer.Screen name="Settings" component={SettingsNavigator} />
         </>
       )}
-      <Drawer.Screen name="Auth" component={AuthScreen} />
+      <Drawer.Screen name="Welcome" component={WelcomeScreen} />
     </Drawer.Navigator>
   );
 }

@@ -1,9 +1,8 @@
 import { Layout, Popover, Text } from "@ui-kitten/components";
 import React from "react";
-import { Image, Pressable, StyleSheet } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 import { UserInventoryConvertedType } from "./Data";
-import icons from "@cuppazee/icons";
-import db from "@cuppazee/types";
+import TypeImage from "../Common/TypeImage";
 
 export function InventoryIcon(data: UserInventoryConvertedType) {
   const [visible, setVisible] = React.useState(false);
@@ -12,9 +11,9 @@ export function InventoryIcon(data: UserInventoryConvertedType) {
       visible={visible}
       anchor={() => <Pressable onPress={() => setVisible(true)}>
         <Layout level="3" style={[styles.card, {opacity: data.amount > 0 ? 1 : 0.2}]}>
-          <Image
-            source={icons[db.strip(data.icon || "")] ?? (data.type ? { uri: `https://icons.cuppazee.app/64/${data.icon}.png` } : { uri: `https://munzee.global.ssl.fastly.net/images/pins/${data.icon}.png` })}
-            style={{ height: 32, width: 32 }}
+          <TypeImage
+            icon={data.icon ?? ""}
+            style={{ size: 32 }}
           />
           <Text category="s5">{data.amount}</Text>
         </Layout>

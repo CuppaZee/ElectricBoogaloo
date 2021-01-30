@@ -22,6 +22,7 @@ export default {
               Inventory: ":username/inventory",
               ZeeOps: ":username/zeeops",
               Challenges: ":username/challenges",
+              Bouncers: ":username/bouncers",
             },
           },
           Clan: {
@@ -44,9 +45,10 @@ export default {
             path: "settings",
             screens: {
               Personalisation: "personalisation",
+              Accounts: "accounts",
             },
           },
-          Auth: "login",
+          Welcome: "welcome",
         },
       },
       somewherewithoutcoffee: "*",

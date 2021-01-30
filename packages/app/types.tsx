@@ -9,7 +9,7 @@ export type MainDrawerParamList = {
   Clan: undefined;
   Tools: undefined;
   Settings: undefined;
-  Auth: undefined;
+  Welcome: undefined;
 };
 
 export type UserStackParamList = {
@@ -18,6 +18,7 @@ export type UserStackParamList = {
   Inventory: { username: string };
   Challenges: { username: string; date?: string };
   ZeeOps: { username: string };
+  Bouncers: { username: string };
 };
 
 export type DashStackParamList = {
@@ -41,4 +42,5 @@ export type ToolsStackParamList = {
 
 export type SettingsStackParamList = {
   Personalisation: undefined;
+  Accounts: undefined;
 };

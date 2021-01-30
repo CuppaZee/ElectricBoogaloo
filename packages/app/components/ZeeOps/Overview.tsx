@@ -1,9 +1,6 @@
-import React, { useMemo } from "react";
-import { Icon, Layout, Popover, Spinner, Text } from "@ui-kitten/components";
-import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
-import icons from "@cuppazee/icons";
-import db from "@cuppazee/types";
-import { Image, Pressable, View } from "react-native";
+import React from "react";
+import { Icon, Layout, Spinner, Text } from "@ui-kitten/components";
+import { Image, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import dayjs from "dayjs";
@@ -12,53 +9,6 @@ import Svg, {Text as SvgText} from 'react-native-svg';
 export type ZeeOpsOverviewProps = {
   user_id: number;
 };
-
-export type UserActivityOverviewItemProps = {
-  icon: string;
-  data: {
-    points: number;
-    count: number;
-  };
-  count: number;
-};
-
-const UserActivityOverviewItem = React.memo(
-  function ({ icon, data, count }: UserActivityOverviewItemProps) {
-    const [visible, setVisible] = React.useState(false);
-    return (
-      <Popover
-        visible={visible}
-        anchor={() => (
-          <Pressable onPress={() => setVisible(true)}>
-            <View style={{ padding: 0, alignItems: "center" }}>
-              <Image
-                source={icons[db.strip(icon)] ?? icon}
-                style={{ height: count > 30 ? 24 : 32, width: count > 30 ? 24 : 32 }}
-              />
-              <Text style={{ textAlign: "center", fontSize: count > 30 ? 12 : 16 }}>
-                {data.count.toLocaleString()}
-              </Text>
-            </View>
-          </Pressable>
-        )}
-        onBackdropPress={() => setVisible(false)}>
-        <Layout style={{ padding: 4 }}>
-          <Text style={{ textAlign: "center" }} category="h6">
-            {data.count.toLocaleString()}x {db.getType(icon)?.name || db.strip(icon)}
-          </Text>
-          <Text style={{ textAlign: "center" }} category="s1">
-            {data.points.toLocaleString()} Points
-          </Text>
-        </Layout>
-      </Popover>
-    );
-  },
-  (prev, now) =>
-    prev.icon === now.icon &&
-    prev.data.count === now.data.count &&
-    prev.data.points === now.data.points &&
-    prev.count > 30 === now.count > 30
-);
 
 export default function ZeeOpsOverview({ user_id }: ZeeOpsOverviewProps) {
   const data = useMunzeeRequest("ops/zeeops/status", { user_id }, true, user_id);
@@ -73,6 +23,7 @@ export default function ZeeOpsOverview({ user_id }: ZeeOpsOverviewProps) {
   const d = data.data.data;
   let current = d.missions.find(i => i.id === d.currentMission);
   if (dayjs(d.start_time).valueOf() > Date.now() && d.currentMission === 1) {
+    // TODO: Rework COLLECTED View
     return <Icon name="check" style={{ height: 24, width: 24 }} />;
   } else if (dayjs(d.start_time).valueOf() > Date.now()) {
     current = d.missions.find(i => i.id === d.currentMission - 1);

@@ -5,10 +5,14 @@ import * as themes from "../themes";
 
 export type Settings = {
   theme: keyof typeof themes;
+  ready: boolean;
+  maps: "apple" | "google";
 }
 
 export const defaultSettings: Settings = {
   theme: "green_light",
+  ready: false,
+  maps: "google",
 }
 
 export const settingsAtom = atom<{
@@ -34,5 +38,5 @@ export function useSettings() {
   return [settings.data, (data: Settings) => {
     setSettings({ data, loaded: true });
     AsyncStorage.setItem("SETTINGS", JSON.stringify(data));
-  }] as const;
+  }, settings.loaded] as const;
 }

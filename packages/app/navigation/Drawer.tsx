@@ -282,9 +282,14 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
             accessoryLeft={props => <Icon {...props} name="bell" />}
           />
           <DrawerItem
+            selected={page[1]?.name === "Settings" && page[2]?.name === "Accounts"}
             title="Accounts"
             accessoryLeft={props => <Icon {...props} name="account-multiple" />}
-            onPress={() => props.navigation.navigate("Auth")}
+            onPress={() =>
+              props.navigation.navigate("Settings", {
+                screen: "Accounts",
+              })
+            }
           />
           <DrawerItem
             title="Bookmarks"

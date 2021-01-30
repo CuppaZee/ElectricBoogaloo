@@ -2,6 +2,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
 
 import PersonalisationScreen from "../screens/Settings/Personalisation";
+import AccountsScreen from "../screens/Settings/Accounts";
 import { SettingsStackParamList } from "../types";
 import Header from "./Header";
 
@@ -17,6 +18,7 @@ export default function SettingsNavigator() {
         },
       }}>
       <SettingsStack.Screen name="Personalisation" component={PersonalisationScreen} />
+      <SettingsStack.Screen name="Accounts" component={AccountsScreen} />
     </SettingsStack.Navigator>
   );
 }

@@ -6,6 +6,7 @@ import UserActivityScreen from "../screens/User/Activity";
 import UserInventoryScreen from "../screens/User/Inventory";
 import UserZeeOpsScreen from "../screens/User/ZeeOps";
 import UserChallengesScreen from "../screens/User/Challenges";
+import UserBouncersScreen from "../screens/User/Bouncers";
 import { UserStackParamList } from "../types";
 import Header from "./Header";
 
@@ -24,6 +25,7 @@ export default function UserNavigator() {
       <UserStack.Screen name="Activity" component={UserActivityScreen} />
       <UserStack.Screen name="Inventory" component={UserInventoryScreen} />
       <UserStack.Screen name="ZeeOps" component={UserZeeOpsScreen} />
+      <UserStack.Screen name="Bouncers" component={UserBouncersScreen} />
       <UserStack.Screen name="Challenges" component={UserChallengesScreen} />
     </UserStack.Navigator>
   );

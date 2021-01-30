@@ -1,27 +1,25 @@
 import * as React from "react";
-import { StyleSheet, Platform } from "react-native";
+import { Platform } from "react-native";
 import * as AuthSession from "expo-auth-session";
 import * as WebBrowser from "expo-web-browser";
-import { Button, Icon, Layout, Spinner, Text } from "@ui-kitten/components";
 import { useAtom } from "jotai";
-import { teakensAtom } from "../hooks/useToken";
-import { MainDrawerParamList } from "../types";
-import { useNavigation, useRoute } from "@react-navigation/native";
-import { DrawerNavigationProp } from "@react-navigation/drawer";
+import { teakensAtom, useTeakens } from "../hooks/useToken";
+import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-var config_main = {
-  redirect_uri: "https://server.cuppazee.app/auth/auth/v1",
-  client_id: "91714935879f433364bff187bda66183",
+const configs = {
+  main: {
+    redirect_uri: "https://server.cuppazee.app/auth/auth/v1",
+    client_id: "91714935879f433364bff187bda66183",
+  },
+  team: {
+    client_id: "c983d59354542f8d15e11924ed61bae6",
+    redirect_uri: "https://server.cuppazee.app/auth/auth/team/v1",
+  },
+  universal: {
+    client_id: "64f148f57d1d7c62e44a90e5f3661432",
+    redirect_uri: "https://server.cuppazee.app/auth/auth/universal/v1",
+  },
 };
-// var config_team = {
-//   client_id: "c983d59354542f8d15e11924ed61bae6",
-//   redirect_uri: "https://server.cuppazee.app/auth/auth/team/v1"
-// }
-// var config_universal = {
-//   client_id: "64f148f57d1d7c62e44a90e5f3661432",
-//   redirect_uri: "https://server.cuppazee.app/auth/auth/universal/v1"
-// }
-var config = config_main;
 
 WebBrowser.maybeCompleteAuthSession({
   skipRedirectCheck: true,
@@ -29,15 +27,16 @@ WebBrowser.maybeCompleteAuthSession({
 
 const redirectUri = AuthSession.makeRedirectUri({
   native: "uk.cuppazee.paper://login",
-  // useProxy,
   path: "login",
 });
 
-export default function AuthScreen() {
+export default function useLogin(shouldRedirect?: boolean, application: keyof typeof configs = "main") {
+  var config = configs[application];
+  const {loaded} = useTeakens()
   const [teakens, setTeakens] = useAtom(teakensAtom);
-  const nav = useNavigation<DrawerNavigationProp<MainDrawerParamList, "Auth">>();
+  const nav = useNavigation();
 
-  const [loading, setLoading] = React.useState<any>(false);
+  const [loading, setLoading] = React.useState<boolean>(false);
   const [redirect, setRedirect] = React.useState<string | null>(null);
 
   React.useEffect(() => {
@@ -98,32 +97,10 @@ export default function AuthScreen() {
       setLoading(false);
     }
   }
-  if (redirect && Object.keys(teakens.data).length > 0) {
+  if (shouldRedirect && redirect && Object.keys(teakens.data).length > 0) {
     setRedirect("");
     nav.navigate("User", { screen: "Profile", params: { username: redirect } } as any);
   }
-  if (loading === true) {
-    <Layout style={styles.page}>
-      <Spinner />
-    </Layout>;
-  }
-  return (
-    <Layout style={styles.page}>
-      <Text category="h1">Welcome</Text>
-      <Button
-        accessoryLeft={props => <Icon {...props} name="map-marker" />}
-        appearance="outline"
-        onPress={() => login()}>
-        Log in with Munzee
-      </Button>
-    </Layout>
-  );
-}
 
-const styles = StyleSheet.create({
-  page: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+  return [loading, login, loaded && !loading] as const;
+}
