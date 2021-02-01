@@ -12,16 +12,16 @@ const groupsdata: {
           clan_id: number;
           clan_name: string;
           shadow_name?: string;
-        }[]
-      }
+        }[];
+      };
     };
     base_id: string;
     admins: string[];
-  }
+  };
 } = {
   cuppaclans: {
-    base_id: 'app3rWUMkDuHTUIAo',
-    admins: ["125914","51311"],
+    base_id: "app3rWUMkDuHTUIAo",
+    admins: ["125914", "51311"],
     months: {
       90: {
         name: "September 2020",
@@ -33,7 +33,7 @@ const groupsdata: {
           { clan_id: 1902, clan_name: "hot choc" },
           { clan_id: 1870, clan_name: "horlicks" },
           { clan_id: -1, clan_name: "shadow", shadow_name: "CuppaClans Shadow Crew" },
-        ]
+        ],
       },
       91: {
         name: "October 2020",
@@ -45,7 +45,7 @@ const groupsdata: {
           { clan_id: 1902, clan_name: "hot choc" },
           { clan_id: 1870, clan_name: "horlicks" },
           { clan_id: -1, clan_name: "shadow", shadow_name: "CuppaClans Shadow Crew" },
-        ]
+        ],
       },
       92: {
         name: "November 2020",
@@ -57,7 +57,7 @@ const groupsdata: {
           { clan_id: 1902, clan_name: "hot choc" },
           { clan_id: 1870, clan_name: "horlicks" },
           { clan_id: -1, clan_name: "shadow", shadow_name: "CuppaClans Shadow Crew" },
-        ]
+        ],
       },
       93: {
         name: "December 2020",
@@ -69,7 +69,7 @@ const groupsdata: {
           { clan_id: 1902, clan_name: "hot choc" },
           { clan_id: 1870, clan_name: "horlicks" },
           { clan_id: -1, clan_name: "shadow", shadow_name: "CuppaClans Shadow Crew" },
-        ]
+        ],
       },
       94: {
         name: "January 2021",
@@ -81,38 +81,50 @@ const groupsdata: {
           { clan_id: 1902, clan_name: "hot choc" },
           { clan_id: 1870, clan_name: "horlicks" },
           { clan_id: -1, clan_name: "shadow", shadow_name: "CuppaClans Shadow Crew" },
-        ]
-      }
-    }
+        ],
+      },
+      95: {
+        name: "February 2021",
+        clans: [
+          { clan_id: 1349, clan_name: "coffee" },
+          { clan_id: 457, clan_name: "tea" },
+          { clan_id: 2042, clan_name: "mocha" },
+          { clan_id: 1441, clan_name: "cocoa" },
+          { clan_id: 1902, clan_name: "hot choc" },
+          { clan_id: 1870, clan_name: "horlicks" },
+          { clan_id: -1, clan_name: "shadow", shadow_name: "CuppaClans Shadow Crew" },
+        ],
+      },
+    },
   },
   kcat: {
-    base_id: 'appXMRIBV4VeCWprW',
-    admins: ["16968","15078","125914"],
+    base_id: "appXMRIBV4VeCWprW",
+    admins: ["16968", "15078", "125914"],
     months: {
       90: {
         name: "September 2020",
         clans: [
           { clan_id: 1064, clan_name: "kcat" },
           { clan_id: 2049, clan_name: "cream on first" },
-        ]
+        ],
       },
       91: {
         name: "October 2020",
         clans: [
           { clan_id: 1064, clan_name: "kcat" },
           { clan_id: 2049, clan_name: "cream on first" },
-        ]
+        ],
       },
       92: {
         name: "November 2020",
         clans: [
           { clan_id: 1064, clan_name: "kcat" },
           { clan_id: 2049, clan_name: "cream on first" },
-        ]
-      }
-    }
-  }
-}
+        ],
+      },
+    },
+  },
+};
 
 const route: Route = {
   path: "clan/shadow/generate",

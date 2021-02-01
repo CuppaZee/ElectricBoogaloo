@@ -7,12 +7,18 @@ export type Settings = {
   theme: keyof typeof themes;
   ready: boolean;
   maps: "apple" | "google";
-}
+  clan_style: number;
+  clan_reverse: boolean;
+  clan_single_line: boolean;
+};
 
 export const defaultSettings: Settings = {
   theme: "green_light",
   ready: false,
   maps: "google",
+  clan_style: 1,
+  clan_reverse: false,
+  clan_single_line: false
 }
 
 export const settingsAtom = atom<{

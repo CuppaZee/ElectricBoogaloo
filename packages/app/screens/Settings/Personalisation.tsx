@@ -22,7 +22,7 @@ export default function PersonalisationScreen() {
         <View style={{ width: 280, flexDirection: "row", flexWrap: "wrap", alignSelf: "center" }}>
           {Object.entries(themes).map(i => (
             <Pressable
-              onPress={() => setSettings({ ...settings, theme: i[0] as typeof storedSettings.theme })}
+              onPress={() => setStoredSettings({ ...storedSettings, theme: i[0] as typeof storedSettings.theme })}
               style={{ padding: settings?.theme === i[0] ? 0 : 4 }}>
               <View
                 style={{

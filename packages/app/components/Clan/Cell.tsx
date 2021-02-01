@@ -325,6 +325,7 @@ export type LevelCellProps = {
   compact?: number;
   stack?: boolean;
   height: number;
+  stats?: boolean;
 };
 
 export function LevelCell({
@@ -334,6 +335,7 @@ export function LevelCell({
   compact,
   stack,
   height,
+  stats,
 }: LevelCellProps) {
   const theme = useTheme();
   return (
@@ -341,10 +343,12 @@ export function LevelCell({
       level={compact === 2 ? "0" : "2"}
       style={[
         compact === 2 ? {} : styles.card,
-        { 
-          height,flexDirection: stack ? "column" : "row", alignItems: "center" },
-      ]}
-    >
+        {
+          height,
+          flexDirection: stack ? "column" : "row",
+          alignItems: "center",
+        },
+      ]}>
       {!stack && (
         <View
           style={{
@@ -357,6 +361,19 @@ export function LevelCell({
           }}
         />
       )}
+      {stats && (
+        <View style={stack ? { marginVertical: compact === 2 ? 4 : 8 } : {}}>
+          <Icon
+            style={{
+              width: 24,
+              height: 24,
+              marginHorizontal: compact === 2 ? 4 : 8,
+              color: theme.style === "dark" ? "#fff" : "#000",
+            }}
+            name={type === "group" ? "shield-check" : "account-check"}
+          />
+        </View>
+      )}
       <View
         style={{
           padding: 4,
@@ -364,23 +381,24 @@ export function LevelCell({
           flex: 1,
           alignItems: stack ? "center" : "stretch",
           maxWidth: "100%",
-        }}
-      >
+        }}>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <Icon
-            name={type === "group" ? "shield-half-full" : "account"}
-            style={{
-              height: 12,
-              width: 12,
-              marginRight: 4,
-              color: theme.style === "dark" ? "white" : "black",
-            }}
-          />
+          {!stats && (
+            <Icon
+              name={type === "group" ? "shield-check" : "account-check"}
+              style={{
+                height: 12,
+                width: 12,
+                marginRight: 4,
+                color: theme.style === "dark" ? "white" : "black",
+              }}
+            />
+          )}
           <Text numberOfLines={1} ellipsizeMode="tail" category="s2">
             {type === "group" ? "Group" : "Indiv"}
           </Text>
         </View>
-        <Text numberOfLines={1} ellipsizeMode="tail" category="s1">
+        <Text numberOfLines={1} ellipsizeMode="tail" category={stats ? "c1" : "s1"}>
           Level {level}
         </Text>
       </View>
@@ -544,7 +562,7 @@ export function RequirementCell({
 
 export type TitleCellProps = {
   clan: ClanV2["response"];
-  shadow?: { data: ClanShadowData };
+  shadow?: { data?: ClanShadowData };
   reverse?: boolean;
   compact?: number;
   stack?: boolean;

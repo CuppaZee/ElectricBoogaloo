@@ -12,6 +12,8 @@ import WelcomeScreen from "../screens/Welcome";
 import SettingsNavigator from "./SettingsNavigator";
 import { useSettings } from "../hooks/useSettings";
 
+export const isClanStatsBeta = true;
+
 const Drawer = createDrawerNavigator<MainDrawerParamList>();
 
 export default function StackNavigator() {
@@ -25,10 +27,14 @@ export default function StackNavigator() {
       {(!loaded || ready) && (
         <>
           <Drawer.Screen name="Dashboard" component={DashNavigator} />
-          <Drawer.Screen name="User" component={UserNavigator} />
+          {!isClanStatsBeta && (
+            <>
+              <Drawer.Screen name="User" component={UserNavigator} />
+              <Drawer.Screen name="Tools" component={ToolsNavigator} />
+              <Drawer.Screen name="Settings" component={SettingsNavigator} />
+            </>
+          )}
           <Drawer.Screen name="Clan" component={ClanNavigator} />
-          <Drawer.Screen name="Tools" component={ToolsNavigator} />
-          <Drawer.Screen name="Settings" component={SettingsNavigator} />
         </>
       )}
       <Drawer.Screen name="Welcome" component={WelcomeScreen} />
