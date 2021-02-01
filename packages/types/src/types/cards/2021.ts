@@ -33,6 +33,16 @@ const c2021: {
     icon: "motivationalmessagecard4",
     id: "null_motivationalmessagecard4",
   },
+  {
+    name: "Valentines Mailbox",
+    icon: "valentinesmailbox",
+    id: "null_valentinesmailbox",
+  },
+  {
+    name: "Valentine Card",
+    icon: "valentinecard",
+    id: "null_valentinecard",
+  },
 ];
 
 export default c2021;

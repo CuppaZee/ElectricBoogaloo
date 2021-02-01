@@ -39,37 +39,76 @@ export default function UserInventoryScreen() {
     .sort((a, b) => b.total - a.total);
   return (
     <Layout style={{ flex: 1 }}>
-      <ScrollView style={{ flex: 1 }} contentContainerStyle={styles.grid}>
-        {categories?.map((c) => (
-          <Layout
-            level="3"
-            style={{
-              width: 400,
-              flexGrow: 1,
-              maxWidth: "100%",
-              margin: 4,
-              borderRadius: 4,
-            }}
-          >
-            <Text category="h6" style={{ textAlign: "center" }}>
-              {c.category.name} ({c.total})
-            </Text>
-            <View
+      <ScrollView style={{ flex: 1 }}>
+        <View style={styles.grid}>
+          {categories?.map(c => (
+            <Layout
+              level="3"
               style={{
-                flexDirection: "row",
-                flexWrap: "wrap",
-                justifyContent: "center",
-              }}
-            >
-              {c.types
-                .slice()
-                .sort((a, b) => b.amount - a.amount)
-                .map((i) => (
-                  <InventoryIcon {...i} />
-                ))}
-            </View>
-          </Layout>
-        ))}
+                width: 400,
+                flexGrow: 1,
+                maxWidth: "100%",
+                margin: 4,
+                borderRadius: 4,
+              }}>
+              <Text category="h6" style={{ textAlign: "center" }}>
+                {c.category.name} ({c.total})
+              </Text>
+              <View
+                style={{
+                  flexDirection: "row",
+                  flexWrap: "wrap",
+                  justifyContent: "center",
+                }}>
+                {c.types
+                  .slice()
+                  .sort((a, b) => b.amount - a.amount)
+                  .map(i => (
+                    <InventoryIcon {...i} />
+                  ))}
+              </View>
+            </Layout>
+          ))}
+        </View>
+        <Text style={{ textAlign: "center" }} category="h5">History</Text>
+        <View style={styles.grid}>
+          {d?.history.map(c => (
+            <Layout
+              level="3"
+              style={{
+                width: 400,
+                flexGrow: 1,
+                maxWidth: "100%",
+                margin: 4,
+                borderRadius: 4,
+              }}>
+              <Text category="h6" style={{ textAlign: "center" }}>
+                {c.title}
+              </Text>
+              <Text category="c1" style={{ textAlign: "center" }}>
+                {c.time.format('L LT')}
+              </Text>
+              {c.description && (
+                <Text category="p1" style={{ textAlign: "center" }}>
+                  {c.description}
+                </Text>
+              )}
+              <View
+                style={{
+                  flexDirection: "row",
+                  flexWrap: "wrap",
+                  justifyContent: "center",
+                }}>
+                {c.types
+                  .slice()
+                  .sort((a, b) => b.amount - a.amount)
+                  .map(i => (
+                    <InventoryIcon {...i} />
+                  ))}
+              </View>
+            </Layout>
+          ))}
+        </View>
       </ScrollView>
     </Layout>
   );

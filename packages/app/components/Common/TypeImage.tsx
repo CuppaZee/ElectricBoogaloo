@@ -10,6 +10,7 @@ type TypeImageProps = Omit<ImageProps, "style" | "source"> & {
 };
 
 export function getTypeImage(icon: string, iconSize: 64 | 128 = 64) {
+  if (icon === "missing") return { uri: `https://icons.cuppazee.app/missing.png` };
   const stripped = db.strip(icon);
   return icons[stripped] ?? {
     uri: db.getType(icon)

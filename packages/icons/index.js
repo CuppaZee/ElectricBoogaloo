@@ -14,6 +14,8 @@ fs.writeFileSync(
 export default icons;`
 );
 
+fs.copyFileSync("icons/missing.png", "dist/missing.png");
+
 (async function () {
   const icons = {};
   for (let i = 0; i < db.types.length / 10; i++) {

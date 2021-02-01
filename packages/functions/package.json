@@ -15,8 +15,8 @@
   },
   "main": "lib/index.js",
   "dependencies": {
-    "@cuppazee/api": "0.0.8",
-    "@cuppazee/types": "^0.0.16",
+    "@cuppazee/api": "^0.0.9",
+    "@cuppazee/types": "^0.0.19",
     "@types/cheerio": "^0.22.23",
     "@types/nodemailer": "^6.4.0",
     "@types/object.fromentries": "^2.0.0",

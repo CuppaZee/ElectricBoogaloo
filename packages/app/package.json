@@ -16,8 +16,8 @@
   },
   "dependencies": {
     "@cuppazee/api": "^0.0.9",
-    "@cuppazee/icons": "^0.0.15",
-    "@cuppazee/types": "^0.0.18",
+    "@cuppazee/icons": "^0.0.19",
+    "@cuppazee/types": "^0.0.19",
     "@eva-design/eva": "^2.0.0",
     "@expo/vector-icons": "^12.0.0",
     "@react-google-maps/api": "^2.1.1",

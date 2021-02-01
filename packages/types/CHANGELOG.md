@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.19 - 01/02/2021
+- Added Buzzle Box Special and Scatters
+- Added Special Delivery Cupid tPOB and Heart Arrow Scatter
+- Added Courier Critters (Details Unconfirmed)
+- Added Valentines Mailbox
+- Added Day 1 Valentines Mailbox Card
 ## 0.0.18 - 27/01/2021
 - Fixed `active` property on Type Categories
 ## 0.0.17 - 27/01/2021

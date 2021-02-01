@@ -487,16 +487,6 @@ const scatters: {
     },
   },
   {
-    name: "Gnome Hockey Helmet",
-    icon: "gnomehockeyhelmet",
-    id: "null_gnomehockeyhelmet",
-    state: TypeState.Virtual,
-    scatter: {
-      duration: 2,
-      standalone: true,
-    },
-  },
-  {
     name: "Undercover Agent",
     icon: "undercoveragent",
     id: "null_undercoveragent",

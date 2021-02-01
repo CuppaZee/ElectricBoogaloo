@@ -1043,16 +1043,6 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@cuppazee/api@0.0.8":
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/@cuppazee/api/-/api-0.0.8.tgz#38ee721ac7c026ea87328b8bbd4ba112d6c2339e"
-  integrity sha512-Kol/q/I0hfSJS9LxU1zqmPQTV+e+wF17zCobLlHkxAfugVsevTyUuZTH55s7CYZysWNNMvFULyCl1BRa9f4d8Q==
-
-"@cuppazee/types@^0.0.16":
-  version "0.0.16"
-  resolved "https://registry.yarnpkg.com/@cuppazee/types/-/types-0.0.16.tgz#2b068940fa61c4ee548b0e2aed1c912e38b62371"
-  integrity sha512-FbDTWTAjx1zPmDuaKicsoRZY+2iipTC46Cyn1uzUKhX2yHnYiaV6OYq7fPrHvR5sDczWGcy59SkCwQh6KwYiRw==
-
 "@egjs/hammerjs@^2.0.17":
   version "2.0.17"
   resolved "https://registry.yarnpkg.com/@egjs/hammerjs/-/hammerjs-2.0.17.tgz#5dc02af75a6a06e4c2db0202cae38c9263895124"
