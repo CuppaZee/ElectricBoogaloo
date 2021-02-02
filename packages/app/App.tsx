@@ -79,7 +79,7 @@ function AppB() {
       {Platform.OS === "web" && (
         <style>{`*::-webkit-scrollbar {width: 8px;height:8px;}
           *::-webkit-scrollbar-thumb {background-color: ${
-            theme.style === "dark" ? theme["color-basic-900"] : theme["color-basic-400"]
+            theme.style === "dark" ? theme["color-basic-1100"] : theme["color-basic-400"]
           };border-radius: 8px;}`}</style>
       )}
       <IconRegistry icons={MaterialCommunityIconsPack} />

@@ -139,11 +139,24 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
             onChange={checked => setSettings({ ...settings, clan_reverse: checked })}>
             Reverse
           </CheckBox>
+          <CheckBox
+            disabled={settings.clan_style === 0}
+            style={{ margin: 8 }}
+            checked={settings.clan_single_line}
+            onChange={checked => setSettings({ ...settings, clan_single_line: checked })}>
+            Single Line
+          </CheckBox>
+          <CheckBox
+            style={{ margin: 8 }}
+            checked={settings.clan_full_background}
+            onChange={checked => setSettings({ ...settings, clan_full_background: checked })}>
+            Full Background
+          </CheckBox>
           <RadioGroup
             style={{ margin: 8 }}
             selectedIndex={settings.clan_style}
             onChange={index => setSettings({ ...settings, clan_style: index })}>
-            <Radio>Large</Radio>
+            <Radio disabled={settings.clan_single_line}>Large</Radio>
             <Radio>Comfortable</Radio>
             <Radio>Compact</Radio>
           </RadioGroup>
@@ -177,9 +190,9 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
                   date: dayjs().format(),
                   year: dayjs().year(),
                   month: dayjs().month(),
-                  mhq_date: dayjs().tz('America/Chicago').format(),
-                  mhq_year: dayjs().tz('America/Chicago').year(),
-                  mhq_month: dayjs().tz('America/Chicago').month(),
+                  mhq_date: dayjs().tz("America/Chicago").format(),
+                  mhq_year: dayjs().tz("America/Chicago").year(),
+                  mhq_month: dayjs().tz("America/Chicago").month(),
                 })
               )
             }>

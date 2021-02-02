@@ -11,7 +11,7 @@ export type Device = {
     }[];
     settings: {
       [key: string]: number;
-    }
+    };
   };
   munzee_blog?: boolean;
   token: string;
@@ -56,13 +56,23 @@ export type DeviceNotificationSettings = {
     };
     static: DeviceNotificationStaticLocation[];
   };
-  
+
   bouncers?: {
     enabled: boolean;
-    default: number;
-    owned: number;
-    categories: { [key: string]: number };
-    types: { [key: string]: number };
+    default: string;
+    starred: string;
+    starred_users: {
+      user_id: number;
+      username: string;
+    }[];
+    tag: {
+      tag: string;
+      radius: string;
+    }[];
+    type: {
+      icon: string;
+      radius: string;
+    }[];
   };
 
   munzee_blog?: boolean;
@@ -75,13 +85,12 @@ export default function (db: firestore.Firestore) {
 
   let waiting: (() => void)[] = [];
 
-  db.collection('notification_settings')
-    .onSnapshot((querySnapshot) => {
-      devices = querySnapshot.docs.map(i => i.data() as DeviceNotificationSettings);
-      hasData = true;
-      waiting.forEach(i=>i());
-      waiting = [];
-    });
+  db.collection("notification_settings").onSnapshot(querySnapshot => {
+    devices = querySnapshot.docs.map(i => i.data() as DeviceNotificationSettings);
+    hasData = true;
+    waiting.forEach(i => i());
+    waiting = [];
+  });
 
   return function (): Promise<DeviceNotificationSettings[]> {
     return new Promise((resolve, reject) => {

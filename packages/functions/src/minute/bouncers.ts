@@ -1,4 +1,4 @@
-import types from "@cuppazee/types";
+import types, { TypeTags } from "@cuppazee/types";
 import { computeDistanceBetween } from "spherical-geometry-js";
 import notification from "../util/notification";
 import { Route } from "../types";
@@ -31,9 +31,17 @@ const route: Route = {
             .collection("data")
             .doc("bouncer_notifications")
             .set({ list: all_bouncers.map(i => i.hash).join("") });
-          var bouncers = all_bouncers.filter(i => !sent.has(i.hash));
+          var bouncers = all_bouncers
+            .filter(i => !sent.has(i.hash))
+            .map(i => ({
+              ...i,
+              type: types.getType(
+                "mythological_munzee" in i ? i.mythological_munzee.munzee_logo : i.logo
+              ),
+            }));
           let all = [];
           for (var device of devices.filter(i => i.bouncers && i.bouncers.enabled)) {
+            if (!device.bouncers?.enabled) continue;
             for (var bouncer of bouncers) {
               let found = [];
               const locations = device.locations?.static.slice() ?? [];
@@ -45,12 +53,37 @@ const route: Route = {
                   longitude: device.locations.dynamic.longitude,
                 });
               }
+
+              // Default
+              let maxDistance: number = Number(device.bouncers.default);
+
+              // Categories
+              for (const tag of device.bouncers.tag.slice().reverse()) {
+                if (bouncer.type?.has_tag(TypeTags[tag.tag as keyof typeof TypeTags])) {
+                  maxDistance = Number(tag.radius);
+                }
+              }
+              
+              // Type
+              for (const type of device.bouncers.type.slice().reverse()) {
+                if (bouncer.type?.icon === type.icon) maxDistance = Number(type.radius);
+              }
+
+              // Starred
+              if (
+                "mythological_munzee" in bouncer &&
+                device.bouncers.starred_users.map(i=>i.user_id).includes(
+                  Number(bouncer.mythological_munzee.creator_user_id)
+                )
+              ) {
+                maxDistance = Math.max(maxDistance, Number(device.bouncers.starred));
+              }
               for (const location of locations) {
                 let distance = computeDistanceBetween(
                   [Number(location.longitude) || 0, Number(location.latitude) || 0],
                   [Number(bouncer.longitude) || 0, Number(bouncer.latitude) || 0]
                 );
-                if (distance < 5000) found.push({ location, distance });
+                if (distance < maxDistance * 1000) found.push({ location, distance });
               }
               if (found.length > 0) {
                 all.push({ found, bouncer, device });
@@ -60,16 +93,13 @@ const route: Route = {
           await notification(
             db,
             all.map(i => {
-              let title = `New ${
-                ("logo" in i.bouncer ? i.bouncer.logo : "").slice(49, -4) || "Unknown Type"
-              } Nearby`;
+              let title = "Error";
               if ("mythological_munzee" in i.bouncer) {
                 title = `${i.bouncer.mythological_munzee.friendly_name} by ${i.bouncer.mythological_munzee.creator_username}`;
+              } else if (i.bouncer.type) {
+                title = `New ${i.bouncer.type.name} Nearby`;
               } else {
-                var type = types.getType(i.bouncer.logo);
-                if (type) {
-                  title = `New ${type.name} Nearby`;
-                }
+                title = `New ${i.bouncer.logo.slice(49, -4) || "Unknown Type"} Nearby`;
               }
               return {
                 to: i.device.token,

@@ -292,7 +292,17 @@ export class TypeCategory {
   }
 
   get parents() {
-    return this.i.parents.map((i) => this.d.getCategory(i));
+    return this.i.parents.map(i => this.d.getCategory(i));
+  }
+
+  get ancestors() {
+    function flatten(arr: TypeCategory[][]) {
+      return ([] as TypeCategory[]).concat.apply([], arr);
+    }
+    function getAncestors(c?: TypeCategory): TypeCategory[] {
+      return c ? flatten([[c], ...(c.parents.map(getAncestors) ?? [])]) : [];
+    }
+    return Array.from(new Set(getAncestors(this)));
   }
 
   get seasonal() {
@@ -349,20 +359,18 @@ export class TypeDatabase {
   }
 
   getChildren(category: TypeCategory) {
-    return Array.from(this._categories.values()).find((i) =>
-      i.parents.includes(category)
-    );
+    return Array.from(this._categories.values()).find(i => i.parents.includes(category));
   }
 
   getChildTypes(category: TypeCategory) {
-    return Array.from(this._types.values()).filter(
-      (i) => i.category === category
-    );
+    return Array.from(this._types.values()).filter(i => i.category === category);
   }
 
   strip(icon: string) {
     if (icon.startsWith("https://munzee.global")) icon = icon.slice(49, -4);
-    var x = decodeURIComponent(icon).replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
+    var x = decodeURIComponent(icon)
+      .replace(/[^a-zA-Z0-9]/g, "")
+      .toLowerCase();
     if (x !== "munzee" && x.endsWith("munzee")) return x.replace(/munzee$/, "");
     return x;
   }
@@ -434,8 +442,7 @@ export class Type {
       return this.i.hidden?.includes(tag);
     } else if (tag) {
       return (
-        (tag ? this.i.hidden?.includes(tag) : false) ||
-        this.i.hidden?.includes(TypeHidden.All)
+        (tag ? this.i.hidden?.includes(tag) : false) || this.i.hidden?.includes(TypeHidden.All)
       );
     } else {
       return this.i.hidden?.includes(TypeHidden.All);
@@ -443,10 +450,10 @@ export class Type {
   }
 
   has_tag(...tags: TypeTags[]) {
-    return !tags.some((i) => !this.i.tags.includes(i));
+    return !tags.some(i => !this.i.tags.includes(i));
   }
 
   has_tags(...tags: TypeTags[]) {
-    return !tags.some((i) => !this.i.tags.includes(i));
+    return !tags.some(i => !this.i.tags.includes(i));
   }
 }

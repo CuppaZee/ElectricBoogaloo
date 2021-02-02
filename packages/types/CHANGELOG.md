@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.0.20 - 02/02/2021
+- Added `ancestors` property on Type Categories
 ## 0.0.19 - 01/02/2021
 - Added Buzzle Box Special and Scatters
 - Added Special Delivery Cupid tPOB and Heart Arrow Scatter

@@ -10,6 +10,7 @@ export type Settings = {
   clan_style: number;
   clan_reverse: boolean;
   clan_single_line: boolean;
+  clan_full_background: boolean;
 };
 
 export const defaultSettings: Settings = {
@@ -18,7 +19,8 @@ export const defaultSettings: Settings = {
   maps: "google",
   clan_style: 1,
   clan_reverse: false,
-  clan_single_line: false
+  clan_single_line: false,
+  clan_full_background: false
 }
 
 export const settingsAtom = atom<{
