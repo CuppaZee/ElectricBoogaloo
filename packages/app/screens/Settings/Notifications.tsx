@@ -308,14 +308,13 @@ export type DeviceNotificationSettings = {
 export default function NotificationScreen() {
   useTitle("☕ Settings - Notifications");
   const [settings, setSettings] = React.useState<DeviceNotificationSettings>();
-  const [token, setToken] = React.useState<string>("ExponentPushToken[b4pBrVDl3PYBgCKPLnYgG2]");
+  const [token, setToken] = React.useState<string>();
   const [saved, setSaved] = React.useState(false);
   const [locationPickerIndex, setLocationPickerIndex] = React.useState<number>();
   const [starredUserModal, setStarredUserModal] = React.useState(false);
   const [distanceOverrideModal, setDistanceOverrideModal] = React.useState(false);
 
   async function registerForPushNotificationsAsync() {
-    return;
     if (Constants.isDevice) {
       const { status: existingStatus } = await Notifications.getPermissionsAsync();
       let finalStatus = existingStatus;
