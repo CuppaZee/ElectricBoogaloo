@@ -46,6 +46,7 @@ export default {
             screens: {
               Personalisation: "personalisation",
               Accounts: "accounts",
+              Notifications: "notifications",
             },
           },
           Welcome: "welcome",

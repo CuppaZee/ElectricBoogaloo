@@ -1,5 +1,5 @@
 import { SeasonalCategory } from ".";
-import { TypeState, TypeTags } from "../../munzee";
+import { TypeHidden, TypeState, TypeTags } from "../../munzee";
 
 const s2021: SeasonalCategory[] = [
   {
@@ -59,7 +59,7 @@ const s2021: SeasonalCategory[] = [
         id: "null_heartarrow",
         state: TypeState.Virtual,
         tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
-        hidden: [],
+        hidden: [TypeHidden.Inventory],
         meta: {
           scatter_duration: 2,
         },
@@ -91,7 +91,7 @@ const s2021: SeasonalCategory[] = [
         id: "null_redbuzzlepiece1",
         state: TypeState.Virtual,
         tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
-        hidden: [],
+        hidden: [TypeHidden.Inventory],
         meta: {
           scatter_duration: 2,
         },
@@ -102,7 +102,7 @@ const s2021: SeasonalCategory[] = [
         id: "null_redbuzzlepiece2",
         state: TypeState.Virtual,
         tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
-        hidden: [],
+        hidden: [TypeHidden.Inventory],
         meta: {
           scatter_duration: 2,
         },
@@ -113,7 +113,7 @@ const s2021: SeasonalCategory[] = [
         id: "null_redbuzzlepiece3",
         state: TypeState.Virtual,
         tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
-        hidden: [],
+        hidden: [TypeHidden.Inventory],
         meta: {
           scatter_duration: 2,
         },
@@ -124,7 +124,7 @@ const s2021: SeasonalCategory[] = [
         id: "null_redbuzzlepiece4",
         state: TypeState.Virtual,
         tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
-        hidden: [],
+        hidden: [TypeHidden.Inventory],
         meta: {
           scatter_duration: 2,
         },
@@ -135,7 +135,7 @@ const s2021: SeasonalCategory[] = [
         id: "null_greenbuzzlepiece1",
         state: TypeState.Virtual,
         tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
-        hidden: [],
+        hidden: [TypeHidden.Inventory],
         meta: {
           scatter_duration: 2,
         },
@@ -146,7 +146,7 @@ const s2021: SeasonalCategory[] = [
         id: "null_greenbuzzlepiece2",
         state: TypeState.Virtual,
         tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
-        hidden: [],
+        hidden: [TypeHidden.Inventory],
         meta: {
           scatter_duration: 2,
         },
@@ -157,7 +157,7 @@ const s2021: SeasonalCategory[] = [
         id: "null_greenbuzzlepiece3",
         state: TypeState.Virtual,
         tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
-        hidden: [],
+        hidden: [TypeHidden.Inventory],
         meta: {
           scatter_duration: 2,
         },
@@ -168,7 +168,7 @@ const s2021: SeasonalCategory[] = [
         id: "null_greenbuzzlepiece4",
         state: TypeState.Virtual,
         tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
-        hidden: [],
+        hidden: [TypeHidden.Inventory],
         meta: {
           scatter_duration: 2,
         },
@@ -179,7 +179,7 @@ const s2021: SeasonalCategory[] = [
         id: "null_yellowbuzzlepiece1",
         state: TypeState.Virtual,
         tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
-        hidden: [],
+        hidden: [TypeHidden.Inventory],
         meta: {
           scatter_duration: 2,
         },
@@ -190,7 +190,7 @@ const s2021: SeasonalCategory[] = [
         id: "null_yellowbuzzlepiece2",
         state: TypeState.Virtual,
         tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
-        hidden: [],
+        hidden: [TypeHidden.Inventory],
         meta: {
           scatter_duration: 2,
         },
@@ -201,7 +201,7 @@ const s2021: SeasonalCategory[] = [
         id: "null_yellowbuzzlepiece3",
         state: TypeState.Virtual,
         tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
-        hidden: [],
+        hidden: [TypeHidden.Inventory],
         meta: {
           scatter_duration: 2,
         },
@@ -212,7 +212,7 @@ const s2021: SeasonalCategory[] = [
         id: "null_yellowbuzzlepiece4",
         state: TypeState.Virtual,
         tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
-        hidden: [],
+        hidden: [TypeHidden.Inventory],
         meta: {
           scatter_duration: 2,
         },
@@ -287,7 +287,7 @@ const s2021: SeasonalCategory[] = [
         id: "null_gnomehockeyhelmet",
         state: TypeState.Virtual,
         tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
-        hidden: [],
+        hidden: [TypeHidden.Inventory],
         meta: {
           scatter_duration: 2,
         },
@@ -298,7 +298,7 @@ const s2021: SeasonalCategory[] = [
         id: "null_gnomearcheryhood",
         state: TypeState.Virtual,
         tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
-        hidden: [],
+        hidden: [TypeHidden.Inventory],
         meta: {
           scatter_duration: 2,
         },

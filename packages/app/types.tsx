@@ -43,4 +43,5 @@ export type ToolsStackParamList = {
 export type SettingsStackParamList = {
   Personalisation: undefined;
   Accounts: undefined;
+  Notifications: undefined;
 };

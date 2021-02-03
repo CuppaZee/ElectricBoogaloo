@@ -28,9 +28,10 @@ export default function useMunzeeRequest<Path extends keyof Endpoints>(
   endpoint: FetchRequest<Path>["endpoint"],
   params: FetchRequest<Path>["params"],
   run?: boolean,
-  user_id?: number
+  user_id?: number,
+  bypassIsFocused?: boolean
 ) {
-  const isFocused = useIsFocused();
+  const isFocused = bypassIsFocused ?? useIsFocused();
   const token = useToken(user_id);
   const data = useQuery(
     ["munzee", endpoint, stringify(params), user_id],

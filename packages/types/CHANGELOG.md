@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.22 - 03/02/2021
+- Separated HCCC and VCCC cards into separate categories and tags
+- Added Day 2 and 3 VCCC Cards
+- Fixed `TypeHidden` values on Temp Scatters
+## 0.0.21 - 03/02/2021
+- Replaced `TypeZodiac` with `TypeWeapon` on Weapon Types
 ## 0.0.20 - 02/02/2021
 - Added `ancestors` property on Type Categories
 ## 0.0.19 - 01/02/2021

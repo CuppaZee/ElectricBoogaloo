@@ -1,5 +1,5 @@
 import types, { TypeTags } from "@cuppazee/types";
-import { computeDistanceBetween } from "spherical-geometry-js";
+import { computeDistanceBetween, computeHeading } from "spherical-geometry-js";
 import notification from "../util/notification";
 import { Route } from "../types";
 import { getBouncers } from "../util/cache";
@@ -44,37 +44,36 @@ const route: Route = {
             if (!device.bouncers?.enabled) continue;
             for (var bouncer of bouncers) {
               let found = [];
-              const locations = device.locations?.static.slice() ?? [];
+              const locations = device.locations?.static.filter(i => i.enabled) ?? [];
               if (device.locations?.dynamic) {
                 locations.push({
                   enabled: true,
                   name: "Current Location",
-                  latitude: device.locations.dynamic.latitude,
-                  longitude: device.locations.dynamic.longitude,
+                  latitude: device.locations.dynamic.latitude.toString(),
+                  longitude: device.locations.dynamic.longitude.toString(),
                 });
               }
 
               // Default
               let maxDistance: number = Number(device.bouncers.default);
 
-              // Categories
-              for (const tag of device.bouncers.tag.slice().reverse()) {
-                if (bouncer.type?.has_tag(TypeTags[tag.tag as keyof typeof TypeTags])) {
-                  maxDistance = Number(tag.radius);
+              // Overrides
+              for (const override of device.bouncers.overrides.slice().reverse()) {
+                if (
+                  ("tag" in override &&
+                    bouncer.type?.has_tag(TypeTags[override.tag as keyof typeof TypeTags])) ||
+                  ("icon" in override && bouncer.type?.icon === override.icon)
+                ) {
+                  maxDistance = Number(override.radius);
                 }
-              }
-              
-              // Type
-              for (const type of device.bouncers.type.slice().reverse()) {
-                if (bouncer.type?.icon === type.icon) maxDistance = Number(type.radius);
               }
 
               // Starred
               if (
                 "mythological_munzee" in bouncer &&
-                device.bouncers.starred_users.map(i=>i.user_id).includes(
-                  Number(bouncer.mythological_munzee.creator_user_id)
-                )
+                device.starred_users
+                  ?.map(i => i.user_id)
+                  .includes(Number(bouncer.mythological_munzee.creator_user_id))
               ) {
                 maxDistance = Math.max(maxDistance, Number(device.bouncers.starred));
               }
@@ -83,7 +82,15 @@ const route: Route = {
                   [Number(location.longitude) || 0, Number(location.latitude) || 0],
                   [Number(bouncer.longitude) || 0, Number(bouncer.latitude) || 0]
                 );
-                if (distance < maxDistance * 1000) found.push({ location, distance });
+                if (distance < maxDistance * (device.imperial ? 1609 : 1000))
+                  found.push({
+                    location,
+                    distance,
+                    direction: computeHeading(
+                      [Number(location.longitude) || 0, Number(location.latitude) || 0],
+                      [Number(bouncer.longitude) || 0, Number(bouncer.latitude) || 0]
+                    ),
+                  });
               }
               if (found.length > 0) {
                 all.push({ found, bouncer, device });
@@ -105,16 +112,33 @@ const route: Route = {
                 to: i.device.token,
                 sound: "default",
                 title,
-                body: i.found
-                  .map(
-                    location =>
-                      `${
-                        location.distance < 700
-                          ? `${Math.floor(location.distance)}m`
-                          : `${Math.floor(location.distance / 10) / 100}km`
-                      } from ${location.location.name}`
-                  )
-                  .join("\n"),
+                body: `At ${i.bouncer.friendly_name} by ${
+                  i.bouncer.full_url.split("/")[4]
+                }\n${i.found
+                  .map(location => {
+                    let direction = ["↓ S", "↙ SW", "← W", "↖ NW", "↑ N", "↗ NE", "→ E", "↘ SE"][
+                      Math.floor((location.direction + 202.5) / 45) % 8
+                    ];
+                    let distance;
+                    if (i.device.imperial) {
+                      let feet = location.distance * 3.28084;
+                      let miles = feet * 0.000189394;
+                      if (feet < 4000) {
+                        distance = `${Math.round(feet + Number.EPSILON)}ft`;
+                      } else {
+                        distance = `${Math.round((miles + Number.EPSILON) * 100) / 100}mi`;
+                      }
+                    } else {
+                      let kms = location.distance * 1000;
+                      if (location.distance < 700) {
+                        distance = `${Math.round(location.distance + Number.EPSILON)}m`;
+                      } else {
+                        distance = `${Math.round((kms + Number.EPSILON) * 100) / 100}km`;
+                      }
+                    }
+                    return `${distance} ${direction} from ${location.location.name}`;
+                  })
+                  .join("\n")}`,
                 data: {
                   type: "bouncer",
                   bouncer: i.bouncer.full_url,

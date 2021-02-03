@@ -105,7 +105,9 @@ export enum TypeTags {
   Card,
   CardOpen,
   Card2020,
+  Card2020HCCC,
   Card2021,
+  Card2021VCCC,
 
   // Evolution
   Evolution,

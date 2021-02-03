@@ -290,7 +290,8 @@ var tasks = {
     top: "QRewZee",
     bottom: "Captures",
     icon: "https://munzee.global.ssl.fastly.net/images/pins/qrewzee.png",
-    function: ({ cap }: any) => cap.filter((i: any) => g(i)?.icon === "qrewzee").length,
+    function: ({ cap }: any) =>
+      cap.filter((i: any) => (g(i)?.icon === "qrewzee" || g(i)?.icon === "sleepzee")).length,
   },
   36: {
     task_id: 36,

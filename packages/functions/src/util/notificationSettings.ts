@@ -38,8 +38,8 @@ export type DeviceNotificationUser = {
 
 export type DeviceNotificationStaticLocation = {
   enabled: boolean;
-  latitude: number;
-  longitude: number;
+  latitude: string;
+  longitude: string;
   name: string;
 };
 
@@ -61,21 +61,64 @@ export type DeviceNotificationSettings = {
     enabled: boolean;
     default: string;
     starred: string;
-    starred_users: {
-      user_id: number;
-      username: string;
-    }[];
-    tag: {
-      tag: string;
-      radius: string;
-    }[];
-    type: {
-      icon: string;
-      radius: string;
-    }[];
+    overrides: (
+      | {
+          tag: string;
+          radius: string;
+        }
+      | {
+          icon: string;
+          radius: string;
+        }
+    )[];
   };
 
+  starred_users?: {
+    user_id: number;
+    username: string;
+  }[];
+
   munzee_blog?: boolean;
+  imperial?: boolean;
+};
+
+export type FullDeviceNotificationSettings = {
+  type: "expo";
+  token: string;
+
+  users: DeviceNotificationUser[];
+
+  locations: {
+    dynamic?: {
+      latitude: number;
+      longitude: number;
+    };
+    static: DeviceNotificationStaticLocation[];
+  };
+
+  bouncers: {
+    enabled: boolean;
+    default: string;
+    starred: string;
+    overrides: (
+      | {
+          tag: string;
+          radius: string;
+        }
+      | {
+          icon: string;
+          radius: string;
+        }
+    )[];
+  };
+
+  starred_users: {
+    user_id: number;
+    username: string;
+  }[];
+
+  munzee_blog: boolean;
+  imperial: boolean;
 };
 
 export default function (db: firestore.Firestore) {

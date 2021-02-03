@@ -10,6 +10,7 @@ import MapStyleDark from './MapStyleDark.json';
 
 export type MapProps = {
   region: Region;
+  zoom?: number;
   markers?: MapMarkerProps[];
   circles?: MapCircle[];
   circle?: [];

@@ -171,7 +171,7 @@ for (const year of Object.keys(years) as (keyof typeof years)[]) {
           .replace(/\s/g, "-")
           .replace(/[^-a-z0-9]+/g, "")}`,
         alt_icons: [],
-        hidden: [],
+        hidden: [TypeHidden.Inventory],
         tags: [],
         meta: {},
         ...t,

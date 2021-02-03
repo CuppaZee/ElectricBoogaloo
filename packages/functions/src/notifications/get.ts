@@ -1,6 +1,6 @@
 import { Route } from "../types";
 import { Expo } from 'expo-server-sdk';
-import { DeviceNotificationSettings } from "../util/notificationSettings";
+import { DeviceNotificationSettings, FullDeviceNotificationSettings } from "../util/notificationSettings";
 
 const route: Route = {
   path: "notifications/get",
@@ -20,11 +20,25 @@ const route: Route = {
           }
         }
         const data = (await db.collection("notification_settings").doc(token).get()).data() as Partial<DeviceNotificationSettings> | null;
-        var d: DeviceNotificationSettings = {
+        var d: FullDeviceNotificationSettings = {
           type: "expo",
           token,
           users: [],
-          ...data || {},
+          munzee_blog: false,
+          imperial: false,
+          starred_users: [],
+          ...(data || {}),
+          locations: {
+            static: [],
+            ...(data?.locations ?? {}),
+          },
+          bouncers: {
+            enabled: false,
+            default: "0",
+            starred: "",
+            overrides: [],
+            ...(data?.bouncers ?? {}),
+          },
         };
         return {
           status: "success",

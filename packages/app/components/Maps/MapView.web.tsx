@@ -66,7 +66,7 @@ function WebMap(props: MapProps) {
   return (
     <LoadScript googleMapsApiKey={key} version={version} libraries={["places"]}>
       <GoogleMap
-        zoom={1}
+        zoom={props.zoom ?? 1}
         center={center ?? { lat: props.region.latitude, lng: props.region.longitude }}
         options={{
           streetViewControl: false,

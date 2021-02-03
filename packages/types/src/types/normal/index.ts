@@ -315,7 +315,7 @@ for (const t of weapons) {
     state: t.state,
     category: `weapon_${t.weapon}`,
     tags: [
-      TypeTags.TypeZodiac,
+      TypeTags.TypeWeapon,
       {
         zeecret: TypeTags.TypeWeaponZeeops,
         clan: TypeTags.TypeWeaponClan,

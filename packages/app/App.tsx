@@ -27,6 +27,8 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.extend(localizedFormat);
 
+import './BackgroundLocation';
+
 function MCIcon({ name, style }: { name: string | number | symbol; style: any }) {
   try {
     const { height, tintColor, ...iconStyle } = StyleSheet.flatten(style);
@@ -84,10 +86,8 @@ function AppB() {
       )}
       <IconRegistry icons={MaterialCommunityIconsPack} />
       <ApplicationProvider {...eva} theme={theme}>
-        <QueryClientProvider client={queryClient}>
           <Navigation colorScheme={colorScheme} />
           <StatusBar />
-        </QueryClientProvider>
       </ApplicationProvider>
     </>
   );
@@ -102,7 +102,9 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <JotaiProvider>
-        <AppB />
+        <QueryClientProvider client={queryClient}>
+          <AppB />
+        </QueryClientProvider>
       </JotaiProvider>
     </SafeAreaProvider>
   );

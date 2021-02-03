@@ -1558,7 +1558,7 @@ const s2020: SeasonalCategory[] = [
         id: 2395,
         state: TypeState.Virtual,
         tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
-        hidden: [],
+        hidden: [TypeHidden.Inventory],
         meta: {
           scatter_duration: 1,
         },
@@ -1569,7 +1569,7 @@ const s2020: SeasonalCategory[] = [
         id: 2396,
         state: TypeState.Virtual,
         tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
-        hidden: [],
+        hidden: [TypeHidden.Inventory],
         meta: {
           scatter_duration: 1,
         },
@@ -1580,7 +1580,7 @@ const s2020: SeasonalCategory[] = [
         id: 2397,
         state: TypeState.Virtual,
         tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
-        hidden: [],
+        hidden: [TypeHidden.Inventory],
         meta: {
           scatter_duration: 1,
         },
@@ -1591,7 +1591,7 @@ const s2020: SeasonalCategory[] = [
         id: 2398,
         state: TypeState.Virtual,
         tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
-        hidden: [],
+        hidden: [TypeHidden.Inventory],
         meta: {
           scatter_duration: 1,
         },
@@ -1602,7 +1602,7 @@ const s2020: SeasonalCategory[] = [
         id: 2399,
         state: TypeState.Virtual,
         tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
-        hidden: [],
+        hidden: [TypeHidden.Inventory],
         meta: {
           scatter_duration: 1,
         },
@@ -1613,7 +1613,7 @@ const s2020: SeasonalCategory[] = [
         id: 2400,
         state: TypeState.Virtual,
         tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
-        hidden: [],
+        hidden: [TypeHidden.Inventory],
         meta: {
           scatter_duration: 1,
         },
@@ -1624,7 +1624,7 @@ const s2020: SeasonalCategory[] = [
         id: 2401,
         state: TypeState.Virtual,
         tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
-        hidden: [],
+        hidden: [TypeHidden.Inventory],
         meta: {
           scatter_duration: 1,
         },

@@ -127,7 +127,9 @@ export default function InventoryConverter(
 
   for (const credit in dataraw.undeployed) {
     const type = db.getType(dataraw.undeployed[credit].type);
-    const d = data.types.find(i => i.type === type);
+    const d = type
+      ? data.types.find(i => i.type === type)
+      : data.types.find(i => i.icon === dataraw.undeployed[credit].type);
     if (d) {
       d.undeployed = Number(dataraw.undeployed[credit].amount);
       d.amount += d.undeployed;
@@ -143,7 +145,7 @@ export default function InventoryConverter(
   }
 
   for (const credit of data.types) {
-    const category = credit.type?.category || db.getCategory("others");
+    const category = credit.type?.category || db.getCategory("other");
     if (category && !data.categories.includes(category)) data.categories.push(category);
   }
 
@@ -157,7 +159,6 @@ export default function InventoryConverter(
       icon: db.getType(log.type.replace(/^([0-9]+)x? /i, ""))?.icon ?? "missing",
       time: dayjs.tz(log.time_awarded, "America/Chicago").valueOf(),
     };
-    console.log(latestTime, item.time);
     if (
       latestTitle === item.reason &&
       latestTime > item.time - 60000 &&

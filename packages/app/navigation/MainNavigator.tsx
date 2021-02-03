@@ -12,7 +12,7 @@ import WelcomeScreen from "../screens/Welcome";
 import SettingsNavigator from "./SettingsNavigator";
 import { useSettings } from "../hooks/useSettings";
 
-export const isClanStatsBeta = true;
+export const isClanStatsBeta: boolean = false;
 
 const Drawer = createDrawerNavigator<MainDrawerParamList>();
 
