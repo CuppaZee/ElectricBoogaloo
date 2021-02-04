@@ -325,7 +325,7 @@ export default function ClanStatsScreen() {
             level="4">
             <Icon style={{ height: 32, width: 32, marginRight: 8 }} name="playlist-check" />
             <View>
-              <Text category="h6">{t("clan:requirements")}</Text>
+              <Text category="h6">{t("clan:clan_requirements")}</Text>
               <Text category="s1">
                 {dayjs()
                   .set("month", gameIDToMonth(game_id).m)
