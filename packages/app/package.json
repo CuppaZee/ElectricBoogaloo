@@ -8,6 +8,7 @@
     "ios": "react-native run-ios",
     "web": "expo start --web",
     "build-web": "expo build:web",
+    "build-translations": "node ./lang/generate.js",
     "eject": "expo eject",
     "test": "jest --watchAll",
     "deploy-app": "expo publish --release-channel v2.0"
@@ -41,7 +42,6 @@
     "expo": "~40.0.0",
     "expo-app-loading": "^1.0.1",
     "expo-asset": "~8.2.1",
-    "expo-auth-session": "~3.0.0",
     "expo-clipboard": "~1.0.1",
     "expo-constants": "~9.3.0",
     "expo-font": "~8.4.0",
@@ -85,7 +85,8 @@
     "jest": "~25.2.6",
     "jest-expo": "~40.0.0",
     "react-test-renderer": "~16.13.1",
-    "typescript": "~4.0.0"
+    "typescript": "~4.0.0",
+    "webpack-bundle-analyzer": "^4.4.0"
   },
   "private": true,
   "workspaces": {

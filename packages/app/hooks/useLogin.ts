@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Platform } from "react-native";
-import * as AuthSession from "expo-auth-session";
 import * as WebBrowser from "expo-web-browser";
 import { useAtom } from "jotai";
 import { teakensAtom, useTeakens } from "../hooks/useToken";
@@ -25,10 +24,7 @@ WebBrowser.maybeCompleteAuthSession({
   skipRedirectCheck: true,
 });
 
-const redirectUri = AuthSession.makeRedirectUri({
-  native: "uk.cuppazee.paper://login",
-  path: "login",
-});
+const redirectUri = Platform.OS === "web" ? [window.location.origin, "login"].filter(Boolean).join('/') : "uk.cuppazee.paper://login"
 
 export default function useLogin(shouldRedirect?: boolean, application: keyof typeof configs = "main") {
   var config = configs[application];

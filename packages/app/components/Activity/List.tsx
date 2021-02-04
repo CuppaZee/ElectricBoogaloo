@@ -55,7 +55,8 @@ export default function UserActivityList({
             }
             accessoryRight={(props) => <Icon {...props} name="calendar" />}
           />
-          {toggleFilterModal && <Button onPress={() => toggleFilterModal()} size="small" appearance="ghost" accessoryLeft={props => <Icon {...props} name="filter" />}>Edit Filters</Button>}
+          {toggleFilterModal && <Button onPress={() => toggleFilterModal()} size="small" appearance="ghost" accessoryLeft={props => <Icon {...props} name="filter" />}>Edit Filters</Button>} 
+          {/* // TODO: Translate */}
           <UserActivityOverview
             user_id={user_id}
             day={route.params.date ?? dayjs().format("YYYY-MM-DD")}

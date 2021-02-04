@@ -108,10 +108,11 @@ const route: Route = {
               } else {
                 title = `New ${i.bouncer.logo.slice(49, -4) || "Unknown Type"} Nearby`;
               }
+              const onThisHost = all_bouncers.filter(b => b.full_url === i.bouncer.full_url).length;
               return {
                 to: i.device.token,
                 sound: "default",
-                title,
+                title: title + (onThisHost > 1 ? ` [${onThisHost}/6]` : ""),
                 body: `At ${i.bouncer.friendly_name} by ${
                   i.bouncer.full_url.split("/")[4]
                 }\n${i.found

@@ -3,6 +3,7 @@ import * as React from "react";
 import { View } from "react-native";
 import { UserActivityConverterOutput, UserActivityFilters } from "./Data";
 import db, { TypeCategory, TypeState } from "@cuppazee/types";
+import { useTranslation } from "react-i18next";
 
 const types: {
   label: string;
@@ -50,19 +51,24 @@ export default function UserActivityFilter({
   filters: UserActivityFilters;
   setFilters(filters: UserActivityFilters): void;
 }) {
+  const { t } = useTranslation();
   const [filters, setFilters] = React.useState(baseFilters);
   React.useEffect(() => {
     setFilters(baseFilters);
   }, [baseFilters]);
   return (
     <View style={{ padding: 4 }}>
-      <Button onPress={() => setBaseFilters(filters)} accessoryLeft={props => <Icon {...props} name="content-save" />} size="small" appearance="outline">
-        Save Filters
+      <Button
+        onPress={() => setBaseFilters(filters)}
+        accessoryLeft={props => <Icon {...props} name="content-save" />}
+        size="small"
+        appearance="outline">
+        {t("user_activity:filter_save")}
       </Button>
       <Text category="s1" style={{ padding: 4 }}>
-        Types
+        {t("user_activity:filter_types")}
       </Text>
-      {types.map((i) => (
+      {types.map(i => (
         <CheckBox
           key={i.value}
           style={{ margin: 4 }}
@@ -74,15 +80,14 @@ export default function UserActivityFilter({
               filters.activity.add(i.value);
             }
             setFilters({ ...filters });
-          }}
-        >
+          }}>
           {i.label}
         </CheckBox>
       ))}
       <Text category="s1" style={{ padding: 4 }}>
-        State
+        {t("user_activity:filter_state")}
       </Text>
-      {states.map((i) => (
+      {states.map(i => (
         <CheckBox
           key={i.value}
           style={{ margin: 4 }}
@@ -94,15 +99,14 @@ export default function UserActivityFilter({
               filters.state.add(i.value);
             }
             setFilters({ ...filters });
-          }}
-        >
+          }}>
           {i.label}
         </CheckBox>
       ))}
       <Text category="s1" style={{ padding: 4 }}>
-        Categories
+        {t("user_activity:filter_category")}
       </Text>
-      {d.categories.map((i) => (
+      {d.categories.map(i => (
         <CheckBox
           key={i.id}
           style={{ margin: 4 }}
@@ -114,8 +118,7 @@ export default function UserActivityFilter({
               filters.category.add(i);
             }
             setFilters({ ...filters });
-          }}
-        >
+          }}>
           {i.name}
         </CheckBox>
       ))}

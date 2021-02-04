@@ -10,6 +10,7 @@ import { isClanStatsBeta } from "./MainNavigator";
 import * as themes from '../themes';
 import dayjs from "dayjs";
 import Clipboard from "expo-clipboard";
+import { useTranslation } from "react-i18next";
 
 type NavigationRoute = {
   state?: NavigationState | PartialState<NavigationState>;
@@ -19,6 +20,7 @@ type NavigationRoute = {
 };
 
 export default function DrawerContent(props: DrawerContentComponentProps<DrawerContentOptions>) {
+  const { t } = useTranslation();
   const [users] = useUserBookmarks();
   const [clans] = useClanBookmarks();
   const day = useDay();
@@ -208,13 +210,13 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
       <ScrollView style={{ flexGrow: 1 }}>
         <DrawerItem
           selected={page[1]?.name === "Tools" && page[2]?.name === "Search"}
-          title="Search"
+          title={t("pages:tools_search")}
           accessoryLeft={props => <Icon {...props} name="magnify" />}
           onPress={() => props.navigation.navigate("Search")}
         />
         <DrawerItem
           selected={page[1]?.name === "Dashboard"}
-          title="Dashboard"
+          title={t("pages:dashboard_dashboard")}
           accessoryLeft={props => <Icon {...props} name="home" />}
           onPress={() => props.navigation.navigate("Dashboard")}
         />
@@ -247,7 +249,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
                 page[2]?.name === "Profile" &&
                 (page[2]?.params as any)?.username === user.username
               }
-              title="Profile"
+              title={t("pages:user_profile")}
               accessoryLeft={props => <Icon {...props} name="account" />}
               onPress={() =>
                 props.navigation.navigate("User", {
@@ -262,7 +264,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
                 page[2]?.name === "Activity" &&
                 (page[2]?.params as any)?.username === user.username
               }
-              title="Activity"
+              title={t("pages:user_activity")}
               accessoryLeft={props => <Icon {...props} name="calendar" />}
               onPress={() =>
                 props.navigation.navigate("User", {
@@ -277,7 +279,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
                 page[2]?.name === "Inventory" &&
                 (page[2]?.params as any)?.username === user.username
               }
-              title="Inventory"
+              title={t("pages:user_inventory")}
               accessoryLeft={props => <Icon {...props} name="archive" />}
               onPress={() =>
                 props.navigation.navigate("User", {
@@ -287,24 +289,38 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
               }
             />
             <DrawerItem
-              title="ZeeOps"
+              title={t("pages:user_zeeops")}
               accessoryLeft={props => <Icon {...props} name="briefcase" />}
             />
             <DrawerItem
-              title="Clan Progress"
+              title={t("pages:user_clan_progress")}
               accessoryLeft={props => <Icon {...props} name="shield" />}
             />
-            <DrawerItem title="Bouncers" accessoryLeft={props => <Icon {...props} name="star" />} />
             <DrawerItem
-              title="Blast Checker"
+              selected={
+                page[1]?.name === "User" &&
+                page[2]?.name === "Bouncers" &&
+                (page[2]?.params as any)?.username === user.username
+              }
+              title={t("pages:user_bouncers")}
+              accessoryLeft={props => <Icon {...props} name="star" />}
+              onPress={() =>
+                props.navigation.navigate("User", {
+                  params: { username: user.username },
+                  screen: "Bouncers",
+                })
+              }
+            />
+            <DrawerItem
+              title={t("pages:user_blast_checker")}
               accessoryLeft={props => <Icon {...props} name="bomb" />}
             />
             <DrawerItem
-              title="QRew Checker"
+              title={t("pages:user_qrew_checker")}
               accessoryLeft={props => <Icon {...props} name="hammer" />}
             />
             <DrawerItem
-              title="Universal Capper"
+              title={t("pages:user_universal_capper")}
               accessoryLeft={props => <Icon {...props} name="check" />}
             />
           </DrawerGroup>
@@ -315,7 +331,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
         {/* Clans */}
         <DrawerItem
           selected={page[1]?.name === "Clan" && page[2]?.name === "Requirements"}
-          title="Clan Requirements"
+          title={t("pages:clan_requirements")}
           accessoryLeft={props => <Icon {...props} name="star" />}
           onPress={() =>
             props.navigation.navigate("Clan", {
@@ -400,7 +416,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
         {/* Tools */}
         <DrawerItem
           selected={page[1]?.name === "Tools" && page[2]?.name === "Bouncers"}
-          title="Bouncers"
+          title={t("pages:tools_bouncers")}
           accessoryLeft={props => <Icon {...props} name="map-marker" />}
           onPress={() =>
             props.navigation.navigate("Tools", {
@@ -409,12 +425,12 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
           }
         />
         <DrawerItem
-          title="Munzee Types"
+          title={t("pages:tools_munzee_types")}
           accessoryLeft={props => <Icon {...props} name="database" />}
         />
         <DrawerItem
           selected={page[1]?.name === "Tools" && page[2]?.name === "Calendar"}
-          title="Calendar"
+          title={t("pages:tools_calendar")}
           accessoryLeft={props => <Icon {...props} name="calendar" />}
           onPress={() =>
             props.navigation.navigate("Tools", {
@@ -422,13 +438,16 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
             })
           }
         />
-        <DrawerItem title="Evo Planner" accessoryLeft={props => <Icon {...props} name="dna" />} />
+        <DrawerItem
+          title={t("pages:tools_evo_planner")}
+          accessoryLeft={props => <Icon {...props} name="dna" />}
+        />
 
         {/* Settings */}
         <DrawerGroup title="Settings" accessoryLeft={props => <Icon {...props} name="cog" />}>
           <DrawerItem
             selected={page[1]?.name === "Settings" && page[2]?.name === "Personalisation"}
-            title="Personalisation"
+            title={t("pages:settings_personalisation")}
             accessoryLeft={props => <Icon {...props} name="palette" />}
             onPress={() =>
               props.navigation.navigate("Settings", {
@@ -437,12 +456,12 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
             }
           />
           <DrawerItem
-            title="Notifications"
+            title={t("pages:settings_notifications")}
             accessoryLeft={props => <Icon {...props} name="bell" />}
           />
           <DrawerItem
             selected={page[1]?.name === "Settings" && page[2]?.name === "Accounts"}
-            title="Accounts"
+            title={t("pages:settings_accounts")}
             accessoryLeft={props => <Icon {...props} name="account-multiple" />}
             onPress={() =>
               props.navigation.navigate("Settings", {
@@ -451,7 +470,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
             }
           />
           <DrawerItem
-            title="Bookmarks"
+            title={t("pages:settings_bookmarks")}
             accessoryLeft={props => <Icon {...props} name="bookmark-multiple" />}
           />
         </DrawerGroup>
@@ -459,7 +478,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
         {/* More */}
         <DrawerItem
           selected={page[1]?.name === "Tools" && page[2]?.name === "Credits"}
-          title="Credits"
+          title={t("pages:tools_credits")}
           accessoryLeft={props => <Icon {...props} name="heart" />}
           onPress={() =>
             props.navigation.navigate("Tools", {
@@ -469,7 +488,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
         />
         <DrawerItem
           selected={page[1]?.name === "Tools" && page[2]?.name === "OpenSource"}
-          title="Open Source"
+          title={t("pages:tools_open_source")}
           accessoryLeft={props => <Icon {...props} name="code-tags" />}
           onPress={() =>
             props.navigation.navigate("Tools", {

@@ -5,6 +5,7 @@ import db from "@cuppazee/types";
 import { Pressable, View } from "react-native";
 import { ActivityConverter, UserActivityData } from "./Data";
 import TypeImage from "../Common/TypeImage";
+import { useTranslation } from "react-i18next";
 
 export type UserActivityOverviewProps = {
   user_id: number;
@@ -51,6 +52,7 @@ export default function UserActivityOverview({
   user_id,
   day,
 }: UserActivityOverviewProps) {
+  const { t } = useTranslation();
   const data = useCuppaZeeRequest<{ data: UserActivityData }>(
     "user/activity",
     { user_id, day }
@@ -74,46 +76,46 @@ export default function UserActivityOverview({
   return (
     <View style={{ padding: 4 }}>
       <Text category="h6" style={{ textAlign: "center" }}>
-        {d.points} Points
+        {t("user_activity:overview_points", { count: d.points })}
       </Text>
       <Text category="s1" style={{ textAlign: "center" }}>
-        {d.captures.count} Captures ({d.captures.points} Points)
+        {t("user_activity:overview_captures", { count: d.captures.count })} (
+        {t("user_activity:overview_points", { count: d.captures.points })})
       </Text>
       <View
         style={{
           flexDirection: "row",
           justifyContent: "center",
           flexWrap: "wrap",
-        }}
-      >
+        }}>
         {Object.entries(d.captures.types).map((i, _, a) => (
           <UserActivityOverviewItem key={i[0]} icon={i[0]} data={i[1]} count={a.length} />
         ))}
       </View>
       <Text category="s1" style={{ textAlign: "center" }}>
-        {d.deploys.count} Deploys ({d.deploys.points} Points)
+        {t("user_activity:overview_deploys", { count: d.deploys.count })} (
+        {t("user_activity:overview_points", { count: d.deploys.points })})
       </Text>
       <View
         style={{
           flexDirection: "row",
           justifyContent: "center",
           flexWrap: "wrap",
-        }}
-      >
+        }}>
         {Object.entries(d.deploys.types).map((i, _, a) => (
           <UserActivityOverviewItem key={i[0]} icon={i[0]} data={i[1]} count={a.length} />
         ))}
       </View>
       <Text category="s1" style={{ textAlign: "center" }}>
-        {d.capons.count} Cap-ons ({d.capons.points} Points)
+        {t("user_activity:overview_capons", { count: d.capons.count })} (
+        {t("user_activity:overview_points", { count: d.capons.points })})
       </Text>
       <View
         style={{
           flexDirection: "row",
           justifyContent: "center",
           flexWrap: "wrap",
-        }}
-      >
+        }}>
         {Object.entries(d.capons.types).map((i, _, a) => (
           <UserActivityOverviewItem key={i[0]} icon={i[0]} data={i[1]} count={a.length} />
         ))}

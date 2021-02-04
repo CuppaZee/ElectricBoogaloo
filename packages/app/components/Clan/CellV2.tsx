@@ -241,7 +241,7 @@ export function DataCell(props: DataCellProps) {
             ? `${requirementMeta[props.task_id]?.top} ${requirementMeta[props.task_id]?.bottom}`
             : props.user && "username" in props.user
             ? props.user.username ?? ""
-            : "Clan Total"
+            : "Clan Total" //TODO: Translate
         }
         subtitle={props.user?.requirements[props.task_id]?.value?.toLocaleString() ?? "🚫"}
       />
@@ -289,7 +289,7 @@ export function RequirementDataCell(props: RequirementDataCellProps) {
         title={
           settings.clan_reverse
             ? `${requirementMeta[props.task]?.top} ${requirementMeta[props.task]?.bottom}`
-            : `${props.type === "individual" ? "Indiv" : "Group"} Level ${props.level}`
+            : `${props.type === "individual" ? "Indiv" : "Group"} Level ${props.level}` //TODO: Translate
         }
         subtitle={
           props.requirements?.tasks[props.type][props.task]?.[props.level]?.toString() ?? "-"
@@ -328,7 +328,7 @@ export function UserCell(props: UserCellProps) {
       }
       icon={"user_id" in props.user ? undefined : "shield-half-full"}
       title={"user_id" in props.user ? props.user.username ?? "" : "Clan Total"}
-      subtitle={`Level ${props.user.level}`}
+      subtitle={`Level ${props.user.level}`} //TODO: Translate
     />
   );
 }
@@ -340,6 +340,7 @@ export type LevelCellProps = {
 };
 
 export function LevelCell(props: LevelCellProps) {
+  //TODO: Translate
   const [settings] = useSettings();
   return (
     <CommonCell
@@ -372,7 +373,7 @@ export function TitleCell(props: TitleCellProps) {
           36
         )}.png`,
       }}
-      title={props.clan.data?.details.name ?? "Loading"}
+      title={props.clan.data?.details.name ?? "Loading"} //TODO: Translate
       subtitle={`#${props.clan.data?.result.rank}`}
     />
   );
@@ -388,7 +389,7 @@ export function RequirementTitleCell(props: RequirementTitleCellProps) {
     <CommonCell
       type="title"
       icon="playlist-check"
-      title="Requirements"
+      title="Requirements" //TODO: Translate
       subtitle={props.date.format("MMM YYYY")}
     />
   );

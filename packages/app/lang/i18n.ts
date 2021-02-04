@@ -1,15 +1,15 @@
 import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
+import { initReactI18next, Resources } from "react-i18next";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // the translations
 // (tip move them in a JSON file and import them)
-import resources from "./translations";
+import {langs} from "./data";
 
 i18n
   .use(initReactI18next) // passes i18n down to react-i18next
   .init({
-    resources: resources as any,
+    resources: langs,
     lng: "en-GB",
     fallbackLng: "en-GB",
 

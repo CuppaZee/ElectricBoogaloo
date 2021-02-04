@@ -49,7 +49,6 @@ export default function UserActivityScreen() {
         style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
       >
         <Spinner />
-        <Text>{JSON.stringify(route.params)}</Text>
       </Layout>
     );
   }

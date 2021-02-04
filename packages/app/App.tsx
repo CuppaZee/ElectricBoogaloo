@@ -17,7 +17,7 @@ import { useSettings } from "./hooks/useSettings";
 
 import AppLoading from "expo-app-loading";
 import { useFonts } from "expo-font";
-import './assets/lang/i18n';
+import './lang/i18n';
 
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";

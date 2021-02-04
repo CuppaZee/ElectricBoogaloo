@@ -11,11 +11,10 @@ import {
   Text,
 } from "@ui-kitten/components";
 import * as React from "react";
-import { Platform, Pressable, ScrollView, View, Image } from "react-native";
-import { Settings, useSettings } from "../../hooks/useSettings";
+import { Platform, ScrollView, View, Image } from "react-native";
 import useTitle from "../../hooks/useTitle";
 import Constants from "expo-constants";
-import Notifications from "expo-notifications";
+import * as Notifications from "expo-notifications";
 import * as Location from "expo-location";
 import db, { TypeTags } from "@cuppazee/types";
 import TypeImage from "../../components/Common/TypeImage";
@@ -343,6 +342,7 @@ export default function NotificationScreen() {
   }
 
   React.useEffect(() => {
+    if (Platform.OS === "web") return;
     if (token && token !== "_failed") {
       (async function () {
         const response = await fetch(`https://server.beta.cuppazee.app/notifications/get`, {
@@ -356,6 +356,12 @@ export default function NotificationScreen() {
     }
   }, [token]);
 
+  if (Platform.OS === "web")
+    return (
+      <Layout style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Text category="h5">Notifications aren't supported on Web</Text>
+      </Layout>
+    );
   if (!token)
     return (
       <Layout style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
@@ -375,7 +381,6 @@ export default function NotificationScreen() {
       </Layout>
     );
 
-  console.log("Render");
   return (
     <Layout style={{ flex: 1 }}>
       <Modal
