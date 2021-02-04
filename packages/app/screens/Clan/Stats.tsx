@@ -2,6 +2,7 @@ import { RouteProp, useRoute } from "@react-navigation/native";
 import { Icon, Layout, Spinner, Text, useTheme } from "@ui-kitten/components";
 import dayjs from "dayjs";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Image, PixelRatio, ScrollView, StyleSheet, View } from "react-native";
 import {
   DataCell,
@@ -60,6 +61,7 @@ const levels: { level: number; type: "group" | "individual" }[] = [
 // ]
 
 export default function ClanStatsScreen() {
+  const { t } = useTranslation();
   const [size, onLayout] = useComponentSize();
   const fontScale = PixelRatio.getFontScale();
   const [settings] = useSettings();
@@ -323,7 +325,7 @@ export default function ClanStatsScreen() {
             level="4">
             <Icon style={{ height: 32, width: 32, marginRight: 8 }} name="playlist-check" />
             <View>
-              <Text category="h6">Clan Requirements</Text>
+              <Text category="h6">{t("clan:requirements")}</Text>
               <Text category="s1">
                 {dayjs()
                   .set("month", gameIDToMonth(game_id).m)

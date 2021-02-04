@@ -26,7 +26,7 @@ export type UserInventoryConvertedType = {
 
 export type UserInventoryConvertedLog = {
   icon?: string;
-  title: string;
+  title: string | [string, any?];
   description?: string;
   time: Dayjs;
   types: UserInventoryConvertedType[];
@@ -39,31 +39,39 @@ export type UserInventoryConvertedData = {
 };
 
 function processLogText(text: string) {
-  let title = text;
+  let title: string | [string, any?] = text;
   let description = undefined;
   let icon = undefined;
   // TODO: Inventory History Icons
 
   if (text.match(/space\s*coast/i)) {
-    title = "Space Coast Geo Store";
+    title = ["user_inventory:history_space_coast_geo_store"];
   } else if (text.match(/munzee\s*store/i)) {
-    title = "Freeze Tag Store";
+    title = ["user_inventory:history_freeze_tag_store"];
   } else if (text.match(/pimedus/i)) {
-    title = "Pimedus Reward";
+    title = ["user_inventory:history_pimedus"];
   } else if (text.match(/magnetus/i)) {
-    title = "Magnetus Reward";
+    title = ["user_inventory:history_magnetus"];
   } else if (text.match(/prize\s*wheel/i)) {
-    title = "Prize Wheel Reward";
+    title = ["user_inventory:history_prize_wheel"];
   } else if (text.match(/thanks/i) && text.match(/premium/i)) {
-    title = "Premium Reward";
+    title = ["user_inventory:history_premium"];
   } else if (text.match(/rewards/i) && text.match(/level [0-9]/i)) {
-    title = `${text.match(/level [0-9]/i)?.[0]} - ${text.match(/[a-z]+ [0-9]{2,}/i)?.[0]}`;
+    title = [
+      "user_inventory:history_clan",
+      {
+        level: text.match(/level ([0-9])/i)?.[1],
+        month: text.match(/([a-z]+) ([0-9]{2,})/i)?.[1],
+        year: text.match(/([a-z]+) ([0-9]{2,})/i)?.[2],
+      },
+    ];
+    // title = `${text.match(/level [0-9]/i)?.[0]} - ${text.match(/[a-z]+ [0-9]{2,}/i)?.[0]}`;
   } else if (text.match(/rewards/i) && text.match(/zeeops/i)) {
-    title = "ZeeOps Rewards";
+    title = ["user_inventory:history_zeeops"];
   } else if (text.match(/munzee\s*support/i)) {
-    title = "Munzee Support";
+    title = ["user_inventory:history_support"];
   } else if (text.match(/\btest\b/i)) {
-    title = "Test";
+    title = ["user_inventory:history_test"];
   }
 
   return { icon, title, description: description ?? (title === text ? undefined : text) };

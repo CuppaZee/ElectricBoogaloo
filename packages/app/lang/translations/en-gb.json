@@ -944,5 +944,85 @@
         "term_plural": "",
         "reference": "",
         "comment": ""
+    },
+    {
+        "term": "history_space_coast_geo_store",
+        "definition": "Space Coast Geo Store",
+        "context": "\"user_inventory\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "history_freeze_tag_store",
+        "definition": "Freeze Tag Store",
+        "context": "\"user_inventory\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "history_pimedus",
+        "definition": "Pimedus Rewards",
+        "context": "\"user_inventory\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "history_magnetus",
+        "definition": "Magnetus Rewards",
+        "context": "\"user_inventory\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "history_prize_wheel",
+        "definition": "Prize Wheel Rewards",
+        "context": "\"user_inventory\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "history_premium",
+        "definition": "Premium Rewards",
+        "context": "\"user_inventory\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "history_clan",
+        "definition": "Level {level} - {month} {year}",
+        "context": "\"user_inventory\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "history_zeeops",
+        "definition": "ZeeOps Rewards",
+        "context": "\"user_inventory\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "history_support",
+        "definition": "Munzee Support",
+        "context": "\"user_inventory\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "history_test",
+        "definition": "Test",
+        "context": "\"user_inventory\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
     }
 ]

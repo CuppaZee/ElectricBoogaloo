@@ -11,6 +11,7 @@ import {
 import { ClanV2 } from "@cuppazee/api/clan/main";
 import { useSettings } from "../../hooks/useSettings";
 import { Dayjs } from "dayjs";
+import { useTranslation } from "react-i18next";
 // import Color from 'color';
 
 function pickTextColor(bgColor: string, lightColor: string = "#fff", darkColor: string = "#000") {
@@ -104,7 +105,9 @@ function CommonCell(props: CommonCellProps) {
         },
         props.color !== undefined && settings.clan_full_background
           ? { backgroundColor: levelColours[props.color] ?? "#aaaaaa" }
-          : props.color !== undefined ? { backgroundColor: (levelColours[props.color] ?? "#aaaaaa") + "22" } : undefined,
+          : props.color !== undefined
+          ? { backgroundColor: (levelColours[props.color] ?? "#aaaaaa") + "22" }
+          : undefined,
       ]}>
       {props.color !== undefined && !isStack && !settings.clan_full_background && (
         <View
@@ -217,6 +220,7 @@ export interface DataCellProps {
 
 export function DataCell(props: DataCellProps) {
   const [settings] = useSettings();
+  const { t } = useTranslation();
 
   if (settings.clan_style === 0) {
     return (
@@ -241,7 +245,7 @@ export function DataCell(props: DataCellProps) {
             ? `${requirementMeta[props.task_id]?.top} ${requirementMeta[props.task_id]?.bottom}`
             : props.user && "username" in props.user
             ? props.user.username ?? ""
-            : "Clan Total" //TODO: Translate
+            : t("clan:group_total")
         }
         subtitle={props.user?.requirements[props.task_id]?.value?.toLocaleString() ?? "🚫"}
       />
@@ -266,6 +270,7 @@ export interface RequirementDataCellProps {
 
 export function RequirementDataCell(props: RequirementDataCellProps) {
   const [settings] = useSettings();
+  const { t } = useTranslation();
 
   if (settings.clan_style === 0) {
     return (
@@ -289,7 +294,7 @@ export function RequirementDataCell(props: RequirementDataCellProps) {
         title={
           settings.clan_reverse
             ? `${requirementMeta[props.task]?.top} ${requirementMeta[props.task]?.bottom}`
-            : `${props.type === "individual" ? "Indiv" : "Group"} Level ${props.level}` //TODO: Translate
+            : t(`clan:${props.type}_level` as const, { level: props.level })
         }
         subtitle={
           props.requirements?.tasks[props.type][props.task]?.[props.level]?.toString() ?? "-"
@@ -313,6 +318,7 @@ export type UserCellProps = {
 };
 
 export function UserCell(props: UserCellProps) {
+  const { t } = useTranslation();
   return (
     <CommonCell
       type={props.stack ? "header_stack" : "header"}
@@ -328,7 +334,7 @@ export function UserCell(props: UserCellProps) {
       }
       icon={"user_id" in props.user ? undefined : "shield-half-full"}
       title={"user_id" in props.user ? props.user.username ?? "" : "Clan Total"}
-      subtitle={`Level ${props.user.level}`} //TODO: Translate
+      subtitle={t("clan:level", { level: props.user.level })}
     />
   );
 }
@@ -340,21 +346,22 @@ export type LevelCellProps = {
 };
 
 export function LevelCell(props: LevelCellProps) {
-  //TODO: Translate
+  const { t } = useTranslation();
   const [settings] = useSettings();
   return (
     <CommonCell
       type={props.stack ? "header_stack" : "header"}
       color={props.level}
       icon={props.type === "individual" ? "account-check" : "shield-check"}
-      title={`${
+      title={t(
         settings.clan_single_line && !props.stack
           ? props.type === "individual"
-            ? "Indiv L"
-            : "Group L"
-          : "Level "
-      }${props.level}`}
-      subtitle={props.type === "individual" ? "Individual" : "Group"}
+            ? "clan:individual_level"
+            : "clan:group_level"
+          : "clan:level",
+        { level: props.level }
+      )}
+      subtitle={t(`clan:${props.type}` as const)}
     />
   );
 }
@@ -365,6 +372,7 @@ export type TitleCellProps = {
 };
 
 export function TitleCell(props: TitleCellProps) {
+  const { t } = useTranslation();
   return (
     <CommonCell
       type="title"
@@ -373,7 +381,7 @@ export function TitleCell(props: TitleCellProps) {
           36
         )}.png`,
       }}
-      title={props.clan.data?.details.name ?? "Loading"} //TODO: Translate
+      title={props.clan.data?.details.name ?? t("clan:loading")} //TODO: Translate
       subtitle={`#${props.clan.data?.result.rank}`}
     />
   );
@@ -385,11 +393,12 @@ export type RequirementTitleCellProps = {
 };
 
 export function RequirementTitleCell(props: RequirementTitleCellProps) {
+  const { t } = useTranslation();
   return (
     <CommonCell
       type="title"
       icon="playlist-check"
-      title="Requirements" //TODO: Translate
+      title={t("clan:requirements")}
       subtitle={props.date.format("MMM YYYY")}
     />
   );
@@ -398,7 +407,7 @@ export function RequirementTitleCell(props: RequirementTitleCellProps) {
 export type RequirementCellProps = {
   task_id: number;
   stack?: boolean;
-  requirements: ClanStatsFormattedRequirements
+  requirements: ClanStatsFormattedRequirements;
 };
 
 export function RequirementCell(props: RequirementCellProps) {
@@ -407,7 +416,7 @@ export function RequirementCell(props: RequirementCellProps) {
   return (
     <CommonCell
       type={props.stack ? "header_stack" : "header"}
-      color={g ? i ? 12 : 13 : 11}
+      color={g ? (i ? 12 : 13) : 11}
       image={{ uri: requirementMeta[props.task_id]?.icon }}
       title={requirementMeta[props.task_id]?.top}
       subtitle={requirementMeta[props.task_id]?.bottom}

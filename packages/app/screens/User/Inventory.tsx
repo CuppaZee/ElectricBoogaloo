@@ -11,8 +11,10 @@ import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import { UserStackParamList } from "../../types";
 import db from "@cuppazee/types";
 import useTitle from "../../hooks/useTitle";
+import { useTranslation } from "react-i18next";
 
 export default function UserInventoryScreen() {
+  const { t } = useTranslation();
   const route = useRoute<RouteProp<UserStackParamList, "Inventory">>();
   useTitle(`☕ ${route.params.username} - Inventory`);
   const user = useMunzeeRequest("user", { username: route.params.username });
@@ -83,7 +85,7 @@ export default function UserInventoryScreen() {
                 borderRadius: 4,
               }}>
               <Text category="h6" style={{ textAlign: "center" }}>
-                {c.title}
+                {typeof c.title === "string" ? c.title : t(c.title[0] as any, c.title[1])}
               </Text>
               <Text category="c1" style={{ textAlign: "center" }}>
                 {c.time.format('L LT')}

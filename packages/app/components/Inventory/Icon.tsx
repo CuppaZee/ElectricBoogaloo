@@ -3,29 +3,39 @@ import React from "react";
 import { Pressable, StyleSheet } from "react-native";
 import { UserInventoryConvertedType } from "./Data";
 import TypeImage from "../Common/TypeImage";
+import { useTranslation } from "react-i18next";
 
 export function InventoryIcon(data: UserInventoryConvertedType) {
+  const { t } = useTranslation()
   const [visible, setVisible] = React.useState(false);
   return (
     <Popover
       visible={visible}
-      anchor={() => <Pressable onPress={() => setVisible(true)}>
-        <Layout level="3" style={[styles.card, {opacity: data.amount > 0 ? 1 : 0.2}]}>
-          <TypeImage
-            icon={data.icon ?? ""}
-            style={{ size: 32 }}
-          />
-          <Text category="s5">{data.amount}</Text>
-        </Layout>
-      </Pressable>}
+      anchor={() => (
+        <Pressable onPress={() => setVisible(true)}>
+          <Layout level="3" style={[styles.card, { opacity: data.amount > 0 ? 1 : 0.2 }]}>
+            <TypeImage icon={data.icon ?? ""} style={{ size: 32 }} />
+            <Text category="s5">{data.amount}</Text>
+          </Layout>
+        </Pressable>
+      )}
       onBackdropPress={() => setVisible(false)}>
       <Layout style={{ padding: 4 }}>
-        <Text style={{ textAlign: "center" }} category="h6">{data.amount.toLocaleString()}x {data.type?.name ?? data.name ?? data.icon ?? ""}</Text>
-        {!!data.undeployed && <Text style={{ textAlign: "center" }} category="s1">{data.undeployed.toLocaleString()} Undeployed</Text>}
-        {!!data.credit && <Text style={{ textAlign: "center" }} category="s1">{data.credit.toLocaleString()} Credits</Text>}
+        <Text style={{ textAlign: "center" }} category="h6">
+          {data.amount.toLocaleString()}x {data.type?.name ?? data.name ?? data.icon ?? ""}
+        </Text>
+        {!!data.undeployed && (
+          <Text style={{ textAlign: "center" }} category="s1">
+            {t("user_inventory:amount_undeployed", { count: data.undeployed })}
+          </Text>
+        )}
+        {!!data.credit && (
+          <Text style={{ textAlign: "center" }} category="s1">
+            {t("user_inventory:amount_credits", { count: data.credit })}
+          </Text>
+        )}
       </Layout>
     </Popover>
-    
   );
 }
 

@@ -5,12 +5,14 @@ import { LinearGradient } from "expo-linear-gradient";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import dayjs from "dayjs";
 import Svg, {Text as SvgText} from 'react-native-svg';
+import { useTranslation } from "react-i18next";
 
 export type ZeeOpsOverviewProps = {
   user_id: number;
 };
 
 export default function ZeeOpsOverview({ user_id }: ZeeOpsOverviewProps) {
+  const { t } = useTranslation();
   const data = useMunzeeRequest("ops/zeeops/status", { user_id }, true, user_id);
   if (data.tokenStatus.status !== "valid") return null;
   if (!data.data?.data) {
@@ -84,7 +86,7 @@ export default function ZeeOpsOverview({ user_id }: ZeeOpsOverviewProps) {
             colors={["transparent", "transparent", "#ffffff77", "#ffffff77"]}
             style={{ padding: 4, borderRadius: 8, borderWidth: 1, borderColor: "#00000077" }}>
             <Text category="s1" style={{ textAlign: "center" }}>
-              {current.rewardCollected ? "Collected!" : `${current?.progress}/${current?.goal}`}
+              {current.rewardCollected ? t("user_zeeops:collected") : `${current?.progress}/${current?.goal}`}
             </Text>
           </LinearGradient>
         </Layout>
