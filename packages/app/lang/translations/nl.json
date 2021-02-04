@@ -1,7 +1,7 @@
 [
     {
         "term": "title",
-        "definition": "Coffee Not Found",
+        "definition": "Koffie niet gevonden",
         "context": "\"404\"",
         "term_plural": "",
         "reference": "",
@@ -9,7 +9,7 @@
     },
     {
         "term": "subtitle",
-        "definition": "Looks like there is no coffee here.",
+        "definition": "Zo te zien is hier geen koffie.",
         "context": "\"404\"",
         "term_plural": "",
         "reference": "",
@@ -17,7 +17,7 @@
     },
     {
         "term": "home",
-        "definition": "Return Home",
+        "definition": "Terug naar Home",
         "context": "\"404\"",
         "term_plural": "",
         "reference": "",
@@ -25,7 +25,7 @@
     },
     {
         "term": "dashboard_dashboard",
-        "definition": "Dashboard",
+        "definition": "Dashboard\n",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -33,7 +33,7 @@
     },
     {
         "term": "user_profile",
-        "definition": "Profile",
+        "definition": "Profiel",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -41,7 +41,7 @@
     },
     {
         "term": "user_activity",
-        "definition": "Activity",
+        "definition": "Activiteit",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -49,7 +49,7 @@
     },
     {
         "term": "user_inventory",
-        "definition": "Inventory",
+        "definition": "Inventaris",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -65,7 +65,7 @@
     },
     {
         "term": "user_clan_progress",
-        "definition": "Clan Progress",
+        "definition": "Clan voortgang",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -105,7 +105,7 @@
     },
     {
         "term": "user_challenges",
-        "definition": "Challenges",
+        "definition": "Uitdagingen",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -113,7 +113,7 @@
     },
     {
         "term": "clan_requirements",
-        "definition": "Clan Requirements",
+        "definition": "Clan Vereisten",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -129,7 +129,7 @@
     },
     {
         "term": "tools_munzee_types",
-        "definition": "Munzee Types",
+        "definition": "Soorten Munzee",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -137,7 +137,7 @@
     },
     {
         "term": "tools_calendar",
-        "definition": "Calendar",
+        "definition": "Kalender",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -153,7 +153,7 @@
     },
     {
         "term": "tools_search",
-        "definition": "Search",
+        "definition": "Zoeken",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -161,7 +161,7 @@
     },
     {
         "term": "settings_personalisation",
-        "definition": "Personalisation",
+        "definition": "Personalisatie",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -169,7 +169,7 @@
     },
     {
         "term": "settings_notifications",
-        "definition": "Notifications",
+        "definition": "Notificaties",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -210,8 +210,8 @@
     {
         "term": "overview_points",
         "definition": {
-            "one": "{count} Point",
-            "other": "{count} Points"
+            "one": "{count} punten",
+            "other": "{count} punten"
         },
         "context": "\"user_activity\"",
         "term_plural": "overview_points",
@@ -253,7 +253,7 @@
     },
     {
         "term": "filter_save",
-        "definition": "Save Filters",
+        "definition": "Bewaar Filters",
         "context": "\"user_activity\"",
         "term_plural": "",
         "reference": "",
@@ -261,7 +261,7 @@
     },
     {
         "term": "filter_types",
-        "definition": "Types",
+        "definition": "Typen",
         "context": "\"user_activity\"",
         "term_plural": "",
         "reference": "",
@@ -269,7 +269,7 @@
     },
     {
         "term": "filter_state",
-        "definition": "State",
+        "definition": "Status",
         "context": "\"user_activity\"",
         "term_plural": "",
         "reference": "",
@@ -277,7 +277,7 @@
     },
     {
         "term": "filter_category",
-        "definition": "Category",
+        "definition": "Categorie",
         "context": "\"user_activity\"",
         "term_plural": "",
         "reference": "",
@@ -285,7 +285,7 @@
     },
     {
         "term": "activity_capture",
-        "definition": "You captured",
+        "definition": "Je hebt captured",
         "context": "\"user_activity\"",
         "term_plural": "",
         "reference": "",
@@ -293,7 +293,7 @@
     },
     {
         "term": "activity_deploy",
-        "definition": "You deployed",
+        "definition": "Je hebt deployed",
         "context": "\"user_activity\"",
         "term_plural": "",
         "reference": "",
@@ -309,7 +309,7 @@
     },
     {
         "term": "owned_by_user",
-        "definition": "by {user}",
+        "definition": "door {user}",
         "context": "\"user_activity\"",
         "term_plural": "",
         "reference": "",
@@ -317,7 +317,7 @@
     },
     {
         "term": "owned_by_self",
-        "definition": "by you",
+        "definition": "door jou",
         "context": "\"user_activity\"",
         "term_plural": "",
         "reference": "",
@@ -325,7 +325,7 @@
     },
     {
         "term": "none",
-        "definition": "None",
+        "definition": "Geen",
         "context": "\"user_activity\"",
         "term_plural": "",
         "reference": "",
@@ -334,8 +334,8 @@
     {
         "term": "amount_undeployed",
         "definition": {
-            "one": "{count} Undeployed",
-            "other": "{count} Undeployed"
+            "one": "{count} Niet gedeployed",
+            "other": "{count} Niet gedeployed "
         },
         "context": "\"user_inventory\"",
         "term_plural": "amount_undeployed",
@@ -355,7 +355,7 @@
     },
     {
         "term": "history",
-        "definition": "History",
+        "definition": "Geschiedenis",
         "context": "\"user_inventory\"",
         "term_plural": "",
         "reference": "",
@@ -363,7 +363,7 @@
     },
     {
         "term": "collected",
-        "definition": "Collected!",
+        "definition": "Verzameld!",
         "context": "\"user_zeeops\"",
         "term_plural": "",
         "reference": "",
@@ -371,7 +371,7 @@
     },
     {
         "term": "requirements",
-        "definition": "Requirements",
+        "definition": "Vereisten",
         "context": "\"clan\"",
         "term_plural": "",
         "reference": "",
@@ -387,7 +387,7 @@
     },
     {
         "term": "loading",
-        "definition": "Loading",
+        "definition": "Laden",
         "context": "\"clan\"",
         "term_plural": "",
         "reference": "",
@@ -395,7 +395,7 @@
     },
     {
         "term": "individual",
-        "definition": "Individual",
+        "definition": "Individueel",
         "context": "\"clan\"",
         "term_plural": "",
         "reference": "",
@@ -403,7 +403,7 @@
     },
     {
         "term": "group",
-        "definition": "Group",
+        "definition": "Groep",
         "context": "\"clan\"",
         "term_plural": "",
         "reference": "",
@@ -411,7 +411,7 @@
     },
     {
         "term": "level",
-        "definition": "Level {level}",
+        "definition": "Niveau {level}",
         "context": "\"clan\"",
         "term_plural": "",
         "reference": "",
@@ -427,7 +427,7 @@
     },
     {
         "term": "group_level",
-        "definition": "Group L{level}",
+        "definition": "Groep L{level}",
         "context": "\"clan\"",
         "term_plural": "",
         "reference": "",
@@ -435,7 +435,7 @@
     },
     {
         "term": "group_total",
-        "definition": "Group Total",
+        "definition": "Groep Totaal",
         "context": "\"clan\"",
         "term_plural": "",
         "reference": "",
@@ -443,7 +443,7 @@
     },
     {
         "term": "location_fail",
-        "definition": "Failed retrieving location",
+        "definition": "Kan de locatie niet ophalen",
         "context": "\"maps\"",
         "term_plural": "",
         "reference": "",
@@ -451,7 +451,7 @@
     },
     {
         "term": "save",
-        "definition": "Save",
+        "definition": "Opslaan",
         "context": "\"settings_common\"",
         "term_plural": "",
         "reference": "",
@@ -459,7 +459,7 @@
     },
     {
         "term": "saved",
-        "definition": "Settings Saved",
+        "definition": "Instellingen bewaard",
         "context": "\"settings_common\"",
         "term_plural": "",
         "reference": "",
@@ -467,7 +467,7 @@
     },
     {
         "term": "reauthenticate",
-        "definition": "Reauthenticate",
+        "definition": "Opnieuw verifi\u00ebren",
         "context": "\"settings_accounts\"",
         "term_plural": "",
         "reference": "",
@@ -475,7 +475,7 @@
     },
     {
         "term": "logout",
-        "definition": "Logout",
+        "definition": "Uitloggen",
         "context": "\"settings_accounts\"",
         "term_plural": "",
         "reference": "",
@@ -483,7 +483,7 @@
     },
     {
         "term": "add_account",
-        "definition": "Add Account",
+        "definition": "Account toevoegen",
         "context": "\"settings_accounts\"",
         "term_plural": "",
         "reference": "",
@@ -491,7 +491,7 @@
     },
     {
         "term": "error_web",
-        "definition": "Notifications aren't supported on Web",
+        "definition": "Meldingen worden niet ondersteund op internet",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -499,7 +499,7 @@
     },
     {
         "term": "error_permissions",
-        "definition": "Requesting permissions failed. Did you allow notifications?",
+        "definition": "Het aanvragen van machtigingen in mislukt. Heb je meldingen toegestaan?",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -515,7 +515,7 @@
     },
     {
         "term": "bouncers_enabled",
-        "definition": "Enabled",
+        "definition": "Inschakelen",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -523,7 +523,7 @@
     },
     {
         "term": "bouncers_distance_default",
-        "definition": "Default Distance ({unit})",
+        "definition": "Standaard afstand ({unit})",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -531,7 +531,7 @@
     },
     {
         "term": "bouncers_distance_starred",
-        "definition": "Starred User Distance ({unit})",
+        "definition": "Gebruikersafstand met ster ({unit})",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -539,7 +539,7 @@
     },
     {
         "term": "bouncers_override_distance",
-        "definition": "Distance ({unit})",
+        "definition": "Afstand ({unit})",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -547,7 +547,7 @@
     },
     {
         "term": "bouncers_override_search",
-        "definition": "Search",
+        "definition": "Zoeken",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -555,7 +555,7 @@
     },
     {
         "term": "bouncers_override_search_hint",
-        "definition": "You can search for Categories or individual Types",
+        "definition": "Je kunt zoeken op categorie\u00ebn en individuele typen",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -563,7 +563,7 @@
     },
     {
         "term": "bouncers_override_add",
-        "definition": "Add Category\/Type",
+        "definition": "Categorie\/Type toevoegen",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -571,7 +571,7 @@
     },
     {
         "term": "starred_users_title",
-        "definition": "Starred Users",
+        "definition": "Gebruikers met ster",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -579,7 +579,7 @@
     },
     {
         "term": "starred_users_search",
-        "definition": "Search",
+        "definition": "Zoeken",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -587,7 +587,7 @@
     },
     {
         "term": "starred_users_add",
-        "definition": "Add User",
+        "definition": "Gebruiker toevoegen",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -595,7 +595,7 @@
     },
     {
         "term": "locations_title",
-        "definition": "Locations",
+        "definition": "Locaties",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -603,7 +603,7 @@
     },
     {
         "term": "locations_live_title",
-        "definition": "Live Location",
+        "definition": "Live locatie",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -611,7 +611,7 @@
     },
     {
         "term": "locations_live_disabled",
-        "definition": "Disabled",
+        "definition": "Uitgeschakeld",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -619,7 +619,7 @@
     },
     {
         "term": "locations_static_name",
-        "definition": "Location Name",
+        "definition": "Naam locatie",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -627,7 +627,7 @@
     },
     {
         "term": "locations_static_done",
-        "definition": "Done",
+        "definition": "Klaar",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -635,7 +635,7 @@
     },
     {
         "term": "locations_static_add",
-        "definition": "Add Static Location",
+        "definition": "Statische locatie toevoegen",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -643,7 +643,7 @@
     },
     {
         "term": "other_title",
-        "definition": "Other",
+        "definition": "Anders",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -659,7 +659,7 @@
     },
     {
         "term": "other_units_title",
-        "definition": "Units",
+        "definition": "Eenheden",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -667,7 +667,7 @@
     },
     {
         "term": "other_units_metric",
-        "definition": "Metric Units (km\/m)",
+        "definition": "Metrische eenheden (km\/m)",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -675,7 +675,7 @@
     },
     {
         "term": "other_units_imperial",
-        "definition": "Imperial Units (mi\/ft)",
+        "definition": "Imperial eenheden (mi\/ft)",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -683,7 +683,7 @@
     },
     {
         "term": "uncategorised",
-        "definition": "Uncategorised",
+        "definition": "Niet gecategoriseerd",
         "context": "\"bouncers\"",
         "term_plural": "",
         "reference": "",
@@ -691,7 +691,7 @@
     },
     {
         "term": "dates",
-        "definition": "SMTWTFS",
+        "definition": "ZMDWDVZ",
         "context": "\"calendar\"",
         "term_plural": "",
         "reference": "",
@@ -699,7 +699,7 @@
     },
     {
         "term": "qrewzees_on",
-        "definition": "QRewZees: On",
+        "definition": "QRewZees: Aan",
         "context": "\"calendar\"",
         "term_plural": "",
         "reference": "",
@@ -707,7 +707,7 @@
     },
     {
         "term": "qrewzees_off",
-        "definition": "QRewZees: Off",
+        "definition": "QRewZees: Uit",
         "context": "\"calendar\"",
         "term_plural": "",
         "reference": "",
@@ -715,7 +715,7 @@
     },
     {
         "term": "egyptian_status",
-        "definition": "Egyptian: {type}",
+        "definition": "Egyptisch: {type}",
         "context": "\"calendar\"",
         "term_plural": "",
         "reference": "",
@@ -723,7 +723,7 @@
     },
     {
         "term": "western_status",
-        "definition": "Western: {type}",
+        "definition": "Westers: {type}",
         "context": "\"calendar\"",
         "term_plural": "",
         "reference": "",
@@ -747,7 +747,7 @@
     },
     {
         "term": "description",
-        "definition": "The source code for the CuppaZee App is available on GitHub",
+        "definition": "De Source code voor de CuppaZee App is beschikbaar op GitHub",
         "context": "\"open_source\"",
         "term_plural": "",
         "reference": "",
@@ -763,7 +763,7 @@
     },
     {
         "term": "packages",
-        "definition": "CuppaZee publishes 3 packages on NPM",
+        "definition": "CuppaZee publiseert 3 pakketten op NPM",
         "context": "\"open_source\"",
         "term_plural": "",
         "reference": "",
@@ -771,7 +771,7 @@
     },
     {
         "term": "packages_types",
-        "definition": "@cuppazee\/types - A Database of Most Munzee Types",
+        "definition": "@cuppazee\/types - Een database van de meeste Munzee Typen",
         "context": "\"open_source\"",
         "term_plural": "",
         "reference": "",
@@ -779,7 +779,7 @@
     },
     {
         "term": "packages_icons",
-        "definition": "@cuppazee\/icons - A Database of Most Munzee Type Icons",
+        "definition": "@cuppazee\/icons - Een database van de meeste Munzee Typen Iconen",
         "context": "\"open_source\"",
         "term_plural": "",
         "reference": "",
@@ -787,7 +787,7 @@
     },
     {
         "term": "packages_api",
-        "definition": "@cuppazee\/api - TypeScript Definitions for the Munzee API",
+        "definition": "@cuppazee\/api - TypeScript defenities van de Munzee API",
         "context": "\"open_source\"",
         "term_plural": "",
         "reference": "",
@@ -795,7 +795,7 @@
     },
     {
         "term": "license",
-        "definition": "{license} License",
+        "definition": "{license} Licentie",
         "context": "\"open_source\"",
         "term_plural": "",
         "reference": "",
@@ -803,7 +803,7 @@
     },
     {
         "term": "host",
-        "definition": "At {name} by {creator}",
+        "definition": "Op {name} door {creator}",
         "context": "\"user_bouncers\"",
         "term_plural": "",
         "reference": "",
@@ -819,7 +819,7 @@
     },
     {
         "term": "captures",
-        "definition": "{number} Captured - Last Captured {date}",
+        "definition": "{number} Captured - Laatst gecaptured {date}",
         "context": "\"user_bouncers\"",
         "term_plural": "",
         "reference": "",
@@ -827,7 +827,7 @@
     },
     {
         "term": "never",
-        "definition": "Never",
+        "definition": "Nooit",
         "context": "\"user_bouncers\"",
         "term_plural": "",
         "reference": "",
@@ -835,7 +835,7 @@
     },
     {
         "term": "rest_a",
-        "definition": "Having a Rest",
+        "definition": "Even aan het uitrusten",
         "context": "\"user_bouncers\"",
         "term_plural": "",
         "reference": "",
@@ -843,7 +843,7 @@
     },
     {
         "term": "rest_b",
-        "definition": "Catching a Flight",
+        "definition": "Een vlucht aan het halen",
         "context": "\"user_bouncers\"",
         "term_plural": "",
         "reference": "",
@@ -851,7 +851,7 @@
     },
     {
         "term": "rest_c",
-        "definition": "Waiting at the Bus Stop",
+        "definition": "Op de bus aan het wachten",
         "context": "\"user_bouncers\"",
         "term_plural": "",
         "reference": "",
@@ -859,7 +859,7 @@
     },
     {
         "term": "facebook_title",
-        "definition": "CuppaZee isn't supported in the Facebook Browser",
+        "definition": "CuppaZee wordt niet ondersteund door de Facebook Browser",
         "context": "\"welcome\"",
         "term_plural": "",
         "reference": "",
@@ -867,7 +867,7 @@
     },
     {
         "term": "facebook_description",
-        "definition": "You can press the <1 \/> Menu icon in the top right corner and press \"Open in Browser\" button to view CuppaZee in a supported browser.",
+        "definition": "Je kunt op het menupictogram <1 \/> in de rechterbovenhoek drukken en vervolgens op \"Open in Browser\" om CuppaZee in een ondersteunende browser te bekijken.",
         "context": "\"welcome\"",
         "term_plural": "",
         "reference": "",
@@ -875,7 +875,7 @@
     },
     {
         "term": "messenger_title",
-        "definition": "CuppaZee isn't supported in the Messenger Browser",
+        "definition": "CuppaZee wordt niet ondersteund door de Messenger Browser",
         "context": "\"welcome\"",
         "term_plural": "",
         "reference": "",
@@ -883,7 +883,7 @@
     },
     {
         "term": "messenger_ios_description",
-        "definition": "You can press the <1 \/> Menu icon in the bottom right corner and press \"Open in Safari\" button to view CuppaZee in a supported browser.",
+        "definition": "Je kunt op het menupictogram <1 \/> in de rechterbovenhoek drukken en vervolgens op \"Open in Safari\" om CuppaZee in een ondersteunende browser te bekijken.",
         "context": "\"welcome\"",
         "term_plural": "",
         "reference": "",
@@ -891,7 +891,7 @@
     },
     {
         "term": "title",
-        "definition": "Welcome",
+        "definition": "Welkom",
         "context": "\"welcome\"",
         "term_plural": "",
         "reference": "",
@@ -899,7 +899,7 @@
     },
     {
         "term": "theme",
-        "definition": "Pick a Theme",
+        "definition": "Kies een Thema uit",
         "context": "\"welcome\"",
         "term_plural": "",
         "reference": "",
@@ -907,7 +907,7 @@
     },
     {
         "term": "language",
-        "definition": "Select your Language",
+        "definition": "Kies een taal",
         "context": "\"welcome\"",
         "term_plural": "",
         "reference": "",
@@ -915,7 +915,7 @@
     },
     {
         "term": "accounts",
-        "definition": "Add Accounts",
+        "definition": "Gebruikers toevoegen",
         "context": "\"welcome\"",
         "term_plural": "",
         "reference": "",
@@ -923,7 +923,7 @@
     },
     {
         "term": "add_account",
-        "definition": "Add Account",
+        "definition": "Gebruiker toevoegen",
         "context": "\"welcome\"",
         "term_plural": "",
         "reference": "",
@@ -931,7 +931,7 @@
     },
     {
         "term": "add_extra_account",
-        "definition": "Add Another Account",
+        "definition": "Nog een gebruiker toevoegen",
         "context": "\"welcome\"",
         "term_plural": "",
         "reference": "",
@@ -939,7 +939,7 @@
     },
     {
         "term": "continue",
-        "definition": "Continue to Dashboard",
+        "definition": "Doorgaan naar Dashboard",
         "context": "\"welcome\"",
         "term_plural": "",
         "reference": "",
@@ -947,7 +947,7 @@
     },
     {
         "term": "history_space_coast_geo_store",
-        "definition": "Space Coast Geo Store",
+        "definition": null,
         "context": "\"user_inventory\"",
         "term_plural": "",
         "reference": "",
@@ -955,7 +955,7 @@
     },
     {
         "term": "history_freeze_tag_store",
-        "definition": "Freeze Tag Store",
+        "definition": null,
         "context": "\"user_inventory\"",
         "term_plural": "",
         "reference": "",
@@ -963,7 +963,7 @@
     },
     {
         "term": "history_pimedus",
-        "definition": "Pimedus Rewards",
+        "definition": null,
         "context": "\"user_inventory\"",
         "term_plural": "",
         "reference": "",
@@ -971,7 +971,7 @@
     },
     {
         "term": "history_magnetus",
-        "definition": "Magnetus Rewards",
+        "definition": null,
         "context": "\"user_inventory\"",
         "term_plural": "",
         "reference": "",
@@ -979,7 +979,7 @@
     },
     {
         "term": "history_prize_wheel",
-        "definition": "Prize Wheel Rewards",
+        "definition": null,
         "context": "\"user_inventory\"",
         "term_plural": "",
         "reference": "",
@@ -987,7 +987,7 @@
     },
     {
         "term": "history_premium",
-        "definition": "Premium Rewards",
+        "definition": null,
         "context": "\"user_inventory\"",
         "term_plural": "",
         "reference": "",
@@ -995,7 +995,7 @@
     },
     {
         "term": "history_clan",
-        "definition": "Level {level} - {month} {year}",
+        "definition": null,
         "context": "\"user_inventory\"",
         "term_plural": "",
         "reference": "",
@@ -1003,7 +1003,7 @@
     },
     {
         "term": "history_zeeops",
-        "definition": "ZeeOps Rewards",
+        "definition": null,
         "context": "\"user_inventory\"",
         "term_plural": "",
         "reference": "",
@@ -1011,7 +1011,7 @@
     },
     {
         "term": "history_support",
-        "definition": "Munzee Support",
+        "definition": null,
         "context": "\"user_inventory\"",
         "term_plural": "",
         "reference": "",
@@ -1019,7 +1019,7 @@
     },
     {
         "term": "history_test",
-        "definition": "Test",
+        "definition": null,
         "context": "\"user_inventory\"",
         "term_plural": "",
         "reference": "",

@@ -1,5 +1,6 @@
 const langs = {
   "en-GB": require("./translations/en-gb.json"),
+  "nl": require("./translations/nl.json"),
 };
 const path = require('path');
 const fs = require('fs');
