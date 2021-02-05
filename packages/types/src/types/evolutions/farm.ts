@@ -39,6 +39,7 @@ const farm: {
     state: TypeState.Virtual,
     stage: 3,
     base: "carrotseed",
+    hidden: [],
   },
   {
     name: "Peas",
@@ -47,6 +48,7 @@ const farm: {
     state: TypeState.Virtual,
     stage: 3,
     base: "peasseed",
+    hidden: [],
   },
   {
     name: "Tomato Seed",
@@ -71,7 +73,6 @@ const farm: {
     state: TypeState.Virtual,
     stage: 1,
     base: "carrotseed",
-    hidden: [],
   },
   {
     name: "Peas Seed",
@@ -80,7 +81,6 @@ const farm: {
     state: TypeState.Virtual,
     stage: 1,
     base: "peasseed",
-    hidden: [],
   },
   {
     name: "Tomato Plant",
@@ -197,6 +197,7 @@ const farm: {
     stage: 3,
     base: "colt",
     alt_icons: ["horse"],
+    hidden: [],
   },
   {
     name: "Eggs",
@@ -205,6 +206,7 @@ const farm: {
     state: TypeState.Virtual,
     stage: 3,
     base: "chick",
+    hidden: [],
   },
   {
     name: "Colt",
@@ -213,7 +215,6 @@ const farm: {
     state: TypeState.Virtual,
     stage: 1,
     base: "colt",
-    hidden: [],
   },
   {
     name: "Chick",
@@ -222,7 +223,6 @@ const farm: {
     state: TypeState.Virtual,
     stage: 1,
     base: "chick",
-    hidden: [],
   },
   {
     name: "Racehorse",
@@ -297,6 +297,7 @@ const farm: {
     state: TypeState.Virtual,
     stage: 3,
     base: "farmer",
+    hidden: [],
   },
   {
     name: "Field",
@@ -305,6 +306,7 @@ const farm: {
     state: TypeState.Virtual,
     stage: 3,
     base: "pottedplant",
+    hidden: [],
   },
   {
     name: "Farmer",
@@ -313,7 +315,6 @@ const farm: {
     state: TypeState.Virtual,
     stage: 1,
     base: "farmer",
-    hidden: [],
   },
   {
     name: "Farmer and Wife",
@@ -330,7 +331,6 @@ const farm: {
     state: TypeState.Virtual,
     stage: 1,
     base: "pottedplant",
-    hidden: [],
   },
   {
     name: "Garden",

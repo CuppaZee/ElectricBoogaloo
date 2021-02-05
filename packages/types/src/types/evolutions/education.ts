@@ -53,6 +53,7 @@ const education: {
     state: TypeState.Virtual,
     stage: 3,
     base: "canoe",
+    hidden: [],
   },
   {
     name: "Canoe",
@@ -61,7 +62,6 @@ const education: {
     state: TypeState.Virtual,
     stage: 1,
     base: "canoe",
-    hidden: [],
   },
   {
     name: "Motorboat",
@@ -103,6 +103,7 @@ const education: {
     state: TypeState.Virtual,
     stage: 3,
     base: "firstwheel",
+    hidden: [],
   },
   {
     name: "First Wheel",
@@ -111,7 +112,6 @@ const education: {
     state: TypeState.Virtual,
     stage: 1,
     base: "firstwheel",
-    hidden: [],
   },
   {
     name: "Penny-Farthing Bike",
@@ -153,6 +153,7 @@ const education: {
     state: TypeState.Virtual,
     stage: 3,
     base: "safaritruck",
+    hidden: [],
   },
   {
     name: "Safari Truck",
@@ -161,7 +162,6 @@ const education: {
     state: TypeState.Virtual,
     stage: 1,
     base: "safaritruck",
-    hidden: [],
   },
   {
     name: "Safari Van",
