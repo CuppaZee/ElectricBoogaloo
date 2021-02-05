@@ -1,5 +1,6 @@
 import activity from './activity'
-import bouncers from './bouncers'
+import bingo from "./bingo";
+import bouncers from "./bouncers";
 import clanprogress from './clanprogress'
 import find from './find'
 import inventory from './inventory'
@@ -14,6 +15,7 @@ import universal_submit from './universal_submit'
 export default [
   activity,
   bouncers,
+  bingo,
   clanprogress,
   find,
   inventory,
