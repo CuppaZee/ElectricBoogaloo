@@ -34,6 +34,7 @@ export default {
           Tools: {
             path: "tools",
             screens: {
+              Search: "search",
               Calendar: "calendar",
               Bouncers: "bouncers",
               Credits: "credits",
@@ -47,6 +48,7 @@ export default {
               Personalisation: "personalisation",
               Accounts: "accounts",
               Notifications: "notifications",
+              Bookmarks: "bookmarks",
             },
           },
           Welcome: "welcome",

@@ -93,8 +93,6 @@
     "type": "translator",
     "title": "lithuanian"
   },
-
-  
   {
     "username": "thegenie18",
     "user_id": 51311,
@@ -105,8 +103,6 @@
     "user_id": 15078,
     "type": "major_suggestions"
   },
-
-
   {
     "username": "EagleDadandXenia",
     "user_id": 115960,
@@ -168,8 +164,18 @@
     "type": "supporter"
   },
   {
+    "username": "JuppTenhagen",
+    "user_id": 143670,
+    "type": "supporter"
+  },
+  {
     "username": "WriteAndMane",
     "user_id": 148677,
+    "type": "supporter"
+  },
+  {
+    "username": "lynnslilypad",
+    "user_id": 193349,
     "type": "supporter"
   },
   {
@@ -185,6 +191,11 @@
   {
     "username": "mierischclan",
     "user_id": 186057,
+    "type": "supporter"
+  },
+  {
+    "username": "JackSparrow",
+    "user_id": 15118,
     "type": "supporter"
   },
   {
@@ -378,6 +389,11 @@
     "type": "supporter"
   },
   {
+    "username": "mandello",
+    "user_id": 224132,
+    "type": "supporter"
+  },
+  {
     "username": "sunnydae",
     "user_id": 27017,
     "type": "supporter"
@@ -478,6 +494,11 @@
     "type": "supporter"
   },
   {
+    "username": "BigLion",
+    "user_id": 103301,
+    "type": "supporter"
+  },
+  {
     "username": "Rikitan",
     "user_id": 126609,
     "type": "supporter"
@@ -543,6 +564,11 @@
     "type": "supporter"
   },
   {
+    "username": "MS1721",
+    "user_id": 115272,
+    "type": "supporter"
+  },
+  {
     "username": "Roedii",
     "user_id": 53071,
     "type": "supporter"
@@ -593,6 +619,11 @@
     "type": "supporter"
   },
   {
+    "username": "bazfum",
+    "user_id": 10240,
+    "type": "supporter"
+  },
+  {
     "username": "pica42",
     "user_id": 54383,
     "type": "supporter"
@@ -630,6 +661,11 @@
   {
     "username": "skindo",
     "user_id": 148941,
+    "type": "supporter"
+  },
+  {
+    "username": "Jafo43",
+    "user_id": 74176,
     "type": "supporter"
   },
   {

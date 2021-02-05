@@ -5,6 +5,7 @@ import { useAtom } from "jotai";
 import { teakensAtom, useTeakens } from "../hooks/useToken";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useUserBookmarks } from "./useBookmarks";
 const configs = {
   main: {
     redirect_uri: "https://server.cuppazee.app/auth/auth/v1",
@@ -31,6 +32,7 @@ export default function useLogin(shouldRedirect?: boolean, application: keyof ty
   const {loaded} = useTeakens()
   const [teakens, setTeakens] = useAtom(teakensAtom);
   const nav = useNavigation();
+  const [users, setUsers] = useUserBookmarks();
 
   const [loading, setLoading] = React.useState<boolean>(false);
   const [redirect, setRedirect] = React.useState<string | null>(null);
@@ -89,6 +91,15 @@ export default function useLogin(shouldRedirect?: boolean, application: keyof ty
           },
         })
       );
+      
+      if (!users.some(i=>i.user_id === params.user_id)) {
+        setUsers({ loaded: true, data: [...users, {user_id: params.user_id, username: params.username}] });
+        AsyncStorage.setItem(
+          "USER_BOOKMARKS",
+          JSON.stringify([...users, { user_id: params.user_id, username: params.username }])
+        );
+      }
+      
       setRedirect(params.username);
       setLoading(false);
     }

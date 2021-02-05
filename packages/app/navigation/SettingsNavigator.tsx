@@ -4,6 +4,7 @@ import * as React from "react";
 import PersonalisationScreen from "../screens/Settings/Personalisation";
 import AccountsScreen from "../screens/Settings/Accounts";
 import NotificationScreen from "../screens/Settings/Notifications";
+import BookmarksScreen from "../screens/Settings/Bookmarks";
 import { SettingsStackParamList } from "../types";
 import Header from "./Header";
 
@@ -21,6 +22,7 @@ export default function SettingsNavigator() {
       <SettingsStack.Screen name="Personalisation" component={PersonalisationScreen} />
       <SettingsStack.Screen name="Accounts" component={AccountsScreen} />
       <SettingsStack.Screen name="Notifications" component={NotificationScreen} />
+      <SettingsStack.Screen name="Bookmarks" component={BookmarksScreen} />
     </SettingsStack.Navigator>
   );
 }

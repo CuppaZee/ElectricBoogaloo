@@ -4,6 +4,7 @@ import { atom, useAtom } from "jotai";
 import * as themes from "../themes";
 
 export type Settings = {
+  version: number;
   theme: keyof typeof themes;
   ready: boolean;
   maps: "apple" | "google";
@@ -11,16 +12,24 @@ export type Settings = {
   clan_reverse: boolean;
   clan_single_line: boolean;
   clan_full_background: boolean;
+  tips_viewed: {
+    [id: string]: {
+      time: number;
+      count: number;
+    };
+  };
 };
 
 export const defaultSettings: Settings = {
+  version: 1,
   theme: "green_light",
   ready: false,
   maps: "google",
-  clan_style: 1,
+  clan_style: 2,
   clan_reverse: false,
   clan_single_line: false,
-  clan_full_background: false
+  clan_full_background: false,
+  tips_viewed: {},
 }
 
 export const settingsAtom = atom<{

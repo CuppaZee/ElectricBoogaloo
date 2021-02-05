@@ -1,6 +1,7 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
 
+import SearchScreen from "../screens/Tools/Search";
 import CalendarScreen from "../screens/Tools/Calendar";
 import CreditsScreen from "../screens/Tools/Credits";
 import OpenSourceScreen from "../screens/Tools/OpenSource";
@@ -20,6 +21,7 @@ export default function ToolsNavigator() {
           maxHeight: "100%",
         },
       }}>
+      <ToolsStack.Screen name="Search" component={SearchScreen} />
       <ToolsStack.Screen name="Calendar" component={CalendarScreen} />
       <ToolsStack.Screen name="Credits" component={CreditsScreen} />
       <ToolsStack.Screen name="OpenSource" component={OpenSourceScreen} />

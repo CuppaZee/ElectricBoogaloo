@@ -93,7 +93,7 @@ interface UserSearchModalProps {
   close: (data: { user_id: number; username: string }) => void;
 }
 
-function UserSearchModal({ close }: UserSearchModalProps) {
+export function UserSearchModal({ close }: UserSearchModalProps) {
   const [value, search, onValue] = useSearch(500);
   const data = useMunzeeRequest("user/find", { text: search }, true, undefined, true);
   return (
@@ -243,7 +243,7 @@ function OverrideSearchModal({ close }: OverrideSearchModalProps) {
   );
 }
 
-function UpdateWrapper({ children }: { children: (update: () => void) => React.ReactElement }) {
+export function UpdateWrapper({ children }: { children: (update: () => void) => React.ReactElement }) {
   const [, update] = React.useReducer(a => a + 1, 0);
   return children(update);
 }

@@ -23,6 +23,7 @@ import {
   ClanShadowData,
   gameIDToMonth,
 } from "../../components/Clan/Data";
+import Tip from "../../components/Common/Tip";
 import useComponentSize from "../../hooks/useComponentSize";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
@@ -175,6 +176,7 @@ export default function ClanStatsScreen() {
   return (
     <Layout onLayout={onLayout} style={{ flex: 1 }}>
       <ScrollView style={{ flex: 1 }}>
+        <Tip wrapperStyle={{ margin: 4, width: 400, maxWidth: "100%" }} id="clan_stats_customisation" tip="There are a lot of options to make Clan Stats your own in the Personalisation settings" />
         <Layout level="2" style={{ margin: 4, borderRadius: 8 }}>
           <Layout
             style={{

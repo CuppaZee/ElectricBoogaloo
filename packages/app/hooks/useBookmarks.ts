@@ -37,7 +37,7 @@ export function useUserBookmarks() {
         setUser({
           data: JSON.parse(
             data ||
-              `[{"user_id":"125914","username":"sohcah"},{"user_id":"234392","username":"AmyJoy"},{"user_id":"51311","username":"Thegenie18"}]`
+              `[]`
           ),
           loaded: true,
         });

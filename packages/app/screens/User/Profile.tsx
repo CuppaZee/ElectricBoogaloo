@@ -13,13 +13,18 @@ export default function TabOneScreen() {
   >();
   const route = useRoute<RouteProp<UserStackParamList, "Profile">>();
   useTitle(`☕ ${route.params.username} - Profile`);
+  // return (
+  //   <Layout style={{ flex: 1 }}>
+  //     <ScrollView style={{ flex: 1 }}>
+  //       <Layout style={{ margin: 4, borderRadius: 4 }}>
+  //         <UserActivityOverview user_id={125914} day="2020-12-18" />
+  //       </Layout>
+  //     </ScrollView>
+  //   </Layout>
+  // );
   return (
-    <Layout style={{ flex: 1 }}>
-      <ScrollView style={{ flex: 1 }}>
-        <Layout style={{ margin: 4, borderRadius: 4 }}>
-          <UserActivityOverview user_id={125914} day="2020-12-18" />
-        </Layout>
-      </ScrollView>
+    <Layout style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <Text category="h1">PLACEHOLDER PAGE</Text>
     </Layout>
   );
 }

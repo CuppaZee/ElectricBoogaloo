@@ -32,6 +32,7 @@ export type ClanStackParamList = {
 };
 
 export type ToolsStackParamList = {
+  Search: undefined;
   Calendar: undefined;
   Credits: undefined;
   OpenSource: undefined;
@@ -44,4 +45,5 @@ export type SettingsStackParamList = {
   Personalisation: undefined;
   Accounts: undefined;
   Notifications: undefined;
+  Bookmarks: undefined;
 };

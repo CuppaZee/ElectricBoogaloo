@@ -25,8 +25,9 @@ export default function useCuppaZeeRequest<T = any>(
   params: { [key: string]: any },
   run?: boolean,
   user_id?: number,
+  bypassIsFocused?: boolean
 ) {
-  const isFocused = useIsFocused();
+  const isFocused = bypassIsFocused ?? useIsFocused();
   const token = useToken(user_id);
   const data = useQuery(
     ["cuppazee", endpoint, stringify(params), user_id],
@@ -38,5 +39,5 @@ export default function useCuppaZeeRequest<T = any>(
   return {
     tokenStatus: token,
     ...data,
-  }
+  };
 }

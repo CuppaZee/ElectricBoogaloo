@@ -9,7 +9,7 @@ import {
   ClanStatsFormattedRequirements,
 } from "./Data";
 import { ClanV2 } from "@cuppazee/api/clan/main";
-import { useSettings } from "../../hooks/useSettings";
+import { Settings, useSettings } from "../../hooks/useSettings";
 import { Dayjs } from "dayjs";
 import { useTranslation } from "react-i18next";
 // import Color from 'color';
@@ -65,17 +65,19 @@ const levelColours = [
   "#B0FC8D",
 ];
 
-interface CommonCellProps {
+export interface CommonCellProps {
   type: "title" | "header" | "header_stack" | "data";
   color?: number;
   image?: ImageSourcePropType;
   icon?: string;
   title?: string;
   subtitle?: string;
+  settings?: Settings;
 }
 
-function CommonCell(props: CommonCellProps) {
-  const [settings] = useSettings();
+export function CommonCell(props: CommonCellProps) {
+  const [settings_saved] = useSettings();
+  const settings = props.settings ?? settings_saved;
   const theme = useTheme();
 
   const isCompact = settings.clan_style >= 2;

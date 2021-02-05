@@ -2,7 +2,7 @@ import { DrawerContentComponentProps, DrawerContentOptions } from "@react-naviga
 import { NavigationState, PartialState, useNavigationState } from "@react-navigation/native";
 import { Button, CheckBox, DrawerGroup, DrawerItem, Icon, Layout, Radio, RadioGroup, Text } from "@ui-kitten/components";
 import React from "react";
-import { Image, Pressable, ScrollView, View } from "react-native";
+import { Image, Platform, Pressable, ScrollView, View } from "react-native";
 import { useClanBookmarks, useUserBookmarks } from "../hooks/useBookmarks";
 import useDay from "../hooks/useDay";
 import { useSettings } from "../hooks/useSettings";
@@ -11,6 +11,7 @@ import * as themes from '../themes';
 import dayjs from "dayjs";
 import Clipboard from "expo-clipboard";
 import { useTranslation } from "react-i18next";
+import Tip from "../components/Common/Tip";
 
 type NavigationRoute = {
   state?: NavigationState | PartialState<NavigationState>;
@@ -212,7 +213,11 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
           selected={page[1]?.name === "Tools" && page[2]?.name === "Search"}
           title={t("pages:tools_search")}
           accessoryLeft={props => <Icon {...props} name="magnify" />}
-          onPress={() => props.navigation.navigate("Search")}
+          onPress={() =>
+            props.navigation.navigate("Tools", {
+              screen: "Search",
+            })
+          }
         />
         <DrawerItem
           selected={page[1]?.name === "Dashboard"}
@@ -289,10 +294,12 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
               }
             />
             <DrawerItem
+              disabled={true}
               title={t("pages:user_zeeops")}
               accessoryLeft={props => <Icon {...props} name="briefcase" />}
             />
             <DrawerItem
+              disabled={true}
               title={t("pages:user_clan_progress")}
               accessoryLeft={props => <Icon {...props} name="shield" />}
             />
@@ -312,24 +319,34 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
               }
             />
             <DrawerItem
+              disabled={true}
               title={t("pages:user_blast_checker")}
               accessoryLeft={props => <Icon {...props} name="bomb" />}
             />
             <DrawerItem
+              disabled={true}
               title={t("pages:user_qrew_checker")}
               accessoryLeft={props => <Icon {...props} name="hammer" />}
             />
             <DrawerItem
+              disabled={true}
               title={t("pages:user_universal_capper")}
               accessoryLeft={props => <Icon {...props} name="check" />}
             />
           </DrawerGroup>
         ))}
+        <Tip
+          wrapperStyle={{ margin: 4 }}
+          small
+          id="draw_user_bookmarks"
+          tip="You can add and remove users from your Bookmarks in the Settings"
+        />
 
         <Layout level="4" style={{ height: 1 }} />
 
         {/* Clans */}
         <DrawerItem
+          disabled={true}
           selected={page[1]?.name === "Clan" && page[2]?.name === "Requirements"}
           title={t("pages:clan_requirements")}
           accessoryLeft={props => <Icon {...props} name="star" />}
@@ -375,6 +392,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
         {(clans?.length || 0) > 5 && (
           <DrawerGroup
             title="More Clans"
+            key={`moreclans_${clans?.length}`}
             accessoryLeft={props => <Icon {...props} name="shield-half-full" />}>
             {clans?.slice(5).map(clan => (
               <DrawerItem
@@ -410,6 +428,12 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
             ))}
           </DrawerGroup>
         )}
+        <Tip
+          wrapperStyle={{ margin: 4 }}
+          small
+          id="draw_user_bookmarks"
+          tip="You can add and remove clans from your Bookmarks in the Settings"
+        />
 
         <Layout level="4" style={{ height: 1 }} />
 
@@ -425,6 +449,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
           }
         />
         <DrawerItem
+          disabled={true}
           title={t("pages:tools_munzee_types")}
           accessoryLeft={props => <Icon {...props} name="database" />}
         />
@@ -439,6 +464,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
           }
         />
         <DrawerItem
+          disabled={true}
           title={t("pages:tools_evo_planner")}
           accessoryLeft={props => <Icon {...props} name="dna" />}
         />
@@ -455,10 +481,22 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
               })
             }
           />
-          <DrawerItem
-            title={t("pages:settings_notifications")}
-            accessoryLeft={props => <Icon {...props} name="bell" />}
-          />
+          {Platform.OS !== "web" ? (
+            <>
+              <DrawerItem
+                selected={page[1]?.name === "Settings" && page[2]?.name === "Notifications"}
+                title={t("pages:settings_notifications")}
+                accessoryLeft={props => <Icon {...props} name="bell" />}
+                onPress={() =>
+                  props.navigation.navigate("Settings", {
+                    screen: "Notifications",
+                  })
+                }
+              />
+            </>
+          ) : (
+            <></>
+          )}
           <DrawerItem
             selected={page[1]?.name === "Settings" && page[2]?.name === "Accounts"}
             title={t("pages:settings_accounts")}
@@ -470,8 +508,14 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
             }
           />
           <DrawerItem
+            selected={page[1]?.name === "Settings" && page[2]?.name === "Bookmarks"}
             title={t("pages:settings_bookmarks")}
             accessoryLeft={props => <Icon {...props} name="bookmark-multiple" />}
+            onPress={() =>
+              props.navigation.navigate("Settings", {
+                screen: "Bookmarks",
+              })
+            }
           />
         </DrawerGroup>
 
@@ -497,6 +541,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
           }
         />
         <DrawerItem
+          disabled={true}
           title="Donate"
           accessoryLeft={props => <Icon {...props} name="currency-usd-circle" />}
         />
