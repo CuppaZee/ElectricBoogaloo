@@ -23,6 +23,9 @@ import {
   ClanShadowData,
   gameIDToMonth,
 } from "../../components/Clan/Data";
+import ClanRequirementsTable from "../../components/Clan/Requirements";
+import ClanStatsTable from "../../components/Clan/Stats";
+import { useSyncScrollViewController } from "../../components/Clan/SyncScrollView";
 import Tip from "../../components/Common/Tip";
 import useComponentSize from "../../hooks/useComponentSize";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
@@ -61,7 +64,39 @@ const levels: { level: number; type: "group" | "individual" }[] = [
 //   {level: 5, type: "group"},
 // ]
 
-export default function ClanStatsScreen() {
+export default function ClanStatsScreen2() {
+  const [settings] = useSettings();
+  const scrollViewController = useSyncScrollViewController();
+  const route = useRoute<RouteProp<ClanStackParamList, "Stats">>();
+  const game_id = monthToGameID(
+    route.params.year ? Number(route.params.year) : undefined,
+    route.params.month ? Number(route.params.month) - 1 : undefined
+  );
+  const clan_id = Number(route.params.clanid);
+  return (
+    <Layout style={{ flex: 1 }}>
+      <ScrollView style={{ flex: 1 }}>
+        <Tip
+          wrapperStyle={{ margin: 4, width: 400, maxWidth: "100%", alignSelf: "center" }}
+          id="clan_stats_customisation"
+          tip="There are a lot of options to make Clan Stats your own in the Personalisation settings"
+        />
+        <ClanStatsTable
+          clan_id={clan_id}
+          game_id={game_id}
+          scrollViewController={settings.clan_reverse ? undefined : scrollViewController}
+        />
+        <ClanRequirementsTable
+          clan_id={clan_id}
+          game_id={game_id}
+          scrollViewController={settings.clan_reverse ? undefined : scrollViewController}
+        />
+      </ScrollView>
+    </Layout>
+  );
+}
+
+export function ClanStatsScreen() {
   const { t } = useTranslation();
   const [size, onLayout] = useComponentSize();
   const fontScale = PixelRatio.getFontScale();
@@ -176,7 +211,11 @@ export default function ClanStatsScreen() {
   return (
     <Layout onLayout={onLayout} style={{ flex: 1 }}>
       <ScrollView style={{ flex: 1 }}>
-        <Tip wrapperStyle={{ margin: 4, width: 400, maxWidth: "100%" }} id="clan_stats_customisation" tip="There are a lot of options to make Clan Stats your own in the Personalisation settings" />
+        <Tip
+          wrapperStyle={{ margin: 4, width: 400, maxWidth: "100%", alignSelf: "center" }}
+          id="clan_stats_customisation"
+          tip="There are a lot of options to make Clan Stats your own in the Personalisation settings"
+        />
         <Layout level="2" style={{ margin: 4, borderRadius: 8 }}>
           <Layout
             style={{

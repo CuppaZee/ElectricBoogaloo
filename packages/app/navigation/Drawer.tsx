@@ -356,6 +356,16 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
             })
           }
         />
+        <DrawerItem
+          selected={page[1]?.name === "Clan" && page[2]?.name === "Bookmarks"}
+          title="Bookmarked Clans"
+          accessoryLeft={props => <Icon {...props} name="bookmark" />}
+          onPress={() =>
+            props.navigation.navigate("Clan", {
+              screen: "Bookmarks",
+            })
+          }
+        />
         {clans?.slice(0, 5).map(clan => (
           <DrawerItem
             selected={

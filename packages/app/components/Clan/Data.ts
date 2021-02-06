@@ -558,7 +558,7 @@ export function ClanStatsConverter(
     };
     for (const user_id of [
       ...((actual_clan_id || 0) < 0 ? [] : (Object.keys(task.data) || [])),
-      ...(shadow?.members || []),
+      ...(shadow?.members || []).filter(i=>data.users[i]?.shadow),
     ]) {
       // Add Left User if Necessary
       if (!data.users[user_id]) {
