@@ -1,8 +1,6 @@
-import { RouteProp, useRoute } from "@react-navigation/native";
 import { Layout, Spinner, Text, useTheme } from "@ui-kitten/components";
 import React from "react";
-import { useTranslation } from "react-i18next";
-import { Image, PixelRatio, ScrollView, StyleSheet, View } from "react-native";
+import { Image, PixelRatio, StyleSheet, View } from "react-native";
 import {
   DataCell,
   LevelCell,
@@ -15,7 +13,6 @@ import {
   ClanStatsConverter,
   ClanStatsFormattedUser,
   ClanStatsFormattedData,
-  monthToGameID,
   ClanRequirementsConverter,
   ClanRewardsData,
   ClanShadowData,
@@ -25,7 +22,6 @@ import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import { useSettings } from "../../hooks/useSettings";
 import useTitle from "../../hooks/useTitle";
-import { ClanStackParamList } from "../../types";
 import SyncScrollView, { SyncScrollViewController } from "./SyncScrollView";
 
 export interface ClanStatsTableProps {
@@ -54,7 +50,6 @@ export default React.memo(
         .replace("rgb(", "rgba(")
         .slice(0, -1) + ", 0.3)";
 
-    const route = useRoute<RouteProp<ClanStackParamList, "Stats">>();
     const clan_id = actual_clan_id >= 0 ? actual_clan_id : 2041;
 
     const clan_data = useMunzeeRequest("clan/v2", { clan_id });
@@ -100,7 +95,13 @@ export default React.memo(
         }`
       );
 
-    if (!stats || !requirements || !size || !clan_data.data) {
+    if (
+      !stats ||
+      !requirements ||
+      !size ||
+      !clan_data.data ||
+      (!shadow_data.data && [-1, 1349, 1441, 457, 1902, 2042, 1870].includes(actual_clan_id))
+    ) {
       return (
         <Layout
           onLayout={onLayout}

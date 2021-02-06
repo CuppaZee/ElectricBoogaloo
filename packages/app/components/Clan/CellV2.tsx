@@ -75,7 +75,7 @@ export interface CommonCellProps {
   settings?: Settings;
 }
 
-export function CommonCell(props: CommonCellProps) {
+export const CommonCell = React.memo(function (props: CommonCellProps) {
   const [settings_saved] = useSettings();
   const settings = props.settings ?? settings_saved;
   const theme = useTheme();
@@ -213,7 +213,7 @@ export function CommonCell(props: CommonCellProps) {
       )}
     </Layout>
   );
-}
+})
 
 export interface DataCellProps {
   user?: ClanStatsFormattedUser | ClanStatsFormattedData | null;

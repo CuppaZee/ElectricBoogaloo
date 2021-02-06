@@ -1,4 +1,4 @@
-import { RouteProp, useRoute } from "@react-navigation/native";
+import { RouteProp, useIsFocused, useRoute } from "@react-navigation/native";
 import { Layout } from "@ui-kitten/components";
 import React from "react";
 import { ScrollView, View } from "react-native";
@@ -24,6 +24,9 @@ export default function ClanBookmarksScreen() {
   );
   const [settings] = useSettings();
   const [clans] = useClanBookmarks();
+  const isFocused = useIsFocused();
+  if(!isFocused || !size) return <Layout onLayout={onLayout} style={{ flex: 1 }}></Layout>
+  console.error('FULL RENDER');
   return (
     <Layout onLayout={onLayout} style={{ flex: 1 }}>
       <ScrollView style={{ flex: 1 }}>
