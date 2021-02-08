@@ -6,10 +6,12 @@ import { Pressable, View } from "react-native";
 import { ActivityConverter, UserActivityData } from "./Data";
 import TypeImage from "../Common/TypeImage";
 import { useTranslation } from "react-i18next";
+import useActivity from "../../hooks/useActivity";
 
 export type UserActivityOverviewProps = {
   user_id: number;
   day: string;
+  enabled?: boolean;
 };
 
 export type UserActivityOverviewItemProps = {
@@ -53,10 +55,7 @@ export default function UserActivityOverview({
   day,
 }: UserActivityOverviewProps) {
   const { t } = useTranslation();
-  const data = useCuppaZeeRequest<{ data: UserActivityData }>(
-    "user/activity",
-    { user_id, day }
-  );
+  const data = useActivity(user_id, day);
   const d = useMemo(
     () =>
       data.data?.data

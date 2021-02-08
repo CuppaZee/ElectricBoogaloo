@@ -8,7 +8,7 @@ const route: Route = {
     {
       version: 1,
       async function({ db }) {
-        var token = await retrieve(db, { user_id: 125914, teaken: false }, 60);
+        var token = await retrieve({ user_id: 125914, teaken: false }, 60);
         if (!token) {
           return {
             status: "error",

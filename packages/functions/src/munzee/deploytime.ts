@@ -18,7 +18,7 @@ const route: Route = {
           modifiedURL.match(/\bm\/([^/]+)\/([0-9]+)/);
         if (!modifiedURL) return res.send("Invalid URL");
         modifiedURL = `/m/${url[1]}/${url[2]}`;
-        var token = await retrieve(db, { user_id: 125914, teaken: false }, 60);
+        var token = await retrieve({ user_id: 125914, teaken: false }, 60);
         res.send(
           (
             await request("munzee", { url: url }, token.access_token)

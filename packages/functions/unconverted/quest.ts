@@ -121,7 +121,7 @@ module.exports = {
         var month = games[game_id].month;
         // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
         var year = games[game_id].year;
-        var token = await retrieve(db, { user_id: 125914, teaken: false }, 60);
+        var token = await retrieve({ user_id: 125914, teaken: false }, 60);
         // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
         var tasks = games[game_id].tasks
 

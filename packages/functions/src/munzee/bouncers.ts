@@ -11,7 +11,7 @@ const route: Route = {
         params: { munzee_id, username, munzee },
         db
       }) {
-        var token = await retrieve(db, { user_id: 125914, teaken: false }, 60);
+        var token = await retrieve({ user_id: 125914, teaken: false }, 60);
         var data = (await request('munzee', munzee_id ? { munzee_id } : { url: `/m/${username}/${munzee}` }, token.access_token))?.data;
         if (!data) {
           return {

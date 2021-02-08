@@ -84,7 +84,7 @@ module.exports = {
             const data = await Promise.all(users.map(async (i: any) => {
               try {
                 if(batch[dateString].finalised && batch[dateString].finalised[i.i]) return {};
-                const token = await retrieve(db, { user_id: i.i, teaken: false }, 120, team)
+                const token = await retrieve({ user_id: i.i, teaken: false }, 120, team)
                 const activity = await request('statzee/player/day', { day: dateString }, token.access_token, `competition/minute/err ${i.i} ${i.n}`, true);
                 if(!activity) return {};
                 if(activity.status_text === "The access token provided is expired, revoked, malformed, or invalid for other reasons.") {

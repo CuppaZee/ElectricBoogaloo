@@ -6,14 +6,15 @@ import {
 } from "@cuppazee/api/statzee/player/day";
 import db, { TypeCategory, TypeState, TypeTags, DestinationType, Type } from "@cuppazee/types";
 
-export type UserActivityData = Omit<
-  StatzeePlayerDay["response"]["data"],
-  "captures" | "deploys" | "captures_on"
-> & {
-  captures: (StatzeePlayerDayCapture & { key: string })[];
-  deploys: (StatzeePlayerDayDeploy & { key: string })[];
-  captures_on: (StatzeePlayerDayCaptureOn & { key: string })[];
-};
+export type UserActivityData = StatzeePlayerDay["response"]["data"]
+// Omit<
+//   StatzeePlayerDay["response"]["data"],
+//   "captures" | "deploys" | "captures_on"
+// > & {
+//   captures: (StatzeePlayerDayCapture & { key: string })[];
+//   deploys: (StatzeePlayerDayDeploy & { key: string })[];
+//   captures_on: (StatzeePlayerDayCaptureOn & { key: string })[];
+// };
 
 export type UserActivityItem = {
   type: "capture" | "capon" | "deploy";
@@ -71,7 +72,7 @@ export function ActivityFilterer(
       | StatzeePlayerDayCapture
       | StatzeePlayerDayDeploy
       | StatzeePlayerDayCaptureOn
-    ) & { key: string },
+    ),
     activity_type: "captures" | "deploys" | "captures_on"
   ) {
     if (!filters) return true;
@@ -116,7 +117,7 @@ export function ActivityConverter(
       subCaptures: [],
       time: capture.captured_at,
       bouncerHost: true,
-      key: capture.key,
+      key: capture.capture_id,
       munzee_type: db.getType(capture.pin),
     });
   }
@@ -136,7 +137,7 @@ export function ActivityConverter(
       subCaptures: [],
       time: capture.captured_at,
       bouncerHost: true,
-      key: capture.key,
+      key: capture.capture_id,
       munzee_type: db.getType(capture.pin),
     });
   }
@@ -159,9 +160,9 @@ export function ActivityConverter(
         pin: capture.pin,
         points: Number(capture.points),
         time: capture.captured_at,
-        key: capture.key,
+        key: capture.capture_id,
         sub: true,
-          munzee_type: db.getType(capture.pin),
+        munzee_type: db.getType(capture.pin),
       });
     } else {
       activityList.push({
@@ -174,7 +175,7 @@ export function ActivityConverter(
         points: Number(capture.points),
         subCaptures: [],
         time: capture.captured_at,
-        key: capture.key,
+        key: capture.capture_id,
         munzee_type: db.getType(capture.pin),
       });
     }
@@ -202,7 +203,7 @@ export function ActivityConverter(
         points: Number(capture.points_for_creator),
         subCaptures: [],
         time: capture.captured_at,
-        key: capture.key,
+        key: capture.capture_id,
         munzee_type: db.getType(capture.pin),
       });
     }
@@ -218,7 +219,7 @@ export function ActivityConverter(
       points: Number(deploy.points),
       subCaptures: [],
       time: deploy.deployed_at,
-      key: deploy.key,
+      key: deploy.id,
       munzee_type: db.getType(deploy.pin),
     });
   }

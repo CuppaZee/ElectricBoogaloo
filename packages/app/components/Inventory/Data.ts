@@ -162,6 +162,7 @@ export default function InventoryConverter(
   for (const log of dataraw.history?.items ?? []) {
     const item = {
       name: db.getType(log.type.replace(/^([0-9]+)x? /i, ""))?.name || log.type,
+      amount: Number(log.type.match(/^([0-9]+)x? /i)?.[1] ?? "1"),
       original_name: log.type,
       reason: log.log_text,
       icon: db.getType(log.type.replace(/^([0-9]+)x? /i, ""))?.icon ?? "missing",
@@ -176,13 +177,13 @@ export default function InventoryConverter(
         i => i.icon === item.icon && i.name === item.name
       );
       if (existingIndex !== -1) {
-        data.history[data.history.length - 1].types[existingIndex].amount++;
+        data.history[data.history.length - 1].types[existingIndex].amount += item.amount;
       } else {
         data.history[data.history.length - 1].types.push({
           icon: item.icon,
           name: item.name,
           type: db.getType(item.icon),
-          amount: 1,
+          amount: item.amount,
         });
       }
     } else {
@@ -199,7 +200,7 @@ export default function InventoryConverter(
             icon: item.icon,
             name: item.name,
             type: db.getType(item.icon),
-            amount: 1,
+            amount: item.amount,
           },
         ],
       });

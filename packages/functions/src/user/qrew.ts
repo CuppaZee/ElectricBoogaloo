@@ -15,7 +15,7 @@ const route: Route = {
         params: { username, user_id },
         db
       }: any) {
-        var token = await retrieve(db, { user_id, teaken: false }, 60);
+        var token = await retrieve({ user_id, teaken: false }, 60);
         try {
           var [captures, deploys, capture_dates, deploy_dates] = await Promise.all([
             request('statzee/player/captures/types', { username }, token.access_token),

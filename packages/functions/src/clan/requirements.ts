@@ -9,16 +9,15 @@ const route: Route = {
     {
       version: 1,
       async function({
-        db,
         params: { game_id, force }
-      }: any) {
+      }) {
         if (!force && cache.get(game_id.toString()) && cache.get(game_id.toString()).expires < Date.now()) {
           return {
             status: "success",
             data: cache.get(game_id.toString()).data
           }
         }
-        var token = await retrieve(db, { user_id: 455935, teaken: false }, 60);
+        var token = await retrieve({ user_id: 455935, teaken: false }, 60);
         var [rewards, requirements] = (await Promise.all([
           (async () => (await request(`clan/v2/challenges/{game_id}`, { game_id }, token.access_token))?.data)(),
           (async () => (await request(`clan/v2/requirements`, { clan_id: 1349, game_id }, token.access_token))?.data)(),

@@ -18,7 +18,7 @@ const route: Route = {
         params: { user_id, day },
         db
       }: any) {
-        var token = await retrieve(db, { user_id, teaken: false }, 60);
+        var token = await retrieve({ user_id, teaken: false }, 60);
         if (!token) {
           return {
             status: "error",

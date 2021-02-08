@@ -134,8 +134,8 @@ const route: Route = {
   versions: [
     {
       version: 1,
-      async function({ params: { user_id, lat, lng, amount }, db }: any) {
-        var token = await retrieve(db, { user_id, teaken: false }, 60);
+      async function({ params: { user_id, lat, lng, amount } }) {
+        var token = await retrieve({ user_id, teaken: false }, 60);
 
         var boundaries = [
           spherical.computeOffset({ lat, lng }, 1700, 0),

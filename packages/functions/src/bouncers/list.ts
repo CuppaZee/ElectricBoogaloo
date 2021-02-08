@@ -26,9 +26,9 @@ const route: Route = {
   versions: [
     {
       version: 1,
-      async function({ db, params: { list: l } }: any) {
+      async function({ params: { list: l } }) {
         const list = l as string;
-        // var token = await retrieve(db, { user_id: 125914, teaken: false }, 60);
+        // var token = await retrieve({ user_id: 125914, teaken: false }, 60);
         // var data = await Promise.all([
         //   request("munzee/specials", {}, token.access_token),
         //   request("munzee/specials/mythological", {}, token.access_token),

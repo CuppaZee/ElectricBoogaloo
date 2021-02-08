@@ -46,25 +46,32 @@ export default function UserActivityList({
             alignSelf: "center",
             width: 1000,
             maxWidth: "100%",
-          }}
-        >
+          }}>
           <Datepicker
-            date={new Date(route.params.date ?? Date.now())}
-            onSelect={(nextDate) =>
+            date={new Date(route.params.date ?? dayjs().tz("America/Chicago").valueOf())}
+            onSelect={nextDate =>
               nav.setParams({ date: dayjs(nextDate).format("YYYY-MM-DD") })
             }
-            accessoryRight={(props) => <Icon {...props} name="calendar" />}
+            accessoryRight={props => <Icon {...props} name="calendar" />}
           />
-          {toggleFilterModal && <Button onPress={() => toggleFilterModal()} size="small" appearance="ghost" accessoryLeft={props => <Icon {...props} name="filter" />}>Edit Filters</Button>} 
+          {toggleFilterModal && (
+            <Button
+              onPress={() => toggleFilterModal()}
+              size="small"
+              appearance="ghost"
+              accessoryLeft={props => <Icon {...props} name="filter" />}>
+              Edit Filters
+            </Button>
+          )}
           {/* // TODO: Translate */}
           <UserActivityOverview
             user_id={user_id}
-            day={route.params.date ?? dayjs().format("YYYY-MM-DD")}
+            day={route.params.date ?? dayjs().tz("America/Chicago").format("YYYY-MM-DD")}
           />
         </Layout>
       )}
       data={d?.list}
-      renderItem={(data) => <UserActivityListItem {...data.item} />}
+      renderItem={data => <UserActivityListItem {...data.item} />}
     />
   );
 }

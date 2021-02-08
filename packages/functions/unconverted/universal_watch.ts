@@ -12,7 +12,7 @@ module.exports = {
         params: { user_id, munzee_id },
         db
       }: any) {
-        var token = await retrieve(db, { user_id: 455935, teaken: false }, 60, 'universal');
+        var token = await retrieve({ user_id: 455935, teaken: false }, 60, 'universal');
         var data;
         for(var i = 0;i < 20;i++) {
           data = await request('munzee/captures', { munzee_id, i, page: 0 }, token.access_token);

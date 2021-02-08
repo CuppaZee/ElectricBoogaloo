@@ -27,7 +27,7 @@ module.exports = {
           const batch = batchDoc.data();
           const customCounts = (await db.collection('weekly_custom').doc(week.id).get()).data() || {}
   
-          var token = await retrieve(db, { user_id: 455935, teaken: false }, 180, "team");
+          var token = await retrieve({ user_id: 455935, teaken: false }, 180, "team");
   
           batch.players = await Promise.all(batch.players.map(async (player: any) => {
             try {

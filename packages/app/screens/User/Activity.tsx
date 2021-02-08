@@ -14,6 +14,7 @@ import { UserStackParamList } from "../../types";
 import UserActivityList from "../../components/Activity/List";
 import UserActivityFilter from "../../components/Activity/Filter";
 import useTitle from "../../hooks/useTitle";
+import useActivity from "../../hooks/useActivity";
 
 export default function UserActivityScreen() {
   const [size, onLayout] = useComponentSize();
@@ -24,16 +25,9 @@ export default function UserActivityScreen() {
     state: new Set(),
   });
   const route = useRoute<RouteProp<UserStackParamList, "Activity">>();  
-  useTitle(`☕ ${route.params.username} - Activity - ${dayjs(route.params?.date).format("DD/MM/YYYY")}`);
+  useTitle(`☕ ${route.params.username} - Activity - ${dayjs(route.params?.date ?? dayjs().tz('America/Chicago')).format("DD/MM/YYYY")}`);
   const user = useMunzeeRequest("user", { username: route.params?.username }, route.params?.username !== undefined);
-  const data = useCuppaZeeRequest<{ data: UserActivityData }>(
-    "user/activity",
-    {
-      user_id: user.data?.data?.user_id,
-      day: route.params?.date ?? dayjs().format("YYYY-MM-DD"),
-    },
-    user.data?.data?.user_id !== undefined
-  );
+  const data = useActivity(user.data?.data?.user_id, route.params?.date);
   const d = React.useMemo(
     () =>
       data.data?.data

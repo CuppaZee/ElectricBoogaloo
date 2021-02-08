@@ -42,7 +42,7 @@ const route: Route = {
           );
           return { norespond: true };
         }
-        var token = await retrieve(db, { user_id: 125914, teaken: false }, 60);
+        var token = await retrieve({ user_id: 125914, teaken: false }, 60);
         if (!token) {
           return {
             status: "error",

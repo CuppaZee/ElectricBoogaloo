@@ -24,7 +24,7 @@ const route: Route = {
           try {
             if (!shadowData.archive[user_id]) shadowData.archive[user_id] = {};
             shadowData.total[user_id] = {};
-            let token = await retrieve(db, { user_id: user_id, teaken: false }, 120)
+            let token = await retrieve({ user_id: user_id, teaken: false }, 120)
             for (let date = 3; date <= mhq().date(); date++) {
               if (!shadowData.archive[user_id][date] || date > mhq().date() - 3) {
                 let data = await request('statzee/player/day', { day: `${mhq().year()}-${(mhq().month() + 1).toString().padStart(2, '0')}-${date.toString().padStart(2, '0')}` }, token.access_token);

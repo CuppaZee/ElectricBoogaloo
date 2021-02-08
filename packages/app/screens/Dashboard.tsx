@@ -76,13 +76,8 @@ export default function DashboardScreen() {
                 }}>
                 <Layout
                   level="3"
-                  style={[
-                    styles.card,
-                    {
-                      // marginLeft: (width - Math.min(600, width * 0.9)) / 2,
-                      // marginRight: -(width - Math.min(600, width * 0.9)) / 2,
-                    },
-                  ]}>
+                  style={
+                    styles.card}>
                   <View style={{ flexDirection: "row", alignItems: "center", padding: 4 }}>
                     <Image style={{ height: 32, width: 32, borderRadius: 16, marginRight: 8 }} source={{ uri: `https://munzee.global.ssl.fastly.net/images/avatars/ua${Number(item.user_id).toString(36)}.png` }} />
                     <Text category="h6">{item.username}</Text>

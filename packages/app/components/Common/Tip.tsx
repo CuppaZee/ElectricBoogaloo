@@ -63,7 +63,7 @@ export default function Tip({ id, tip, wrapperStyle, small }: TipProps) {
         <View style={{ flex: 1 }}>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <Text style={{ flex: 1 }} category="s1">
-              {small ? "" : `Hey, I'm ${animal[1]}. `}{message}
+              {message}
             </Text>
             <Button
               style={{ height: 24, width: 24 }}

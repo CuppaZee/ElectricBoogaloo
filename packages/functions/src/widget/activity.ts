@@ -11,7 +11,7 @@ const route: Route = {
         params: { username },
         db
       }: any) {
-        var token = await retrieve(db, { user_id: 125914, teaken: false }, 60);
+        var token = await retrieve({ user_id: 125914, teaken: false }, 60);
         if (!token) {
           return {
             status: "error",
@@ -25,7 +25,7 @@ const route: Route = {
             error_message: "munzee_api_5xx"
           }
         }
-        token = await retrieve(db, { user_id: user.user_id, teaken: false }, 60);
+        token = await retrieve({ user_id: user.user_id, teaken: false }, 60);
         if (!token) {
           return {
             status: "error",

@@ -8,10 +8,9 @@ const route: Route = {
     {
       version: 1,
       async function({
-        db,
         params: { game_id }
-      }: any) {
-        var token = await retrieve(db, { user_id: 455935, teaken: false }, 60);
+      }) {
+        var token = await retrieve({ user_id: 455935, teaken: false }, 60);
         var rewards = (await request(`clan/v2/challenges/{game_id}`, { game_id }, token.access_token))?.data;
         if (!rewards) {
           return {

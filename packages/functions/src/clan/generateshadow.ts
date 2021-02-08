@@ -138,7 +138,7 @@ const route: Route = {
       }) {
         const clansdata = groupsdata[group as keyof typeof groupsdata];
         var base = new Airtable({apiKey: config.airtable_key}).base(clansdata.base_id);
-        var token = await retrieve(db, {user_id:455935,teaken:false},60);
+        var token = await retrieve({user_id:455935,teaken:false},60);
         var all_users = (await base(clansdata.months[game_id].name).select({
           view: 'Table'
         }).all()).map((i: any) => ({

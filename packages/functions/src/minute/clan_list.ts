@@ -8,7 +8,7 @@ const route: Route = {
     {
       version: 1,
       async function({ db }: any) {
-        var token = await retrieve(db, { user_id: 455935, teaken: false }, 60);
+        var token = await retrieve({ user_id: 455935, teaken: false }, 60);
         var clans = (await db.collection("data").doc("clans").get()).data();
         var array = [];
         for (var i = clans.counter; i < clans.counter + 20; i++) {

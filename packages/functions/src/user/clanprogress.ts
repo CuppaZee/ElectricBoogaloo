@@ -9,7 +9,7 @@ const route: Route = {
     {
       version: 1,
       async function({ params: { user_id }, db }: any) {
-        var token = await retrieve(db, { user_id, teaken: false }, 60);
+        var token = await retrieve({ user_id, teaken: false }, 60);
         var dates = [];
         var time = mhq();
         for (let i = 3; i <= time.date(); i++) {

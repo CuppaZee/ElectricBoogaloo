@@ -273,7 +273,10 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
               accessoryLeft={props => <Icon {...props} name="calendar" />}
               onPress={() =>
                 props.navigation.navigate("User", {
-                  params: { username: user.username, date: day().format("YYYY-MM-DD") },
+                  params: {
+                    username: user.username,
+                    date: day().tz("America/Chicago").format("YYYY-MM-DD"),
+                  },
                   screen: "Activity",
                 })
               }

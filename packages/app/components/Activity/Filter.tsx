@@ -4,6 +4,7 @@ import { View } from "react-native";
 import { UserActivityConverterOutput, UserActivityFilters } from "./Data";
 import db, { TypeCategory, TypeState } from "@cuppazee/types";
 import { useTranslation } from "react-i18next";
+import { ScrollView } from "react-native-gesture-handler";
 
 const types: {
   label: string;
@@ -57,7 +58,7 @@ export default function UserActivityFilter({
     setFilters(baseFilters);
   }, [baseFilters]);
   return (
-    <View style={{ padding: 4 }}>
+    <ScrollView contentContainerStyle={{ padding: 4 }}>
       <Button
         onPress={() => setBaseFilters(filters)}
         accessoryLeft={props => <Icon {...props} name="content-save" />}
@@ -122,6 +123,6 @@ export default function UserActivityFilter({
           {i.name}
         </CheckBox>
       ))}
-    </View>
+    </ScrollView>
   );
 }

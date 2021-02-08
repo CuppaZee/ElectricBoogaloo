@@ -15,7 +15,6 @@ const route: Route = {
       version: 1,
       async function({ params: { user_id }, db }: any) {
         const token = await retrieve(
-          db,
           { user_id: 125914, teaken: false },
           60
         );

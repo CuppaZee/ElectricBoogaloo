@@ -9,9 +9,8 @@ const route: Route = {
     {
       version: 1,
       async function({
-        params: { teaken: teake, user_id, time },
-        db
-      }: any) {
+        params: { teaken: teake, user_id, time }
+      }) {
         let teaken = teake;
         if (Date.now() > 1593227045659) return {
           status: "error",
@@ -20,7 +19,7 @@ const route: Route = {
         if (config.bypass_teakens.includes(teaken)) {
           teaken = false;
         }
-        var got = await retrieve(db, { user_id, teaken }, time ? Number(time) : 7500);
+        var got = await retrieve({ user_id, teaken }, time ? Number(time) : 7500);
         if (!got) {
           return {
             status: "error",
@@ -39,11 +38,17 @@ const route: Route = {
         params: { teaken: teake, user_id, time },
         db
       }: any) {
-        let teaken = teake;
+        let teaken: string | boolean = teake;
+        if (typeof teaken !== "string") {
+          return {
+            status: "error",
+            data: null,
+          };
+        }
         if (config.bypass_teakens.includes(teaken)) {
           teaken = false;
         }
-        var got = await retrieve(db, { user_id, teaken }, time ? Number(time) : 7500);
+        var got = await retrieve({ user_id, teaken }, time ? Number(time) : 7500);
         if (!got) {
           return {
             status: "error",
