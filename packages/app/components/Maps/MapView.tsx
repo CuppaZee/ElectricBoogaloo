@@ -1,25 +1,27 @@
 import React from "react";
-import MapType, { Marker, Circle, Region } from "react-native-maps";
-import MapClusterView from "react-native-map-clustering";
-import { View } from "react-native";
 import * as Location from "expo-location";
-import TypeImage from "../Common/TypeImage";
+import TypeImage, { getRemoteTypeImage, getTypeImage } from "../Common/TypeImage";
 import { Button, Icon, useTheme } from "@ui-kitten/components";
 import { useSettings } from "../../hooks/useSettings";
-import MapStyleDark from './MapStyleDark.json';
+import MapStyleDark from "./MapStyleDark.json";
+
+import MapboxGL from "@react-native-mapbox-gl/maps";
+import { View } from "react-native";
+
+MapboxGL.setAccessToken(
+  "pk.eyJ1Ijoic29oY2FoIiwiYSI6ImNqeWVqcm8wdTAxc2MzaXFpa282Yzd2aHEifQ.afYbt2sVMZ-kbwdx5_PekQ"
+);
 
 export type MapProps = {
-  region: Region;
+  latitude: number;
+  longitude: number;
   zoom?: number;
+  cluster?: boolean;
+  clusterRadius?: number;
+  clusterMaxZoomLevel?: number;
   markers?: MapMarkerProps[];
   circles?: MapCircle[];
-  circle?: [];
-  onRegionChange?: (props: {
-    latitude: number;
-    longitude: number;
-    latitudeDelta?: number;
-    longitudeDelta?: number;
-  }) => void;
+  onRegionChange?: (props: { latitude: number; longitude: number }) => void;
 };
 
 export type MapCircle = {
@@ -38,19 +40,26 @@ export type MapMarkerProps = {
   icon: string;
 };
 
+function getImages(markers: MapMarkerProps[]) {
+  return Array.from(new Set(markers.map(i => i.icon))).reduce(
+    (a, b) => ({
+      ...a,
+      [b]: getTypeImage(b, 64),
+    }),
+    {}
+  );
+}
+
 const MapMarker = React.memo(function (props: MapMarkerProps) {
-  const [tracksViewChanges, setTracksViewChanges] = React.useState(true);
-  return <Marker
-    tracksViewChanges={tracksViewChanges}
-    coordinate={{ latitude: props.lat, longitude: props.lng }}
-  >
-    <TypeImage
-      onLoad={()=>setTracksViewChanges(false)}
-      fadeDuration={0}
-      icon={props.icon}
-      style={{ size: 48 }}/>
-  </Marker>
-})
+  return (
+    <MapboxGL.MarkerView
+      id={props.id}
+      coordinate={[props.lat, props.lng]}
+      anchor={{ x: 0.5, y: 1 }}>
+      <TypeImage icon={props.icon} style={{ size: 48 }} />
+    </MapboxGL.MarkerView>
+  );
+});
 
 export default function MapView(props: MapProps) {
   const theme = useTheme();
@@ -59,9 +68,10 @@ export default function MapView(props: MapProps) {
     latitude: 0,
     longitude: 0,
     latitudeDelta: 90,
-    longitudeDelta: 90
-  }
-  const mapRef = React.useRef<null | MapType>(null);
+    longitudeDelta: 90,
+  };
+  const mapRef = React.useRef<MapboxGL.MapView | null>();
+  const camRef = React.useRef<MapboxGL.Camera | null>();
   const [locError, setLocError] = React.useState(false);
   async function getLocation() {
     var { status } = await Location.requestPermissionsAsync();
@@ -70,57 +80,136 @@ export default function MapView(props: MapProps) {
       return;
     }
     try {
-      var loc = await Location.getCurrentPositionAsync({})
-      mapRef.current?.animateToRegion({
-        latitude: loc.coords.latitude,
-        longitude: loc.coords.longitude,
-        latitudeDelta: 0.5,
-        longitudeDelta: 0.5,
-      });
+      var loc = await Location.getCurrentPositionAsync({});
+      camRef.current?.flyTo([loc.coords.longitude, loc.coords.latitude]);
     } catch (e) {
       setLocError(true);
     }
   }
-  return <View style={{ flex: 1 }}>
-    <MapClusterView
-      ref={mapRef}
-      initialRegion={center}
-      region={props.region}
-      clusteringEnabled={(props.markers?.length || 0) > 60}
-      provider={maps === "apple" ? null : "google"}
-      customMapStyle={theme.style === "dark" ? MapStyleDark : undefined}
-      style={{ flex: 1 }}
-      onRegionChangeComplete={(region)=>{
-        props.onRegionChange?.({
-          latitude: region.latitude,
-          longitude: region.longitude,
-          latitudeDelta: region.latitudeDelta,
-          longitudeDelta: region.longitudeDelta
-        })
-      }}
-    >
-      {props.circles?.map(i => <Circle
-        key={i.id}
-        center={{ latitude: i.lat, longitude: i.lng }}
-        radius={i.radius}
-        fillColor={i.fill}
-        strokeColor={i.stroke}
-      />)}
-      {props.markers?.map(i => <MapMarker key={i.id} {...i} />)}
-    </MapClusterView>
-    <Button
-      style={{ position: "absolute", top: 8, left: 8 }}
-      size="small"
-      accessoryLeft={props => <Icon name={true ? "crosshairs-gps" : "crosshairs"} {...props} />}
-      onPress={getLocation}
-    />
-    {/* TODO: Replace Snackbar */}
-    {/* <Snackbar
+  return (
+    <View style={{ flex: 1 }}>
+      <MapboxGL.MapView
+        style={{ flex: 1 }}
+        ref={r => (mapRef.current = r)}
+        onRegionDidChange={region => {
+          props.onRegionChange?.({
+            latitude: region.geometry.coordinates[1],
+            longitude: region.geometry.coordinates[0],
+          });
+        }}>
+        <MapboxGL.UserLocation />
+        <MapboxGL.Camera
+          ref={r => (camRef.current = r)}
+          zoomLevel={props.zoom}
+          centerCoordinate={[props.latitude, props.longitude]}
+        />
+        <MapboxGL.Images images={getImages(props.markers ?? [])} />
+        {props.circles && (
+          <MapboxGL.ShapeSource
+            id="circles_source"
+            shape={{
+              type: "FeatureCollection",
+              features: props.circles.map(i => ({
+                type: "Feature",
+                id: i.id,
+                properties: i,
+                geometry: {
+                  type: "Point",
+                  coordinates: [i.lng, i.lat],
+                },
+              })),
+            }}>
+            <MapboxGL.CircleLayer
+              id="circles"
+              style={{
+                circleRadius: ["get", "radius"],
+                circleColor: ["get", "fill"],
+                circleStrokeColor: ["get", "stroke"],
+              }}
+            />
+          </MapboxGL.ShapeSource>
+        )}
+        {props.markers && (
+          <MapboxGL.ShapeSource
+            id="circles_source"
+            cluster={props.cluster}
+            clusterRadius={props.clusterRadius}
+            clusterMaxZoomLevel={props.clusterMaxZoomLevel}
+            shape={{
+              type: "FeatureCollection",
+              features: props.markers.map(i => ({
+                type: "Feature",
+                id: i.id,
+                properties: {
+                  ...i,
+                  image: getRemoteTypeImage(i.icon, 64),
+                },
+                geometry: {
+                  type: "Point",
+                  coordinates: [i.lng, i.lat],
+                },
+              })),
+            }}>
+            <MapboxGL.SymbolLayer
+              id="pointCount"
+              style={{
+                textField: "{point_count}",
+                textSize: 12,
+                textPitchAlignment: "map",
+              }}
+            />
+
+            <MapboxGL.CircleLayer
+              id="clusteredPoints"
+              belowLayerID="pointCount"
+              filter={["has", "point_count"]}
+              style={{
+                circlePitchAlignment: "map",
+
+                circleColor: [
+                  "step",
+                  ["get", "point_count"],
+                  "#51bbd6",
+                  100,
+                  "#f1f075",
+                  750,
+                  "#f28cb1",
+                ],
+
+                circleRadius: ["step", ["get", "point_count"], 20, 100, 30, 750, 40],
+
+                circleOpacity: 0.84,
+                circleStrokeWidth: 2,
+                circleStrokeColor: "white",
+              }}
+            />
+            <MapboxGL.SymbolLayer
+              id="symbols"
+              filter={["!", ["has", "point_count"]]}
+              style={{
+                iconSize: 0.4,
+                iconAnchor: "bottom",
+                iconImage: ["get", "icon"],
+                iconAllowOverlap: true,
+              }}
+            />
+          </MapboxGL.ShapeSource>
+        )}
+      </MapboxGL.MapView>
+      <Button
+        style={{ position: "absolute", top: 8, left: 8 }}
+        size="small"
+        accessoryLeft={props => <Icon name={true ? "crosshairs-gps" : "crosshairs"} {...props} />}
+        onPress={getLocation}
+      />
+      {/* TODO: Replace Snackbar */}
+      {/* <Snackbar
       visible={locError}
       onDismiss={() => setLocError(false)}
       duration={2000}
     >
       {typeof locError == "string" ? locError : "Failed retrieving location"}
     </Snackbar> */}
-  </View>
+    </View>
+  );
 }

@@ -48,12 +48,8 @@ function LocationPickerModal({ location, close, remove }: LocationPickerModalPro
               <UpdateWrapper>
                 {mini => (
                   <MapView
-                    region={{
-                      latitude: Number(location.latitude),
-                      longitude: Number(location.longitude),
-                      latitudeDelta: 16,
-                      longitudeDelta: 16,
-                    }}
+                    latitude={0}
+                    longitude={0}
                     zoom={10}
                     markers={[
                       {

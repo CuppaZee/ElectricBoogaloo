@@ -1,8 +1,8 @@
 import { Button, Icon, Layout, List, ListItem, Text } from "@ui-kitten/components";
 import * as React from "react";
-import { FlatList, Linking, View } from "react-native";
-// @ts-ignore
+// import { FlatList, Linking, View } from "react-native";
 import dependencies from "../../assets/dependencies.json";
+console.log(dependencies);
 import useTitle from "../../hooks/useTitle";
 
 type Lib = {
@@ -15,8 +15,8 @@ type Lib = {
   Starred: boolean;
 };
 
-const excludedLibs = ["@cuppazee/app", "@cuppazee/clan", "@cuppazee/functions"];
-const starredLibs = [
+const excludedLibs = new Set(["@cuppazee/app", "@cuppazee/clan", "@cuppazee/functions"]);
+const starredLibs = new Set([
   "@cuppazee/api",
   "@cuppazee/icons",
   "@cuppazee/types",
@@ -86,21 +86,19 @@ const starredLibs = [
   "react-test-renderer",
   "typescript",
   "webpack-bundle-analyzer",
-];
-const libs: Lib[] = [];
-for (const dep of dependencies.data.body) {
-  if (!excludedLibs.includes(dep[0]))
-    libs.push({
-      Name: dep[0],
-      Version: dep[1],
-      License: dep[2],
-      URL: dep[3],
-      VendorUrl: dep[4],
-      VendorName: dep[5],
-      Starred: dep[0].includes("cuppazee") || starredLibs.includes(dep[0]),
-    });
-}
-libs.sort((a, b) => ([a.Name, b.Name].sort()[0] === a.Name ? -1 : 1));
+]);
+const libs: any[] = dependencies.data.body
+  .map(dep => ({
+    Name: dep[0],
+    Version: dep[1],
+    License: dep[2],
+    URL: dep[3],
+    VendorUrl: dep[4],
+    VendorName: dep[5],
+    Starred: dep[0].includes("cuppazee") || starredLibs.has(dep[0]),
+  }))
+  .filter(i => !excludedLibs.has(i.Name))
+  .sort((a, b) => (a.Name > b.Name ? 1 : (a.Name < b.Name ? -1 : 0)));
 
 export default function OpenSourceScreen() {
   useTitle("☕ Open Source");
@@ -120,7 +118,8 @@ export default function OpenSourceScreen() {
                 appearance="ghost"
                 size="small"
                 accessoryLeft={props => <Icon {...props} name="code-tags" />}
-                onPress={() => Linking.openURL("https://github.com/CuppaZee/ElectricBoogaloo")}>
+              // onPress={() => Linking.openURL("https://github.com/CuppaZee/ElectricBoogaloo")}
+              >
                 Source Code
               </Button>
               <Text style={{ textAlign: "center" }} category="p1">
@@ -154,7 +153,7 @@ export default function OpenSourceScreen() {
                     appearance="ghost"
                     size="small"
                     accessoryLeft={props => <Icon {...props} name="link" />}
-                    onPress={() => Linking.openURL(item.VendorUrl)}
+                    // onPress={() => Linking.openURL(item.VendorUrl)}
                   />
                 )}
                 {item.URL !== "Unknown" && (
@@ -162,7 +161,7 @@ export default function OpenSourceScreen() {
                     appearance="ghost"
                     size="small"
                     accessoryLeft={props => <Icon {...props} name="code-tags" />}
-                    onPress={() => Linking.openURL(item.URL)}
+                    // onPress={() => Linking.openURL(item.URL)}
                   />
                 )}
               </>

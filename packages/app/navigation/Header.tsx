@@ -25,7 +25,7 @@ export default function Header(props: StackHeaderProps) {
       <TopNavigation
         alignment="center"
         title={titleData[0] ?? ""}
-        subtitle={titleData[1] ?? day().format("DD/MM/YYYY HH:mm")}
+        subtitle={titleData[1] ?? day().tz("America/Chicago").format("DD/MM/YYYY HH:mm")}
         accessoryLeft={() => (
           <>
             {props.navigation.canGoBack() && (

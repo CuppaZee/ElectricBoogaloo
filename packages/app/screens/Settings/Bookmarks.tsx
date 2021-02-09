@@ -118,6 +118,7 @@ export default function AccountsScreen() {
                 <>
                   {userBookmarks.map((i, index) => (
                     <Layout
+                      key={i.user_id}
                       level="3"
                       style={{
                         margin: 4,
@@ -205,6 +206,7 @@ export default function AccountsScreen() {
                 <>
                   {clanBookmarks?.map((i, index) => (
                     <Layout
+                      key={i.clan_id}
                       level="3"
                       style={{
                         margin: 4,

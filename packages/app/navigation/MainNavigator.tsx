@@ -1,16 +1,17 @@
 import * as React from "react";
 
-import { MainDrawerParamList } from "../types";
-import UserNavigator from "./UserNavigator";
-import ToolsNavigator from "./ToolsNavigator";
+import WelcomeScreen from "../screens/Welcome";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import DrawerContent from "./Drawer";
 import { useWindowDimensions } from "react-native";
-import ClanNavigator from "./ClanNavigator";
-import DashNavigator from "./DashNavigator";
-import WelcomeScreen from "../screens/Welcome";
-import SettingsNavigator from "./SettingsNavigator";
 import { useSettings } from "../hooks/useSettings";
+
+import { MainDrawerParamList } from "../types";
+import DashNavigator from "./DashNavigator";
+import UserNavigator from "./UserNavigator";
+import ToolsNavigator from "./ToolsNavigator";
+import SettingsNavigator from "./SettingsNavigator";
+import ClanNavigator from "./ClanNavigator";
 
 export const isClanStatsBeta: boolean = false;
 

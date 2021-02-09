@@ -3,8 +3,11 @@ import * as React from "react";
 
 import { DashStackParamList } from "../types";
 import Header from "./Header";
-import DashboardScreen from "../screens/Dashboard";
 import { isClanStatsBeta } from "./MainNavigator";
+
+// Pages
+import loadable from '@loadable/component'
+const DashboardScreen = loadable(() => import("../screens/Dashboard"))
 
 const DashStack = createStackNavigator<DashStackParamList>();
 

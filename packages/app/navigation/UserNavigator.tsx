@@ -1,14 +1,17 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
 
-import UserProfileScreen from "../screens/User/Profile";
-import UserActivityScreen from "../screens/User/Activity";
-import UserInventoryScreen from "../screens/User/Inventory";
-import UserZeeOpsScreen from "../screens/User/ZeeOps";
-import UserChallengesScreen from "../screens/User/Challenges";
-import UserBouncersScreen from "../screens/User/Bouncers";
 import { UserStackParamList } from "../types";
 import Header from "./Header";
+
+// Pages
+import loadable from '@loadable/component'
+const UserProfileScreen = loadable(() => import("../screens/User/Profile"));
+const UserActivityScreen = loadable(() => import("../screens/User/Activity"));
+const UserInventoryScreen = loadable(() => import("../screens/User/Inventory"));
+const UserZeeOpsScreen = loadable(() => import("../screens/User/ZeeOps"));
+const UserChallengesScreen = loadable(() => import("../screens/User/Challenges"));
+const UserBouncersScreen = loadable(() => import("../screens/User/Bouncers"));
 
 const UserStack = createStackNavigator<UserStackParamList>();
 

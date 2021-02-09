@@ -1,10 +1,13 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
 
-import ClanStatsScreen from "../screens/Clan/Stats";
-import ClanBookmarksScreen from "../screens/Clan/Bookmarks";
 import { ClanStackParamList } from "../types";
 import Header from "./Header";
+
+// Pages
+import loadable from '@loadable/component'
+const ClanStatsScreen = loadable(() => import("../screens/Clan/Stats"));
+const ClanBookmarksScreen = loadable(() => import("../screens/Clan/Bookmarks"));
 
 const ClanStack = createStackNavigator<ClanStackParamList>();
 

@@ -1,14 +1,17 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
 
-import SearchScreen from "../screens/Tools/Search";
-import CalendarScreen from "../screens/Tools/Calendar";
-import CreditsScreen from "../screens/Tools/Credits";
-import OpenSourceScreen from "../screens/Tools/OpenSource";
-import BouncersScreen from "../screens/Tools/Bouncers";
-import ActivityWidgetScreen from "../screens/Tools/WidgetConfigure/ActivityWidget";
 import { ToolsStackParamList } from "../types";
 import Header from "./Header";
+
+// Pages
+import loadable from '@loadable/component'
+const SearchScreen = loadable(() => import("../screens/Tools/Search"));
+const CalendarScreen = loadable(() => import("../screens/Tools/Calendar"));
+const CreditsScreen = loadable(() => import("../screens/Tools/Credits"));
+const OpenSourceScreen = loadable(() => import("../screens/Tools/OpenSource"));
+const BouncersScreen = loadable(() => import("../screens/Tools/Bouncers"));
+const ActivityWidgetScreen = loadable(() => import("../screens/Tools/WidgetConfigure/ActivityWidget"));
 
 const ToolsStack = createStackNavigator<ToolsStackParamList>();
 

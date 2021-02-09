@@ -1,12 +1,15 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
 
-import PersonalisationScreen from "../screens/Settings/Personalisation";
-import AccountsScreen from "../screens/Settings/Accounts";
-import NotificationScreen from "../screens/Settings/Notifications";
-import BookmarksScreen from "../screens/Settings/Bookmarks";
 import { SettingsStackParamList } from "../types";
 import Header from "./Header";
+
+// Pages
+import loadable from '@loadable/component'
+const PersonalisationScreen = loadable(() => import("../screens/Settings/Personalisation"));
+const AccountsScreen = loadable(() => import("../screens/Settings/Accounts"));
+const NotificationScreen = loadable(() => import("../screens/Settings/Notifications"));
+const BookmarksScreen = loadable(() => import("../screens/Settings/Bookmarks"));
 
 const SettingsStack = createStackNavigator<SettingsStackParamList>();
 

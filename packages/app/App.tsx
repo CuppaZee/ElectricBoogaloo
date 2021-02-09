@@ -2,6 +2,8 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
+import "./polyfill";
+
 import { Platform, useColorScheme, View } from "react-native";
 import Navigation from "./navigation";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -18,14 +20,6 @@ import { useSettings } from "./hooks/useSettings";
 import AppLoading from "expo-app-loading";
 import { useFonts } from "expo-font";
 import './lang/i18n';
-
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
-import timezone from "dayjs/plugin/timezone";
-import localizedFormat from "dayjs/plugin/localizedFormat";
-dayjs.extend(utc);
-dayjs.extend(timezone);
-dayjs.extend(localizedFormat);
 
 import './BackgroundLocation';
 
@@ -94,7 +88,7 @@ function AppB() {
 }
 
 export default function App() {
-  let [fontsLoaded] = useFonts(MaterialCommunityIcons.font);
+  const [fontsLoaded] = useFonts(MaterialCommunityIcons.font);
 
   if (!fontsLoaded) {
     return <AppLoading />;

@@ -1,13 +1,23 @@
 import { DrawerContentComponentProps, DrawerContentOptions } from "@react-navigation/drawer";
 import { NavigationState, PartialState, useNavigationState } from "@react-navigation/native";
-import { Button, CheckBox, DrawerGroup, DrawerItem, Icon, Layout, Radio, RadioGroup, Text } from "@ui-kitten/components";
+import {
+  Button,
+  CheckBox,
+  DrawerGroup,
+  DrawerItem,
+  Icon,
+  Layout,
+  Radio,
+  RadioGroup,
+  Text,
+} from "@ui-kitten/components";
 import React from "react";
 import { Image, Platform, Pressable, ScrollView, View } from "react-native";
 import { useClanBookmarks, useUserBookmarks } from "../hooks/useBookmarks";
 import useDay from "../hooks/useDay";
 import { useSettings } from "../hooks/useSettings";
 import { isClanStatsBeta } from "./MainNavigator";
-import * as themes from '../themes';
+import * as themes from "../themes";
 import dayjs from "dayjs";
 import Clipboard from "expo-clipboard";
 import { useTranslation } from "react-i18next";
@@ -495,18 +505,16 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
             }
           />
           {Platform.OS !== "web" ? (
-            <>
-              <DrawerItem
-                selected={page[1]?.name === "Settings" && page[2]?.name === "Notifications"}
-                title={t("pages:settings_notifications")}
-                accessoryLeft={props => <Icon {...props} name="bell" />}
-                onPress={() =>
-                  props.navigation.navigate("Settings", {
-                    screen: "Notifications",
-                  })
-                }
-              />
-            </>
+            <DrawerItem
+              selected={page[1]?.name === "Settings" && page[2]?.name === "Notifications"}
+              title={t("pages:settings_notifications")}
+              accessoryLeft={props => <Icon {...props} name="bell" />}
+              onPress={() =>
+                props.navigation.navigate("Settings", {
+                  screen: "Notifications",
+                })
+              }
+            />
           ) : (
             <></>
           )}

@@ -59,7 +59,8 @@ export default function UserBouncersScreen() {
       <ScrollView style={{ flex: 1 }} contentContainerStyle={{ padding: 4 }}>
         <Layout style={{ height: 400, margin: 4, borderRadius: 8 }}>
           <MapView
-            region={{ latitude: 0, longitude: 0, latitudeDelta: 8, longitudeDelta: 8 }}
+            latitude={0}
+            longitude={0}
             markers={data.data.data
               .filter(i => i.bouncer)
               .map(i => ({
