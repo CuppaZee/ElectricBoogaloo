@@ -12,6 +12,15 @@ export type Settings = {
   clan_reverse: boolean;
   clan_single_line: boolean;
   clan_full_background: boolean;
+  clan_colours: string[];
+  clan_options: {
+    [clan_id: string]: {
+      level: number;
+      share: boolean;
+      subtract: boolean;
+      shadow: boolean;
+    };
+  };
   tips_viewed: {
     [id: string]: {
       time: number;
@@ -29,6 +38,23 @@ export const defaultSettings: Settings = {
   clan_reverse: false,
   clan_single_line: false,
   clan_full_background: false,
+  clan_colours: [
+    "#eb0000",
+    "#ef6500",
+    "#fa9102",
+    "#fcd302",
+    "#bfe913",
+    "#55f40b",
+    "#0cf4af",
+    "",
+    "",
+    "",
+    "",
+    "#FFE97F",
+    "#DFF77E",
+    "#B0FC8D"
+  ],
+  clan_options: {},
   tips_viewed: {},
 }
 

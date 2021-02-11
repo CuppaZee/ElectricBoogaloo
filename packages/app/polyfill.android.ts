@@ -41,34 +41,3 @@ Date.prototype.toLocaleString = function (a, b) {
   // @ts-ignore
   return this._toLocaleString(a, b);
 };
-
-// console.log(
-//   new Date().toLocaleString("en-US", {
-//     hour12: false,
-//     timeZone: "America/Toronto",
-//     year: "numeric",
-//     month: "2-digit",
-//     day: "2-digit",
-//     hour: "2-digit",
-//     minute: "2-digit",
-//     second: "2-digit",
-//     timeZoneName: "short",
-//   })
-// );
-console.log(
-  new Intl.DateTimeFormat("en-US", {
-    hour12: false,
-    timeZone: "America/Chicago",
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    timeZoneName: "short",
-  }).format()
-);
-console.log(dayjs());
-console.log(dayjs.tz(dayjs().format(), "America/Chicago"));
-console.log(dayjs().tz("America/Chicago").format());
-console.log(dayjs("2013-11-18 11:55").tz("America/Toronto"));

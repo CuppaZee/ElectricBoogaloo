@@ -1,4 +1,4 @@
-import { Layout, Spinner, Text, useTheme } from "@ui-kitten/components";
+import { Button, Icon, Layout, Modal, Spinner, Text, useTheme } from "@ui-kitten/components";
 import React from "react";
 import { Image, PixelRatio, StyleSheet, View } from "react-native";
 import {
@@ -8,7 +8,7 @@ import {
   RequirementDataCell,
   TitleCell,
   UserCell,
-} from "../../components/Clan/CellV2";
+} from "./Cell";
 import {
   ClanStatsConverter,
   ClanStatsFormattedUser,
@@ -22,14 +22,15 @@ import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import { useSettings } from "../../hooks/useSettings";
 import useTitle from "../../hooks/useTitle";
+import ClanSettingsModal from "./SettingsModal";
 import SyncScrollView, { SyncScrollViewController } from "./SyncScrollView";
-
 export interface ClanStatsTableProps {
   game_id: number;
   clan_id: number;
   title?: boolean;
   scrollViewController?: SyncScrollViewController;
 }
+
 
 export default React.memo(
   function ClanStatsTable({
@@ -41,6 +42,8 @@ export default React.memo(
     const [size, onLayout] = useComponentSize();
     const fontScale = PixelRatio.getFontScale();
     const [settings] = useSettings();
+    if(!settings.clan_options[actual_clan_id]) settings.clan_options[actual_clan_id] = {shadow: true, level: 5, share: false, subtract: false};
+    const [modalVisible, setModalVisible] = React.useState(false);
     const reverse = settings.clan_reverse;
     const compact = settings.clan_style;
 
@@ -81,9 +84,14 @@ export default React.memo(
           requirements_data.data?.data,
           requirements || undefined,
           actual_clan_id,
-          shadow_data.data?.data
+          settings.clan_options[actual_clan_id].shadow ? shadow_data.data?.data : undefined
         ),
-      [clan_data.dataUpdatedAt, shadow_data.dataUpdatedAt, requirements]
+      [
+        clan_data.dataUpdatedAt,
+        shadow_data.dataUpdatedAt,
+        requirements,
+        settings.clan_options[actual_clan_id].shadow,
+      ]
     );
 
     if (title)
@@ -161,11 +169,25 @@ export default React.memo(
               )}.png`,
             }}
           />
-          <View>
+          <View style={{ flex: 1 }}>
             <Text category="h6">{clan_data.data.data?.details.name}</Text>
             <Text category="s1">{clan_data.data.data?.details.tagline}</Text>
           </View>
+          <Button
+            appearance="ghost"
+            accessoryLeft={props => <Icon {...props} name="cog" />}
+            onPress={() => setModalVisible(true)}
+          />
         </Layout>
+        <Modal
+          backdropStyle={{ backgroundColor: "#00000077" }}
+          visible={modalVisible}
+          onBackdropPress={() => setModalVisible(false)}>
+          <ClanSettingsModal
+            close={() => setModalVisible(false)}
+            clan_id={actual_clan_id}
+          />
+        </Modal>
         <View style={{ flexDirection: "row" }}>
           {showSidebar && (
             <View
@@ -271,7 +293,13 @@ export default React.memo(
                       requirements={requirements}
                     />
                   ) : (
-                    <DataCell key={key} user={user} task_id={task_id} />
+                    <DataCell
+                      clan_id={actual_clan_id}
+                      requirements={requirements}
+                      key={key}
+                      user={user}
+                      task_id={task_id}
+                    />
                   );
                 })}
               </View>

@@ -30,7 +30,6 @@ export default function ZeeOpsOverview({ user_id }: ZeeOpsOverviewProps) {
   } else if (dayjs(d.start_time).valueOf() > Date.now()) {
     current = d.missions.find(i => i.id === d.currentMission - 1);
   }
-  console.log(current);
   if (!current) return null;
   return (
     <View

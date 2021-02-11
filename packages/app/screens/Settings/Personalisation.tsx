@@ -2,12 +2,14 @@ import { Button, CheckBox, Icon, Layout, Radio, RadioGroup, Text } from "@ui-kit
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 import { Pressable, ScrollView, View } from "react-native";
-import { CommonCell, DataCell } from "../../components/Clan/CellV2";
+import { CommonCell, pickTextColor } from "../../components/Clan/Cell";
 import { requirementMeta } from "../../components/Clan/Data";
+import ColourPicker from "../../components/Common/ColourPicker";
 import { Settings, useSettings } from "../../hooks/useSettings";
 import useTitle from "../../hooks/useTitle";
 
 import * as themes from "../../themes";
+import { UpdateWrapper } from "./Notifications";
 
 function MockTitle({ settings }: { settings: Settings }) {
   return (
@@ -105,7 +107,14 @@ function MockData({ settings, n }: { settings: Settings; n: number }) {
     );
   }
 
-  return <CommonCell settings={settings} type="data" color={m[5]} title={m[4].toLocaleString() ?? "🚫"} />;
+  return (
+    <CommonCell
+      settings={settings}
+      type="data"
+      color={m[5]}
+      title={m[4].toLocaleString() ?? "🚫"}
+    />
+  );
 }
 
 function MockRequirement({ settings, n }: { settings: Settings; n: number }) {
@@ -126,12 +135,14 @@ function MockTable({ settings }: { settings: Settings }) {
   if (settings.clan_reverse) {
     return (
       <View style={{ flexDirection: "row" }}>
-        {settings.clan_style !== 0 && <View style={{ flex: 1 }}>
-          <MockTitle settings={settings} />
-          <MockRequirement settings={settings} n={1} />
-          <MockRequirement settings={settings} n={31} />
-          <MockRequirement settings={settings} n={28} />
-        </View>}
+        {settings.clan_style !== 0 && (
+          <View style={{ flex: 1 }}>
+            <MockTitle settings={settings} />
+            <MockRequirement settings={settings} n={1} />
+            <MockRequirement settings={settings} n={31} />
+            <MockRequirement settings={settings} n={28} />
+          </View>
+        )}
         <View style={{ flex: 1 }}>
           <MockUser settings={settings} n={0} />
           {[0, 3, 6].map(n => (
@@ -155,13 +166,15 @@ function MockTable({ settings }: { settings: Settings }) {
   }
   return (
     <View style={{ flexDirection: "row" }}>
-      {settings.clan_style !== 0 && <View style={{ flex: 1 }}>
-        <MockTitle settings={settings} />
-        {[0, 1].map(i => (
-          <MockUser settings={settings} n={i} />
-        ))}
-        <MockGroupTotal settings={settings} />
-      </View>}
+      {settings.clan_style !== 0 && (
+        <View style={{ flex: 1 }}>
+          <MockTitle settings={settings} />
+          {[0, 1].map(i => (
+            <MockUser settings={settings} n={i} />
+          ))}
+          <MockGroupTotal settings={settings} />
+        </View>
+      )}
       <View style={{ flex: 1 }}>
         <MockRequirement settings={settings} n={1} />
         {[0, 1, 2].map(n => (
@@ -184,11 +197,14 @@ function MockTable({ settings }: { settings: Settings }) {
   );
 }
 
+const clan_colours = ["0", "1", "2", "3", "4", "5", null, null, null, null, null, "I", "B", "G"];
+
 export default function PersonalisationScreen() {
   useTitle("☕ Settings - Personalisation");
   const [storedSettings, setStoredSettings] = useSettings();
   const [settings, setSettings] = React.useState<Settings>();
   const [saved, setSaved] = React.useState(false);
+  const [clanColourSelect, setClanColourSelect] = React.useState<number>();
   React.useEffect(() => {
     setSettings({ ...storedSettings });
   }, [storedSettings]);
@@ -270,6 +286,60 @@ export default function PersonalisationScreen() {
               <Radio>Comfortable</Radio>
               <Radio>Compact</Radio>
             </RadioGroup>
+            <Text category="s1">Colours</Text>
+
+            <UpdateWrapper>
+              {update => (
+                <>
+                  <View
+                    style={{
+                      width: 340,
+                      flexDirection: "row",
+                      flexWrap: "wrap",
+                      alignSelf: "center",
+                    }}>
+                    {clan_colours.map((i, n) =>
+                      i ? (
+                        <Pressable onPress={() => setClanColourSelect(n)} style={{ padding: 4 }}>
+                          <View
+                            style={{
+                              borderRadius: 32,
+                              height: 48,
+                              width: 48,
+                              borderWidth: 2,
+                              backgroundColor: settings.clan_colours[n],
+                              justifyContent: "center",
+                              alignItems: "center",
+                            }}>
+                            <Text
+                              style={{
+                                lineHeight: 0,
+                                textAlignVertical: "center",
+                                textAlign: "center",
+                                color: pickTextColor(settings.clan_colours[n]),
+                              }}
+                              category="h2">
+                              {i}
+                            </Text>
+                          </View>
+                        </Pressable>
+                      ) : null
+                    )}
+                  </View>
+                  {clanColourSelect !== undefined && (
+                    <View style={{ alignSelf: "center" }}>
+                      <ColourPicker
+                        colour={settings.clan_colours[clanColourSelect]}
+                        setColour={colour => {
+                          settings.clan_colours[clanColourSelect] = colour;
+                          update();
+                        }}
+                      />
+                    </View>
+                  )}
+                </>
+              )}
+            </UpdateWrapper>
             <Text category="s1">Preview</Text>
             <MockTable settings={settings} />
           </Layout>

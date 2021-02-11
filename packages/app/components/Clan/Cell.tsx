@@ -1,6 +1,6 @@
 import { Icon, Layout, Text, useTheme } from "@ui-kitten/components";
 import React from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { Image, ImageSourcePropType, StyleSheet, View } from "react-native";
 import {
   ClanStatsFormattedUser,
   ClanStatsFormattedData,
@@ -9,619 +9,404 @@ import {
   ClanStatsFormattedRequirements,
 } from "./Data";
 import { ClanV2 } from "@cuppazee/api/clan/main";
+import { Settings, useSettings } from "../../hooks/useSettings";
+import { Dayjs } from "dayjs";
+import { useTranslation } from "react-i18next";
+// import Color from 'color';
 
-export type DataCellProps = {
-  requirements?: ClanStatsFormattedRequirements;
-  size: { width: number; height: number };
-  levelColours: string[];
-  user?: ClanStatsFormattedUser | ClanStatsFormattedData | null;
-  task_id: number;
-  reverse?: boolean;
-  compact?: number;
-  subtract?: number;
-  stack?: boolean;
-  height: number;
-};
-
-export function DataCell({
-  requirements,
-  size,
-  levelColours,
-  user,
-  task_id,
-  reverse,
-  compact,
-  subtract,
-  stack,
-  height,
-}: DataCellProps) {
-  const theme = useTheme();
-  return (
-    <Layout
-      level={compact === 2 ? "0" : "2"}
-      style={[
-        compact === 2 ? {} : styles.card,
-        {
-          height,
-          flexDirection: stack ? "column" : "row",
-          alignItems: "center",
-          opacity: (user?.requirements[task_id]?.level ?? -1) === -1 ? 0.5 : 1,
-        },
-      ]}
-    >
-      <View
-        style={{
-          width: 4,
-          alignSelf: "stretch",
-          borderTopLeftRadius: compact === 2 ? 0 : 8,
-          borderBottomLeftRadius: compact === 2 ? 0 : 8,
-          backgroundColor:
-            levelColours[user?.requirements[task_id]?.level ?? -1] ?? "#aaaaaa",
-        }}
-      />
-      {size.width <= 720 &&
-        !compact &&
-        (reverse || (user && "user_id" in user) ? (
-          <Image
-            source={{
-              uri: reverse
-                ? requirementMeta[task_id]?.icon
-                : `https://munzee.global.ssl.fastly.net/images/avatars/ua${(
-                    (user && "user_id" in user && user?.user_id) ||
-                    0
-                  ).toString(36)}.png`,
-            }}
-            style={{
-              margin: 4,
-              height: 32,
-              width: 32,
-              borderRadius: reverse ? 0 : 16,
-            }}
-          />
-        ) : (
-          <Icon
-            style={{
-              height: 24,
-              width: 24,
-              marginHorizontal: 8,
-              color: theme.style === "dark" ? "#fff" : "#000",
-            }}
-            name="shield-half-full"
-          />
-        ))}
-      <View
-        style={{
-          padding: 4,
-          flex: 1,
-          alignItems: stack ? "center" : "stretch",
-          maxWidth: "100%",
-        }}
-      >
-        {size.width <= 720 &&
-          !compact &&
-          (reverse ? (
-            <Text category="s1">
-              {requirementMeta[task_id]?.top} {requirementMeta[task_id]?.bottom}
-            </Text>
-          ) : (
-            <Text category="s1">
-              {user && "username" in user ? user.username ?? "" : "Clan Total"}
-            </Text>
-          ))}
-        <Text category={size.width <= 720 && compact !== 2 ? "c1" : "s2"}>
-          {user?.requirements[task_id]?.value?.toLocaleString() ?? "🚫"}
-        </Text>
-      </View>
-    </Layout>
-  );
+export function pickTextColor(bgColor: string, lightColor: string = "#fff", darkColor: string = "#000") {
+  var color = bgColor.charAt(0) === "#" ? bgColor.substring(1, 7) : bgColor;
+  var r = parseInt(color.substring(0, 2), 16); // hexToR
+  var g = parseInt(color.substring(2, 4), 16); // hexToG
+  var b = parseInt(color.substring(4, 6), 16); // hexToB
+  var uicolors = [r / 255, g / 255, b / 255];
+  var c = uicolors.map(col => {
+    if (col <= 0.03928) {
+      return col / 12.92;
+    }
+    return Math.pow((col + 0.055) / 1.055, 2.4);
+  });
+  var L = 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+  return L > 0.179 ? darkColor : lightColor;
 }
 
-export type RequirementDataCellProps = {
-  requirements?: ClanStatsFormattedRequirements;
-  size: { width: number; height: number };
-  levelColours: string[];
-  level: number;
-  task: number;
-  type: "individual" | "group";
-  reverse?: boolean;
-  compact?: number;
-  subtract?: number;
-  stack?: boolean;
-  height: number;
-};
+export interface CommonCellProps {
+  type: "title" | "header" | "header_stack" | "data";
+  color?: number;
+  image?: ImageSourcePropType;
+  icon?: string;
+  title?: string;
+  titleIcon?: string;
+  subtitle?: string;
+  settings?: Settings;
+}
 
-export function RequirementDataCell({
-  requirements,
-  size,
-  levelColours,
-  reverse,
-  compact,
-  level,
-  task,
-  type,
-  subtract,
-  stack,
-  height,
-}: RequirementDataCellProps) {
+export const CommonCell = React.memo(function (props: CommonCellProps) {
+  const [settings_saved] = useSettings();
+  const settings = props.settings ?? settings_saved;
   const theme = useTheme();
+
+  const isCompact = settings.clan_style >= 2;
+  const isStack = props.type === "title" || props.type === "header_stack";
+  const isSingleLine = settings.clan_single_line && !isStack;
+  const imageSize = (isSingleLine ? 0.75 : 1) * (isCompact ? 24 : 32);
+  const iconSize = isSingleLine ? 16 : 24;
+  const iconMargin = isCompact ? 4 : 8;
+
+  const height = {
+    title: isCompact ? 69 : 77,
+    header_stack: isCompact ? 69 : 77,
+    header: isSingleLine ? (isCompact ? 26 : 32) : isCompact ? 34 : 40,
+    data: isSingleLine ? (isCompact ? 26 : 32) : isCompact ? 34 : 40,
+  }[props.type];
+
   return (
     <Layout
-      level={compact === 2 ? "0" : "2"}
+      level={isCompact ? "2" : "3"}
       style={[
-        compact === 2 ? {} : styles.card,
+        isCompact ? {} : styles.card,
         {
           height,
-          flexDirection: stack ? "column" : "row",
+          flexDirection: isStack ? "column" : "row",
           alignItems: "center",
-          opacity:
-            (requirements?.tasks[type][task]?.[level] || 0) === 0 ? 0.5 : 1,
+          opacity: props.color === -1 ? 0.4 : 1,
         },
-      ]}
-    >
-      <View
-        style={{
-          width: 4,
-          alignSelf: "stretch",
-          // minHeight: compact === 2 ? 34 : 40,
-          borderTopLeftRadius: compact === 2 ? 0 : 8,
-          borderBottomLeftRadius: compact === 2 ? 0 : 8,
-          backgroundColor:
-            ((requirements?.tasks[type][task]?.[level] || 0) === 0
-              ? null
-              : levelColours[level]) ?? "#aaaaaa",
-        }}
-      />
-      {size.width <= 720 && !compact && (
-        <Image
-          source={{
-            uri: reverse
-              ? requirementMeta[task]?.icon
-              : `https://munzee.global.ssl.fastly.net/images/avatars/ua0.png`,
-          }}
+        props.color !== undefined && settings.clan_full_background
+          ? { backgroundColor: settings.clan_colours[props.color] ?? "#aaaaaa" }
+          : props.color !== undefined
+          ? { backgroundColor: (settings.clan_colours[props.color] ?? "#aaaaaa") + "22" }
+          : undefined,
+      ]}>
+      {props.color !== undefined && !isStack && !settings.clan_full_background && (
+        <View
           style={{
-            margin: 4,
-            height: 32,
-            width: 32,
-            borderRadius: reverse ? 0 : 16,
+            width: 4,
+            alignSelf: "stretch",
+            borderTopLeftRadius: isCompact ? 0 : 8,
+            borderBottomLeftRadius: isCompact ? 0 : 8,
+            backgroundColor: settings.clan_colours[props.color] ?? "#aaaaaa",
           }}
         />
+      )}
+      {props.image && (
+        <Image
+          source={props.image}
+          style={{
+            width: imageSize,
+            height: imageSize,
+            borderRadius:
+              typeof props.image === "object" &&
+              "uri" in props.image &&
+              (props.image.uri?.includes("/avatars/ua") ||
+                props.image.uri?.includes("/clan_logos/"))
+                ? imageSize / 2
+                : 0,
+            margin: 4,
+          }}
+        />
+      )}
+      {props.icon && (
+        <View style={isStack ? { marginVertical: iconMargin } : {}}>
+          <Icon
+            style={{
+              width: iconSize,
+              height: iconSize,
+              marginHorizontal: iconMargin,
+              color:
+                props.color !== undefined && settings.clan_full_background
+                  ? pickTextColor(settings.clan_colours[props.color] ?? "#aaaaaa")
+                  : theme.style === "dark"
+                  ? "#fff"
+                  : "#000",
+            }}
+            name={props.icon}
+          />
+        </View>
       )}
       <View
         style={{
           padding: 4,
+          paddingVertical: 0,
           flex: 1,
-          alignItems: stack ? "center" : "stretch",
+          alignItems: isStack ? "center" : "stretch",
           maxWidth: "100%",
-        }}
-      >
-        {size.width <= 720 && !compact && (
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <Icon
-              name={type === "group" ? "shield-half-full" : "account"}
-              style={{
-                height: 16,
-                width: 16,
-                marginRight: 4,
-                color: theme.style === "dark" ? "white" : "black",
-              }}
-            />
-            {reverse ? (
-              <Text category="s1">
-                {requirementMeta[task]?.top} {requirementMeta[task]?.bottom}
-              </Text>
-            ) : (
-              <Text category="s1">Level {level || 0}</Text>
-            )}
-          </View>
+        }}>
+        {props.title && (
+          // @ts-ignore
+          <Text
+            style={[
+              props.color !== undefined && settings.clan_full_background
+                ? { color: pickTextColor(settings.clan_colours[props.color] ?? "#aaaaaa") }
+                : undefined,
+              {
+                textAlign: !!props.subtitle ? "left" : "center",
+                marginLeft:
+                  !!props.subtitle ||
+                  !(props.color !== undefined && !isStack && !settings.clan_full_background)
+                    ? 0
+                    : -4,
+              },
+            ]}
+            numberOfLines={1}
+            ellipsizeMode="tail"
+            category="s2">
+            {props.titleIcon && <Icon name={props.titleIcon} style={{ height: 12, width: 12 }} />}
+            {props.title}
+          </Text>
         )}
-        <Text category={size.width <= 720 && compact !== 2 ? "c1" : "s2"}>
-          {requirements?.tasks[type][task]?.[level] || "-"}
-        </Text>
+        {!isSingleLine && props.subtitle && (
+          <Text
+            style={
+              props.color !== undefined && settings.clan_full_background
+                ? { color: pickTextColor(settings.clan_colours[props.color] ?? "#aaaaaa") }
+                : undefined
+            }
+            numberOfLines={1}
+            ellipsizeMode="tail"
+            category="c1">
+            {props.subtitle}
+          </Text>
+        )}
       </View>
+      {props.color !== undefined && isStack && !settings.clan_full_background && (
+        <View
+          style={{
+            height: 4,
+            width: 45,
+            borderTopLeftRadius: isCompact ? 0 : 8,
+            borderBottomLeftRadius: isCompact ? 0 : 8,
+            backgroundColor: settings.clan_colours[props.color] ?? "#aaaaaa",
+          }}
+        />
+      )}
     </Layout>
+  );
+});
+
+export interface DataCellProps {
+  user: ClanStatsFormattedUser | ClanStatsFormattedData | null;
+  task_id: number;
+  clan_id: number;
+  requirements: ClanStatsFormattedRequirements;
+}
+
+export function DataCell(props: DataCellProps) {
+  const [settings] = useSettings();
+  const { t } = useTranslation();
+
+  const opt = settings.clan_options[props.clan_id];
+  let text;
+  let level;
+  if (
+    props.user?.requirements[props.task_id]?.value === undefined ||
+    props.user?.requirements[props.task_id]?.value === null
+  ) {
+    text = "🚫";
+  } else if (opt?.subtract) {
+    text = Math.max(0, (
+      props.requirements.tasks["username" in props.user ? "individual" : "group"][props.task_id]?.[
+        opt.level
+      ]??0) - (props.user.requirements[props.task_id].value ?? 0)
+    ).toLocaleString();
+    level = (props.user?.requirements[props.task_id]?.level ?? 0) >= opt.level ? opt.level : (props.user?.requirements[props.task_id]?.level === -1 ? -1 : 0);
+  } else {
+    text = (props.user.requirements[props.task_id].value ?? 0).toLocaleString();
+    level = props.user?.requirements[props.task_id]?.level;
+  }
+
+  if (settings.clan_style === 0) {
+    return (
+      <CommonCell
+        type="data"
+        color={level}
+        icon={!props.user || "username" in props.user ? undefined : "shield-half-full"}
+        image={
+          !props.user || "username" in props.user
+            ? {
+                uri:
+                  props.user && "username" in props.user
+                    ? `https://munzee.global.ssl.fastly.net/images/avatars/ua${props.user.user_id.toString(
+                        36
+                      )}.png`
+                    : requirementMeta[props.task_id]?.icon,
+              }
+            : undefined
+        }
+        title={
+          settings.clan_reverse
+            ? `${requirementMeta[props.task_id]?.top} ${requirementMeta[props.task_id]?.bottom}`
+            : props.user && "username" in props.user
+            ? props.user.username ?? ""
+            : t("clan:group_total")
+        }
+        subtitle={text}
+      />
+    );
+  }
+  return <CommonCell type="data" color={level} title={text} />;
+}
+
+export interface RequirementDataCellProps {
+  requirements?: ClanStatsFormattedRequirements;
+  level: number;
+  task: number;
+  type: "individual" | "group";
+}
+
+export function RequirementDataCell(props: RequirementDataCellProps) {
+  const [settings] = useSettings();
+  const { t } = useTranslation();
+
+  if (settings.clan_style === 0) {
+    return (
+      <CommonCell
+        type="data"
+        color={props.level}
+        icon={
+          settings.clan_reverse
+            ? undefined
+            : props.type === "individual"
+            ? "account-check"
+            : "shield-check"
+        }
+        image={
+          settings.clan_reverse
+            ? {
+                uri: requirementMeta[props.task]?.icon,
+              }
+            : undefined
+        }
+        title={
+          settings.clan_reverse
+            ? `${requirementMeta[props.task]?.top} ${requirementMeta[props.task]?.bottom}`
+            : t(`clan:${props.type}_level` as const, { level: props.level })
+        }
+        subtitle={
+          props.requirements?.tasks[props.type][props.task]?.[props.level]?.toString() ?? "-"
+        }
+      />
+    );
+  }
+
+  return (
+    <CommonCell
+      type="data"
+      color={props.level}
+      title={props.requirements?.tasks[props.type][props.task]?.[props.level]?.toString() ?? "-"}
+    />
   );
 }
 
 export type UserCellProps = {
-  levelColours: string[];
   user: ClanStatsFormattedUser | ClanStatsFormattedData;
-  compact?: number;
   stack?: boolean;
-  height: number;
 };
 
-export function UserCell({
-  levelColours,
-  user,
-  compact,
-  stack,
-  height,
-}: UserCellProps) {
-  const theme = useTheme();
+export function UserCell(props: UserCellProps) {
+  const { t } = useTranslation();
   return (
-    <Layout
-      level={compact === 2 ? "0" : "2"}
-      style={[
-        compact === 2 ? {} : styles.card,
-        {
-          height,
-          flexDirection: stack ? "column" : "row",
-          alignItems: "center",
-        },
-      ]}>
-      {!stack && (
-        <View
-          style={{
-            width: 4,
-            alignSelf: "stretch",
-            // minHeight: compact === 2 ? 34 : 40,
-            borderTopLeftRadius: compact === 2 ? 0 : 8,
-            borderBottomLeftRadius: compact === 2 ? 0 : 8,
-            backgroundColor: levelColours[user?.level ?? -1] ?? "#aaaaaa",
-          }}
-        />
-      )}
-      {"user_id" in user ? (
-        <Image
-          source={{
-            uri: `https://munzee.global.ssl.fastly.net/images/avatars/ua${user.user_id.toString(
-              36
-            )}.png`,
-          }}
-          style={{
-            width: compact === 2 ? 24 : 32,
-            height: compact === 2 ? 24 : 32,
-            borderRadius: 16,
-            margin: 4,
-          }}
-        />
-      ) : (
-        <View style={stack ? { marginVertical: compact === 2 ? 4 : 8 } : {}}>
-          <Icon
-            style={{
-              width: 24,
-              height: 24,
-              marginHorizontal: compact === 2 ? 4 : 8,
-              color: theme.style === "dark" ? "#fff" : "#000",
-            }}
-            name="shield-half-full"
-          />
-        </View>
-      )}
-      <View
-        style={{
-          padding: 4,
-          paddingVertical: 0,
-          flex: 1,
-          alignItems: stack ? "center" : "stretch",
-          maxWidth: "100%",
-        }}>
-        <Text numberOfLines={1} ellipsizeMode="tail" category="s2">
-          {"user_id" in user ? user.username ?? user.user_id : "Clan Total"}
-        </Text>
-        <Text numberOfLines={1} ellipsizeMode="tail" category="c1">
-          Level {user.level}
-        </Text>
-      </View>
-      {stack && (
-        <View
-          style={{
-            height: 4,
-            width: 45,
-            borderTopLeftRadius: compact === 2 ? 0 : 8,
-            borderBottomLeftRadius: compact === 2 ? 0 : 8,
-            backgroundColor: levelColours[user?.level ?? -1] ?? "#aaaaaa",
-          }}
-        />
-      )}
-    </Layout>
+    <CommonCell
+      type={props.stack ? "header_stack" : "header"}
+      color={props.user.level}
+      image={
+        "user_id" in props.user
+          ? {
+              uri: `https://munzee.global.ssl.fastly.net/images/avatars/ua${props.user.user_id.toString(
+                36
+              )}.png`,
+            }
+          : undefined
+      }
+      icon={"user_id" in props.user ? undefined : "shield-half-full"}
+      titleIcon={"user_id" in props.user ? (props.user.shadow ? "ghost" : props.user.admin ? "hammer" : undefined) : undefined}
+      title={"user_id" in props.user ? props.user.username ?? "" : "Clan Total"}
+      subtitle={t("clan:level", { level: props.user.level })}
+    />
   );
 }
 
 export type LevelCellProps = {
-  levelColours: string[];
   level: number;
   type: "individual" | "group";
-  compact?: number;
   stack?: boolean;
-  height: number;
-  stats?: boolean;
 };
 
-export function LevelCell({
-  levelColours,
-  level,
-  type,
-  compact,
-  stack,
-  height,
-  stats,
-}: LevelCellProps) {
-  const theme = useTheme();
+export function LevelCell(props: LevelCellProps) {
+  const { t } = useTranslation();
+  const [settings] = useSettings();
   return (
-    <Layout
-      level={compact === 2 ? "0" : "2"}
-      style={[
-        compact === 2 ? {} : styles.card,
-        {
-          height,
-          flexDirection: stack ? "column" : "row",
-          alignItems: "center",
-        },
-      ]}>
-      {!stack && (
-        <View
-          style={{
-            width: 4,
-            alignSelf: "stretch",
-            // minHeight: compact === 2 ? 34 : 40,
-            borderTopLeftRadius: compact === 2 ? 0 : 8,
-            borderBottomLeftRadius: compact === 2 ? 0 : 8,
-            backgroundColor: levelColours[level] ?? "#aaaaaa",
-          }}
-        />
+    <CommonCell
+      type={props.stack ? "header_stack" : "header"}
+      color={props.level}
+      icon={props.type === "individual" ? "account-check" : "shield-check"}
+      title={t(
+        settings.clan_single_line && !props.stack
+          ? props.type === "individual"
+            ? "clan:individual_level"
+            : "clan:group_level"
+          : "clan:level",
+        { level: props.level }
       )}
-      {stats && (
-        <View style={stack ? { marginVertical: compact === 2 ? 4 : 8 } : {}}>
-          <Icon
-            style={{
-              width: 24,
-              height: 24,
-              marginHorizontal: compact === 2 ? 4 : 8,
-              color: theme.style === "dark" ? "#fff" : "#000",
-            }}
-            name={type === "group" ? "shield-check" : "account-check"}
-          />
-        </View>
-      )}
-      <View
-        style={{
-          padding: 4,
-          paddingVertical: 0,
-          flex: 1,
-          alignItems: stack ? "center" : "stretch",
-          maxWidth: "100%",
-        }}>
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
-          {!stats && (
-            <Icon
-              name={type === "group" ? "shield-check" : "account-check"}
-              style={{
-                height: 12,
-                width: 12,
-                marginRight: 4,
-                color: theme.style === "dark" ? "white" : "black",
-              }}
-            />
-          )}
-          <Text numberOfLines={1} ellipsizeMode="tail" category="s2">
-            {type === "group" ? "Group" : "Indiv"}
-          </Text>
-        </View>
-        <Text numberOfLines={1} ellipsizeMode="tail" category={stats ? "c1" : "s1"}>
-          Level {level}
-        </Text>
-      </View>
-      {stack && (
-        <View
-          style={{
-            height: 4,
-            width: 45,
-            borderTopLeftRadius: compact === 2 ? 0 : 8,
-            borderBottomLeftRadius: compact === 2 ? 0 : 8,
-            backgroundColor: levelColours[level] ?? "#aaaaaa",
-          }}
-        />
-      )}
-    </Layout>
-  );
-}
-
-export type RequirementTitleCellProps = {
-  compact?: number;
-  stack?: boolean;
-  reverse?: boolean;
-  height: number;
-};
-
-export function RequirementTitleCell({
-  compact,
-  stack,
-  reverse,
-  height,
-}: RequirementTitleCellProps) {
-  return (
-    <Layout
-      level={compact === 2 ? "0" : "2"}
-      style={[
-        compact === 2 ? {} : styles.card,
-        {
-          height,
-          // minHeight:
-            // (compact === 2 ? 34 : 40) + (stack ? (reverse ? 7 : 33) : 0),
-          flexDirection: stack ? "column" : "row",
-          alignItems: "center",
-          paddingVertical: stack ? 2 : 0,
-        },
-      ]}
-    >
-      <View
-        style={{
-          padding: 4,
-          paddingVertical: 0,
-          flex: 1,
-          alignItems: stack ? "center" : "stretch",
-          maxWidth: "100%",
-        }}
-      >
-        <Text numberOfLines={1} ellipsizeMode="tail" category="s1">
-          Requirements
-        </Text>
-      </View>
-    </Layout>
-  );
-}
-
-export type RequirementCellProps = {
-  levelColours: string[];
-  task_id: number;
-  compact?: number;
-  stack?: boolean;
-  type?: "individual" | "group";
-  height: number;
-};
-
-export function RequirementCell({
-  levelColours,
-  task_id,
-  compact,
-  stack,
-  type,
-  height,
-}: RequirementCellProps) {
-  const theme = useTheme();
-  return (
-    <Layout
-      level={compact === 2 ? "0" : "2"}
-      style={[
-        compact === 2 ? {} : styles.card,
-        {
-          height,
-          // minHeight: compact === 2 ? 34 : 40,
-          flexDirection: stack ? "column" : "row",
-          alignItems: "center",
-        },
-      ]}
-    >
-      {/* {type && !stack && (
-        <View
-          style={{
-            width: 4,
-            alignSelf: "stretch",
-            minHeight: compact === 2 ? 34 : 40,
-            borderTopLeftRadius: compact === 2 ? 0 : 8,
-            borderBottomLeftRadius: compact === 2 ? 0 : 8,
-            backgroundColor:
-              levelColours[type === "group" ? 5 : 3] ?? "#aaaaaa",
-          }}
-        />
-      )} */}
-      <Image
-        source={{ uri: requirementMeta[task_id]?.icon }}
-        style={{
-          margin: 4,
-          marginRight: 0,
-          height: compact === 2 ? 24 : 32,
-          width: compact === 2 ? 24 : 32,
-        }}
-      />
-      <View
-        style={{
-          padding: 4,
-          paddingVertical: 0,
-          flex: 1,
-          alignItems: stack ? "center" : "stretch",
-          maxWidth: "100%",
-        }}
-      >
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
-          {type && (
-            <Icon
-              name={type === "group" ? "shield-half-full" : "account"}
-              style={{
-                height: 16,
-                width: 16,
-                marginRight: 4,
-                color: theme.style === "dark" ? "white" : "black",
-              }}
-            />
-          )}
-          <Text numberOfLines={1} ellipsizeMode="tail" category="s2">
-            {requirementMeta[task_id]?.top}
-          </Text>
-        </View>
-        <Text numberOfLines={1} ellipsizeMode="tail" category="c1">
-          {requirementMeta[task_id]?.bottom}
-        </Text>
-      </View>
-      {/* {stack && (
-        <View
-          style={{
-            height: 4,
-            width: 45,
-            borderTopLeftRadius: compact === 2 ? 0 : 8,
-            borderBottomLeftRadius: compact === 2 ? 0 : 8,
-            backgroundColor:
-              levelColours[type === "group" ? 5 : 3] ?? "#aaaaaa",
-          }}
-        />
-      )} */}
-    </Layout>
+      subtitle={t(`clan:${props.type}` as const)}
+    />
   );
 }
 
 export type TitleCellProps = {
   clan: ClanV2["response"];
   shadow?: { data?: ClanShadowData };
-  reverse?: boolean;
-  compact?: number;
-  stack?: boolean;
-  height: number;
 };
 
-export function TitleCell({
-  clan,
-  shadow,
-  reverse,
-  compact,
-  stack,
-  height,
-}: TitleCellProps) {
+export function TitleCell(props: TitleCellProps) {
+  const { t } = useTranslation();
   return (
-    <Layout
-      level={compact === 2 ? "0" : "2"}
-      style={[
-        compact === 2 ? {} : styles.card,
-        {
-          height,
-          // minHeight: (compact === 2 ? 34 : 40) + (stack ? 33 : 0),
-          flexDirection: stack ? "column" : "row",
-          alignItems: "center",
-        },
-      ]}
-    >
-      <Image
-        source={{
-          uri: `https://munzee.global.ssl.fastly.net/images/clan_logos/${clan.data?.details.clan_id.toString(
-            36
-          )}.png`,
-        }}
-        style={{
-          width: compact === 2 ? 24 : 32,
-          height: compact === 2 ? 24 : 32,
-          borderRadius: 16,
-          margin: 4,
-        }}
-      />
-      <View
-        style={{
-          padding: 4,
-          paddingVertical: 0,
-          flex: 1,
-          alignItems: stack ? "center" : "stretch",
-          maxWidth: "100%",
-        }}
-      >
-        <Text numberOfLines={1} ellipsizeMode="tail" category="s2">
-          {shadow?.data?.details.name ?? clan.data?.details.name ?? ""}
-        </Text>
-        <Text numberOfLines={1} ellipsizeMode="tail" category="c1">
-          {shadow?.data?.details.name
-            ? "Shadow Clan"
-            : `#${clan.data?.result.rank || ""}`}
-        </Text>
-      </View>
-    </Layout>
+    <CommonCell
+      type="title"
+      image={{
+        uri: `https://munzee.global.ssl.fastly.net/images/clan_logos/${props.clan.data?.details.clan_id.toString(
+          36
+        )}.png`,
+      }}
+      title={props.clan.data?.details.name ?? t("clan:loading")} //TODO: Translate
+      subtitle={`#${props.clan.data?.result.rank}`}
+    />
+  );
+}
+
+export type RequirementTitleCellProps = {
+  game_id: number;
+  date: Dayjs;
+};
+
+export function RequirementTitleCell(props: RequirementTitleCellProps) {
+  const { t } = useTranslation();
+  return (
+    <CommonCell
+      type="title"
+      icon="playlist-check"
+      title={t("clan:requirements")}
+      subtitle={props.date.format("MMM YYYY")}
+    />
+  );
+}
+
+export type RequirementCellProps = {
+  task_id: number;
+  stack?: boolean;
+  requirements: ClanStatsFormattedRequirements;
+};
+
+export function RequirementCell(props: RequirementCellProps) {
+  const g = props.requirements.group.includes(props.task_id);
+  const i = props.requirements.individual.includes(props.task_id);
+  return (
+    <CommonCell
+      type={props.stack ? "header_stack" : "header"}
+      color={g ? (i ? 12 : 13) : 11}
+      image={{ uri: requirementMeta[props.task_id]?.icon }}
+      title={requirementMeta[props.task_id]?.top}
+      subtitle={requirementMeta[props.task_id]?.bottom}
+    />
   );
 }
 

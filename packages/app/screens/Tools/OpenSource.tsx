@@ -1,8 +1,7 @@
 import { Button, Icon, Layout, List, ListItem, Text } from "@ui-kitten/components";
 import * as React from "react";
-// import { FlatList, Linking, View } from "react-native";
+import { Linking } from "react-native";
 import dependencies from "../../assets/dependencies.json";
-console.log(dependencies);
 import useTitle from "../../hooks/useTitle";
 
 type Lib = {
@@ -118,7 +117,7 @@ export default function OpenSourceScreen() {
                 appearance="ghost"
                 size="small"
                 accessoryLeft={props => <Icon {...props} name="code-tags" />}
-              // onPress={() => Linking.openURL("https://github.com/CuppaZee/ElectricBoogaloo")}
+                onPress={() => Linking.openURL("https://github.com/CuppaZee/ElectricBoogaloo")}
               >
                 Source Code
               </Button>
@@ -153,7 +152,7 @@ export default function OpenSourceScreen() {
                     appearance="ghost"
                     size="small"
                     accessoryLeft={props => <Icon {...props} name="link" />}
-                    // onPress={() => Linking.openURL(item.VendorUrl)}
+                    onPress={() => Linking.openURL(item.VendorUrl)}
                   />
                 )}
                 {item.URL !== "Unknown" && (
@@ -161,7 +160,7 @@ export default function OpenSourceScreen() {
                     appearance="ghost"
                     size="small"
                     accessoryLeft={props => <Icon {...props} name="code-tags" />}
-                    // onPress={() => Linking.openURL(item.URL)}
+                    onPress={() => Linking.openURL(item.URL)}
                   />
                 )}
               </>

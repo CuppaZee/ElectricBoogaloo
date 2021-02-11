@@ -8,7 +8,7 @@ import {
   RequirementCell,
   RequirementDataCell,
   RequirementTitleCell,
-} from "../../components/Clan/CellV2";
+} from "./Cell";
 import {
   ClanRequirementsConverter,
   ClanRewardsData,
