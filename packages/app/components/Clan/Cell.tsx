@@ -7,6 +7,7 @@ import {
   requirementMeta,
   ClanShadowData,
   ClanStatsFormattedRequirements,
+  ClanRewardsData,
 } from "./Data";
 import { ClanV2 } from "@cuppazee/api/clan/main";
 import { Settings, useSettings } from "../../hooks/useSettings";
@@ -14,7 +15,11 @@ import { Dayjs } from "dayjs";
 import { useTranslation } from "react-i18next";
 // import Color from 'color';
 
-export function pickTextColor(bgColor: string, lightColor: string = "#fff", darkColor: string = "#000") {
+export function pickTextColor(
+  bgColor: string,
+  lightColor: string = "#fff",
+  darkColor: string = "#000"
+) {
   var color = bgColor.charAt(0) === "#" ? bgColor.substring(1, 7) : bgColor;
   var r = parseInt(color.substring(0, 2), 16); // hexToR
   var g = parseInt(color.substring(2, 4), 16); // hexToG
@@ -203,12 +208,18 @@ export function DataCell(props: DataCellProps) {
   ) {
     text = "🚫";
   } else if (opt?.subtract) {
-    text = Math.max(0, (
-      props.requirements.tasks["username" in props.user ? "individual" : "group"][props.task_id]?.[
+    text = Math.max(
+      0,
+      (props.requirements.tasks["username" in props.user ? "individual" : "group"][props.task_id]?.[
         opt.level
-      ]??0) - (props.user.requirements[props.task_id].value ?? 0)
+      ] ?? 0) - (props.user.requirements[props.task_id].value ?? 0)
     ).toLocaleString();
-    level = (props.user?.requirements[props.task_id]?.level ?? 0) >= opt.level ? opt.level : (props.user?.requirements[props.task_id]?.level === -1 ? -1 : 0);
+    level =
+      (props.user?.requirements[props.task_id]?.level ?? 0) >= opt.level
+        ? opt.level
+        : props.user?.requirements[props.task_id]?.level === -1
+        ? -1
+        : 0;
   } else {
     text = (props.user.requirements[props.task_id].value ?? 0).toLocaleString();
     level = props.user?.requirements[props.task_id]?.level;
@@ -318,7 +329,15 @@ export function UserCell(props: UserCellProps) {
           : undefined
       }
       icon={"user_id" in props.user ? undefined : "shield-half-full"}
-      titleIcon={"user_id" in props.user ? (props.user.shadow ? "ghost" : props.user.admin ? "hammer" : undefined) : undefined}
+      titleIcon={
+        "user_id" in props.user
+          ? props.user.shadow
+            ? "ghost"
+            : props.user.admin
+            ? "hammer"
+            : undefined
+          : undefined
+      }
       title={"user_id" in props.user ? props.user.username ?? "" : "Clan Total"}
       subtitle={t("clan:level", { level: props.user.level })}
     />
@@ -390,6 +409,23 @@ export function RequirementTitleCell(props: RequirementTitleCellProps) {
   );
 }
 
+export type RewardTitleCellProps = {
+  game_id: number;
+  date: Dayjs;
+};
+
+export function RewardTitleCell(props: RewardTitleCellProps) {
+  const { t } = useTranslation();
+  return (
+    <CommonCell
+      type="title"
+      icon="gift"
+      title={t("clan:rewards")}
+      subtitle={props.date.format("MMM YYYY")}
+    />
+  );
+}
+
 export type RequirementCellProps = {
   task_id: number;
   stack?: boolean;
@@ -406,6 +442,97 @@ export function RequirementCell(props: RequirementCellProps) {
       image={{ uri: requirementMeta[props.task_id]?.icon }}
       title={requirementMeta[props.task_id]?.top}
       subtitle={requirementMeta[props.task_id]?.bottom}
+    />
+  );
+}
+
+export interface RewardDataCellProps {
+  rewards: ClanRewardsData;
+  level: number;
+  reward_id: number;
+  type: "individual" | "group";
+}
+
+export function RewardDataCell(props: RewardDataCellProps) {
+  const [settings] = useSettings();
+  const { t } = useTranslation();
+
+  if (settings.clan_style === 0) {
+    return (
+      <CommonCell
+        type="data"
+        color={props.level}
+        icon={
+          settings.clan_reverse
+            ? undefined
+            : props.type === "individual"
+            ? "account-check"
+            : "shield-check"
+        }
+        image={
+          settings.clan_reverse
+            ? {
+                uri: props.rewards.rewards[props.reward_id]?.logo,
+              }
+            : undefined
+        }
+        title={
+          settings.clan_reverse
+            ? props.rewards.rewards[props.reward_id]?.name
+            : t(`clan:${props.type}_level` as const, { level: props.level })
+        }
+        subtitle={props.rewards.levels[props.level - 1][props.reward_id]?.toString() ?? "-"}
+      />
+    );
+  }
+
+  return (
+    <CommonCell
+      type="data"
+      color={props.level}
+      title={props.rewards?.levels[props.level - 1][props.reward_id]?.toString() ?? "-"}
+    />
+  );
+}
+
+export type RewardCellProps = {
+  reward_id: number;
+  stack?: boolean;
+  rewards: ClanRewardsData;
+};
+
+export function RewardCell(props: RewardCellProps) {
+  const [settings] = useSettings();
+  if (settings.clan_single_line) {
+    return (
+      <CommonCell
+        type={props.stack ? "header_stack" : "header"}
+        image={{ uri: props.rewards.rewards[props.reward_id]?.logo }}
+        title={props.rewards.rewards[props.reward_id]?.name}
+      />
+    );
+  }
+  const title = (props.rewards.rewards[props.reward_id]?.name || "").split(" ");
+  let ts = [title.slice(0, -1).join(" "), title[title.length - 1]];
+  if (title.length === 1) {
+    ts = [title.join(" ")];
+  } else if (title[1] === "Hammer") {
+    ts = ["Hammer"];
+  } else if (title[1] === "Axe") {
+    ts = ["Battle Axe"];
+  } else if (title.includes("Virtual") && title.includes("Color")) {
+    ts = [title.filter(i => i !== "Virtual").join(" "), "Credit"];
+  } else if (title.includes("Virtual")) {
+    ts = [title.filter(i => i !== "Virtual").join(" "), "Virtual"];
+  } else if (title.includes("Flat")) {
+    ts = [title.filter(i => i !== "Flat").join(" "), "Flat"];
+  }
+  return (
+    <CommonCell
+      type={props.stack ? "header_stack" : "header"}
+      image={{ uri: props.rewards.rewards[props.reward_id]?.logo }}
+      title={ts[0]}
+      subtitle={ts[1]}
     />
   );
 }

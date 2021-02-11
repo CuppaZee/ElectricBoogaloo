@@ -8,6 +8,9 @@ import {
   RequirementCell,
   RequirementDataCell,
   RequirementTitleCell,
+  RewardCell,
+  RewardDataCell,
+  RewardTitleCell,
 } from "./Cell";
 import {
   ClanRequirementsConverter,
@@ -37,18 +40,14 @@ const levels: { level: number; type: "group" | "individual" }[] = [
   { level: 5, type: "group" },
 ];
 
-export interface ClanRequirementsTableProps {
+export interface ClanRewardsTableProps {
   game_id: number;
-  clan_id?: number;
-  scrollViewController?: SyncScrollViewController;
 }
 
 export default React.memo(
   function ClanRequirementsTable({
     game_id,
-    clan_id: actual_clan_id = 2041,
-    scrollViewController,
-  }: ClanRequirementsTableProps) {
+  }: ClanRewardsTableProps) {
     const { t } = useTranslation();
     const [size, onLayout] = useComponentSize();
     const fontScale = PixelRatio.getFontScale();
@@ -62,23 +61,13 @@ export default React.memo(
         .replace("rgb(", "rgba(")
         .slice(0, -1) + ", 0.3)";
 
-    const clan_id = actual_clan_id >= 0 ? actual_clan_id : 2041;
-
-    const requirements_data = useMunzeeRequest("clan/v2/requirements", {
-      clan_id,
-      game_id,
-    });
-
     const rewards_data = useCuppaZeeRequest<{ data: ClanRewardsData }>("clan/rewards", {
       game_id,
     });
 
-    const requirements = React.useMemo(
-      () => ClanRequirementsConverter(requirements_data.data?.data, rewards_data.data?.data),
-      [requirements_data.dataUpdatedAt, rewards_data.dataUpdatedAt]
-    );
+    const rewards = rewards_data.data?.data;
 
-    if (!requirements || !size) {
+    if (!rewards || !size) {
       return (
         <Layout
           onLayout={onLayout}
@@ -94,13 +83,13 @@ export default React.memo(
     const columnWidth = showSidebar
       ? (compact ? (headerStack ? 68 : 90) : headerStack ? 80 : 120) * fontScale
       : 400;
-    const minTableWidth = requirements.all.length * columnWidth + sidebarWidth;
+    const minTableWidth = rewards.order.length * columnWidth + sidebarWidth;
 
-    const requirements_rows = (reverse ? requirements.all : levels) as (
+    const rewards_rows = (reverse ? rewards.order : levels) as (
       | number
       | { type: "group" | "individual"; level: number }
     )[];
-    const requirements_columns = (reverse ? levels : requirements.all) as (
+    const rewards_columns = (reverse ? levels : rewards.order) as (
       | number
       | { type: "group" | "individual"; level: number }
     )[];
@@ -118,7 +107,7 @@ export default React.memo(
           level="4">
           <Icon style={{ height: 32, width: 32, marginRight: 8 }} name="playlist-check" />
           <View>
-            <Text category="h6">{t("clan:clan_requirements")}</Text>
+            <Text category="h6">{t("clan:clan_rewards")}</Text>
             <Text category="s1">
               {dayjs()
                 .set("month", gameIDToMonth(game_id).m)
@@ -142,7 +131,7 @@ export default React.memo(
                   borderBottomWidth: 2,
                   borderColor,
                 }}>
-                <RequirementTitleCell
+                <RewardTitleCell
                   key="header"
                   game_id={game_id}
                   date={dayjs()
@@ -150,26 +139,25 @@ export default React.memo(
                     .set("year", gameIDToMonth(game_id).y)}
                 />
               </View>
-              {requirements_rows.map(row =>
+              {rewards_rows.map(row =>
                 typeof row == "number" ? (
-                  <RequirementCell key={row} task_id={row} requirements={requirements} />
+                  <RewardCell key={row} reward_id={row} rewards={rewards} />
                 ) : (
                   <LevelCell key={`${row.level}_${row.type}`} level={row.level} type={row.type} />
                 )
               )}
             </View>
           )}
-          <SyncScrollView
-            controller={scrollViewController}
+          <ScrollView
             style={{
-              flex: (reverse ? levels : requirements.all).length,
+              flex: (reverse ? levels : rewards.order).length,
             }}
             contentContainerStyle={{ flexGrow: 1 }}
             horizontal={true}
             pagingEnabled={size.width < 720 || size.width < minTableWidth}
             snapToInterval={columnWidth}
             snapToAlignment={showSidebar || !reverse ? "start" : "center"}>
-            {requirements_columns.map(column => (
+            {rewards_columns.map(column => (
               <View
                 key={typeof column === "number" ? column : `${column.level}_${column.type}`}
                 style={{
@@ -183,11 +171,11 @@ export default React.memo(
                     borderColor,
                   }}>
                   {typeof column === "number" ? (
-                    <RequirementCell
+                    <RewardCell
                       key="header"
-                      task_id={column}
+                      reward_id={column}
                       stack={headerStack}
-                      requirements={requirements}
+                      rewards={rewards}
                     />
                   ) : (
                     <LevelCell
@@ -198,26 +186,26 @@ export default React.memo(
                     />
                   )}
                 </View>
-                {requirements_rows.map(row => {
+                {rewards_rows.map(row => {
                   if (typeof row !== "number" && typeof column === "number") {
                     return (
-                      <RequirementDataCell
+                      <RewardDataCell
                         key={`${row.level}_${row.type}`}
-                        task={column}
+                        reward_id={column}
                         level={row.level}
                         type={row.type}
-                        requirements={requirements}
+                        rewards={rewards}
                       />
                     );
                   }
                   if (typeof row === "number" && typeof column !== "number") {
                     return (
-                      <RequirementDataCell
+                      <RewardDataCell
                         key={row}
-                        task={row}
+                        reward_id={row}
                         level={column.level}
                         type={column.type}
-                        requirements={requirements}
+                        rewards={rewards}
                       />
                     );
                   }
@@ -225,12 +213,12 @@ export default React.memo(
                 })}
               </View>
             ))}
-          </SyncScrollView>
+          </ScrollView>
         </View>
       </Layout>
     );
   },
-  (prev, now) => prev.clan_id === now.clan_id && prev.game_id === now.game_id
+  (prev, now) => prev.game_id === now.game_id
 );
 
 const styles = StyleSheet.create({

@@ -359,7 +359,6 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
 
         {/* Clans */}
         <DrawerItem
-          disabled={true}
           selected={page[1]?.name === "Clan" && page[2]?.name === "Requirements"}
           title={t("pages:clan_requirements")}
           accessoryLeft={props => <Icon {...props} name="star" />}

@@ -42,7 +42,13 @@ export default React.memo(
     const [size, onLayout] = useComponentSize();
     const fontScale = PixelRatio.getFontScale();
     const [settings] = useSettings();
-    if(!settings.clan_options[actual_clan_id]) settings.clan_options[actual_clan_id] = {shadow: true, level: 5, share: false, subtract: false};
+    if (!settings.clan_options[actual_clan_id])
+      settings.clan_options[actual_clan_id] = {
+        shadow: true,
+        level: 5,
+        share: false,
+        subtract: false,
+      };
     const [modalVisible, setModalVisible] = React.useState(false);
     const reverse = settings.clan_reverse;
     const compact = settings.clan_style;
@@ -183,10 +189,7 @@ export default React.memo(
           backdropStyle={{ backgroundColor: "#00000077" }}
           visible={modalVisible}
           onBackdropPress={() => setModalVisible(false)}>
-          <ClanSettingsModal
-            close={() => setModalVisible(false)}
-            clan_id={actual_clan_id}
-          />
+          <ClanSettingsModal close={() => setModalVisible(false)} clan_id={actual_clan_id} />
         </Modal>
         <View style={{ flexDirection: "row" }}>
           {showSidebar && (
@@ -309,12 +312,5 @@ export default React.memo(
       </Layout>
     );
   },
-  (prev, now) => prev.clan_id === now.clan_id && prev.game_id === now.clan_id
+  (prev, now) => prev.clan_id === now.clan_id && prev.game_id === now.game_id
 );
-
-const styles = StyleSheet.create({
-  card: {
-    margin: 4,
-    borderRadius: 8,
-  },
-});

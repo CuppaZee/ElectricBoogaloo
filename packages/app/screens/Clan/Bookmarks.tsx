@@ -26,7 +26,6 @@ export default function ClanBookmarksScreen() {
   const [clans] = useClanBookmarks();
   const isFocused = useIsFocused();
   if(!isFocused || !size) return <Layout onLayout={onLayout} style={{ flex: 1 }}></Layout>
-  console.error('FULL RENDER');
   return (
     <Layout onLayout={onLayout} style={{ flex: 1 }}>
       <ScrollView style={{ flex: 1 }}>

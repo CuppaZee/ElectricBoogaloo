@@ -27,8 +27,9 @@ export default {
           },
           Clan: {
             screens: {
-              Bookmarks: "clans/:group?",
-              Stats: "clan/:clanid/:year?/:month?",
+              Bookmarks: "clans/:group?/:month?/:year?",
+              Requirements: "clan/requirements/:month?/:year?",
+              Stats: "clan/:clanid/:month?/:year?",
             },
           },
           Tools: {

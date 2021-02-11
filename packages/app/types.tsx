@@ -27,8 +27,9 @@ export type DashStackParamList = {
 
 
 export type ClanStackParamList = {
-  Stats: { clanid: number; year?: number; month?: number };
+  Requirements: { year?: number; month?: number };
   Bookmarks: { year?: number; month?: number };
+  Stats: { clanid: number; year?: number; month?: number };
   // Activity: { username: string; date?: string };
 };
 

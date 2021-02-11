@@ -2,7 +2,6 @@ import { useNavigation } from "@react-navigation/native";
 import { Button, Icon, Layout, Text, useTheme } from "@ui-kitten/components";
 import * as React from "react";
 import { Image } from "react-native";
-import ColourPicker from "../components/Common/ColourPicker";
 import useTitle from "../hooks/useTitle";
 
 export default function SomewhereWithoutCoffeeScreen() {

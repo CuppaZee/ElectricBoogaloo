@@ -4,7 +4,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import "./polyfill";
 
-import { Platform, useColorScheme, View } from "react-native";
+import { Platform, ScrollView, useColorScheme, View } from "react-native";
 import Navigation from "./navigation";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Provider as JotaiProvider } from "jotai";
@@ -22,6 +22,9 @@ import { useFonts } from "expo-font";
 import './lang/i18n';
 
 import './BackgroundLocation';
+
+// @ts-ignore
+ScrollView.defaultProps = { scrollIndicatorInsets:{ right: 1 } };
 
 function MCIcon({ name, style }: { name: string | number | symbol; style: any }) {
   try {
