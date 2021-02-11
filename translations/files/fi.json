@@ -1,0 +1,85 @@
+{
+  "404": {},
+  "pages": {
+    "dashboard_dashboard": "kojelauta",
+    "user_activity": "Aktiviteetit",
+    "user_inventory": "Omistuksesi",
+    "user_clan_progress": "Edistymisesi klaanissa",
+    "user_bouncers": "Pomppijat",
+    "user_blast_checker": "Pommitarkastin",
+    "user_qrew_checker": "QRew-tarkastin",
+    "user_challenges": "Haasteet",
+    "clan_requirements": "Klaanivaatimukset",
+    "tools_bouncers": "Pomppijat",
+    "tools_munzee_types": "Munzee tyypit",
+    "tools_calendar": "Kalenteri",
+    "tools_evo_planner": "Evojen kehitys",
+    "tools_search": "Etsi",
+    "settings": "Asetukset",
+    "settings_notifications": "Ilmoitukset",
+    "tools_credits": "Crediitit",
+    "tools_donate": "Lahjoita"
+  },
+  "drawer": {},
+  "user_activity": {
+    "overview_points": {
+      "one": "{count} piste yht.",
+      "other": "{count} pistettä yht."
+    },
+    "overview_captures": {
+      "one": "{count} nappaus",
+      "other": "{count} nappausta"
+    },
+    "overview_deploys": {
+      "one": "{count} julkaisu",
+      "other": "{count} julkaisua"
+    },
+    "overview_capons": {
+      "one": "{count} napattu",
+      "other": "{count} napattua"
+    },
+    "filter_state": "Tyyppi",
+    "filter_category": "Luokka",
+    "activity_capture": "Nappasit",
+    "activity_deploy": "Julkaisit",
+    "activity_capon": "{user} nappasi",
+    "owned_by_user": "{user}'n",
+    "owned_by_self": "sinun",
+    "none": "Nolla"
+  },
+  "user_inventory": {
+    "amount_undeployed": {},
+    "amount_credits": {},
+    "history": "Historia"
+  },
+  "user_zeeops": {},
+  "clan": {
+    "requirements": "Vaatimukset",
+    "rewards": "Palkinnot",
+    "individual": "Pelaaja",
+    "group": "Klaani",
+    "level": "Taso {level}",
+    "group_total": "Klaani yht."
+  },
+  "maps": {},
+  "settings_common": {
+    "save": "Tallenna"
+  },
+  "settings_accounts": {
+    "logout": "Poistu"
+  },
+  "settings_notifications": {
+    "bouncers_override_search": "Etsi",
+    "starred_users_search": "Etsi"
+  },
+  "bouncers": {},
+  "calendar": {},
+  "open_source": {},
+  "user_bouncers": {},
+  "welcome": {},
+  "search": {
+    "search": "Etsi"
+  },
+  "dashboard": {},
+  "tips": {}
+}

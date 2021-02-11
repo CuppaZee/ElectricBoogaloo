@@ -1,0 +1,80 @@
+{
+  "404": {},
+  "pages": {
+    "dashboard_dashboard": "Dashboard",
+    "user_activity": "Aktivität",
+    "user_inventory": "Inventar",
+    "user_clan_progress": "Clan Fortschritt",
+    "user_bouncers": "Bouncers",
+    "user_challenges": "Herausforderungen",
+    "clan_requirements": "Clan Anforderungen",
+    "tools_bouncers": "Bouncers",
+    "tools_munzee_types": "Munzee-Typen",
+    "tools_calendar": "Kalender",
+    "tools_search": "Suche",
+    "settings": "Einstellungen",
+    "settings_notifications": "Benachrichtigungen",
+    "tools_credits": "Credits",
+    "tools_donate": "Spenden"
+  },
+  "drawer": {},
+  "user_activity": {
+    "overview_points": {
+      "one": "{count} Gesamte Punkte",
+      "other": "{count} Gesamte Punkte"
+    },
+    "overview_captures": {
+      "one": "{count} Capture",
+      "other": "{count} Captures"
+    },
+    "overview_deploys": {
+      "one": "{count} Deploy",
+      "other": "{count} Deploys"
+    },
+    "overview_capons": {
+      "one": "{count} CapOn",
+      "other": "{count} CapOns"
+    },
+    "activity_capture": "Du erfasstest",
+    "activity_deploy": "Du verteiltest",
+    "activity_capon": "{user} erfasste",
+    "owned_by_user": "von {user}",
+    "owned_by_self": "von dir",
+    "none": "keine"
+  },
+  "user_inventory": {
+    "amount_undeployed": {},
+    "amount_credits": {},
+    "history": "Verlauf"
+  },
+  "user_zeeops": {},
+  "clan": {
+    "requirements": "Anforderungen",
+    "rewards": "Belohnungen",
+    "individual": "Individuelle",
+    "group": "Gruppe",
+    "level": "Level {level}",
+    "group_total": "Gruppe gesamt"
+  },
+  "maps": {},
+  "settings_common": {
+    "save": "speichern"
+  },
+  "settings_accounts": {
+    "logout": "Ausloggen"
+  },
+  "settings_notifications": {
+    "bouncers_override_search": "Suche",
+    "starred_users_search": "Suche"
+  },
+  "bouncers": {},
+  "calendar": {},
+  "open_source": {},
+  "user_bouncers": {},
+  "welcome": {},
+  "search": {
+    "search": "Suche"
+  },
+  "dashboard": {},
+  "tips": {}
+}

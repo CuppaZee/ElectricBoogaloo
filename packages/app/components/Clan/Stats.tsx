@@ -50,6 +50,7 @@ export default React.memo(
         subtract: false,
       };
     const [modalVisible, setModalVisible] = React.useState(false);
+    const [sortBy, setSortBy] = React.useState(3);
     const reverse = settings.clan_reverse;
     const compact = settings.clan_style;
 
@@ -126,7 +127,8 @@ export default React.memo(
     }
 
     function sort(a: ClanStatsFormattedUser, b: ClanStatsFormattedUser) {
-      return (b.requirements[3]?.value ?? -1) - (a.requirements[3]?.value ?? -1);
+      if(sortBy < 0) return (a.requirements[-sortBy]?.value ?? -1) - (b.requirements[-sortBy]?.value ?? -1);
+      return (b.requirements[sortBy]?.value ?? -1) - (a.requirements[sortBy]?.value ?? -1);
     }
 
     const headerStack = compact !== 0;
@@ -138,22 +140,22 @@ export default React.memo(
     const minTableWidth = (Object.keys(stats.users).length + 1) * columnWidth + sidebarWidth;
 
     const main_users = [
-      { type: "individual", level: 5 },
+      { type: settings.clan_options[clan_id].share ? "share" : "individual", level: settings.clan_options[clan_id].level },
       ...Object.values(stats.users).sort(sort),
       stats,
-      { type: "group", level: 5 },
+      { type: "group", level: settings.clan_options[clan_id].level },
     ];
     const main_rows = (reverse ? requirements.all : main_users) as (
       | number
       | ClanStatsFormattedUser
       | ClanStatsFormattedData
-      | { type: "group" | "individual"; level: number }
+      | { type: "group" | "individual" | "share"; level: number }
     )[];
     const main_columns = (reverse ? main_users : requirements.all) as (
       | number
       | ClanStatsFormattedUser
       | ClanStatsFormattedData
-      | { type: "group" | "individual"; level: number }
+      | { type: "group" | "individual" | "share"; level: number }
     )[];
     return (
       <Layout onLayout={onLayout} level="2" style={{ margin: 4, borderRadius: 8 }}>
@@ -211,7 +213,13 @@ export default React.memo(
               </View>
               {main_rows.map(row =>
                 typeof row === "number" ? (
-                  <RequirementCell key={row} task_id={row} requirements={requirements} />
+                  <RequirementCell
+                    key={row}
+                    task_id={row}
+                    requirements={requirements}
+                    onPress={() => setSortBy(sortBy === row ? row : row)}
+                    sortBy={sortBy}
+                  />
                 ) : "type" in row ? (
                   <LevelCell key={`${row.level}_${row.type}`} level={row.level} type={row.type} />
                 ) : (
@@ -261,6 +269,8 @@ export default React.memo(
                       task_id={column}
                       stack={headerStack}
                       requirements={requirements}
+                      onPress={() => setSortBy(sortBy === column ? -column : column)}
+                      sortBy={sortBy}
                     />
                   ) : "type" in column ? (
                     <LevelCell
@@ -289,6 +299,7 @@ export default React.memo(
                   if (!user || !task_id) return null;
                   return "type" in user ? (
                     <RequirementDataCell
+                      members={Object.keys(stats.users).length}
                       key={key}
                       task={task_id}
                       level={user.level}

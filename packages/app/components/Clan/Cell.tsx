@@ -1,6 +1,6 @@
 import { Icon, Layout, Text, useTheme } from "@ui-kitten/components";
-import React from "react";
-import { Image, ImageSourcePropType, StyleSheet, View } from "react-native";
+import React, { PropsWithChildren } from "react";
+import { Image, ImageSourcePropType, Pressable, PressableProps, StyleSheet, View } from "react-native";
 import {
   ClanStatsFormattedUser,
   ClanStatsFormattedData,
@@ -35,6 +35,13 @@ export function pickTextColor(
   return L > 0.179 ? darkColor : lightColor;
 }
 
+function PressWrapper(props: PropsWithChildren<PressableProps>) {
+  if (props.onPress) {
+    return <Pressable {...props} />
+  }
+  return <>{props.children}</>;
+}
+
 export interface CommonCellProps {
   type: "title" | "header" | "header_stack" | "data";
   color?: number;
@@ -44,6 +51,7 @@ export interface CommonCellProps {
   titleIcon?: string;
   subtitle?: string;
   settings?: Settings;
+  onPress?: () => void;
 }
 
 export const CommonCell = React.memo(function (props: CommonCellProps) {
@@ -66,7 +74,7 @@ export const CommonCell = React.memo(function (props: CommonCellProps) {
   }[props.type];
 
   return (
-    <Layout
+    <PressWrapper onPress={props.onPress}><Layout
       level={isCompact ? "2" : "3"}
       style={[
         isCompact ? {} : styles.card,
@@ -184,7 +192,7 @@ export const CommonCell = React.memo(function (props: CommonCellProps) {
           }}
         />
       )}
-    </Layout>
+    </Layout></PressWrapper>
   );
 });
 
@@ -261,12 +269,21 @@ export interface RequirementDataCellProps {
   requirements?: ClanStatsFormattedRequirements;
   level: number;
   task: number;
-  type: "individual" | "group";
+  type: "individual" | "group" | "share";
+  members?: number;
 }
 
 export function RequirementDataCell(props: RequirementDataCellProps) {
   const [settings] = useSettings();
   const { t } = useTranslation();
+
+  const count =
+    props.type === "share"
+      ? Math.ceil(Math.max(
+          props.requirements?.tasks.individual[props.task]?.[props.level] ?? 0,
+          (props.requirements?.tasks.group[props.task]?.[props.level] ?? 0) / (props.members ?? 1)
+        ))
+      : props.requirements?.tasks[props.type][props.task]?.[props.level];
 
   if (settings.clan_style === 0) {
     return (
@@ -278,7 +295,7 @@ export function RequirementDataCell(props: RequirementDataCellProps) {
             ? undefined
             : props.type === "individual"
             ? "account-check"
-            : "shield-check"
+            : (props.type === "share" ? "percent" : "shield-check")
         }
         image={
           settings.clan_reverse
@@ -293,19 +310,13 @@ export function RequirementDataCell(props: RequirementDataCellProps) {
             : t(`clan:${props.type}_level` as const, { level: props.level })
         }
         subtitle={
-          props.requirements?.tasks[props.type][props.task]?.[props.level]?.toString() ?? "-"
+          count?.toString() ?? "-"
         }
       />
     );
   }
 
-  return (
-    <CommonCell
-      type="data"
-      color={props.level}
-      title={props.requirements?.tasks[props.type][props.task]?.[props.level]?.toString() ?? "-"}
-    />
-  );
+  return <CommonCell type="data" color={props.level} title={count?.toString() ?? "-"} />;
 }
 
 export type UserCellProps = {
@@ -346,7 +357,7 @@ export function UserCell(props: UserCellProps) {
 
 export type LevelCellProps = {
   level: number;
-  type: "individual" | "group";
+  type: "individual" | "group" | "share";
   stack?: boolean;
 };
 
@@ -362,7 +373,7 @@ export function LevelCell(props: LevelCellProps) {
         settings.clan_single_line && !props.stack
           ? props.type === "individual"
             ? "clan:individual_level"
-            : "clan:group_level"
+            : (props.type === "share" ? "clan:share_level" : "clan:group_level")
           : "clan:level",
         { level: props.level }
       )}
@@ -430,6 +441,8 @@ export type RequirementCellProps = {
   task_id: number;
   stack?: boolean;
   requirements: ClanStatsFormattedRequirements;
+  onPress?: () => void;
+  sortBy: number;
 };
 
 export function RequirementCell(props: RequirementCellProps) {
@@ -437,10 +450,12 @@ export function RequirementCell(props: RequirementCellProps) {
   const i = props.requirements.individual.includes(props.task_id);
   return (
     <CommonCell
+      onPress={props.onPress}
       type={props.stack ? "header_stack" : "header"}
       color={g ? (i ? 12 : 13) : 11}
       image={{ uri: requirementMeta[props.task_id]?.icon }}
       title={requirementMeta[props.task_id]?.top}
+      titleIcon={Math.abs(props.sortBy) === props.task_id ? (props.sortBy > 0 ? "chevron-down" : "chevron-up") : undefined}
       subtitle={requirementMeta[props.task_id]?.bottom}
     />
   );

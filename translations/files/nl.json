@@ -1,0 +1,85 @@
+{
+  "404": {},
+  "pages": {
+    "dashboard_dashboard": "Dashboard\n",
+    "user_activity": "Activiteit",
+    "user_inventory": "Inventaris",
+    "user_clan_progress": "Clan voortgang",
+    "user_bouncers": "Bouncers",
+    "user_blast_checker": "Blast Checker",
+    "user_qrew_checker": "QRew Checker",
+    "user_challenges": "Uitdagingen",
+    "clan_requirements": "Clan Vereisten",
+    "tools_bouncers": "Bouncers",
+    "tools_munzee_types": "Soorten Munzee",
+    "tools_calendar": "Kalender",
+    "tools_evo_planner": "Evo Planner",
+    "tools_search": "Zoeken",
+    "settings": "Opties",
+    "settings_notifications": "Notificaties",
+    "tools_credits": "Credits",
+    "tools_donate": "Doneren"
+  },
+  "drawer": {},
+  "user_activity": {
+    "overview_points": {
+      "one": "{count} Totaal aantal punten",
+      "other": "{count} Totaal aantal punten"
+    },
+    "overview_captures": {
+      "one": "{count} Capture",
+      "other": "{count} Captures"
+    },
+    "overview_deploys": {
+      "one": "{count} Deploy",
+      "other": "{count} Deploys"
+    },
+    "overview_capons": {
+      "one": "{count} Capon",
+      "other": "{count} Capons"
+    },
+    "filter_state": "Status",
+    "filter_category": "Categorie",
+    "activity_capture": "Je hebt captured",
+    "activity_deploy": "Je hebt deployed",
+    "activity_capon": "{user} captured",
+    "owned_by_user": "door {user}",
+    "owned_by_self": "door jou",
+    "none": "Geen"
+  },
+  "user_inventory": {
+    "amount_undeployed": {},
+    "amount_credits": {},
+    "history": "Geschiedenis"
+  },
+  "user_zeeops": {},
+  "clan": {
+    "requirements": "Vereisten",
+    "rewards": "Beloningen",
+    "individual": "Individueel",
+    "group": "Groep",
+    "level": "Niveau {level}",
+    "group_total": "Groep Totaal"
+  },
+  "maps": {},
+  "settings_common": {
+    "save": "Opslaan"
+  },
+  "settings_accounts": {
+    "logout": "Uitloggen"
+  },
+  "settings_notifications": {
+    "bouncers_override_search": "Zoeken",
+    "starred_users_search": "Zoeken"
+  },
+  "bouncers": {},
+  "calendar": {},
+  "open_source": {},
+  "user_bouncers": {},
+  "welcome": {},
+  "search": {
+    "search": "Zoeken"
+  },
+  "dashboard": {},
+  "tips": {}
+}

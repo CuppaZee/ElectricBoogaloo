@@ -1,0 +1,80 @@
+{
+  "404": {},
+  "pages": {
+    "dashboard_dashboard": "Dashboard",
+    "user_activity": "Activity",
+    "user_inventory": "Inventory",
+    "user_clan_progress": "Clan Progress",
+    "user_bouncers": "Bouncers",
+    "user_challenges": "Challenges",
+    "clan_requirements": "Clan Requirements",
+    "tools_bouncers": "Bouncers",
+    "tools_munzee_types": "Munzee Types",
+    "tools_calendar": "Calendar",
+    "tools_search": "Search",
+    "settings": "Settings",
+    "settings_notifications": "Notifications",
+    "tools_credits": "Credits",
+    "tools_donate": "Donate"
+  },
+  "drawer": {},
+  "user_activity": {
+    "overview_points": {
+      "one": "{count} Total Point",
+      "other": "{count} Total Points"
+    },
+    "overview_captures": {
+      "one": "{count} Capture",
+      "other": "{count} Captures"
+    },
+    "overview_deploys": {
+      "one": "{count} Deploy",
+      "other": "{count} Deploys"
+    },
+    "overview_capons": {
+      "one": "{count} Capon",
+      "other": "{count} Capons"
+    },
+    "activity_capture": "You captured",
+    "activity_deploy": "You deployed",
+    "activity_capon": "{user} captured",
+    "owned_by_user": "by {user}",
+    "owned_by_self": "by you",
+    "none": "None"
+  },
+  "user_inventory": {
+    "amount_undeployed": {},
+    "amount_credits": {},
+    "history": "History"
+  },
+  "user_zeeops": {},
+  "clan": {
+    "requirements": "Requirements",
+    "rewards": "Rewards",
+    "individual": "Individual",
+    "group": "Group",
+    "level": "Level {level}",
+    "group_total": "Group Total"
+  },
+  "maps": {},
+  "settings_common": {
+    "save": "Save"
+  },
+  "settings_accounts": {
+    "logout": "Logout"
+  },
+  "settings_notifications": {
+    "bouncers_override_search": "Search",
+    "starred_users_search": "Search"
+  },
+  "bouncers": {},
+  "calendar": {},
+  "open_source": {},
+  "user_bouncers": {},
+  "welcome": {},
+  "search": {
+    "search": "Search"
+  },
+  "dashboard": {},
+  "tips": {}
+}

@@ -1,0 +1,338 @@
+{
+    "common": {
+        "dashboard": "Valdymas",
+        "search": "Paieška",
+        "map": "Žemėlapis",
+        "tools": "Įrankiai",
+        "settings": "Nustatymai",
+        "authenticate": "Užsiloginkite",
+        "auth_success": "Įsiloginta sėkmingai",
+        "scanner": "",
+        "maps": "",
+        "credits": "",
+        "app_info": "",
+        "donate": "",
+        "build_info": "",
+        "user": {
+            "one": "",
+            "few": "",
+            "other": ""
+        },
+        "clan": {
+            "one": "",
+            "few": "",
+            "other": ""
+        },
+        "more": "",
+        "find_user": "",
+        "munzee_types": "",
+        "show_more": "",
+        "show_less": "",
+        "help": "",
+        "users": "",
+        "calendar": "",
+        "bouncers": "",
+        "notifications": "",
+        "contact": {
+            "facebook": "",
+            "email": ""
+        },
+        "clans": "",
+        "logging_in": ""
+    },
+    "activity": {
+        "user_captured": "{user} sugavo",
+        "user_deployed": "{user} deployino",
+        "you_captured": "Jūs sugavote",
+        "you_deployed": "Jūs deployinote",
+        "by_user": "{user}",
+        "by_you": "jūsų",
+        "total_point": {
+            "one": "{count} taškas",
+            "few": "",
+            "other": "{count} taškų"
+        },
+        "capture": {
+            "one": "{count} sugauta",
+            "few": "",
+            "other": "{count} sugauta"
+        },
+        "deploy": {
+            "one": "{count} deployintas",
+            "few": "",
+            "other": "{count} deployinta"
+        },
+        "capon": {
+            "one": "{count} caponas",
+            "few": "",
+            "other": "{count} caponų"
+        },
+        "point": {
+            "one": "{count} taškas",
+            "few": "",
+            "other": "{count} taškų"
+        },
+        "none": "Nėra",
+        "user_today": "{user} Šiandien",
+        "user_renovated": "",
+        "you_renovated": "",
+        "renovation": {
+            "one": "",
+            "few": "",
+            "other": ""
+        },
+        "renovon": {
+            "one": "",
+            "few": "",
+            "other": ""
+        }
+    },
+    "user": {
+        "level_n": "",
+        "rank_n": "",
+        "inventory": "",
+        "your_bouncers": "",
+        "clan_progress": "",
+        "quebec_quest_progress": "",
+        "special_hunter_challenge": "",
+        "captured_types": "",
+        "activity": "",
+        "clan_stats": "",
+        "clan_progress_desc": "",
+        "clan_info": "",
+        "clan_info_desc": "",
+        "challenges": "",
+        "sh_lite": "",
+        "sh_pro": "",
+        "your_clan": "",
+        "no_clan": "",
+        "no_clan_desc": ""
+    },
+    "inventory": {
+        "undeployed": "",
+        "credits": "",
+        "history": "",
+        "unknown_name": ""
+    },
+    "app_info": {
+        "credits": "",
+        "primary_developer": "",
+        "translators": "",
+        "database_contributors": "",
+        "patrons_and_supporters": "",
+        "build_n": "",
+        "patreon_donate": "",
+        "paypal_donate": "",
+        "paypal_donate_desc": "",
+        "custom_titles": {
+            "primary_dev": "",
+            "finnish": "",
+            "dutch": "",
+            "german": "",
+            "hungarian": "",
+            "swedish": "",
+            "french": "",
+            "czech": "",
+            "danish": "",
+            "portugese": "",
+            "lithuanian": ""
+        }
+    },
+    "your_bouncers": {
+        "capture": {
+            "one": "",
+            "few": "",
+            "other": ""
+        },
+        "last_captured": "",
+        "in_limbo": "",
+        "host": ""
+    },
+    "calendar": {
+        "days": {
+            "monday": "",
+            "tuesday": "",
+            "wednesday": "",
+            "thursday": "",
+            "friday": "",
+            "saturday": "",
+            "sunday": ""
+        },
+        "off": ""
+    },
+    "clan": {
+        "requirements": "",
+        "rewards": "",
+        "individual": "",
+        "group": "",
+        "level_n": "",
+        "shadow": "",
+        "goal": "",
+        "view": {
+            "subtract": "",
+            "total": ""
+        },
+        "share": "",
+        "indiv": "",
+        "group_total": "",
+        "level": {
+            "one": "",
+            "few": "",
+            "other": ""
+        },
+        "rank": "",
+        "players": {
+            "one": "",
+            "few": "",
+            "other": ""
+        }
+    },
+    "search": {
+        "clan": "",
+        "type": "",
+        "empty": "",
+        "user": ""
+    },
+    "db": {
+        "go_back": "",
+        "types_search": "",
+        "category": "",
+        "type": {
+            "info": "",
+            "evo": "",
+            "pouch": "",
+            "can_host": "",
+            "lands_on": "",
+            "hosts": "",
+            "possible_types": "",
+            "possible_hosts": "",
+            "host_types": ""
+        },
+        "type_info": ""
+    },
+    "auth": {
+        "add": "",
+        "welcome": "",
+        "tap": ""
+    },
+    "shc": {
+        "lite": {
+            "tob": "",
+            "nomad": "",
+            "myth_1": "",
+            "myth_2": "",
+            "pc_1": "",
+            "pc_2": "",
+            "flat": "",
+            "temp": "",
+            "scatter": ""
+        },
+        "pro": {
+            "tob": "",
+            "nomad": "",
+            "retire": "",
+            "myth_1": "",
+            "myth_2": "",
+            "myth_3": "",
+            "myth_4": "",
+            "pc_1": "",
+            "pc_2": "",
+            "pc_fun": "",
+            "flat": "",
+            "temp": "",
+            "pscatter": "",
+            "vscatter": ""
+        }
+    },
+    "notifications": {
+        "munzee_blog": "",
+        "save": "",
+        "unavailable_web": "",
+        "unavailable_generic": ""
+    },
+    "settings": {
+        "add_user": "",
+        "update": "",
+        "theme": "",
+        "language": "",
+        "logout": "",
+        "save": ""
+    },
+    "bouncers": {
+        "duration": ""
+    },
+    "scanner": {
+        "scan_new": "",
+        "munzee": "",
+        "type": ""
+    },
+    "quest": {
+        "task_1": "",
+        "task_2": "",
+        "task_3": "",
+        "task_4": "",
+        "task_5": "",
+        "task_6": "",
+        "task_7": "",
+        "task_8": "",
+        "task_9": "",
+        "task_10": ""
+    },
+    "themes": {
+        "black": "",
+        "blue": "",
+        "bluegrey": "",
+        "darkblue": "",
+        "green": "",
+        "grey": "",
+        "purple": "",
+        "white": ""
+    },
+    "screens": {
+        "_redirect": "",
+        "Map": "",
+        "Tools": "",
+        "Settings": "",
+        "Notifications": "",
+        "Info": "",
+        "Scanner": "",
+        "Calendar": "",
+        "Bouncers": "",
+        "BouncerMap": "",
+        "MunzeeDetails": "",
+        "MunzeeDetailsID": "",
+        "AllClans": "",
+        "ClanRequirements": "",
+        "ClanSearch": "",
+        "Clan": "",
+        "UserSearch": "",
+        "UserDetails": "",
+        "UserActivity": "",
+        "UserInventory": "",
+        "UserClan": "",
+        "UserQuest": "",
+        "UserCapturesCategory": "",
+        "UserSHCPro": "",
+        "UserSHCLite": "",
+        "UserSHC": "",
+        "UserBouncers": "",
+        "DBType": "",
+        "DBSearch": "",
+        "DBCategory": "",
+        "Auth": ""
+    },
+    "changelog": {
+        "build_n": "",
+        "continue": "",
+        "no_changelog": ""
+    },
+    "clan_req": {
+        "Captures": "",
+        "Points": "",
+        "Deploys": "",
+        "Activity": "",
+        "Days of": "",
+        "Total": "",
+        "Renovate": ""
+    }
+}

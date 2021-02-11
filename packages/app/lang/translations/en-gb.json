@@ -1024,5 +1024,157 @@
         "term_plural": "",
         "reference": "",
         "comment": ""
+    },
+    {
+        "term": "clan_bookmarks",
+        "definition": "Bookmarked Clans",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "settings",
+        "definition": "Settings",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "tools_donate",
+        "definition": "Donate",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "more_clans",
+        "definition": "More Clans",
+        "context": "\"drawer\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "rewards",
+        "definition": "Rewards",
+        "context": "\"clan\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan_rewards",
+        "definition": "Clan Rewards",
+        "context": "\"clan\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "search",
+        "definition": "Search",
+        "context": "\"search\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "type",
+        "definition": "Type",
+        "context": "\"search\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "category",
+        "definition": "Type Category",
+        "context": "\"search\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "player",
+        "definition": "Player",
+        "context": "\"search\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan",
+        "definition": "Clan",
+        "context": "\"search\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clans",
+        "definition": "Clans",
+        "context": "\"dashboard\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "drawer_user_bookmarks",
+        "definition": "You can add and remove users from your Bookmarks in the Settings",
+        "context": "\"tips\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "drawer_clan_bookmarks",
+        "definition": "You can add and remove clans from your Bookmarks in the Settings",
+        "context": "\"tips\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan_stats_customisation",
+        "definition": "There are a lot of options to make Clan Stats your own in the Personalisation settings",
+        "context": "\"tips\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "search_munzee_types",
+        "definition": "As well as searching for Players and Clans, you can also look up Munzee Types here to find out more about them!",
+        "context": "\"tips\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "share",
+        "definition": "Share",
+        "context": "\"clan\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "share_level",
+        "definition": "Share L{level}",
+        "context": "\"clan\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "title",
+        "definition": "Here's a quick tip!",
+        "context": "\"tips\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
     }
 ]

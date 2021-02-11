@@ -1,0 +1,84 @@
+{
+  "404": {},
+  "pages": {
+    "dashboard_dashboard": "Valdymas",
+    "user_activity": "",
+    "user_inventory": "",
+    "user_clan_progress": "",
+    "user_bouncers": "",
+    "user_challenges": "",
+    "clan_requirements": "",
+    "tools_bouncers": "",
+    "tools_munzee_types": "",
+    "tools_calendar": "",
+    "tools_search": "Paieška",
+    "settings": "Nustatymai",
+    "settings_notifications": "",
+    "tools_credits": "",
+    "tools_donate": ""
+  },
+  "drawer": {},
+  "user_activity": {
+    "overview_points": {
+      "one": "{count} taškas",
+      "few": "",
+      "other": "{count} taškų"
+    },
+    "overview_captures": {
+      "one": "{count} sugauta",
+      "few": "",
+      "other": "{count} sugauta"
+    },
+    "overview_deploys": {
+      "one": "{count} deployintas",
+      "few": "",
+      "other": "{count} deployinta"
+    },
+    "overview_capons": {
+      "one": "{count} caponas",
+      "few": "",
+      "other": "{count} caponų"
+    },
+    "activity_capture": "Jūs sugavote",
+    "activity_deploy": "Jūs deployinote",
+    "activity_capon": "{user} sugavo",
+    "owned_by_user": "{user}",
+    "owned_by_self": "jūsų",
+    "none": "Nėra"
+  },
+  "user_inventory": {
+    "amount_undeployed": {},
+    "amount_credits": {},
+    "history": ""
+  },
+  "user_zeeops": {},
+  "clan": {
+    "requirements": "",
+    "rewards": "",
+    "individual": "",
+    "group": "",
+    "level": "",
+    "group_total": ""
+  },
+  "maps": {},
+  "settings_common": {
+    "save": ""
+  },
+  "settings_accounts": {
+    "logout": ""
+  },
+  "settings_notifications": {
+    "bouncers_override_search": "Paieška",
+    "starred_users_search": "Paieška"
+  },
+  "bouncers": {},
+  "calendar": {},
+  "open_source": {},
+  "user_bouncers": {},
+  "welcome": {},
+  "search": {
+    "search": "Paieška"
+  },
+  "dashboard": {},
+  "tips": {}
+}

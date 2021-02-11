@@ -535,7 +535,8 @@ export function ClanStatsConverter(
     }
   }
 
-  if ((actual_clan_id || 0) >= 0) {
+  if ((actual_clan_id || 0) >= 0 && stats.battle.end > Date.now()) {
+    console.log(clan.result, monthToGameID());
     for (const user of clan.users) {
       data.users[Number(user.user_id)] = {
         username: user.username,
@@ -563,9 +564,9 @@ export function ClanStatsConverter(
       // Add Left User if Necessary
       if (!data.users[user_id]) {
         data.users[user_id] = {
-          username: null,
+          username: clan.users.find(i=>i.user_id === user_id.toString())?.username ?? `#${user_id}`,
           user_id: Number(user_id),
-          admin: false,
+          admin: (clan.users.find(i=>i.user_id === user_id.toString())?.is_admin ?? "0") === "1",
           shadow: false,
           requirements: {},
           level: 5,

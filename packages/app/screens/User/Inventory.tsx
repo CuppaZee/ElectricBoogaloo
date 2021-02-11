@@ -72,7 +72,7 @@ export default function UserInventoryScreen() {
             </Layout>
           ))}
         </View>
-        <Text style={{ textAlign: "center" }} category="h5">History</Text>
+        <Text style={{ textAlign: "center" }} category="h5">{t("user_inventory:history")}</Text>
         <View style={styles.grid}>
           {d?.history.map(c => (
             <Layout

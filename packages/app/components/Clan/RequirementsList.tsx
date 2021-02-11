@@ -2,7 +2,7 @@ import { Icon, Layout, Spinner, Text, useTheme } from "@ui-kitten/components";
 import dayjs from "dayjs";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { PixelRatio, ScrollView, StyleSheet, View } from "react-native";
+import { Image, PixelRatio, ScrollView, StyleSheet, View } from "react-native";
 import {
   LevelCell,
   RequirementCell,
@@ -13,12 +13,14 @@ import {
   ClanRequirementsConverter,
   ClanRewardsData,
   gameIDToMonth,
-} from "../../components/Clan/Data";
+  requirementMeta,
+} from "./Data";
 import useComponentSize from "../../hooks/useComponentSize";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import { useSettings } from "../../hooks/useSettings";
 import SyncScrollView, { SyncScrollViewController } from "./SyncScrollView";
+import TypeImage from "../Common/TypeImage";
 
 const levels: { level: number; type: "group" | "individual" }[] = [
   { level: 1, type: "individual" },
@@ -37,18 +39,18 @@ const levels: { level: number; type: "group" | "individual" }[] = [
   { level: 5, type: "group" },
 ];
 
-export interface ClanRequirementsTableProps {
+export interface ClanRequirementsListProps {
   game_id: number;
   clan_id?: number;
   scrollViewController?: SyncScrollViewController;
 }
 
 export default React.memo(
-  function ClanRequirementsTable({
+  function ClanRequirementsList({
     game_id,
     clan_id: actual_clan_id = 2041,
     scrollViewController,
-  }: ClanRequirementsTableProps) {
+  }: ClanRequirementsListProps) {
     const { t } = useTranslation();
     const [size, onLayout] = useComponentSize();
     const fontScale = PixelRatio.getFontScale();
@@ -78,7 +80,9 @@ export default React.memo(
       [requirements_data.dataUpdatedAt, rewards_data.dataUpdatedAt]
     );
 
-    if (!requirements || !size) {
+    const rewards = rewards_data.data?.data;
+
+    if (!requirements || !size || !rewards) {
       return (
         <Layout
           onLayout={onLayout}
@@ -135,106 +139,67 @@ export default React.memo(
             </Text>
           </View>
         </Layout>
-        <View style={{ flexDirection: "row" }}>
-          {showSidebar && (
-            <View
-              key="sidebar"
-              style={{
-                minWidth: sidebarWidth,
-                flex: size.width < minTableWidth ? undefined : 1,
-                borderRightWidth: 2,
-                borderColor,
-              }}>
-              <View
-                style={{
-                  borderBottomWidth: 2,
-                  borderColor,
-                }}>
-                <RequirementTitleCell
-                  key="header"
-                  game_id={game_id}
-                  date={dayjs()
-                    .set("month", gameIDToMonth(game_id).m)
-                    .set("year", gameIDToMonth(game_id).y)}
-                />
-              </View>
-              {requirements_rows.map(row =>
-                typeof row == "number" ? (
-                  <RequirementCell key={row} task_id={row} requirements={requirements} />
-                ) : (
-                  <LevelCell key={`${row.level}_${row.type}`} level={row.level} type={row.type} />
-                )
-              )}
-            </View>
-          )}
-          <SyncScrollView
-            controller={scrollViewController}
-            style={{
-              flex: (reverse ? levels : requirements.all).length,
-            }}
-            contentContainerStyle={{ flexGrow: 1 }}
-            horizontal={true}
-            pagingEnabled={size.width < 720 || size.width < minTableWidth}
-            snapToInterval={columnWidth}
-            snapToAlignment={showSidebar || !reverse ? "start" : "center"}>
-            {requirements_columns.map(column => (
-              <View
-                key={typeof column === "number" ? column : `${column.level}_${column.type}`}
-                style={{
-                  width: columnWidth,
-                  flexGrow: 1,
-                  maxWidth: size?.width,
-                }}>
-                <View
-                  style={{
-                    borderBottomWidth: 2,
-                    borderColor,
-                  }}>
-                  {typeof column === "number" ? (
-                    <RequirementCell
-                      key="header"
-                      task_id={column}
-                      stack={headerStack}
-                      requirements={requirements}
-                    />
-                  ) : (
-                    <LevelCell
-                      key="header"
-                      level={column.level}
-                      type={column.type}
-                      stack={headerStack}
-                    />
-                  )}
+        {[1, 2, 3, 4, 5].map(level => (
+          <View style={{ paddingBottom: 16 }}>
+            <Text style={{ margin: 4 }} category="h6">
+              {t("clan:level", { level })}
+            </Text>
+            <Text style={{ margin: 4 }} category="s1">
+              {t("clan:individual")}
+            </Text>
+            {requirements.individual
+              .filter(i => requirements.tasks.individual[i][level])
+              .map(i => (
+                <View style={{ padding: 4, flexDirection: "row" }}>
+                  <Image
+                    source={{ uri: `https://server.cuppazee.app/requirements/${i}.png` }}
+                    style={{ height: 24, width: 24, marginRight: 8 }}
+                  />
+                  <Text category="s2">
+                    <Text category="s1">
+                      {requirements.tasks.individual[i][level]?.toLocaleString()}
+                    </Text>{" "}
+                    {requirementMeta[i]?.top} {requirementMeta[i]?.bottom}
+                  </Text>
                 </View>
-                {requirements_rows.map(row => {
-                  if (typeof row !== "number" && typeof column === "number") {
-                    return (
-                      <RequirementDataCell
-                        key={`${row.level}_${row.type}`}
-                        task={column}
-                        level={row.level}
-                        type={row.type}
-                        requirements={requirements}
-                      />
-                    );
-                  }
-                  if (typeof row === "number" && typeof column !== "number") {
-                    return (
-                      <RequirementDataCell
-                        key={row}
-                        task={row}
-                        level={column.level}
-                        type={column.type}
-                        requirements={requirements}
-                      />
-                    );
-                  }
-                  return null;
-                })}
-              </View>
-            ))}
-          </SyncScrollView>
-        </View>
+              ))}
+
+            <Text style={{ margin: 4 }} category="s1">
+              {t("clan:group")}
+            </Text>
+            {requirements.group
+              .filter(i => requirements.tasks.group[i][level])
+              .map(i => (
+                <View style={{ padding: 4, flexDirection: "row" }}>
+                  <Image
+                    source={{ uri: `https://server.cuppazee.app/requirements/${i}.png` }}
+                    style={{ height: 24, width: 24, marginRight: 8 }}
+                  />
+                  <Text category="s2">
+                    <Text category="s1">
+                      {requirements.tasks.group[i][level]?.toLocaleString()}
+                    </Text>{" "}
+                    {requirementMeta[i]?.top} {requirementMeta[i]?.bottom}
+                  </Text>
+                </View>
+              ))}
+
+            <Text style={{ margin: 4 }} category="s1">
+              {t("clan:rewards")}
+            </Text>
+            {rewards.order
+              .filter(i => rewards.levels[level - 1][i])
+              .map(i => (
+                <View style={{ padding: 4, flexDirection: "row" }}>
+                  <TypeImage icon={rewards.rewards[i]?.logo} style={{ size: 24, marginRight: 8 }} />
+                  <Text category="s2">
+                    <Text category="s1">{rewards.levels[level - 1][i]?.toLocaleString()}x</Text>{" "}
+                    {rewards.rewards[i]?.name}
+                  </Text>
+                </View>
+              ))}
+          </View>
+        ))}
       </Layout>
     );
   },

@@ -1,0 +1,326 @@
+{
+    "common": {
+        "dashboard": "Dashboard",
+        "search": "Suche",
+        "map": "Karte",
+        "tools": "Werkzeuge",
+        "settings": "Einstellungen",
+        "authenticate": "authentifizieren",
+        "auth_success": "Authentifizierung erfolgreich",
+        "scanner": "Scanner",
+        "maps": "Karten",
+        "credits": "Credits",
+        "app_info": "App Info",
+        "donate": "Spenden",
+        "build_info": "CuppaZee App Build {count}",
+        "user": {
+            "one": "Nutzer",
+            "other": "Nutzer"
+        },
+        "clan": {
+            "one": "Clan",
+            "other": "Clans"
+        },
+        "more": "Mehr",
+        "find_user": "finde einen Nutzer",
+        "munzee_types": "Munzee-Typen",
+        "show_more": "Zeig mehr",
+        "show_less": "Zeig weniger",
+        "help": "Hilfe",
+        "users": "Nutzer",
+        "calendar": "Kalender",
+        "bouncers": "Bouncers",
+        "notifications": "Benachrichtigungen",
+        "contact": {
+            "facebook": "Du kannst uns über Facebook kontaktieren",
+            "email": "oder schreib uns eine E-Mail an support@cuppazee.app"
+        },
+        "clans": "Clans",
+        "logging_in": "Einloggen..."
+    },
+    "activity": {
+        "user_captured": "{user} erfasste",
+        "user_deployed": "{user} verteilte",
+        "you_captured": "Du erfasstest",
+        "you_deployed": "Du verteiltest",
+        "by_user": "von {user}",
+        "by_you": "von dir",
+        "total_point": {
+            "one": "{count} Gesamte Punkte",
+            "other": "{count} Gesamte Punkte"
+        },
+        "capture": {
+            "one": "{count} Capture",
+            "other": "{count} Captures"
+        },
+        "deploy": {
+            "one": "{count} Deploy",
+            "other": "{count} Deploys"
+        },
+        "capon": {
+            "one": "{count} CapOn",
+            "other": "{count} CapOns"
+        },
+        "point": {
+            "one": "{count} Punkt",
+            "other": "{count} Punkte"
+        },
+        "none": "keine",
+        "user_today": "{user} heute",
+        "user_renovated": "{user} erneuerte dein Motel",
+        "you_renovated": "Du erneuertest ein Motel",
+        "renovation": {
+            "one": "{count} Erneuerung",
+            "other": "{count} Erneuerungen"
+        },
+        "renovon": {
+            "one": "{count} Erneuerung",
+            "other": "{count} Erneuerungen"
+        }
+    },
+    "user": {
+        "level_n": "Level {level}",
+        "rank_n": "Rang #{rank}",
+        "inventory": "Inventar",
+        "your_bouncers": "Deine Bouncer",
+        "clan_progress": "Clan Fortschritt",
+        "quebec_quest_progress": "Quebec Quest Progress",
+        "special_hunter_challenge": "Spezielle Jäger Herausforderung",
+        "captured_types": "Erfasste Typen",
+        "activity": "Aktivität",
+        "clan_stats": "Clan Statistiken",
+        "clan_progress_desc": "Zeig an, welches Level du erreichen kannst!",
+        "clan_info": "Clan War Info FB Gruppe",
+        "clan_info_desc": "Ein guter Ort, um einen Clan zu finden oder Fragen zu stellen!",
+        "challenges": "Herausforderungen",
+        "sh_lite": "Special Hunter Leicht",
+        "sh_pro": "Special Hunter Profi",
+        "your_clan": "Dein Clan",
+        "no_clan": "Du bist in keinem Clan",
+        "no_clan_desc": "Sieh deinen Fortschritt unten"
+    },
+    "inventory": {
+        "undeployed": "Nicht verteilt",
+        "credits": "Credits",
+        "history": "Verlauf",
+        "unknown_name": "unbekannter Name"
+    },
+    "app_info": {
+        "credits": "Credits",
+        "primary_developer": "Hauptentwickler",
+        "translators": "Übersetzer",
+        "database_contributors": "Mitwirkende an der Datenbank",
+        "patrons_and_supporters": "Spender und Unterstützer",
+        "build_n": "Version {build}",
+        "patreon_donate": "Monatlich über Patreon",
+        "paypal_donate": "Einmalig über PayPal",
+        "paypal_donate_desc": "PayPal Spenden können über donate@cuppazee.app geschickt werden",
+        "custom_titles": {
+            "primary_dev": "Hauptentwickler",
+            "finnish": "Finnisch",
+            "dutch": "Niederländisch",
+            "german": "Deutsch",
+            "hungarian": "Ungarisch",
+            "swedish": "Schwedisch",
+            "french": "Französisch",
+            "czech": "Tschechisch",
+            "danish": "Dänisch",
+            "portugese": "Portugiesisch",
+            "lithuanian": "Litauisch"
+        }
+    },
+    "your_bouncers": {
+        "capture": {
+            "one": "{count} Capture",
+            "other": "{count} Captures"
+        },
+        "last_captured": "zuletzt erfasst: {time}",
+        "in_limbo": "Eine Pause machen",
+        "host": "Auf {munzee} von {username}"
+    },
+    "calendar": {
+        "days": {
+            "monday": "Mo",
+            "tuesday": "Di",
+            "wednesday": "Mi",
+            "thursday": "Do",
+            "friday": "Fr",
+            "saturday": "Sa",
+            "sunday": "So"
+        },
+        "off": "weg"
+    },
+    "clan": {
+        "requirements": "Anforderungen",
+        "rewards": "Belohnungen",
+        "individual": "Individuelle",
+        "group": "Gruppe",
+        "level_n": "Level {level}",
+        "shadow": "Geheimer Clan",
+        "goal": "Ziel",
+        "view": {
+            "subtract": "Kurzansicht",
+            "total": "Gesamte Ansicht"
+        },
+        "share": "Teilen",
+        "indiv": "Indiv",
+        "group_total": "Gruppe gesamt",
+        "level": {
+            "one": "Level",
+            "other": "Level"
+        },
+        "rank": "Rang #{rank}",
+        "players": {
+            "one": "{count} Spieler",
+            "other": "{count} Spieler"
+        }
+    },
+    "search": {
+        "clan": "Suche einen Clan",
+        "type": "Suche einen Munzeetypen",
+        "empty": "Keine Ergebnisse :-(",
+        "user": "Suche einen Nutzer"
+    },
+    "db": {
+        "go_back": "Geh zurück",
+        "types_search": "Typensuche",
+        "category": "Kategorie",
+        "type": {
+            "info": "Symbol: {icon} - ID: {id}",
+            "evo": "Evolution Stufen",
+            "pouch": "Pouch Kreaturen Stufen",
+            "can_host": "Kann darauf landen",
+            "lands_on": "Landet auf",
+            "hosts": "Gastgeber",
+            "possible_types": "mögliche Typen",
+            "possible_hosts": "mögliche Gastgeber",
+            "host_types": "gelandet auf"
+        },
+        "type_info": "Typ Info"
+    },
+    "auth": {
+        "add": "Füge einen neuen Nutzer hinzu",
+        "welcome": "Willkommen bei CuppaZee",
+        "tap": "Klicke unten, um dich einzuloggen"
+    },
+    "shc": {
+        "lite": {
+            "tob": "AlternaMyth oder Escaped Pouch Kreatur",
+            "nomad": "Nomade oder RetiredMyth",
+            "myth_1": "Originaler oder Klassischer Myth",
+            "myth_2": "Mirror oder Moderner Myth",
+            "pc_1": "Pouch Kreatur S1",
+            "pc_2": "Pouch Kreatur S2",
+            "flat": "Fancy Flat",
+            "temp": "Evo Bouncer / tPOB",
+            "scatter": "Scatter"
+        },
+        "pro": {
+            "tob": "AlternaMyth oder Escaped Pouch Kreatur",
+            "nomad": "Nomade",
+            "retire": "RetiredMyth",
+            "myth_1": "Originaler Myth",
+            "myth_2": "Klassischer Myth",
+            "myth_3": "Mirror Myth",
+            "myth_4": "Moderner Myth",
+            "pc_1": "Pouch Kreatur S1",
+            "pc_2": "Pouch Kreatur S2",
+            "pc_fun": "Funfinity Stone",
+            "flat": "Fancy Flat",
+            "temp": "Evo Bouncer / tPOB",
+            "pscatter": "Physischer Scatter",
+            "vscatter": "Virtueller Scatter"
+        }
+    },
+    "notifications": {
+        "munzee_blog": "Munzee Blog",
+        "save": "speichern",
+        "unavailable_web": "Benachrichtigungen sind nicht verfügbar übers Web",
+        "unavailable_generic": "Benachrichtigungen sind nicht verfügbar. Akzeptierst du die Erlaubnis?"
+    },
+    "settings": {
+        "add_user": "Nutzer hinzufügen",
+        "update": "Update",
+        "theme": "Thema: {name}",
+        "language": "Sprache: {name}",
+        "logout": "Ausloggen",
+        "save": "Einstellungen speichern"
+    },
+    "bouncers": {
+        "duration": "Dauer: {duration}"
+    },
+    "scanner": {
+        "scan_new": "neuen Munzee scannen",
+        "munzee": "{name} von {username}",
+        "type": "Typ: {type}"
+    },
+    "quest": {
+        "task_1": "Mystery Caps/Deps",
+        "task_2": "Evolution Caps/Deps",
+        "task_3": "Clanwaffen Caps/Deps",
+        "task_4": "Juwelen Caps/Deps",
+        "task_5": "Erfasse /m/XeresDan/1707",
+        "task_6": "Flat Friend Deps",
+        "task_7": "Destination Caps/Deps",
+        "task_8": "Bouncer Caps",
+        "task_9": "Flat Friend Caps/Deps",
+        "task_10": "Erfasse \"m/GPSmAQ/1\""
+    },
+    "themes": {
+        "black": "schwarz",
+        "blue": "blau",
+        "bluegrey": "blau-grau",
+        "darkblue": "dunkelblau",
+        "green": "grün",
+        "grey": "grau",
+        "purple": "lila",
+        "white": "weiß"
+    },
+    "screens": {
+        "_redirect": "_redirect",
+        "Map": "Karte",
+        "Tools": "Werkzeuge",
+        "Settings": "Einstellungen",
+        "Notifications": "Benachrichtigungen",
+        "Info": "Info",
+        "Scanner": "Scanner",
+        "Calendar": "Kalender",
+        "Bouncers": "Bouncers",
+        "BouncerMap": "Bouncer Karte",
+        "MunzeeDetails": "Munzee Details",
+        "MunzeeDetailsID": "Munzee Details",
+        "AllClans": "Alle Clans",
+        "ClanRequirements": "Clan Anforderungen",
+        "ClanSearch": "Clan Suche",
+        "Clan": "Clan Statistiken",
+        "UserSearch": "Nutzer Suche",
+        "UserDetails": "Nutzer Details",
+        "UserActivity": "Aktivität",
+        "UserInventory": "Inventar",
+        "UserClan": "Clan Fortschritt",
+        "UserQuest": "Aufgaben Fortschritt",
+        "UserCapturesCategory": "Captures Kategorie",
+        "UserSHCPro": "SHC Profi",
+        "UserSHCLite": "SHC Leicht",
+        "UserSHC": "SHC Klassisch",
+        "UserBouncers": "Nutzer Bouncer",
+        "DBType": "Typen Datenbank",
+        "DBSearch": "Datenbanksuche",
+        "DBCategory": "Kategorie Datenbank",
+        "Auth": "Authentifizieren"
+    },
+    "changelog": {
+        "build_n": "Version {n}",
+        "continue": "Weiter zu CuppaZee",
+        "no_changelog": "Kein Änderungsprotokoll"
+    },
+    "clan_req": {
+        "Captures": "Captures",
+        "Points": "Punkte",
+        "Deploys": "Deploys",
+        "Activity": "Aktivitäten",
+        "Days of": "Tage von",
+        "Total": "Gesamt",
+        "Renovate": "Renovieren"
+    }
+}

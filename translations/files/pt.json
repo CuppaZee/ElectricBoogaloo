@@ -1,0 +1,85 @@
+{
+  "404": {},
+  "pages": {
+    "dashboard_dashboard": "Painel de Controle",
+    "user_activity": "Atividade",
+    "user_inventory": "Inventário",
+    "user_clan_progress": "Progresso do Clã",
+    "user_bouncers": "Bouncers",
+    "user_blast_checker": "Verificador de Blast",
+    "user_qrew_checker": "Verificar QRew",
+    "user_challenges": "Desafios",
+    "clan_requirements": "Requisitos do Clã",
+    "tools_bouncers": "Bouncers",
+    "tools_munzee_types": "Tipos de Munzee",
+    "tools_calendar": "Calendário",
+    "tools_evo_planner": "Evolução Planificador",
+    "tools_search": "Procurar",
+    "settings": "Configurações",
+    "settings_notifications": "Notificações",
+    "tools_credits": "Créditos",
+    "tools_donate": "Doar"
+  },
+  "drawer": {},
+  "user_activity": {
+    "overview_points": {
+      "one": "{count} Ponto Total",
+      "other": "{count} Pontos Totais"
+    },
+    "overview_captures": {
+      "one": "{count} Captura",
+      "other": "{count} Capturas"
+    },
+    "overview_deploys": {
+      "one": "{count} Implantação",
+      "other": "{count} Implantações"
+    },
+    "overview_capons": {
+      "one": "{count} Capon\n",
+      "other": "{count} Capons"
+    },
+    "filter_state": "Estado",
+    "filter_category": "Categoria",
+    "activity_capture": "Voce capturou",
+    "activity_deploy": "Voce implantou",
+    "activity_capon": "{user} Capturado",
+    "owned_by_user": "por {user}",
+    "owned_by_self": "por voce",
+    "none": "Nenhum"
+  },
+  "user_inventory": {
+    "amount_undeployed": {},
+    "amount_credits": {},
+    "history": "Historico"
+  },
+  "user_zeeops": {},
+  "clan": {
+    "requirements": "Requiisitos",
+    "rewards": "Recompensas",
+    "individual": "Individual",
+    "group": "Grupo",
+    "level": "Nível {level}",
+    "group_total": "Total Grupo"
+  },
+  "maps": {},
+  "settings_common": {
+    "save": "Guardar"
+  },
+  "settings_accounts": {
+    "logout": "Sair"
+  },
+  "settings_notifications": {
+    "bouncers_override_search": "Procurar",
+    "starred_users_search": "Procurar"
+  },
+  "bouncers": {},
+  "calendar": {},
+  "open_source": {},
+  "user_bouncers": {},
+  "welcome": {},
+  "search": {
+    "search": "Procurar"
+  },
+  "dashboard": {},
+  "tips": {}
+}

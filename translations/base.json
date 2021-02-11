@@ -1,0 +1,191 @@
+{
+  "pages": {
+    "dashboard_dashboard": "$common.dashboard",
+    "user_profile": "Profile",
+    "user_activity": "$user.activity",
+    "user_inventory": "$user.inventory",
+    "user_zeeops": "ZeeOps",
+    "user_clan_progress": "$user.clan_progress",
+    "user_bouncers": "$common.bouncers",
+    "user_blast_checker": "$user.blast_checker",
+    "user_qrew_checker": "$user.qrew_checker",
+    "user_universal_capper": "Universal Capper",
+    "user_challenges": "$user.challenges",
+    "clan_requirements": "$screens.ClanRequirements",
+    "clan_bookmarks": "Bookmarked Clans",
+    "tools_bouncers": "$common.bouncers",
+    "tools_munzee_types": "$common.munzee_types",
+    "tools_calendar": "$common.calendar",
+    "tools_evo_planner": "$common.evo_planner",
+    "tools_search": "$common.search",
+    "settings": "$common.settings",
+    "settings_personalisation": "Personalisation",
+    "settings_notifications": "$common.notifications",
+    "settings_accounts": "Accounts",
+    "settings_bookmarks": "Bookmarks",
+    "tools_credits": "$common.credits",
+    "tools_open_source": "Open Source",
+    "tools_donate": "$common.donate"
+  },
+  "drawer": {
+    "more_clans": "More Clans"
+  },
+  "user_activity": {
+    "overview_points": "$activity.total_point",
+    "overview_captures": "$activity.capture",
+    "overview_deploys": "$activity.deploy",
+    "overview_capons": "$activity.capon",
+    "filter_save": "Save Filters",
+    "filter_types": "Types",
+    "filter_state": "$activity.filters.state",
+    "filter_category": "$activity.filters.category",
+    "activity_capture": "$activity.you_captured",
+    "activity_deploy": "$activity.you_deployed",
+    "activity_capon": "$activity.user_captured",
+    "owned_by_user": "$activity.by_user",
+    "owned_by_self": "$activity.by_you",
+    "none": "$activity.none"
+  },
+  "user_inventory": {
+    "amount_undeployed": {
+      "one": "{count} Undeployed",
+      "other": "{count} Undeployed"
+    },
+    "amount_credits": {
+      "one": "{count} Credit",
+      "other": "{count} Credits"
+    },
+    "history": "$inventory.history",
+    "history_space_coast_geo_store": "Space Coast Geo Store",
+    "history_freeze_tag_store": "Freeze Tag Store",
+    "history_pimedus": "Pimedus Rewards",
+    "history_magnetus": "Magnetus Rewards",
+    "history_prize_wheel": "Prize Wheel Rewards",
+    "history_premium": "Premium Rewards",
+    "history_clan": "Level {level} - {month} {year}",
+    "history_zeeops": "ZeeOps Rewards",
+    "history_support": "Munzee Support",
+    "history_test": "Test"
+  },
+  "user_zeeops": {
+    "collected": "Collected!"
+  },
+  "clan": {
+    "requirements": "$clan.requirements",
+    "clan_requirements": "Clan Requirements",
+    "rewards": "$clan.rewards",
+    "clan_rewards": "Clan Rewards",
+    "loading": "Loading",
+    "individual": "$clan.individual",
+    "share": "Share",
+    "group": "$clan.group",
+    "level": "$clan.level_n",
+    "individual_level": "Indiv L{level}",
+    "share_level": "Share L{level}",
+    "group_level": "Group L{level}",
+    "group_total": "$clan.group_total"
+  },
+  "maps": {
+    "location_fail": "Failed retrieving location"
+  },
+  "settings_common": {
+    "save": "$notifications.save",
+    "saved": "Settings Saved"
+  },
+  "settings_accounts": {
+    "reauthenticate": "Reauthenticate",
+    "logout": "$settings.logout",
+    "add_account": "Add Account"
+  },
+  "settings_notifications": {
+    "error_web": "Notifications aren't supported on Web",
+    "error_permissions": "Requesting permissions failed. Did you allow notifications?",
+    "bouncers_title": "Bouncers",
+    "bouncers_enabled": "Enabled",
+    "bouncers_distance_default": "Default Distance ({unit})",
+    "bouncers_distance_starred": "Starred User Distance ({unit})",
+    "bouncers_override_distance": "Distance ({unit})",
+    "bouncers_override_search": "$common.search",
+    "bouncers_override_search_hint": "You can search for Categories or individual Types",
+    "bouncers_override_add": "Add Category/Type",
+    "starred_users_title": "Starred Users",
+    "starred_users_search": "$common.search",
+    "starred_users_add": "Add User",
+    "locations_title": "Locations",
+    "locations_live_title": "Live Location",
+    "locations_live_disabled": "Disabled",
+    "locations_static_name": "Location Name",
+    "locations_static_done": "Done",
+    "locations_static_add": "Add Static Location",
+    "other_title": "Other",
+    "other_news_munzee": "Munzee Blog",
+    "other_units_title": "Units",
+    "other_units_metric": "Metric Units (km/m)",
+    "other_units_imperial": "Imperial Units (mi/ft)"
+  },
+  "bouncers": {
+    "uncategorised": "Uncategorised"
+  },
+  "calendar": {
+    "dates": "SMTWTFS",
+    "qrewzees_on": "QRewZees: On",
+    "qrewzees_off": "QRewZees: Off",
+    "egyptian_status": "Egyptian: {type}",
+    "western_status": "Western: {type}",
+    "chinese_status": "Chinese: {types}"
+  },
+  "open_source": {
+    "title": "CuppaZee Open Source",
+    "description": "The source code for the CuppaZee App is available on GitHub",
+    "source_code": "Source Code",
+    "packages": "CuppaZee publishes 3 packages on NPM",
+    "packages_types": "@cuppazee/types - A Database of Most Munzee Types",
+    "packages_icons": "@cuppazee/icons - A Database of Most Munzee Type Icons",
+    "packages_api": "@cuppazee/api - TypeScript Definitions for the Munzee API",
+    "license": "{license} License"
+  },
+  "user_bouncers": {
+    "host": "At {name} by {creator}",
+    "location": "{town}, {country} [{times}]",
+    "captures": "{number} Captured - Last Captured {date}",
+    "never": "Never",
+    "rest_a": "Having a Rest",
+    "rest_b": "Catching a Flight",
+    "rest_c": "Waiting at the Bus Stop"
+  },
+  "404": {
+    "title": "Coffee Not Found",
+    "subtitle": "Looks like there is no coffee here.",
+    "home": "Return Home"
+  },
+  "welcome": {
+    "facebook_title": "CuppaZee isn't supported in the Facebook Browser",
+    "facebook_description": "You can press the <1 /> Menu icon in the top right corner and press \"Open in Browser\" button to view CuppaZee in a supported browser.",
+    "messenger_title": "CuppaZee isn't supported in the Messenger Browser",
+    "messenger_ios_description": "You can press the <1 /> Menu icon in the bottom right corner and press \"Open in Safari\" button to view CuppaZee in a supported browser.",
+    "title": "Welcome",
+    "theme": "Pick a Theme",
+    "language": "Select your Language",
+    "accounts": "Add Accounts",
+    "add_account": "Add Account",
+    "add_extra_account": "Add Another Account",
+    "continue": "Continue to Dashboard"
+  },
+  "search": {
+    "search": "$common.search",
+    "type": "Type",
+    "category": "Type Category",
+    "player": "Player",
+    "clan": "Clan"
+  },
+  "dashboard": {
+    "clans": "Clans"
+  },
+  "tips": {
+    "title": "Here's a quick tip!",
+    "drawer_user_bookmarks": "You can add and remove users from your Bookmarks in the Settings",
+    "drawer_clan_bookmarks": "You can add and remove clans from your Bookmarks in the Settings",
+    "clan_stats_customisation": "There are a lot of options to make Clan Stats your own in the Personalisation settings",
+    "search_munzee_types": "As well as searching for Players and Clans, you can also look up Munzee Types here to find out more about them!"
+  }
+}

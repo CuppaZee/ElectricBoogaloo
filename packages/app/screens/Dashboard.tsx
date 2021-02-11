@@ -3,6 +3,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { Button, Icon, Layout, Text, ViewPager, DrawerItem } from "@ui-kitten/components";
 import dayjs from "dayjs";
 import * as React from "react";
+import { useTranslation } from "react-i18next";
 import { FlatList, Image, Platform, ScrollView, StyleSheet, View, ViewProps } from "react-native";
 import UserActivityOverview from "../components/Activity/Overview";
 import ZeeOpsOverview from "../components/ZeeOps/Overview";
@@ -30,6 +31,7 @@ function WheelWrapper({
 const FlexView = (props: ViewProps) => <View {...props} style={[props.style, { flex: 1 }]} />;
 
 export default function DashboardScreen() {
+  const { t } = useTranslation();
   const nav = useNavigation();
   const route = useRoute<RouteProp<DashStackParamList, "Dash">>();
   const scrollRef = React.useRef<FlatList>();
@@ -147,7 +149,7 @@ export default function DashboardScreen() {
         )}
         <View style={{ width: Math.min(600, width * 0.9), alignSelf: "center", padding: 8 }}>
           <Layout level="3" style={[styles.card, { padding: 4 }]}>
-            <Text category="h5">Clans</Text>
+            <Text category="h5">{t("dashboard:clans")}</Text>
             {clans?.map(clan => (
               <DrawerItem
                 style={{ backgroundColor: "transparent" }}

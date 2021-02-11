@@ -1,0 +1,80 @@
+{
+  "404": {},
+  "pages": {
+    "dashboard_dashboard": "Oversigt",
+    "user_activity": "Aktivitet",
+    "user_inventory": "Beholdning",
+    "user_clan_progress": "Klan-fremskridt",
+    "user_bouncers": "Springere",
+    "user_challenges": "Udfordringer",
+    "clan_requirements": "Klan-krav",
+    "tools_bouncers": "Springere",
+    "tools_munzee_types": "Munzee-typer",
+    "tools_calendar": "Kalender",
+    "tools_search": "Søg",
+    "settings": "Indstillinger",
+    "settings_notifications": "Notifikationer",
+    "tools_credits": "Anerkendelser",
+    "tools_donate": "Doner"
+  },
+  "drawer": {},
+  "user_activity": {
+    "overview_points": {
+      "one": "{count} total point",
+      "other": "{count} total point"
+    },
+    "overview_captures": {
+      "one": "{count} skannet",
+      "other": "{count} skannede"
+    },
+    "overview_deploys": {
+      "one": "{count} placeret",
+      "other": "{count} placerede"
+    },
+    "overview_capons": {
+      "one": "{count} cap-on",
+      "other": "{count} cap-ons"
+    },
+    "activity_capture": "Du skannede",
+    "activity_deploy": "Du placerede",
+    "activity_capon": "{user} skannede",
+    "owned_by_user": "af {user}",
+    "owned_by_self": "af dig",
+    "none": "Ingen"
+  },
+  "user_inventory": {
+    "amount_undeployed": {},
+    "amount_credits": {},
+    "history": "Historik"
+  },
+  "user_zeeops": {},
+  "clan": {
+    "requirements": "Krav",
+    "rewards": "Gevinster",
+    "individual": "Individuel",
+    "group": "Gruppe",
+    "level": "Niveau {level}",
+    "group_total": "Gruppetotal"
+  },
+  "maps": {},
+  "settings_common": {
+    "save": "Gem"
+  },
+  "settings_accounts": {
+    "logout": "Log ud"
+  },
+  "settings_notifications": {
+    "bouncers_override_search": "Søg",
+    "starred_users_search": "Søg"
+  },
+  "bouncers": {},
+  "calendar": {},
+  "open_source": {},
+  "user_bouncers": {},
+  "welcome": {},
+  "search": {
+    "search": "Søg"
+  },
+  "dashboard": {},
+  "tips": {}
+}

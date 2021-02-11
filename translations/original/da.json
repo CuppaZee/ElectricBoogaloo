@@ -1,0 +1,326 @@
+{
+    "common": {
+        "dashboard": "Oversigt",
+        "search": "Søg",
+        "map": "Kort",
+        "tools": "Værktøjer",
+        "settings": "Indstillinger",
+        "authenticate": "Autentificering",
+        "auth_success": "Autentificering vellykket",
+        "scanner": "Skanner",
+        "maps": "Kort",
+        "credits": "Anerkendelser",
+        "app_info": "App-information",
+        "donate": "Doner",
+        "build_info": "CuppaZee App Build {count}",
+        "user": {
+            "one": "Bruger",
+            "other": "Brugere"
+        },
+        "clan": {
+            "one": "Klan",
+            "other": "Klaner"
+        },
+        "more": "Flere",
+        "find_user": "Find en bruger",
+        "munzee_types": "Munzee-typer",
+        "show_more": "Vis mere",
+        "show_less": "Vis mindre",
+        "help": "Hjælp",
+        "users": "Brugere",
+        "calendar": "Kalender",
+        "bouncers": "Springere",
+        "notifications": "Notifikationer",
+        "contact": {
+            "facebook": "Du kan kontakte os via Facebook",
+            "email": "eller emaile os på support@cuppazee.app"
+        },
+        "clans": "Klaner",
+        "logging_in": "Logger ind..."
+    },
+    "activity": {
+        "user_captured": "{user} skannede",
+        "user_deployed": "{user} placerede",
+        "you_captured": "Du skannede",
+        "you_deployed": "Du placerede",
+        "by_user": "af {user}",
+        "by_you": "af dig",
+        "total_point": {
+            "one": "{count} total point",
+            "other": "{count} total point"
+        },
+        "capture": {
+            "one": "{count} skannet",
+            "other": "{count} skannede"
+        },
+        "deploy": {
+            "one": "{count} placeret",
+            "other": "{count} placerede"
+        },
+        "capon": {
+            "one": "{count} cap-on",
+            "other": "{count} cap-ons"
+        },
+        "point": {
+            "one": "{count} point",
+            "other": "{count} point"
+        },
+        "none": "Ingen",
+        "user_today": "{user} i dag",
+        "user_renovated": "{user} renoverede dit motel",
+        "you_renovated": "Du renoverede et motel",
+        "renovation": {
+            "one": "{count} renovering",
+            "other": "{count} renoveringer"
+        },
+        "renovon": {
+            "one": "{count} renov-on",
+            "other": "{count} renov-ons"
+        }
+    },
+    "user": {
+        "level_n": "Niveau {level}",
+        "rank_n": "Rang #{rank}",
+        "inventory": "Beholdning",
+        "your_bouncers": "Dine springere",
+        "clan_progress": "Klan-fremskridt",
+        "quebec_quest_progress": "\"Quebec udfordring\"-fremskridt",
+        "special_hunter_challenge": "Specialjæger-udfordringen",
+        "captured_types": "Skannede typer",
+        "activity": "Aktivitet",
+        "clan_stats": "Klanstatistik",
+        "clan_progress_desc": "Se hvilket niveau du kan nå!",
+        "clan_info": "Klankrig-info FB-gruppe",
+        "clan_info_desc": "Et godt sted at finde en klan eller stille spørgsmål!",
+        "challenges": "Udfordringer",
+        "sh_lite": "Let specialjæger-udfordring",
+        "sh_pro": "Avanceret specialjæger-udfordring",
+        "your_clan": "Din klan",
+        "no_clan": "Du er ikke i en klan",
+        "no_clan_desc": "Se dit fremskridt nedenfor"
+    },
+    "inventory": {
+        "undeployed": "Ikke-placerede",
+        "credits": "Kreditter",
+        "history": "Historik",
+        "unknown_name": "Ukendt navn"
+    },
+    "app_info": {
+        "credits": "Anerkendelser",
+        "primary_developer": "Primær udvikler",
+        "translators": "Oversættere",
+        "database_contributors": "Database-bidragsydere",
+        "patrons_and_supporters": "Patrons og supportere",
+        "build_n": "Build {build}",
+        "patreon_donate": "Månedligt via Patreon",
+        "paypal_donate": "En gang via PayPal",
+        "paypal_donate_desc": "PayPal-donationer kan sendes til donate@cuppazee.app",
+        "custom_titles": {
+            "primary_dev": "Primær udvikler",
+            "finnish": "Finsk",
+            "dutch": "Hollandsk",
+            "german": "Tysk",
+            "hungarian": "Ungarsk",
+            "swedish": "Svensk",
+            "french": "Fransk",
+            "czech": "Tjekkisk",
+            "danish": "Dansk",
+            "portugese": "Portogisisk",
+            "lithuanian": "Litauisk"
+        }
+    },
+    "your_bouncers": {
+        "capture": {
+            "one": "{count} skanning",
+            "other": "{count} skanninger"
+        },
+        "last_captured": "Sidst skannet: {time}",
+        "in_limbo": "Tager en pause",
+        "host": "På {munzee} af {username}"
+    },
+    "calendar": {
+        "days": {
+            "monday": "M",
+            "tuesday": "T",
+            "wednesday": "O",
+            "thursday": "T",
+            "friday": "F",
+            "saturday": "L",
+            "sunday": "S"
+        },
+        "off": "fra"
+    },
+    "clan": {
+        "requirements": "Krav",
+        "rewards": "Gevinster",
+        "individual": "Individuel",
+        "group": "Gruppe",
+        "level_n": "Niveau {level}",
+        "shadow": "Skygge-klan",
+        "goal": "Mål",
+        "view": {
+            "subtract": "Subtraheret visning",
+            "total": "Totalvisning"
+        },
+        "share": "Del",
+        "indiv": "Indiv",
+        "group_total": "Gruppetotal",
+        "level": {
+            "one": "Niveau",
+            "other": "Niveauer"
+        },
+        "rank": "Rang #{rank}",
+        "players": {
+            "one": "{count} spiller",
+            "other": "{count} spillere"
+        }
+    },
+    "search": {
+        "clan": "Søg efter en klan",
+        "type": "Søg efter en munzee-type",
+        "empty": "Ingen resultater :(",
+        "user": "Søg efter en bruger"
+    },
+    "db": {
+        "go_back": "Gå tilbage",
+        "types_search": "Type-søgning",
+        "category": "Kategori",
+        "type": {
+            "info": "Ikon: {icon} - ID: {id}",
+            "evo": "Udviklingsstadier",
+            "pouch": "Posevæsen-stadier",
+            "can_host": "Kan være vært for",
+            "lands_on": "Lander på",
+            "hosts": "Er vært for",
+            "possible_types": "Mulige typer",
+            "possible_hosts": "Mulige værter",
+            "host_types": "Mulige værter"
+        },
+        "type_info": "Typeinformation"
+    },
+    "auth": {
+        "add": "Tilføj en ny bruger",
+        "welcome": "Velkommen til CuppaZee",
+        "tap": "Tryk nedenfor for at logge ind"
+    },
+    "shc": {
+        "lite": {
+            "tob": "AlternaMyth eller bortløbne posevæsener",
+            "nomad": "Nomade eller RetireMyth",
+            "myth_1": "Original eller klassisk mytologisk",
+            "myth_2": "Spejl- eller moderne mytologisk",
+            "pc_1": "Posevæsen S1",
+            "pc_2": "Posevæsen S2",
+            "flat": "Fancy flade",
+            "temp": "Udviklingsspringer / midlertidig spiller-ejet springer",
+            "scatter": "Strøede"
+        },
+        "pro": {
+            "tob": "AlternaMyth eller bortløbent posevæsen",
+            "nomad": "Nomade",
+            "retire": "RetireMyth",
+            "myth_1": "Original mytologisk",
+            "myth_2": "Klassisk mytologisk",
+            "myth_3": "Spejl-mytologisk",
+            "myth_4": "Moderne mytologisk",
+            "pc_1": "Posevæsen S1",
+            "pc_2": "Posevæsen S2",
+            "pc_fun": "Funfinity-sten",
+            "flat": "Fancy flade",
+            "temp": "Udviklingsspringer / midlertidig spiller-ejet springer",
+            "pscatter": "Fysiske strøede",
+            "vscatter": "Virtuelle strøede"
+        }
+    },
+    "notifications": {
+        "munzee_blog": "Munzee Blog",
+        "save": "Gem",
+        "unavailable_web": "Notifikationer er ikke tilgængelige på web",
+        "unavailable_generic": "Notifikationer er ikke tilgængelige. Har du givet tilladelse?"
+    },
+    "settings": {
+        "add_user": "Tilføj bruger",
+        "update": "Gennemtving opdatering",
+        "theme": "Tema: {name}",
+        "language": "Sprog: {name}",
+        "logout": "Log ud",
+        "save": "Gem indstillinger"
+    },
+    "bouncers": {
+        "duration": "Varighed: {duration}"
+    },
+    "scanner": {
+        "scan_new": "Skan ny munzee",
+        "munzee": "{name} af {username}",
+        "type": "Type: {type}"
+    },
+    "quest": {
+        "task_1": "Mystiske skanninger/placeringer",
+        "task_2": "Udviklings-skanninger/placeringer",
+        "task_3": "Våben-skanninger/-placeringer",
+        "task_4": "Juvel-skanninger/-placeringer",
+        "task_5": "Skan /m/XeresDan/1707",
+        "task_6": "Flad ven placeringer",
+        "task_7": "Destination skanninger/placeringer",
+        "task_8": "Springerskanninger",
+        "task_9": "Flad ven skanninger/placeringer",
+        "task_10": "Skan \"/m/GPSmAQ/1\""
+    },
+    "themes": {
+        "black": "Sort",
+        "blue": "Blå",
+        "bluegrey": "Blågrå",
+        "darkblue": "Mørk blå",
+        "green": "Grøn",
+        "grey": "Grå",
+        "purple": "Lilla",
+        "white": "Hvid"
+    },
+    "screens": {
+        "_redirect": "_redirect",
+        "Map": "Kort",
+        "Tools": "Værktøjer",
+        "Settings": "Indstillinger",
+        "Notifications": "Notifikationer",
+        "Info": "Info",
+        "Scanner": "Skanner",
+        "Calendar": "Kalender",
+        "Bouncers": "Springere",
+        "BouncerMap": "Kort over springere",
+        "MunzeeDetails": "Munzee-detaljer",
+        "MunzeeDetailsID": "Munzee-detaljer",
+        "AllClans": "Alle klaner",
+        "ClanRequirements": "Klan-krav",
+        "ClanSearch": "Klansøgning",
+        "Clan": "Klan-statistik",
+        "UserSearch": "Bruger-søgning",
+        "UserDetails": "Bruger-detaljer",
+        "UserActivity": "Aktivitet",
+        "UserInventory": "Beholdning",
+        "UserClan": "Klanfremskridt",
+        "UserQuest": "Udfordringsfremskridt",
+        "UserCapturesCategory": "Skannede kategorier",
+        "UserSHCPro": "Avanceret specialjæger-udfordring",
+        "UserSHCLite": "Let specialjæger-udfordring",
+        "UserSHC": "Klassisk specialjæger-udfordring",
+        "UserBouncers": "Springere",
+        "DBType": "Databasetype",
+        "DBSearch": "Databasesøgning",
+        "DBCategory": "Databasekategori",
+        "Auth": "Autentificer"
+    },
+    "changelog": {
+        "build_n": "Build {n}",
+        "continue": "Fortsæt til CuppaZee",
+        "no_changelog": "Ingen ændringslog"
+    },
+    "clan_req": {
+        "Captures": "Skanninger",
+        "Points": "Point",
+        "Deploys": "Placeringer",
+        "Activity": "Aktivitet",
+        "Days of": "Dage med",
+        "Total": "Total",
+        "Renovate": "Renovering"
+    }
+}

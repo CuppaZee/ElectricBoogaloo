@@ -105,7 +105,15 @@ export default React.memo(
             borderTopRightRadius: 8,
           }}
           level="4">
-          <Icon style={{ height: 32, width: 32, marginRight: 8 }} name="playlist-check" />
+          <Icon
+            style={{
+              height: 32,
+              width: 32,
+              marginRight: 8,
+              color: theme.style === "dark" ? "#fff" : "#000",
+            }}
+            name="playlist-check"
+          />
           <View>
             <Text category="h6">{t("clan:clan_rewards")}</Text>
             <Text category="s1">

@@ -2,6 +2,8 @@ import React from 'react';
 import { Button, CheckBox, Input, Layout } from "@ui-kitten/components";
 import { useSettings } from "../../hooks/useSettings";
 import { UpdateWrapper } from "../../screens/Settings/Notifications";
+import Select from '../Common/Select';
+import { useTranslation } from 'react-i18next';
 
 export interface ClanSettingsModalProps {
   clan_id: number;
@@ -10,6 +12,7 @@ export interface ClanSettingsModalProps {
 
 export default function ClanSettingsModal({ clan_id, close }: ClanSettingsModalProps) {
   const [settings, setSettings] = useSettings();
+  const { t } = useTranslation();
   return (
     <Layout level="4" style={{ borderRadius: 8, padding: 4 }}>
       <UpdateWrapper>
@@ -41,7 +44,6 @@ export default function ClanSettingsModal({ clan_id, close }: ClanSettingsModalP
       <UpdateWrapper>
         {update => (
           <CheckBox
-            disabled={true}
             style={{ margin: 8 }}
             checked={settings.clan_options[clan_id].share}
             onChange={checked => {
@@ -50,6 +52,23 @@ export default function ClanSettingsModal({ clan_id, close }: ClanSettingsModalP
             }}>
             User Share Requirements
           </CheckBox>
+        )}
+      </UpdateWrapper>
+      <UpdateWrapper>
+        {update => (
+          <Select
+            style={{ margin: 4 }}
+            label="Goal Level"
+            value={settings.clan_options[clan_id].level.toString()}
+            onValueChange={value => {
+              settings.clan_options[clan_id].level = Number(value);
+              update();
+            }}
+            options={[1, 2, 3, 4, 5].map(i => ({
+              label: t("clan:level", { level: i }),
+              value: i.toString(),
+            }))}
+          />
         )}
       </UpdateWrapper>
       <Button

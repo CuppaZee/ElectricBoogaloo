@@ -351,7 +351,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
         <Tip
           wrapperStyle={{ margin: 4 }}
           small
-          id="draw_user_bookmarks"
+          id="drawer_user_bookmarks"
           tip="You can add and remove users from your Bookmarks in the Settings"
         />
 
@@ -370,7 +370,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
         />
         <DrawerItem
           selected={page[1]?.name === "Clan" && page[2]?.name === "Bookmarks"}
-          title="Bookmarked Clans"
+          title={t("pages:clan_bookmarks")}
           accessoryLeft={props => <Icon {...props} name="bookmark" />}
           onPress={() =>
             props.navigation.navigate("Clan", {
@@ -413,7 +413,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
 
         {(clans?.length || 0) > 5 && (
           <DrawerGroup
-            title="More Clans"
+            title={t("drawer:more_clans")}
             key={`moreclans_${clans?.length}`}
             accessoryLeft={props => <Icon {...props} name="shield-half-full" />}>
             {clans?.slice(5).map(clan => (
@@ -453,7 +453,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
         <Tip
           wrapperStyle={{ margin: 4 }}
           small
-          id="draw_user_bookmarks"
+          id="drawer_clan_bookmarks"
           tip="You can add and remove clans from your Bookmarks in the Settings"
         />
 
@@ -492,7 +492,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
         />
 
         {/* Settings */}
-        <DrawerGroup title="Settings" accessoryLeft={props => <Icon {...props} name="cog" />}>
+        <DrawerGroup title={t("pages:settings")} accessoryLeft={props => <Icon {...props} name="cog" />}>
           <DrawerItem
             selected={page[1]?.name === "Settings" && page[2]?.name === "Personalisation"}
             title={t("pages:settings_personalisation")}
@@ -562,7 +562,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
         />
         <DrawerItem
           disabled={true}
-          title="Donate"
+          title={t("pages:tools_donate")}
           accessoryLeft={props => <Icon {...props} name="currency-usd-circle" />}
         />
       </ScrollView>

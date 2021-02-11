@@ -1,0 +1,80 @@
+{
+  "404": {},
+  "pages": {
+    "dashboard_dashboard": "Instrumentpanel",
+    "user_activity": "Aktivitet",
+    "user_inventory": "",
+    "user_clan_progress": "Klanens framsteg",
+    "user_bouncers": "Hoppare",
+    "user_challenges": "Utmaningar",
+    "clan_requirements": "",
+    "tools_bouncers": "Hoppare",
+    "tools_munzee_types": "Munzeetyper",
+    "tools_calendar": "Kalender",
+    "tools_search": "Sök\n",
+    "settings": "Inställningar",
+    "settings_notifications": "",
+    "tools_credits": "Samverkande",
+    "tools_donate": "Donation"
+  },
+  "drawer": {},
+  "user_activity": {
+    "overview_points": {
+      "one": "{count} Totalpoäng",
+      "other": "{count} Totalpoäng"
+    },
+    "overview_captures": {
+      "one": "",
+      "other": ""
+    },
+    "overview_deploys": {
+      "one": "",
+      "other": ""
+    },
+    "overview_capons": {
+      "one": "",
+      "other": ""
+    },
+    "activity_capture": "",
+    "activity_deploy": "",
+    "activity_capon": "",
+    "owned_by_user": "av {user}",
+    "owned_by_self": "",
+    "none": "Ingen"
+  },
+  "user_inventory": {
+    "amount_undeployed": {},
+    "amount_credits": {},
+    "history": "Historik"
+  },
+  "user_zeeops": {},
+  "clan": {
+    "requirements": "",
+    "rewards": "Belöningar",
+    "individual": "",
+    "group": "Grupp",
+    "level": "",
+    "group_total": ""
+  },
+  "maps": {},
+  "settings_common": {
+    "save": "Spara"
+  },
+  "settings_accounts": {
+    "logout": "Logga ut"
+  },
+  "settings_notifications": {
+    "bouncers_override_search": "Sök\n",
+    "starred_users_search": "Sök\n"
+  },
+  "bouncers": {},
+  "calendar": {},
+  "open_source": {},
+  "user_bouncers": {},
+  "welcome": {},
+  "search": {
+    "search": "Sök\n"
+  },
+  "dashboard": {},
+  "tips": {}
+}

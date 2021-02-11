@@ -1,0 +1,85 @@
+{
+  "404": {},
+  "pages": {
+    "dashboard_dashboard": "Tableau de bord",
+    "user_activity": "Activité",
+    "user_inventory": "Inventaire",
+    "user_clan_progress": "Progression du clan",
+    "user_bouncers": "Bouncers",
+    "user_blast_checker": "",
+    "user_qrew_checker": "",
+    "user_challenges": "Défis",
+    "clan_requirements": "Exigences du Clan",
+    "tools_bouncers": "Bouncers",
+    "tools_munzee_types": "Types de Munzees",
+    "tools_calendar": "Calendrier",
+    "tools_evo_planner": "",
+    "tools_search": "Recherche",
+    "settings": "Paramètres",
+    "settings_notifications": "Notifications",
+    "tools_credits": "Crédits",
+    "tools_donate": "Dons"
+  },
+  "drawer": {},
+  "user_activity": {
+    "overview_points": {
+      "one": "{count} point total",
+      "other": "{count} points total"
+    },
+    "overview_captures": {
+      "one": "{count} Capture",
+      "other": "{count} Captures"
+    },
+    "overview_deploys": {
+      "one": "{count} Déploiement",
+      "other": "{count} Déploiements"
+    },
+    "overview_capons": {
+      "one": "{count} Cap-on",
+      "other": "{count} Cap-ons"
+    },
+    "filter_state": "",
+    "filter_category": "",
+    "activity_capture": "Vous avez capturé",
+    "activity_deploy": "Vous avez déployé",
+    "activity_capon": "{user} a capturé",
+    "owned_by_user": "par {user}",
+    "owned_by_self": "par vous",
+    "none": "Aucun"
+  },
+  "user_inventory": {
+    "amount_undeployed": {},
+    "amount_credits": {},
+    "history": "Historique"
+  },
+  "user_zeeops": {},
+  "clan": {
+    "requirements": "Exigences",
+    "rewards": "Récompenses",
+    "individual": "Individuel",
+    "group": "Groupe",
+    "level": "Niveau {level}",
+    "group_total": "Groupe total"
+  },
+  "maps": {},
+  "settings_common": {
+    "save": "Sauvegarde"
+  },
+  "settings_accounts": {
+    "logout": "Déconnexion"
+  },
+  "settings_notifications": {
+    "bouncers_override_search": "Recherche",
+    "starred_users_search": "Recherche"
+  },
+  "bouncers": {},
+  "calendar": {},
+  "open_source": {},
+  "user_bouncers": {},
+  "welcome": {},
+  "search": {
+    "search": "Recherche"
+  },
+  "dashboard": {},
+  "tips": {}
+}

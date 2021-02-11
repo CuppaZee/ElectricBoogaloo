@@ -1,0 +1,89 @@
+{
+  "404": {},
+  "pages": {
+    "dashboard_dashboard": "Domů",
+    "user_activity": "Aktivita",
+    "user_inventory": "Inventář",
+    "user_clan_progress": "Postup klanu",
+    "user_bouncers": "Cestovatelé",
+    "user_blast_checker": "Plánování bomb",
+    "user_qrew_checker": "Kontrola QRew",
+    "user_challenges": "Výzvy",
+    "clan_requirements": "Podmínky pro klany",
+    "tools_bouncers": "Cestovatelé",
+    "tools_munzee_types": "Typy munzee",
+    "tools_calendar": "Kalendář",
+    "tools_evo_planner": "Plánování evolucí",
+    "tools_search": "Hledat",
+    "settings": "Nastavení",
+    "settings_notifications": "notifikace",
+    "tools_credits": "Kredity",
+    "tools_donate": "Darovat"
+  },
+  "drawer": {},
+  "user_activity": {
+    "overview_points": {
+      "one": "{count} bod dohromady",
+      "few": "{count} body dohromady",
+      "other": "{count} bodů dohromady"
+    },
+    "overview_captures": {
+      "one": "{count} zachycení",
+      "few": "{count} zachycení",
+      "other": "{count} zachycení"
+    },
+    "overview_deploys": {
+      "one": "{count} založení",
+      "few": "{count} založení",
+      "other": "{count} založení"
+    },
+    "overview_capons": {
+      "one": "{count} zachycení vlastní",
+      "few": "{count} zachycení vlastních",
+      "other": "{count} zachycení vlastních"
+    },
+    "filter_state": "Země",
+    "filter_category": "Kategorie",
+    "activity_capture": "Zachytil jste",
+    "activity_deploy": "Založil jste",
+    "activity_capon": "{user} zachytil",
+    "owned_by_user": "uživatelem {user}",
+    "owned_by_self": "vámi",
+    "none": "Nic"
+  },
+  "user_inventory": {
+    "amount_undeployed": {},
+    "amount_credits": {},
+    "history": "Historie"
+  },
+  "user_zeeops": {},
+  "clan": {
+    "requirements": "Požadavky",
+    "rewards": "Odměny",
+    "individual": "Osobní",
+    "group": "Skupinové",
+    "level": "Level {level}",
+    "group_total": "Celkem na klan"
+  },
+  "maps": {},
+  "settings_common": {
+    "save": "Uložit"
+  },
+  "settings_accounts": {
+    "logout": "Odhlásit"
+  },
+  "settings_notifications": {
+    "bouncers_override_search": "Hledat",
+    "starred_users_search": "Hledat"
+  },
+  "bouncers": {},
+  "calendar": {},
+  "open_source": {},
+  "user_bouncers": {},
+  "welcome": {},
+  "search": {
+    "search": "Hledat"
+  },
+  "dashboard": {},
+  "tips": {}
+}

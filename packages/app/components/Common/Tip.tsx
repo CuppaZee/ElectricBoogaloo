@@ -4,8 +4,8 @@ import types from "@cuppazee/types";
 import { Button, Icon, Layout, Text } from "@ui-kitten/components";
 import { View, ViewStyle } from "react-native";
 import { useSettings } from "../../hooks/useSettings";
+import { useTranslation } from "react-i18next";
 
-// const babyAnimals = types.types.filter(i => i.name.startsWith("Baby "));
 const babyAnimals: [string, string][] = [
   ["babyhippo", "Baby Hippo"],
   ["babyalpaca", "Baby Alpaca"],
@@ -37,11 +37,11 @@ export interface TipProps {
 }
 
 export default function Tip({ id, tip, wrapperStyle, small }: TipProps) {
+  const { t } = useTranslation();
   const animal = React.useMemo(
     () => babyAnimals[Math.floor(Math.random() * babyAnimals.length)],
     []
   );
-  const message = React.useMemo(() => messages[Math.floor(Math.random() * messages.length)], []);
   const [settings, setSettings] = useSettings();
 
   if (
@@ -63,7 +63,7 @@ export default function Tip({ id, tip, wrapperStyle, small }: TipProps) {
         <View style={{ flex: 1 }}>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <Text style={{ flex: 1 }} category="s1">
-              {message}
+              {t("tips:title")}
             </Text>
             <Button
               style={{ height: 24, width: 24 }}
@@ -84,7 +84,7 @@ export default function Tip({ id, tip, wrapperStyle, small }: TipProps) {
               }
             />
           </View>
-          <Text category="p1">{tip}</Text>
+          <Text category="p1">{t(`tips:${id}` as any)}</Text>
         </View>
       </Layout>
     </View>
