@@ -4,7 +4,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import "./polyfill";
 
-import { Platform, ScrollView, useColorScheme, View } from "react-native";
+import { Platform, useColorScheme, View } from "react-native";
 import Navigation from "./navigation";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Provider as JotaiProvider } from "jotai";
@@ -19,12 +19,12 @@ import { useSettings } from "./hooks/useSettings";
 
 import AppLoading from "expo-app-loading";
 import { useFonts } from "expo-font";
-import './lang/i18n';
+import "./lang/i18n";
 
-import './BackgroundLocation';
+import "./BackgroundLocation";
 
-// @ts-ignore
-ScrollView.defaultProps = { scrollIndicatorInsets:{ right: 1 } };
+// // @ts-ignore
+// ScrollView.defaultProps = { scrollIndicatorInsets:{ right: 1 } };
 
 function MCIcon({ name, style }: { name: string | number | symbol; style: any }) {
   try {
@@ -82,9 +82,23 @@ function AppB() {
           };border-radius: 8px;}`}</style>
       )}
       <IconRegistry icons={MaterialCommunityIconsPack} />
-      <ApplicationProvider {...eva} theme={theme}>
-          <Navigation colorScheme={colorScheme} />
-          <StatusBar />
+      <ApplicationProvider
+        {...eva}
+        customMapping={
+          {
+            strict: {
+              "text-heading-1-font-weight": "700",
+              "text-heading-2-font-weight": "700",
+              "text-heading-3-font-weight": "700",
+              "text-heading-4-font-weight": "700",
+              "text-heading-5-font-weight": "700",
+              "text-heading-6-font-weight": "700",
+            },
+          } as any
+        }
+        theme={theme}>
+        <Navigation colorScheme={colorScheme} />
+        <StatusBar />
       </ApplicationProvider>
     </>
   );

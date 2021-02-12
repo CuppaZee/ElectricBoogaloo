@@ -82,7 +82,7 @@ export const CommonCell = React.memo(function (props: CommonCellProps) {
           height,
           flexDirection: isStack ? "column" : "row",
           alignItems: "center",
-          opacity: props.color === -1 ? 0.4 : 1,
+          opacity: (props.color === -1 && !settings.clan_full_background) ? 0.4 : 1,
         },
         props.color !== undefined && settings.clan_full_background
           ? { backgroundColor: settings.clan_colours[props.color] ?? "#aaaaaa" }
@@ -442,10 +442,11 @@ export type RequirementCellProps = {
   stack?: boolean;
   requirements: ClanStatsFormattedRequirements;
   onPress?: () => void;
-  sortBy: number;
+  sortBy?: number;
 };
 
 export function RequirementCell(props: RequirementCellProps) {
+  const [settings] = useSettings();
   const g = props.requirements.group.includes(props.task_id);
   const i = props.requirements.individual.includes(props.task_id);
   return (
@@ -455,7 +456,13 @@ export function RequirementCell(props: RequirementCellProps) {
       color={g ? (i ? 12 : 13) : 11}
       image={{ uri: requirementMeta[props.task_id]?.icon }}
       title={requirementMeta[props.task_id]?.top}
-      titleIcon={Math.abs(props.sortBy) === props.task_id ? (props.sortBy > 0 ? "chevron-down" : "chevron-up") : undefined}
+      titleIcon={
+        props.sortBy && Math.abs(props.sortBy) === props.task_id
+          ? props.sortBy > 0
+            ? `chevron-${settings.clan_reverse ? "right" : "down"}`
+            : `chevron-${settings.clan_reverse ? "left" : "up"}`
+          : undefined
+      }
       subtitle={requirementMeta[props.task_id]?.bottom}
     />
   );

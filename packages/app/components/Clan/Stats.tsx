@@ -31,7 +31,6 @@ export interface ClanStatsTableProps {
   scrollViewController?: SyncScrollViewController;
 }
 
-
 export default React.memo(
   function ClanStatsTable({
     game_id,
@@ -127,7 +126,8 @@ export default React.memo(
     }
 
     function sort(a: ClanStatsFormattedUser, b: ClanStatsFormattedUser) {
-      if(sortBy < 0) return (a.requirements[-sortBy]?.value ?? -1) - (b.requirements[-sortBy]?.value ?? -1);
+      if (sortBy < 0)
+        return (a.requirements[-sortBy]?.value ?? -1) - (b.requirements[-sortBy]?.value ?? -1);
       return (b.requirements[sortBy]?.value ?? -1) - (a.requirements[sortBy]?.value ?? -1);
     }
 
@@ -140,7 +140,10 @@ export default React.memo(
     const minTableWidth = (Object.keys(stats.users).length + 1) * columnWidth + sidebarWidth;
 
     const main_users = [
-      { type: settings.clan_options[clan_id].share ? "share" : "individual", level: settings.clan_options[clan_id].level },
+      {
+        type: settings.clan_options[clan_id].share ? "share" : "individual",
+        level: settings.clan_options[clan_id].level,
+      },
       ...Object.values(stats.users).sort(sort),
       stats,
       { type: "group", level: settings.clan_options[clan_id].level },
@@ -178,8 +181,12 @@ export default React.memo(
             }}
           />
           <View style={{ flex: 1 }}>
-            <Text category="h6">{clan_data.data.data?.details.name}</Text>
-            <Text category="s1">{clan_data.data.data?.details.tagline}</Text>
+            <Text numberOfLines={1} category="h6">
+              {clan_data.data.data?.details.name}
+            </Text>
+            <Text numberOfLines={1} category="s1">
+              {clan_data.data.data?.details.tagline}
+            </Text>
           </View>
           <Button
             appearance="ghost"
@@ -217,11 +224,23 @@ export default React.memo(
                     key={row}
                     task_id={row}
                     requirements={requirements}
-                    onPress={() => setSortBy(sortBy === row ? row : row)}
+                    onPress={() => setSortBy(sortBy === row ? -row : row)}
                     sortBy={sortBy}
                   />
                 ) : "type" in row ? (
-                  <LevelCell key={`${row.level}_${row.type}`} level={row.level} type={row.type} />
+                  <View
+                    style={{
+                      [settings.clan_reverse
+                        ? row.type === "group"
+                          ? "borderLeftWidth"
+                          : "borderRightWidth"
+                        : row.type === "group"
+                        ? "borderTopWidth"
+                        : "borderBottomWidth"]: 2,
+                      borderColor,
+                    }}>
+                    <LevelCell key={`${row.level}_${row.type}`} level={row.level} type={row.type} />
+                  </View>
                 ) : (
                   <UserCell key={"user_id" in row ? row.user_id : "Clan Total"} user={row} />
                 )
@@ -273,12 +292,24 @@ export default React.memo(
                       sortBy={sortBy}
                     />
                   ) : "type" in column ? (
-                    <LevelCell
-                      key={`${column.level}_${column.type}`}
-                      level={column.level}
-                      type={column.type}
-                      stack={headerStack}
-                    />
+                    <View
+                      style={{
+                        [settings.clan_reverse
+                          ? column.type === "group"
+                            ? "borderLeftWidth"
+                            : "borderRightWidth"
+                          : column.type === "group"
+                          ? "borderTopWidth"
+                          : "borderBottomWidth"]: 2,
+                        borderColor,
+                      }}>
+                      <LevelCell
+                        key={`${column.level}_${column.type}`}
+                        level={column.level}
+                        type={column.type}
+                        stack={headerStack}
+                      />
+                    </View>
                   ) : (
                     <UserCell key="Header" user={column} stack={headerStack} />
                   )}
@@ -298,14 +329,26 @@ export default React.memo(
                       : "Clan Stats";
                   if (!user || !task_id) return null;
                   return "type" in user ? (
-                    <RequirementDataCell
-                      members={Object.keys(stats.users).length}
-                      key={key}
-                      task={task_id}
-                      level={user.level}
-                      type={user.type}
-                      requirements={requirements}
-                    />
+                    <View
+                      style={{
+                        [settings.clan_reverse
+                          ? user.type === "group"
+                            ? "borderLeftWidth"
+                            : "borderRightWidth"
+                          : user.type === "group"
+                          ? "borderTopWidth"
+                          : "borderBottomWidth"]: 2,
+                        borderColor,
+                      }}>
+                      <RequirementDataCell
+                        members={Object.keys(stats.users).length}
+                        key={key}
+                        task={task_id}
+                        level={user.level}
+                        type={user.type}
+                        requirements={requirements}
+                      />
+                    </View>
                   ) : (
                     <DataCell
                       clan_id={actual_clan_id}

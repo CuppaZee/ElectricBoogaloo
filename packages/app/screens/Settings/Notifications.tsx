@@ -434,6 +434,7 @@ export default function NotificationScreen() {
             <Text style={{ margin: 4 }} category="h6">
               Bouncers
             </Text>
+            <Text>DEBUG: {token}</Text>
             <CheckBox
               style={{ margin: 8 }}
               checked={settings.bouncers.enabled}

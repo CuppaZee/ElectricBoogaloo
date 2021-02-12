@@ -3,13 +3,13 @@ import { ScrollViewProps } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 
 export function useSyncScrollViewController() {
-  return React.useRef<SyncScrollViewController["current"]>({ views: [] });
+  return React.useRef<SyncScrollViewController["current"]>({ views: [], lastScrollEvent: 0 });
 }
 
 export type SyncScrollViewController = MutableRefObject<{
   views: ScrollView[];
-  lastScrollEvent_x?: number;
-  lastScrollEvent_y?: number;
+  lastScrollEvent: number;
+  lastScrollRef?: ScrollView;
 }>;
 
 export default function SyncScrollView({
@@ -33,23 +33,13 @@ export default function SyncScrollView({
       onScroll={ev => {
         onScroll?.(ev);
         if (
-          ev.nativeEvent.contentOffset.x === controller.current.lastScrollEvent_x &&
-          ev.nativeEvent.contentOffset.y === controller.current.lastScrollEvent_y
+          controller.current.lastScrollEvent >= Date.now() - 500 && controller.current.lastScrollRef !== thisRef.current
         )
           return;
-        const interval = rest.snapToInterval ?? 1;
-        const x =
-          ev.nativeEvent.contentOffset.x ===
-          ev.nativeEvent.contentSize.width - ev.nativeEvent.layoutMeasurement.width
-            ? ev.nativeEvent.contentOffset.x
-            : Math.floor(ev.nativeEvent.contentOffset.x / interval) * interval;
-        const y =
-          ev.nativeEvent.contentOffset.y ===
-          ev.nativeEvent.contentSize.height - ev.nativeEvent.layoutMeasurement.height
-            ? ev.nativeEvent.contentOffset.y
-            : Math.floor(ev.nativeEvent.contentOffset.y / interval) * interval;
-        controller.current.lastScrollEvent_x = x;
-        controller.current.lastScrollEvent_y = y;
+        const x = ev.nativeEvent.contentOffset.x;
+        const y = ev.nativeEvent.contentOffset.y;
+        controller.current.lastScrollEvent = Date.now();
+        controller.current.lastScrollRef = thisRef.current;
         controller.current.views.forEach(sv => {
           if (sv !== thisRef.current) {
             sv.scrollTo({

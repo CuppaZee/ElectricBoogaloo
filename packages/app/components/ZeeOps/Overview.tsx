@@ -27,7 +27,7 @@ export default function ZeeOpsOverview({ user_id }: ZeeOpsOverviewProps) {
   if (dayjs(d.start_time).valueOf() > Date.now() && d.currentMission === 1) {
     // TODO: Rework COLLECTED View
     return <Icon name="check" style={{ height: 24, width: 24 }} />;
-  } else if (dayjs(d.start_time).valueOf() > Date.now()) {
+  } else if (dayjs.tz(d.start_time, "America/Chicago").valueOf() > Date.now()) {
     current = d.missions.find(i => i.id === d.currentMission - 1);
   }
   if (!current) return null;
@@ -41,7 +41,7 @@ export default function ZeeOpsOverview({ user_id }: ZeeOpsOverviewProps) {
       }}>
       <View>
         <Image
-          style={{ width: 48, height: 48, margin: 4 }}
+          style={{ width: 36, height: 36, margin: 4 }}
           source={{
             uri: `https://munzee.global.ssl.fastly.net/images/pins/${current?.rewards[0].imageUrl}`,
           }}
@@ -49,8 +49,8 @@ export default function ZeeOpsOverview({ user_id }: ZeeOpsOverviewProps) {
         {current?.rewards[0].amount > 1 && <Svg
           style={{
             position: "absolute",
-            bottom: 0,
-            right: -4,
+            bottom: -8,
+            right: 0,
             height: 56,
             width: 56,
           }}>
@@ -59,7 +59,7 @@ export default function ZeeOpsOverview({ user_id }: ZeeOpsOverviewProps) {
             stroke="black"
             strokeWidth="1.5"
             fontFamily={`-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif`}
-            fontSize="24"
+            fontSize="20"
             fontWeight="bold"
             x="52"
             y="52"

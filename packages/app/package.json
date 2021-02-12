@@ -11,7 +11,7 @@
     "build-translations": "node ./lang/generate.js",
     "eject": "expo eject",
     "test": "jest --watchAll",
-    "deploy-app": "expo publish --release-channel v2.0"
+    "deploy-app": "expo publish --target bare"
   },
   "jest": {
     "preset": "jest-expo"
@@ -21,6 +21,7 @@
     "@cuppazee/icons": "^0.0.22",
     "@cuppazee/types": "^0.0.25",
     "@eva-design/eva": "^2.0.0",
+    "@expo-google-fonts/roboto": "^0.1.0",
     "@expo/vector-icons": "^12.0.0",
     "@formatjs/intl-datetimeformat": "^3.2.7",
     "@formatjs/intl-displaynames": "^4.0.5",

@@ -368,7 +368,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
             })
           }
         />
-        <DrawerItem
+        {clans && clans?.length > 0 && <DrawerItem
           selected={page[1]?.name === "Clan" && page[2]?.name === "Bookmarks"}
           title={t("pages:clan_bookmarks")}
           accessoryLeft={props => <Icon {...props} name="bookmark" />}
@@ -377,7 +377,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
               screen: "Bookmarks",
             })
           }
-        />
+        />}
         {clans?.slice(0, 5).map(clan => (
           <DrawerItem
             selected={

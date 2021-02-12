@@ -522,7 +522,7 @@ export function ClanStatsConverter(
     level: 5,
   };
 
-  if (shadow) {
+  if (shadow && stats.battle.end * 1000 > Date.now()) {
     for (const user of shadow.members) {
       data.users[user] = {
         username: shadow.usernames[user],
@@ -535,7 +535,7 @@ export function ClanStatsConverter(
     }
   }
 
-  if ((actual_clan_id || 0) >= 0 && stats.battle.end > Date.now()) {
+  if ((actual_clan_id || 0) >= 0 && (stats.battle.end * 1000) > Date.now()) {
     console.log(clan.result, monthToGameID());
     for (const user of clan.users) {
       data.users[Number(user.user_id)] = {
@@ -559,7 +559,7 @@ export function ClanStatsConverter(
     };
     for (const user_id of [
       ...((actual_clan_id || 0) < 0 ? [] : (Object.keys(task.data) || [])),
-      ...(shadow?.members || []).filter(i=>data.users[i]?.shadow),
+      ...(((stats.battle.end * 1000) > Date.now() ? shadow?.members : []) || []).filter(i=>data.users[i]?.shadow),
     ]) {
       // Add Left User if Necessary
       if (!data.users[user_id]) {

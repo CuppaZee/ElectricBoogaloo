@@ -1,16 +1,15 @@
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { Button, Icon, Layout, Text, ViewPager, DrawerItem } from "@ui-kitten/components";
+import { Button, Icon, Layout, Text, DrawerItem } from "@ui-kitten/components";
 import dayjs from "dayjs";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
-import { FlatList, Image, Platform, ScrollView, StyleSheet, View, ViewProps } from "react-native";
+import { FlatList, Image, Platform, Pressable, ScrollView, StyleSheet, View, ViewProps } from "react-native";
 import UserActivityOverview from "../components/Activity/Overview";
 import ZeeOpsOverview from "../components/ZeeOps/Overview";
 import { useClanBookmarks, useUserBookmarks } from "../hooks/useBookmarks";
 import useComponentSize from "../hooks/useComponentSize";
 import useTitle from "../hooks/useTitle";
-import { DashStackParamList, UserStackParamList } from "../types";
+import { DashStackParamList } from "../types";
 
 function WheelWrapper({
   onWheel,
@@ -35,27 +34,61 @@ export default function DashboardScreen() {
   const nav = useNavigation();
   const route = useRoute<RouteProp<DashStackParamList, "Dash">>();
   const scrollRef = React.useRef<FlatList>();
+  const scrollSize = React.useRef<{ width: number; height: number }>();
   const position = React.useRef<number>();
   const [users] = useUserBookmarks();
   const [clans] = useClanBookmarks();
   const [touched, setTouched] = React.useState<number[]>([0]);
+  const [index, setIndex] = React.useState<number>(0);
   const [size, onLayout] = useComponentSize();
-  const width = size?.width ?? 0;
+  const width = scrollSize.current?.width ?? size?.width ?? 0;
   useTitle(`☕ Dashboard`);
   return (
     <Layout onLayout={onLayout} style={{ flex: 1 }}>
-      <ScrollView style={{ flex: 1 }}>
+      <ScrollView
+        onContentSizeChange={(w, h) => (scrollSize.current = { width: w, height: h })}
+        style={{ flex: 1 }}>
         {users.length > 0 && (
           <View>
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                marginBottom: -8,
+              }}>
+              {users.map((i, n) => (
+                <Pressable onPress={() => {
+                  scrollRef.current?.scrollToOffset({
+                    offset:
+                      (position.current || 0) + (n - index) * Math.min(600, width),
+                  });
+                }}>
+                  <Image
+                    style={
+                      index === n
+                        ? { height: 32, width: 32, borderRadius: 16, marginHorizontal: 2 }
+                        : { height: 16, width: 16, borderRadius: 8, marginHorizontal: 2 }
+                    }
+                    source={{
+                      uri: `https://munzee.global.ssl.fastly.net/images/avatars/ua${Number(
+                        i.user_id
+                      ).toString(36)}.png`,
+                    }}
+                  />
+                </Pressable>
+              ))}
+            </View>
             <WheelWrapper
               onWheel={ev => {
+                if ((scrollSize.current?.height || 1) > (size?.height || 0)) return;
                 scrollRef.current?.scrollToOffset({
                   offset:
-                    (position.current || 0) +
-                    (ev.nativeEvent.deltaY / 100) * Math.min(600, width * 0.9),
+                    (position.current || 0) + (ev.nativeEvent.deltaY / 100) * Math.min(600, width),
                 });
               }}>
               <FlatList
+                decelerationRate="fast"
                 ref={sv => (scrollRef.current = sv || undefined)}
                 horizontal={true}
                 pagingEnabled={Platform.OS === "web"}
@@ -69,13 +102,16 @@ export default function DashboardScreen() {
                     }
                     position.current = ev.nativeEvent.contentOffset.x;
                     const pos = Math.ceil(
-                      (ev.nativeEvent.contentOffset.x - 16) / Math.min(600, width * 0.9)
+                      (ev.nativeEvent.contentOffset.x - 16) / Math.min(600, width)
+                    );
+                    setIndex(
+                      Math.round((ev.nativeEvent.contentOffset.x - 16) / Math.min(600, width))
                     );
                     if (!touched.includes(pos)) setTouched([...touched, pos]);
                   }
                 }}
                 scrollEventThrottle={4}
-                snapToInterval={Math.min(600, width * 0.9)}
+                snapToInterval={Math.min(600, width)}
                 snapToAlignment="center"
                 showsHorizontalScrollIndicator={false}
                 snapToStart={true}
@@ -84,7 +120,7 @@ export default function DashboardScreen() {
                 renderItem={({ item, index }) => (
                   <View
                     style={{
-                      width: Math.min(600, width * 0.9),
+                      width: Math.min(600, width),
                       padding: 8,
                       zIndex: -index,
                       height: "100%",
@@ -92,7 +128,13 @@ export default function DashboardScreen() {
                       alignSelf: "center",
                     }}>
                     <Layout level="3" style={[styles.card, { flex: 1 }]}>
-                      <View style={{ flexDirection: "row", alignItems: "center", padding: 4 }}>
+                      <View
+                        style={{
+                          flexDirection: "row",
+                          alignItems: "center",
+                          padding: 4,
+                          justifyContent: "center",
+                        }}>
                         <Image
                           style={{ height: 32, width: 32, borderRadius: 16, marginRight: 8 }}
                           source={{
@@ -101,7 +143,7 @@ export default function DashboardScreen() {
                             ).toString(36)}.png`,
                           }}
                         />
-                        <Text category="h6">{item.username}</Text>
+                        <Text category="h5">{item.username}</Text>
                       </View>
                       {touched.includes(index) ? (
                         <>
@@ -111,50 +153,54 @@ export default function DashboardScreen() {
                           />
                           <ZeeOpsOverview user_id={Number(item?.user_id)} />
                         </>
-                      ) : (
-                        <View style={{ height: 200 }} />
-                      )}
+                      ) : null}
                     </Layout>
                   </View>
                 )}
-                ListFooterComponent={
-                  <View style={{ width: (width - Math.min(600, width * 0.9)) / 2 }} />
-                }
-                ListHeaderComponent={
-                  <View style={{ width: (width - Math.min(600, width * 0.9)) / 2 }} />
-                }
+                ListFooterComponent={<View style={{ width: (width - Math.min(600, width)) / 2 }} />}
+                ListHeaderComponent={<View style={{ width: (width - Math.min(600, width)) / 2 }} />}
               />
             </WheelWrapper>
-            <Button
-              appearance="ghost"
-              accessoryLeft={props => <Icon name="chevron-left" {...props} />}
-              onPress={() => {
-                scrollRef.current?.scrollToOffset({
-                  offset: (position.current || 0) - Math.min(600, width * 0.9),
-                });
-              }}
-              style={{ position: "absolute", left: 0, top: 0, bottom: 0 }}
-            />
-            <Button
-              appearance="ghost"
-              accessoryLeft={props => <Icon name="chevron-right" {...props} />}
-              onPress={() => {
-                scrollRef.current?.scrollToOffset({
-                  offset: (position.current || 0) + Math.min(600, width * 0.9),
-                });
-              }}
-              style={{ position: "absolute", right: 0, top: 0, bottom: 0 }}
-            />
+            {width > 600 && (
+              <>
+                <Button
+                  appearance="ghost"
+                  accessoryLeft={props => <Icon name="chevron-left" {...props} />}
+                  onPress={() => {
+                    scrollRef.current?.scrollToOffset({
+                      offset: (position.current || 0) - Math.min(600, width),
+                    });
+                  }}
+                  style={{ position: "absolute", left: 0, top: 0, bottom: 0 }}
+                />
+                <Button
+                  appearance="ghost"
+                  accessoryLeft={props => <Icon name="chevron-right" {...props} />}
+                  onPress={() => {
+                    scrollRef.current?.scrollToOffset({
+                      offset: (position.current || 0) + Math.min(600, width),
+                    });
+                  }}
+                  style={{ position: "absolute", right: 0, top: 0, bottom: 0 }}
+                />
+              </>
+            )}
           </View>
         )}
-        <View style={{ width: Math.min(600, width * 0.9), alignSelf: "center", padding: 8 }}>
+        <View style={{ width: Math.min(600, width), alignSelf: "center", padding: 8 }}>
           <Layout level="3" style={[styles.card, { padding: 4 }]}>
-            <Text category="h5">{t("dashboard:clans")}</Text>
+            <Text style={{ marginLeft: 4 }} category="h5">
+              {t("dashboard:clans")}
+            </Text>
             {clans?.map(clan => (
               <DrawerItem
                 style={{ backgroundColor: "transparent" }}
                 selected={false}
-                title={clan.name}
+                title={() => (
+                  <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
+                    {clan.name}
+                  </Text>
+                )}
                 accessoryLeft={() => (
                   <Image
                     source={{
