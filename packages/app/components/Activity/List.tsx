@@ -49,9 +49,7 @@ export default function UserActivityList({
           }}>
           <Datepicker
             date={new Date(route.params.date ?? dayjs().tz("America/Chicago").valueOf())}
-            onSelect={nextDate =>
-              nav.setParams({ date: dayjs(nextDate).format("YYYY-MM-DD") })
-            }
+            onSelect={nextDate => nav.setParams({ date: dayjs(nextDate).format("YYYY-MM-DD") })}
             accessoryRight={props => <Icon {...props} name="calendar" />}
           />
           {toggleFilterModal && (
@@ -71,6 +69,7 @@ export default function UserActivityList({
         </Layout>
       )}
       data={d?.list}
+      keyExtractor={i => i.key}
       renderItem={data => <UserActivityListItem {...data.item} />}
     />
   );

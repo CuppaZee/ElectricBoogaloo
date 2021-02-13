@@ -166,7 +166,7 @@ export default React.memo(
           style={{
             flexDirection: "row",
             alignItems: "center",
-            height: 48,
+            height: 48 * fontScale,
             padding: 4,
             borderTopLeftRadius: 8,
             borderTopRightRadius: 8,

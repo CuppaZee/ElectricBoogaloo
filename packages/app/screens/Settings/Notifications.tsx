@@ -16,6 +16,7 @@ import useTitle from "../../hooks/useTitle";
 import Constants from "expo-constants";
 import * as Notifications from "expo-notifications";
 import * as Location from "expo-location";
+import * as Permissions from "expo-permissions";
 import db, { TypeTags } from "@cuppazee/types";
 import TypeImage from "../../components/Common/TypeImage";
 import MapView from "../../components/Maps/MapView";
@@ -82,6 +83,43 @@ function LocationPickerModal({ location, close, remove }: LocationPickerModalPro
           </View>
         )}
       </UpdateWrapper>
+    </Layout>
+  );
+}
+
+interface ConfirmLocationModalProps {
+  close: () => void;
+  confirm: () => void;
+}
+
+function ConfirmLocationModal({ confirm, close }: ConfirmLocationModalProps) {
+  return (
+    <Layout level="4" style={{ borderRadius: 8, padding: 4, margin: 8 }}>
+      <Text category="h6">Use Live Location?</Text>
+      <Text category="p1">
+        With Live Location enabled, CuppaZee will occasionally fetch your approximate location in
+        the background.
+      </Text>
+      <Text category="p1">
+        Your background location will only be used in order to send alerts for Bouncers around your
+        current location.
+      </Text>
+      <View style={{ flexDirection: "row" }}>
+        <Button
+          style={{ margin: 4 }}
+          appearance="ghost"
+          accessoryLeft={props => <Icon name="close" {...props} />}
+          onPress={close}>
+          Cancel
+        </Button>
+        <Button
+          style={{ margin: 4, flex: 1 }}
+          status="success"
+          accessoryLeft={props => <Icon name="check" {...props} />}
+          onPress={confirm}>
+          Confirm
+        </Button>
+      </View>
     </Layout>
   );
 }
@@ -239,7 +277,11 @@ function OverrideSearchModal({ close }: OverrideSearchModalProps) {
   );
 }
 
-export function UpdateWrapper({ children }: { children: (update: () => void) => React.ReactElement }) {
+export function UpdateWrapper({
+  children,
+}: {
+  children: (update: () => void) => React.ReactElement;
+}) {
   const [, update] = React.useReducer(a => a + 1, 0);
   return children(update);
 }
@@ -304,36 +346,51 @@ export default function NotificationScreen() {
   useTitle("☕ Settings - Notifications");
   const [settings, setSettings] = React.useState<DeviceNotificationSettings>();
   const [token, setToken] = React.useState<string>();
-  const [saved, setSaved] = React.useState(false);
+  const [saved, setSaved] = React.useState(0);
   const [locationPickerIndex, setLocationPickerIndex] = React.useState<number>();
   const [starredUserModal, setStarredUserModal] = React.useState(false);
   const [distanceOverrideModal, setDistanceOverrideModal] = React.useState(false);
+  const [confirmLocation, setConfirmLocation] = React.useState(false);
+  const [debugStatus, setDebugStatus] = React.useState("");
 
   async function registerForPushNotificationsAsync() {
-    if (Constants.isDevice) {
-      const { status: existingStatus } = await Notifications.getPermissionsAsync();
-      let finalStatus = existingStatus;
-      if (existingStatus !== "granted") {
-        const { status } = await Notifications.requestPermissionsAsync();
-        finalStatus = status;
-      }
-      if (finalStatus !== "granted") {
+    try {
+      if (Constants.isDevice) {
+        const gotPerm = await Notifications.getPermissionsAsync();
+        const { status: existingStatus } = gotPerm;
+        let finalStatus = existingStatus;
+        if (existingStatus !== "granted") {
+          setDebugStatus(`GotPerm: ${JSON.stringify(gotPerm)}`);
+          const requestPerm = await Notifications.requestPermissionsAsync();
+          const { status } = requestPerm;
+          finalStatus = status;
+          setDebugStatus(
+            `GotPerm: ${JSON.stringify(gotPerm)}\nRequestPerm: ${JSON.stringify(requestPerm)}`
+          );
+        }
+        if (finalStatus !== "granted") {
+          setToken("_failed");
+          return;
+        }
+        const token = await Notifications.getExpoPushTokenAsync({
+          experienceId: "@sohcah/PaperZee",
+        });
+        setDebugStatus(`GotPerm: ${JSON.stringify(gotPerm)}\nToken: ${JSON.stringify(token)}`);
+        setToken(token.data);
+      } else {
         setToken("_failed");
-        return;
       }
-      const token = (await Notifications.getExpoPushTokenAsync()).data;
-      setToken(token);
-    } else {
-      setToken("_failed");
-    }
 
-    if (Platform.OS === "android") {
-      Notifications.setNotificationChannelAsync("default", {
-        name: "default",
-        importance: Notifications.AndroidImportance.MAX,
-        vibrationPattern: [0, 250, 250, 250],
-        lightColor: "#FF231F7C",
-      });
+      if (Platform.OS === "android") {
+        Notifications.setNotificationChannelAsync("default", {
+          name: "default",
+          importance: Notifications.AndroidImportance.MAX,
+          vibrationPattern: [0, 250, 250, 250],
+          lightColor: "#FF231F7C",
+        });
+      }
+    } catch (e) {
+      setDebugStatus(`Error: ${e.toString()}`);
     }
   }
 
@@ -405,6 +462,29 @@ export default function NotificationScreen() {
       </Modal>
       <Modal
         backdropStyle={{ backgroundColor: "#00000077" }}
+        visible={confirmLocation}
+        onBackdropPress={() => setConfirmLocation(false)}>
+        <ConfirmLocationModal
+          confirm={async () => {
+            try {
+              await Location.requestPermissionsAsync();
+              const loc =
+                (await Location.getLastKnownPositionAsync()) ??
+                (await Location.getCurrentPositionAsync());
+              settings.locations.dynamic = {
+                latitude: loc.coords.latitude,
+                longitude: loc.coords.longitude,
+              };
+              setConfirmLocation(false);
+            } catch (e) {}
+          }}
+          close={() => {
+            setConfirmLocation(false);
+          }}
+        />
+      </Modal>
+      <Modal
+        backdropStyle={{ backgroundColor: "#00000077" }}
         visible={distanceOverrideModal}
         onBackdropPress={() => setDistanceOverrideModal(false)}>
         <OverrideSearchModal
@@ -434,7 +514,12 @@ export default function NotificationScreen() {
             <Text style={{ margin: 4 }} category="h6">
               Bouncers
             </Text>
-            <Text>DEBUG: {token}</Text>
+            {token.includes("-8Xz") && (
+              <>
+                <Text>DEBUG: {token}</Text>
+                <Text>DEBUGSTATUS: {debugStatus}</Text>
+              </>
+            )}
             <CheckBox
               style={{ margin: 8 }}
               checked={settings.bouncers.enabled}
@@ -626,51 +711,46 @@ export default function NotificationScreen() {
           <Layout level="2" style={{ margin: 4, padding: 4, flex: 1, borderRadius: 8 }}>
             <Text category="h6">Locations</Text>
             <UpdateWrapper>
-              {update => (
-                <Layout
-                  level="3"
-                  style={{
-                    margin: 4,
-                    borderRadius: 8,
-                    padding: 4,
-                    paddingHorizontal: 8,
-                    flexDirection: "row",
-                    alignItems: "center",
-                  }}>
-                  <CheckBox
-                    checked={!!settings.locations.dynamic}
-                    onChange={async () => {
-                      if (settings.locations.dynamic) {
-                        settings.locations.dynamic = undefined;
-                      } else {
-                        await Location.requestPermissionsAsync();
-                        const loc =
-                          (await Location.getLastKnownPositionAsync()) ??
-                          (await Location.getCurrentPositionAsync());
-                        if (!loc) return;
-                        settings.locations.dynamic = {
-                          latitude: loc.coords.latitude,
-                          longitude: loc.coords.longitude,
-                        };
-                      }
-                      update();
-                    }}
-                  />
-                  <View style={{ marginHorizontal: 8, flex: 1 }}>
-                    <Text category="s1">
-                      <Icon style={{ height: 16, width: 16 }} name="crosshairs-gps" /> Live Location
-                    </Text>
-                    {settings.locations.dynamic ? (
-                      <Text category="c1">
-                        {settings.locations.dynamic.latitude} {settings.locations.dynamic.longitude}
+                {update => (
+                  <Layout
+                    level="3"
+                    style={{
+                      margin: 4,
+                      borderRadius: 8,
+                      padding: 4,
+                      paddingHorizontal: 8,
+                      flexDirection: "row",
+                      alignItems: "center",
+                    }}>
+                    <CheckBox
+                      checked={!!settings.locations.dynamic}
+                      onChange={async () => {
+                        if (settings.locations.dynamic) {
+                          settings.locations.dynamic = undefined;
+                        } else {
+                          setConfirmLocation(true);
+                        }
+                        update();
+                      }}
+                    />
+
+                    <View style={{ marginHorizontal: 8, flex: 1 }}>
+                      <Text category="s1">
+                        <Icon style={{ height: 16, width: 16 }} name="crosshairs-gps" /> Live
+                        Location
                       </Text>
-                    ) : (
-                      <Text category="c1">Not Enabled</Text>
-                    )}
-                  </View>
-                </Layout>
-              )}
-            </UpdateWrapper>
+                      {settings.locations.dynamic ? (
+                        <Text category="c1">
+                          {settings.locations.dynamic.latitude}{" "}
+                          {settings.locations.dynamic.longitude}
+                        </Text>
+                      ) : (
+                        <Text category="c1">Not Enabled</Text>
+                      )}
+                    </View>
+                  </Layout>
+                )}
+              </UpdateWrapper>
             {settings.locations.static.map((i, index) => (
               <UpdateWrapper>
                 {update => (
@@ -747,39 +827,62 @@ export default function NotificationScreen() {
         </View>
       </ScrollView>
       <View style={{ width: 600, maxWidth: "100%", padding: 4, alignSelf: "center" }}>
-        {saved && (
+        {saved > 0 && (
           <Layout level="3" style={{ margin: 4, borderRadius: 8, padding: 4 }}>
             <Text category="h6">
               <Icon name="check" style={{ height: 24, width: 24 }} /> Settings Saved
             </Text>
           </Layout>
         )}
+        {saved === 2 && (
+          <Layout level="3" style={{ margin: 4, borderRadius: 8, padding: 4 }}>
+            <Text category="h6">
+              <Icon name="crosshairs-off" style={{ height: 24, width: 24 }} /> Live Location
+              Disabled
+            </Text>
+            <Text category="s1">
+              You must allow CuppaZee to always access your location.
+            </Text>
+          </Layout>
+        )}
         <Button
           style={{ margin: 4 }}
           onPress={async () => {
-            if (!settings) return;
-            if (settings.locations.dynamic) {
-              const { status } = await Location.requestPermissionsAsync();
-              if (status === "granted") {
-                await Location.startLocationUpdatesAsync("BACKGROUND_LOCATION", {
-                  accuracy: Location.Accuracy.Balanced,
-                });
+            try {
+              let n = 1;
+              if (!settings) return;
+              if (settings.locations.dynamic) {
+                const x = await Permissions.askAsync(Permissions.LOCATION)
+                const { status, permissions } = x;
+                setDebugStatus(`DATA: ${JSON.stringify(x)}`);
+                if (
+                  status === "granted" &&
+                  permissions.location?.scope === "always"
+                ) {
+                  await Location.startLocationUpdatesAsync("BACKGROUND_LOCATION", {
+                    accuracy: Location.Accuracy.Balanced,
+                    distanceInterval: 250,
+                  });
+                } else {
+                  settings.locations.dynamic = undefined;
+                  n = 2;
+                }
               } else {
-                settings.locations.dynamic = undefined;
+                try {
+                  await Location.stopLocationUpdatesAsync("BACKGROUND_LOCATION");
+                } catch (e) {}
               }
-            } else {
-              try {
-                await Location.stopLocationUpdatesAsync("BACKGROUND_LOCATION");
-              } catch (e) {}
+              await fetch(`https://server.beta.cuppazee.app/notifications/signup`, {
+                method: "POST",
+                body: JSON.stringify({ data: JSON.stringify(settings) }),
+              });
+              setSaved(n);
+              setTimeout(() => {
+                setSaved(0);
+              }, 5000);
+            } catch (e) {
+              setDebugStatus(d => d + `\nError Saving: ${e.toString()}`);
             }
-            await fetch(`https://server.beta.cuppazee.app/notifications/signup`, {
-              method: "POST",
-              body: JSON.stringify({ data: JSON.stringify(settings) }),
-            });
-            setSaved(true);
-            setTimeout(() => {
-              setSaved(false);
-            }, 5000);
           }}
           accessoryLeft={props => <Icon {...props} name="content-save" />}>
           Save

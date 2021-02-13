@@ -6,7 +6,7 @@ import * as themes from "../themes";
 export type Settings = {
   version: number;
   theme: keyof typeof themes;
-  ready: boolean;
+  ready: string | false;
   maps: "apple" | "google";
   clan_style: number;
   clan_reverse: boolean;

@@ -22,6 +22,7 @@ import dayjs from "dayjs";
 import Clipboard from "expo-clipboard";
 import { useTranslation } from "react-i18next";
 import Tip from "../components/Common/Tip";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 type NavigationRoute = {
   state?: NavigationState | PartialState<NavigationState>;
@@ -31,6 +32,7 @@ type NavigationRoute = {
 };
 
 export default function DrawerContent(props: DrawerContentComponentProps<DrawerContentOptions>) {
+  const insets = useSafeAreaInsets();
   const { t } = useTranslation();
   const [users] = useUserBookmarks();
   const [clans] = useClanBookmarks();
@@ -218,7 +220,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
 
   return (
     <Layout style={{ flex: 1 }}>
-      <ScrollView style={{ flexGrow: 1 }}>
+      <ScrollView style={{ flexGrow: 1, paddingTop: insets.top }}>
         <DrawerItem
           selected={page[1]?.name === "Tools" && page[2]?.name === "Search"}
           title={t("pages:tools_search")}

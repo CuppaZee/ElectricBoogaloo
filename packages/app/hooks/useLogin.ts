@@ -25,11 +25,18 @@ WebBrowser.maybeCompleteAuthSession({
   skipRedirectCheck: true,
 });
 
-const redirectUri = Platform.OS === "web" ? [window.location.origin, "login"].filter(Boolean).join('/') : "uk.cuppazee.paper://login"
+export default function useLogin(
+  path: string,
+  shouldRedirect?: boolean,
+  application: keyof typeof configs = "main"
+) {
+  const redirectUri =
+    Platform.OS === "web"
+      ? [window.location.origin, path].filter(Boolean).join("/")
+      : `uk.cuppazee.paper://${path}`;
 
-export default function useLogin(shouldRedirect?: boolean, application: keyof typeof configs = "main") {
   var config = configs[application];
-  const {loaded} = useTeakens()
+  const { loaded } = useTeakens();
   const [teakens, setTeakens] = useAtom(teakensAtom);
   const nav = useNavigation();
   const [users, setUsers] = useUserBookmarks();
@@ -91,15 +98,18 @@ export default function useLogin(shouldRedirect?: boolean, application: keyof ty
           },
         })
       );
-      
-      if (!users.some(i=>i.user_id === params.user_id)) {
-        setUsers({ loaded: true, data: [...users, {user_id: params.user_id, username: params.username}] });
+
+      if (!users.some(i => i.user_id === params.user_id)) {
+        setUsers({
+          loaded: true,
+          data: [...users, { user_id: params.user_id, username: params.username }],
+        });
         AsyncStorage.setItem(
           "USER_BOOKMARKS",
           JSON.stringify([...users, { user_id: params.user_id, username: params.username }])
         );
       }
-      
+
       setRedirect(params.username);
       setLoading(false);
     }

@@ -14,9 +14,11 @@ TaskManager.defineTask("BACKGROUND_LOCATION", async ({ data, error }) => {
     body: JSON.stringify({
       latitude: locs[0].coords.latitude,
       longitude: locs[0].coords.longitude,
-      token: await Notifications.getExpoPushTokenAsync({
-        experienceId: "@sohcah/PaperZee",
-      }),
+      token: (
+        await Notifications.getExpoPushTokenAsync({
+          experienceId: "@sohcah/PaperZee",
+        })
+      ).data,
     }),
   });
   }

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Pressable, StyleSheet, View, Image } from "react-native";
+import { Pressable, StyleSheet, View, Image, Linking } from "react-native";
 import { Button, Icon, Layout, Text } from "@ui-kitten/components";
 import useLogin from "../hooks/useLogin";
 import { ScrollView } from "react-native-gesture-handler";
@@ -17,18 +17,18 @@ export default function WelcomeScreen() {
   const messengeriOS = messenger && window.navigator.userAgent.match(/iOS/);
   useTitle("☕ Welcome");
   const [settings, setSettings] = useSettings();
-  const [loading, login, ready] = useLogin();
+  const [loading, login, ready] = useLogin("");
   const nav = useNavigation();
   const { data: teakens } = useTeakens();
 
-  if (settings.ready) {
+  if (settings.ready === "2020-02-12") {
     nav.navigate("Dashboard");
   }
 
   return (
     <Layout style={styles.page}>
       <ScrollView
-        style={{ flex: 1 }}
+        style={{ flex: 1, alignSelf: "stretch" }}
         contentContainerStyle={{
           alignSelf: "center",
           width: 400,
@@ -61,6 +61,25 @@ export default function WelcomeScreen() {
             <Text category="h2" style={{ textAlign: "center" }}>
               Welcome to CuppaZee
             </Text>
+            <Text category="p1" style={{ textAlign: "center" }}>
+              By continuing to use this application, you agree to our Terms & Service and Privacy Policy as linked below.
+            </Text>
+            <View style={{ flexDirection: "row", flexWrap: "wrap", alignSelf: "stretch" }}>
+              <Button
+                style={{ margin: 4, flex: 1 }}
+                accessoryLeft={props => <Icon {...props} name="file-document-outline" />}
+                appearance="ghost"
+                onPress={() => Linking.openURL("https://server.cuppazee.app/terms")}>
+                Terms & Conditions
+              </Button>
+              <Button
+                style={{ margin: 4, flex: 1 }}
+                accessoryLeft={props => <Icon {...props} name="shield-key-outline" />}
+                appearance="ghost"
+                onPress={() => Linking.openURL("https://server.cuppazee.app/privacy")}>
+                Privacy Policy
+              </Button>
+            </View>
             <Text category="h6" style={{ textAlign: "center", marginTop: 16 }}>
               Pick a Theme
             </Text>
@@ -131,7 +150,7 @@ export default function WelcomeScreen() {
                 accessoryLeft={props => <Icon {...props} name="home" />}
                 appearance="outline"
                 onPress={() => {
-                  setSettings({ ...settings, ready: true });
+                  setSettings({ ...settings, ready: "2020-02-12" });
                 }}>
                 Continue to Dashboard
               </Button>
@@ -146,7 +165,6 @@ export default function WelcomeScreen() {
 const styles = StyleSheet.create({
   page: {
     flex: 1,
-    alignItems: "center",
     justifyContent: "center",
   },
 });

@@ -99,7 +99,7 @@ export default React.memo(
           style={{
             flexDirection: "row",
             alignItems: "center",
-            height: 48,
+            height: 48 * fontScale,
             padding: 4,
             borderTopLeftRadius: 8,
             borderTopRightRadius: 8,
@@ -107,8 +107,8 @@ export default React.memo(
           level="4">
           <Icon
             style={{
-              height: 32,
-              width: 32,
+              height: 32 * fontScale,
+              width: 32 * fontScale,
               marginRight: 8,
               color: theme.style === "dark" ? "#fff" : "#000",
             }}

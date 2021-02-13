@@ -19,7 +19,7 @@ const route: Route = {
           }
         }
         await db.collection('notification_settings').doc(token).update({
-          "location.dynamic": {
+          "locations.dynamic": {
             latitude: Number(latitude),
             longitude: Number(longitude),
           }

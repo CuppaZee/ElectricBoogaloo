@@ -22,10 +22,10 @@ export default function StackNavigator() {
   const [{ready}, , loaded] = useSettings();
   return (
     <Drawer.Navigator
-      drawerContent={props => (ready ? <DrawerContent {...props} /> : null)}
+      drawerContent={props => (ready === "2020-02-12" ? <DrawerContent {...props} /> : null)}
       drawerType={dimensions.width > 1000 ? "permanent" : "front"}
-      drawerStyle={{ width: ready ? 256 : 0 }}>
-      {(!loaded || ready) && (
+      drawerStyle={{ width: ready === "2020-02-12" ? 256 : 0 }}>
+      {(!loaded || ready === "2020-02-12") && (
         <>
           <Drawer.Screen name="Dashboard" component={DashNavigator} />
           {!isClanStatsBeta && (

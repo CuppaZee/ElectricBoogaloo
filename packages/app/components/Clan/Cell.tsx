@@ -1,6 +1,6 @@
 import { Icon, Layout, Text, useTheme } from "@ui-kitten/components";
 import React, { PropsWithChildren } from "react";
-import { Image, ImageSourcePropType, Pressable, PressableProps, StyleSheet, View } from "react-native";
+import { Image, ImageSourcePropType, PixelRatio, Pressable, PressableProps, StyleSheet, View } from "react-native";
 import {
   ClanStatsFormattedUser,
   ClanStatsFormattedData,
@@ -59,140 +59,144 @@ export const CommonCell = React.memo(function (props: CommonCellProps) {
   const settings = props.settings ?? settings_saved;
   const theme = useTheme();
 
+  const fontScale = PixelRatio.getFontScale();
+
   const isCompact = settings.clan_style >= 2;
   const isStack = props.type === "title" || props.type === "header_stack";
   const isSingleLine = settings.clan_single_line && !isStack;
-  const imageSize = (isSingleLine ? 0.75 : 1) * (isCompact ? 24 : 32);
-  const iconSize = isSingleLine ? 16 : 24;
-  const iconMargin = isCompact ? 4 : 8;
+  const imageSize = (isSingleLine ? 0.75 : 1) * (isCompact ? 24 : 32) * fontScale;
+  const iconSize = (isSingleLine ? 16 : 24) * fontScale;
+  const iconMargin = (isCompact ? 4 : 8) * fontScale;
 
   const height = {
     title: isCompact ? 69 : 77,
     header_stack: isCompact ? 69 : 77,
     header: isSingleLine ? (isCompact ? 26 : 32) : isCompact ? 34 : 40,
     data: isSingleLine ? (isCompact ? 26 : 32) : isCompact ? 34 : 40,
-  }[props.type];
+  }[props.type] * fontScale;
 
   return (
-    <PressWrapper onPress={props.onPress}><Layout
-      level={isCompact ? "2" : "3"}
-      style={[
-        isCompact ? {} : styles.card,
-        {
-          height,
-          flexDirection: isStack ? "column" : "row",
-          alignItems: "center",
-          opacity: (props.color === -1 && !settings.clan_full_background) ? 0.4 : 1,
-        },
-        props.color !== undefined && settings.clan_full_background
-          ? { backgroundColor: settings.clan_colours[props.color] ?? "#aaaaaa" }
-          : props.color !== undefined
-          ? { backgroundColor: (settings.clan_colours[props.color] ?? "#aaaaaa") + "22" }
-          : undefined,
-      ]}>
-      {props.color !== undefined && !isStack && !settings.clan_full_background && (
-        <View
-          style={{
-            width: 4,
-            alignSelf: "stretch",
-            borderTopLeftRadius: isCompact ? 0 : 8,
-            borderBottomLeftRadius: isCompact ? 0 : 8,
-            backgroundColor: settings.clan_colours[props.color] ?? "#aaaaaa",
-          }}
-        />
-      )}
-      {props.image && (
-        <Image
-          source={props.image}
-          style={{
-            width: imageSize,
-            height: imageSize,
-            borderRadius:
-              typeof props.image === "object" &&
-              "uri" in props.image &&
-              (props.image.uri?.includes("/avatars/ua") ||
-                props.image.uri?.includes("/clan_logos/"))
-                ? imageSize / 2
-                : 0,
-            margin: 4,
-          }}
-        />
-      )}
-      {props.icon && (
-        <View style={isStack ? { marginVertical: iconMargin } : {}}>
-          <Icon
+    <PressWrapper onPress={props.onPress}>
+      <Layout
+        level={isCompact ? "2" : "3"}
+        style={[
+          isCompact ? {} : styles.card,
+          {
+            height,
+            flexDirection: isStack ? "column" : "row",
+            alignItems: "center",
+            opacity: props.color === -1 && !settings.clan_full_background ? 0.4 : 1,
+          },
+          props.color !== undefined && settings.clan_full_background
+            ? { backgroundColor: settings.clan_colours[props.color] ?? "#aaaaaa" }
+            : props.color !== undefined
+            ? { backgroundColor: (settings.clan_colours[props.color] ?? "#aaaaaa") + "22" }
+            : undefined,
+        ]}>
+        {props.color !== undefined && !isStack && !settings.clan_full_background && (
+          <View
             style={{
-              width: iconSize,
-              height: iconSize,
-              marginHorizontal: iconMargin,
-              color:
-                props.color !== undefined && settings.clan_full_background
-                  ? pickTextColor(settings.clan_colours[props.color] ?? "#aaaaaa")
-                  : theme.style === "dark"
-                  ? "#fff"
-                  : "#000",
+              width: 4 * fontScale,
+              alignSelf: "stretch",
+              borderTopLeftRadius: isCompact ? 0 : 8,
+              borderBottomLeftRadius: isCompact ? 0 : 8,
+              backgroundColor: settings.clan_colours[props.color] ?? "#aaaaaa",
             }}
-            name={props.icon}
           />
-        </View>
-      )}
-      <View
-        style={{
-          padding: 4,
-          paddingVertical: 0,
-          flex: 1,
-          alignItems: isStack ? "center" : "stretch",
-          maxWidth: "100%",
-        }}>
-        {props.title && (
-          // @ts-ignore
-          <Text
-            style={[
-              props.color !== undefined && settings.clan_full_background
-                ? { color: pickTextColor(settings.clan_colours[props.color] ?? "#aaaaaa") }
-                : undefined,
-              {
-                textAlign: !!props.subtitle ? "left" : "center",
-                marginLeft:
-                  !!props.subtitle ||
-                  !(props.color !== undefined && !isStack && !settings.clan_full_background)
-                    ? 0
-                    : -4,
-              },
-            ]}
-            numberOfLines={1}
-            ellipsizeMode="tail"
-            category="s2">
-            {props.titleIcon && <Icon name={props.titleIcon} style={{ height: 12, width: 12 }} />}
-            {props.title}
-          </Text>
         )}
-        {!isSingleLine && props.subtitle && (
-          <Text
-            style={
-              props.color !== undefined && settings.clan_full_background
-                ? { color: pickTextColor(settings.clan_colours[props.color] ?? "#aaaaaa") }
-                : undefined
-            }
-            numberOfLines={1}
-            ellipsizeMode="tail"
-            category="c1">
-            {props.subtitle}
-          </Text>
+        {props.image && (
+          <Image
+            source={props.image}
+            style={{
+              width: imageSize,
+              height: imageSize,
+              borderRadius:
+                typeof props.image === "object" &&
+                "uri" in props.image &&
+                (props.image.uri?.includes("/avatars/ua") ||
+                  props.image.uri?.includes("/clan_logos/"))
+                  ? imageSize / 2
+                  : 0,
+              margin: 4 * fontScale,
+            }}
+          />
         )}
-      </View>
-      {props.color !== undefined && isStack && !settings.clan_full_background && (
+        {props.icon && (
+          <View style={isStack ? { marginVertical: iconMargin } : {}}>
+            <Icon
+              style={{
+                width: iconSize,
+                height: iconSize,
+                marginHorizontal: iconMargin,
+                color:
+                  props.color !== undefined && settings.clan_full_background
+                    ? pickTextColor(settings.clan_colours[props.color] ?? "#aaaaaa")
+                    : theme.style === "dark"
+                    ? "#fff"
+                    : "#000",
+              }}
+              name={props.icon}
+            />
+          </View>
+        )}
         <View
           style={{
-            height: 4,
-            width: 45,
-            borderTopLeftRadius: isCompact ? 0 : 8,
-            borderBottomLeftRadius: isCompact ? 0 : 8,
-            backgroundColor: settings.clan_colours[props.color] ?? "#aaaaaa",
-          }}
-        />
-      )}
-    </Layout></PressWrapper>
+            padding: 4,
+            paddingVertical: 0,
+            flex: 1,
+            alignItems: isStack ? "center" : "stretch",
+            maxWidth: "100%",
+          }}>
+          {props.title && (
+            // @ts-ignore
+            <Text
+              style={[
+                props.color !== undefined && settings.clan_full_background
+                  ? { color: pickTextColor(settings.clan_colours[props.color] ?? "#aaaaaa") }
+                  : undefined,
+                {
+                  textAlign: !!props.subtitle ? "left" : "center",
+                  marginLeft:
+                    !!props.subtitle ||
+                    !(props.color !== undefined && !isStack && !settings.clan_full_background)
+                      ? 0
+                      : -4,
+                },
+              ]}
+              numberOfLines={1}
+              ellipsizeMode="tail"
+              category="s2">
+              {props.titleIcon && <Icon name={props.titleIcon} style={{ height: 12, width: 12 }} />}
+              {props.title}
+            </Text>
+          )}
+          {!isSingleLine && props.subtitle && (
+            <Text
+              style={
+                props.color !== undefined && settings.clan_full_background
+                  ? { color: pickTextColor(settings.clan_colours[props.color] ?? "#aaaaaa") }
+                  : undefined
+              }
+              numberOfLines={1}
+              ellipsizeMode="tail"
+              category="c1">
+              {props.subtitle}
+            </Text>
+          )}
+        </View>
+        {props.color !== undefined && isStack && !settings.clan_full_background && (
+          <View
+            style={{
+              height: 4 * fontScale,
+              width: 45 * fontScale,
+              borderTopLeftRadius: isCompact ? 0 : 8,
+              borderBottomLeftRadius: isCompact ? 0 : 8,
+              backgroundColor: settings.clan_colours[props.color] ?? "#aaaaaa",
+            }}
+          />
+        )}
+      </Layout>
+    </PressWrapper>
   );
 });
 

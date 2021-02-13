@@ -10,7 +10,7 @@ import { teakensAtom, useTeakens } from "../../hooks/useToken";
 
 export default function AccountsScreen() {
   useTitle("☕ Settings - Accounts");
-  const [loading, login, ready] = useLogin();
+  const [loading, login, ready] = useLogin("settings/accounts");
   const { loaded } = useTeakens();
   const [teakens, setTeakens] = useAtom(teakensAtom);
   const [settings, setSettings] = useSettings();

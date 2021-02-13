@@ -1,4 +1,5 @@
 import { firestore } from "firebase-admin";
+import database from "./db";
 
 export type Device = {
   bouncers?: {
@@ -121,7 +122,7 @@ export type FullDeviceNotificationSettings = {
   imperial: boolean;
 };
 
-export default function (db: firestore.Firestore) {
+export default (function (db: firestore.Firestore) {
   let devices: DeviceNotificationSettings[] = [];
 
   let hasData = false;
@@ -145,4 +146,4 @@ export default function (db: firestore.Firestore) {
       }
     });
   };
-}
+})(database)

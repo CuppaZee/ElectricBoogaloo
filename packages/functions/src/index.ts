@@ -4,8 +4,9 @@ import corsImport from "cors";
 const cors = corsImport({ origin: true });
 
 import db from './util/db';
-import notificationDataImport from './util/notificationSettings'
-const notificationData = notificationDataImport(db);
+import notificationData from './util/notificationSettings'
+
+import bouncersService from "./services/bouncers";
 
 import auth_routes from './auth';
 import bouncers_routes from './bouncers';
@@ -45,7 +46,6 @@ export const apibeta = functions
     cors(req, res, async () => {
       try {
         functions.logger.log('REQUEST', req.url);
-        functions.logger.log(req, res);
         var path = req.path.split("/").filter(Boolean);
         var version = null;
         var route = path.join("/");
@@ -110,6 +110,7 @@ export const apibeta = functions
           console.error(e);
         }
         var params = Object.assign({}, req.query || {}, body || {});
+        console.log(params);
         var response = await Promise.resolve(use.function({
           params: params,
           res,
@@ -163,3 +164,11 @@ export const apibeta = functions
     });
     return;
   });
+
+  export const bouncersServiceFunction = functions
+    .runWith({
+      timeoutSeconds: 540,
+      memory: "512MB"
+    })
+    .pubsub.topic("service_bouncers")
+    .onPublish(bouncersService);

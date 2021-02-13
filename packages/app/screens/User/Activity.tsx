@@ -31,7 +31,7 @@ export default function UserActivityScreen() {
   const d = React.useMemo(
     () =>
       data.data?.data
-        ? ActivityConverter(data.data?.data, filters, { username: "sohcah" })
+        ? ActivityConverter(data.data?.data, filters, { username: user.data?.data?.username })
         : null,
     [data.dataUpdatedAt, filters]
   );
