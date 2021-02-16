@@ -31,6 +31,10 @@
       ],
       "rewrites": [
         {
+          "source": "/services/bouncers",
+          "function": "bouncersServiceHttp"
+        },
+        {
           "source": "**",
           "function": "apibeta"
         }

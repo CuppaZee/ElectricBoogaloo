@@ -20,6 +20,7 @@ import { isClanStatsBeta } from "./MainNavigator";
 import * as themes from "../themes";
 import dayjs from "dayjs";
 import Clipboard from "expo-clipboard";
+import Constants from "expo-constants";
 import { useTranslation } from "react-i18next";
 import Tip from "../components/Common/Tip";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -220,7 +221,11 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
 
   return (
     <Layout style={{ flex: 1 }}>
-      <ScrollView style={{ flexGrow: 1, paddingTop: insets.top }}>
+      <ScrollView style={{ flexGrow: 1 }} contentContainerStyle={{ paddingTop: insets.top, paddingBottom: insets.bottom }}>
+        <Text category="p1">
+          You are running CuppaZee for {Platform.OS} version {Constants.nativeAppVersion || ""}
+        </Text>
+        <Text category="p1">The latest CuppaZee for {Platform.OS} version is 2.0.1</Text>
         <DrawerItem
           selected={page[1]?.name === "Tools" && page[2]?.name === "Search"}
           title={t("pages:tools_search")}
@@ -370,16 +375,18 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
             })
           }
         />
-        {clans && clans?.length > 0 && <DrawerItem
-          selected={page[1]?.name === "Clan" && page[2]?.name === "Bookmarks"}
-          title={t("pages:clan_bookmarks")}
-          accessoryLeft={props => <Icon {...props} name="bookmark" />}
-          onPress={() =>
-            props.navigation.navigate("Clan", {
-              screen: "Bookmarks",
-            })
-          }
-        />}
+        {clans && clans?.length > 0 && (
+          <DrawerItem
+            selected={page[1]?.name === "Clan" && page[2]?.name === "Bookmarks"}
+            title={t("pages:clan_bookmarks")}
+            accessoryLeft={props => <Icon {...props} name="bookmark" />}
+            onPress={() =>
+              props.navigation.navigate("Clan", {
+                screen: "Bookmarks",
+              })
+            }
+          />
+        )}
         {clans?.slice(0, 5).map(clan => (
           <DrawerItem
             selected={
@@ -494,7 +501,9 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
         />
 
         {/* Settings */}
-        <DrawerGroup title={t("pages:settings")} accessoryLeft={props => <Icon {...props} name="cog" />}>
+        <DrawerGroup
+          title={t("pages:settings")}
+          accessoryLeft={props => <Icon {...props} name="cog" />}>
           <DrawerItem
             selected={page[1]?.name === "Settings" && page[2]?.name === "Personalisation"}
             title={t("pages:settings_personalisation")}

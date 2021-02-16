@@ -16,12 +16,24 @@ function generateBouncerHash(id: number, timestamp: number) {
 }
 
 const cache: {
-  bouncers: ((MunzeeSpecial | MunzeeSpecialBouncer) & { hash: string })[];
+  bouncers: ((MunzeeSpecial | MunzeeSpecialBouncer) & {
+    hash: string;
+    endpoint: "regular" | "mythological" | "pouchcreatures" | "flat" | "bouncers" | "retired";
+  })[];
   bouncers_updated: number;
 } = {
   bouncers: [],
   bouncers_updated: 0,
 };
+
+export const bouncerEndpointTypes = [
+  "regular",
+  "mythological",
+  "pouchcreatures",
+  "flat",
+  "bouncers",
+  "retired",
+] as const;
 
 export async function getBouncers(force?: boolean) {
   if (force || cache.bouncers_updated < Date.now() - 300000) {
@@ -34,7 +46,11 @@ export async function getBouncers(force?: boolean) {
       request("munzee/specials/bouncers", {}, token.access_token),
       request("munzee/specials/retired", {}, token.access_token),
     ]);
-    let body: ((MunzeeSpecial | MunzeeSpecialBouncer) & { hash: string })[] = [];
+    let body: ((MunzeeSpecial | MunzeeSpecialBouncer) & {
+      hash: string;
+      endpoint: "regular" | "mythological" | "pouchcreatures" | "flat" | "bouncers" | "retired";
+    })[] = [];
+    let n = 0;
     for (let endpointData of data) {
       body = body.concat(
         ((endpointData?.data ?? []) as (MunzeeSpecial | MunzeeSpecialBouncer)[]).map(i => ({
@@ -43,8 +59,10 @@ export async function getBouncers(force?: boolean) {
             Number("mythological_munzee" in i ? i.mythological_munzee.munzee_id : i.munzee_id),
             i.special_good_until
           ),
+          endpoint: bouncerEndpointTypes[n],
         }))
       );
+      n++;
     }
     cache.bouncers = body;
     cache.bouncers_updated = Date.now();

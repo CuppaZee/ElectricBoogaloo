@@ -3,24 +3,24 @@ import { URLSearchParams } from "url";
 import _config from "../config.json";
 import db from "./db";
 
-const auth_default = new Promise<Map<string, any>>((resolve, reject) => {
-  const d = new Map();
-  let resolved = false;
-  db.collection("auth").onSnapshot(querySnapshot => {
-    querySnapshot.docChanges().forEach(change => {
-      if (change.type === "added" || change.type === "modified") {
-        d.set(change.doc.id, change.doc.data());
-      }
-      if (change.type === "removed") {
-        d.delete(change.doc.id);
-      }
-    });
-    if (!resolved) {
-      resolved = true;
-      resolve(d);
-    }
-  });
-});
+// const auth_default = new Promise<Map<string, any>>((resolve, reject) => {
+//   const d = new Map();
+//   let resolved = false;
+//   db.collection("auth").onSnapshot(querySnapshot => {
+//     querySnapshot.docChanges().forEach(change => {
+//       if (change.type === "added" || change.type === "modified") {
+//         d.set(change.doc.id, change.doc.data());
+//       }
+//       if (change.type === "removed") {
+//         d.delete(change.doc.id);
+//       }
+//     });
+//     if (!resolved) {
+//       resolved = true;
+//       resolve(d);
+//     }
+//   });
+// });
 
 export default async function (
   { user_id, teaken }: { user_id: number | string; teaken: string | boolean },
@@ -33,11 +33,11 @@ export default async function (
       .collection(application === "default" ? "auth" : `auth_${application}`)
       .doc(user_id.toString());
     let data;
-    if (application === "default") {
-      data = (await auth_default).get(user_id.toString());
-    } else {
-      data = (await doc.get()).data();
-    }
+    // if (application === "default") {
+    //   data = (await auth_default).get(user_id.toString());
+    // } else {
+    data = (await doc.get()).data();
+    // }
     if (!data) return null;
     if (teaken === false || data.teakens.includes(teaken)) {
       const token = data.token;

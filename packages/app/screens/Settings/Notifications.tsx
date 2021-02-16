@@ -413,24 +413,30 @@ export default function NotificationScreen() {
     return (
       <Layout style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <Text category="h5">Notifications aren't supported on Web</Text>
+        <Text>{debugStatus}</Text>
       </Layout>
     );
   if (!token)
     return (
       <Layout style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <Spinner />
+        <Text>BUILD VERSION: {Constants.nativeBuildVersion || ""}</Text>
+        <Text>{debugStatus}</Text>
       </Layout>
     );
   if (token === "_failed")
     return (
       <Layout style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <Text category="h5">Granting permissions failed. Did you allow notifications?</Text>
+        <Text>{debugStatus}</Text>
       </Layout>
     );
   if (!settings)
     return (
       <Layout style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <Spinner />
+        <Text>BUILD VERSION: {Constants.nativeBuildVersion || ""}</Text>
+        <Text>{debugStatus}</Text>
       </Layout>
     );
 

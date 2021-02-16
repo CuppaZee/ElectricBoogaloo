@@ -4,7 +4,6 @@ import notification from "../util/notification";
 import { getBouncers } from "../util/cache";
 import db from "../util/db";
 import notificationData from "../util/notificationSettings";
-import { EventContext, pubsub } from "firebase-functions";
 
 const leaseTime = 5 * 60 * 1000; // 5m
 
@@ -12,17 +11,20 @@ function getData() {
   const ref = db.collection("data").doc("bouncer_notifications");
   return db.runTransaction(transaction => {
     return transaction.get(ref).then(doc => {
-      if (doc.data()?.leased && new Date() < doc.data()?.lease) {
+      if (doc.data()?.lease && new Date() < doc.data()?.lease) {
         return { onLease: true };
       }
       const leasedUntil = new Date(new Date().getTime() + leaseTime);
       transaction.update(ref, { lease: leasedUntil });
-      return { leasedUntil, list: doc.data()?.list };
+      return {
+        leasedUntil,
+        list: doc.data()?.sent_lists,
+      };
     });
   });
 }
 
-export default async function (message: pubsub.Message, event: EventContext) {
+export default async function () {
   const { onLease, list, leasedUntil } = await getData();
 
   if (onLease) return;
@@ -30,10 +32,17 @@ export default async function (message: pubsub.Message, event: EventContext) {
   const devices = await notificationData();
   try {
     // Calculate Notifications to Send
-    var sent = new Set(list.match(/.{8}/g));
+    const sent = {
+      "regular": new Set(list.regular.match(/.{8}/g)),
+      "mythological": new Set(list.mythological.match(/.{8}/g)),
+      "pouchcreatures": new Set(list.pouchcreatures.match(/.{8}/g)),
+      "flat": new Set(list.flat.match(/.{8}/g)),
+      "bouncers": new Set(list.bouncers.match(/.{8}/g)),
+      "retired": new Set(list.retired.match(/.{8}/g)),
+    }
     const all_bouncers = await getBouncers(true);
     var bouncers = all_bouncers
-      .filter(i => !sent.has(i.hash))
+      .filter(i => !sent[i.endpoint].has(i.hash))
       .map(i => ({
         ...i,
         type: types.getType(
@@ -99,7 +108,7 @@ export default async function (message: pubsub.Message, event: EventContext) {
       }
     }
 
-    if (Date.now() > (leasedUntil?.valueOf() || 0)) return;
+    if (Date.now() > (leasedUntil?.valueOf() || 0) - 60000) return;
 
     // Send Notifications
     await notification(
@@ -142,7 +151,7 @@ export default async function (message: pubsub.Message, event: EventContext) {
               }
               return `${distance} ${direction} from ${location.location.name}`;
             })
-            .join("\n")}`,
+            .join("\n")}\nDEBUG_SGU: ${i.bouncer.special_good_until}/${i.bouncer.hash}`,
           data: {
             type: "bouncer",
             bouncer: i.bouncer.full_url,
@@ -152,10 +161,35 @@ export default async function (message: pubsub.Message, event: EventContext) {
     );
 
     // Update Database
+    const sendLists = all_bouncers.reduce(
+      (a, b) => {
+        return {
+          ...a,
+          [b.endpoint]: a[b.endpoint] + b.hash,
+        }
+      },
+      {
+        regular: "",
+        mythological: "",
+        pouchcreatures: "",
+        flat: "",
+        bouncers: "",
+        retired: "",
+      }
+    );
     await db
       .collection("data")
       .doc("bouncer_notifications")
-      .set({ list: all_bouncers.map(i => i.hash).join("") });
+      .set({
+        sent_lists: {
+          regular: sendLists.regular || list.regular,
+          mythological: sendLists.mythological || list.mythological,
+          pouchcreatures: sendLists.pouchcreatures || list.pouchcreatures,
+          flat: sendLists.flat || list.flat,
+          bouncers: sendLists.bouncers || list.bouncers,
+          retired: sendLists.retired || list.retired,
+        },
+      });
 
     return;
   } catch (e) {

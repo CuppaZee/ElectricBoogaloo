@@ -1,6 +1,14 @@
 import { Icon, Layout, Text, useTheme } from "@ui-kitten/components";
 import React, { PropsWithChildren } from "react";
-import { Image, ImageSourcePropType, PixelRatio, Pressable, PressableProps, StyleSheet, View } from "react-native";
+import {
+  Image,
+  ImageSourcePropType,
+  PixelRatio,
+  Pressable,
+  PressableProps,
+  StyleSheet,
+  View,
+} from "react-native";
 import {
   ClanStatsFormattedUser,
   ClanStatsFormattedData,
@@ -37,7 +45,7 @@ export function pickTextColor(
 
 function PressWrapper(props: PropsWithChildren<PressableProps>) {
   if (props.onPress) {
-    return <Pressable {...props} />
+    return <Pressable {...props} />;
   }
   return <>{props.children}</>;
 }
@@ -68,12 +76,13 @@ export const CommonCell = React.memo(function (props: CommonCellProps) {
   const iconSize = (isSingleLine ? 16 : 24) * fontScale;
   const iconMargin = (isCompact ? 4 : 8) * fontScale;
 
-  const height = {
-    title: isCompact ? 69 : 77,
-    header_stack: isCompact ? 69 : 77,
-    header: isSingleLine ? (isCompact ? 26 : 32) : isCompact ? 34 : 40,
-    data: isSingleLine ? (isCompact ? 26 : 32) : isCompact ? 34 : 40,
-  }[props.type] * fontScale;
+  const height =
+    {
+      title: isCompact ? 69 : 77,
+      header_stack: isCompact ? 69 : 77,
+      header: isSingleLine ? (isCompact ? 26 : 32) : isCompact ? 34 : 40,
+      data: isSingleLine ? (isCompact ? 26 : 32) : isCompact ? 34 : 40,
+    }[props.type] * fontScale;
 
   return (
     <PressWrapper onPress={props.onPress}>
@@ -148,27 +157,34 @@ export const CommonCell = React.memo(function (props: CommonCellProps) {
             maxWidth: "100%",
           }}>
           {props.title && (
-            // @ts-ignore
-            <Text
-              style={[
-                props.color !== undefined && settings.clan_full_background
-                  ? { color: pickTextColor(settings.clan_colours[props.color] ?? "#aaaaaa") }
-                  : undefined,
-                {
-                  textAlign: !!props.subtitle ? "left" : "center",
-                  marginLeft:
-                    !!props.subtitle ||
-                    !(props.color !== undefined && !isStack && !settings.clan_full_background)
-                      ? 0
-                      : -4,
-                },
-              ]}
-              numberOfLines={1}
-              ellipsizeMode="tail"
-              category="s2">
-              {props.titleIcon && <Icon name={props.titleIcon} style={{ height: 12, width: 12 }} />}
-              {props.title}
-            </Text>
+            <View style={{ flexDirection: "row", alignItems: "baseline" }}>
+              {props.titleIcon && (
+                <Icon
+                  name={props.titleIcon}
+                  style={{ height: 12, width: 12, color: theme["text-basic-color"] }}
+                />
+              )}
+              <Text
+                style={[
+                  props.color !== undefined && settings.clan_full_background
+                    ? { color: pickTextColor(settings.clan_colours[props.color] ?? "#aaaaaa") }
+                    : undefined,
+                  {
+                    textAlign: !!props.subtitle ? "left" : "center",
+                    marginLeft:
+                      !!props.subtitle ||
+                      !(props.color !== undefined && !isStack && !settings.clan_full_background)
+                        ? 0
+                        : -4,
+                    flex: 1,
+                  },
+                ]}
+                numberOfLines={1}
+                ellipsizeMode="tail"
+                category="s2">
+                {props.title}
+              </Text>
+            </View>
           )}
           {!isSingleLine && props.subtitle && (
             <Text
@@ -283,10 +299,12 @@ export function RequirementDataCell(props: RequirementDataCellProps) {
 
   const count =
     props.type === "share"
-      ? Math.ceil(Math.max(
-          props.requirements?.tasks.individual[props.task]?.[props.level] ?? 0,
-          (props.requirements?.tasks.group[props.task]?.[props.level] ?? 0) / (props.members ?? 1)
-        ))
+      ? Math.ceil(
+          Math.max(
+            props.requirements?.tasks.individual[props.task]?.[props.level] ?? 0,
+            (props.requirements?.tasks.group[props.task]?.[props.level] ?? 0) / (props.members ?? 1)
+          )
+        )
       : props.requirements?.tasks[props.type][props.task]?.[props.level];
 
   if (settings.clan_style === 0) {
@@ -299,7 +317,9 @@ export function RequirementDataCell(props: RequirementDataCellProps) {
             ? undefined
             : props.type === "individual"
             ? "account-check"
-            : (props.type === "share" ? "percent" : "shield-check")
+            : props.type === "share"
+            ? "percent"
+            : "shield-check"
         }
         image={
           settings.clan_reverse
@@ -313,9 +333,7 @@ export function RequirementDataCell(props: RequirementDataCellProps) {
             ? `${requirementMeta[props.task]?.top} ${requirementMeta[props.task]?.bottom}`
             : t(`clan:${props.type}_level` as const, { level: props.level })
         }
-        subtitle={
-          count?.toString() ?? "-"
-        }
+        subtitle={count?.toString() ?? "-"}
       />
     );
   }
@@ -377,7 +395,9 @@ export function LevelCell(props: LevelCellProps) {
         settings.clan_single_line && !props.stack
           ? props.type === "individual"
             ? "clan:individual_level"
-            : (props.type === "share" ? "clan:share_level" : "clan:group_level")
+            : props.type === "share"
+            ? "clan:share_level"
+            : "clan:group_level"
           : "clan:level",
         { level: props.level }
       )}

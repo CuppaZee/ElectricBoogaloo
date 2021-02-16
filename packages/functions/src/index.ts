@@ -172,3 +172,13 @@ export const apibeta = functions
     })
     .pubsub.topic("service_bouncers")
     .onPublish(bouncersService);
+
+  export const bouncersServiceHttp = functions
+    .runWith({
+      timeoutSeconds: 540,
+      memory: "512MB",
+    })
+    .https.onRequest(async (req, res) => {
+      await bouncersService();
+      res.send(true);
+    });
