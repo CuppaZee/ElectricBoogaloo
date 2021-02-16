@@ -38,6 +38,7 @@ export default {
               Search: "search",
               Calendar: "calendar",
               Bouncers: "bouncers",
+              Nearby: "nearby",
               Credits: "credits",
               OpenSource: "opensource",
               WidgetConfigureActivityWidget: "widget_configure_activity_widget/:id",

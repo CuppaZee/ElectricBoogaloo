@@ -14,9 +14,11 @@ import "@formatjs/intl-datetimeformat/add-all-tz"; // Add ALL tz data
 
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
+import mhq from "./components/dayjsmhq";
 import timezone from "dayjs/plugin/timezone";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 dayjs.extend(utc);
+dayjs.extend(mhq);
 dayjs.extend(timezone);
 dayjs.extend(localizedFormat);
 

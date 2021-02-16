@@ -48,7 +48,7 @@ export default function UserActivityList({
             maxWidth: "100%",
           }}>
           <Datepicker
-            date={new Date(route.params.date ?? dayjs().tz("America/Chicago").valueOf())}
+            date={new Date(route.params.date ?? dayjs.mhqNow().valueOf())}
             onSelect={nextDate => nav.setParams({ date: dayjs(nextDate).format("YYYY-MM-DD") })}
             accessoryRight={props => <Icon {...props} name="calendar" />}
           />
@@ -64,7 +64,7 @@ export default function UserActivityList({
           {/* // TODO: Translate */}
           <UserActivityOverview
             user_id={user_id}
-            day={route.params.date ?? dayjs().tz("America/Chicago").format("YYYY-MM-DD")}
+            day={route.params.date ?? dayjs.mhqNow().format("YYYY-MM-DD")}
           />
         </Layout>
       )}

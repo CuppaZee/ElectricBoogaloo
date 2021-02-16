@@ -7,7 +7,7 @@ import { isClanStatsBeta } from "./MainNavigator";
 
 // Pages
 import loadable from '@loadable/component'
-const DashboardScreen = loadable(() => import("../screens/Dashboard"))
+const DashboardScreen = loadable(() => import("../screens/Dashboard/Dashboard"))
 
 const DashStack = createStackNavigator<DashStackParamList>();
 

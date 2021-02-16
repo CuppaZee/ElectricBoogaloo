@@ -166,7 +166,7 @@ export default function InventoryConverter(
       original_name: log.type,
       reason: log.log_text,
       icon: db.getType(log.type.replace(/^([0-9]+)x? /i, ""))?.icon ?? "missing",
-      time: dayjs.tz(log.time_awarded, "America/Chicago").valueOf(),
+      time: dayjs.mhqParse(log.time_awarded).valueOf(),
     };
     if (
       latestTitle === item.reason &&

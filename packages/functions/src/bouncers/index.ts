@@ -1,6 +1,4 @@
-import overview from './overview';
-import list from './list';
-export default [
-  overview,
-  list,
-]
+import overview from "./overview";
+import list from "./list";
+import nearby from "./nearby";
+export default [overview, list, nearby];

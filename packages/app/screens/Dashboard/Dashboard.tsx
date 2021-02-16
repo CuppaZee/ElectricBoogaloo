@@ -13,12 +13,14 @@ import {
   View,
   ViewProps,
 } from "react-native";
-import UserActivityOverview from "../components/Activity/Overview";
-import ZeeOpsOverview from "../components/ZeeOps/Overview";
-import { useClanBookmarks, useUserBookmarks } from "../hooks/useBookmarks";
-import useComponentSize from "../hooks/useComponentSize";
-import useTitle from "../hooks/useTitle";
-import { DashStackParamList } from "../types";
+import UserActivityOverview from "../../components/Activity/Overview";
+import ZeeOpsOverview from "../../components/ZeeOps/Overview";
+import { useClanBookmarks, useUserBookmarks } from "../../hooks/useBookmarks";
+import useComponentSize from "../../hooks/useComponentSize";
+import useTitle from "../../hooks/useTitle";
+import { DashStackParamList } from "../../types";
+import ClansDashCard from "./Clans";
+import UserDashCard from "./User";
 
 function WheelWrapper({
   onWheel,
@@ -37,6 +39,12 @@ function WheelWrapper({
 }
 
 const FlexView = (props: ViewProps) => <View {...props} style={[props.style, { flex: 1 }]} />;
+
+export interface DashCardProps<i> {
+  item: i;
+  index: number;
+  touched: number[];
+}
 
 export default function DashboardScreen() {
   const { t } = useTranslation();
@@ -129,6 +137,7 @@ export default function DashboardScreen() {
             });
           }}>
           <FlatList
+          style={{ flexGrow: 1 }}
             decelerationRate="fast"
             ref={sv => {
               scrollRef.current = sv || undefined;
@@ -137,7 +146,7 @@ export default function DashboardScreen() {
             pagingEnabled={Platform.OS === "web"}
             contentOffset={{ x: Math.min(600, width), y: 0 }}
             onScroll={ev => {
-              if(position.current === undefined && Platform.OS === "web") {
+              if (position.current === undefined && Platform.OS === "web") {
                 scrollRef.current?.scrollToOffset({
                   offset: Math.min(600, width),
                   animated: false,
@@ -155,10 +164,9 @@ export default function DashboardScreen() {
             snapToAlignment="center"
             showsHorizontalScrollIndicator={false}
             snapToStart={true}
-            data={[{ nonUser: true }, ...users]}
+            data={[{ nonUser: "clan" }, ...users]}
             CellRendererComponent={FlexView}
-            renderItem={({ item, index }) =>
-              "nonUser" in item ? (
+            renderItem={({ item, index }) => (
                 <View
                   style={{
                     width: Math.min(600, width),
@@ -168,115 +176,7 @@ export default function DashboardScreen() {
                     flex: 1,
                     alignSelf: "center",
                   }}>
-                  <Layout level="3" style={[styles.card, { flex: 1, padding: 4 }]}>
-                    <Text style={{ marginLeft: 4 }} category="h5">
-                      {t("dashboard:clans")}
-                    </Text>
-                    <DrawerItem
-                      style={{ backgroundColor: "transparent" }}
-                      selected={false}
-                      title={() => (
-                        <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
-                          {t("pages:clan_bookmarks")}
-                        </Text>
-                      )}
-                      accessoryLeft={props => <Icon name="bookmark" {...props} />}
-                      onPress={() =>
-                        nav.navigate("Clan", {
-                          screen: "Bookmarks",
-                        })
-                      }
-                    />
-                    {clans?.map(clan => (
-                      <DrawerItem
-                        style={{ backgroundColor: "transparent" }}
-                        selected={false}
-                        title={() => (
-                          <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
-                            {clan.name}
-                          </Text>
-                        )}
-                        accessoryLeft={() => (
-                          <Image
-                            source={{
-                              uri: `https://munzee.global.ssl.fastly.net/images/clan_logos/${clan.clan_id.toString(
-                                36
-                              )}.png`,
-                            }}
-                            style={{
-                              height: 32,
-                              marginVertical: -4,
-                              width: 32,
-                              borderRadius: 16,
-                              marginHorizontal: 2,
-                            }}
-                          />
-                        )}
-                        onPress={() =>
-                          nav.navigate("Clan", {
-                            params: { clanid: clan.clan_id.toString() },
-                            screen: "Stats",
-                          })
-                        }
-                      />
-                    ))}
-                  </Layout>
-                </View>
-              ) : (
-                <View
-                  style={{
-                    width: Math.min(600, width),
-                    padding: 8,
-                    zIndex: -index,
-                    height: "100%",
-                    flex: 1,
-                    alignSelf: "center",
-                  }}>
-                  <Layout level="3" style={[styles.card, { flex: 1 }]}>
-                    <View
-                      style={{
-                        flexDirection: "row",
-                        alignItems: "center",
-                        padding: 4,
-                        justifyContent: "center",
-                      }}>
-                      <Image
-                        style={{ height: 32, width: 32, borderRadius: 16, marginRight: 8 }}
-                        source={{
-                          uri: `https://munzee.global.ssl.fastly.net/images/avatars/ua${Number(
-                            item.user_id
-                          ).toString(36)}.png`,
-                        }}
-                      />
-                      <Text category="h5">{item.username}</Text>
-                    </View>
-                    {touched.includes(index) ? (
-                      <>
-                        <UserActivityOverview
-                          user_id={Number(item?.user_id)}
-                          day={dayjs().tz("America/Chicago").format("YYYY-MM-DD")}
-                        />
-                        <ZeeOpsOverview user_id={Number(item?.user_id)} />
-                      </>
-                    ) : null}
-                    <DrawerItem
-                      style={{ backgroundColor: "transparent" }}
-                      selected={false}
-                      title={() => (
-                        <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
-                          {t("pages:user_activity")}
-                        </Text>
-                      )}
-                      accessoryLeft={props => <Icon name="calendar" {...props} />}
-                      onPress={() =>
-                        nav.navigate("User", {
-                          screen: "Activity",
-                          params: { username: item.username },
-                        })
-                      }
-                    />
-                    <Text category="c1">More buttons coming here soon :D</Text>
-                  </Layout>
+                  {"nonUser" in item ? (item.nonUser === "clan" ? <ClansDashCard /> : null) : <UserDashCard item={item} index={index} touched={touched} />}
                 </View>
               )
             }

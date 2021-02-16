@@ -5,7 +5,7 @@ import { Type, TypeState, TypeTags } from "@cuppazee/types";
 import dayjs from "dayjs";
 
 export function monthToGameID(year?: number, month?: number) {
-  let now = dayjs().tz("America/Chicago");
+  let now = dayjs.mhqNow();
   let y = year !== undefined ? year : now.year();
   let m = month !== undefined ? month : now.month();
   return y * 12 + m - 24158;

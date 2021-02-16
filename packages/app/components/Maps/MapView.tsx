@@ -6,7 +6,7 @@ import { useSettings } from "../../hooks/useSettings";
 import MapStyleDark from "./MapStyleDark.json";
 
 import MapboxGL from "@react-native-mapbox-gl/maps";
-import { View } from "react-native";
+import { Platform, View } from "react-native";
 
 MapboxGL.setAccessToken(
   "pk.eyJ1Ijoic29oY2FoIiwiYSI6ImNqeWVqcm8wdTAxc2MzaXFpa282Yzd2aHEifQ.afYbt2sVMZ-kbwdx5_PekQ"
@@ -101,7 +101,7 @@ export default function MapView(props: MapProps) {
         <MapboxGL.Camera
           ref={r => (camRef.current = r)}
           zoomLevel={props.zoom}
-          centerCoordinate={[props.latitude, props.longitude]}
+          centerCoordinate={[props.longitude, props.latitude]}
         />
         <MapboxGL.Images images={getImages(props.markers ?? [])} />
         {props.circles && (
@@ -187,7 +187,7 @@ export default function MapView(props: MapProps) {
               id="symbols"
               filter={["!", ["has", "point_count"]]}
               style={{
-                iconSize: 0.4,
+                iconSize: Platform.OS === "ios" ? 0.6 : 0.4,
                 iconAnchor: "bottom",
                 iconImage: ["get", "icon"],
                 iconAllowOverlap: true,

@@ -16,7 +16,7 @@ export default function UserChallengesScreen() {
   const route = useRoute<RouteProp<UserStackParamList, "Challenges">>();  
   useTitle(
     `☕ ${route.params.username} - Challenges - ${dayjs(
-      route.params?.date ?? dayjs().tz("America/Chicago")
+      route.params?.date ?? dayjs.mhqNow()
     ).format("DD/MM/YYYY")}`
   );
   const user = useMunzeeRequest("user", { username: route.params?.username }, route.params?.username !== undefined);

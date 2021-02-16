@@ -11,6 +11,7 @@ const CalendarScreen = loadable(() => import("../screens/Tools/Calendar"));
 const CreditsScreen = loadable(() => import("../screens/Tools/Credits"));
 const OpenSourceScreen = loadable(() => import("../screens/Tools/OpenSource"));
 const BouncersScreen = loadable(() => import("../screens/Tools/Bouncers"));
+const NearbyScreen = loadable(() => import("../screens/Tools/Nearby"));
 const ActivityWidgetScreen = loadable(() => import("../screens/Tools/WidgetConfigure/ActivityWidget"));
 
 const ToolsStack = createStackNavigator<ToolsStackParamList>();
@@ -29,6 +30,7 @@ export default function ToolsNavigator() {
       <ToolsStack.Screen name="Credits" component={CreditsScreen} />
       <ToolsStack.Screen name="OpenSource" component={OpenSourceScreen} />
       <ToolsStack.Screen name="Bouncers" component={BouncersScreen} />
+      <ToolsStack.Screen name="Nearby" component={NearbyScreen} />
       <ToolsStack.Screen name="WidgetConfigureActivityWidget" component={ActivityWidgetScreen} />
     </ToolsStack.Navigator>
   );

@@ -27,7 +27,7 @@ export default function ZeeOpsOverview({ user_id }: ZeeOpsOverviewProps) {
   if (dayjs(d.start_time).valueOf() > Date.now() && d.currentMission === 1) {
     // TODO: Rework COLLECTED View
     return <Icon name="check" style={{ height: 24, width: 24 }} />;
-  } else if (dayjs.tz(d.start_time, "America/Chicago").valueOf() > Date.now()) {
+  } else if (dayjs.mhqParse(d.start_time).valueOf() > Date.now()) {
     current = d.missions.find(i => i.id === d.currentMission - 1);
   }
   if (!current) return null;

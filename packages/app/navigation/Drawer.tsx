@@ -206,9 +206,9 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
                   date: dayjs().format(),
                   year: dayjs().year(),
                   month: dayjs().month(),
-                  mhq_date: dayjs().tz("America/Chicago").format(),
-                  mhq_year: dayjs().tz("America/Chicago").year(),
-                  mhq_month: dayjs().tz("America/Chicago").month(),
+                  mhq_date: dayjs.mhqNow().format(),
+                  mhq_year: dayjs.mhqNow().year(),
+                  mhq_month: dayjs.mhqNow().month(),
                 })
               )
             }>
@@ -221,7 +221,9 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
 
   return (
     <Layout style={{ flex: 1 }}>
-      <ScrollView style={{ flexGrow: 1 }} contentContainerStyle={{ paddingTop: insets.top, paddingBottom: insets.bottom }}>
+      <ScrollView
+        style={{ flexGrow: 1 }}
+        contentContainerStyle={{ paddingTop: insets.top, paddingBottom: insets.bottom }}>
         <Text category="p1">
           You are running CuppaZee for {Platform.OS} version {Constants.nativeAppVersion || ""}
         </Text>
@@ -241,6 +243,13 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
           title={t("pages:dashboard_dashboard")}
           accessoryLeft={props => <Icon {...props} name="home" />}
           onPress={() => props.navigation.navigate("Dashboard")}
+        />
+        <DrawerItem
+          selected={page[1]?.name === "Tools" && page[2]?.name === "Nearby"}
+          // title={t("pages:dashboard_dashboard")}
+          title="Nearby Specials"
+          accessoryLeft={props => <Icon {...props} name="map-marker-radius" />}
+          onPress={() => props.navigation.navigate("Tools",{screen: "Nearby"})}
         />
 
         <Layout level="4" style={{ height: 1 }} />
@@ -292,7 +301,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
                 props.navigation.navigate("User", {
                   params: {
                     username: user.username,
-                    date: day().tz("America/Chicago").format("YYYY-MM-DD"),
+                    date: day.mhqNow().format("YYYY-MM-DD"),
                   },
                   screen: "Activity",
                 })

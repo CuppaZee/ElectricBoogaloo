@@ -16,9 +16,9 @@ function WebMap(props: MapProps) {
   const mapRef = React.useRef<mapboxgl.Map>();
   const markers = React.useRef<Map<string, any>>(new Map());
 
-  const [lng, setLng] = React.useState(5);
-  const [lat, setLat] = React.useState(34);
-  const [zoom, setZoom] = React.useState(1.5);
+  const [lng, setLng] = React.useState(props.longitude);
+  const [lat, setLat] = React.useState(props.latitude);
+  const [zoom, setZoom] = React.useState(props.zoom);
   const [satellite, setSatellite] = React.useState(false);
 
   const theme = useTheme();
@@ -80,7 +80,7 @@ function WebMap(props: MapProps) {
         satellite ? "satellite-streets-v11" : theme.style === "dark" ? "dark-v10" : "streets-v11"
       }`,
       center: [lng, lat],
-      zoom: zoom,
+      zoom: zoom ?? 0,
     });
 
     // Add navigation control (the +/- zoom buttons)

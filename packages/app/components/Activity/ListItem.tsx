@@ -72,7 +72,7 @@ export default React.memo(
             {day(item.time).format("HH:mm")}
           </Text>
           <Text style={{ textAlign: "right" }} category="c1">
-            {day(item.time).tz("America/Chicago").format("HH:mm [MHQ]")}
+            {day(item.time).mhq().format("HH:mm [MHQ]")}
           </Text>
         </View>
       </Layout>

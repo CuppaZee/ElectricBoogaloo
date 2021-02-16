@@ -39,6 +39,7 @@ export type ToolsStackParamList = {
   Credits: undefined;
   OpenSource: undefined;
   Bouncers: undefined;
+  Nearby: undefined;
   WidgetConfigureActivityWidget: { id: string };
   // Activity: { username: string; date?: string };
 };

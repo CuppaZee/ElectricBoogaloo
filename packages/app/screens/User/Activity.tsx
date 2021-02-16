@@ -25,7 +25,11 @@ export default function UserActivityScreen() {
     state: new Set(),
   });
   const route = useRoute<RouteProp<UserStackParamList, "Activity">>();  
-  useTitle(`☕ ${route.params.username} - Activity - ${dayjs(route.params?.date ?? dayjs().tz('America/Chicago')).format("DD/MM/YYYY")}`);
+  useTitle(
+    `☕ ${route.params.username} - Activity - ${dayjs(route.params?.date ?? dayjs.mhqNow()).format(
+      "DD/MM/YYYY"
+    )}`
+  );
   const user = useMunzeeRequest("user", { username: route.params?.username }, route.params?.username !== undefined);
   const data = useActivity(user.data?.data?.user_id, route.params?.date);
   const d = React.useMemo(

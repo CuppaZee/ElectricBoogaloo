@@ -31,8 +31,16 @@
       ],
       "rewrites": [
         {
+          "source": "/user/bouncers",
+          "function": "apibeta_bouncers"
+        },
+        {
+          "source": "/bouncers/nearby",
+          "function": "apibeta_bouncers"
+        },
+        {
           "source": "/services/bouncers",
-          "function": "bouncersServiceHttp"
+          "function": "apibeta_bouncers"
         },
         {
           "source": "**",

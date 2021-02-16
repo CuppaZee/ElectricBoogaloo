@@ -10,14 +10,14 @@ export default function useActivity(user_id?: number, day?: string) {
     "user/activity",
     {
       user_id,
-      day: day ?? dayjs().tz("America/Chicago").format("YYYY-MM-DD"),
+      day: day ?? dayjs.mhqNow().format("YYYY-MM-DD"),
     },
     user_id !== undefined && (teakens.data[user_id ?? -1] || teakens.data["*"]) === undefined
   );
   const munzee = useMunzeeRequest(
     "statzee/player/day",
     {
-      day: day ?? dayjs().tz("America/Chicago").format("YYYY-MM-DD"),
+      day: day ?? dayjs.mhqNow().format("YYYY-MM-DD"),
     },
     user_id !== undefined && (teakens.data[user_id ?? -1] || teakens.data["*"]) !== undefined,
     user_id
