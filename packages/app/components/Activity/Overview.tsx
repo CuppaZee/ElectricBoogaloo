@@ -7,6 +7,7 @@ import { ActivityConverter, UserActivityData } from "./Data";
 import TypeImage from "../Common/TypeImage";
 import { useTranslation } from "react-i18next";
 import useActivity from "../../hooks/useActivity";
+import Loading from "../Loading";
 
 export type UserActivityOverviewProps = {
   user_id: number;
@@ -64,13 +65,7 @@ export default function UserActivityOverview({
     [data.dataUpdatedAt]
   );
   if (!data.isFetched || !d) {
-    return (
-      <View
-        style={{ height: 100, justifyContent: "center", alignItems: "center" }}
-      >
-        <Spinner />
-      </View>
-    );
+    return <Loading level="3" data={[data]} />
   }
   return (
     <View style={{ padding: 4 }}>

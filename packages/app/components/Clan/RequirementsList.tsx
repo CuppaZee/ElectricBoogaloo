@@ -21,6 +21,7 @@ import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import { useSettings } from "../../hooks/useSettings";
 import SyncScrollView, { SyncScrollViewController } from "./SyncScrollView";
 import TypeImage from "../Common/TypeImage";
+import Loading from "../Loading";
 
 const levels: { level: number; type: "group" | "individual" }[] = [
   { level: 1, type: "individual" },
@@ -54,15 +55,7 @@ export default React.memo(
     const { t } = useTranslation();
     const [size, onLayout] = useComponentSize();
     const fontScale = PixelRatio.getFontScale();
-    const [settings] = useSettings();
-    const reverse = settings.clan_reverse;
-    const compact = settings.clan_style;
-
     const theme = useTheme();
-    const borderColor =
-      (theme.style === "dark" ? theme["color-basic-400"] : theme["color-basic-800"])
-        .replace("rgb(", "rgba(")
-        .slice(0, -1) + ", 0.3)";
 
     const clan_id = actual_clan_id >= 0 ? actual_clan_id : 2041;
 
@@ -84,30 +77,11 @@ export default React.memo(
 
     if (!requirements || !size || !rewards) {
       return (
-        <Layout
-          onLayout={onLayout}
-          style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-          <Spinner />
+        <Layout style={{ flex: 1 }} onLayout={onLayout}>
+          <Loading data={[requirements_data, rewards_data]} />
         </Layout>
       );
     }
-
-    const headerStack = compact !== 0;
-    const showSidebar = compact !== 0;
-    const sidebarWidth = (compact ? 120 : 150) * fontScale;
-    const columnWidth = showSidebar
-      ? (compact ? (headerStack ? 68 : 90) : headerStack ? 80 : 120) * fontScale
-      : 400;
-    const minTableWidth = requirements.all.length * columnWidth + sidebarWidth;
-
-    const requirements_rows = (reverse ? requirements.all : levels) as (
-      | number
-      | { type: "group" | "individual"; level: number }
-    )[];
-    const requirements_columns = (reverse ? levels : requirements.all) as (
-      | number
-      | { type: "group" | "individual"; level: number }
-    )[];
     return (
       <Layout onLayout={onLayout} level="2" style={{ margin: 4, borderRadius: 8 }}>
         <Layout

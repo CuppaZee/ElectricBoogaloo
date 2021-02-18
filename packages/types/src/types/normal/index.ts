@@ -78,7 +78,7 @@ export const categories: TypeCategoryInterface[] = [
     name: "Universals",
     id: "universal",
     icon: "social",
-    parents: ["root"],
+    parents: ["normal"],
   },
   {
     name: "Virtuals",

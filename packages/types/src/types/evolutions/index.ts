@@ -12,10 +12,10 @@ import {
 export const types: TypeInterface[] = [];
 export const categories: TypeCategoryInterface[] = [
   {
-    name: "Greetings Cards",
-    id: "card",
-    icon: "envelope",
-    parents: ["root"],
+    name: "Evolutions",
+    id: "evolution",
+    icon: "evolution",
+    parents: ["normal"],
   },
 ];
 
@@ -71,9 +71,9 @@ for (const set of Object.keys(sets) as (keyof typeof sets)[]) {
   categories.push({
     name: sets[set].name,
     id: `evolution_${set}`,
-    icon: "envelope",
-    parents: ["root"],
-  })
+    icon: sets[set].types[0].icon,
+    parents: ["evolution"],
+  });
   for (const t of sets[set].types) {
     types.push({
       name: t.name,

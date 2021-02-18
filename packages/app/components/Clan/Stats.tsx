@@ -24,6 +24,7 @@ import { useSettings } from "../../hooks/useSettings";
 import useTitle from "../../hooks/useTitle";
 import ClanSettingsModal from "./SettingsModal";
 import SyncScrollView, { SyncScrollViewController } from "./SyncScrollView";
+import Loading from "../Loading";
 export interface ClanStatsTableProps {
   game_id: number;
   clan_id: number;
@@ -117,10 +118,8 @@ export default React.memo(
       (!shadow_data.data && [-1, 1349, 1441, 457, 1902, 2042, 1870].includes(actual_clan_id))
     ) {
       return (
-        <Layout
-          onLayout={onLayout}
-          style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-          <Spinner />
+        <Layout style={{ flex: 1 }} onLayout={onLayout}>
+          <Loading data={[clan_data, requirements_data, shadow_data, rewards_data]} />
         </Layout>
       );
     }

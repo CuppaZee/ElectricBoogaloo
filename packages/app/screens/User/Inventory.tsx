@@ -12,6 +12,7 @@ import { UserStackParamList } from "../../types";
 import db from "@cuppazee/types";
 import useTitle from "../../hooks/useTitle";
 import { useTranslation } from "react-i18next";
+import Loading from "../../components/Loading";
 
 export default function UserInventoryScreen() {
   const { t } = useTranslation();
@@ -39,6 +40,11 @@ export default function UserInventoryScreen() {
         .reduce((a, b) => a + b.amount, 0),
     }))
     .sort((a, b) => b.total - a.total);
+  
+  if (!user.isFetched || !data.isFetched || !d) {
+    return <Loading level="1" data={[user, data]} />;
+  }
+  
   return (
     <Layout style={{ flex: 1 }}>
       <ScrollView style={{ flex: 1 }}>

@@ -6,6 +6,7 @@ import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import dayjs from "dayjs";
 import Svg, {Text as SvgText} from 'react-native-svg';
 import { useTranslation } from "react-i18next";
+import Loading from "../Loading";
 
 export type ZeeOpsOverviewProps = {
   user_id: number;
@@ -17,9 +18,7 @@ export default function ZeeOpsOverview({ user_id }: ZeeOpsOverviewProps) {
   if (data.tokenStatus.status !== "valid") return null;
   if (!data.data?.data) {
     return (
-      <View style={{ height: 100, justifyContent: "center", alignItems: "center" }}>
-        <Spinner />
-      </View>
+      <Loading data={[data]} />
     );
   }
   const d = data.data.data;

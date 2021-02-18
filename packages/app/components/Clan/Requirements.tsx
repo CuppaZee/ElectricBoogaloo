@@ -19,6 +19,7 @@ import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import { useSettings } from "../../hooks/useSettings";
 import SyncScrollView, { SyncScrollViewController } from "./SyncScrollView";
+import Loading from "../Loading";
 
 const levels: { level: number; type: "group" | "individual" }[] = [
   { level: 1, type: "individual" },
@@ -80,10 +81,8 @@ export default React.memo(
 
     if (!requirements || !size) {
       return (
-        <Layout
-          onLayout={onLayout}
-          style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-          <Spinner />
+        <Layout style={{ flex: 1 }} onLayout={onLayout}>
+          <Loading data={[requirements_data, rewards_data]} />
         </Layout>
       );
     }

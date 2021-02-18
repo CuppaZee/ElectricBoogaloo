@@ -15,6 +15,7 @@ import UserActivityList from "../../components/Activity/List";
 import UserActivityFilter from "../../components/Activity/Filter";
 import useTitle from "../../hooks/useTitle";
 import useActivity from "../../hooks/useActivity";
+import Loading from "../../components/Loading";
 
 export default function UserActivityScreen() {
   const [size, onLayout] = useComponentSize();
@@ -40,13 +41,10 @@ export default function UserActivityScreen() {
     [data.dataUpdatedAt, filters]
   );
   
-  if (!data.data || !d || !size) {
+  if (!user.isFetched || !data.isFetched || !d || !size) {
     return (
-      <Layout
-        onLayout={onLayout}
-        style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
-      >
-        <Spinner />
+      <Layout style={{ flex: 1 }} onLayout={onLayout}>
+        <Loading data={[user, data]} />
       </Layout>
     );
   }

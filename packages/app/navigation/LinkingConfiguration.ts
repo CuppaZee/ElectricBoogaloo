@@ -22,6 +22,7 @@ export default {
               Inventory: ":username/inventory",
               ZeeOps: ":username/zeeops",
               Challenges: ":username/challenges",
+              Captures: ":username/captures/:category?",
               Bouncers: ":username/bouncers",
             },
           },

@@ -9,7 +9,9 @@ const getToken = async (teaken: string, user_id: number) => {
       teaken
     )}&user_id=${encodeURIComponent(user_id)}`
   );
-  // TODO: Error Handling
+  if (!response.ok) {
+    throw new Error("Expired");
+  }
   // TODO: FROM value
   return await response.json();
 };
@@ -67,7 +69,7 @@ export default function useToken(user_id?: number) {
     }
   );
   return {
-    status: (teakens.loaded && teaken) ? (data.isSuccess ? "valid" : "expired") : (teakens.loaded ? "missing" : "loading"),
+    status: (teakens.loaded && teaken) ? (data.isSuccess ? "valid" : (data.isLoading ? "loading" : "expired")) : (teakens.loaded ? "missing" : "loading"),
     user_id: user_id ?? Object.keys(teakens.data)[0],
     token: data.data?.data,
   };

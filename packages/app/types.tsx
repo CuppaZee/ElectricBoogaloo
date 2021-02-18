@@ -17,6 +17,7 @@ export type UserStackParamList = {
   Activity: { username: string; date?: string };
   Inventory: { username: string };
   Challenges: { username: string; date?: string };
+  Captures: { username: string; category?: string };
   ZeeOps: { username: string };
   Bouncers: { username: string };
 };
@@ -30,7 +31,6 @@ export type ClanStackParamList = {
   Requirements: { year?: number; month?: number };
   Bookmarks: { year?: number; month?: number };
   Stats: { clanid: number; year?: number; month?: number };
-  // Activity: { username: string; date?: string };
 };
 
 export type ToolsStackParamList = {
@@ -41,7 +41,6 @@ export type ToolsStackParamList = {
   Bouncers: undefined;
   Nearby: undefined;
   WidgetConfigureActivityWidget: { id: string };
-  // Activity: { username: string; date?: string };
 };
 
 export type SettingsStackParamList = {

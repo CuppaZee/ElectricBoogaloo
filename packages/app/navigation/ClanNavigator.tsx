@@ -5,10 +5,10 @@ import { ClanStackParamList } from "../types";
 import Header from "./Header";
 
 // Pages
-import loadable from '@loadable/component'
-const ClanStatsScreen = loadable(() => import("../screens/Clan/Stats"));
-const ClanBookmarksScreen = loadable(() => import("../screens/Clan/Bookmarks"));
-const ClanRequirementsScreen = loadable(() => import("../screens/Clan/Requirements"));
+import {lazy} from '@loadable/component'
+const ClanStatsScreen = lazy(() => import("../screens/Clan/Stats"));
+const ClanBookmarksScreen = lazy(() => import("../screens/Clan/Bookmarks"));
+const ClanRequirementsScreen = lazy(() => import("../screens/Clan/Requirements"));
 
 const ClanStack = createStackNavigator<ClanStackParamList>();
 

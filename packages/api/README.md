@@ -11,6 +11,7 @@ This library provides TypeScript typings for the Munzee API.
 - `user`
 - `user/captures`
 - `user/captures/special`
+- `user/specials`
 - `user/deploys`
 - `user/find`
 - `user/undeploys`

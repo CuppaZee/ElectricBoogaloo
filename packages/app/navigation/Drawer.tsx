@@ -1,25 +1,17 @@
 import { DrawerContentComponentProps, DrawerContentOptions } from "@react-navigation/drawer";
 import { NavigationState, PartialState, useNavigationState } from "@react-navigation/native";
 import {
-  Button,
-  CheckBox,
   DrawerGroup,
   DrawerItem,
   Icon,
   Layout,
-  Radio,
-  RadioGroup,
   Text,
 } from "@ui-kitten/components";
 import React from "react";
-import { Image, Platform, Pressable, ScrollView, View } from "react-native";
+import { Image, Platform, ScrollView } from "react-native";
 import { useClanBookmarks, useUserBookmarks } from "../hooks/useBookmarks";
 import useDay from "../hooks/useDay";
 import { useSettings } from "../hooks/useSettings";
-import { isClanStatsBeta } from "./MainNavigator";
-import * as themes from "../themes";
-import dayjs from "dayjs";
-import Clipboard from "expo-clipboard";
 import Constants from "expo-constants";
 import { useTranslation } from "react-i18next";
 import Tip from "../components/Common/Tip";
@@ -65,158 +57,6 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
         break;
       }
     }
-  }
-
-  if (isClanStatsBeta) {
-    return (
-      <Layout style={{ flex: 1 }}>
-        <ScrollView style={{ flexGrow: 1 }}>
-          <Text category="h6" style={{ textAlign: "center" }}>
-            This is a private beta
-          </Text>
-          {[
-            {
-              clan_id: 1349,
-              key: 1349,
-              name: "The Cup of Coffee Clan",
-              tagline: "A Stronger Brew",
-              type: "clan_stats",
-            },
-            {
-              clan_id: 457,
-              key: 457,
-              name: "The Cup Of Tea Clan",
-              tagline: "Just For Fun!",
-              type: "clan_stats",
-            },
-            {
-              clan_id: 2042,
-              key: 2042,
-              name: "The Cup of Mocha Clan",
-              tagline: "A chocolate flavoured variant of a cup of latte",
-              type: "clan_stats",
-            },
-            {
-              clan_id: 1441,
-              key: 1441,
-              name: "The Cup Of Cocoa Clan",
-              tagline: "Time to relax",
-              type: "clan_stats",
-            },
-            {
-              clan_id: 1902,
-              key: 1902,
-              name: "The Cup of Hot Chocolate Clan",
-              tagline: "Extra Marshmallows!",
-              type: "clan_stats",
-            },
-            {
-              clan_id: 1870,
-              key: 1870,
-              name: "The Cup of Horlicks Clan",
-              tagline: "Keeping it Simple",
-              type: "clan_stats",
-            },
-          ].map(clan => (
-            <DrawerItem
-              selected={
-                page[1]?.name === "Clan" &&
-                page[2]?.name === "Stats" &&
-                (page[2]?.params as any)?.clanid === clan.clan_id.toString()
-              }
-              title={clan.name}
-              accessoryLeft={() => (
-                <Image
-                  source={{
-                    uri: `https://munzee.global.ssl.fastly.net/images/clan_logos/${clan.clan_id.toString(
-                      36
-                    )}.png`,
-                  }}
-                  style={{
-                    height: 32,
-                    marginVertical: -4,
-                    width: 32,
-                    borderRadius: 16,
-                    marginHorizontal: 2,
-                  }}
-                />
-              )}
-              onPress={() =>
-                props.navigation.navigate("Clan", {
-                  params: { clanid: clan.clan_id.toString() },
-                  screen: "Stats",
-                })
-              }
-            />
-          ))}
-          <CheckBox
-            style={{ margin: 8 }}
-            checked={settings.clan_reverse}
-            onChange={checked => setSettings({ ...settings, clan_reverse: checked })}>
-            Reverse
-          </CheckBox>
-          <CheckBox
-            disabled={settings.clan_style === 0}
-            style={{ margin: 8 }}
-            checked={settings.clan_single_line}
-            onChange={checked => setSettings({ ...settings, clan_single_line: checked })}>
-            Single Line
-          </CheckBox>
-          <CheckBox
-            style={{ margin: 8 }}
-            checked={settings.clan_full_background}
-            onChange={checked => setSettings({ ...settings, clan_full_background: checked })}>
-            Full Background
-          </CheckBox>
-          <RadioGroup
-            style={{ margin: 8 }}
-            selectedIndex={settings.clan_style}
-            onChange={index => setSettings({ ...settings, clan_style: index })}>
-            <Radio disabled={settings.clan_single_line}>Large</Radio>
-            <Radio>Comfortable</Radio>
-            <Radio>Compact</Radio>
-          </RadioGroup>
-          <View style={{ width: 200, flexDirection: "row", flexWrap: "wrap", alignSelf: "center" }}>
-            {Object.entries(themes).map(i => (
-              <Pressable
-                onPress={() =>
-                  setSettings({
-                    ...settings,
-                    theme: i[0] as typeof settings.theme,
-                  })
-                }
-                style={{ padding: settings?.theme === i[0] ? 0 : 4 }}>
-                <View
-                  style={{
-                    borderRadius: 24,
-                    height: settings?.theme === i[0] ? 40 : 32,
-                    width: settings?.theme === i[0] ? 40 : 32,
-                    borderWidth: 2,
-                    backgroundColor:
-                      i[1][i[1].style === "dark" ? "color-basic-800" : "color-basic-200"],
-                  }}
-                />
-              </Pressable>
-            ))}
-          </View>
-          <Button
-            onPress={() =>
-              Clipboard.setString(
-                JSON.stringify({
-                  date: dayjs().format(),
-                  year: dayjs().year(),
-                  month: dayjs().month(),
-                  mhq_date: dayjs.mhqNow().format(),
-                  mhq_year: dayjs.mhqNow().year(),
-                  mhq_month: dayjs.mhqNow().month(),
-                })
-              )
-            }>
-            Copy Debug Info
-          </Button>
-        </ScrollView>
-      </Layout>
-    );
   }
 
   return (

@@ -3,11 +3,10 @@ import * as React from "react";
 
 import { DashStackParamList } from "../types";
 import Header from "./Header";
-import { isClanStatsBeta } from "./MainNavigator";
 
 // Pages
-import loadable from '@loadable/component'
-const DashboardScreen = loadable(() => import("../screens/Dashboard/Dashboard"))
+import { lazy } from "@loadable/component";
+const DashboardScreen = lazy(() => import("../screens/Dashboard/Dashboard"))
 
 const DashStack = createStackNavigator<DashStackParamList>();
 
@@ -20,7 +19,7 @@ export default function DashNavigator() {
           maxHeight: "100%",
         },
       }}>
-      <DashStack.Screen name="Dash" component={isClanStatsBeta ? (() => null) : DashboardScreen} />
+      <DashStack.Screen name="Dash" component={DashboardScreen} />
     </DashStack.Navigator>
   );
 }

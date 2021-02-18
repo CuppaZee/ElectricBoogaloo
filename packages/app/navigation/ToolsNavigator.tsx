@@ -5,14 +5,14 @@ import { ToolsStackParamList } from "../types";
 import Header from "./Header";
 
 // Pages
-import loadable from '@loadable/component'
-const SearchScreen = loadable(() => import("../screens/Tools/Search"));
-const CalendarScreen = loadable(() => import("../screens/Tools/Calendar"));
-const CreditsScreen = loadable(() => import("../screens/Tools/Credits"));
-const OpenSourceScreen = loadable(() => import("../screens/Tools/OpenSource"));
-const BouncersScreen = loadable(() => import("../screens/Tools/Bouncers"));
-const NearbyScreen = loadable(() => import("../screens/Tools/Nearby"));
-const ActivityWidgetScreen = loadable(() => import("../screens/Tools/WidgetConfigure/ActivityWidget"));
+import { lazy } from "@loadable/component";
+const SearchScreen = lazy(() => import("../screens/Tools/Search"));
+const CalendarScreen = lazy(() => import("../screens/Tools/Calendar"));
+const CreditsScreen = lazy(() => import("../screens/Tools/Credits"));
+const OpenSourceScreen = lazy(() => import("../screens/Tools/OpenSource"));
+const BouncersScreen = lazy(() => import("../screens/Tools/Bouncers"));
+const NearbyScreen = lazy(() => import("../screens/Tools/Nearby"));
+const ActivityWidgetScreen = lazy(() => import("../screens/Tools/WidgetConfigure/ActivityWidget"));
 
 const ToolsStack = createStackNavigator<ToolsStackParamList>();
 

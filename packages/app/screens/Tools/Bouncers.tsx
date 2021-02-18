@@ -4,6 +4,7 @@ import * as React from "react";
 import { Image, ScrollView, View } from "react-native";
 import BouncerOverviewConverter from "../../components/Bouncers/Data";
 import { BouncerIcon } from "../../components/Bouncers/Icon";
+import Loading from "../../components/Loading";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
 import useTitle from "../../hooks/useTitle";
 
@@ -11,6 +12,15 @@ export default function BouncersScreen() {
   useTitle(`☕ Bouncers`);
   const data = useCuppaZeeRequest("bouncers/overview", {});
   const d = React.useMemo(() => data.data ? BouncerOverviewConverter(data.data.data) : null, [data.dataUpdatedAt]);
+  
+
+  if (!data.isFetched || !d) {
+    return (
+      <Layout style={{ flex: 1 }}>
+        <Loading data={[data]} />
+      </Layout>
+    );
+  }
   return (
     <Layout style={{ flex: 1 }}>
       <ScrollView

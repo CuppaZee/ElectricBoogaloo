@@ -35,7 +35,7 @@
           "function": "apibeta_bouncers"
         },
         {
-          "source": "/bouncers/nearby",
+          "source": "/bouncers/*",
           "function": "apibeta_bouncers"
         },
         {

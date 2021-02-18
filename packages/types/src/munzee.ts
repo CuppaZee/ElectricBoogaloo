@@ -361,7 +361,7 @@ export class TypeDatabase {
   }
 
   getChildren(category: TypeCategory) {
-    return Array.from(this._categories.values()).find(i => i.parents.includes(category));
+    return Array.from(this._categories.values()).filter(i => i.parents.includes(category));
   }
 
   getChildTypes(category: TypeCategory) {

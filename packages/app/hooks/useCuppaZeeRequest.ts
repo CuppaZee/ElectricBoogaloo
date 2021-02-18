@@ -15,7 +15,18 @@ const getCuppaZeeData = async <T>(
       body: JSON.stringify({ ...params, access_token: token }),
     }
   );
-  // TODO: Error Handling
+  if (!response.ok) {
+    throw {
+      json: response.json(),
+      ok: response.ok,
+      redirected: response.redirected,
+      status: response.status,
+      statusText: response.statusText,
+      url: response.url,
+      type: response.type,
+      params,
+    };
+  }
   // TODO: FROM value
   return await response.json();
 };

@@ -15,7 +15,7 @@ export const categories: TypeCategoryInterface[] = [
     name: "Seasonal Specials",
     id: "seasonal",
     icon: "",
-    parents: ["bouncers"],
+    parents: ["root", "bouncers"],
   },
 ];
 

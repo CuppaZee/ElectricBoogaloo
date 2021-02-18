@@ -12,6 +12,7 @@ import { UserDeploys } from "@cuppazee/api/user/deploys";
 import { MunzeeSpecialBouncer } from "@cuppazee/api/munzee/specials";
 import TypeImage from "../../components/Common/TypeImage";
 import useDay from "../../hooks/useDay";
+import Loading from "../../components/Loading";
 
 type Bouncer = NonNullable<UserDeploys["response"]["data"]>["munzees"][0] & {
   bouncer?: MunzeeSpecialBouncer & { hash: string };
@@ -47,10 +48,8 @@ export default function UserBouncersScreen() {
 
   if (!data.data || !size) {
     return (
-      <Layout
-        onLayout={onLayout}
-        style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <Spinner />
+      <Layout style={{ flex: 1 }} onLayout={onLayout}>
+        <Loading data={[user, data]} />
       </Layout>
     );
   }

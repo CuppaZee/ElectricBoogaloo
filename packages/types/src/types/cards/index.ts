@@ -53,7 +53,7 @@ for (const year of Object.keys(years) as (keyof typeof years)[]) {
     name: years[year].name,
     id: `card_${year}`,
     icon: "envelope",
-    parents: ["root"],
+    parents: ["card"],
   });
   for (const t of years[year].types) {
     types.push({

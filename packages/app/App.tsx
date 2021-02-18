@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, { Suspense } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import "./polyfill";
@@ -10,7 +10,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { Provider as JotaiProvider } from "jotai";
 
 import * as eva from "@eva-design/eva";
-import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
+import { ApplicationProvider, IconRegistry, Layout, Spinner } from "@ui-kitten/components";
 
 import { StyleSheet } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -22,6 +22,7 @@ import { useFonts } from "expo-font";
 import "./lang/i18n";
 
 import "./BackgroundLocation";
+import Loading from "./components/Loading";
 
 // // @ts-ignore
 // ScrollView.defaultProps = { scrollIndicatorInsets:{ right: 1 } };
@@ -65,6 +66,7 @@ const queryClient = new QueryClient({
       refetchOnMount: true,
       refetchOnWindowFocus: true,
       staleTime: 900000,
+      retry: 1,
     },
   },
 });

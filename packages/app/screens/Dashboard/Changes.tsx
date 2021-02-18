@@ -7,7 +7,7 @@ import { useClanBookmarks } from "../../hooks/useBookmarks";
 import useTitle from "../../hooks/useTitle";
 import { DashCardProps } from "./Dashboard";
 
-export default function ClansDashCard(props: DashCardProps<unknown>) {
+export default function ChangesDashCard(props: DashCardProps<unknown>) {
   const { t } = useTranslation();
   const nav = useNavigation();
   const [clans] = useClanBookmarks();

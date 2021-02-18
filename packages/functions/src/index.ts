@@ -16,7 +16,8 @@ import map_routes from './map';
 import minute_routes from './minute';
 import munzee_routes from './munzee';
 import notifications_routes from './notifications';
-import user_routes from './user';
+import tools_routes from "./tools";
+import user_routes from "./user";
 import widget_routes from "./widget";
 // import weekly_routes from './weekly';
 var routes: Route[] = [
@@ -28,10 +29,13 @@ var routes: Route[] = [
   ...minute_routes,
   ...munzee_routes,
   ...notifications_routes,
+  ...tools_routes,
   ...user_routes,
   ...widget_routes,
   // ...weekly_routes,
 ];
+
+console.log("COLD BOOT");
 
 async function apiResponder(req: functions.Request, res: functions.Response) {
   var startTime = process.hrtime();

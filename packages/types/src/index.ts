@@ -6,20 +6,26 @@ const categories: TypeCategoryInterface[] = [
     name: "Events",
     id: "event",
     icon: "event",
-    parents: []
+    parents: [],
   },
   {
     name: "Credits",
     id: "credit",
     icon: "zeds",
-    parents: []
+    parents: [],
   },
   {
     name: "Other",
     id: "other",
     icon: "mystery",
-    parents: []
-  }
+    parents: [],
+  },
+  {
+    name: "Root",
+    id: "root",
+    icon: "mystery",
+    parents: [],
+  },
 ];
 
 import events from './types/events';

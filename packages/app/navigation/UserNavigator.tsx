@@ -5,13 +5,14 @@ import { UserStackParamList } from "../types";
 import Header from "./Header";
 
 // Pages
-import loadable from '@loadable/component'
-const UserProfileScreen = loadable(() => import("../screens/User/Profile"));
-const UserActivityScreen = loadable(() => import("../screens/User/Activity"));
-const UserInventoryScreen = loadable(() => import("../screens/User/Inventory"));
-const UserZeeOpsScreen = loadable(() => import("../screens/User/ZeeOps"));
-const UserChallengesScreen = loadable(() => import("../screens/User/Challenges"));
-const UserBouncersScreen = loadable(() => import("../screens/User/Bouncers"));
+import { lazy } from "@loadable/component";
+const UserProfileScreen = lazy(() => import("../screens/User/Profile"));
+const UserActivityScreen = lazy(() => import("../screens/User/Activity"));
+const UserInventoryScreen = lazy(() => import("../screens/User/Inventory"));
+const UserZeeOpsScreen = lazy(() => import("../screens/User/ZeeOps"));
+const UserChallengesScreen = lazy(() => import("../screens/User/Challenges"));
+const UserCapturesScreen = lazy(() => import("../screens/User/Captures"));
+const UserBouncersScreen = lazy(() => import("../screens/User/Bouncers"));
 
 const UserStack = createStackNavigator<UserStackParamList>();
 
@@ -30,6 +31,7 @@ export default function UserNavigator() {
       <UserStack.Screen name="ZeeOps" component={UserZeeOpsScreen} />
       <UserStack.Screen name="Bouncers" component={UserBouncersScreen} />
       <UserStack.Screen name="Challenges" component={UserChallengesScreen} />
+      <UserStack.Screen name="Captures" component={UserCapturesScreen} />
     </UserStack.Navigator>
   );
 }

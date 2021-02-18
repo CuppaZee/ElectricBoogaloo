@@ -46,7 +46,7 @@ export const requirementMeta: {
     meta: {
       activity: ["capture", "deploy"],
       days: true,
-      exclude: (i) => i.state === TypeState.Locationless,
+      exclude: i => i.state === TypeState.Locationless,
     },
   },
   2: {
@@ -77,7 +77,7 @@ export const requirementMeta: {
     meta: {
       activity: ["deploy"],
       points: true,
-      exclude: (i) => ["personalmunzee", "premiumpersonal"].includes(i.icon),
+      exclude: i => ["personalmunzee", "premiumpersonal"].includes(i.icon),
     },
   },
   7: {
@@ -92,8 +92,8 @@ export const requirementMeta: {
     meta: {
       activity: ["capture", "deploy", "capon"],
       points: true,
-      types: (i) => i.has_tag(TypeTags.TypeDestination),
-      exclude: (i) => i.icon === "skyland",
+      types: i => i.has_tag(TypeTags.TypeDestination),
+      exclude: i => i.icon === "skyland",
     },
   },
   10: {
@@ -104,7 +104,7 @@ export const requirementMeta: {
     meta: {
       activity: ["deploy"],
       points: true,
-      exclude: (i) => ["personalmunzee", "premiumpersonal"].includes(i.icon),
+      exclude: i => ["personalmunzee", "premiumpersonal"].includes(i.icon),
     },
   },
   12: {
@@ -119,7 +119,7 @@ export const requirementMeta: {
     meta: {
       activity: ["capture", "deploy", "capon"],
       points: true,
-      types: (i) => i.has_tag(TypeTags.Evolution),
+      types: i => i.has_tag(TypeTags.Evolution),
     },
   },
   13: {
@@ -129,7 +129,7 @@ export const requirementMeta: {
     icon: "https://munzee.global.ssl.fastly.net/images/pins/poi_filter.png",
     meta: {
       activity: ["capture"],
-      types: (i) => i.has_tag(TypeTags.TypePOI),
+      types: i => i.has_tag(TypeTags.TypePOI),
     },
   },
   14: {
@@ -143,7 +143,7 @@ export const requirementMeta: {
     ],
     meta: {
       activity: ["capture", "deploy"],
-      types: (i) => i.has_tag(TypeTags.TypeJewel),
+      types: i => i.has_tag(TypeTags.TypeJewel),
     },
   },
   17: {
@@ -157,7 +157,7 @@ export const requirementMeta: {
     ],
     meta: {
       activity: ["capture", "deploy"],
-      types: (i) => i.has_tag(TypeTags.Evolution),
+      types: i => i.has_tag(TypeTags.Evolution),
     },
   },
   19: {
@@ -172,7 +172,7 @@ export const requirementMeta: {
     meta: {
       activity: ["capture", "deploy", "capon"],
       points: true,
-      types: (i) => i.has_tag(TypeTags.TypeJewel),
+      types: i => i.has_tag(TypeTags.TypeJewel),
     },
   },
   20: {
@@ -186,7 +186,7 @@ export const requirementMeta: {
     ],
     meta: {
       activity: ["deploy"],
-      types: (i) => i.has_tag(TypeTags.TypeWeaponClan),
+      types: i => i.has_tag(TypeTags.TypeWeaponClan),
     },
   },
   23: {
@@ -201,15 +201,14 @@ export const requirementMeta: {
     meta: {
       activity: ["capture", "deploy", "capon"],
       points: true,
-      types: (i) => i.has_tag(TypeTags.TypeWeaponClan),
+      types: i => i.has_tag(TypeTags.TypeWeaponClan),
     },
   },
   24: {
     task_id: 24,
     top: "Bouncer",
     bottom: "Captures",
-    icon:
-      "https://munzee.global.ssl.fastly.net/images/pins/expiring_specials_filter.png",
+    icon: "https://munzee.global.ssl.fastly.net/images/pins/expiring_specials_filter.png",
     icons: [
       "https://munzee.global.ssl.fastly.net/images/pins/expiring_specials_filter.png",
       "https://munzee.global.ssl.fastly.net/images/pins/theunicorn.png",
@@ -218,7 +217,7 @@ export const requirementMeta: {
     ],
     meta: {
       activity: ["capture"],
-      types: (i) => i.state === TypeState.Bouncer,
+      types: i => i.state === TypeState.Bouncer,
     },
   },
   25: {
@@ -232,7 +231,7 @@ export const requirementMeta: {
     ],
     meta: {
       activity: ["capture", "deploy"],
-      types: (i) => i.has_tag(TypeTags.TypeMystery),
+      types: i => i.has_tag(TypeTags.TypeMystery),
     },
   },
   26: {
@@ -246,7 +245,7 @@ export const requirementMeta: {
     ],
     meta: {
       activity: ["capture", "deploy"],
-      types: (i) => i.has_tag(TypeTags.TypeWeaponClan),
+      types: i => i.has_tag(TypeTags.TypeWeaponClan),
     },
   },
   27: {
@@ -260,7 +259,7 @@ export const requirementMeta: {
     ],
     meta: {
       activity: ["capture", "deploy"],
-      types: (i) => i.has_tag(TypeTags.TypeZodiac),
+      types: i => i.has_tag(TypeTags.TypeZodiac),
     },
   },
   28: {
@@ -275,7 +274,7 @@ export const requirementMeta: {
     meta: {
       activity: ["capture", "deploy", "capon"],
       points: true,
-      types: (i) => i.has_tag(TypeTags.TypeFlat),
+      types: i => i.has_tag(TypeTags.TypeFlat),
     },
   },
   29: {
@@ -290,7 +289,7 @@ export const requirementMeta: {
     meta: {
       activity: ["capture", "deploy", "capon"],
       points: true,
-      types: (i) =>
+      types: i =>
         i.has_tag(TypeTags.Evolution) &&
         (!i.has_tag(TypeTags.Scatter) ||
           ["fire", "waterdroplet", "frozengreenie", "charge"].includes(i.icon)),
@@ -303,15 +302,14 @@ export const requirementMeta: {
     icon: "https://munzee.global.ssl.fastly.net/images/pins/reseller.png",
     meta: {
       activity: ["capture", "deploy"],
-      types: (i) => i.has_tag(TypeTags.TypeReseller),
+      types: i => i.has_tag(TypeTags.TypeReseller),
     },
   },
   31: {
     task_id: 31,
     top: "Gaming",
     bottom: "Points",
-    icon:
-      "https://munzee.global.ssl.fastly.net/images/pins/joystickvirtual.png",
+    icon: "https://munzee.global.ssl.fastly.net/images/pins/joystickvirtual.png",
     icons: [
       "https://munzee.global.ssl.fastly.net/images/pins/joystickvirtual.png",
       "https://munzee.global.ssl.fastly.net/images/pins/prizewheel.png",
@@ -320,15 +318,14 @@ export const requirementMeta: {
     meta: {
       activity: ["capture", "deploy", "capon"],
       points: true,
-      types: (i) => i.has_tag(TypeTags.TypeGaming),
+      types: i => i.has_tag(TypeTags.TypeGaming),
     },
   },
   32: {
     task_id: 32,
     top: "Gaming",
     bottom: "Activity",
-    icon:
-      "https://munzee.global.ssl.fastly.net/images/pins/joystickvirtual.png",
+    icon: "https://munzee.global.ssl.fastly.net/images/pins/joystickvirtual.png",
     icons: [
       "https://munzee.global.ssl.fastly.net/images/pins/joystickvirtual.png",
       "https://munzee.global.ssl.fastly.net/images/pins/prizewheel.png",
@@ -336,7 +333,7 @@ export const requirementMeta: {
     ],
     meta: {
       activity: ["capture", "deploy"],
-      types: (i) => i.has_tag(TypeTags.TypeGaming),
+      types: i => i.has_tag(TypeTags.TypeGaming),
     },
   },
   33: {
@@ -350,7 +347,7 @@ export const requirementMeta: {
     ],
     meta: {
       activity: ["capture"],
-      types: (i) => i.icon === "renovation",
+      types: i => i.icon === "renovation",
     },
   },
   34: {
@@ -361,7 +358,7 @@ export const requirementMeta: {
     meta: {
       activity: ["capture", "deploy", "capon"],
       points: true,
-      types: (i) => i.has_tag(TypeTags.TypeMystery),
+      types: i => i.has_tag(TypeTags.TypeMystery),
     },
   },
   35: {
@@ -371,7 +368,7 @@ export const requirementMeta: {
     icon: "https://munzee.global.ssl.fastly.net/images/pins/qrewzee.png",
     meta: {
       activity: ["capture"],
-      types: (i) => i.icon === "qrewzee",
+      types: i => i.icon === "qrewzee",
     },
   },
   36: {
@@ -382,7 +379,7 @@ export const requirementMeta: {
     meta: {
       activity: ["capture", "deploy", "capon"],
       points: true,
-      types: (i) => i.has_tag(TypeTags.Card),
+      types: i => i.has_tag(TypeTags.Card),
     },
   },
 };
@@ -467,8 +464,7 @@ export function ClanRequirementsConverter(
   requirements?: ClanV2Requirements["response"]["data"],
   rewards?: ClanRewardsData
 ) {
-  if (!requirements || !rewards || requirements.data.levels instanceof Array)
-    return null;
+  if (!requirements || !rewards || requirements.data.levels instanceof Array) return null;
   const data: ClanStatsFormattedRequirements = {
     tasks: {
       individual: {},
@@ -479,30 +475,25 @@ export function ClanRequirementsConverter(
     all: [],
   };
 
-  for (const level of Object.keys(requirements.data.levels).sort(
-    (a, b) => Number(b) - Number(a)
-  )) {
+  for (const level of Object.keys(requirements.data.levels).sort((a, b) => Number(b) - Number(a))) {
     const l = requirements.data.levels[level];
     for (const indiv of l.individual) {
-      if (!data.individual.includes(indiv.task_id))
-        data.individual.push(indiv.task_id);
-      if (!data.tasks.individual[indiv.task_id])
-        data.tasks.individual[indiv.task_id] = [];
+      if (!data.individual.includes(indiv.task_id)) data.individual.push(indiv.task_id);
+      if (!data.tasks.individual[indiv.task_id]) data.tasks.individual[indiv.task_id] = [];
       data.tasks.individual[indiv.task_id][Number(level)] = indiv.amount;
     }
     for (const group of l.group) {
       if (!data.group.includes(group.task_id)) data.group.push(group.task_id);
-      if (!data.tasks.group[group.task_id])
-        data.tasks.group[group.task_id] = [];
+      if (!data.tasks.group[group.task_id]) data.tasks.group[group.task_id] = [];
       data.tasks.group[group.task_id][Number(level)] = group.amount;
     }
   }
 
   data.all = [
-    ...data.individual.filter(i=>!data.group.includes(i)),
-    ...data.individual.filter(i=>data.group.includes(i)),
-    ...data.group.filter(i=>!data.individual.includes(i)),
-  ]
+    ...data.individual.filter(i => !data.group.includes(i)),
+    ...data.individual.filter(i => data.group.includes(i)),
+    ...data.group.filter(i => !data.individual.includes(i)),
+  ];
 
   return data;
 }
@@ -514,8 +505,7 @@ export function ClanStatsConverter(
   actual_clan_id?: number,
   shadow?: ClanShadowData
 ) {
-  if (!clan || !requirements || !stats || stats.data.levels instanceof Array)
-    return null;
+  if (!clan || !requirements || !stats || stats.data.levels instanceof Array) return null;
   const data: ClanStatsFormattedData = {
     users: {},
     requirements: {},
@@ -535,7 +525,7 @@ export function ClanStatsConverter(
     }
   }
 
-  if ((actual_clan_id || 0) >= 0 && (stats.battle.end * 1000) > Date.now()) {
+  if ((actual_clan_id || 0) >= 0 && stats.battle.end * 1000 > Date.now()) {
     console.log(clan.result, monthToGameID());
     for (const user of clan.users) {
       data.users[Number(user.user_id)] = {
@@ -554,30 +544,39 @@ export function ClanStatsConverter(
   ]) {
     // Setup Requirement
     data.requirements[task.task_id] = {
-      value: 0,
+      value: requirementMeta[task.task_id]?.total === "min" ? Infinity : 0,
       level: 0,
     };
     for (const user_id of [
-      ...((actual_clan_id || 0) < 0 ? [] : (Object.keys(task.data) || [])),
-      ...(((stats.battle.end * 1000) > Date.now() ? shadow?.members : []) || []).filter(i=>data.users[i]?.shadow),
+      ...((actual_clan_id || 0) < 0 ? [] : Object.keys(task.data) || []),
+      ...((stats.battle.end * 1000 > Date.now() ? shadow?.members : []) || []).filter(
+        i => data.users[i]?.shadow
+      ),
     ]) {
       // Add Left User if Necessary
       if (!data.users[user_id]) {
         data.users[user_id] = {
-          username: clan.users.find(i=>i.user_id === user_id.toString())?.username ?? `#${user_id}`,
+          username:
+            clan.users.find(i => i.user_id === user_id.toString())?.username ?? `#${user_id}`,
           user_id: Number(user_id),
-          admin: (clan.users.find(i=>i.user_id === user_id.toString())?.is_admin ?? "0") === "1",
+          admin: (clan.users.find(i => i.user_id === user_id.toString())?.is_admin ?? "0") === "1",
           shadow: false,
           requirements: {},
           level: 5,
         };
       }
       const user = data.users[user_id];
-      const value =
-        task.data[user_id] ?? shadow?.data[task.task_id]?.[user_id];
+      const value = task.data[user_id] ?? shadow?.data[task.task_id]?.[user_id];
 
       // Add to Clan Total
-      data.requirements[task.task_id].value += value ?? 0;
+      if (requirementMeta[task.task_id]?.total === "min") {
+        data.requirements[task.task_id].value = Math.min(
+          data.requirements[task.task_id].value,
+          value ?? Infinity
+        );
+      } else {
+        data.requirements[task.task_id].value += value ?? 0;
+      }
 
       // Set Requirement Value
       user.requirements[task.task_id] = {
@@ -588,16 +587,11 @@ export function ClanStatsConverter(
       // Calculate Level
       if (requirements.tasks.individual[task.task_id]) {
         for (let level = 1; level <= 5; level++) {
-          if (
-            (requirements.tasks.individual[task.task_id][level] || 0) <= value
-          ) {
+          if ((requirements.tasks.individual[task.task_id][level] || 0) <= value) {
             user.requirements[task.task_id].level = level;
           }
         }
-        user.level = Math.min(
-          user.level,
-          user.requirements[task.task_id].level || 0
-        );
+        user.level = Math.min(user.level, user.requirements[task.task_id].level || 0);
       } else {
         user.requirements[task.task_id].level = -1;
       }
@@ -612,10 +606,7 @@ export function ClanStatsConverter(
           data.requirements[task.task_id].level = level;
         }
       }
-      data.level = Math.min(
-        data.level,
-        data.requirements[task.task_id].level || 0
-      );
+      data.level = Math.min(data.level, data.requirements[task.task_id].level || 0);
     } else {
       data.requirements[task.task_id].level = -1;
     }

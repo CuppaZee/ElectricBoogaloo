@@ -6,7 +6,7 @@ export default function useTitle(title: string) {
   const pageOpen = useIsFocused();
   useEffect(() => {
     if(pageOpen) {
-      nav.setOptions({title});
+      nav.setOptions({title, headerTitle: title.replace(/☕ /g, "")});
     }
   }, [nav, pageOpen, title])
   return;

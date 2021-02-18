@@ -11,6 +11,7 @@ import TypeImage from "../../components/Common/TypeImage";
 import * as Location from "expo-location";
 import * as Notifications from "expo-notifications";
 import types from "@cuppazee/types";
+import Loading from "../../components/Loading";
 
 
 type Bouncer = (MunzeeSpecialBouncer | MunzeeSpecial) & {
@@ -62,12 +63,10 @@ export default function NearbyScreen() {
     })()
   }, [])
 
-  if (!data.data || !size || !settings) {
+  if (!data.isFetched || !size || !settings) {
     return (
-      <Layout
-        onLayout={onLayout}
-        style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <Spinner />
+      <Layout style={{ flex: 1 }} onLayout={onLayout}>
+        <Loading data={[data]} />
       </Layout>
     );
   }
@@ -79,7 +78,7 @@ export default function NearbyScreen() {
             latitude={settings.latitude}
             longitude={settings.longitude}
             zoom={10}
-            markers={data.data.data.map(i => ({
+            markers={data.data?.data.map(i => ({
               lat: Number(i.latitude),
               lng: Number(i.longitude),
               icon: "logo" in i ? i.logo : i.mythological_munzee.munzee_logo,
@@ -88,53 +87,56 @@ export default function NearbyScreen() {
           />
         </Layout>
         <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
-          {data.data.data.slice().sort((a,b)=>a.distance - b.distance).map(i => (
-            <Layout
-              key={i.hash}
-              level="2"
-              style={{
-                margin: 4,
-                flexDirection: "row",
-                alignItems: "center",
-                borderRadius: 8,
-                width: 400,
-                maxWidth: "100%",
-                flexGrow: 1,
-              }}>
-              <View style={{ padding: 4 }}>
-                <TypeImage
-                  icon={"logo" in i ? i.logo : i.mythological_munzee.munzee_logo}
-                  style={{ size: 48 }}
-                />
-              </View>
-              <View style={{ padding: 4 }}>
-                <Text category="h6">
-                  {"mythological_munzee" in i
-                    ? i.mythological_munzee.friendly_name
-                    : types.getType(i.logo)?.name ?? i.logo.slice(49, -4)}
-                </Text>
-                {"mythological_munzee" in i && (
-                  <Text category="s1">By {i.mythological_munzee.creator_username}</Text>
-                )}
-                <Text category="s1">
-                  At {i.friendly_name} by {i.full_url.split("/")[4]}
-                </Text>
-                <Text category="s1">
-                  {i.distanceStr} {i.direction}
-                </Text>
-                {/* {i.location?.record && (
+          {data.data?.data
+            .slice()
+            .sort((a, b) => a.distance - b.distance)
+            .map(i => (
+              <Layout
+                key={i.hash}
+                level="2"
+                style={{
+                  margin: 4,
+                  flexDirection: "row",
+                  alignItems: "center",
+                  borderRadius: 8,
+                  width: 400,
+                  maxWidth: "100%",
+                  flexGrow: 1,
+                }}>
+                <View style={{ padding: 4 }}>
+                  <TypeImage
+                    icon={"logo" in i ? i.logo : i.mythological_munzee.munzee_logo}
+                    style={{ size: 48 }}
+                  />
+                </View>
+                <View style={{ padding: 4 }}>
+                  <Text category="h6">
+                    {"mythological_munzee" in i
+                      ? i.mythological_munzee.friendly_name
+                      : types.getType(i.logo)?.name ?? i.logo.slice(49, -4)}
+                  </Text>
+                  {"mythological_munzee" in i && (
+                    <Text category="s1">By {i.mythological_munzee.creator_username}</Text>
+                  )}
+                  <Text category="s1">
+                    At {i.friendly_name} by {i.full_url.split("/")[4]}
+                  </Text>
+                  <Text category="s1">
+                    {i.distanceStr} {i.direction}
+                  </Text>
+                  {/* {i.location?.record && (
                   <Text category="s2">
                     {i.location?.record?.name}, {i.location?.record?.countryCode} [
                     {i.timezone.map(t => day().tz(t).format("HH:mm")).join(", ")}]
                   </Text>
                 )} */}
-                {/* <Text category="c1">
+                  {/* <Text category="c1">
                   {i.number_of_captures} Captures - Last Captured{" "}
                   {i.last_captured_at ? day(i.last_captured_at).format("L LT") : "Never"}
                 </Text> */}
-              </View>
-            </Layout>
-          ))}
+                </View>
+              </Layout>
+            ))}
         </View>
       </ScrollView>
     </Layout>

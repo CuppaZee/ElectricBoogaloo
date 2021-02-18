@@ -33,6 +33,61 @@ const c2021vccc: {
     icon: "teddybearcard",
     id: "null_teddybearcard",
   },
+  {
+    name: "Heart Shaped Box Card",
+    icon: "heartshapedboxcard",
+    id: "null_heartshapedboxcard",
+  },
+  {
+    name: "Chocolate Card",
+    icon: "chocolatecard",
+    id: "null_chocolatecard",
+  },
+  {
+    name: "Zeecret Admirer Card",
+    icon: "zeecretadmirercard",
+    id: "null_zeecretadmirercard",
+  },
+  {
+    name: "High Five Card",
+    icon: "highfivecard",
+    id: "null_highfivecard",
+  },
+  {
+    name: "Rose Card",
+    icon: "rosecard",
+    id: "null_rosecard",
+  },
+  {
+    name: "Group Hug Card",
+    icon: "grouphugcard",
+    id: "null_grouphugcard",
+  },
+  {
+    name: "Bandaidz Card",
+    icon: "bandaidzcard",
+    id: "null_bandaidzcard",
+  },
+  {
+    name: "BFF Card",
+    icon: "bffcard",
+    id: "null_bffcard",
+  },
+  {
+    name: "Diamond Ring Card",
+    icon: "diamondringcard",
+    id: "null_diamondringcard",
+  },
+  {
+    name: "Kiss Card",
+    icon: "kisscard",
+    id: "null_kisscard",
+  },
+  {
+    name: "Soulmate Card",
+    icon: "soulmatecard",
+    id: "null_soulmatecard",
+  },
 ];
 
 export default c2021vccc;

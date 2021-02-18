@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.0.28 - 17/02/2021
+- Fixed Universals Category Parent
+## 0.0.27 - 17/02/2021
+- Fixed Evolutions, Greeting Card Categories
+## 0.0.26 - 17/02/2021
+- Added remaining VCCC Greetings Cards
+- Added Root Category
+- Fixed `children` property of Categories
 ## 0.0.25 - 05/02/2021
 - Removed `TypeHidden.Inventory` hidden tag from Potted Plant
 ## 0.0.23 - 05/02/2021
