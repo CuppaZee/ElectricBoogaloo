@@ -3,19 +3,21 @@ import { Route } from "./types";
 import corsImport from "cors";
 const cors = corsImport({ origin: true });
 
-import db from './util/db';
-import notificationData from './util/notificationSettings'
+import Jimp from "jimp";
+
+import db from "./util/db";
+import notificationData from "./util/notificationSettings";
 
 import bouncersService from "./services/bouncers";
 
-import auth_routes from './auth';
-import bouncers_routes from './bouncers';
-import clan_routes from './clan';
+import auth_routes from "./auth";
+import bouncers_routes from "./bouncers";
+import clan_routes from "./clan";
 // import competition_routes from './competition';
-import map_routes from './map';
-import minute_routes from './minute';
-import munzee_routes from './munzee';
-import notifications_routes from './notifications';
+import map_routes from "./map";
+import minute_routes from "./minute";
+import munzee_routes from "./munzee";
+import notifications_routes from "./notifications";
 import tools_routes from "./tools";
 import user_routes from "./user";
 import widget_routes from "./widget";
@@ -165,7 +167,7 @@ async function apiResponder(req: functions.Request, res: functions.Response) {
     }
   });
   return;
-};
+}
 
 export const apibeta = functions
   .runWith({
@@ -183,7 +185,7 @@ export const apibeta_bouncers = functions
 export const bouncersServiceFunction = functions
   .runWith({
     timeoutSeconds: 540,
-    memory: "512MB"
+    memory: "512MB",
   })
   .pubsub.topic("service_bouncers")
   .onPublish(bouncersService);
@@ -196,4 +198,61 @@ export const bouncersServiceHttp = functions
   .https.onRequest(async (req, res) => {
     await bouncersService();
     res.send(true);
+  });
+
+export const icons = functions
+  .runWith({
+    timeoutSeconds: 30,
+  })
+  .https.onRequest(async (req, res) => {
+    const parts = req.path
+      .split("/")
+      .map(i => i.trim())
+      .filter(i => i)
+      .filter(i => i !== "beta");
+    const size = Number(parts[0]);
+    const icon = decodeURIComponent(parts[1].split(".")[0]);
+    const type = parts[1].split(".")[1];
+    let image;
+
+    // Get Image Normally
+    try {
+      if (!icon.match(/[A-Z\s]/)) {
+        image = await Jimp.read(
+          `https://munzee.global.ssl.fastly.net/images/pins/${encodeURIComponent(icon)}.png`
+        );
+      }
+    } catch (e) {}
+
+    // Get Image without Spaces
+    if (!image)
+      try {
+        image = await Jimp.read(
+          `https://munzee.global.ssl.fastly.net/images/pins/${encodeURIComponent(
+            icon.toLowerCase().replace(/\s/g, "")
+          )}.png`
+        );
+      } catch (e) {}
+
+    // Get Image with Underscores replacing Spaces
+    if (!image)
+      try {
+        image = await Jimp.read(
+          `https://munzee.global.ssl.fastly.net/images/pins/${encodeURIComponent(
+            icon.toLowerCase().replace(/\s/g, "_")
+          )}.png`
+        );
+      } catch (e) {}
+
+    // Redirect to Missing Image
+    if (!image)
+      try {
+        res.redirect("https://icons.cuppazee.app/missing.png");
+        return;
+      } catch (e) {}
+    image?.resize(size, size).autocrop().contain(size, size);
+    res
+      .set("Cache-Control", "public, max-age=43200, s-maxage=43200")
+      .type(type)
+      .send(await image?.getBufferAsync(`image/${type}`));
   });

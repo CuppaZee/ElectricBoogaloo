@@ -17,7 +17,7 @@
       "rewrites": [
         {
           "source": "**",
-          "destination": "/missing.png"
+          "function": "icons"
         }
       ]
     },

@@ -9,9 +9,11 @@ import {
   View,
   ViewProps,
 } from "react-native";
+import builds from "../../builds";
 import Loading from "../../components/Loading";
 import { useUserBookmarks } from "../../hooks/useBookmarks";
 import useComponentSize from "../../hooks/useComponentSize";
+import { useSettings } from "../../hooks/useSettings";
 import useTitle from "../../hooks/useTitle";
 import ChangesDashCard from "./Changes";
 import ClansDashCard from "./Clans";
@@ -59,11 +61,13 @@ export default function DashboardScreen() {
     };
   }>({});
   const position = React.useRef<number>();
+  const [settings] = useSettings();
   const [users] = useUserBookmarks();
   const [touched, setTouched] = React.useState<number[]>([0]);
   const [index, setIndex] = React.useState<number>(0);
   const [size, onLayout] = useComponentSize();
   const width = scrollSize.current?.width ?? size?.width ?? 0;
+
   useTitle(`☕ Dashboard`);
   if (!size)
     return (
@@ -71,6 +75,12 @@ export default function DashboardScreen() {
         <Loading level="1" data={[]} />
       </View>
     );
+  
+  const dashCards = [
+    { nonUser: "clan" },
+    ...(builds.some(i => i.build > settings.build) ? [{ nonUser: "changes" }] : []),
+    ...users,
+  ];
   return (
     <Layout onLayout={onLayout} style={{ flex: 1 }}>
       <View
@@ -80,7 +90,7 @@ export default function DashboardScreen() {
           justifyContent: "center",
           marginBottom: -8,
         }}>
-        {[{ nonUser: "clan" }, ...users].map((i, n) => (
+        {dashCards.map((i, n) => (
           <Pressable
             onPress={() => {
               scrollRef.current?.scrollToOffset({
@@ -115,7 +125,7 @@ export default function DashboardScreen() {
                       ? { color: theme["text-basic-color"], height: 24, width: 24 }
                       : { color: theme["text-basic-color"], height: 12, width: 12 }
                   }
-                  name="shield-half-full"
+                  name={i.nonUser === "clan" ? "shield-half-full" : "playlist-check"}
                 />
               </Layout>
             ) : (
@@ -137,7 +147,6 @@ export default function DashboardScreen() {
       </View>
       <WheelWrapper
         onWheel={ev => {
-          console.log(scrollViewDimensions.current[index]);
           if (
             (scrollViewDimensions.current[index]?.inner?.height || 1) >
             (scrollViewDimensions.current[index]?.outer?.height || 0)
@@ -157,12 +166,6 @@ export default function DashboardScreen() {
           pagingEnabled={Platform.OS === "web"}
           contentOffset={{ x: Math.min(600, width), y: 0 }}
           onScroll={ev => {
-            if (position.current === undefined && Platform.OS === "web") {
-              scrollRef.current?.scrollToOffset({
-                offset: Math.min(600, width),
-                animated: false,
-              });
-            }
             if (ev.nativeEvent.contentOffset.x !== undefined) {
               position.current = ev.nativeEvent.contentOffset.x;
               const pos = Math.ceil((ev.nativeEvent.contentOffset.x - 16) / Math.min(600, width));
@@ -170,12 +173,18 @@ export default function DashboardScreen() {
               if (!touched.includes(pos)) setTouched([...touched, pos]);
             }
           }}
+          onContentSizeChange={() => {
+            scrollRef.current?.scrollToOffset({
+              offset: Math.min(600, width),
+              animated: false,
+            });
+          }}
           scrollEventThrottle={4}
           snapToInterval={Math.min(600, width)}
           snapToAlignment="center"
           showsHorizontalScrollIndicator={false}
           snapToStart={true}
-          data={[{ nonUser: "clan" }, ...users]}
+          data={dashCards}
           CellRendererComponent={FlexView}
           renderItem={({ item, index: cardIndex }) => {
             const props: DashCardProps<any> = {

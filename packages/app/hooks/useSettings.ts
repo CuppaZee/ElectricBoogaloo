@@ -2,9 +2,11 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect } from "react";
 import { atom, useAtom } from "jotai";
 import * as themes from "../themes";
+import builds from "../builds";
 
 export type Settings = {
   version: number;
+  build: number;
   theme: keyof typeof themes;
   ready: string | false;
   maps: "apple" | "google";
@@ -31,6 +33,7 @@ export type Settings = {
 
 export const defaultSettings: Settings = {
   version: 1,
+  build: builds[builds.length - 1].build - 1,
   theme: "green_light",
   ready: false,
   maps: "google",

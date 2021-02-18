@@ -165,7 +165,9 @@ export default function InventoryConverter(
       amount: Number(log.type.match(/^([0-9]+)x? /i)?.[1] ?? "1"),
       original_name: log.type,
       reason: log.log_text,
-      icon: db.getType(log.type.replace(/^([0-9]+)x? /i, ""))?.icon ?? "missing",
+      icon:
+        db.getType(log.type.replace(/^([0-9]+)x? /i, ""))?.icon ??
+        log.type.replace(/^([0-9]+)x? /i, ""),
       time: dayjs.mhqParse(log.time_awarded).valueOf(),
     };
     if (

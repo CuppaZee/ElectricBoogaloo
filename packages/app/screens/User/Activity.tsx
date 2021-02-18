@@ -63,11 +63,12 @@ export default function UserActivityScreen() {
         </Layout>
       ) : (
         <Modal
+          style={{ maxHeight: "90%"}}
           visible={visible}
           backdropStyle={{ backgroundColor: "#0007" }}
           onBackdropPress={() => setVisible(false)}
         >
-          <Layout level="3" style={{ width: 300 }}>
+          <Layout level="3" style={{ width: 300, flex: 1 }}>
             <UserActivityFilter
               d={d}
               filters={filters}

@@ -1,8 +1,7 @@
 import { Button, CheckBox, Icon, Text } from "@ui-kitten/components";
 import * as React from "react";
-import { View } from "react-native";
 import { UserActivityConverterOutput, UserActivityFilters } from "./Data";
-import db, { TypeCategory, TypeState } from "@cuppazee/types";
+import { TypeState } from "@cuppazee/types";
 import { useTranslation } from "react-i18next";
 import { ScrollView } from "react-native-gesture-handler";
 
@@ -58,7 +57,7 @@ export default function UserActivityFilter({
     setFilters(baseFilters);
   }, [baseFilters]);
   return (
-    <ScrollView contentContainerStyle={{ padding: 4 }}>
+    <ScrollView style={{ flex: 1 }} contentContainerStyle={{ padding: 4 }}>
       <Button
         onPress={() => setBaseFilters(filters)}
         accessoryLeft={props => <Icon {...props} name="content-save" />}
