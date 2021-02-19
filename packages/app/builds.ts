@@ -115,8 +115,24 @@ const builds: Build[] = [
     ],
     improvements: [
       {
+        description: "Added User Challenges to the Sidebar",
+      },
+    ],
+  },
+  {
+    build: 5,
+    date: "2021-02-19",
+    features: [
+      {
+        title: "Blast Checker",
         description:
-          "Added User Challenges to the Sidebar",
+          "The Blast Checker has now been brought to CuppaZee V2, bringing the ability to check what you'd get (approximately) if you did a Mini, Normal or MEGA blast in a specific location!",
+      },
+    ],
+    fixes: [
+      {
+        description: "Fixed the Universal Capper when all Universals have already been captured",
+        thanks: "Obi-Cal"
       },
     ],
   },

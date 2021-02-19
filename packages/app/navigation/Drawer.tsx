@@ -199,9 +199,19 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
               }
             />
             <DrawerItem
-              disabled={true}
+              selected={
+                page[1]?.name === "User" &&
+                page[2]?.name === "Blast" &&
+                (page[2]?.params as any)?.username === user.username
+              }
               title={t("pages:user_blast_checker")}
               accessoryLeft={props => <Icon {...props} name="bomb" />}
+              onPress={() =>
+                props.navigation.navigate("User", {
+                  params: { username: user.username },
+                  screen: "Blast",
+                })
+              }
             />
             <DrawerItem
               disabled={true}

@@ -280,13 +280,24 @@ export default function UserChallengesScreen() {
     }
   }, [munzee?.munzee_id, shouldSkip]);
 
-  if (!data.data || !munzee || !size) {
+  if (!data.data || !size) {
     return (
       <Layout onLayout={onLayout} style={{ flex: 1 }}>
         <Loading data={[user, data]} />
       </Layout>
     );
   }
+
+  if (!munzee) {
+    return (
+      <Layout onLayout={onLayout} style={{ flex: 1 }}>
+        <Text style={{ textAlign: "center" }} category="h1">Congratulations! 🎉</Text>
+        <Text style={{ textAlign: "center" }} category="h6">You've won a free %latest_iPhone_model%!</Text>
+        <Text style={{ textAlign: "center" }} category="h6">OK, not really... but you've finished capping all of the Munzees available on the Universal Capper! Good job!</Text>
+      </Layout>
+    );
+  }
+
   return (
     <Layout onLayout={onLayout} style={{ flex: 1 }}>
       <Modal

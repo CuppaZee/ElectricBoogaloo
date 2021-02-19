@@ -42,6 +42,11 @@ export const UserPages = [
     title: "user_universal_capper",
     screen: "Universal",
   },
+  {
+    icon: "bomb",
+    title: "user_blast_checker",
+    screen: "Blast",
+  },
 ] as const;
 
 export default function UserDashCard({

@@ -1,7 +1,7 @@
 import { retrieve, request } from "../util";
 // import { get } = require("../util/db");
 import types from "@cuppazee/types";
-import spherical from "spherical-geometry-js";
+import * as spherical from "spherical-geometry-js";
 import { PointsType } from "@cuppazee/types/lib/munzee";
 import { Route } from "../types";
 
@@ -214,13 +214,22 @@ const route: Route = {
           var output = [];
           for (var munzee of munzees) {
             const type = types.getType(munzee.original_pin_image ?? "")
-              ?.points || { capture: 0 };
-            let typePoints = {
-              min: type.capture,
-              avg: type.capture,
-              max: type.capture,
-            };
-            if (type.type === PointsType.Split) {
+              ?.points;
+            let typePoints = type
+              ? {
+                  min: type.capture,
+                  avg: type.capture,
+                  max: type.capture,
+                }
+              : {
+                  // @ts-ignore
+                  min: munzee.points[0],
+                  // @ts-ignore
+                  avg: munzee.points[1],
+                  // @ts-ignore
+                  max: munzee.points[2],
+                };
+            if (type?.type === PointsType.Split) {
               typePoints = {
                 min: type.min,
                 avg: (type.split ?? 0) / 2,

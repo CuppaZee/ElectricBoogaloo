@@ -23,6 +23,7 @@ export type UserStackParamList = {
   Bouncers: { username: string };
   Clan: { username: string };
   Universal: { username: string };
+  Blast: { username: string };
 };
 
 export type DashStackParamList = {

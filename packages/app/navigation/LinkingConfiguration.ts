@@ -27,6 +27,7 @@ export default {
               Bouncers: ":username/bouncers",
               Clan: ":username/clan",
               Universal: ":username/universal",
+              Blast: ":username/blast",
             },
           },
           Clan: {

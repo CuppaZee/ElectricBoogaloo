@@ -23,13 +23,18 @@ function WebMap(props: MapProps) {
 
   const theme = useTheme();
   React.useEffect(() => {
-    mapRef.current?.setStyle(`mapbox://styles/mapbox/${satellite ? "satellite-streets-v11" : (theme.style === "dark" ? "dark-v10" : "streets-v11")}`);
-  }, [theme.style, satellite])
+    mapRef.current?.setStyle(
+      `mapbox://styles/mapbox/${
+        satellite ? "satellite-streets-v11" : theme.style === "dark" ? "dark-v10" : "streets-v11"
+      }`
+    );
+  }, [theme.style, satellite]);
 
   function placeMarkers() {
     if (!mapRef.current) return;
     const map = mapRef.current;
     const features = map.querySourceFeatures("markers");
+    console.log(features);
     const keepMarkers: Set<string> = new Set();
 
     for (let i = 0; i < features.length; i++) {
@@ -47,7 +52,7 @@ function WebMap(props: MapProps) {
         //Feature is not clustered and has not been created, create an icon for it
         const el = new Image();
         const img = getTypeImage(props?.icon);
-        el.src = (typeof img === "object" && "uri" in img) ? img.uri : img;
+        el.src = typeof img === "object" && "uri" in img ? img.uri : img;
         el.className = "mapMarker";
         el.style.width = "48px";
         el.style.height = "48px";
@@ -85,7 +90,7 @@ function WebMap(props: MapProps) {
 
     // Add navigation control (the +/- zoom buttons)
     map.addControl(new mapboxgl.NavigationControl(), "top-right");
- 
+
     map.addControl(
       new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
@@ -98,7 +103,35 @@ function WebMap(props: MapProps) {
       setLng(Number(map.getCenter().lng.toFixed(4)));
       setLat(Number(map.getCenter().lat.toFixed(4)));
       setZoom(Number(map.getZoom().toFixed(2)));
+      const markers = map.getSource("markers");
+      if (markers?.type === "geojson") {
+        markers.setData({
+          type: "FeatureCollection",
+          features: (props.markers ?? []).map(i => ({
+            type: "Feature",
+            id: `${i.id}_${Date.now()}`,
+            properties: {
+              id: `${i.id}_${Date.now()}`,
+              icon: i.icon,
+              center: "center" in i,
+            },
+            geometry: {
+              type: "Point",
+              coordinates:
+                "center" in i ? [map.getCenter().lng, map.getCenter().lat] : [i.lng, i.lat],
+            },
+          })),
+        });
+        placeMarkers();
+      }
     });
+
+    map.on("moveend", () => {
+      props.onRegionChange?.({
+        latitude: map.getCenter().lat,
+        longitude: map.getCenter().lng
+      })
+    })
 
     map.on("load", () => {
       map.addSource("markers", {
@@ -111,10 +144,11 @@ function WebMap(props: MapProps) {
             properties: {
               id: i.id,
               icon: i.icon,
+              center: "center" in i,
             },
             geometry: {
               type: "Point",
-              coordinates: [i.lng, i.lat],
+              coordinates: "center" in i ? [lng, lat] : [i.lng, i.lat],
             },
           })),
         },

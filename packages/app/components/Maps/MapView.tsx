@@ -24,21 +24,22 @@ export type MapProps = {
   onRegionChange?: (props: { latitude: number; longitude: number }) => void;
 };
 
-export type MapCircle = {
-  id: string;
+export type MapLocation = {
   lat: number;
   lng: number;
+} | { center: true }
+
+export type MapCircle = {
+  id: string;
   radius: number;
   fill: string;
   stroke: string;
-};
+} & MapLocation;
 
 export type MapMarkerProps = {
   id: string;
-  lat: number;
-  lng: number;
   icon: string;
-};
+} & MapLocation;
 
 function getImages(markers: MapMarkerProps[]) {
   return Array.from(new Set(markers.map(i => i.icon))).reduce(
@@ -54,7 +55,7 @@ const MapMarker = React.memo(function (props: MapMarkerProps) {
   return (
     <MapboxGL.MarkerView
       id={props.id}
-      coordinate={[props.lat, props.lng]}
+      coordinate={"center" in props ? [0, 0] : [props.lat, props.lng]}
       anchor={{ x: 0.5, y: 1 }}>
       <TypeImage icon={props.icon} style={{ size: 48 }} />
     </MapboxGL.MarkerView>
@@ -62,16 +63,9 @@ const MapMarker = React.memo(function (props: MapMarkerProps) {
 });
 
 export default function MapView(props: MapProps) {
-  const theme = useTheme();
-  const [{ maps }] = useSettings();
-  const center = {
-    latitude: 0,
-    longitude: 0,
-    latitudeDelta: 90,
-    longitudeDelta: 90,
-  };
   const mapRef = React.useRef<MapboxGL.MapView | null>();
   const camRef = React.useRef<MapboxGL.Camera | null>();
+  const [center, setCenter] = React.useState([0, 0]);
   const [locError, setLocError] = React.useState(false);
   async function getLocation() {
     var { status } = await Location.requestPermissionsAsync();
@@ -92,6 +86,7 @@ export default function MapView(props: MapProps) {
         style={{ flex: 1 }}
         ref={r => (mapRef.current = r)}
         onRegionDidChange={region => {
+          setCenter(region.geometry.coordinates);
           props.onRegionChange?.({
             latitude: region.geometry.coordinates[1],
             longitude: region.geometry.coordinates[0],
@@ -115,7 +110,7 @@ export default function MapView(props: MapProps) {
                 properties: i,
                 geometry: {
                   type: "Point",
-                  coordinates: [i.lng, i.lat],
+                  coordinates: "center" in i ? center : [i.lng, i.lat],
                 },
               })),
             }}>
@@ -146,7 +141,7 @@ export default function MapView(props: MapProps) {
                 },
                 geometry: {
                   type: "Point",
-                  coordinates: [i.lng, i.lat],
+                  coordinates: "center" in i ? center : [i.lng, i.lat],
                 },
               })),
             }}>
