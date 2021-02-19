@@ -89,7 +89,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
           // title={t("pages:dashboard_dashboard")}
           title="Nearby Specials"
           accessoryLeft={props => <Icon {...props} name="map-marker-radius" />}
-          onPress={() => props.navigation.navigate("Tools",{screen: "Nearby"})}
+          onPress={() => props.navigation.navigate("Tools", { screen: "Nearby" })}
         />
 
         <Layout level="4" style={{ height: 1 }} />
@@ -168,9 +168,19 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
               accessoryLeft={props => <Icon {...props} name="briefcase" />}
             />
             <DrawerItem
-              disabled={true}
+              selected={
+                page[1]?.name === "User" &&
+                page[2]?.name === "Clan" &&
+                (page[2]?.params as any)?.username === user.username
+              }
               title={t("pages:user_clan_progress")}
               accessoryLeft={props => <Icon {...props} name="shield" />}
+              onPress={() =>
+                props.navigation.navigate("User", {
+                  params: { username: user.username },
+                  screen: "Clan",
+                })
+              }
             />
             <DrawerItem
               selected={

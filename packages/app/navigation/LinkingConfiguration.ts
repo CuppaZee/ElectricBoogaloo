@@ -25,6 +25,7 @@ export default {
               Challenge: ":username/challenge/:challenge/:date?",
               Captures: ":username/captures/:category?",
               Bouncers: ":username/bouncers",
+              Clan: ":username/clan",
             },
           },
           Clan: {

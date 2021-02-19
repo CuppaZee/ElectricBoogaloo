@@ -32,6 +32,11 @@ export const UserPages = [
     title: "user_challenges",
     screen: "Challenges",
   },
+  {
+    icon: "shield",
+    title: "user_clan_progress",
+    screen: "Clan",
+  },
 ] as const;
 
 export default function UserDashCard({

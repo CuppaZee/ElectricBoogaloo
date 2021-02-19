@@ -39,23 +39,11 @@ const builds: Build[] = [
   {
     build: 1,
     date: "2021-02-18",
-    // description: "Welcome to CuppaZee!",
-    // types: [
-    //   {
-    //     title: "Laser Shark",
-    //     types: ["lasershark"],
-    //   },
-    // ],
     features: [
       {
         title: "Changes Card",
         description: "Added a new Changes Card to the Dashboard",
       },
-      // {
-      //   title: "Clan Progress",
-      //   description:
-      //     "The Clan Progress page is now available in CuppaZee V2, allowing people who haven't signed up to a clan to view their progress!",
-      // },
     ],
     improvements: [
       {
@@ -94,6 +82,24 @@ const builds: Build[] = [
         description:
           "Redesigned the Nearby Specials Page in order to provide more detail in a more compact view",
         thanks: "EmileP68 and sverlaan",
+      },
+    ],
+  },
+  {
+    build: 3,
+    date: "2021-02-19",
+    features: [
+      {
+        title: "User Clan Progress",
+        description:
+          "The Clan Progress page is now available in CuppaZee V2, allowing people who haven't signed up to a clan to view their progress towards Clan Requirements!",
+      },
+    ],
+    improvements: [
+      {
+        description:
+          "Redesigned the ZeeOps Overview to fix the Reward Counter and make it clearer when you've collected your rewards.",
+        thanks: "PelicanRouge",
       },
     ],
   },
