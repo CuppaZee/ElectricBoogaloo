@@ -17,6 +17,7 @@ export type UserStackParamList = {
   Activity: { username: string; date?: string };
   Inventory: { username: string };
   Challenges: { username: string; date?: string };
+  Challenge: { username: string; challenge: string; date?: string };
   Captures: { username: string; category?: string };
   ZeeOps: { username: string };
   Bouncers: { username: string };

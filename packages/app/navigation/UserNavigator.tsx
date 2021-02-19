@@ -11,6 +11,7 @@ const UserActivityScreen = lazy(() => import("../screens/User/Activity"));
 const UserInventoryScreen = lazy(() => import("../screens/User/Inventory"));
 const UserZeeOpsScreen = lazy(() => import("../screens/User/ZeeOps"));
 const UserChallengesScreen = lazy(() => import("../screens/User/Challenges"));
+const UserChallengeScreen = lazy(() => import("../screens/User/Challenge"));
 const UserCapturesScreen = lazy(() => import("../screens/User/Captures"));
 const UserBouncersScreen = lazy(() => import("../screens/User/Bouncers"));
 
@@ -31,6 +32,7 @@ export default function UserNavigator() {
       <UserStack.Screen name="ZeeOps" component={UserZeeOpsScreen} />
       <UserStack.Screen name="Bouncers" component={UserBouncersScreen} />
       <UserStack.Screen name="Challenges" component={UserChallengesScreen} />
+      <UserStack.Screen name="Challenge" component={UserChallengeScreen} />
       <UserStack.Screen name="Captures" component={UserCapturesScreen} />
     </UserStack.Navigator>
   );

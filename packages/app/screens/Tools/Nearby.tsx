@@ -1,5 +1,4 @@
-
-import { Layout, Spinner, Text } from "@ui-kitten/components";
+import { Icon, Layout, Spinner, Text, useTheme } from "@ui-kitten/components";
 import * as React from "react";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
 import useComponentSize from "../../hooks/useComponentSize";
@@ -12,7 +11,7 @@ import * as Location from "expo-location";
 import * as Notifications from "expo-notifications";
 import types from "@cuppazee/types";
 import Loading from "../../components/Loading";
-
+import dayjs from "dayjs";
 
 type Bouncer = (MunzeeSpecialBouncer | MunzeeSpecial) & {
   hash: string;
@@ -29,7 +28,7 @@ type Bouncer = (MunzeeSpecialBouncer | MunzeeSpecial) & {
   //   distance: number;
   // };
   // timezone: string[];
-}
+};
 
 interface NearbySettings {
   token?: string;
@@ -39,9 +38,14 @@ interface NearbySettings {
 
 export default function NearbyScreen() {
   const [size, onLayout] = useComponentSize();
+  const theme = useTheme();
   const [settings, setSettings] = React.useState<NearbySettings>();
   useTitle(`☕ Nearby Bouncers`);
-  const data = useCuppaZeeRequest<{ data: Bouncer[] }>("bouncers/nearby", settings ?? {}, settings !== undefined);
+  const data = useCuppaZeeRequest<{ data: Bouncer[] }>(
+    "bouncers/nearby",
+    settings ?? {},
+    settings !== undefined
+  );
 
   React.useEffect(() => {
     (async () => {
@@ -50,18 +54,20 @@ export default function NearbyScreen() {
       let token;
       if (Platform.OS !== "web") {
         try {
-          token = (await Notifications.getExpoPushTokenAsync({
-            experienceId: "@sohcah/PaperZee",
-          }))?.data;
-        }catch(e){}
+          token = (
+            await Notifications.getExpoPushTokenAsync({
+              experienceId: "@sohcah/PaperZee",
+            })
+          )?.data;
+        } catch (e) {}
       }
       setSettings({
         latitude: loc.coords.latitude,
         longitude: loc.coords.longitude,
         token,
       });
-    })()
-  }, [])
+    })();
+  }, []);
 
   if (!data.isFetched || !size || !settings) {
     return (
@@ -109,32 +115,55 @@ export default function NearbyScreen() {
                     style={{ size: 48 }}
                   />
                 </View>
-                <View style={{ padding: 4 }}>
+                <View style={{ padding: 4, flex: 1 }}>
                   <Text category="h6">
                     {"mythological_munzee" in i
                       ? i.mythological_munzee.friendly_name
                       : types.getType(i.logo)?.name ?? i.logo.slice(49, -4)}
+                    {"mythological_munzee" in i ? (
+                      <Text category="s1"> by {i.mythological_munzee.creator_username}</Text>
+                    ) : (
+                      ""
+                    )}
                   </Text>
-                  {"mythological_munzee" in i && (
-                    <Text category="s1">By {i.mythological_munzee.creator_username}</Text>
-                  )}
+
                   <Text category="s1">
                     At {i.friendly_name} by {i.full_url.split("/")[4]}
                   </Text>
-                  <Text category="s1">
-                    {i.distanceStr} {i.direction}
-                  </Text>
-                  {/* {i.location?.record && (
-                  <Text category="s2">
-                    {i.location?.record?.name}, {i.location?.record?.countryCode} [
-                    {i.timezone.map(t => day().tz(t).format("HH:mm")).join(", ")}]
-                  </Text>
-                )} */}
-                  {/* <Text category="c1">
-                  {i.number_of_captures} Captures - Last Captured{" "}
-                  {i.last_captured_at ? day(i.last_captured_at).format("L LT") : "Never"}
-                </Text> */}
+                  <Text category="c1">Expires {dayjs(i.special_good_until * 1000).format("LTS")}</Text>
                 </View>
+                <Layout
+                  level="4"
+                  style={{
+                    padding: 4,
+                    borderTopRightRadius: 8,
+                    borderBottomRightRadius: 8,
+                    alignSelf: "stretch",
+                    width: 80,
+                    justifyContent: "center",
+                  }}>
+                  <Text style={{ textAlign: "center" }} category="h6">
+                    {i.distanceStr}
+                  </Text>
+                  <Text style={{ textAlign: "center" }} category="s1">
+                    <Icon
+                      name={
+                        {
+                          N: "arrow-up-thick",
+                          NW: "arrow-top-left-thick",
+                          NE: "arrow-top-right-thick",
+                          W: "arrow-left-thick",
+                          E: "arrow-right-thick",
+                          SW: "arrow-bottom-left-thick",
+                          SE: "arrow-bottom-right-thick",
+                          S: "arrow-down-thick",
+                        }[i.direction.slice(2) as "N" | "NE" | "NW" | "E" | "W" | "SE" | "SW" | "S"]
+                      }
+                      style={{ color: theme["text-basic-color"], height: 20, width: 20 }}
+                    />
+                    {i.direction.slice(2)}
+                  </Text>
+                </Layout>
               </Layout>
             ))}
         </View>

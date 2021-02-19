@@ -49,8 +49,7 @@ const builds: Build[] = [
     features: [
       {
         title: "Changes Card",
-        description:
-          "Added a new Changes Card to the Dashboard",
+        description: "Added a new Changes Card to the Dashboard",
       },
       // {
       //   title: "Clan Progress",
@@ -76,6 +75,25 @@ const builds: Build[] = [
       {
         description: "Fixed Icon for Greenie (and a few other types)",
         thanks: "c-bn",
+      },
+    ],
+  },
+  {
+    build: 2,
+    date: "2021-02-19",
+    features: [
+      {
+        title: "User Challenges",
+        description:
+          "CuppaZee's Challenges section has been brought to CuppaZee V2, with a new design and more challenges!",
+        thanks: "LympstoneBigtrotters, c-bn, IanZ, MamaDuck71 and CzPeet",
+      },
+    ],
+    improvements: [
+      {
+        description:
+          "Redesigned the Nearby Specials Page in order to provide more detail in a more compact view",
+        thanks: "EmileP68 and sverlaan",
       },
     ],
   },

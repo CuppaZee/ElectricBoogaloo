@@ -1,13 +1,11 @@
-import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
-import { Layout, Modal, Spinner, Text } from "@ui-kitten/components";
+import { RouteProp, useRoute } from "@react-navigation/native";
+import { Layout, Modal } from "@ui-kitten/components";
 import dayjs from "dayjs";
 import * as React from "react";
 import {
   ActivityConverter,
-  UserActivityData,
   UserActivityFilters,
 } from "../../components/Activity/Data";
-import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import useComponentSize from "../../hooks/useComponentSize";
 import { UserStackParamList } from "../../types";
