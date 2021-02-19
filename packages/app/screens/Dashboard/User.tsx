@@ -37,6 +37,11 @@ export const UserPages = [
     title: "user_clan_progress",
     screen: "Clan",
   },
+  {
+    icon: "earth",
+    title: "user_universal_capper",
+    screen: "Universal",
+  },
 ] as const;
 
 export default function UserDashCard({

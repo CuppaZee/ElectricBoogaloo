@@ -17,18 +17,12 @@ const route: Route = {
     {
       version: 4,
       async function({ params: { username, access_token, filter }, db }: any) {
-        var token = await retrieve(
-          { user_id: 455935, teaken: false },
-          60,
-          "universal"
-        );
+        var token = await retrieve({ user_id: 455935, teaken: false }, 60, "universal");
         var data = (await db.collection("data").doc("universal").get())
           .data()
           .munzees.map((i: any) => i.split("/"))
           .filter((i: any) => i[0] !== username);
-        data = data.filter(
-          (i: any) => !(filter || "").split(",").includes(i[4] || "0")
-        );
+        data = data.filter((i: any) => !(filter || "").split(",").includes(i[4] || "0"));
         var valid = new Set(
           Object.entries(
             (
@@ -39,8 +33,51 @@ const route: Route = {
               )
             )?.data ?? {}
           )
-            .filter((i) => !i[1])
-            .map((i) => i[0])
+            .filter(i => !i[1])
+            .map(i => i[0])
+        );
+        return {
+          status: "success",
+          data: {
+            munzees: shuffle(
+              data
+                .filter((i: any) => valid.has(i[3]))
+                .map((i: any) => ({
+                  munzee: i.slice(0, 3).join("/"),
+                  type: types.find((x: any) => x.id === (i[4] || "0")),
+                  munzee_id: i[3],
+                }))
+            ),
+            total: data.length,
+            capped: data.filter((i: any) => !valid.has(i[3])).length,
+            types,
+            cacheID: Math.floor(Math.random() * 10000),
+            token: token.access_token,
+          },
+        };
+      },
+    },
+    {
+      version: 5,
+      async function({ params: { username, access_token, filter }, db }: any) {
+        var token = await retrieve({ user_id: 455935, teaken: false }, 60, "universal");
+        var data = (await db.collection("data").doc("universal").get())
+          .data()
+          .munzees.map((i: any) => i.split("/"))
+          .filter((i: any) => i[0] !== username);
+        data = data.filter((i: any) => !filter || filter.split(",").includes(i[4] || "0"));
+        var valid = new Set(
+          Object.entries(
+            (
+              await request(
+                "munzee/hascaptured",
+                { munzee_ids: data.map((i: any) => i[3]).join(",") },
+                access_token
+              )
+            )?.data ?? {}
+          )
+            .filter(i => !i[1])
+            .map(i => i[0])
         );
         return {
           status: "success",

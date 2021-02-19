@@ -22,6 +22,7 @@ export type UserStackParamList = {
   ZeeOps: { username: string };
   Bouncers: { username: string };
   Clan: { username: string };
+  Universal: { username: string };
 };
 
 export type DashStackParamList = {

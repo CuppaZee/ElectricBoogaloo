@@ -103,6 +103,23 @@ const builds: Build[] = [
       },
     ],
   },
+  {
+    build: 4,
+    date: "2021-02-19",
+    features: [
+      {
+        title: "Universal Capper",
+        description:
+          "The Universal Capper is now available in CuppaZee V2, allowing you to quickly and easily capture Universal and Social Munzees, and share your own with the world!",
+      },
+    ],
+    improvements: [
+      {
+        description:
+          "Added User Challenges to the Sidebar",
+      },
+    ],
+  },
 ];
 
 export default builds;

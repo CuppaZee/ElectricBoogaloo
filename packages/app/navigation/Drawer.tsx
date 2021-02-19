@@ -120,6 +120,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
                 page[2]?.name === "Profile" &&
                 (page[2]?.params as any)?.username === user.username
               }
+              disabled={true}
               title={t("pages:user_profile")}
               accessoryLeft={props => <Icon {...props} name="account" />}
               onPress={() =>
@@ -208,9 +209,34 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
               accessoryLeft={props => <Icon {...props} name="hammer" />}
             />
             <DrawerItem
-              disabled={true}
+              selected={
+                page[1]?.name === "User" &&
+                page[2]?.name === "Universal" &&
+                (page[2]?.params as any)?.username === user.username
+              }
               title={t("pages:user_universal_capper")}
-              accessoryLeft={props => <Icon {...props} name="check" />}
+              accessoryLeft={props => <Icon {...props} name="earth" />}
+              onPress={() =>
+                props.navigation.navigate("User", {
+                  params: { username: user.username },
+                  screen: "Universal",
+                })
+              }
+            />
+            <DrawerItem
+              selected={
+                page[1]?.name === "User" &&
+                (page[2]?.name === "Challenges" || page[2]?.name === "Challenge") &&
+                (page[2]?.params as any)?.username === user.username
+              }
+              title={t("pages:user_challenges")}
+              accessoryLeft={props => <Icon {...props} name="trophy" />}
+              onPress={() =>
+                props.navigation.navigate("User", {
+                  params: { username: user.username },
+                  screen: "Challenges",
+                })
+              }
             />
           </DrawerGroup>
         ))}

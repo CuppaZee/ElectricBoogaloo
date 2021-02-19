@@ -26,6 +26,7 @@ export default {
               Captures: ":username/captures/:category?",
               Bouncers: ":username/bouncers",
               Clan: ":username/clan",
+              Universal: ":username/universal",
             },
           },
           Clan: {

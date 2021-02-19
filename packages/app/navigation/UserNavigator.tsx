@@ -15,6 +15,7 @@ const UserChallengeScreen = lazy(() => import("../screens/User/Challenge"));
 const UserCapturesScreen = lazy(() => import("../screens/User/Captures"));
 const UserBouncersScreen = lazy(() => import("../screens/User/Bouncers"));
 const UserClanScreen = lazy(() => import("../screens/User/Clan"));
+const UserUniversalScreen = lazy(() => import("../screens/User/Universal"));
 
 const UserStack = createStackNavigator<UserStackParamList>();
 
@@ -36,6 +37,7 @@ export default function UserNavigator() {
       <UserStack.Screen name="Challenge" component={UserChallengeScreen} />
       <UserStack.Screen name="Captures" component={UserCapturesScreen} />
       <UserStack.Screen name="Clan" component={UserClanScreen} />
+      <UserStack.Screen name="Universal" component={UserUniversalScreen} />
     </UserStack.Navigator>
   );
 }
