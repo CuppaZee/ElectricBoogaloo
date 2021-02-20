@@ -214,9 +214,19 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
               }
             />
             <DrawerItem
-              disabled={true}
+              selected={
+                page[1]?.name === "User" &&
+                page[2]?.name === "QRew" &&
+                (page[2]?.params as any)?.username === user.username
+              }
               title={t("pages:user_qrew_checker")}
               accessoryLeft={props => <Icon {...props} name="hammer" />}
+              onPress={() =>
+                props.navigation.navigate("User", {
+                  params: { username: user.username },
+                  screen: "QRew",
+                })
+              }
             />
             <DrawerItem
               selected={
@@ -467,9 +477,14 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
           }
         />
         <DrawerItem
-          disabled={true}
+          selected={page[1]?.name === "Tools" && page[2]?.name === "Donate"}
           title={t("pages:tools_donate")}
           accessoryLeft={props => <Icon {...props} name="currency-usd-circle" />}
+          onPress={() =>
+            props.navigation.navigate("Tools", {
+              screen: "Donate",
+            })
+          }
         />
       </ScrollView>
     </Layout>

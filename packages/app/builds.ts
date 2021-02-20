@@ -132,7 +132,37 @@ const builds: Build[] = [
     fixes: [
       {
         description: "Fixed the Universal Capper when all Universals have already been captured",
-        thanks: "Obi-Cal"
+        thanks: "Obi-Cal",
+      },
+    ],
+  },
+  {
+    build: 6,
+    date: "2021-02-19",
+    features: [
+      {
+        title: "QRew Checker",
+        description:
+          "The QRew Checker has returned, with an improved design, better accuracy, lower error rates and faster loading times!",
+      },
+      {
+        title: "Donate Page",
+        description: "A page with information on donating has been added to the app.",
+      },
+    ],
+  },
+  {
+    build: 7,
+    date: "2021-02-20",
+    fixes: [
+      {
+        description:
+          "Fixed the MHQ time parsing function, correcting the times displayed in the Inventory",
+        thanks: "HiTechMD and Noisette",
+      },
+      {
+        description: "Fixed display overflowing on User Activity Filters popup",
+        thanks: "mandello",
       },
     ],
   },

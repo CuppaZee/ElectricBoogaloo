@@ -47,6 +47,11 @@ export const UserPages = [
     title: "user_blast_checker",
     screen: "Blast",
   },
+  {
+    icon: "hammer",
+    title: "user_qrew_checker",
+    screen: "QRew",
+  },
 ] as const;
 
 export default function UserDashCard({

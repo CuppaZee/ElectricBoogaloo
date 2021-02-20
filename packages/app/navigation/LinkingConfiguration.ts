@@ -28,6 +28,7 @@ export default {
               Clan: ":username/clan",
               Universal: ":username/universal",
               Blast: ":username/blast",
+              QRew: ":username/qrew",
             },
           },
           Clan: {
@@ -45,6 +46,7 @@ export default {
               Bouncers: "bouncers",
               Nearby: "nearby",
               Credits: "credits",
+              Donate: "donate",
               OpenSource: "opensource",
               WidgetConfigureActivityWidget: "widget_configure_activity_widget/:id",
             },

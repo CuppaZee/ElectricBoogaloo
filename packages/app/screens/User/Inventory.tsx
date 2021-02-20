@@ -78,7 +78,9 @@ export default function UserInventoryScreen() {
             </Layout>
           ))}
         </View>
-        <Text style={{ textAlign: "center" }} category="h5">{t("user_inventory:history")}</Text>
+        <Text style={{ textAlign: "center" }} category="h5">
+          {t("user_inventory:history")}
+        </Text>
         <View style={styles.grid}>
           {d?.history.map(c => (
             <Layout
@@ -94,7 +96,7 @@ export default function UserInventoryScreen() {
                 {typeof c.title === "string" ? c.title : t(c.title[0] as any, c.title[1])}
               </Text>
               <Text category="c1" style={{ textAlign: "center" }}>
-                {c.time.format('L LT')}
+                {c.time.format("L LT")}
               </Text>
               {c.description && (
                 <Text category="p1" style={{ textAlign: "center" }}>

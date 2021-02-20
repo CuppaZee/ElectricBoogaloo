@@ -24,6 +24,7 @@ export type UserStackParamList = {
   Clan: { username: string };
   Universal: { username: string };
   Blast: { username: string };
+  QRew: { username: string };
 };
 
 export type DashStackParamList = {
@@ -39,6 +40,7 @@ export type ClanStackParamList = {
 
 export type ToolsStackParamList = {
   Search: undefined;
+  Donate: undefined;
   Calendar: undefined;
   Credits: undefined;
   OpenSource: undefined;

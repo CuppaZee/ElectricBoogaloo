@@ -719,8 +719,6 @@ const mhq = {
 };
 
 export default (option, dayjsClass, dayjsFactory) => {
-  // extend dayjs()
-  // e.g. add dayjs().isSameOrBefore()
   dayjsClass.prototype.mhq = function (keepLocalTime) {
     return this.utcOffset(
       -mhq.offsets[mhq.untils.findIndex(i => i > this.valueOf())],
@@ -728,23 +726,9 @@ export default (option, dayjsClass, dayjsFactory) => {
     );
   };
 
-  // extend dayjs
-  // e.g. add dayjs.utc()
   dayjsFactory.mhqNow = () =>
     dayjsFactory().utcOffset(-mhq.offsets[mhq.untils.findIndex(i => i > Date.now())]);
   dayjsFactory.mhqParse = function () {
-    return dayjsFactory(dayjsFactory(...arguments).add(
-      mhq.offsets[mhq.untils.findIndex(i => i > Date.now())],
-      "minute"
-    ).valueOf());
+    return dayjsFactory(...arguments).mhq(true)
   }
-
-  // // overriding existing API
-  // // e.g. extend dayjs().format()
-  // const oldFormat = dayjsClass.prototype.format;
-  // dayjsClass.prototype.format = function (arguments) {
-  //   // original format result
-  //   const result = oldFormat.bind(this)(arguments);
-  //   // return modified result
-  // };
 };

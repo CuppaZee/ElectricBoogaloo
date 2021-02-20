@@ -14,6 +14,7 @@ import UserActivityFilter from "../../components/Activity/Filter";
 import useTitle from "../../hooks/useTitle";
 import useActivity from "../../hooks/useActivity";
 import Loading from "../../components/Loading";
+import { ScrollView, View } from "react-native";
 
 export default function UserActivityScreen() {
   const [size, onLayout] = useComponentSize();
@@ -49,9 +50,7 @@ export default function UserActivityScreen() {
   return (
     <Layout onLayout={onLayout} style={{ flex: 1, flexDirection: "row" }}>
       <UserActivityList
-        toggleFilterModal={
-          (size?.width || 0) > 720 ? undefined : () => setVisible(!visible)
-        }
+        toggleFilterModal={(size?.width || 0) > 720 ? undefined : () => setVisible(!visible)}
         d={d}
         user_id={user.data?.data?.user_id ?? 0}
       />
@@ -61,12 +60,11 @@ export default function UserActivityScreen() {
         </Layout>
       ) : (
         <Modal
-          style={{ maxHeight: "90%"}}
+          style={{ justifyContent: "center", alignItems: "center", height: "100%" }}
           visible={visible}
           backdropStyle={{ backgroundColor: "#0007" }}
-          onBackdropPress={() => setVisible(false)}
-        >
-          <Layout level="3" style={{ width: 300, flex: 1 }}>
+          onBackdropPress={() => setVisible(false)}>
+          <Layout level="3" style={{ maxHeight: "90%", height: "100%", width: 300, borderRadius: 8 }}>
             <UserActivityFilter
               d={d}
               filters={filters}
