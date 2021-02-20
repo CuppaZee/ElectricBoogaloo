@@ -188,6 +188,23 @@ const builds: Build[] = [
       },
     ],
   },
+  {
+    build: 9,
+    date: "2021-02-20",
+    features: [
+      {
+        title: "Bouncer Maps",
+        description:
+          "Bouncer Maps have now returned with much better performance! Head to the Bouncers section of the App and tap on a Munzee or the Map Icon next to a category name!",
+      },
+    ],
+    improvements: [
+      {
+        description: "Replaced the message that displayed when you'd completed a week of ZeeOps with a clearer design",
+        thanks: "Citygalbex"
+      },
+    ],
+  },
 ];
 
 export default builds;

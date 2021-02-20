@@ -5,7 +5,6 @@ import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import { getTypeImage } from "../Common/TypeImage";
-import { useSettings } from "../../hooks/useSettings";
 import { useTheme } from "@ui-kitten/components";
 
 mapboxgl.accessToken =
@@ -18,7 +17,11 @@ function WebMap(props: MapProps) {
 
   const [lng, setLng] = React.useState(props.longitude);
   const [lat, setLat] = React.useState(props.latitude);
-  const [zoom, setZoom] = React.useState(props.zoom);
+  React.useEffect(() => {
+    setLng(props.longitude);
+    setLat(props.latitude);
+  }, [props.longitude, props.latitude]);
+  const [zoom, setZoom] = React.useState(props.zoom || 0.1);
   const [satellite, setSatellite] = React.useState(false);
 
   const theme = useTheme();

@@ -1,7 +1,8 @@
 import db, { TypeHidden, TypeTags } from "@cuppazee/types";
-import { Layout, Text } from "@ui-kitten/components";
+import { useNavigation } from "@react-navigation/native";
+import { Layout, Text, Icon, Button } from "@ui-kitten/components";
 import * as React from "react";
-import { Image, ScrollView, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import BouncerOverviewConverter from "../../components/Bouncers/Data";
 import { BouncerIcon } from "../../components/Bouncers/Icon";
 import Loading from "../../components/Loading";
@@ -10,6 +11,7 @@ import useTitle from "../../hooks/useTitle";
 
 export default function BouncersScreen() {
   useTitle(`☕ Bouncers`);
+  const nav = useNavigation();
   const data = useCuppaZeeRequest("bouncers/overview", {});
   const d = React.useMemo(() => data.data ? BouncerOverviewConverter(data.data.data) : null, [data.dataUpdatedAt]);
   
@@ -52,9 +54,27 @@ export default function BouncersScreen() {
           .map(i => (
             <View style={{ flexGrow: 1, width: 400, maxWidth: "100%", padding: 4 }}>
               <Layout level="3" style={{ borderRadius: 8, padding: 4 }}>
-                <Text category="h5" style={{ textAlign: "center" }}>
-                  {i.name}
-                </Text>
+                <View
+                  style={{ flexDirection: "row", alignItems: "center", justifyContent: "center" }}>
+                  <Text category="h5" style={{ textAlign: "center" }}>
+                    {i.name}
+                  </Text>
+                  <Button
+                    onPress={() =>
+                      nav.navigate("Tools", {
+                        screen: "BouncersMap",
+                        params: {
+                          type: i.types
+                            .filter(i => !i.hidden(TypeHidden.Bouncers))
+                            .map(i => i.icon)
+                            .join(","),
+                        },
+                      })
+                    }
+                    appearance="ghost"
+                    accessoryLeft={props => <Icon name="map" {...props} />}
+                  />
+                </View>
                 <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
                   {i.types
                     .filter(i => !i.hidden(TypeHidden.Bouncers))

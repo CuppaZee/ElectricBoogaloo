@@ -44,6 +44,7 @@ export default {
               Search: "search",
               Calendar: "calendar",
               Bouncers: "bouncers",
+              BouncersMap: "bouncers/:type",
               Nearby: "nearby",
               Credits: "credits",
               Donate: "donate",

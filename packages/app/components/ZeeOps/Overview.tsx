@@ -27,18 +27,49 @@ export default function ZeeOpsOverview({ user_id }: ZeeOpsOverviewProps) {
     return (
       <View
         style={{
-          height: 48,
+          flexDirection: "row",
+          padding: 4,
           alignItems: "center",
           justifyContent: "center",
-          flexDirection: "row",
         }}>
-        <Icon
-          name="check"
-          style={{ height: 24, width: 24, marginRight: 8, color: theme["text-success-color"] }}
-        />
-        <Text status="success" category="h6">
-          Daily ZeeOp Complete
-        </Text>
+        <View>
+          <TypeImage
+            style={{ size: 36, margin: 4 }}
+            icon="spyderbot"
+          />
+        </View>
+        <View style={{ flex: 1, maxWidth: 400 }}>
+          <Text category="s1" style={{ padding: 4 }}>
+            Week Complete!
+          </Text>
+          <Layout level="4" style={{ borderRadius: 8 }}>
+            <LinearGradient
+              start={[0, 0.5]}
+              end={[1, 0.5]}
+              locations={[
+                0,
+                1,
+                1.0001,
+                1,
+              ]}
+              colors={[
+                theme["text-success-color"] + "66",
+                theme["text-success-color"] + "66",
+                "transparent",
+                "transparent",
+              ]}
+              style={{
+                padding: 4,
+                borderRadius: 8,
+                borderWidth: 1,
+                borderColor: theme["border-basic-color-1"],
+              }}>
+              <Text category="s1" style={{ textAlign: "center" }}>
+                Spyderbot Collected!
+              </Text>
+            </LinearGradient>
+          </Layout>
+        </View>
       </View>
     );
   } else if (dayjs.mhqParse(d.start_time).valueOf() > Date.now()) {

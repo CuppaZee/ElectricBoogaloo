@@ -3,7 +3,7 @@ import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { DrawerItem, Layout, Text } from "@ui-kitten/components";
 import * as React from "react";
 import { ScrollView, View } from "react-native";
-import { BouncerIcon } from "../../components/Bouncers/Icon";
+import { CapturesIcon } from "../../components/Captures/Icon";
 import TypeImage from "../../components/Common/TypeImage";
 import Loading from "../../components/Loading";
 import useComponentSize from "../../hooks/useComponentSize";
@@ -85,9 +85,7 @@ export default function UserCapturesScreen() {
                     accessoryLeft={() => (
                       <TypeImage icon={c.icon} style={{ size: 32, margin: -4 }} />
                     )}
-                    onPress={() =>
-                      nav.setParams({ category: c.id })
-                    }
+                    onPress={() => nav.setParams({ category: c.id })}
                   />
                 ))}
             </Layout>
@@ -105,7 +103,7 @@ export default function UserCapturesScreen() {
                   {i.types
                     .filter(i => !i.hidden(TypeHidden.Capture))
                     .map(t => (
-                      <BouncerIcon count={d[t.strippedIcon] || 0} type={t} />
+                      <CapturesIcon count={d[t.strippedIcon] || 0} type={t} />
                     ))}
                 </View>
               </Layout>
