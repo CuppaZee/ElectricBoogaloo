@@ -120,7 +120,6 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
                 page[2]?.name === "Profile" &&
                 (page[2]?.params as any)?.username === user.username
               }
-              disabled={true}
               title={t("pages:user_profile")}
               accessoryLeft={props => <Icon {...props} name="account" />}
               onPress={() =>

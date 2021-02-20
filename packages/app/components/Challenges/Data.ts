@@ -266,7 +266,7 @@ export default function ChallengesConverter(data: UserActivityConverterOutput) {
       completion: [] as UserActivityItem[],
     }))
   }));
-  for (const item of data.list) {
+  for (const item of data.list.filter(i=>i.type === "capture")) {
     for (const category of challenges.map(i => i.categories).flat()) {
       if (item.munzee_type && category.types.includes(item.munzee_type)) category.completion.push(item);
     }

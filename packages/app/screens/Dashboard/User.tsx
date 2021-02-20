@@ -3,56 +3,14 @@ import { Icon, Layout, Text, DrawerItem, DrawerGroup } from "@ui-kitten/componen
 import dayjs from "dayjs";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
-import { Image, ScrollView, StyleSheet, View } from "react-native";
+import { Image, Pressable, ScrollView, StyleSheet, View } from "react-native";
 import UserActivityOverview from "../../components/Activity/Overview";
 import ZeeOpsOverview from "../../components/ZeeOps/Overview";
 import useTitle from "../../hooks/useTitle";
 import { DashCardProps } from "./Dashboard";
 import db from "@cuppazee/types";
 import TypeImage from "../../components/Common/TypeImage";
-
-export const UserPages = [
-  {
-    icon: "calendar",
-    title: "user_activity",
-    screen: "Activity",
-  },
-  {
-    icon: "archive",
-    title: "user_inventory",
-    screen: "Inventory",
-  },
-  {
-    icon: "star",
-    title: "user_bouncers",
-    screen: "Bouncers",
-  },
-  {
-    icon: "trophy",
-    title: "user_challenges",
-    screen: "Challenges",
-  },
-  {
-    icon: "shield",
-    title: "user_clan_progress",
-    screen: "Clan",
-  },
-  {
-    icon: "earth",
-    title: "user_universal_capper",
-    screen: "Universal",
-  },
-  {
-    icon: "bomb",
-    title: "user_blast_checker",
-    screen: "Blast",
-  },
-  {
-    icon: "hammer",
-    title: "user_qrew_checker",
-    screen: "QRew",
-  },
-] as const;
+import { UserPagesNow, UserPagesTools } from "../User/Profile";
 
 export default function UserDashCard({
   item,
@@ -68,23 +26,31 @@ export default function UserDashCard({
     <Layout level="3" style={[styles.card, { flex: 1 }]}>
       <ScrollView onLayout={onOuterLayout} style={{ flex: 1 }}>
         <View onLayout={onInnerLayout}>
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              padding: 4,
-              justifyContent: "center",
-            }}>
-            <Image
-              style={{ height: 32, width: 32, borderRadius: 16, marginRight: 8 }}
-              source={{
-                uri: `https://munzee.global.ssl.fastly.net/images/avatars/ua${Number(
-                  item.user_id
-                ).toString(36)}.png`,
-              }}
-            />
-            <Text category="h5">{item.username}</Text>
-          </View>
+          <Pressable
+            onPress={() =>
+              nav.navigate("User", {
+                screen: "Profile",
+                params: { username: item.username },
+              })
+            }>
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                padding: 4,
+                justifyContent: "center",
+              }}>
+              <Image
+                style={{ height: 32, width: 32, borderRadius: 16, marginRight: 8 }}
+                source={{
+                  uri: `https://munzee.global.ssl.fastly.net/images/avatars/ua${Number(
+                    item.user_id
+                  ).toString(36)}.png`,
+                }}
+              />
+              <Text category="h5">{item.username}</Text>
+            </View>
+          </Pressable>
           {touched.includes(index) ? (
             <>
               <UserActivityOverview
@@ -95,7 +61,7 @@ export default function UserDashCard({
             </>
           ) : null}
           <View style={{ padding: 4 }}>
-            {UserPages.map(i => (
+            {UserPagesNow.map(i => (
               <DrawerItem
                 style={{ backgroundColor: "transparent" }}
                 selected={false}
@@ -113,6 +79,33 @@ export default function UserDashCard({
                 }
               />
             ))}
+            <DrawerGroup
+              title={() => (
+                <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
+                  Tools
+                </Text>
+              )}
+              style={{ backgroundColor: "transparent" }}
+              accessoryLeft={props => <Icon {...props} name="tools" />}>
+              {UserPagesTools.map(i => (
+                <DrawerItem
+                  style={{ backgroundColor: "transparent" }}
+                  selected={false}
+                  title={() => (
+                    <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
+                      {t(`pages:${i.title}` as const)}
+                    </Text>
+                  )}
+                  accessoryLeft={props => <Icon name={i.icon} {...props} />}
+                  onPress={() =>
+                    nav.navigate("User", {
+                      screen: i.screen,
+                      params: { username: item.username },
+                    })
+                  }
+                />
+              ))}
+            </DrawerGroup>
             <DrawerGroup
               title={() => (
                 <Text style={{ flex: 1, marginLeft: 4 }} category="s1">

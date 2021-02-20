@@ -166,6 +166,28 @@ const builds: Build[] = [
       },
     ],
   },
+  {
+    build: 8,
+    date: "2021-02-20",
+    features: [
+      {
+        title: "User Profile",
+        description:
+          "Added the User Profile page, allowing you to now search for users to access their activity, stats, etc, as well as tap on users on Clan Stats.",
+      },
+    ],
+    improvements: [
+      {
+        description: "Moved some items to under a Tools dropdown on the Dashboard User Cards",
+      },
+    ],
+    fixes: [
+      {
+        description: "Stopped Cap-ons counting towards Challenges",
+        thanks: "c-bn and Noisette",
+      },
+    ],
+  },
 ];
 
 export default builds;

@@ -21,6 +21,7 @@ import { ClanV2 } from "@cuppazee/api/clan/main";
 import { Settings, useSettings } from "../../hooks/useSettings";
 import { Dayjs } from "dayjs";
 import { useTranslation } from "react-i18next";
+import { useNavigation } from "@react-navigation/native";
 // import Color from 'color';
 
 export function pickTextColor(
@@ -347,9 +348,16 @@ export type UserCellProps = {
 };
 
 export function UserCell(props: UserCellProps) {
+  const nav = useNavigation();
   const { t } = useTranslation();
   return (
     <CommonCell
+      onPress={"user_id" in props.user ? (() => nav.navigate("User", {
+        screen: "Profile",
+        params: {
+          username: "user_id" in props.user ? props.user.username : "",
+        }
+      })) : undefined}
       type={props.stack ? "header_stack" : "header"}
       color={props.user.level}
       image={

@@ -1,30 +1,239 @@
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { Text, Layout, Button } from "@ui-kitten/components";
+import { DrawerItem, Icon, Layout, Text, useTheme } from "@ui-kitten/components";
 import * as React from "react";
-import { StyleSheet, ScrollView } from "react-native";
+import { useTranslation } from "react-i18next";
+import { ScrollView, View, Image } from "react-native";
 import UserActivityOverview from "../../components/Activity/Overview";
+import Loading from "../../components/Loading";
+import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import useTitle from "../../hooks/useTitle";
 import { UserStackParamList } from "../../types";
+import db from "@cuppazee/types";
+import TypeImage from "../../components/Common/TypeImage";
+
+export const UserPagesNow = [
+  {
+    icon: "archive",
+    title: "user_inventory",
+    screen: "Inventory",
+  },
+  {
+    icon: "star",
+    title: "user_bouncers",
+    screen: "Bouncers",
+  },
+  {
+    icon: "trophy",
+    title: "user_challenges",
+    screen: "Challenges",
+  },
+] as const;
+export const UserPagesTools = [
+  {
+    icon: "shield",
+    title: "user_clan_progress",
+    screen: "Clan",
+  },
+  {
+    icon: "earth",
+    title: "user_universal_capper",
+    screen: "Universal",
+  },
+  {
+    icon: "bomb",
+    title: "user_blast_checker",
+    screen: "Blast",
+  },
+  {
+    icon: "hammer",
+    title: "user_qrew_checker",
+    screen: "QRew",
+  },
+] as const;
 
 export default function TabOneScreen() {
-  const nav = useNavigation<
-    StackNavigationProp<UserStackParamList, "Profile">
-  >();
+  const { t } = useTranslation();
+  const theme = useTheme();
+  const nav = useNavigation();
   const route = useRoute<RouteProp<UserStackParamList, "Profile">>();
   useTitle(`☕ ${route.params.username} - Profile`);
-  // return (
-  //   <Layout style={{ flex: 1 }}>
-  //     <ScrollView style={{ flex: 1 }}>
-  //       <Layout style={{ margin: 4, borderRadius: 4 }}>
-  //         <UserActivityOverview user_id={125914} day="2020-12-18" />
-  //       </Layout>
-  //     </ScrollView>
-  //   </Layout>
-  // );
+
+  const user = useMunzeeRequest(
+    "user",
+    { username: route.params?.username },
+    route.params?.username !== undefined
+  );
+
+  if (!user.data?.data) {
+    return (
+      <Layout style={{ flex: 1 }}>
+        <Loading data={[user]} />
+      </Layout>
+    );
+  }
+
   return (
-    <Layout style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text category="h1">PLACEHOLDER PAGE</Text>
+    <Layout style={{ flex: 1 }}>
+      <ScrollView style={{ flex: 1 }}>
+        <View
+          style={{
+            width: 1000,
+            maxWidth: "100%",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            alignSelf: "center",
+          }}>
+          <View style={{ padding: 4, width: 1000, maxWidth: "100%", flexGrow: 1 }}>
+            <Layout level="3" style={{ margin: 4, borderRadius: 4 }}>
+              <DrawerItem
+                style={{ backgroundColor: "transparent" }}
+                selected={false}
+                title={() => (
+                  <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
+                    {t(`pages:user_activity` as const)}
+                  </Text>
+                )}
+                accessoryLeft={props => <Icon name="calendar" {...props} />}
+                accessoryRight={props => <Icon name="chevron-right" {...props} />}
+                onPress={() =>
+                  nav.navigate("User", {
+                    screen: "Activity",
+                    params: { username: route.params.username },
+                  })
+                }
+              />
+              <UserActivityOverview user_id={125914} day="2020-12-18" />
+            </Layout>
+          </View>
+
+          <View style={{ padding: 4, width: 400, maxWidth: "100%", flexGrow: 1 }}>
+            <Layout level="3" style={{ margin: 4, borderRadius: 4, flex: 1 }}>
+              <View style={{ flexDirection: "row", alignItems: "center", padding: 4 }}>
+                <Image
+                  style={{ margin: 4, height: 48, width: 48, borderRadius: 24 }}
+                  source={{
+                    uri: `https://munzee.global.ssl.fastly.net/images/avatars/ua${user.data?.data?.user_id.toString(
+                      36
+                    )}.png`,
+                  }}
+                />
+                <View style={{ padding: 4, flex: 1 }}>
+                  <Text category="h6">{user.data.data.username}</Text>
+                  <View style={{ flexDirection: "row", alignItems: "center" }}>
+                    <Icon
+                      style={{
+                        color: theme["text-basic-color"],
+                        height: 16,
+                        width: 16,
+                        marginRight: 4,
+                      }}
+                      name="arrow-up"
+                    />
+                    <Text category="s1">
+                      Level {user.data.data.level} - {user.data.data.points.toLocaleString()} Points
+                    </Text>
+                  </View>
+                  <View style={{ flexDirection: "row", alignItems: "center" }}>
+                    <Icon
+                      style={{
+                        color: theme["text-basic-color"],
+                        height: 16,
+                        width: 16,
+                        marginRight: 4,
+                      }}
+                      name="trophy"
+                    />
+                    <Text category="s1">Rank #{user.data.data.rank}</Text>
+                  </View>
+                  {user.data.data.titles && user.data.data.titles.length > 0 && (
+                    <View style={{ flexDirection: "row", alignItems: "center" }}>
+                      <Icon
+                        style={{
+                          color: theme["text-basic-color"],
+                          height: 16,
+                          width: 16,
+                          marginRight: 4,
+                        }}
+                        name="star"
+                      />
+                      <Text category="s1">{user.data.data.titles.join(", ")}</Text>
+                    </View>
+                  )}
+                </View>
+              </View>
+              {UserPagesNow.map(i => (
+                <DrawerItem
+                  style={{ backgroundColor: "transparent" }}
+                  selected={false}
+                  title={() => (
+                    <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
+                      {t(`pages:${i.title}` as const)}
+                    </Text>
+                  )}
+                  accessoryLeft={props => <Icon name={i.icon} {...props} />}
+                  onPress={() =>
+                    nav.navigate("User", {
+                      screen: i.screen,
+                      params: { username: route.params.username },
+                    })
+                  }
+                />
+              ))}
+            </Layout>
+          </View>
+
+          <View style={{ padding: 4, width: 400, maxWidth: "100%", flexGrow: 1 }}>
+            <Layout level="3" style={{ margin: 4, borderRadius: 4, flex: 1 }}>
+              {UserPagesTools.map(i => (
+                <DrawerItem
+                  style={{ backgroundColor: "transparent" }}
+                  selected={false}
+                  title={() => (
+                    <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
+                      {t(`pages:${i.title}` as const)}
+                    </Text>
+                  )}
+                  accessoryLeft={props => <Icon name={i.icon} {...props} />}
+                  onPress={() =>
+                    nav.navigate("User", {
+                      screen: i.screen,
+                      params: { username: route.params.username },
+                    })
+                  }
+                />
+              ))}
+            </Layout>
+          </View>
+
+          <View style={{ padding: 4, width: 400, maxWidth: "100%", flexGrow: 1 }}>
+            <Layout level="3" style={{ margin: 4, borderRadius: 4, flex: 1 }}>
+              {db
+                .getCategory("root")
+                ?.children.filter(i => i.children.length > 0)
+                .map(c => (
+                  <DrawerItem
+                    style={{ backgroundColor: "transparent" }}
+                    selected={false}
+                    title={() => (
+                      <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
+                        {c.name}
+                      </Text>
+                    )}
+                    accessoryLeft={() => (
+                      <TypeImage icon={c.icon} style={{ size: 32, marginVertical: -4 }} />
+                    )}
+                    onPress={() =>
+                      nav.navigate("User", {
+                        screen: "Captures",
+                        params: { username: route.params.username, category: c.id },
+                      })
+                    }
+                  />
+                ))}
+            </Layout>
+          </View>
+        </View>
+      </ScrollView>
     </Layout>
   );
 }
