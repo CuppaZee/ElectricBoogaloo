@@ -1,12 +1,10 @@
 import React from "react";
 import * as Location from "expo-location";
-import TypeImage, { getRemoteTypeImage, getTypeImage } from "../Common/TypeImage";
-import { Button, Icon, useTheme } from "@ui-kitten/components";
-import { useSettings } from "../../hooks/useSettings";
-import MapStyleDark from "./MapStyleDark.json";
+import { getRemoteTypeImage, getTypeImage } from "../Common/TypeImage";
+import { Button, Icon } from "@ui-kitten/components";
 
 import MapboxGL from "@react-native-mapbox-gl/maps";
-import { Platform, View } from "react-native";
+import { PixelRatio, View } from "react-native";
 
 MapboxGL.setAccessToken(
   "pk.eyJ1Ijoic29oY2FoIiwiYSI6ImNqeWVqcm8wdTAxc2MzaXFpa282Yzd2aHEifQ.afYbt2sVMZ-kbwdx5_PekQ"
@@ -50,17 +48,6 @@ function getImages(markers: MapMarkerProps[]) {
     {}
   );
 }
-
-const MapMarker = React.memo(function (props: MapMarkerProps) {
-  return (
-    <MapboxGL.MarkerView
-      id={props.id}
-      coordinate={"center" in props ? [0, 0] : [props.lat, props.lng]}
-      anchor={{ x: 0.5, y: 1 }}>
-      <TypeImage icon={props.icon} style={{ size: 48 }} />
-    </MapboxGL.MarkerView>
-  );
-});
 
 export default function MapView(props: MapProps) {
   const mapRef = React.useRef<MapboxGL.MapView | null>();
@@ -182,7 +169,7 @@ export default function MapView(props: MapProps) {
               id="symbols"
               filter={["!", ["has", "point_count"]]}
               style={{
-                iconSize: Platform.OS === "ios" ? 0.6 : 0.4,
+                iconSize: 0.2 * PixelRatio.get(),
                 iconAnchor: "bottom",
                 iconImage: ["get", "icon"],
                 iconAllowOverlap: true,

@@ -200,8 +200,29 @@ const builds: Build[] = [
     ],
     improvements: [
       {
-        description: "Replaced the message that displayed when you'd completed a week of ZeeOps with a clearer design",
-        thanks: "Citygalbex"
+        description:
+          "Replaced the message that displayed when you'd completed a week of ZeeOps with a clearer design",
+        thanks: "Citygalbex",
+      },
+    ],
+  },
+  {
+    build: 10,
+    date: "2021-02-20",
+    improvements: [
+      {
+        description: "Added settings for the User Inventory",
+        thanks: "PelicanRouge",
+      },
+      {
+        description:
+          "Moved some items (eg. Evolutions, Virtuals, Jewel Shards, Destination Credits) into more appropriate categories",
+        thanks: "PelicanRouge and jnorval",
+      },
+    ],
+    fixes: [
+      {
+        description: "Adjusted Icon Size on Maps to scale for devices with different pixel ratios",
       },
     ],
   },

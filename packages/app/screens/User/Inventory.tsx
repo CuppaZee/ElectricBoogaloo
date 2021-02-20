@@ -1,20 +1,24 @@
-import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
-import { Text, Layout } from "@ui-kitten/components";
+import { RouteProp, useRoute } from "@react-navigation/native";
+import { Text, Layout, CheckBox } from "@ui-kitten/components";
 import * as React from "react";
 import { StyleSheet, ScrollView, View } from "react-native";
 import InventoryConverter, {
+  UserInventoryConvertedType,
   UserInventoryData,
+  getCategory,
 } from "../../components/Inventory/Data";
 import { InventoryIcon } from "../../components/Inventory/Icon";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import { UserStackParamList } from "../../types";
-import db from "@cuppazee/types";
+import { TypeCategory, TypeState } from "@cuppazee/types";
 import useTitle from "../../hooks/useTitle";
 import { useTranslation } from "react-i18next";
 import Loading from "../../components/Loading";
 
 export default function UserInventoryScreen() {
+  const [includeZeroes, setIncludeZeroes] = React.useState(false);
+  const [groupByState, setGroupByState] = React.useState(false);
   const { t } = useTranslation();
   const route = useRoute<RouteProp<UserStackParamList, "Inventory">>();
   useTitle(`☕ ${route.params.username} - Inventory`);
@@ -29,27 +33,81 @@ export default function UserInventoryScreen() {
     () => (data.data?.data ? InventoryConverter(data.data?.data) : null),
     [data.dataUpdatedAt]
   );
-  const categories = d?.categories
-    .map((c) => ({
-      category: c,
-      types: d?.types.filter(
-        (i) => (i.type?.category || db.getCategory("other")) === c
-      ),
-      total: d?.types
-        .filter((i) => (i.type?.category || db.getCategory("other")) === c)
-        .reduce((a, b) => a + b.amount, 0),
-    }))
-    .sort((a, b) => b.total - a.total);
-  
+
+  const categories:
+    | ((
+        | {
+            state: "physical" | "virtual" | "credit";
+          }
+        | {
+            category: TypeCategory;
+          }
+      ) & {
+        types?: UserInventoryConvertedType[];
+        total?: number;
+      })[]
+    | undefined
+    | null = groupByState
+    ? [
+        {
+          state: "physical",
+          types: d?.types.filter(i => i.type?.state === TypeState.Physical),
+          total: d?.types
+            .filter(i => i.type?.state === TypeState.Physical)
+            .reduce((a, b) => a + b.amount, 0),
+        },
+        {
+          state: "virtual",
+          types: d?.types.filter(i => i.type?.state === TypeState.Virtual),
+          total: d?.types
+            .filter(i => i.type?.state === TypeState.Virtual)
+            .reduce((a, b) => a + b.amount, 0),
+        },
+        {
+          state: "credit",
+          types: d?.types.filter(
+            i => i.type?.state !== TypeState.Physical && i.type?.state !== TypeState.Virtual
+          ),
+          total: d?.types
+            .filter(
+              i => i.type?.state !== TypeState.Physical && i.type?.state !== TypeState.Virtual
+            )
+            .reduce((a, b) => a + b.amount, 0),
+        },
+      ]
+    : d?.categories
+        .map(c => ({
+          category: c,
+          types: d?.types.filter(i => getCategory(i) === c),
+          total: d?.types
+            .filter(i => getCategory(i) === c)
+            .reduce((a, b) => a + b.amount, 0),
+        }))
+        .sort((a, b) => b.total - a.total);
+
   if (!user.isFetched || !data.isFetched || !d) {
     return <Loading level="1" data={[user, data]} />;
   }
-  
+
   return (
     <Layout style={{ flex: 1 }}>
       <ScrollView style={{ flex: 1 }}>
+        <View style={{ flexDirection: "row", padding: 4 }}>
+          <CheckBox
+            checked={includeZeroes}
+            onChange={i => setIncludeZeroes(i)}
+            style={{ margin: 8 }}>
+            Include Zeroes
+          </CheckBox>
+          <CheckBox
+            checked={!groupByState}
+            onChange={i => setGroupByState(!i)}
+            style={{ margin: 8 }}>
+            Group by Category
+          </CheckBox>
+        </View>
         <View style={styles.grid}>
-          {categories?.map(c => (
+          {categories?.filter(includeZeroes ? () => true : i => (i.total ?? 0) > 0).map(c => (
             <Layout
               level="3"
               style={{
@@ -60,7 +118,10 @@ export default function UserInventoryScreen() {
                 borderRadius: 4,
               }}>
               <Text category="h6" style={{ textAlign: "center" }}>
-                {c.category.name} ({c.total})
+                {("category" in c
+                  ? c.category.name
+                  : c.state.slice(0, 1).toUpperCase() + c.state.slice(1) + "s")}{" "}
+                ({c.total || "0"})
               </Text>
               <View
                 style={{
@@ -69,7 +130,8 @@ export default function UserInventoryScreen() {
                   justifyContent: "center",
                 }}>
                 {c.types
-                  .slice()
+                  ?.slice()
+                  .filter(includeZeroes ? () => true : i => i.amount > 0)
                   .sort((a, b) => b.amount - a.amount)
                   .map(i => (
                     <InventoryIcon {...i} />

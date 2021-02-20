@@ -61,6 +61,22 @@ export default function UserDashCard({
             </>
           ) : null}
           <View style={{ padding: 4 }}>
+            <DrawerItem
+              style={{ backgroundColor: "transparent" }}
+              selected={false}
+              title={() => (
+                <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
+                  {t(`pages:user_activity` as const)}
+                </Text>
+              )}
+              accessoryLeft={props => <Icon name="calendar" {...props} />}
+              onPress={() =>
+                nav.navigate("User", {
+                  screen: "Activity",
+                  params: { username: item.username },
+                })
+              }
+            />
             {UserPagesNow.map(i => (
               <DrawerItem
                 style={{ backgroundColor: "transparent" }}

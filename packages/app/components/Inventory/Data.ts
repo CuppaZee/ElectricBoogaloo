@@ -38,6 +38,17 @@ export type UserInventoryConvertedData = {
   history: UserInventoryConvertedLog[];
 };
 
+export function getCategory(i: UserInventoryConvertedType) {
+  const cat = i.type?.category;
+  if (i.type?.icon === "destination") return db.getCategory("destination");
+  if (i.icon?.includes("jewel_shards")) return db.getCategory("jewel");
+  if (i.type?.icon.includes("zodiac")) return db.getCategory("misc");
+  if (!cat) return db.getCategory("other");
+  if (cat.id === "virtual") return db.getCategory("misc");
+  if (cat.id.startsWith("evolution_")) return db.getCategory("evolution");
+  return cat;
+};
+
 function processLogText(text: string) {
   let title: string | [string, any?] = text;
   let description = undefined;
@@ -79,12 +90,8 @@ function processLogText(text: string) {
 
 export default function InventoryConverter(
   dataraw: UserInventoryData,
-  mode = "category",
-  includeZeros = "all"
 ) {
-  var historyBatchTitle = "";
-  var historyBatchTime = Infinity;
-  var data: UserInventoryConvertedData = {
+  const data: UserInventoryConvertedData = {
     history: [],
     types: [],
     categories: [],
@@ -153,7 +160,7 @@ export default function InventoryConverter(
   }
 
   for (const credit of data.types) {
-    const category = credit.type?.category || db.getCategory("other");
+    const category = getCategory(credit);
     if (category && !data.categories.includes(category)) data.categories.push(category);
   }
 
