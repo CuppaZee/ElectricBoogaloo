@@ -177,7 +177,7 @@ export const CommonCell = React.memo(function (props: CommonCellProps) {
                       !(props.color !== undefined && !isStack && !settings.clan_full_background)
                         ? 0
                         : -4,
-                    flex: 1,
+                    flexShrink: 1
                   },
                 ]}
                 numberOfLines={1}

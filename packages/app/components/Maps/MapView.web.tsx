@@ -6,11 +6,13 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import { getTypeImage } from "../Common/TypeImage";
 import { useTheme } from "@ui-kitten/components";
+import { useNavigation } from "@react-navigation/native";
 
 mapboxgl.accessToken =
   "pk.eyJ1Ijoic29oY2FoIiwiYSI6ImNqeWVqcm8wdTAxc2MzaXFpa282Yzd2aHEifQ.afYbt2sVMZ-kbwdx5_PekQ";
 
 function WebMap(props: MapProps) {
+  const nav = useNavigation();
   const mapContainerRef = React.useRef<HTMLDivElement | null>();
   const mapRef = React.useRef<mapboxgl.Map>();
   const markers = React.useRef<Map<string, any>>(new Map());
@@ -61,6 +63,12 @@ function WebMap(props: MapProps) {
         el.style.height = "48px";
         el.style.marginTop = "-24px";
         el.dataset.type = props?.type;
+        if(props?.munzee) el.addEventListener("click", function () {
+          nav.navigate("Tools", {
+            screen: "Munzee",
+            params: {a: props.munzee}
+          })
+        })
         const marker = new mapboxgl.Marker(el).setLngLat([coords[0], coords[1]]);
         marker.addTo(map);
         keepMarkers.add(featureID?.toString() || "");
@@ -117,6 +125,7 @@ function WebMap(props: MapProps) {
               id: `${i.id}_${Date.now()}`,
               icon: i.icon,
               center: "center" in i,
+              munzee: i.munzee,
             },
             geometry: {
               type: "Point",

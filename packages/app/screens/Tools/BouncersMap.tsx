@@ -47,6 +47,7 @@ export default function BouncersMapScreen() {
           lng: i[1],
           icon: data.data.data.list[i[2]],
           id: i[3].toString(),
+          munzee: i[3].toString()
         }))}
       />
     </Layout>

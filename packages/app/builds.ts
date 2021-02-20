@@ -226,6 +226,72 @@ const builds: Build[] = [
       },
     ],
   },
+  {
+    build: 11,
+    date: "2021-02-20",
+    improvements: [
+      {
+        description: "Added Countdown to next month's Clan Requirements release",
+      },
+      {
+        description: "Increased Icon Size on Maps for easier viewing",
+      },
+      {
+        description: "Removed various debug information from the app",
+      },
+    ],
+    fixes: [
+      {
+        description: "Fixed data displayed on Clan Rewards table",
+      },
+    ],
+  },
+  {
+    build: 12,
+    date: "2021-02-20",
+    features: [
+      {
+        title: "Munzee Details",
+        description:
+          "You can now tap on a Munzee in most places in the app to view details about it!",
+      },
+    ],
+    improvements: [
+      {
+        description: "Fixed the Activity displayed on the profile page.",
+        thanks: "TSwag",
+      },
+    ],
+  },
+  {
+    build: 13,
+    date: "2021-02-20",
+    improvements: [
+      {
+        description: "Added some additional tips and hints to the app",
+        thanks: "Barrowman1",
+      },
+    ],
+    fixes: [
+      {
+        description:
+          'Removed the "Bookmarked Clans" button from the Dashboard when no clans are bookmarked.',
+      },
+      {
+        description: "Fixed colour labels not displaying on mobile in Personalisation settings.",
+      },
+    ],
+  },
+  {
+    build: 14,
+    date: "2021-02-20",
+    improvements: [
+      {
+        description: "Added \"Clan Requirements\" button to Clans Card on Dashboard",
+        thanks: "Barrowman1",
+      },
+    ],
+  },
 ];
 
 export default builds;

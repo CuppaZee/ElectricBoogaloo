@@ -11,6 +11,24 @@ const route: Route = {
         params: { username },
         db
       }: any) {
+        if (!username) {
+          return {
+            status: "success",
+            data: {
+              username: "Long-Press to Edit Username",
+              user_id: 0,
+              time: Date.now(),
+              capture_count: 0,
+              capture_points: 0,
+              deploy_count: 0,
+              deploy_points: 0,
+              capon_count: 0,
+              capon_points: 0,
+              daily_points: 0,
+              total_points: 0,
+            },
+          };
+        }
         var token = await retrieve({ user_id: 125914, teaken: false }, 60);
         if (!token) {
           return {

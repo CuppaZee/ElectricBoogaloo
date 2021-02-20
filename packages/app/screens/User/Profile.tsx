@@ -10,6 +10,7 @@ import useTitle from "../../hooks/useTitle";
 import { UserStackParamList } from "../../types";
 import db from "@cuppazee/types";
 import TypeImage from "../../components/Common/TypeImage";
+import dayjs from "dayjs";
 
 export const UserPagesNow = [
   {
@@ -102,7 +103,7 @@ export default function TabOneScreen() {
                   })
                 }
               />
-              <UserActivityOverview user_id={125914} day="2020-12-18" />
+              <UserActivityOverview user_id={user.data.data.user_id} day={dayjs.mhqNow().format("YYYY-MM-DD")} />
             </Layout>
           </View>
 

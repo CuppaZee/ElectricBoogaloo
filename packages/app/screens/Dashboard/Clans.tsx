@@ -3,6 +3,7 @@ import { Icon, Layout, Text, DrawerItem } from "@ui-kitten/components";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 import { Image, StyleSheet, ScrollView, View } from "react-native";
+import Tip from "../../components/Common/Tip";
 import { useClanBookmarks } from "../../hooks/useBookmarks";
 import useTitle from "../../hooks/useTitle";
 import { DashCardProps } from "./Dashboard";
@@ -19,21 +20,43 @@ export default function ClansDashCard(props: DashCardProps<unknown>) {
           <Text style={{ marginLeft: 4 }} category="h5">
             {t("dashboard:clans")}
           </Text>
+          <Tip
+            wrapperStyle={{ margin: 4 }}
+            id="drawer_clan_bookmarks"
+            tip="You can add and remove clans from your Bookmarks in the Settings"
+          />
           <DrawerItem
             style={{ backgroundColor: "transparent" }}
             selected={false}
             title={() => (
               <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
-                {t("pages:clan_bookmarks")}
+                {t("pages:clan_requirements")}
               </Text>
             )}
-            accessoryLeft={props => <Icon name="bookmark" {...props} />}
+            accessoryLeft={props => <Icon name="star" {...props} />}
             onPress={() =>
               nav.navigate("Clan", {
-                screen: "Bookmarks",
+                screen: "Requirements",
               })
             }
           />
+          {!!clans && clans.length > 0 && (
+            <DrawerItem
+              style={{ backgroundColor: "transparent" }}
+              selected={false}
+              title={() => (
+                <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
+                  {t("pages:clan_bookmarks")}
+                </Text>
+              )}
+              accessoryLeft={props => <Icon name="bookmark" {...props} />}
+              onPress={() =>
+                nav.navigate("Clan", {
+                  screen: "Bookmarks",
+                })
+              }
+            />
+          )}
           {clans?.map(clan => (
             <DrawerItem
               style={{ backgroundColor: "transparent" }}

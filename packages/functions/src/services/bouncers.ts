@@ -151,7 +151,7 @@ export default async function () {
               }
               return `${distance} ${direction} from ${location.location.name}`;
             })
-            .join("\n")}\nDEBUG_SGU: ${i.bouncer.special_good_until}/${i.bouncer.hash}`,
+            .join("\n")}`,
           data: {
             type: "bouncer",
             bouncer: i.bouncer.full_url,

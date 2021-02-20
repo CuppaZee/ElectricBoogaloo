@@ -75,6 +75,10 @@ export default React.memo(
 
     const rewards = rewards_data.data?.data;
 
+    if (requirements_data.data?.data?.data.levels.length === 0) {
+      return null;
+    }
+
     if (!requirements || !size || !rewards) {
       return (
         <Layout style={{ flex: 1 }} onLayout={onLayout}>

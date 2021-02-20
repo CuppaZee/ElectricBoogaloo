@@ -166,7 +166,6 @@ export function UserSearchModal({ close }: UserSearchModalProps) {
           />
         )}
       />
-      {/* {data.data?.data?.users.map(i=><View style={{ flexDirection: "row", alignItems: ""}})} */}
     </Layout>
   );
 }
@@ -413,30 +412,24 @@ export default function NotificationScreen() {
     return (
       <Layout style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <Text category="h5">Notifications aren't supported on Web</Text>
-        <Text>{debugStatus}</Text>
       </Layout>
     );
   if (!token)
     return (
       <Layout style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <Spinner />
-        <Text>BUILD VERSION: {Constants.nativeBuildVersion || ""}</Text>
-        <Text>{debugStatus}</Text>
       </Layout>
     );
   if (token === "_failed")
     return (
       <Layout style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <Text category="h5">Granting permissions failed. Did you allow notifications?</Text>
-        <Text>{debugStatus}</Text>
       </Layout>
     );
   if (!settings)
     return (
       <Layout style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <Spinner />
-        <Text>BUILD VERSION: {Constants.nativeBuildVersion || ""}</Text>
-        <Text>{debugStatus}</Text>
       </Layout>
     );
 
@@ -542,6 +535,7 @@ export default function NotificationScreen() {
                       style={{ margin: 4 }}
                       value={settings.bouncers.default}
                       label={`Default Distance (${settings.imperial ? "mi" : "km"})`}
+                      caption="This is the distance used for any types that you haven't set an override for."
                       onChangeText={text => {
                         settings.bouncers.default = text;
                         update();
@@ -563,7 +557,10 @@ export default function NotificationScreen() {
                   )}
                 </UpdateWrapper>
                 <Text style={{ margin: 4 }} category="s1">
-                  Categories and Types
+                  Categories and Types Overrides
+                </Text>
+                <Text style={{ margin: 4 }} category="p1">
+                  If you want a different distance for certain types, you can add them here.
                 </Text>
                 <UpdateWrapper>
                   {bigupdate => (

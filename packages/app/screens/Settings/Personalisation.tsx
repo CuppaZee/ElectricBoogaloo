@@ -313,7 +313,6 @@ export default function PersonalisationScreen() {
                             }}>
                             <Text
                               style={{
-                                lineHeight: 0,
                                 textAlignVertical: "center",
                                 textAlign: "center",
                                 color: pickTextColor(settings.clan_colours[n]),

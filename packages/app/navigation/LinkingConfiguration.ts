@@ -45,6 +45,7 @@ export default {
               Calendar: "calendar",
               Bouncers: "bouncers",
               BouncersMap: "bouncers/:type",
+              Munzee: "munzee/:a/:b?",
               Nearby: "nearby",
               Credits: "credits",
               Donate: "donate",

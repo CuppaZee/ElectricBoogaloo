@@ -33,7 +33,7 @@ export type Settings = {
 
 export const defaultSettings: Settings = {
   version: 1,
-  build: builds[builds.length - 1].build - 1,
+  build: builds[builds.length - 1].build,
   theme: "green_light",
   ready: false,
   maps: "google",

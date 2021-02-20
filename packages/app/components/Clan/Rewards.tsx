@@ -13,31 +13,28 @@ import {
   RewardTitleCell,
 } from "./Cell";
 import {
-  ClanRequirementsConverter,
   ClanRewardsData,
   gameIDToMonth,
 } from "../../components/Clan/Data";
 import useComponentSize from "../../hooks/useComponentSize";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
-import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import { useSettings } from "../../hooks/useSettings";
-import SyncScrollView, { SyncScrollViewController } from "./SyncScrollView";
 
 const levels: { level: number; type: "group" | "individual" }[] = [
   { level: 1, type: "individual" },
-  { level: 1, type: "group" },
+  // { level: 1, type: "group" },
 
   { level: 2, type: "individual" },
-  { level: 2, type: "group" },
+  // { level: 2, type: "group" },
 
   { level: 3, type: "individual" },
-  { level: 3, type: "group" },
+  // { level: 3, type: "group" },
 
   { level: 4, type: "individual" },
-  { level: 4, type: "group" },
+  // { level: 4, type: "group" },
 
   { level: 5, type: "individual" },
-  { level: 5, type: "group" },
+  // { level: 5, type: "group" },
 ];
 
 export interface ClanRewardsTableProps {
@@ -66,6 +63,10 @@ export default React.memo(
     });
 
     const rewards = rewards_data.data?.data;
+
+    if (rewards?.levels.length === 0) {
+      return null;
+    }
 
     if (!rewards || !size) {
       return (

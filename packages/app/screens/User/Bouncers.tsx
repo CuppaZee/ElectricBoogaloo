@@ -1,4 +1,4 @@
-import { RouteProp, useRoute } from "@react-navigation/native";
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { Layout, Spinner, Text } from "@ui-kitten/components";
 import * as React from "react";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
@@ -6,7 +6,7 @@ import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import useComponentSize from "../../hooks/useComponentSize";
 import { UserStackParamList } from "../../types";
 import useTitle from "../../hooks/useTitle";
-import { ScrollView, View } from "react-native";
+import { Pressable, ScrollView, View } from "react-native";
 import MapView from "../../components/Maps/MapView";
 import { UserDeploys } from "@cuppazee/api/user/deploys";
 import { MunzeeSpecialBouncer } from "@cuppazee/api/munzee/specials";
@@ -29,6 +29,7 @@ type Bouncer = NonNullable<UserDeploys["response"]["data"]>["munzees"][0] & {
 }
 
 export default function UserBouncersScreen() {
+  const nav = useNavigation();
   const day = useDay();
   const [size, onLayout] = useComponentSize();
   const route = useRoute<RouteProp<UserStackParamList, "Bouncers">>();
@@ -67,41 +68,67 @@ export default function UserBouncersScreen() {
                 lng: Number(i.bouncer?.longitude),
                 icon: i.pin_icon,
                 id: i.munzee_id,
+                munzee: i.bouncer?.munzee_id,
               }))}
           />
         </Layout>
         <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
           {data.data.data.map(i => (
-            <Layout
-              level="2"
-              style={{ margin: 4, flexDirection: "row", alignItems: "center", borderRadius: 8, width: 400, maxWidth: "100%", flexGrow: 1 }}>
-              <View style={{ padding: 4 }}>
-                <TypeImage icon={i.pin_icon} style={{ size: 48 }} />
-              </View>
-              <View style={{ padding: 4 }}>
-                <Text category="h6">{i.friendly_name}</Text>
-                {i.bouncer ? (
-                  <>
-                    <Text category="s1">
-                      At {i.bouncer.friendly_name} by {i.bouncer.full_url.split("/")[4]}
-                    </Text>
-                    {i.location?.record && (
-                      <Text category="s2">
-                        {i.location?.record?.name}, {i.location?.record?.countryCode} [
-                        {i.timezone.map(t => day().tz(t).format("HH:mm")).join(", ")}]
+            <Pressable
+              style={{
+                width: 400,
+                maxWidth: "100%",
+                flexGrow: 1,
+              }}
+              onPress={
+                i.bouncer
+                  ? () =>
+                      nav.navigate("Tools", {
+                        screen: "Munzee",
+                        params: {
+                          a: i.bouncer?.munzee_id,
+                        },
+                      })
+                  : undefined
+              }>
+              <Layout
+                level="2"
+                style={{
+                  margin: 4,
+                  flexDirection: "row",
+                  alignItems: "center",
+                  borderRadius: 8,
+                  flex: 1,
+                }}>
+                <View style={{ padding: 4 }}>
+                  <TypeImage icon={i.pin_icon} style={{ size: 48 }} />
+                </View>
+                <View style={{ padding: 4 }}>
+                  <Text category="h6">{i.friendly_name}</Text>
+                  {i.bouncer ? (
+                    <>
+                      <Text category="s1">
+                        At {i.bouncer.friendly_name} by {i.bouncer.full_url.split("/")[4]}
                       </Text>
-                    )}
-                    <Text category="c1">
-                      {i.number_of_captures} Captures - Last Captured {i.last_captured_at ? day(i.last_captured_at).format('L LT') : "Never"}
-                    </Text>
-                  </>
-                ) : (
-                  <>
-                    <Text category="s1">Having a Rest</Text>
-                  </>
-                )}
-              </View>
-            </Layout>
+                      {i.location?.record && (
+                        <Text category="s2">
+                          {i.location?.record?.name}, {i.location?.record?.countryCode} [
+                          {i.timezone.map(t => day().tz(t).format("HH:mm")).join(", ")}]
+                        </Text>
+                      )}
+                      <Text category="c1">
+                        {i.number_of_captures} Captures - Last Captured{" "}
+                        {i.last_captured_at ? day(i.last_captured_at).format("L LT") : "Never"}
+                      </Text>
+                    </>
+                  ) : (
+                    <>
+                      <Text category="s1">Having a Rest</Text>
+                    </>
+                  )}
+                </View>
+              </Layout>
+            </Pressable>
           ))}
         </View>
       </ScrollView>

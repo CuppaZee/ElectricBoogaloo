@@ -64,10 +64,6 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
       <ScrollView
         style={{ flexGrow: 1 }}
         contentContainerStyle={{ paddingTop: insets.top, paddingBottom: insets.bottom }}>
-        <Text category="p1">
-          You are running CuppaZee for {Platform.OS} version {Constants.nativeAppVersion || ""}
-        </Text>
-        <Text category="p1">The latest CuppaZee for {Platform.OS} version is 2.0.1</Text>
         <DrawerItem
           selected={page[1]?.name === "Tools" && page[2]?.name === "Search"}
           title={t("pages:tools_search")}
@@ -86,7 +82,6 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
         />
         <DrawerItem
           selected={page[1]?.name === "Tools" && page[2]?.name === "Nearby"}
-          // title={t("pages:dashboard_dashboard")}
           title="Nearby Specials"
           accessoryLeft={props => <Icon {...props} name="map-marker-radius" />}
           onPress={() => props.navigation.navigate("Tools", { screen: "Nearby" })}

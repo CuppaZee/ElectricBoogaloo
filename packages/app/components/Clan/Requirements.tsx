@@ -2,13 +2,8 @@ import { Icon, Layout, Spinner, Text, useTheme } from "@ui-kitten/components";
 import dayjs from "dayjs";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { PixelRatio, ScrollView, StyleSheet, View } from "react-native";
-import {
-  LevelCell,
-  RequirementCell,
-  RequirementDataCell,
-  RequirementTitleCell,
-} from "./Cell";
+import { PixelRatio, ScrollView, StyleSheet, useWindowDimensions, View } from "react-native";
+import { LevelCell, RequirementCell, RequirementDataCell, RequirementTitleCell } from "./Cell";
 import {
   ClanRequirementsConverter,
   ClanRewardsData,
@@ -20,6 +15,7 @@ import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import { useSettings } from "../../hooks/useSettings";
 import SyncScrollView, { SyncScrollViewController } from "./SyncScrollView";
 import Loading from "../Loading";
+import { useIsFetching, useQueryClient } from "react-query";
 
 const levels: { level: number; type: "group" | "individual" }[] = [
   { level: 1, type: "individual" },
@@ -42,6 +38,49 @@ export interface ClanRequirementsTableProps {
   game_id: number;
   clan_id?: number;
   scrollViewController?: SyncScrollViewController;
+}
+
+function Countdown({ time }: { time: number }) {
+  const [now, setNow] = React.useState(Date.now());
+  const { width } = useWindowDimensions();
+  const queryClient = useQueryClient();
+  const dur = dayjs.duration(Math.max(0, time - now));
+  React.useEffect(() => {
+    const interval = setInterval(() => setNow(Date.now()), 100);
+    return () => clearInterval(interval);
+  }, []);
+  React.useEffect(() => {
+    if (time - now < 0) {
+      queryClient.refetchQueries({
+        predicate: query => query.queryKey[0] !== "token",
+        active: true,
+      });
+    }
+  }, [time - now < 0]);
+  return (
+    <View style={{ flexDirection: "row", justifyContent: "center" }}>
+      {((width >= 400 ? ["days", "hours", "minutes", "seconds"] : ["days", "hours", "minutes"]) as (
+        | "days"
+        | "hours"
+        | "minutes"
+        | "seconds"
+      )[]).map(i => (
+        <Layout
+          level="4"
+          style={{
+            height: 80,
+            width: 80,
+            margin: 8,
+            borderRadius: 8,
+            justifyContent: "center",
+            alignItems: "center",
+          }}>
+          <Text category="h1">{Math.floor(dur[i === "days" ? "asDays" : i]())}</Text>
+          <Text category="s1">{i.toUpperCase()}</Text>
+        </Layout>
+      ))}
+    </View>
+  );
 }
 
 export default React.memo(
@@ -78,6 +117,11 @@ export default React.memo(
       () => ClanRequirementsConverter(requirements_data.data?.data, rewards_data.data?.data),
       [requirements_data.dataUpdatedAt, rewards_data.dataUpdatedAt]
     );
+
+    if (requirements_data.data?.data?.data.levels.length === 0) {
+      const time = requirements_data.data.data.battle.reveal_at * 1000;
+      return <Countdown time={time} />;
+    }
 
     if (!requirements || !size) {
       return (

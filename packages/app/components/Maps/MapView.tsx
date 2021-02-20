@@ -5,6 +5,7 @@ import { Button, Icon } from "@ui-kitten/components";
 
 import MapboxGL from "@react-native-mapbox-gl/maps";
 import { PixelRatio, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 MapboxGL.setAccessToken(
   "pk.eyJ1Ijoic29oY2FoIiwiYSI6ImNqeWVqcm8wdTAxc2MzaXFpa282Yzd2aHEifQ.afYbt2sVMZ-kbwdx5_PekQ"
@@ -37,6 +38,7 @@ export type MapCircle = {
 export type MapMarkerProps = {
   id: string;
   icon: string;
+  munzee?: string;
 } & MapLocation;
 
 function getImages(markers: MapMarkerProps[]) {
@@ -50,6 +52,7 @@ function getImages(markers: MapMarkerProps[]) {
 }
 
 export default function MapView(props: MapProps) {
+  const nav = useNavigation();
   const mapRef = React.useRef<MapboxGL.MapView | null>();
   const camRef = React.useRef<MapboxGL.Camera | null>();
   const [center, setCenter] = React.useState([0, 0]);
@@ -113,7 +116,14 @@ export default function MapView(props: MapProps) {
         )}
         {props.markers && (
           <MapboxGL.ShapeSource
-            id="circles_source"
+            onPress={(ev) => {
+              const m = ev.features[0].properties?.munzee;
+              if (m) nav.navigate("Tools", {
+                screen: "Munzee",
+                params: {a: m}
+              })
+            }}
+            id="markers_source"
             cluster={props.cluster}
             clusterRadius={props.clusterRadius}
             clusterMaxZoomLevel={props.clusterMaxZoomLevel}
@@ -169,7 +179,7 @@ export default function MapView(props: MapProps) {
               id="symbols"
               filter={["!", ["has", "point_count"]]}
               style={{
-                iconSize: 0.2 * PixelRatio.get(),
+                iconSize: 0.3 * PixelRatio.get(),
                 iconAnchor: "bottom",
                 iconImage: ["get", "icon"],
                 iconAllowOverlap: true,
