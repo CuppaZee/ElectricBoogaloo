@@ -1,4 +1,4 @@
-import { RouteProp, useRoute } from "@react-navigation/native";
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { Layout } from "@ui-kitten/components";
 import * as React from "react";
 import Loading from "../../components/Loading";
@@ -20,6 +20,7 @@ interface BouncerListData {
 
 export default function BouncersMapScreen() {
   const route = useRoute<RouteProp<ToolsStackParamList, "BouncersMap">>();
+  const nav = useNavigation();
   useTitle(`☕ Bouncers Map`);
   const data = useCuppaZeeRequest<{ data: BouncerListData }>("bouncers/list", {
     list: route.params.type
@@ -41,7 +42,7 @@ export default function BouncersMapScreen() {
         clusterRadius={80}
         latitude={0}
         longitude={0}
-        // zoom={2}
+        nav={nav}
         markers={data.data?.data.data.map(i => ({
           lat: i[0],
           lng: i[1],

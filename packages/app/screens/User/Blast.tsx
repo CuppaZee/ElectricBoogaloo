@@ -67,7 +67,7 @@ export default function UserBouncersScreen() {
         <Layout style={{ height: 400, margin: 4, borderRadius: 8 }}>
           <MapView
             latitude={0}
-            longitude={9}
+            longitude={0}
             onRegionChange={({ latitude, longitude }) => {
               pos.current = {
                 lat: latitude,

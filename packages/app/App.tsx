@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React, { Suspense } from "react";
+import React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import "./polyfill";
@@ -10,7 +10,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { Provider as JotaiProvider } from "jotai";
 
 import * as eva from "@eva-design/eva";
-import { ApplicationProvider, IconRegistry, Layout, Spinner } from "@ui-kitten/components";
+import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
 
 import { StyleSheet } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -22,10 +22,6 @@ import { useFonts } from "expo-font";
 import "./lang/i18n";
 
 import "./BackgroundLocation";
-import Loading from "./components/Loading";
-
-// // @ts-ignore
-// ScrollView.defaultProps = { scrollIndicatorInsets:{ right: 1 } };
 
 function MCIcon({ name, style }: { name: string | number | symbol; style: any }) {
   try {

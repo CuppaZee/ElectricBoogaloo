@@ -5,13 +5,14 @@ import { Button, Icon } from "@ui-kitten/components";
 
 import MapboxGL from "@react-native-mapbox-gl/maps";
 import { PixelRatio, View } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
 
 MapboxGL.setAccessToken(
   "pk.eyJ1Ijoic29oY2FoIiwiYSI6ImNqeWVqcm8wdTAxc2MzaXFpa282Yzd2aHEifQ.afYbt2sVMZ-kbwdx5_PekQ"
 );
 
 export type MapProps = {
+  nav?: NavigationProp<any>;
   latitude: number;
   longitude: number;
   zoom?: number;
@@ -52,7 +53,6 @@ function getImages(markers: MapMarkerProps[]) {
 }
 
 export default function MapView(props: MapProps) {
-  const nav = useNavigation();
   const mapRef = React.useRef<MapboxGL.MapView | null>();
   const camRef = React.useRef<MapboxGL.Camera | null>();
   const [center, setCenter] = React.useState([0, 0]);
@@ -118,7 +118,7 @@ export default function MapView(props: MapProps) {
           <MapboxGL.ShapeSource
             onPress={(ev) => {
               const m = ev.features[0].properties?.munzee;
-              if (m) nav.navigate("Tools", {
+              if (m) props.nav?.navigate("Tools", {
                 screen: "Munzee",
                 params: {a: m}
               })

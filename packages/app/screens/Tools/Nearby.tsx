@@ -83,6 +83,7 @@ export default function NearbyScreen() {
       <ScrollView style={{ flex: 1 }} contentContainerStyle={{ padding: 4 }}>
         <Layout style={{ height: 400, margin: 4, borderRadius: 8 }}>
           <MapView
+            nav={nav}
             latitude={settings.latitude}
             longitude={settings.longitude}
             zoom={10}

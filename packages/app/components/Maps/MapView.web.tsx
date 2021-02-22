@@ -12,7 +12,6 @@ mapboxgl.accessToken =
   "pk.eyJ1Ijoic29oY2FoIiwiYSI6ImNqeWVqcm8wdTAxc2MzaXFpa282Yzd2aHEifQ.afYbt2sVMZ-kbwdx5_PekQ";
 
 function WebMap(props: MapProps) {
-  const nav = useNavigation();
   const mapContainerRef = React.useRef<HTMLDivElement | null>();
   const mapRef = React.useRef<mapboxgl.Map>();
   const markers = React.useRef<Map<string, any>>(new Map());
@@ -64,7 +63,7 @@ function WebMap(props: MapProps) {
         el.style.marginTop = "-24px";
         el.dataset.type = props?.type;
         if(props?.munzee) el.addEventListener("click", function () {
-          nav.navigate("Tools", {
+          props.nav?.navigate("Tools", {
             screen: "Munzee",
             params: {a: props.munzee}
           })

@@ -287,8 +287,17 @@ const builds: Build[] = [
     date: "2021-02-20",
     improvements: [
       {
-        description: "Added \"Clan Requirements\" button to Clans Card on Dashboard",
+        description: 'Added "Clan Requirements" button to Clans Card on Dashboard',
         thanks: "Barrowman1",
+      },
+    ],
+  },
+  {
+    build: 15,
+    date: "2021-02-20",
+    improvements: [
+      {
+        description: "Fixed the Static Location editor popup",
       },
     ],
   },

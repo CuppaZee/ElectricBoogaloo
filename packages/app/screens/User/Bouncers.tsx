@@ -59,6 +59,7 @@ export default function UserBouncersScreen() {
       <ScrollView style={{ flex: 1 }} contentContainerStyle={{ padding: 4 }}>
         <Layout style={{ height: 400, margin: 4, borderRadius: 8 }}>
           <MapView
+            nav={nav}
             latitude={0}
             longitude={0}
             markers={data.data.data

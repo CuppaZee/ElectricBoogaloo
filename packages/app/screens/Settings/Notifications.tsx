@@ -55,15 +55,13 @@ function LocationPickerModal({ location, close, remove }: LocationPickerModalPro
                     markers={[
                       {
                         id: "main",
-                        lat: Number(location.latitude),
-                        lng: Number(location.longitude),
+                        center: true,
                         icon: "munzee",
                       },
                     ]}
                     onRegionChange={({ latitude, longitude }) => {
                       location.latitude = latitude.toString();
                       location.longitude = longitude.toString();
-                      mini();
                     }}
                   />
                 )}
