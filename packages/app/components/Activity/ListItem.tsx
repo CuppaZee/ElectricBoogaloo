@@ -39,9 +39,10 @@ export default React.memo(
               width: 4,
               alignSelf: "stretch",
               backgroundColor: {
-                capture: "#aaffaa",
-                deploy: "#a5fffc",
-                capon: "#ffbcad",
+                capture: "#00ff00",
+                deploy: "#00ffff",
+                passive_deploy: "#7777ff",
+                capon: "#ff7700",
               }[item.type],
               borderTopLeftRadius: 4,
               borderBottomLeftRadius: 4,
@@ -64,6 +65,7 @@ export default React.memo(
                         {
                           capture: t("user_activity:activity_capture"),
                           deploy: t("user_activity:activity_deploy"),
+                          passive_deploy: t("user_activity:activity_deploy"),
                           capon: t("user_activity:activity_capon", { user: i.capper }),
                         }[i.type]
                       }

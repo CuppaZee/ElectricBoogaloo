@@ -1,4 +1,4 @@
-import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
+import { RouteProp, useIsFocused, useNavigation, useRoute } from "@react-navigation/native";
 import { Layout, Text } from "@ui-kitten/components";
 import * as React from "react";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
@@ -20,9 +20,10 @@ import { pickTextColor } from "../../components/Clan/Cell";
 
 export default function UserClanScreen() {
   const [size, onLayout] = useComponentSize();
-  const route = useRoute<RouteProp<UserStackParamList, "Clan">>();
+  const route = useRoute<RouteProp<UserStackParamList, "ClanProgress">>();
   const [settings] = useSettings();
   const game_id = monthToGameID();
+  const nav = useNavigation();
   useTitle(`☕ ${route.params.username} - Clan Progress`);
   const user = useMunzeeRequest(
     "user",
@@ -34,7 +35,7 @@ export default function UserClanScreen() {
     {
       user_id: user.data?.data?.user_id,
     },
-    user.data?.data?.user_id !== undefined
+    user.data?.data?.user_id !== undefined && !user.data?.data?.clan
   );
   const requirements_data = useMunzeeRequest("clan/v2/requirements", {
     clan_id: 1349,
@@ -49,6 +50,17 @@ export default function UserClanScreen() {
     () => ClanRequirementsConverter(requirements_data.data?.data, rewards_data.data?.data),
     [requirements_data.dataUpdatedAt, rewards_data.dataUpdatedAt]
   );
+  
+  const isFocused = useIsFocused();
+
+  React.useEffect(() => {
+    if (user.data?.data?.clan && isFocused) {
+      nav.navigate("Clan", {
+        screen: "Stats",
+        params: { clanid: user.data.data.clan.id },
+      });
+    }
+  }, [user.dataUpdatedAt, isFocused]);
 
   if (!data.data || !requirements || !size) {
     return (

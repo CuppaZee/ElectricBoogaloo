@@ -21,7 +21,7 @@ export type UserStackParamList = {
   Captures: { username: string; category?: string };
   ZeeOps: { username: string };
   Bouncers: { username: string };
-  Clan: { username: string };
+  ClanProgress: { username: string };
   Universal: { username: string };
   Blast: { username: string };
   QRew: { username: string };
@@ -48,6 +48,7 @@ export type ToolsStackParamList = {
   BouncersMap: { type: string };
   Munzee: { a: string; b?: string };
   Nearby: undefined;
+  POIPlanner: undefined;
   WidgetConfigureActivityWidget: { id: string };
 };
 

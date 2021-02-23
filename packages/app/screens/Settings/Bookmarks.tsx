@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Button, Icon, Input, Layout, List, ListItem, Modal, Text } from "@ui-kitten/components";
+import { Button, Icon, Input, Layout, List, ListItem, Modal, Text, useTheme } from "@ui-kitten/components";
 import * as React from "react";
 import { Image, ScrollView, View } from "react-native";
 import { useClanBookmarks, useUserBookmarks } from "../../hooks/useBookmarks";
@@ -74,6 +74,7 @@ export default function AccountsScreen() {
   const [addUserModal, setAddUserModal] = React.useState(false);
   const [addClanModal, setAddClanModal] = React.useState(false);
   const [saved, setSaved] = React.useState(false);
+  const theme = useTheme();
   return (
     <Layout style={{ flex: 1 }}>
       <Modal
@@ -149,7 +150,11 @@ export default function AccountsScreen() {
                             update();
                           }}
                           accessoryLeft={props => (
-                            <Icon {...props} style={{ height: 24, width: 24 }} name="chevron-up" />
+                            <Icon
+                              {...props}
+                              style={{ height: 24, width: 24, color: theme["text-basic-color"] }}
+                              name="chevron-up"
+                            />
                           )}
                         />
                         <Button
@@ -164,7 +169,7 @@ export default function AccountsScreen() {
                           accessoryLeft={props => (
                             <Icon
                               {...props}
-                              style={{ height: 24, width: 24 }}
+                              style={{ height: 24, width: 24, color: theme["text-basic-color"] }}
                               name="chevron-down"
                             />
                           )}
@@ -237,7 +242,11 @@ export default function AccountsScreen() {
                             update();
                           }}
                           accessoryLeft={props => (
-                            <Icon {...props} style={{ height: 24, width: 24 }} name="chevron-up" />
+                            <Icon
+                              {...props}
+                              style={{ height: 24, width: 24, color: theme["text-basic-color"] }}
+                              name="chevron-up"
+                            />
                           )}
                         />
                         <Button
@@ -252,7 +261,7 @@ export default function AccountsScreen() {
                           accessoryLeft={props => (
                             <Icon
                               {...props}
-                              style={{ height: 24, width: 24 }}
+                              style={{ height: 24, width: 24, color: theme["text-basic-color"] }}
                               name="chevron-down"
                             />
                           )}

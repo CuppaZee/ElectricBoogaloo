@@ -22,7 +22,7 @@ import { Settings, useSettings } from "../../hooks/useSettings";
 import { Dayjs } from "dayjs";
 import { useTranslation } from "react-i18next";
 import { useNavigation } from "@react-navigation/native";
-// import Color from 'color';
+import { useUserBookmarks } from "../../hooks/useBookmarks";
 
 export function pickTextColor(
   bgColor: string,
@@ -57,6 +57,7 @@ export interface CommonCellProps {
   image?: ImageSourcePropType;
   icon?: string;
   title?: string;
+  titleBold?: boolean;
   titleIcon?: string;
   subtitle?: string;
   settings?: Settings;
@@ -158,7 +159,13 @@ export const CommonCell = React.memo(function (props: CommonCellProps) {
             maxWidth: "100%",
           }}>
           {props.title && (
-            <View style={{ flexDirection: "row", alignItems: "baseline" }}>
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "baseline",
+                justifyContent: !!props.subtitle ? "flex-start" : "center",
+                maxWidth: "100%",
+              }}>
               {props.titleIcon && (
                 <Icon
                   name={props.titleIcon}
@@ -177,12 +184,12 @@ export const CommonCell = React.memo(function (props: CommonCellProps) {
                       !(props.color !== undefined && !isStack && !settings.clan_full_background)
                         ? 0
                         : -4,
-                    flexShrink: 1
+                    flexShrink: 1,
                   },
                 ]}
                 numberOfLines={1}
                 ellipsizeMode="tail"
-                category="s2">
+                category={props.type !== "data" || props.titleBold ? "s2" : "p2"}>
                 {props.title}
               </Text>
             </View>
@@ -225,6 +232,7 @@ export interface DataCellProps {
 }
 
 export function DataCell(props: DataCellProps) {
+  const [users] = useUserBookmarks();
   const [settings] = useSettings();
   const { t } = useTranslation();
 
@@ -279,11 +287,23 @@ export function DataCell(props: DataCellProps) {
             ? props.user.username ?? ""
             : t("clan:group_total")
         }
+        titleBold={users.some(i =>
+          props.user && "user_id" in props.user ? i.user_id === props.user?.user_id.toString() : false
+        )}
         subtitle={text}
       />
     );
   }
-  return <CommonCell type="data" color={level} title={text} />;
+  return (
+    <CommonCell
+      type="data"
+      color={level}
+      title={text}
+      titleBold={users.some(i =>
+        props.user && "user_id" in props.user ? i.user_id === props.user?.user_id.toString() : false
+      )}
+    />
+  );
 }
 
 export interface RequirementDataCellProps {

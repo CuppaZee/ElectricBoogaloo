@@ -14,6 +14,7 @@ const BouncersScreen = lazy(() => import("../screens/Tools/Bouncers"));
 const BouncersMapScreen = lazy(() => import("../screens/Tools/BouncersMap"));
 const NearbyScreen = lazy(() => import("../screens/Tools/Nearby"));
 const DonateScreen = lazy(() => import("../screens/Tools/Donate"));
+const POIPlannerScreen = lazy(() => import("../screens/Tools/POIPlanner"));
 const MunzeeScreen = lazy(() => import("../screens/Tools/Munzee"));
 const ActivityWidgetScreen = lazy(() => import("../screens/Tools/WidgetConfigure/ActivityWidget"));
 
@@ -36,6 +37,7 @@ export default function ToolsNavigator() {
       <ToolsStack.Screen name="BouncersMap" component={BouncersMapScreen} />
       <ToolsStack.Screen name="Nearby" component={NearbyScreen} />
       <ToolsStack.Screen name="Donate" component={DonateScreen} />
+      <ToolsStack.Screen name="POIPlanner" component={POIPlannerScreen} />
       <ToolsStack.Screen name="Munzee" component={MunzeeScreen} />
       <ToolsStack.Screen name="WidgetConfigureActivityWidget" component={ActivityWidgetScreen} />
     </ToolsStack.Navigator>

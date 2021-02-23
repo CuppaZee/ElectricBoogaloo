@@ -101,6 +101,20 @@ export default function UserActivityOverview({
         ))}
       </View>
       <Text category="s1" style={{ textAlign: "center" }}>
+        {d.passive_deploys.count} Passive Deploy{d.passive_deploys.count === 1 ? "" : "s"} (
+        {t("user_activity:overview_points", { count: d.passive_deploys.points })})
+      </Text>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "center",
+          flexWrap: "wrap",
+        }}>
+        {Object.entries(d.passive_deploys.types).map((i, _, a) => (
+          <UserActivityOverviewItem key={i[0]} icon={i[0]} data={i[1]} count={a.length} />
+        ))}
+      </View>
+      <Text category="s1" style={{ textAlign: "center" }}>
         {t("user_activity:overview_capons", { count: d.capons.count })} (
         {t("user_activity:overview_points", { count: d.capons.points })})
       </Text>

@@ -34,7 +34,7 @@ export const UserPagesTools = [
   {
     icon: "shield",
     title: "user_clan_progress",
-    screen: "Clan",
+    screen: "ClanProgress",
   },
   {
     icon: "earth",

@@ -165,7 +165,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
             <DrawerItem
               selected={
                 page[1]?.name === "User" &&
-                page[2]?.name === "Clan" &&
+                page[2]?.name === "ClanProgress" &&
                 (page[2]?.params as any)?.username === user.username
               }
               title={t("pages:user_clan_progress")}
@@ -173,7 +173,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
               onPress={() =>
                 props.navigation.navigate("User", {
                   params: { username: user.username },
-                  screen: "Clan",
+                  screen: "ClanProgress",
                 })
               }
             />
@@ -390,6 +390,16 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
           onPress={() =>
             props.navigation.navigate("Tools", {
               screen: "Calendar",
+            })
+          }
+        />
+        <DrawerItem
+          selected={page[1]?.name === "Tools" && page[2]?.name === "POIPlanner"}
+          title="POI Planner"
+          accessoryLeft={props => <Icon {...props} name="map-marker-circle" />}
+          onPress={() =>
+            props.navigation.navigate("Tools", {
+              screen: "POIPlanner",
             })
           }
         />

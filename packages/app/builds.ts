@@ -301,6 +301,40 @@ const builds: Build[] = [
       },
     ],
   },
+  {
+    build: 16,
+    date: "2021-02-22",
+    improvements: [
+      {
+        description: "Text on Clan Stats is now bold for rows with Bookmarked Users",
+        thanks: "Oddleif65",
+      },
+      {
+        description: "Clan Progress now redirects to Clan Stats for people not in a clan",
+      },
+    ],
+    fixes: [
+      {
+        description: "Fixed Text Centring on Clan Stats",
+      },
+      {
+        description: "Fixed Arrow Icon colour on Bookmarks Settings in Dark Mode",
+      },
+    ],
+  },
+  {
+    build: 17,
+    date: "2021-02-23",
+    improvements: [
+      {
+        description: "Added a link to nzseries1's POI Planner",
+        thanks: "nzseries1",
+      },
+      {
+        description: "Separated deploys on User Activity into \"Deploys\" and \"Passive Deploys\".",
+      },
+    ],
+  },
 ];
 
 export default builds;

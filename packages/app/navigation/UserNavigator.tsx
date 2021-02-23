@@ -38,7 +38,7 @@ export default function UserNavigator() {
       <UserStack.Screen name="Challenges" component={UserChallengesScreen} />
       <UserStack.Screen name="Challenge" component={UserChallengeScreen} />
       <UserStack.Screen name="Captures" component={UserCapturesScreen} />
-      <UserStack.Screen name="Clan" component={UserClanScreen} />
+      <UserStack.Screen name="ClanProgress" component={UserClanScreen} />
       <UserStack.Screen name="Universal" component={UserUniversalScreen} />
       <UserStack.Screen name="Blast" component={UserBlastScreen} />
       <UserStack.Screen name="QRew" component={UserQRewScreen} />
