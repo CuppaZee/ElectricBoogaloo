@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.29 - 23/02/2021
+- Added L.A.S.E.R. Shark tPOB
+- Added Jewel Shards Credit
+- Added Virtual Resellers
+- Added Virtual Reseller Scatters
 ## 0.0.28 - 17/02/2021
 - Fixed Universals Category Parent
 ## 0.0.27 - 17/02/2021

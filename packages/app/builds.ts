@@ -1,4 +1,4 @@
-import { Type } from "@cuppazee/types";
+import db, { Type, TypeState, TypeTags } from "@cuppazee/types";
 
 export interface Types {
   title?: string;
@@ -331,7 +331,54 @@ const builds: Build[] = [
         thanks: "nzseries1",
       },
       {
-        description: "Separated deploys on User Activity into \"Deploys\" and \"Passive Deploys\".",
+        description: 'Separated deploys on User Activity into "Deploys" and "Passive Deploys".',
+      },
+    ],
+  },
+  {
+    build: 18,
+    date: "2021-02-23",
+    fixes: [
+      {
+        description:
+          "Fixed display of bouncers captured inside a Skyland/Treehouse on User Activity Overview",
+      },
+    ],
+    types: [
+      {
+        title: "L.A.S.E.R. Shark",
+        description: "Complete a Secret ZeeOp to get one of these robotic creatures!",
+        types: ["lasershark"],
+      },
+      {
+        title: "Virtual Resellers",
+        description: "Available now from SCGS, NEGS, Gold'n Coins and GeoLoggers!",
+        types: [
+          ...db.types.filter(
+            i => i.has_tag(TypeTags.TypeReseller) && i.state === TypeState.Virtual
+          ),
+        ].map(i => i.icon),
+      },
+    ],
+  },
+  {
+    build: 19,
+    date: "2021-02-24",
+    fixes: [
+      {
+        description: "Fixed some bouncers not being included on Challenges page",
+        thanks: "Barrowman1",
+      },
+    ],
+  },
+  {
+    build: 20,
+    date: "2021-02-24",
+    features: [
+      {
+        title: "Evo Planner",
+        description:
+          "A revamped Evolution Planner is now available on CuppaZee V2. As well as having all existing functionality, the new Evolution Planner allows you to more easily figure out when to deploy an evolution to make it evolve on a specific date.",
       },
     ],
   },

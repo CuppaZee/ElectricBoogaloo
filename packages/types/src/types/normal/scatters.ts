@@ -528,6 +528,50 @@ const scatters: {
     },
     tags: [TypeTags.TypeMysteryElemental],
   },
+  {
+    name: "SCGS Reseller Package",
+    icon: "scgsresellerpackage",
+    id: "null_scgsresellerpackage",
+    state: TypeState.Virtual,
+    scatter: {
+      duration: 1,
+      standalone: true,
+    },
+    tags: [TypeTags.TypeReseller],
+  },
+  {
+    name: "Gold'n Coins Reseller Package",
+    icon: "gold'ncoinsresellerpackage",
+    id: "null_gold'ncoinsresellerpackage",
+    state: TypeState.Virtual,
+    scatter: {
+      duration: 1,
+      standalone: true,
+    },
+    tags: [TypeTags.TypeReseller],
+  },
+  {
+    name: "NEGS Reseller Package",
+    icon: "negsresellerpackage",
+    id: "null_negsresellerpackage",
+    state: TypeState.Virtual,
+    scatter: {
+      duration: 1,
+      standalone: true,
+    },
+    tags: [TypeTags.TypeReseller],
+  },
+  {
+    name: "GeoLoggers Reseller Package",
+    icon: "geologgersresellerpackage",
+    id: "null_geologgersresellerpackage",
+    state: TypeState.Virtual,
+    scatter: {
+      duration: 1,
+      standalone: true,
+    },
+    tags: [TypeTags.TypeReseller],
+  },
 ];
 
 export default scatters;

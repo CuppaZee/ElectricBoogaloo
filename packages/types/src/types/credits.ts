@@ -79,6 +79,10 @@ const credits: {
     icon: "virtualcapturebooster",
     name: "Virtual Capture Booster",
   },
+  {
+    icon: "jewel_shards",
+    name: "Jewel Shards",
+  },
 ];
 
 export default credits;

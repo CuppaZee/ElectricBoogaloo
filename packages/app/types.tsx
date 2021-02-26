@@ -49,6 +49,7 @@ export type ToolsStackParamList = {
   Munzee: { a: string; b?: string };
   Nearby: undefined;
   POIPlanner: undefined;
+  EvoPlanner: undefined;
   WidgetConfigureActivityWidget: { id: string };
 };
 

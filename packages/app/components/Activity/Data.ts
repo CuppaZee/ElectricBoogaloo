@@ -239,11 +239,15 @@ export function ActivityConverter(
         return a;
       }, new Set<TypeCategory>())
     ),
-    points: ([...data.captures_on, ...data.captures, ...data.deploys] as const).reduce(
+    points: ([
+      ...data.captures_on,
+      ...data.captures,
+      ...data.deploys,
+    ] as const).reduce(
       (a, b) => a + Number("points_for_creator" in b ? b.points_for_creator : b.points),
       0
     ),
-    ...activityList.reduce(
+    ...activityList.map(i=>[i, ...i.subCaptures ?? []]).flat().reduce(
       (ax, b) => {
         const a = ax[`${b.type}s` as const];
         return {
@@ -258,13 +262,16 @@ export function ActivityConverter(
                 count: (a.types[b.pin]?.count || 0) + 1,
               },
             },
-            users: "users" in a ? {
-              ...a.users,
-              [b.creator || ""]: {
-                points: (a.types[b.creator || ""]?.points || 0) + Number(b.points),
-                count: (a.types[b.creator || ""]?.count || 0) + 1,
-              },
-            } : undefined,
+            users:
+              "users" in a
+                ? {
+                    ...a.users,
+                    [b.creator || ""]: {
+                      points: (a.types[b.creator || ""]?.points || 0) + Number(b.points),
+                      count: (a.types[b.creator || ""]?.count || 0) + 1,
+                    },
+                  }
+                : undefined,
           },
         };
       },

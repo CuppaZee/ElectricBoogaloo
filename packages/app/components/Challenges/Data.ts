@@ -52,32 +52,46 @@ export const Challenges: Challenge[] = [
         icon: "yeti",
         name: "challenges:shc_lite.myth_1",
         types: db.types.filter(
-          i => i.has_tags(TypeTags.BouncerMythOriginal) || i.has_tags(TypeTags.BouncerMythClassical)
+          i =>
+            (i.has_tags(TypeTags.BouncerMythOriginal) ||
+              i.has_tags(TypeTags.BouncerMythClassical)) &&
+            !i.has_tag(TypeTags.BouncerMythAlterna) &&
+            !i.has_tag(TypeTags.BouncerRetired)
         ),
       },
       {
         icon: "mermaid",
         name: "challenges:shc_lite.myth_2",
         types: db.types.filter(
-          i => i.has_tags(TypeTags.BouncerMythMirror) || i.has_tags(TypeTags.BouncerMythModern)
+          i =>
+            (i.has_tags(TypeTags.BouncerMythMirror) || i.has_tags(TypeTags.BouncerMythModern)) &&
+            !i.has_tag(TypeTags.BouncerMythAlterna) &&
+            !i.has_tag(TypeTags.BouncerRetired)
         ),
       },
       {
         icon: "tuli",
         name: "challenges:shc_lite.pc_1",
-        types: db.types.filter(i => i.has_tags(TypeTags.BouncerPCS1)),
+        types: db.types.filter(
+          i => i.has_tags(TypeTags.BouncerPCS1) && !i.has_tag(TypeTags.BouncerPCEscaped)
+        ),
       },
       {
         icon: "oniks",
         name: "challenges:shc_lite.pc_2",
         types: db.types.filter(
-          i => i.has_tags(TypeTags.BouncerPCS2) || i.has_tags(TypeTags.BouncerPCFunfinity)
+          i =>
+            (i.has_tags(TypeTags.BouncerPCS2) || i.has_tags(TypeTags.BouncerPCFunfinity)) &&
+            !i.has_tag(TypeTags.BouncerPCEscaped) &&
+            !i.has_tag(TypeTags.BouncerPCZombie)
         ),
       },
       {
         icon: "tuxflatrob",
         name: "challenges:shc_lite.flat",
-        types: db.types.filter(i => i.has_tags(TypeTags.BouncerFlat)),
+        types: db.types.filter(
+          i => i.has_tags(TypeTags.BouncerFlat) && !i.has_tag(TypeTags.BouncerFlatPhantom)
+        ),
       },
       {
         icon: "butterfly",
@@ -119,43 +133,78 @@ export const Challenges: Challenge[] = [
         icon: "yeti",
         name: "challenges:shc_pro.myth_1",
         types: db.types.filter(
-          i => i.has_tags(TypeTags.BouncerMythOriginal) || i.has_tags(TypeTags.BouncerMythClassical)
+          i =>
+            i.has_tags(TypeTags.BouncerMythOriginal) &&
+            !i.has_tag(TypeTags.BouncerMythAlterna) &&
+            !i.has_tag(TypeTags.BouncerRetired)
         ),
       },
       {
         icon: "cyclops",
         name: "challenges:shc_pro.myth_2",
-        types: db.types.filter(i => i.has_tags(TypeTags.BouncerMythClassical)),
+        types: db.types.filter(
+          i =>
+            i.has_tags(TypeTags.BouncerMythClassical) &&
+            !i.has_tag(TypeTags.BouncerMythAlterna) &&
+            !i.has_tag(TypeTags.BouncerRetired)
+        ),
       },
       {
         icon: "mermaid",
         name: "challenges:shc_lite.myth_3",
-        types: db.types.filter(i => i.has_tags(TypeTags.BouncerMythMirror)),
+        types: db.types.filter(
+          i =>
+            i.has_tags(TypeTags.BouncerMythMirror) &&
+            !i.has_tag(TypeTags.BouncerMythAlterna) &&
+            !i.has_tag(TypeTags.BouncerRetired)
+        ),
       },
       {
         icon: "poseidon",
         name: "challenges:shc_lite.myth_4",
-        types: db.types.filter(i => i.has_tags(TypeTags.BouncerMythModern)),
+        types: db.types.filter(
+          i =>
+            i.has_tags(TypeTags.BouncerMythModern) &&
+            !i.has_tag(TypeTags.BouncerMythAlterna) &&
+            !i.has_tag(TypeTags.BouncerRetired)
+        ),
       },
       {
         icon: "tuli",
         name: "challenges:shc_lite.pc_1",
-        types: db.types.filter(i => i.has_tags(TypeTags.BouncerPCS1)),
+        types: db.types.filter(
+          i =>
+            i.has_tags(TypeTags.BouncerPCS1) &&
+            !i.has_tag(TypeTags.BouncerPCEscaped) &&
+            !i.has_tag(TypeTags.BouncerRetired)
+        ),
       },
       {
         icon: "magnetus",
         name: "challenges:shc_lite.pc_2",
-        types: db.types.filter(i => i.has_tags(TypeTags.BouncerPCS2)),
+        types: db.types.filter(
+          i =>
+            i.has_tags(TypeTags.BouncerPCS2) &&
+            !i.has_tag(TypeTags.BouncerPCEscaped) &&
+            !i.has_tag(TypeTags.BouncerRetired)
+        ),
       },
       {
         icon: "oniks",
         name: "challenges:shc_lite.pc_fun",
-        types: db.types.filter(i => i.has_tags(TypeTags.BouncerPCFunfinity)),
+        types: db.types.filter(
+          i =>
+            i.has_tags(TypeTags.BouncerPCFunfinity) &&
+            !i.has_tag(TypeTags.BouncerPCEscaped) &&
+            !i.has_tag(TypeTags.BouncerRetired)
+        ),
       },
       {
         icon: "tuxflatrob",
         name: "challenges:shc_lite.flat",
-        types: db.types.filter(i => i.has_tags(TypeTags.BouncerFlat)),
+        types: db.types.filter(
+          i => i.has_tags(TypeTags.BouncerFlat) && !i.has_tag(TypeTags.BouncerRetired)
+        ),
       },
       {
         icon: "butterfly",
@@ -264,11 +313,14 @@ export default function ChallengesConverter(data: UserActivityConverterOutput) {
     categories: i.categories.map(c => ({
       ...c,
       completion: [] as UserActivityItem[],
-    }))
+    })),
   }));
-  for (const item of data.list.filter(i=>i.type === "capture")) {
+  for (const item of [...data.list, ...data.list.map(i => i.subCaptures ?? [])]
+    .flat()
+    .filter(i => i.type === "capture")) {
     for (const category of challenges.map(i => i.categories).flat()) {
-      if (item.munzee_type && category.types.includes(item.munzee_type)) category.completion.push(item);
+      if (item.munzee_type && category.types.includes(item.munzee_type))
+        category.completion.push(item);
     }
   }
   return challenges;

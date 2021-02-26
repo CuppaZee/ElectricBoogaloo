@@ -50,6 +50,7 @@ export default {
               Credits: "credits",
               Donate: "donate",
               POIPlanner: "poiplanner",
+              EvoPlanner: "evoplanner",
               OpenSource: "opensource",
               WidgetConfigureActivityWidget: "widget_configure_activity_widget/:id",
             },

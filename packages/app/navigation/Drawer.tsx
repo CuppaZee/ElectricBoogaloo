@@ -404,9 +404,14 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
           }
         />
         <DrawerItem
-          disabled={true}
+          selected={page[1]?.name === "Tools" && page[2]?.name === "EvoPlanner"}
           title={t("pages:tools_evo_planner")}
           accessoryLeft={props => <Icon {...props} name="dna" />}
+          onPress={() =>
+            props.navigation.navigate("Tools", {
+              screen: "EvoPlanner",
+            })
+          }
         />
 
         {/* Settings */}

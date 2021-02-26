@@ -8,6 +8,7 @@ const resellers: {
   alt_icons?: string[];
   tags?: TypeTags[];
   hidden?: TypeHidden[];
+  scatter?: boolean;
 }[] = [
   {
     name: "Munzee Madness Reseller",
@@ -80,6 +81,30 @@ const resellers: {
     icon: "scgsreseller",
     id: 696,
     state: TypeState.Physical,
+  },
+  {
+    name: "Virtual SCGS Reseller",
+    icon: "virtualscgsreseller",
+    id: "null_virtualscgsreseller",
+    state: TypeState.Virtual,
+  },
+  {
+    name: "Virtual Gold'n Coins Reseller",
+    icon: "virtualgold'ncoinsreseller",
+    id: "null_virtualgold'ncoinsreseller",
+    state: TypeState.Virtual,
+  },
+  {
+    name: "Virtual NEGS Reseller",
+    icon: "virtualnegsreseller",
+    id: "null_virtualnegsreseller",
+    state: TypeState.Virtual,
+  },
+  {
+    name: "Virtual GeoLoggers Reseller",
+    icon: "virtualgeologgersreseller",
+    id: "null_virtualgeologgersreseller",
+    state: TypeState.Virtual,
   },
 ];
 
