@@ -4,7 +4,6 @@ import WelcomeScreen from "../screens/Welcome";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import DrawerContent from "./Drawer";
 import { useWindowDimensions } from "react-native";
-import { useSettings } from "../hooks/useSettings";
 
 import { MainDrawerParamList } from "../types";
 import DashNavigator from "./DashNavigator";
@@ -13,12 +12,14 @@ import ToolsNavigator from "./ToolsNavigator";
 import SettingsNavigator from "./SettingsNavigator";
 import ClanNavigator from "./ClanNavigator";
 import { Layout, Spinner } from "@ui-kitten/components";
+import useSetting, { ReadyAtom } from "../hooks/useSetting";
 
 const Drawer = createDrawerNavigator<MainDrawerParamList>();
 
 export default function StackNavigator() {
   const dimensions = useWindowDimensions();
-  const [{ ready }, , loaded] = useSettings();
+  const [ready, , loaded] = useSetting(ReadyAtom);
+  console.log(ready, loaded);
   return (
     <React.Suspense
       fallback={

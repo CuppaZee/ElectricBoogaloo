@@ -460,9 +460,28 @@ const builds: Build[] = [
     ],
     improvements: [
       {
-        description: "The Beevolution Planner now allows you to plan out Bee Evolutions!"
-      }
-    ]
+        description: "The Beevolution Planner now allows you to plan out Bee Evolutions!",
+      },
+    ],
+  },
+  {
+    build: 24,
+    date: "2021-03-02",
+    features: [
+      {
+        title: "New Settings System",
+        description:
+          "A brand new modular Settings system is now being used in CuppaZee, increasing speed across the app",
+      },
+    ],
+    improvements: [
+      {
+        description: "Removed unnecessary Clan Rewards request from Clan Progress, Clan Stats and Bookmarked Clans pages",
+      },
+      {
+        description: "Various speed and caching improvements across the app",
+      },
+    ],
   },
 ];
 

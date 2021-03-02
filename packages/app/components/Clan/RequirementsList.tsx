@@ -2,13 +2,7 @@ import { Icon, Layout, Spinner, Text, useTheme } from "@ui-kitten/components";
 import dayjs from "dayjs";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Image, PixelRatio, ScrollView, StyleSheet, View } from "react-native";
-import {
-  LevelCell,
-  RequirementCell,
-  RequirementDataCell,
-  RequirementTitleCell,
-} from "./Cell";
+import { Image, PixelRatio, StyleSheet, View } from "react-native";
 import {
   ClanRequirementsConverter,
   ClanRewardsData,
@@ -18,39 +12,18 @@ import {
 import useComponentSize from "../../hooks/useComponentSize";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
-import { useSettings } from "../../hooks/useSettings";
-import SyncScrollView, { SyncScrollViewController } from "./SyncScrollView";
 import TypeImage from "../Common/TypeImage";
 import Loading from "../Loading";
-
-const levels: { level: number; type: "group" | "individual" }[] = [
-  { level: 1, type: "individual" },
-  { level: 1, type: "group" },
-
-  { level: 2, type: "individual" },
-  { level: 2, type: "group" },
-
-  { level: 3, type: "individual" },
-  { level: 3, type: "group" },
-
-  { level: 4, type: "individual" },
-  { level: 4, type: "group" },
-
-  { level: 5, type: "individual" },
-  { level: 5, type: "group" },
-];
 
 export interface ClanRequirementsListProps {
   game_id: number;
   clan_id?: number;
-  scrollViewController?: SyncScrollViewController;
 }
 
 export default React.memo(
   function ClanRequirementsList({
     game_id,
     clan_id: actual_clan_id = 2041,
-    scrollViewController,
   }: ClanRequirementsListProps) {
     const { t } = useTranslation();
     const [size, onLayout] = useComponentSize();

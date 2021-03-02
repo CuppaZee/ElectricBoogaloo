@@ -1,9 +1,9 @@
 import React from 'react';
-import { Button, CheckBox, Input, Layout } from "@ui-kitten/components";
-import { useSettings } from "../../hooks/useSettings";
+import { Button, CheckBox, Layout } from "@ui-kitten/components";
 import { UpdateWrapper } from "../../screens/Settings/Notifications";
 import Select from '../Common/Select';
 import { useTranslation } from 'react-i18next';
+import useSetting, { ClansAtom } from '../../hooks/useSetting';
 
 export interface ClanSettingsModalProps {
   clan_id: number;
@@ -11,7 +11,7 @@ export interface ClanSettingsModalProps {
 }
 
 export default function ClanSettingsModal({ clan_id, close }: ClanSettingsModalProps) {
-  const [settings, setSettings] = useSettings();
+  const [options, setOptions] = useSetting(ClansAtom);
   const { t } = useTranslation();
   return (
     <Layout level="4" style={{ borderRadius: 8, padding: 4 }}>
@@ -19,9 +19,9 @@ export default function ClanSettingsModal({ clan_id, close }: ClanSettingsModalP
         {update => (
           <CheckBox
             style={{ margin: 8 }}
-            checked={settings.clan_options[clan_id].shadow}
+            checked={options[clan_id].shadow}
             onChange={checked => {
-              settings.clan_options[clan_id].shadow = checked;
+              options[clan_id].shadow = checked;
               update();
             }}>
             Show Shadow Members
@@ -32,9 +32,9 @@ export default function ClanSettingsModal({ clan_id, close }: ClanSettingsModalP
         {update => (
           <CheckBox
             style={{ margin: 8 }}
-            checked={settings.clan_options[clan_id].subtract}
+            checked={options[clan_id].subtract}
             onChange={checked => {
-              settings.clan_options[clan_id].subtract = checked;
+              options[clan_id].subtract = checked;
               update();
             }}>
             Subtract View
@@ -45,9 +45,9 @@ export default function ClanSettingsModal({ clan_id, close }: ClanSettingsModalP
         {update => (
           <CheckBox
             style={{ margin: 8 }}
-            checked={settings.clan_options[clan_id].share}
+            checked={options[clan_id].share}
             onChange={checked => {
-              settings.clan_options[clan_id].share = checked;
+              options[clan_id].share = checked;
               update();
             }}>
             User Share Requirements
@@ -59,9 +59,9 @@ export default function ClanSettingsModal({ clan_id, close }: ClanSettingsModalP
           <Select
             style={{ margin: 4 }}
             label="Goal Level"
-            value={settings.clan_options[clan_id].level.toString()}
+            value={options[clan_id].level.toString()}
             onValueChange={value => {
-              settings.clan_options[clan_id].level = Number(value);
+              options[clan_id].level = Number(value);
               update();
             }}
             options={[1, 2, 3, 4, 5].map(i => ({
@@ -75,7 +75,7 @@ export default function ClanSettingsModal({ clan_id, close }: ClanSettingsModalP
         style={{ margin: 4, flex: 1 }}
         onPress={() => {
           close();
-          setSettings({ ...settings });
+          setOptions({ ...options });
         }}>
         Done
       </Button>

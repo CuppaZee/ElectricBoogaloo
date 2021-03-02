@@ -4,10 +4,10 @@ import { Button, Icon, Layout, Text } from "@ui-kitten/components";
 import useLogin from "../hooks/useLogin";
 import { ScrollView } from "react-native-gesture-handler";
 import useTitle from "../hooks/useTitle";
-import { useSettings } from "../hooks/useSettings";
 import * as themes from "../themes";
 import { useTeakens } from "../hooks/useToken";
 import { useNavigation } from "@react-navigation/native";
+import useSetting, { ReadyAtom, ThemeAtom } from "../hooks/useSetting";
 
 export default function WelcomeScreen() {
   const fb =
@@ -16,12 +16,13 @@ export default function WelcomeScreen() {
   const messenger = fb && window.navigator.userAgent.match(/Messenger/);
   const messengeriOS = messenger && window.navigator.userAgent.match(/iOS/);
   useTitle("☕ Welcome");
-  const [settings, setSettings] = useSettings();
-  const [loading, login, ready] = useLogin("");
+  const [readySetting, setReadySetting] = useSetting(ReadyAtom);
+  const [theme, setTheme] = useSetting(ThemeAtom);
+  const [, login, ready] = useLogin("");
   const nav = useNavigation();
   const { data: teakens } = useTeakens();
 
-  if (settings.ready === "2020-02-12") {
+  if (readySetting === "2020-02-12") {
     nav.navigate("Dashboard");
   }
 
@@ -87,13 +88,13 @@ export default function WelcomeScreen() {
               style={{ width: 280, flexDirection: "row", flexWrap: "wrap", alignSelf: "center" }}>
               {Object.entries(themes).map(i => (
                 <Pressable
-                  onPress={() => setSettings({ ...settings, theme: i[0] as typeof settings.theme })}
-                  style={{ padding: settings?.theme === i[0] ? 0 : 4 }}>
+                  onPress={() => setTheme(i[0] as typeof theme)}
+                  style={{ padding: theme === i[0] ? 0 : 4 }}>
                   <View
                     style={{
                       borderRadius: 32,
-                      height: settings?.theme === i[0] ? 56 : 48,
-                      width: settings?.theme === i[0] ? 56 : 48,
+                      height: theme === i[0] ? 56 : 48,
+                      width: theme === i[0] ? 56 : 48,
                       borderWidth: 2,
                       backgroundColor:
                         i[1][i[1].style === "dark" ? "color-basic-800" : "color-basic-200"],
@@ -150,7 +151,7 @@ export default function WelcomeScreen() {
                 accessoryLeft={props => <Icon {...props} name="home" />}
                 appearance="outline"
                 onPress={() => {
-                  setSettings({ ...settings, ready: "2020-02-12" });
+                  setReadySetting("2020-02-12");
                 }}>
                 Continue to Dashboard
               </Button>

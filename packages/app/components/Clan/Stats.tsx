@@ -19,11 +19,11 @@ import {
 import useComponentSize from "../../hooks/useComponentSize";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
-import { useSettings } from "../../hooks/useSettings";
 import useTitle from "../../hooks/useTitle";
 import ClanSettingsModal from "./SettingsModal";
 import SyncScrollView, { SyncScrollViewController } from "./SyncScrollView";
 import Loading from "../Loading";
+import useSetting, { ClanPersonalisationAtom, ClansAtom } from "../../hooks/useSetting";
 export interface ClanStatsTableProps {
   game_id: number;
   clan_id: number;
@@ -40,9 +40,10 @@ export default React.memo(
   }: ClanStatsTableProps) {
     const [size, onLayout] = useComponentSize();
     const fontScale = PixelRatio.getFontScale();
-    const [settings] = useSettings();
-    if (!settings.clan_options[actual_clan_id])
-      settings.clan_options[actual_clan_id] = {
+    const [style] = useSetting(ClanPersonalisationAtom);
+    const [options] = useSetting(ClansAtom);
+    if (!options[actual_clan_id])
+      options[actual_clan_id] = {
         shadow: true,
         level: 5,
         share: false,
@@ -50,8 +51,8 @@ export default React.memo(
       };
     const [modalVisible, setModalVisible] = React.useState(false);
     const [sortBy, setSortBy] = React.useState(3);
-    const reverse = settings.clan_reverse;
-    const compact = settings.clan_style;
+    const reverse = style.reverse;
+    const compact = style.style;
 
     const theme = useTheme();
     const borderColor =
@@ -87,13 +88,13 @@ export default React.memo(
           requirements_data.data?.data,
           requirements || undefined,
           actual_clan_id,
-          settings.clan_options[actual_clan_id].shadow ? shadow_data.data?.data : undefined
+          options[actual_clan_id].shadow ? shadow_data.data?.data : undefined
         ),
       [
         clan_data.dataUpdatedAt,
         shadow_data.dataUpdatedAt,
         requirements,
-        settings.clan_options[actual_clan_id].shadow,
+        options[actual_clan_id].shadow,
       ]
     );
 
@@ -136,12 +137,12 @@ export default React.memo(
 
     const main_users = [
       {
-        type: settings.clan_options[actual_clan_id].share ? "share" : "individual",
-        level: settings.clan_options[actual_clan_id].level,
+        type: options[actual_clan_id].share ? "share" : "individual",
+        level: options[actual_clan_id].level,
       },
       ...Object.values(stats.users).sort(sort),
       stats,
-      { type: "group", level: settings.clan_options[actual_clan_id].level },
+      { type: "group", level: options[actual_clan_id].level },
     ];
     const main_rows = (reverse ? requirements.all : main_users) as (
       | number
@@ -225,7 +226,7 @@ export default React.memo(
                 ) : "type" in row ? (
                   <View
                     style={{
-                      [settings.clan_reverse
+                      [style.reverse
                         ? row.type === "group"
                           ? "borderLeftWidth"
                           : "borderRightWidth"
@@ -289,7 +290,7 @@ export default React.memo(
                   ) : "type" in column ? (
                     <View
                       style={{
-                        [settings.clan_reverse
+                        [style.reverse
                           ? column.type === "group"
                             ? "borderLeftWidth"
                             : "borderRightWidth"
@@ -326,7 +327,7 @@ export default React.memo(
                   return "type" in user ? (
                     <View
                       style={{
-                        [settings.clan_reverse
+                        [style.reverse
                           ? user.type === "group"
                             ? "borderLeftWidth"
                             : "borderRightWidth"

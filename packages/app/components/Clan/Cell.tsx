@@ -18,11 +18,11 @@ import {
   ClanRewardsData,
 } from "./Data";
 import { ClanV2 } from "@cuppazee/api/clan/main";
-import { Settings, useSettings } from "../../hooks/useSettings";
 import { Dayjs } from "dayjs";
 import { useTranslation } from "react-i18next";
 import { useNavigation } from "@react-navigation/native";
 import { useUserBookmarks } from "../../hooks/useBookmarks";
+import useSetting, { ClanPersonalisationAtom, ClansAtom } from "../../hooks/useSetting";
 
 export function pickTextColor(
   bgColor: string,
@@ -60,20 +60,20 @@ export interface CommonCellProps {
   titleBold?: boolean;
   titleIcon?: string;
   subtitle?: string;
-  settings?: Settings;
+  clanStyle?: typeof ClanPersonalisationAtom["init"]["data"];
   onPress?: () => void;
 }
 
 export const CommonCell = React.memo(function (props: CommonCellProps) {
-  const [settings_saved] = useSettings();
-  const settings = props.settings ?? settings_saved;
+  const [styleValue] = useSetting(ClanPersonalisationAtom);
+  const style = props.clanStyle ?? styleValue;
   const theme = useTheme();
 
   const fontScale = PixelRatio.getFontScale();
 
-  const isCompact = settings.clan_style >= 2;
+  const isCompact = style.style >= 2;
   const isStack = props.type === "title" || props.type === "header_stack";
-  const isSingleLine = settings.clan_single_line && !isStack;
+  const isSingleLine = style.single_line && !isStack;
   const imageSize = (isSingleLine ? 0.75 : 1) * (isCompact ? 24 : 32) * fontScale;
   const iconSize = (isSingleLine ? 16 : 24) * fontScale;
   const iconMargin = (isCompact ? 4 : 8) * fontScale;
@@ -96,22 +96,22 @@ export const CommonCell = React.memo(function (props: CommonCellProps) {
             height,
             flexDirection: isStack ? "column" : "row",
             alignItems: "center",
-            opacity: props.color === -1 && !settings.clan_full_background ? 0.4 : 1,
+            opacity: props.color === -1 && !style.full_background ? 0.4 : 1,
           },
-          props.color !== undefined && settings.clan_full_background
-            ? { backgroundColor: settings.clan_colours[props.color] ?? "#aaaaaa" }
+          props.color !== undefined && style.full_background
+            ? { backgroundColor: style.colours[props.color] ?? "#aaaaaa" }
             : props.color !== undefined
-            ? { backgroundColor: (settings.clan_colours[props.color] ?? "#aaaaaa") + "22" }
+            ? { backgroundColor: (style.colours[props.color] ?? "#aaaaaa") + "22" }
             : undefined,
         ]}>
-        {props.color !== undefined && !isStack && !settings.clan_full_background && (
+        {props.color !== undefined && !isStack && !style.full_background && (
           <View
             style={{
               width: 4 * fontScale,
               alignSelf: "stretch",
               borderTopLeftRadius: isCompact ? 0 : 8,
               borderBottomLeftRadius: isCompact ? 0 : 8,
-              backgroundColor: settings.clan_colours[props.color] ?? "#aaaaaa",
+              backgroundColor: style.colours[props.color] ?? "#aaaaaa",
             }}
           />
         )}
@@ -140,8 +140,8 @@ export const CommonCell = React.memo(function (props: CommonCellProps) {
                 height: iconSize,
                 marginHorizontal: iconMargin,
                 color:
-                  props.color !== undefined && settings.clan_full_background
-                    ? pickTextColor(settings.clan_colours[props.color] ?? "#aaaaaa")
+                  props.color !== undefined && style.full_background
+                    ? pickTextColor(style.colours[props.color] ?? "#aaaaaa")
                     : theme.style === "dark"
                     ? "#fff"
                     : "#000",
@@ -174,14 +174,14 @@ export const CommonCell = React.memo(function (props: CommonCellProps) {
               )}
               <Text
                 style={[
-                  props.color !== undefined && settings.clan_full_background
-                    ? { color: pickTextColor(settings.clan_colours[props.color] ?? "#aaaaaa") }
+                  props.color !== undefined && style.full_background
+                    ? { color: pickTextColor(style.colours[props.color] ?? "#aaaaaa") }
                     : undefined,
                   {
                     textAlign: !!props.subtitle ? "left" : "center",
                     marginLeft:
                       !!props.subtitle ||
-                      !(props.color !== undefined && !isStack && !settings.clan_full_background)
+                      !(props.color !== undefined && !isStack && !style.full_background)
                         ? 0
                         : -4,
                     flexShrink: 1,
@@ -197,8 +197,8 @@ export const CommonCell = React.memo(function (props: CommonCellProps) {
           {!isSingleLine && props.subtitle && (
             <Text
               style={
-                props.color !== undefined && settings.clan_full_background
-                  ? { color: pickTextColor(settings.clan_colours[props.color] ?? "#aaaaaa") }
+                props.color !== undefined && style.full_background
+                  ? { color: pickTextColor(style.colours[props.color] ?? "#aaaaaa") }
                   : undefined
               }
               numberOfLines={1}
@@ -208,14 +208,14 @@ export const CommonCell = React.memo(function (props: CommonCellProps) {
             </Text>
           )}
         </View>
-        {props.color !== undefined && isStack && !settings.clan_full_background && (
+        {props.color !== undefined && isStack && !style.full_background && (
           <View
             style={{
               height: 4 * fontScale,
               width: 45 * fontScale,
               borderTopLeftRadius: isCompact ? 0 : 8,
               borderBottomLeftRadius: isCompact ? 0 : 8,
-              backgroundColor: settings.clan_colours[props.color] ?? "#aaaaaa",
+              backgroundColor: style.colours[props.color] ?? "#aaaaaa",
             }}
           />
         )}
@@ -233,10 +233,11 @@ export interface DataCellProps {
 
 export function DataCell(props: DataCellProps) {
   const [users] = useUserBookmarks();
-  const [settings] = useSettings();
+  const [options] = useSetting(ClansAtom);
+  const [style] = useSetting(ClanPersonalisationAtom);
   const { t } = useTranslation();
 
-  const opt = settings.clan_options[props.clan_id];
+  const opt = options[props.clan_id];
   let text;
   let level;
   if (
@@ -262,7 +263,7 @@ export function DataCell(props: DataCellProps) {
     level = props.user?.requirements[props.task_id]?.level;
   }
 
-  if (settings.clan_style === 0) {
+  if (style.style === 0) {
     return (
       <CommonCell
         type="data"
@@ -281,7 +282,7 @@ export function DataCell(props: DataCellProps) {
             : undefined
         }
         title={
-          settings.clan_reverse
+          style.reverse
             ? `${requirementMeta[props.task_id]?.top} ${requirementMeta[props.task_id]?.bottom}`
             : props.user && "username" in props.user
             ? props.user.username ?? ""
@@ -315,7 +316,7 @@ export interface RequirementDataCellProps {
 }
 
 export function RequirementDataCell(props: RequirementDataCellProps) {
-  const [settings] = useSettings();
+  const [style] = useSetting(ClanPersonalisationAtom);
   const { t } = useTranslation();
 
   const count =
@@ -328,13 +329,13 @@ export function RequirementDataCell(props: RequirementDataCellProps) {
         )
       : props.requirements?.tasks[props.type][props.task]?.[props.level];
 
-  if (settings.clan_style === 0) {
+  if (style.style === 0) {
     return (
       <CommonCell
         type="data"
         color={props.level}
         icon={
-          settings.clan_reverse
+          style.reverse
             ? undefined
             : props.type === "individual"
             ? "account-check"
@@ -343,14 +344,14 @@ export function RequirementDataCell(props: RequirementDataCellProps) {
             : "shield-check"
         }
         image={
-          settings.clan_reverse
+          style.reverse
             ? {
                 uri: `https://server.cuppazee.app/requirements/${props.task}.png`,
               }
             : undefined
         }
         title={
-          settings.clan_reverse
+          style.reverse
             ? `${requirementMeta[props.task]?.top} ${requirementMeta[props.task]?.bottom}`
             : t(`clan:${props.type}_level` as const, { level: props.level })
         }
@@ -413,14 +414,14 @@ export type LevelCellProps = {
 
 export function LevelCell(props: LevelCellProps) {
   const { t } = useTranslation();
-  const [settings] = useSettings();
+  const [style] = useSetting(ClanPersonalisationAtom);
   return (
     <CommonCell
       type={props.stack ? "header_stack" : "header"}
       color={props.level}
       icon={props.type === "individual" ? "account-check" : "shield-check"}
       title={t(
-        settings.clan_single_line && !props.stack
+        style.single_line && !props.stack
           ? props.type === "individual"
             ? "clan:individual_level"
             : props.type === "share"
@@ -498,7 +499,7 @@ export type RequirementCellProps = {
 };
 
 export function RequirementCell(props: RequirementCellProps) {
-  const [settings] = useSettings();
+  const [style] = useSetting(ClanPersonalisationAtom);
   const g = props.requirements.group.includes(props.task_id);
   const i = props.requirements.individual.includes(props.task_id);
   return (
@@ -511,8 +512,8 @@ export function RequirementCell(props: RequirementCellProps) {
       titleIcon={
         props.sortBy && Math.abs(props.sortBy) === props.task_id
           ? props.sortBy > 0
-            ? `chevron-${settings.clan_reverse ? "right" : "down"}`
-            : `chevron-${settings.clan_reverse ? "left" : "up"}`
+            ? `chevron-${style.reverse ? "right" : "down"}`
+            : `chevron-${style.reverse ? "left" : "up"}`
           : undefined
       }
       subtitle={requirementMeta[props.task_id]?.bottom}
@@ -528,30 +529,30 @@ export interface RewardDataCellProps {
 }
 
 export function RewardDataCell(props: RewardDataCellProps) {
-  const [settings] = useSettings();
+  const [style] = useSetting(ClanPersonalisationAtom);
   const { t } = useTranslation();
 
-  if (settings.clan_style === 0) {
+  if (style.style === 0) {
     return (
       <CommonCell
         type="data"
         color={props.level}
         icon={
-          settings.clan_reverse
+          style.reverse
             ? undefined
             : props.type === "individual"
             ? "account-check"
             : "shield-check"
         }
         image={
-          settings.clan_reverse
+          style.reverse
             ? {
                 uri: props.rewards.rewards[props.reward_id]?.logo,
               }
             : undefined
         }
         title={
-          settings.clan_reverse
+          style.reverse
             ? props.rewards.rewards[props.reward_id]?.name
             : t(`clan:${props.type}_level` as const, { level: props.level })
         }
@@ -576,8 +577,8 @@ export type RewardCellProps = {
 };
 
 export function RewardCell(props: RewardCellProps) {
-  const [settings] = useSettings();
-  if (settings.clan_single_line) {
+  const [style] = useSetting(ClanPersonalisationAtom);
+  if (style.single_line) {
     return (
       <CommonCell
         type={props.stack ? "header_stack" : "header"}

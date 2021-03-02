@@ -37,7 +37,7 @@ export const bouncerEndpointTypes = [
 
 export async function getBouncers(force?: boolean) {
   if (force || cache.bouncers_updated < Date.now() - 300000) {
-    const token = await retrieve({ user_id: 125914, teaken: false }, 60);
+    const token = await retrieve({ user_id: 125914, teaken: false }, 60, "universal");
     const data = await Promise.all([
       request("munzee/specials", {}, token.access_token),
       request("munzee/specials/mythological", {}, token.access_token),

@@ -4,7 +4,7 @@ import { useAtom } from "jotai";
 import * as React from "react";
 import { Image, ScrollView, View } from "react-native";
 import useLogin from "../../hooks/useLogin";
-import { useSettings } from "../../hooks/useSettings";
+import useSetting, { ReadyAtom } from "../../hooks/useSetting";
 import useTitle from "../../hooks/useTitle";
 import { teakensAtom, useTeakens } from "../../hooks/useToken";
 
@@ -13,7 +13,7 @@ export default function AccountsScreen() {
   const [loading, login, ready] = useLogin("settings/accounts");
   const { loaded } = useTeakens();
   const [teakens, setTeakens] = useAtom(teakensAtom);
-  const [settings, setSettings] = useSettings();
+  const [, setReady] = useSetting(ReadyAtom);
   return (
     <Layout style={{ flex: 1 }}>
       <ScrollView
@@ -71,7 +71,7 @@ export default function AccountsScreen() {
                     )
                   );
                   if (Object.entries(teakens.data).filter(t => t[0] !== i[0]).length === 0) {
-                    setSettings({ ...settings, ready: false });
+                    setReady(false);
                   }
                 }}
                 accessoryLeft={props => <Icon {...props} name="logout" />}>

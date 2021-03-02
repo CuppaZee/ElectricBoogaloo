@@ -1,10 +1,9 @@
-import React, { PropsWithChildren } from "react";
+import React from "react";
 import TypeImage from "./TypeImage";
-import types from "@cuppazee/types";
 import { Button, Icon, Layout, Text } from "@ui-kitten/components";
 import { View, ViewStyle } from "react-native";
-import { useSettings } from "../../hooks/useSettings";
 import { useTranslation } from "react-i18next";
+import useSetting, { TipsAtom } from "../../hooks/useSetting";
 
 const babyAnimals: [string, string][] = [
   ["babyhippo", "Baby Hippo"],
@@ -24,11 +23,6 @@ const babyAnimals: [string, string][] = [
   ["babybunny", "Baby Bunny"],
 ];
 
-const messages = [
-  // "Heads up!",
-  "Here's a quick tip!"
-]
-
 export interface TipProps {
   id: string;
   tip: string;
@@ -42,11 +36,11 @@ export default function Tip({ id, tip, wrapperStyle, small }: TipProps) {
     () => babyAnimals[Math.floor(Math.random() * babyAnimals.length)],
     []
   );
-  const [settings, setSettings] = useSettings();
+  const [tipsViewed, setTipsViewed] = useSetting(TipsAtom);
 
   if (
-    settings.tips_viewed[id]?.count >= 2 ||
-    settings.tips_viewed[id]?.time > Date.now() - 432000000
+    tipsViewed[id]?.count >= 2 ||
+    tipsViewed[id]?.time > Date.now() - 432000000
   )
     return null;
   return (
@@ -71,15 +65,12 @@ export default function Tip({ id, tip, wrapperStyle, small }: TipProps) {
               appearance="ghost"
               size="tiny"
               onPress={() =>
-                setSettings({
-                  ...settings,
-                  tips_viewed: {
-                    ...settings.tips_viewed,
+                setTipsViewed({
+                    ...tipsViewed,
                     [id]: {
-                      count: (settings.tips_viewed[id]?.count ?? 0) + 1,
+                      count: (tipsViewed[id]?.count ?? 0) + 1,
                       time: Date.now()
                     }
-                  },
                 })
               }
             />

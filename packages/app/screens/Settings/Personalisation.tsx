@@ -5,16 +5,17 @@ import { Pressable, ScrollView, View } from "react-native";
 import { CommonCell, pickTextColor } from "../../components/Clan/Cell";
 import { requirementMeta } from "../../components/Clan/Data";
 import ColourPicker from "../../components/Common/ColourPicker";
-import { Settings, useSettings } from "../../hooks/useSettings";
+import useSetting, { ClanPersonalisationAtom, ThemeAtom } from "../../hooks/useSetting";
 import useTitle from "../../hooks/useTitle";
 
 import * as themes from "../../themes";
 import { UpdateWrapper } from "./Notifications";
 
-function MockTitle({ settings }: { settings: Settings }) {
+type ClanStyle = typeof ClanPersonalisationAtom["init"]["data"];
+function MockTitle({ settings }: { settings: ClanStyle }) {
   return (
     <CommonCell
-      settings={settings}
+      clanStyle={settings}
       type="title"
       image={{
         uri: `https://munzee.global.ssl.fastly.net/images/clan_logos/${(1349).toString(36)}.png`,
@@ -30,12 +31,12 @@ const mockUsers: [string, number, number][] = [
   ["sohcah", 125914, 2],
 ];
 
-function MockUser({ settings, n }: { settings: Settings; n: number }) {
+function MockUser({ settings, n }: { settings: ClanStyle; n: number }) {
   const { t } = useTranslation();
   return (
     <CommonCell
-      settings={settings}
-      type={settings.clan_reverse ? "header_stack" : "header"}
+      clanStyle={settings}
+      type={settings.reverse ? "header_stack" : "header"}
       color={mockUsers[n][2]}
       image={{
         uri: `https://munzee.global.ssl.fastly.net/images/avatars/ua${mockUsers[n][1].toString(
@@ -48,12 +49,12 @@ function MockUser({ settings, n }: { settings: Settings; n: number }) {
   );
 }
 
-function MockGroupTotal({ settings }: { settings: Settings }) {
+function MockGroupTotal({ settings }: { settings: ClanStyle }) {
   const { t } = useTranslation();
   return (
     <CommonCell
-      settings={settings}
-      type={settings.clan_reverse ? "header_stack" : "header"}
+      clanStyle={settings}
+      type={settings.reverse ? "header_stack" : "header"}
       color={1}
       icon="shield-half-full"
       title={t("clan:group_total")}
@@ -74,29 +75,29 @@ const mockData: [number, string, number, number, number, number][] = [
   [28, "Clan Total", 0, 1, 780, 1],
 ];
 
-function MockData({ settings, n }: { settings: Settings; n: number }) {
+function MockData({ settings, n }: { settings: ClanStyle; n: number }) {
   const { t } = useTranslation();
 
   const m = mockData[n];
 
-  if (settings.clan_style === 0) {
+  if (settings.style === 0) {
     return (
       <CommonCell
-        settings={settings}
+        clanStyle={settings}
         type="data"
         color={m[5]}
-        icon={settings.clan_reverse || m[2] ? undefined : "shield-half-full"}
+        icon={settings.reverse || m[2] ? undefined : "shield-half-full"}
         image={
-          settings.clan_reverse || m[2]
+          settings.reverse || m[2]
             ? {
-                uri: !settings.clan_reverse
+                uri: !settings.reverse
                   ? `https://munzee.global.ssl.fastly.net/images/avatars/ua${m[2].toString(36)}.png`
                   : `https://server.cuppazee.app/requirements/${m[0]}.png`,
               }
             : undefined
         }
         title={
-          settings.clan_reverse
+          settings.reverse
             ? `${requirementMeta[m[0]]?.top} ${requirementMeta[m[0]]?.bottom}`
             : m[2]
             ? m[1]
@@ -109,7 +110,7 @@ function MockData({ settings, n }: { settings: Settings; n: number }) {
 
   return (
     <CommonCell
-      settings={settings}
+      clanStyle={settings}
       type="data"
       color={m[5]}
       title={m[4].toLocaleString() ?? "🚫"}
@@ -117,11 +118,11 @@ function MockData({ settings, n }: { settings: Settings; n: number }) {
   );
 }
 
-function MockRequirement({ settings, n }: { settings: Settings; n: number }) {
+function MockRequirement({ settings, n }: { settings: ClanStyle; n: number }) {
   return (
     <CommonCell
-      settings={settings}
-      type={settings.clan_reverse ? "header" : "header_stack"}
+      clanStyle={settings}
+      type={settings.reverse ? "header" : "header_stack"}
       color={n === 1 ? 11 : n === 31 ? 12 : 13}
       image={{ uri: `https://server.cuppazee.app/requirements/${n}.png` }}
       title={requirementMeta[n]?.top}
@@ -130,12 +131,12 @@ function MockRequirement({ settings, n }: { settings: Settings; n: number }) {
   );
 }
 
-function MockTable({ settings }: { settings: Settings }) {
+function MockTable({ settings }: { settings: ClanStyle }) {
   const { t } = useTranslation();
-  if (settings.clan_reverse) {
+  if (settings.reverse) {
     return (
       <View style={{ flexDirection: "row" }}>
-        {settings.clan_style !== 0 && (
+        {settings.style !== 0 && (
           <View style={{ flex: 1 }}>
             <MockTitle settings={settings} />
             <MockRequirement settings={settings} n={1} />
@@ -166,7 +167,7 @@ function MockTable({ settings }: { settings: Settings }) {
   }
   return (
     <View style={{ flexDirection: "row" }}>
-      {settings.clan_style !== 0 && (
+      {settings.style !== 0 && (
         <View style={{ flex: 1 }}>
           <MockTitle settings={settings} />
           {[0, 1].map(i => (
@@ -201,14 +202,15 @@ const clan_colours = ["0", "1", "2", "3", "4", "5", null, null, null, null, null
 
 export default function PersonalisationScreen() {
   useTitle("☕ Settings - Personalisation");
-  const [storedSettings, setStoredSettings] = useSettings();
-  const [settings, setSettings] = React.useState<Settings>();
+  const [storedClanSettings, setStoredClanSettings] = useSetting(ClanPersonalisationAtom);
+  const [clanSettings, setClanSettings] = React.useState<ClanStyle>();
+  const [theme, setTheme] = useSetting(ThemeAtom);
   const [saved, setSaved] = React.useState(false);
   const [clanColourSelect, setClanColourSelect] = React.useState<number>();
   React.useEffect(() => {
-    setSettings({ ...storedSettings });
-  }, [storedSettings]);
-  if (!settings) return null;
+    setClanSettings({ ...storedClanSettings });
+  }, [storedClanSettings]);
+  if (!clanSettings) return null;
   return (
     <Layout style={{ flex: 1 }}>
       <ScrollView
@@ -230,18 +232,13 @@ export default function PersonalisationScreen() {
               style={{ width: 280, flexDirection: "row", flexWrap: "wrap", alignSelf: "center" }}>
               {Object.entries(themes).map(i => (
                 <Pressable
-                  onPress={() =>
-                    setStoredSettings({
-                      ...storedSettings,
-                      theme: i[0] as typeof storedSettings.theme,
-                    })
-                  }
-                  style={{ padding: settings?.theme === i[0] ? 0 : 4 }}>
+                  onPress={() => setTheme(i[0] as typeof theme)}
+                  style={{ padding: theme === i[0] ? 0 : 4 }}>
                   <View
                     style={{
                       borderRadius: 32,
-                      height: settings?.theme === i[0] ? 56 : 48,
-                      width: settings?.theme === i[0] ? 56 : 48,
+                      height: theme === i[0] ? 56 : 48,
+                      width: theme === i[0] ? 56 : 48,
                       borderWidth: 2,
                       backgroundColor:
                         i[1][i[1].style === "dark" ? "color-basic-800" : "color-basic-200"],
@@ -260,29 +257,29 @@ export default function PersonalisationScreen() {
             </Text>
             <CheckBox
               style={{ margin: 8 }}
-              checked={settings.clan_reverse}
-              onChange={checked => setSettings({ ...settings, clan_reverse: checked })}>
+              checked={clanSettings.reverse}
+              onChange={checked => setClanSettings({ ...clanSettings, reverse: checked })}>
               Reverse Columns/Rows
             </CheckBox>
             <CheckBox
-              disabled={settings.clan_style === 0}
+              disabled={clanSettings.style === 0}
               style={{ margin: 8 }}
-              checked={settings.clan_single_line}
-              onChange={checked => setSettings({ ...settings, clan_single_line: checked })}>
+              checked={clanSettings.single_line}
+              onChange={checked => setClanSettings({ ...clanSettings, single_line: checked })}>
               Single Line Cells
             </CheckBox>
             <CheckBox
               style={{ margin: 8 }}
-              checked={settings.clan_full_background}
-              onChange={checked => setSettings({ ...settings, clan_full_background: checked })}>
+              checked={clanSettings.full_background}
+              onChange={checked => setClanSettings({ ...clanSettings, full_background: checked })}>
               Full Colour Background
             </CheckBox>
             <Text category="s1">Style</Text>
             <RadioGroup
               style={{ margin: 8 }}
-              selectedIndex={settings.clan_style}
-              onChange={index => setSettings({ ...settings, clan_style: index })}>
-              <Radio disabled={settings.clan_single_line}>Large</Radio>
+              selectedIndex={clanSettings.style}
+              onChange={index => setClanSettings({ ...clanSettings, style: index })}>
+              <Radio disabled={clanSettings.single_line}>Large</Radio>
               <Radio>Comfortable</Radio>
               <Radio>Compact</Radio>
             </RadioGroup>
@@ -307,7 +304,7 @@ export default function PersonalisationScreen() {
                               height: 48,
                               width: 48,
                               borderWidth: 2,
-                              backgroundColor: settings.clan_colours[n],
+                              backgroundColor: clanSettings.colours[n],
                               justifyContent: "center",
                               alignItems: "center",
                             }}>
@@ -315,7 +312,7 @@ export default function PersonalisationScreen() {
                               style={{
                                 textAlignVertical: "center",
                                 textAlign: "center",
-                                color: pickTextColor(settings.clan_colours[n]),
+                                color: pickTextColor(clanSettings.colours[n]),
                               }}
                               category="h2">
                               {i}
@@ -328,9 +325,9 @@ export default function PersonalisationScreen() {
                   {clanColourSelect !== undefined && (
                     <View style={{ alignSelf: "center" }}>
                       <ColourPicker
-                        colour={settings.clan_colours[clanColourSelect]}
+                        colour={clanSettings.colours[clanColourSelect]}
                         setColour={colour => {
-                          settings.clan_colours[clanColourSelect] = colour;
+                          clanSettings.colours[clanColourSelect] = colour;
                           update();
                         }}
                       />
@@ -340,7 +337,7 @@ export default function PersonalisationScreen() {
               )}
             </UpdateWrapper>
             <Text category="s1">Preview</Text>
-            <MockTable settings={settings} />
+            <MockTable settings={clanSettings} />
           </Layout>
         </View>
 
@@ -362,7 +359,7 @@ export default function PersonalisationScreen() {
         <Button
           style={{ margin: 4 }}
           onPress={async () => {
-            if (settings) setStoredSettings(settings);
+            if (clanSettings) setStoredClanSettings(clanSettings);
             setSaved(true);
             setTimeout(() => {
               setSaved(false);

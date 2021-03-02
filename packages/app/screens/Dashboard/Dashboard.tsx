@@ -13,7 +13,7 @@ import builds from "../../builds";
 import Loading from "../../components/Loading";
 import { useUserBookmarks } from "../../hooks/useBookmarks";
 import useComponentSize from "../../hooks/useComponentSize";
-import { useSettings } from "../../hooks/useSettings";
+import useSetting, { BuildAtom, ClanPersonalisationAtom } from "../../hooks/useSetting";
 import useTitle from "../../hooks/useTitle";
 import ChangesDashCard from "./Changes";
 import ClansDashCard from "./Clans";
@@ -61,7 +61,7 @@ export default function DashboardScreen() {
     };
   }>({});
   const position = React.useRef<number>();
-  const [settings] = useSettings();
+  const [build] = useSetting(BuildAtom);
   const [users] = useUserBookmarks();
   const [touched, setTouched] = React.useState<number[]>([0]);
   const [index, setIndex] = React.useState<number>(0);
@@ -78,7 +78,7 @@ export default function DashboardScreen() {
   
   const dashCards = [
     { nonUser: "clan" },
-    ...(builds.some(i => i.build > settings.build) ? [{ nonUser: "changes" }] : []),
+    ...(builds.some(i => i.build > build) ? [{ nonUser: "changes" }] : []),
     ...users,
   ];
   return (
@@ -254,30 +254,6 @@ export default function DashboardScreen() {
           ListHeaderComponent={<View style={{ width: (width - Math.min(600, width)) / 2 }} />}
         />
       </WheelWrapper>
-      {/* {width > 600 && (
-        <>
-          <Button
-            appearance="ghost"
-            accessoryLeft={props => <Icon name="chevron-left" {...props} />}
-            onPress={() => {
-              scrollRef.current?.scrollToOffset({
-                offset: (position.current || 0) - Math.min(600, width),
-              });
-            }}
-            style={{ position: "absolute", left: 0, top: 0, bottom: 0 }}
-          />
-          <Button
-            appearance="ghost"
-            accessoryLeft={props => <Icon name="chevron-right" {...props} />}
-            onPress={() => {
-              scrollRef.current?.scrollToOffset({
-                offset: (position.current || 0) + Math.min(600, width),
-              });
-            }}
-            style={{ position: "absolute", right: 0, top: 0, bottom: 0 }}
-          />
-        </>
-      )} */}
     </Layout>
   );
 }

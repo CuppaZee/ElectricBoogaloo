@@ -1,16 +1,13 @@
-import { useNavigation } from "@react-navigation/native";
 import { Button, Layout, Text } from "@ui-kitten/components";
 import dayjs from "dayjs";
 import * as React from "react";
-import { useTranslation } from "react-i18next";
 import { StyleSheet, ScrollView, View, Image } from "react-native";
 import builds, { Build } from "../../builds";
 import TypeImage from "../../components/Common/TypeImage";
-import { useClanBookmarks } from "../../hooks/useBookmarks";
 import useTitle from "../../hooks/useTitle";
 import { DashCardProps } from "./Dashboard";
 import db from "@cuppazee/types";
-import { useSettings } from "../../hooks/useSettings";
+import useSetting, { BuildAtom } from "../../hooks/useSetting";
 
 function BuildCard(build: Build) {
   return (
@@ -120,8 +117,7 @@ function BuildCard(build: Build) {
 }
 
 export default function ChangesDashCard(props: DashCardProps<unknown>) {
-  // const { t } = useTranslation();
-  const [settings, setSettings] = useSettings();
+  const [build, setBuild] = useSetting(BuildAtom);
   useTitle(`☕ Dashboard`);
   return (
     <Layout level="3" style={[styles.card, { flex: 1 }]}>
@@ -132,17 +128,14 @@ export default function ChangesDashCard(props: DashCardProps<unknown>) {
             Changes
           </Text>
           {builds
-            .filter(i => i.build > settings.build)
+            .filter(i => i.build > build)
             .map(i => (
               <BuildCard {...i} />
             ))}
           <Button
             appearance="outline"
             onPress={() =>
-              setSettings({
-                ...settings,
-                build: builds[builds.length - 1].build,
-              })
+              setBuild(builds[builds.length - 1].build)
             }
             style={{ margin: 4 }}>
             Close

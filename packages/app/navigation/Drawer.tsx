@@ -11,8 +11,6 @@ import React from "react";
 import { Image, Platform, ScrollView } from "react-native";
 import { useClanBookmarks, useUserBookmarks } from "../hooks/useBookmarks";
 import useDay from "../hooks/useDay";
-import { useSettings } from "../hooks/useSettings";
-import Constants from "expo-constants";
 import { useTranslation } from "react-i18next";
 import Tip from "../components/Common/Tip";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -32,7 +30,6 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
   const day = useDay();
   const state = useNavigationState(i => i);
   const page: NavigationRoute[] = [state.routes[state.routes.length - 1]];
-  const [settings, setSettings] = useSettings();
   while (page[page.length - 1].state) {
     const p = page[page.length - 1].state;
     if (p?.history && p?.routes) {

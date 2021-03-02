@@ -5,9 +5,6 @@ import { useTranslation } from "react-i18next";
 import { PixelRatio, ScrollView, StyleSheet, View } from "react-native";
 import {
   LevelCell,
-  RequirementCell,
-  RequirementDataCell,
-  RequirementTitleCell,
   RewardCell,
   RewardDataCell,
   RewardTitleCell,
@@ -18,7 +15,7 @@ import {
 } from "../../components/Clan/Data";
 import useComponentSize from "../../hooks/useComponentSize";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
-import { useSettings } from "../../hooks/useSettings";
+import useSetting, { ClanPersonalisationAtom } from "../../hooks/useSetting";
 
 const levels: { level: number; type: "group" | "individual" }[] = [
   { level: 1, type: "individual" },
@@ -48,9 +45,9 @@ export default React.memo(
     const { t } = useTranslation();
     const [size, onLayout] = useComponentSize();
     const fontScale = PixelRatio.getFontScale();
-    const [settings] = useSettings();
-    const reverse = settings.clan_reverse;
-    const compact = settings.clan_style;
+    const [style] = useSetting(ClanPersonalisationAtom);
+    const reverse = style.reverse;
+    const compact = style.style;
 
     const theme = useTheme();
     const borderColor =

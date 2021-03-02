@@ -11,7 +11,7 @@ import Select from "../../components/Common/Select";
 import Tip from "../../components/Common/Tip";
 import { useClanBookmarks } from "../../hooks/useBookmarks";
 import useComponentSize from "../../hooks/useComponentSize";
-import { useSettings } from "../../hooks/useSettings";
+import useSetting, { ClanPersonalisationAtom } from "../../hooks/useSetting";
 import useTitle from "../../hooks/useTitle";
 import { ClanStackParamList } from "../../types";
 
@@ -25,7 +25,7 @@ export default function ClanBookmarksScreen() {
     route.params?.year ? Number(route.params.year) : undefined,
     route.params?.month ? Number(route.params.month) - 1 : undefined
   );
-  const [settings] = useSettings();
+  const [style] = useSetting(ClanPersonalisationAtom);
   const [clans] = useClanBookmarks();
   const isFocused = useIsFocused();
   if(!isFocused || !size) return <Layout onLayout={onLayout} style={{ flex: 1 }}></Layout>
@@ -46,7 +46,7 @@ export default function ClanBookmarksScreen() {
               key="requirements"
               clan_id={clans?.[0].clan_id}
               game_id={game_id}
-              scrollViewController={settings.clan_reverse ? undefined : scrollViewController}
+              scrollViewController={style.reverse ? undefined : scrollViewController}
             />
           </View>
           {clans?.map(i => (
@@ -58,7 +58,7 @@ export default function ClanBookmarksScreen() {
               <ClanStatsTable
                 clan_id={i.clan_id}
                 game_id={game_id}
-                scrollViewController={settings.clan_reverse ? undefined : scrollViewController}
+                scrollViewController={style.reverse ? undefined : scrollViewController}
               />
             </View>
           ))}

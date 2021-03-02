@@ -9,19 +9,18 @@ import Loading from "../../components/Loading";
 import { Image, ScrollView, View } from "react-native";
 import {
   ClanRequirementsConverter,
-  ClanRewardsData,
   monthToGameID,
   requirementMeta,
 } from "../../components/Clan/Data";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
 import Requirements from "../../components/Clan/Requirements";
-import { useSettings } from "../../hooks/useSettings";
 import { pickTextColor } from "../../components/Clan/Cell";
+import useSetting, { ClanPersonalisationAtom } from "../../hooks/useSetting";
 
 export default function UserClanScreen() {
   const [size, onLayout] = useComponentSize();
   const route = useRoute<RouteProp<UserStackParamList, "ClanProgress">>();
-  const [settings] = useSettings();
+  const [style] = useSetting(ClanPersonalisationAtom);
   const game_id = monthToGameID();
   const nav = useNavigation();
   useTitle(`☕ ${route.params.username} - Clan Progress`);
@@ -42,13 +41,9 @@ export default function UserClanScreen() {
     game_id,
   });
 
-  const rewards_data = useCuppaZeeRequest<{ data: ClanRewardsData }>("clan/rewards", {
-    game_id,
-  });
-
   const requirements = React.useMemo(
-    () => ClanRequirementsConverter(requirements_data.data?.data, rewards_data.data?.data),
-    [requirements_data.dataUpdatedAt, rewards_data.dataUpdatedAt]
+    () => ClanRequirementsConverter(requirements_data.data?.data),
+    [requirements_data.dataUpdatedAt]
   );
   
   const isFocused = useIsFocused();
@@ -100,27 +95,27 @@ export default function UserClanScreen() {
                       alignSelf: "stretch",
                       justifyContent: "center",
                       width: 60,
-                      borderLeftWidth: settings.clan_full_background ? 0 : 4,
+                      borderLeftWidth: style.full_background ? 0 : 4,
                       borderColor:
-                        settings.clan_colours[
+                        style.colours[
                           [...requirements.tasks.individual[requirement], Infinity].findIndex(
                             i => i > data.data.data[requirement]
                           ) - 1
                         ],
                       backgroundColor:
-                        settings.clan_colours[
+                        style.colours[
                           [...requirements.tasks.individual[requirement], Infinity].findIndex(
                             i => i > data.data.data[requirement]
                           ) - 1
-                        ] + (settings.clan_full_background ? "" : "22"),
+                        ] + (style.full_background ? "" : "22"),
                       alignItems: "center",
                     }}>
                     <Text
                       style={
-                        settings.clan_full_background
+                        style.full_background
                           ? {
                               color: pickTextColor(
-                                settings.clan_colours[
+                                style.colours[
                                   [
                                     ...requirements.tasks.individual[requirement],
                                     Infinity,

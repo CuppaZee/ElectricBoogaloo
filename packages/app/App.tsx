@@ -15,13 +15,13 @@ import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
 import { StyleSheet } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as themes from "./themes";
-import { useSettings } from "./hooks/useSettings";
 
 import AppLoading from "expo-app-loading";
 import { useFonts } from "expo-font";
 import "./lang/i18n";
 
 import "./BackgroundLocation";
+import useSetting, { ThemeAtom } from "./hooks/useSetting";
 
 function MCIcon({ name, style }: { name: string | number | symbol; style: any }) {
   try {
@@ -69,8 +69,8 @@ const queryClient = new QueryClient({
 
 function AppB() {
   const colorScheme = useColorScheme();
-  const [settings] = useSettings();
-  const theme = themes[settings.theme];
+  const [themeValue] = useSetting(ThemeAtom);
+  const theme = themes[themeValue];
   return (
     <>
       {Platform.OS === "web" && (

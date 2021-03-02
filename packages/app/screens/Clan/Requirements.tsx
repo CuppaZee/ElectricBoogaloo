@@ -7,15 +7,11 @@ import { gameIDToMonth, monthToGameID } from "../../components/Clan/Data";
 import ClanRequirementsTable from "../../components/Clan/Requirements";
 import ClanRequirementsList from "../../components/Clan/RequirementsList";
 import ClanRewardsTable from "../../components/Clan/Rewards";
-import { useSyncScrollViewController } from "../../components/Clan/SyncScrollView";
 import Select from "../../components/Common/Select";
 import Tip from "../../components/Common/Tip";
-import { useSettings } from "../../hooks/useSettings";
 import { ClanStackParamList } from "../../types";
 
 export default function ClanStatsScreen2() {
-  const [settings] = useSettings();
-  const scrollViewController = useSyncScrollViewController();
   const route = useRoute<RouteProp<ClanStackParamList, "Requirements">>();
   const nav = useNavigation();
   const game_id = monthToGameID(
@@ -49,12 +45,10 @@ export default function ClanStatsScreen2() {
         />
         <ClanRequirementsTable
           game_id={game_id}
-          scrollViewController={settings.clan_reverse ? undefined : scrollViewController}
         />
         <ClanRewardsTable game_id={game_id} />
         <ClanRequirementsList
           game_id={game_id}
-          scrollViewController={settings.clan_reverse ? undefined : scrollViewController}
         />
       </ScrollView>
     </Layout>

@@ -9,11 +9,11 @@ import ClanStatsTable from "../../components/Clan/Stats";
 import { useSyncScrollViewController } from "../../components/Clan/SyncScrollView";
 import Select from "../../components/Common/Select";
 import Tip from "../../components/Common/Tip";
-import { useSettings } from "../../hooks/useSettings";
+import useSetting, { ClanPersonalisationAtom } from "../../hooks/useSetting";
 import { ClanStackParamList } from "../../types";
 
 export default function ClanStatsScreen2() {
-  const [settings] = useSettings();
+  const [style] = useSetting(ClanPersonalisationAtom);
   const scrollViewController = useSyncScrollViewController();
   const route = useRoute<RouteProp<ClanStackParamList, "Stats">>();
   const nav = useNavigation();
@@ -33,12 +33,12 @@ export default function ClanStatsScreen2() {
         <ClanStatsTable
           clan_id={clan_id}
           game_id={game_id}
-          scrollViewController={settings.clan_reverse ? undefined : scrollViewController}
+          scrollViewController={style.reverse ? undefined : scrollViewController}
         />
         <ClanRequirementsTable
           clan_id={clan_id}
           game_id={game_id}
-          scrollViewController={settings.clan_reverse ? undefined : scrollViewController}
+          scrollViewController={style.reverse ? undefined : scrollViewController}
         />
         <Select
           style={{ margin: 4 }}

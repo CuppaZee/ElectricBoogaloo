@@ -1,4 +1,4 @@
-import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
+import { RouteProp, useRoute } from "@react-navigation/native";
 import { Icon, Layout, Text, useTheme } from "@ui-kitten/components";
 import * as React from "react";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
@@ -6,19 +6,12 @@ import useComponentSize from "../../hooks/useComponentSize";
 import { UserStackParamList } from "../../types";
 import useTitle from "../../hooks/useTitle";
 import Loading from "../../components/Loading";
-import { Image, ScrollView, View } from "react-native";
-import {
-  ClanRequirementsConverter,
-  ClanRewardsData,
-  monthToGameID,
-  requirementMeta,
-} from "../../components/Clan/Data";
+import { ScrollView, View } from "react-native";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
-import Requirements from "../../components/Clan/Requirements";
-import { useSettings } from "../../hooks/useSettings";
 import { pickTextColor } from "../../components/Clan/Cell";
 import { TypeState } from "@cuppazee/types/lib";
 import dayjs from "dayjs";
+import useSetting, { ClanPersonalisationAtom } from "../../hooks/useSetting";
 
 interface QRewData {
   cap: {
@@ -51,7 +44,7 @@ interface CardProps {
 
 function Card(props: CardProps) {
   const theme = useTheme();
-  const [settings] = useSettings();
+  const [style] = useSetting(ClanPersonalisationAtom);
   return (
     <View style={{ padding: 4 }}>
       <Layout level="3" style={{ flexDirection: "row", alignItems: "center", borderRadius: 8 }}>
@@ -68,19 +61,19 @@ function Card(props: CardProps) {
             alignSelf: "stretch",
             justifyContent: "center",
             width: 60,
-            borderLeftWidth: settings.clan_full_background ? 0 : 4,
-            borderColor: settings.clan_colours[props.done ? 5 : 0],
+            borderLeftWidth: style.full_background ? 0 : 4,
+            borderColor: style.colours[props.done ? 5 : 0],
             backgroundColor:
-              settings.clan_colours[props.done ? 5 : 0] +
-              (settings.clan_full_background ? "" : "22"),
+              style.colours[props.done ? 5 : 0] +
+              (style.full_background ? "" : "22"),
             alignItems: "center",
           }}>
           <Icon
             style={{
               height: 32,
               width: 32,
-              color: settings.clan_full_background
-                ? pickTextColor(settings.clan_colours[props.done ? 5 : 0])
+              color: style.full_background
+                ? pickTextColor(style.colours[props.done ? 5 : 0])
                 : theme["text-basic-color"],
             }}
             name={props.done ? "check" : "close"}
