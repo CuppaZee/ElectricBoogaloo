@@ -109,13 +109,9 @@ export default React.memo(
       game_id,
     });
 
-    const rewards_data = useCuppaZeeRequest<{ data: ClanRewardsData }>("clan/rewards", {
-      game_id,
-    });
-
     const requirements = React.useMemo(
-      () => ClanRequirementsConverter(requirements_data.data?.data, rewards_data.data?.data),
-      [requirements_data.dataUpdatedAt, rewards_data.dataUpdatedAt]
+      () => ClanRequirementsConverter(requirements_data.data?.data),
+      [requirements_data.dataUpdatedAt]
     );
 
     if (requirements_data.data?.data?.data.levels.length === 0) {
@@ -126,7 +122,7 @@ export default React.memo(
     if (!requirements || !size) {
       return (
         <Layout style={{ flex: 1 }} onLayout={onLayout}>
-          <Loading data={[requirements_data, rewards_data]} />
+          <Loading data={[requirements_data]} />
         </Layout>
       );
     }

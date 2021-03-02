@@ -6,7 +6,6 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import { getTypeImage } from "../Common/TypeImage";
 import { useTheme } from "@ui-kitten/components";
-import { useNavigation } from "@react-navigation/native";
 
 mapboxgl.accessToken =
   "pk.eyJ1Ijoic29oY2FoIiwiYSI6ImNqeWVqcm8wdTAxc2MzaXFpa282Yzd2aHEifQ.afYbt2sVMZ-kbwdx5_PekQ";
@@ -38,7 +37,6 @@ function WebMap(props: MapProps) {
     if (!mapRef.current) return;
     const map = mapRef.current;
     const features = map.querySourceFeatures("markers");
-    console.log(features);
     const keepMarkers: Set<string> = new Set();
 
     for (let i = 0; i < features.length; i++) {

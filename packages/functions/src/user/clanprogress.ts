@@ -16,9 +16,9 @@ const route: Route = {
           dates.push(i);
         }
         let allDays = await Promise.all(
-          dates.map((i) =>
+          dates.map(i =>
             request(
-              "statzee/player/day",
+              "statzee/player/day//" as "statzee/player/day",
               {
                 day: `${time.year()}-${(time.month() + 1)
                   .toString()

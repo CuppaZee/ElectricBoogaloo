@@ -461,10 +461,9 @@ export type ClanStatsFormattedRequirements = {
 };
 
 export function ClanRequirementsConverter(
-  requirements?: ClanV2Requirements["response"]["data"],
-  rewards?: ClanRewardsData
+  requirements?: ClanV2Requirements["response"]["data"]
 ) {
-  if (!requirements || !rewards || requirements.data.levels instanceof Array) return null;
+  if (!requirements || requirements.data.levels instanceof Array) return null;
   const data: ClanStatsFormattedRequirements = {
     tasks: {
       individual: {},
@@ -547,7 +546,6 @@ export function ClanStatsConverter(
   }
 
   if ((actual_clan_id || 0) >= 0 && stats.battle.end * 1000 > Date.now()) {
-    console.log(clan.result, monthToGameID());
     for (const user of clan.users) {
       data.users[Number(user.user_id)] = {
         username: user.username,

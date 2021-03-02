@@ -69,8 +69,8 @@ export default React.memo(
     });
 
     const requirements = React.useMemo(
-      () => ClanRequirementsConverter(requirements_data.data?.data, rewards_data.data?.data),
-      [requirements_data.dataUpdatedAt, rewards_data.dataUpdatedAt]
+      () => ClanRequirementsConverter(requirements_data.data?.data),
+      [requirements_data.dataUpdatedAt]
     );
 
     const rewards = rewards_data.data?.data;

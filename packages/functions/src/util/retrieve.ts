@@ -1,3 +1,4 @@
+import { logger } from "firebase-functions";
 import fetch from "node-fetch";
 import { URLSearchParams } from "url";
 import _config from "../config.json";
@@ -45,6 +46,7 @@ export default async function (
         const { refresh_token: _, ...r } = token;
         return r;
       }
+      logger.info("CZ- REFRESHING", token.expires, Date.now(), time);
       const formData = new URLSearchParams();
       formData.append("client_id", config.client_id);
       formData.append("client_secret", config.client_secret);

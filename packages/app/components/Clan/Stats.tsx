@@ -14,7 +14,6 @@ import {
   ClanStatsFormattedUser,
   ClanStatsFormattedData,
   ClanRequirementsConverter,
-  ClanRewardsData,
   ClanShadowData,
 } from "../../components/Clan/Data";
 import useComponentSize from "../../hooks/useComponentSize";
@@ -76,13 +75,10 @@ export default React.memo(
       },
       [-1, 1349, 1441, 457, 1902, 2042, 1870].includes(actual_clan_id)
     );
-    const rewards_data = useCuppaZeeRequest<{ data: ClanRewardsData }>("clan/rewards", {
-      game_id,
-    });
 
     const requirements = React.useMemo(
-      () => ClanRequirementsConverter(requirements_data.data?.data, rewards_data.data?.data),
-      [requirements_data.dataUpdatedAt, rewards_data.dataUpdatedAt]
+      () => ClanRequirementsConverter(requirements_data.data?.data),
+      [requirements_data.dataUpdatedAt]
     );
     const stats = React.useMemo(
       () =>
@@ -119,7 +115,7 @@ export default React.memo(
     ) {
       return (
         <Layout style={{ flex: 1 }} onLayout={onLayout}>
-          <Loading data={[clan_data, requirements_data, shadow_data, rewards_data]} />
+          <Loading data={[clan_data, requirements_data, shadow_data]} />
         </Layout>
       );
     }
@@ -140,12 +136,12 @@ export default React.memo(
 
     const main_users = [
       {
-        type: settings.clan_options[clan_id].share ? "share" : "individual",
-        level: settings.clan_options[clan_id].level,
+        type: settings.clan_options[actual_clan_id].share ? "share" : "individual",
+        level: settings.clan_options[actual_clan_id].level,
       },
       ...Object.values(stats.users).sort(sort),
       stats,
-      { type: "group", level: settings.clan_options[clan_id].level },
+      { type: "group", level: settings.clan_options[actual_clan_id].level },
     ];
     const main_rows = (reverse ? requirements.all : main_users) as (
       | number

@@ -1,6 +1,14 @@
 import { request, retrieve } from '../util';
 import POLYfromEntries from 'object.fromentries';
 import { Route } from '../types';
+
+const cache: {
+  [game_id: string]: {
+    data: any;
+    updated_at: number;
+  }
+} = {}
+
 const route: Route = {
   path: "clan/rewards",
   latest: 1,
@@ -10,6 +18,12 @@ const route: Route = {
       async function({
         params: { game_id }
       }) {
+        if (cache[game_id] && cache[game_id].updated_at > Date.now() - 3600000) {
+          return {
+            status: "success",
+            data: cache[game_id].data,
+          };
+        }
         var token = await retrieve({ user_id: 455935, teaken: false }, 60);
         var rewards = (await request(`clan/v2/challenges/{game_id}`, { game_id }, token.access_token))?.data;
         if (!rewards) {
@@ -114,6 +128,13 @@ const route: Route = {
           }
           reqs.levels.push(level_data);
         }
+        cache[game_id] = {
+          data: reqs,
+          updated_at:
+            Date.now() > reqs.battle.reveal_at * 1000
+              ? Date.now()
+              : (reqs.battle.reveal_at * 1000) - 3600000,
+        };
         return {
           status: "success",
           data: reqs

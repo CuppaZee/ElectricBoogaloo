@@ -75,6 +75,13 @@ var tasks = {
         .filter(i => g(i)?.has_tag(TypeTags.TypeDestination))
         .reduce(points, 0),
   },
+  9: {
+    task_id: 9,
+    top: "Greenie",
+    bottom: "Captures",
+    icon: "https://munzee.global.ssl.fastly.net/images/pins/munzee.png",
+    function: ({ cap }: any) => cap.filter((i: any) => g(i)?.icon === "munzee").length,
+  },
   10: {
     task_id: 10,
     top: "Deploy",
@@ -137,6 +144,17 @@ var tasks = {
     ],
     function: ({ cap, dep, con }: any) =>
       [...cap, ...dep, ...con].filter(i => g(i)?.has_tag(TypeTags.TypeJewel)).reduce(points, 0),
+  },
+  22: {
+    task_id: 22,
+    top: "Urban Fit",
+    bottom: "Activity",
+    icon: "https://munzee.global.ssl.fastly.net/images/pins/urbanfit.png",
+    icons: [
+      "https://munzee.global.ssl.fastly.net/images/pins/urbanfit.png",
+    ],
+    function: ({ cap, dep }: any) =>
+      [...cap, ...dep].filter(i => g(i)?.icon === "urbanfit").length,
   },
   23: {
     task_id: 23,
@@ -291,7 +309,7 @@ var tasks = {
     bottom: "Captures",
     icon: "https://munzee.global.ssl.fastly.net/images/pins/qrewzee.png",
     function: ({ cap }: any) =>
-      cap.filter((i: any) => (g(i)?.icon === "qrewzee" || g(i)?.icon === "sleepzee")).length,
+      cap.filter((i: any) => g(i)?.icon === "qrewzee" || g(i)?.icon === "sleepzee").length,
   },
   36: {
     task_id: 36,
@@ -316,6 +334,7 @@ var all_tasks: {
   93: [1, 3, 12, 13, 24, 28, 23, 30, 34, 35, 36],
   94: [1, 3, 13, 24, 35, 6, 7, 12, 23, 27, 31, 36],
   95: [1, 29, 31, 3, 13, 23, 24, 36, 12, 19, 27, 28, 30, 33, 34, 35],
+  96: [1, 10, 24, 3, 13, 19, 30, 35, 9, 22, 23, 36],
 };
 
 export default function calculate(

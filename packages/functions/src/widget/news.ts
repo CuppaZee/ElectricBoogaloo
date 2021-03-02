@@ -1,6 +1,14 @@
 import { Route } from "../types";
 // import { retrieve, request } from "../util";
 
+const cache: {
+  data: any;
+  updated_at: number;
+} = {
+  updated_at: 0,
+  data: null,
+};
+
 const route: Route = {
   path: "widget/news",
   latest: 1,
@@ -8,6 +16,12 @@ const route: Route = {
     {
       version: 1,
       async function() {
+        if (cache.updated_at > Date.now() - 900000) {
+          return {
+            status: "success",
+            data: cache.data,
+          };
+        }
         return {
           status: "success",
           data: [
@@ -41,6 +55,8 @@ const route: Route = {
         //     error_message: "munzee_api_5xx",
         //   };
         // }
+        // cache.updated_at = Date.now();
+        // cache.data = news.data;
         // return {
         //   status: "success",
         //   data: news.data,

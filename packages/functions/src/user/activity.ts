@@ -15,7 +15,7 @@ const route: Route = {
     {
       version: 1,
       async function({
-        params: { user_id, day },
+        params: { user_id, day, from },
         db
       }: any) {
         var token = await retrieve({ user_id, teaken: false }, 60);
@@ -25,7 +25,13 @@ const route: Route = {
             error_message: "missing_login"
           }
         }
-        var data = (await request('statzee/player/day', { day }, token.access_token))?.data;
+        var data = (
+          await request(
+            (from ? "/statzee/player/day" : "statzee/player/day") as "statzee/player/day",
+            { day },
+            token.access_token
+          )
+        )?.data;
         if (!data) {
           return {
             status: "error",
