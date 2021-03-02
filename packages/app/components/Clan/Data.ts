@@ -481,11 +481,32 @@ export function ClanRequirementsConverter(
       if (!data.individual.includes(indiv.task_id)) data.individual.push(indiv.task_id);
       if (!data.tasks.individual[indiv.task_id]) data.tasks.individual[indiv.task_id] = [];
       data.tasks.individual[indiv.task_id][Number(level)] = indiv.amount;
+
+      if (!requirementMeta[indiv.task_id]) requirementMeta[indiv.task_id] = {
+        task_id: indiv.task_id,
+        top: indiv.name.split(" ")[0],
+        bottom: indiv.name.split(" ").slice(1).join(" "),
+        icon: indiv.logo,
+        meta: {
+          activity: [],
+        }
+      };
     }
     for (const group of l.group) {
       if (!data.group.includes(group.task_id)) data.group.push(group.task_id);
       if (!data.tasks.group[group.task_id]) data.tasks.group[group.task_id] = [];
       data.tasks.group[group.task_id][Number(level)] = group.amount;
+
+      if (!requirementMeta[group.task_id])
+        requirementMeta[group.task_id] = {
+          task_id: group.task_id,
+          top: group.name.split(" ")[0],
+          bottom: group.name.split(" ").slice(1).join(" "),
+          icon: group.logo,
+          meta: {
+            activity: [],
+          },
+        };
     }
   }
 

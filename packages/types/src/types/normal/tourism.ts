@@ -64,6 +64,11 @@ const tourism: {
     id: "null_minnesotaiconiclocation",
   },
   {
+    name: "Australia Iconic Location",
+    icon: "australiaiconiclocation",
+    id: "null_australiaiconiclocation",
+  },
+  {
     name: "MHQ Flat Matt",
     icon: "mhqflatmatt",
     id: 1006,

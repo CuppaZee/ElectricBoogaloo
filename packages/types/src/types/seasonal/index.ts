@@ -96,7 +96,9 @@ for (const year of Object.keys(years) as (keyof typeof years)[]) {
   categories.push({
     name: `${year} Seasonal Specials`,
     id: `seasonal_${year}`,
-    icon: "expiring_specials_filter",
+    icon:
+      years[year].categories.find(i => i.specials)?.specials?.[0].icon ||
+      "expiring_specials_filter",
     parents: year === "2021" ? ["seasonal", "root"] : ["seasonal"],
   });
   for (const c of years[year].categories) {

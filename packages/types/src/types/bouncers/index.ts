@@ -11,7 +11,7 @@ export const categories: TypeCategoryInterface[] = [
   {
     name: "Bouncers",
     id: "bouncer",
-    icon: "expiring_specials_filter",
+    icon: "theunicorn",
     parents: ["root"],
   },
   {

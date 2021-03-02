@@ -178,7 +178,21 @@ const zodiacs: {
   {
     name: "The Nile",
     icon: "nile",
-    id: "null_nile",
+    id: 2751,
+    state: TypeState.Virtual,
+    zodiac: "egyptian",
+  },
+  {
+    name: "Amon-Ra",
+    icon: "amon-ra",
+    id: 2752,
+    state: TypeState.Virtual,
+    zodiac: "egyptian",
+  },
+  {
+    name: "Osiris",
+    icon: "osiris",
+    id: 2753,
     state: TypeState.Virtual,
     zodiac: "egyptian",
   },

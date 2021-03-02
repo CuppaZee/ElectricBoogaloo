@@ -13,19 +13,19 @@ const tpobs: {
   {
     name: "Trojan Unicorn",
     icon: "trojanunicorn",
-    id: "null_trojanunicorn",
+    id: 2502,
     lands_on: ["mace", "longsword", "battleaxe", "thehammer", "crossbow", "catapult"],
   },
   {
     name: "Spyderbot",
     icon: "spyderbot",
-    id: "null_spyderbot",
+    id: 2589,
     lands_on: [],
   },
   {
     name: "L.A.S.E.R. Shark",
     icon: "lasershark",
-    id: "null_lasershark",
+    id: 2875,
     lands_on: [
       type => type.has_tag(TypeTags.TypeMysteryElemental),
       type => type.has_tag(TypeTags.TypeWeaponZeeops),

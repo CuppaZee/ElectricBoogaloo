@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.0.33 - 01/03/2021
+- Added new Bee Evolution
+- Added Amon-Ra and Osiris Egyptian Zodiacs
+## 0.0.32 - 27/02/2021
+- Added Basketball Garden Gnome and Scatter
+## 0.0.31 - 27/02/2021
+- Fixed Women's History Month Scatters
+- Fixed Icons for Seasonal Special/Bouncers Categories
+## 0.0.30 - 27/02/2021
+- Added Women's History Month Specials
+- Added Flat DHS
+- Added Numeric IDs for most Munzee Types
 ## 0.0.29 - 23/02/2021
 - Added L.A.S.E.R. Shark tPOB
 - Added Jewel Shards Credit

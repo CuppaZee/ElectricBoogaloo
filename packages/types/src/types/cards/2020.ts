@@ -68,40 +68,40 @@ const c2020: {
   {
     name: "World Ocean Day Card",
     icon: "worldoceandaycard",
-    id: "null_worldoceandaycard",
+    id: 2529,
   },
   {
     name: "Couch Potato Card",
     icon: "couch_potato_card",
-    id: "null_eventcard",
+    id: 2571,
     alt_icons: ["couchpotatocard"],
   },
   {
     name: "FrEEZ Flag Card",
     icon: "freezflagcard",
-    id: "null_freezflagcard",
+    id: 2572,
     alt_icons: ["freez_flag_card"],
   },
   {
     name: "Camp Munzee Card",
     icon: "campmunzeecard",
-    id: "null_campmunzeecard",
+    id: 2581,
     alt_icons: ["camp_munzee_card"],
   },
   {
     name: "Self Destruct Card",
     icon: "selfdestructcard",
-    id: "null_selfdestructcard",
+    id: 2606,
   },
   {
     name: "Halloween Card",
     icon: "halloweencard",
-    id: "null_halloweencard",
+    id: 2623,
   },
   {
     name: "Kill Them with Kindness Card",
     icon: "killthemwithkindnesscard",
-    id: "null_killthemwithkindnesscard",
+    id: 2691,
   },
 ];
 

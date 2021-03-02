@@ -151,7 +151,7 @@ const places: {
   {
     name: "POI Drink Depot",
     icon: "poidrinkdepot",
-    id: "null_poidrinkdepot",
+    id: 2690,
     points: PlacesPoints,
   },
 ];

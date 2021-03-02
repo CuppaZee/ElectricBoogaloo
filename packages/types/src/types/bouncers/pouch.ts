@@ -467,7 +467,7 @@ const pouch: {
   {
     name: "Akvamariin",
     icon: "akvamariin",
-    id: "null_akvamariin",
+    id: 2374,
     lands_on: ["treehouse", "munzee", "earthmystery", "aquamarine"],
     set: "funfinity",
     points: points.funfinity,
@@ -475,7 +475,7 @@ const pouch: {
   {
     name: "Rubiin",
     icon: "rubiin",
-    id: "null_rubiin",
+    id: 2371,
     lands_on: ["treehouse", "munzee", "firemystery", "ruby"],
     set: "funfinity",
     points: points.funfinity,
@@ -483,7 +483,7 @@ const pouch: {
   {
     name: "Safiir",
     icon: "safiir",
-    id: "null_safiir",
+    id: 2372,
     lands_on: [
       "skyland",
       type => type.has_tag(TypeTags.TypeVirtual),
@@ -496,7 +496,7 @@ const pouch: {
   {
     name: "Roosa",
     icon: "roosa",
-    id: "null_roosa",
+    id: 2375,
     lands_on: ["treehouse", "munzee", "firemystery", "pinkdiamond"],
     set: "funfinity",
     points: points.funfinity,
@@ -504,7 +504,7 @@ const pouch: {
   {
     name: "Tsitriin",
     icon: "tsitriin",
-    id: "null_tsitriin",
+    id: 2373,
     lands_on: [
       type => type.has_tag(TypeTags.TypeVirtual),
       "airmystery",
@@ -514,6 +514,6 @@ const pouch: {
     set: "funfinity",
     points: points.funfinity,
   },
-  ];
+];
 
 export default pouch;

@@ -190,7 +190,7 @@ const misc: {
   {
     name: "SleepZee",
     icon: "sleepzee",
-    id: "null_sleepzee",
+    id: 2744,
     state: TypeState.Physical,
     hidden: [TypeHidden.Inventory, TypeHidden.Deploy],
   },

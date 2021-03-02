@@ -133,7 +133,7 @@ const tobs: {
   {
     name: "Vikerkaar",
     icon: "vikerkaar",
-    id: "null_vikerkaar",
+    id: 2716,
     tags: [TypeTags.BouncerPC, TypeTags.BouncerPCEscaped],
     lands_on: [
       "earthmystery",

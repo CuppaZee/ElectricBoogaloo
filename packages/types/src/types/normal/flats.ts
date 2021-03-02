@@ -65,6 +65,18 @@ const flats: {
       min: 10,
     },
   },
+  {
+    name: "Flat DHS",
+    icon: "flatdhs",
+    id: "null_flatdhs",
+    state: TypeState.Virtual,
+    points: {
+      deploy: 19,
+      type: PointsType.Split,
+      split: 94,
+      min: 19,
+    },
+  },
 ];
 
 export default flats;

@@ -1,9 +1,5 @@
 import { SeasonalCategory } from ".";
-import {
-  TypeHidden,
-  TypeState,
-  TypeTags,
-} from "../../munzee";
+import { TypeHidden, TypeState, TypeTags } from "../../munzee";
 
 const s2020: SeasonalCategory[] = [
   {
@@ -193,7 +189,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Fr057y",
         icon: "fr057y",
-        id: "null_fr057y",
+        id: 2743,
         lands_on: [],
       },
     ],
@@ -207,61 +203,61 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Cyborg Santa",
         icon: "cyborgsanta",
-        id: "null_cyborgsanta",
+        id: 2695,
         lands_on: [],
       },
       {
         name: "Cybersaurus Rex",
         icon: "cybersaurusrex",
-        id: "null_cybersaurusrex",
+        id: 2696,
         lands_on: [],
       },
       {
         name: "GingerMech Man",
         icon: "gingermechman",
-        id: "null_gingermechman",
+        id: 2703,
         lands_on: [],
       },
       {
         name: "GingerSnapped Man",
         icon: "gingersnappedman",
-        id: "null_gingersnappedman",
+        id: 2730,
         lands_on: [],
       },
       {
         name: "ReinDroid",
         icon: "reindroid",
-        id: "null_reindroid",
+        id: 2735,
         lands_on: [],
       },
       {
         name: "Fleeting ReinDroid",
         icon: "fleetingreindroid",
-        id: "null_fleetingreindroid",
+        id: 2736,
         lands_on: [],
       },
       {
         name: "RUD01PH",
         icon: "rud01ph",
-        id: "null_rud01ph",
+        id: 2737,
         lands_on: [],
       },
       {
         name: "Fleeting RUD01PH",
         icon: "fleetingrud01ph",
-        id: "null_fleetingrud01ph",
+        id: 2738,
         lands_on: [],
       },
       {
         name: "31F",
         icon: "31f",
-        id: "null_31f",
+        id: 2739,
         lands_on: [],
       },
       {
         name: "KrampBot",
         icon: "krampbot",
-        id: "null_krampbot",
+        id: 2740,
         lands_on: [],
       },
     ],
@@ -299,7 +295,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Chocolate Honeycombs",
         icon: "chocolatehoneycombs",
-        id: "null_chocolatehoneycombs",
+        id: 2714,
         duration: 4,
         lands_on: [],
         hidden: [TypeHidden.Bouncers],
@@ -307,7 +303,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Green Unicorn Toy Rocker",
         icon: "greenunicorntoyrocker",
-        id: "null_greenunicorntoyrocker",
+        id: 2710,
         duration: 4,
         lands_on: [],
         hidden: [TypeHidden.Bouncers],
@@ -315,7 +311,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Mixed Candy",
         icon: "mixedcandy",
-        id: "null_mixedcandy",
+        id: 2709,
         duration: 4,
         lands_on: [],
         hidden: [TypeHidden.Bouncers],
@@ -323,7 +319,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Mini Bubbles",
         icon: "minibubbles",
-        id: "null_minibubbles",
+        id: 2712,
         duration: 4,
         lands_on: [],
         hidden: [TypeHidden.Bouncers],
@@ -331,7 +327,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Popper Toy",
         icon: "poppertoy",
-        id: "null_poppertoy",
+        id: 2707,
         duration: 4,
         lands_on: [],
         hidden: [TypeHidden.Bouncers],
@@ -339,7 +335,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Gummy WallaBees",
         icon: "gummywallabees",
-        id: "null_gummywallabees",
+        id: 2713,
         duration: 4,
         lands_on: [],
         hidden: [TypeHidden.Bouncers],
@@ -347,7 +343,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Plastic Dinosaur",
         icon: "plasticdinosaur",
-        id: "null_plasticdinosaur",
+        id: 2708,
         duration: 4,
         lands_on: [],
         hidden: [TypeHidden.Bouncers],
@@ -355,7 +351,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Pink Unicorn Toy Rocker",
         icon: "pinkunicorntoyrocker",
-        id: "null_pinkunicorntoyrocker",
+        id: 2715,
         duration: 4,
         lands_on: [],
         hidden: [TypeHidden.Bouncers],
@@ -371,19 +367,19 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Baby Hippo",
         icon: "babyhippo",
-        id: "null_babyhippo",
+        id: 2648,
         lands_on: ["treehouse", "munzee", "watermystery"],
       },
       {
         name: "Baby Alpaca",
         icon: "babyalpaca",
-        id: "null_babyalpaca",
+        id: 2649,
         lands_on: ["skyland", ":virtual", "electricmystery"],
       },
       {
         name: "Baby Reindeer",
         icon: "babyreindeer",
-        id: "null_babyreindeer",
+        id: 2647,
         lands_on: ["treehouse", "munzee", "icemystery", "skyland", ":virtual"],
       },
     ],
@@ -397,7 +393,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Creepy Cauldron",
         icon: "creepycauldron",
-        id: "null_creepycauldron",
+        id: 2630,
         duration: 4,
         lands_on: [
           type => type.has_tag(TypeTags.TypeVirtual),
@@ -412,7 +408,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Pumpkin Pail",
         icon: "pumpkinpail",
-        id: "null_pumpkinpail",
+        id: 2635,
         duration: 4,
         lands_on: [
           "munzee",
@@ -426,7 +422,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Mummy Macaron",
         icon: "mummymacaron",
-        id: "null_mummymacaron",
+        id: 2631,
         duration: 4,
         lands_on: [
           type => type.has_tag(TypeTags.TypeVirtual),
@@ -441,7 +437,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Pumpkin Pop",
         icon: "pumpkinpop",
-        id: "null_pumpkinpop",
+        id: 2632,
         duration: 4,
         lands_on: [
           type => type.has_tag(TypeTags.TypeVirtual),
@@ -456,7 +452,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Blood Sucker",
         icon: "bloodsucker",
-        id: "null_bloodsucker",
+        id: 2633,
         duration: 4,
         lands_on: [
           type => type.has_tag(TypeTags.TypeVirtual),
@@ -471,7 +467,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Rock",
         icon: "rock",
-        id: "null_rock",
+        id: 2634,
         duration: 4,
         lands_on: [
           type => type.has_tag(TypeTags.TypeVirtual),
@@ -500,7 +496,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Frappenstein",
         icon: "frappenstein",
-        id: "null_frappenstein",
+        id: 2637,
         duration: 4,
         lands_on: [
           "munzee",
@@ -514,7 +510,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Boo Brownie",
         icon: "boobrownie",
-        id: "null_boobrownie",
+        id: 2638,
         duration: 4,
         lands_on: [
           "munzee",
@@ -528,7 +524,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Toothbrush",
         icon: "toothbrush",
-        id: "null_toothbrush",
+        id: 2639,
         duration: 4,
         lands_on: [
           "munzee",
@@ -550,7 +546,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "PINE Agent",
         icon: "pineagent",
-        id: "null_pineagent",
+        id: 2616,
         duration: 4,
         lands_on: [
           "munzee",
@@ -567,7 +563,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "PEAR Agent",
         icon: "pearagent",
-        id: "null_pearagent",
+        id: 2615,
         duration: 4,
         lands_on: [
           "munzee",
@@ -584,7 +580,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Virtual Pineamite",
         icon: "virtualpineamite",
-        id: "null_virtualpineamite",
+        id: 2614,
         duration: 4,
         lands_on: [
           type => type.has_tag(TypeTags.TypeVirtual),
@@ -595,14 +591,14 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Physical Pineamite",
         icon: "physicalpineamite",
-        id: "null_physicalpineamite",
+        id: 2613,
         duration: 4,
         lands_on: ["munzee", "mystery", "earthmystery", "briefcase"],
       },
       {
         name: "Virtual Pear Bomb",
         icon: "virtualpearbomb",
-        id: "null_virtualpearbomb",
+        id: 2612,
         duration: 6,
         lands_on: [
           type => type.has_tag(TypeTags.TypeVirtual),
@@ -613,7 +609,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Physical Pear Bomb",
         icon: "physicalpearbomb",
-        id: "null_physicalpearbomb",
+        id: 2611,
         duration: 4,
         lands_on: ["munzee", "mystery", "earthmystery", "briefcase"],
       },
@@ -628,14 +624,14 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Beer Boot",
         icon: "oktoberfestbash-beerboot",
-        id: "null_oktoberfestbash-beerboot",
+        id: 2594,
         duration: 6,
         lands_on: [type => type.has_tag(TypeTags.TypeVirtual), "airmystery", "electricmystery"],
       },
       {
         name: "Paint Pallette",
         icon: "artwalkbash-paintpalette",
-        id: "null_artwalkbash-paintpalette",
+        id: 2595,
         duration: 6,
         lands_on: [
           "munzee",
@@ -649,14 +645,14 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Yellow Rose",
         icon: "lonestarbash-yellowrose",
-        id: "null_lonestarbash-yellowrose",
+        id: 2596,
         duration: 6,
         lands_on: [type => type.has_tag(TypeTags.TypeVirtual), "airmystery", "electricmystery"],
       },
       {
         name: "Playing Cards",
         icon: "all-inbash-playingcards",
-        id: "null_all-inbash-playingcards",
+        id: 2597,
         duration: 6,
         lands_on: [
           "munzee",
@@ -670,14 +666,14 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Ghost",
         icon: "mh-boobash-ghost",
-        id: "null_mh-boobash-ghost",
+        id: 2598,
         duration: 6,
         lands_on: [type => type.has_tag(TypeTags.TypeVirtual), "airmystery", "electricmystery"],
       },
       {
         name: "Unicorn Stick Horse",
         icon: "medzeevaltimesbash-unicornstickhorse",
-        id: "null_medzeevaltimesbash-unicornstickhorse",
+        id: 2599,
         duration: 6,
         lands_on: [
           "munzee",
@@ -691,7 +687,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "ZeeOps Transmission",
         icon: "bashfromthepast-zeeopstransmission",
-        id: "null_bashfromthepast-zeeopstransmission",
+        id: 2600,
         duration: 6,
         lands_on: [type => type.has_tag(TypeTags.TypeVirtual), "airmystery", "electricmystery"],
       },
@@ -706,14 +702,14 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Belgian Waffle",
         icon: "belgianwaffle",
-        id: "null_belgianwaffle",
+        id: 2583,
         duration: 4,
         lands_on: ["munzee", "calf", "cow", "milk", "piglet", "pig", "bacon"],
       },
       {
         name: "Stroopwafel",
         icon: "stroopwafel",
-        id: "null_stroopwafel",
+        id: 2584,
         duration: 4,
         lands_on: [type => type.has_tag(TypeTags.TypeVirtual), "chick", "chicken", "egg"],
       },
@@ -735,13 +731,13 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Baby Moose",
         icon: "babymoose",
-        id: "null_babymoose",
+        id: 2560,
         lands_on: ["treehouse", "munzee", "earthmystery", "watermystery"],
       },
       {
         name: "Baby Squirrel",
         icon: "babysquirrel",
-        id: "null_babysquirrel",
+        id: 2559,
         lands_on: [
           "treehouse",
           "munzee",
@@ -756,7 +752,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Bear Cub",
         icon: "bearcub",
-        id: "null_bearcub",
+        id: 2558,
         lands_on: [
           "treehouse",
           "munzee",
@@ -779,7 +775,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Counselor Cap-A-Lot",
         icon: "campcap-a-lotcounselor",
-        id: "null_campcap-a-lotcounselor",
+        id: 2565,
         duration: 6,
         lands_on: [
           "treehouse",
@@ -792,7 +788,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Counselor QRantine",
         icon: "campqrantinecounselor",
-        id: "null_campqrantinecounselor",
+        id: 2566,
         duration: 6,
         lands_on: [
           "treehouse",
@@ -805,7 +801,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Counselor FrEEZ",
         icon: "campfreezcounselor",
-        id: "null_campfreezcounselor",
+        id: 2567,
         duration: 6,
         lands_on: [
           "treehouse",
@@ -818,7 +814,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Counselor KenneZee",
         icon: "campkennezeecounselor",
-        id: "null_campkennezeecounselor",
+        id: 2568,
         duration: 6,
         lands_on: [
           "treehouse",
@@ -927,7 +923,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Cucumber",
         icon: "cucumber",
-        id: "null_cucumber",
+        id: 2512,
         duration: 3,
         lands_on: [
           type => type.has_tag(TypeTags.TypeVirtual),
@@ -940,7 +936,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Fried Egg",
         icon: "friedegg",
-        id: "null_friedegg",
+        id: 2513,
         duration: 4,
         lands_on: [
           type => type.has_tag(TypeTags.TypeVirtual),
@@ -953,7 +949,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Puffer Fish",
         icon: "pufferfish",
-        id: "null_pufferfish",
+        id: 2516,
         duration: 9,
         lands_on: [
           type => type.has_tag(TypeTags.TypeVirtual),
@@ -966,7 +962,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Rice",
         icon: "rice",
-        id: "null_rice",
+        id: 2517,
         duration: 1,
         lands_on: [
           type => type.has_tag(TypeTags.TypeVirtual),
@@ -979,7 +975,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Roe",
         icon: "roe",
-        id: "null_roe",
+        id: 2518,
         duration: 7,
         lands_on: [
           type => type.has_tag(TypeTags.TypeVirtual),
@@ -992,7 +988,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Salmon",
         icon: "salmon",
-        id: "null_salmon",
+        id: 2519,
         duration: 6,
         lands_on: [
           type => type.has_tag(TypeTags.TypeVirtual),
@@ -1005,21 +1001,21 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Nori",
         icon: "nori",
-        id: "null_nori",
+        id: 2514,
         duration: 2,
         lands_on: ["watermystery", "mystery", "aquamarine", "longsword", "battleaxe"],
       },
       {
         name: "Prawn",
         icon: "prawn",
-        id: "null_prawn",
+        id: 2515,
         duration: 5,
         lands_on: ["watermystery", "mystery", "aquamarine", "longsword", "battleaxe"],
       },
       {
         name: "Tuna",
         icon: "tuna",
-        id: "null_tuna",
+        id: 2520,
         duration: 8,
         lands_on: ["watermystery", "mystery", "aquamarine", "longsword", "battleaxe"],
       },
@@ -1034,7 +1030,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Neko",
         icon: "sushimasterneko",
-        id: "null_sushimasterneko",
+        id: 2521,
         duration: 6,
         lands_on: [
           "watermystery",
@@ -1052,7 +1048,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Kappa",
         icon: "sushimasterkappa",
-        id: "null_sushimasterkappa",
+        id: 2522,
         duration: 6,
         lands_on: [
           "watermystery",
@@ -1070,7 +1066,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Yurei",
         icon: "sushimasteryurei",
-        id: "null_sushimasteryurei",
+        id: 2523,
         duration: 6,
         lands_on: [
           "watermystery",
@@ -1096,7 +1092,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Baby Narwhal",
         icon: "babynarwhal",
-        id: "null_babynarwhal",
+        id: 2508,
         duration: 6,
         lands_on: [
           type => type.has_tag(TypeTags.VirtualColourBlue),
@@ -1113,7 +1109,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Baby Penguin",
         icon: "babypenguin",
-        id: "null_babypenguin",
+        id: 2509,
         duration: 5,
         lands_on: [
           type => type.has_tag(TypeTags.VirtualColourBlue),
@@ -1130,7 +1126,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Baby Crab",
         icon: "babycrab",
-        id: "null_babycrab",
+        id: 2507,
         duration: 4,
         lands_on: [
           "watermystery",
@@ -1144,7 +1140,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Seal Pup",
         icon: "sealpup",
-        id: "null_sealpup",
+        id: 2510,
         duration: 3,
         lands_on: [
           type => type.has_tag(TypeTags.VirtualColourBlue),
@@ -1161,7 +1157,7 @@ const s2020: SeasonalCategory[] = [
       {
         name: "Baby Shark",
         icon: "babyshark",
-        id: "null_babyshark",
+        id: 2511,
         duration: 2,
         lands_on: [
           type => type.has_tag(TypeTags.VirtualColourBlue),

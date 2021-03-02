@@ -283,21 +283,21 @@ const nomads: {
   {
     name: "Virtual ZeeCret Agent Nomad",
     icon: "virtualzeecretagentnomad",
-    id: "null_virtualzeecretagentnomad",
+    id: 2641,
     state: "bouncer",
     lands_on: ["nightvisiongoggles"],
   },
   {
     name: "ZeeCret Agent Nomad",
     icon: "zeecretagentnomad",
-    id: "null_zeecretagentnomad",
+    id: 2640,
     state: "bouncer",
     lands_on: ["briefcase"],
   },
   {
     name: "Virtual Gaming Nomad",
     icon: "virtualgamingnomad",
-    id: "null_virtualgamingnomad",
+    id: 2658,
     state: "bouncer",
     lands_on: [
       type =>
@@ -309,7 +309,7 @@ const nomads: {
   {
     name: "Gaming Nomad",
     icon: "gamingnomad",
-    id: "null_gamingnomad",
+    id: 2657,
     state: "bouncer",
     lands_on: [
       type =>
@@ -321,14 +321,14 @@ const nomads: {
   {
     name: "Virtual Jewel Thief Nomad",
     icon: "virtualjewelthiefnomad",
-    id: "null_virtualjewelthiefnomad",
+    id: 2654,
     state: "bouncer",
     lands_on: [type => type.has_tag(TypeTags.TypeJewel) && type.state === TypeState.Virtual],
   },
   {
     name: "Virtual Warrior Nomad",
     icon: "virtualwarriornomad",
-    id: "null_virtualwarriornomad",
+    id: 2656,
     state: "bouncer",
     lands_on: [type => type.has_tag(TypeTags.TypeWeaponClan) && type.state === TypeState.Virtual],
   },

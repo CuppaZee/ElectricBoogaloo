@@ -9,8 +9,18 @@ const route: Route = {
       async function({
         db,
         params: { game_id, clan_id }
-      }: any) {
+      }) {
         var d = (await db.collection(`shadow_${game_id}`).doc((clan_id || "1349").toString()).get()).data();
+        if (!d) {
+          return {
+            status: "success",
+            data: {
+              members: [],
+              usernames: {},
+              data: {},
+            }
+          }
+        }
         if(!d.total) d.total = {};
         var details = d._details;
         var members = d._members.map((i: any) => i.user_id);

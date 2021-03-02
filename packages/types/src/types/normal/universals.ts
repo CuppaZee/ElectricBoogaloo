@@ -11,7 +11,7 @@ const universals: {
   {
     name: "Universal Bash",
     icon: "universal_bash",
-    id: "null_universalbash",
+    id: 2588,
     points: {
       deploy: 100,
       type: PointsType.Split,

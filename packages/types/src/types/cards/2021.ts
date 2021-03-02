@@ -16,22 +16,22 @@ const c2021: {
   {
     name: "Motivational Message Card 1",
     icon: "motivationalmessagecard1",
-    id: "null_motivationalmessagecard1",
+    id: 2830,
   },
   {
     name: "Motivational Message Card 2",
     icon: "motivationalmessagecard2",
-    id: "null_motivationalmessagecard2",
+    id: 2831,
   },
   {
     name: "Motivational Message Card 3",
     icon: "motivationalmessagecard3",
-    id: "null_motivationalmessagecard3",
+    id: 2832,
   },
   {
     name: "Motivational Message Card 4",
     icon: "motivationalmessagecard4",
-    id: "null_motivationalmessagecard4",
+    id: 2833,
   },
 ];
 

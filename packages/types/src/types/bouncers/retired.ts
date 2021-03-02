@@ -131,7 +131,7 @@ const retired: {
   {
     name: "Zombie Puffle",
     icon: "zombiepuffle",
-    id: "null_zombiepuffle",
+    id: 2822,
     lands_on: ["skyland", type => type.has_tag(TypeTags.TypeVirtual), "airmystery"],
     duration: 6,
     tags: [TypeTags.BouncerPC, TypeTags.BouncerPCZombie, TypeTags.BouncerRetired],
@@ -194,7 +194,7 @@ const retired: {
   {
     name: "Phantom Flat Rob",
     icon: "phantomflatrob",
-    id: "null_phantomflatrob",
+    id: 2817,
     lands_on: [],
     duration: 6,
     tags: [TypeTags.BouncerPC, TypeTags.BouncerFlatPhantom, TypeTags.BouncerRetired],

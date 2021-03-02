@@ -276,7 +276,7 @@ export function DataCell(props: DataCellProps) {
                     ? `https://munzee.global.ssl.fastly.net/images/avatars/ua${props.user.user_id.toString(
                         36
                       )}.png`
-                    : requirementMeta[props.task_id]?.icon,
+                    : `https://server.cuppazee.app/requirements/${props.task_id}.png`,
               }
             : undefined
         }
@@ -345,7 +345,7 @@ export function RequirementDataCell(props: RequirementDataCellProps) {
         image={
           settings.clan_reverse
             ? {
-                uri: requirementMeta[props.task]?.icon,
+                uri: `https://server.cuppazee.app/requirements/${props.task}.png`,
               }
             : undefined
         }
@@ -506,7 +506,7 @@ export function RequirementCell(props: RequirementCellProps) {
       onPress={props.onPress}
       type={props.stack ? "header_stack" : "header"}
       color={g ? (i ? 12 : 13) : 11}
-      image={{ uri: requirementMeta[props.task_id]?.icon }}
+      image={{ uri: `https://server.cuppazee.app/requirements/${props.task_id}.png` }}
       title={requirementMeta[props.task_id]?.top}
       titleIcon={
         props.sortBy && Math.abs(props.sortBy) === props.task_id

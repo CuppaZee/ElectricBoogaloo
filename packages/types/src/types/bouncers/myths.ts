@@ -433,7 +433,7 @@ const myths: {
   {
     name: "Aphrodite",
     icon: "aphrodite",
-    id: "null_aphrodite",
+    id: 2576,
     type: "modern",
     lands_on: [
       "skyland",
@@ -445,7 +445,7 @@ const myths: {
     ],
     meta: {
       scatterer_radius: 1000,
-      scatterer_types: ["null_glasses", "null_shell-phone"],
+      scatterer_types: [2579, 2580],
       scatterer_min: 3,
       scatterer_max: 3,
     },

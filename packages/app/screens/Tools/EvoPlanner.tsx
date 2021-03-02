@@ -86,6 +86,32 @@ const options = [
       },
     ],
   },
+  {
+    id: "bee",
+    name: "5 Stages (eg. Bee)",
+    stages: [
+      {
+        days: 0,
+        icon: "beeeggs",
+      },
+      {
+        days: 3,
+        icon: "beelarvae",
+      },
+      {
+        days: 6,
+        icon: "beepupae",
+      },
+      {
+        days: 12,
+        icon: "emptyhoneycomb",
+      },
+      {
+        days: 12,
+        icon: "wallabee",
+      },
+    ],
+  },
 ];
 
 export default function SearchScreen() {

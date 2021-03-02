@@ -41,14 +41,14 @@ const flathosts: {
     icon: "fancyflatlouhost",
     id: "fflhost",
     state: TypeState.Physical,
-    hosts: ["null_iflatlou", "null_gbflatlou", "null_pflatlou"],
+    hosts: [2625, 2626, 2627],
   },
   {
     name: "Fancy Flat Lou Virtual Host",
     icon: "fancy_flat_lou_virtual_host",
     id: "fflvhost",
     state: TypeState.Virtual,
-    hosts: ["null_iflatlou", "null_gbflatlou", "null_pflatlou"],
+    hosts: [2625, 2626, 2627],
   },
 ];
 

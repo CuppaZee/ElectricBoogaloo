@@ -382,6 +382,88 @@ const builds: Build[] = [
       },
     ],
   },
+  {
+    build: 21,
+    date: "2021-02-27",
+    improvements: [
+      {
+        description: "Replaced the icons for Bouncers and Seasonal Specials categories.",
+      },
+      {
+        description:
+          "Prepared for March 2021 Clan Requirements release - View a countdown to their launch under Clan Requirements > March 2021",
+      },
+    ],
+    types: [
+      {
+        title: "Flat DHS",
+        description:
+          "The first Flat Object, Dylan's Flat DHS! Available now in the Freeze Tag Store!",
+        types: ["flatdhs"],
+      },
+      {
+        title: "Women's History Month",
+        description: "Head out and find these pioneering women bouncing near you!",
+        types: [
+          ...db.types.filter(
+            i =>
+              i.category?.id === "seasonal_2021_womens-history-month" &&
+              !i.has_tag(TypeTags.Scatter)
+          ),
+        ].map(i => i.icon),
+      },
+      {
+        description: "Each bouncer scatters out up to 3 of their respective scatters nearby!",
+        types: [
+          ...db.types.filter(
+            i =>
+              i.category?.id === "seasonal_2021_womens-history-month" && i.has_tag(TypeTags.Scatter)
+          ),
+        ].map(i => i.icon),
+      },
+    ],
+  },
+  {
+    build: 22,
+    date: "2021-02-27",
+    types: [
+      {
+        title: "Basketball Garden Gnome",
+        description: "The new Garden Gnome skin has been announced for March!",
+        types: ["basketballgardengnome", "gnomenogginnet"],
+      },
+    ],
+  },
+  {
+    build: 23,
+    date: "2021-03-01",
+    types: [
+      {
+        title: "Bees!",
+        description: "These new buzzing evo bouncers are now available in the MunzPak!",
+        types: [
+          "bee",
+          "beeeggs",
+          "beelarvae",
+          "beepupae",
+          "emptyhoneycomb",
+          "honeybee",
+          "queenbee",
+          "wallabee",
+        ],
+      },
+      {
+        title: "More Egyptian Zodiacs",
+        description: "CuppaZee now has the Amon-Ra and Osiris egyptian zodiacs in its database!",
+        types: ["amon-ra", "osiris"],
+      },
+    ],
+    improvements: [
+      {
+        description: "The Beevolution Planner now allows you to plan out Bee Evolutions!"
+      }
+    ]
+  },
 ];
 
 export default builds;

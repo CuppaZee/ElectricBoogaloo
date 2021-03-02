@@ -625,7 +625,7 @@ const nature: {
   {
     name: "Box Jellyfish",
     icon: "boxjellyfish",
-    id: "null_boxjellyfish",
+    id: 2466,
     state: TypeState.Bouncer,
     lands_on: [
       "treehouse",
@@ -642,7 +642,7 @@ const nature: {
   {
     name: "Golden Jellyfish",
     icon: "goldenjellyfish",
-    id: "null_goldenjellyfish",
+    id: 2467,
     state: TypeState.Bouncer,
     lands_on: [
       "treehouse",
@@ -659,7 +659,7 @@ const nature: {
   {
     name: "PB & Jellyfish",
     icon: "pb&jellyfish",
-    id: "null_pb&jellyfish",
+    id: 2468,
     state: TypeState.Bouncer,
     lands_on: [
       "treehouse",
@@ -728,7 +728,7 @@ const nature: {
   {
     name: "Sea Turtle",
     icon: "seaturtle",
-    id: "null_seaturtle",
+    id: 2476,
     state: TypeState.Bouncer,
     lands_on: [
       "treehouse",
@@ -745,7 +745,7 @@ const nature: {
   {
     name: "Snapping Turtle",
     icon: "snappingturtle",
-    id: "null_snappingturtle",
+    id: 2457,
     state: TypeState.Bouncer,
     lands_on: [
       "treehouse",
@@ -762,7 +762,7 @@ const nature: {
   {
     name: "Taekwondo Tortoise",
     icon: "taekwondotortoise",
-    id: "null_taekwondotortoise",
+    id: 2458,
     state: TypeState.Bouncer,
     lands_on: [
       "treehouse",
@@ -775,6 +775,117 @@ const nature: {
     ],
     stage: 5,
     base: "turtleegg",
+  },
+
+  // Bee
+  {
+    name: "Bee Eggs",
+    icon: "beeeggs",
+    id: "null_beeeggs",
+    state: TypeState.Physical,
+    stage: 1,
+    base: "beeeggs",
+  },
+  {
+    name: "Bee Larvae",
+    icon: "beelarvae",
+    id: "null_beelarvae",
+    state: TypeState.Physical,
+    stage: 2,
+    base: "beeeggs",
+  },
+  {
+    name: "Bee Pupae",
+    icon: "beepupae",
+    id: "null_beepupae",
+    state: TypeState.Physical,
+    stage: 3,
+    base: "beeeggs",
+  },
+  {
+    name: "Empty Honeycomb",
+    icon: "emptyhoneycomb",
+    id: "null_emptyhoneycomb",
+    state: TypeState.Physical,
+    stage: 4,
+    base: "beeeggs",
+  },
+  {
+    name: "Bee",
+    icon: "bee",
+    id: "null_bee",
+    state: TypeState.Bouncer,
+    lands_on: [
+      "treehouse",
+      "skyland",
+      type =>
+        ["tulipseed", "roseseed", "lilyseed", "carnationseed"].includes(
+          type.meta.evolution_base || ""
+        ),
+      "earthmystery",
+      "munzee",
+      type => type.has_tag(TypeTags.TypeVirtual),
+    ],
+    stage: 5,
+    base: "beeeggs",
+    hidden: [TypeHidden.Capture, TypeHidden.Deploy],
+  },
+  {
+    name: "Honey Bee",
+    icon: "honeybee",
+    id: "null_honeybee",
+    state: TypeState.Bouncer,
+    lands_on: [
+      "treehouse",
+      "skyland",
+      type =>
+        ["tulipseed", "roseseed", "lilyseed", "carnationseed"].includes(
+          type.meta.evolution_base || ""
+        ),
+      "earthmystery",
+      "munzee",
+      type => type.has_tag(TypeTags.TypeVirtual),
+    ],
+    stage: 5,
+    base: "beeeggs",
+  },
+  {
+    name: "Queen Bee",
+    icon: "queenbee",
+    id: "null_queenbee",
+    state: TypeState.Bouncer,
+    lands_on: [
+      "treehouse",
+      "skyland",
+      type =>
+        ["tulipseed", "roseseed", "lilyseed", "carnationseed"].includes(
+          type.meta.evolution_base || ""
+        ),
+      "earthmystery",
+      "munzee",
+      type => type.has_tag(TypeTags.TypeVirtual),
+    ],
+    stage: 5,
+    base: "beeeggs",
+  },
+  {
+    name: "WallaBee",
+    icon: "wallabee",
+    id: "null_wallabee",
+    state: TypeState.Bouncer,
+    lands_on: [
+      "treehouse",
+      "skyland",
+      type =>
+        ["tulipseed", "roseseed", "lilyseed", "carnationseed"].includes(
+          type.meta.evolution_base || ""
+        ),
+      "earthmystery",
+      "munzee",
+      type => type.has_tag(TypeTags.TypeVirtual),
+    ],
+    stage: 5,
+    base: "beeeggs",
   },
 ];
 

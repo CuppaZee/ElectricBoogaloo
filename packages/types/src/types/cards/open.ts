@@ -68,32 +68,32 @@ const copen: {
   {
     name: "Summer Card",
     icon: "summer_card",
-    id: "null_summercard",
+    id: 2532,
   },
   {
     name: "Winter Card",
     icon: "winter_card",
-    id: "null_wintercard",
+    id: 2533,
   },
   {
     name: "Event Card",
     icon: "eventcard",
-    id: "null_eventcard",
+    id: 2542,
   },
   {
     name: "Fall Card",
     icon: "fall_card",
-    id: "null_fallcard",
+    id: 2602,
   },
   {
     name: "Spring Card",
     icon: "spring_card",
-    id: "null_springcard",
+    id: 2601,
   },
   {
     name: "Tech Issues Card",
     icon: "techissuescard",
-    id: "null_techissuescard",
+    id: 2622,
   },
 ];
 

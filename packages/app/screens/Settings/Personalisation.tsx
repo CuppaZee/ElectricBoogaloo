@@ -91,7 +91,7 @@ function MockData({ settings, n }: { settings: Settings; n: number }) {
             ? {
                 uri: !settings.clan_reverse
                   ? `https://munzee.global.ssl.fastly.net/images/avatars/ua${m[2].toString(36)}.png`
-                  : requirementMeta[m[0]]?.icon,
+                  : `https://server.cuppazee.app/requirements/${m[0]}.png`,
               }
             : undefined
         }
@@ -123,7 +123,7 @@ function MockRequirement({ settings, n }: { settings: Settings; n: number }) {
       settings={settings}
       type={settings.clan_reverse ? "header" : "header_stack"}
       color={n === 1 ? 11 : n === 31 ? 12 : 13}
-      image={{ uri: requirementMeta[n]?.icon }}
+      image={{ uri: `https://server.cuppazee.app/requirements/${n}.png` }}
       title={requirementMeta[n]?.top}
       subtitle={requirementMeta[n]?.bottom}
     />

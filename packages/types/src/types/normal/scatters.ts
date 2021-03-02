@@ -239,7 +239,7 @@ const scatters: {
   {
     name: "Tree",
     icon: "tree",
-    id: "null_tree",
+    id: 2403,
     state: TypeState.Physical,
     scatter: {
       duration: 1,
@@ -314,7 +314,7 @@ const scatters: {
   {
     name: "Peach",
     icon: "peach",
-    id: "null_peach",
+    id: 2530,
     state: TypeState.Virtual,
     scatter: {
       duration: 1,
@@ -325,7 +325,7 @@ const scatters: {
   {
     name: "Pear",
     icon: "pear",
-    id: "null_pear",
+    id: 2531,
     state: TypeState.Virtual,
     scatter: {
       duration: 1,
@@ -336,7 +336,7 @@ const scatters: {
   {
     name: "Glasses",
     icon: "glasses",
-    id: "null_glasses",
+    id: 2579,
     state: TypeState.Virtual,
     scatter: {
       duration: 2,
@@ -346,7 +346,7 @@ const scatters: {
   {
     name: "Shell-Phone",
     icon: "shell-phone",
-    id: "null_shell-phone",
+    id: 2580,
     state: TypeState.Virtual,
     scatter: {
       duration: 2,
@@ -356,7 +356,7 @@ const scatters: {
   {
     name: "Pecan",
     icon: "pecan",
-    id: "null_pecan",
+    id: 2603,
     state: TypeState.Virtual,
     scatter: {
       duration: 1,
@@ -367,7 +367,7 @@ const scatters: {
   {
     name: "Acorn",
     icon: "acorn",
-    id: "null_acorn",
+    id: 2604,
     state: TypeState.Virtual,
     scatter: {
       duration: 1,
@@ -408,7 +408,7 @@ const scatters: {
   {
     name: "Pixel Present",
     icon: "pixelpresent",
-    id: "null_pixelpresent",
+    id: 2704,
     state: TypeState.Virtual,
     scatter: {
       duration: 2,
@@ -418,7 +418,7 @@ const scatters: {
   {
     name: "Snowball",
     icon: "snowball",
-    id: "null_snowball",
+    id: 2697,
     state: TypeState.Virtual,
     scatter: {
       duration: 36,
@@ -428,7 +428,7 @@ const scatters: {
   {
     name: "Rainbow Snowcone",
     icon: "rainbowsnowcone",
-    id: "null_rainbowsnowcone",
+    id: 2699,
     state: TypeState.Virtual,
     scatter: {
       duration: 36,
@@ -439,7 +439,7 @@ const scatters: {
   {
     name: "ChristmaZ Tree",
     icon: "christmaztree",
-    id: "null_christmaztree",
+    id: 2700,
     state: TypeState.Virtual,
     scatter: {
       duration: 36,
@@ -449,7 +449,7 @@ const scatters: {
   {
     name: "ChristmaZ Pickle",
     icon: "christmazpickle",
-    id: "null_christmazpickle",
+    id: 2702,
     state: TypeState.Virtual,
     scatter: {
       duration: 36,
@@ -459,7 +459,7 @@ const scatters: {
   {
     name: "Ankh Artifact",
     icon: "ankhartifact",
-    id: "null_ankhartifact",
+    id: 2763,
     state: TypeState.Virtual,
     scatter: {
       duration: 2,
@@ -469,7 +469,7 @@ const scatters: {
   {
     name: "Ouroboros Artifact",
     icon: "ouroborosartifact",
-    id: "null_ouroborosartifact",
+    id: 2764,
     state: TypeState.Virtual,
     scatter: {
       duration: 2,
@@ -479,7 +479,7 @@ const scatters: {
   {
     name: "Djed Artifact",
     icon: "djedartifact",
-    id: "null_djedartifact",
+    id: 2765,
     state: TypeState.Virtual,
     scatter: {
       duration: 2,
@@ -520,7 +520,7 @@ const scatters: {
   {
     name: "Cardinal Feather",
     icon: "cardinalfeather",
-    id: "null_cardinalfeather",
+    id: 2849,
     state: TypeState.Virtual,
     scatter: {
       duration: 1,
