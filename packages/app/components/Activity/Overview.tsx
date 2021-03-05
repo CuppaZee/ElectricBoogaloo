@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { Layout, Popover, Spinner, Text } from "@ui-kitten/components";
+import { Button, Icon, Layout, Popover, Spinner, Text } from "@ui-kitten/components";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
 import db from "@cuppazee/types";
 import { Pressable, View } from "react-native";
@@ -8,6 +8,7 @@ import TypeImage from "../Common/TypeImage";
 import { useTranslation } from "react-i18next";
 import useActivity from "../../hooks/useActivity";
 import Loading from "../Loading";
+import { useNavigation } from "@react-navigation/native";
 
 export type UserActivityOverviewProps = {
   user_id: number;
@@ -30,22 +31,42 @@ const UserActivityOverviewItem = React.memo(function ({
   count,
 }: UserActivityOverviewItemProps) {
   const [visible, setVisible] = React.useState(false);
+  const nav = useNavigation();
   return (
     <Popover
       visible={visible}
-      anchor={() => <Pressable onPress={() => setVisible(true)}>
-        <View style={{ padding: 0, alignItems: "center" }}>
-          <TypeImage
-            icon={icon}
-            style={{ size: count > 30 ? 24 : 32 }}
-          />
-          <Text style={{ textAlign: "center", fontSize: count > 30 ? 12 : 16 }}>{data.count.toLocaleString()}</Text>
-        </View>
-      </Pressable>}
+      anchor={() => (
+        <Pressable onPress={() => setVisible(true)}>
+          <View style={{ padding: 0, alignItems: "center" }}>
+            <TypeImage icon={icon} style={{ size: count > 30 ? 24 : 32 }} />
+            <Text style={{ textAlign: "center", fontSize: count > 30 ? 12 : 16 }}>
+              {data.count.toLocaleString()}
+            </Text>
+          </View>
+        </Pressable>
+      )}
       onBackdropPress={() => setVisible(false)}>
       <Layout style={{ padding: 4 }}>
-        <Text style={{ textAlign: "center" }} category="h6">{data.count.toLocaleString()}x {db.getType(icon)?.name || db.strip(icon)}</Text>
-        <Text style={{ textAlign: "center" }} category="s1">{data.points.toLocaleString()} Points</Text>
+        <Text style={{ textAlign: "center" }} category="h6">
+          {data.count.toLocaleString()}x {db.getType(icon)?.name || db.strip(icon)}
+        </Text>
+        <Text style={{ textAlign: "center" }} category="s1">
+          {data.points.toLocaleString()} Points
+        </Text>
+        <Button
+          style={{ margin: 4 }}
+          appearance="outline"
+          onPress={() =>
+            nav.navigate("Tools", {
+              screen: "TypeMunzee",
+              params: {
+                type: db.strip(icon),
+              },
+            })
+          }
+          accessoryLeft={props => <Icon {...props} name="database" />}>
+          Type Info
+        </Button>
       </Layout>
     </Popover>
   );

@@ -46,6 +46,8 @@ export default {
               Bouncers: "bouncers",
               BouncersMap: "bouncers/:type",
               Munzee: "munzee/:a/:b?",
+              TypeCategory: "db/:category",
+              TypeMunzee: "db/type/:type?",
               Nearby: "nearby",
               Credits: "credits",
               Donate: "donate",

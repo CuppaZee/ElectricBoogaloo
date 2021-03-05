@@ -27,7 +27,7 @@ const route: Route = {
             let token = await retrieve({ user_id: user_id, teaken: false }, 120)
             for (let date = 3; date <= mhq().date(); date++) {
               if (!shadowData.archive[user_id][date] || date > mhq().date() - 3) {
-                let data = await request('statzee/player/day///' as 'statzee/player/day', { day: `${mhq().year()}-${(mhq().month() + 1).toString().padStart(2, '0')}-${date.toString().padStart(2, '0')}` }, token.access_token);
+                let data = await request('///statzee/player/day' as 'statzee/player/day', { day: `${mhq().year()}-${(mhq().month() + 1).toString().padStart(2, '0')}-${date.toString().padStart(2, '0')}` }, token.access_token);
                 shadowData.archive[user_id][date] = clancalculator([data?.data], true);
               }
               for(let task in shadowData.archive[user_id][date]) {

@@ -476,10 +476,46 @@ const builds: Build[] = [
     ],
     improvements: [
       {
-        description: "Removed unnecessary Clan Rewards request from Clan Progress, Clan Stats and Bookmarked Clans pages",
+        description:
+          "Removed unnecessary Clan Rewards request from Clan Progress, Clan Stats and Bookmarked Clans pages",
       },
       {
         description: "Various speed and caching improvements across the app",
+      },
+    ],
+  },
+  {
+    build: 25,
+    date: "2021-03-03",
+    features: [
+      {
+        title: "Munzee Types",
+        description: "The Munzee Types section of CuppaZee has now been brought to CuppaZee V2!",
+      },
+    ],
+    improvements: [
+      {
+        description: "Added meta for new Clan Requirements",
+      },
+    ],
+  },
+  {
+    build: 26,
+    date: "2021-03-04",
+    types: [
+      {
+        title: "Reseller Garden Gnomes!",
+        description: "These new gnomes are available exclusively at the 4 resellers!",
+        types: [
+          "aussieexplorergardengnome",
+          "goldminergardengnome",
+          "queen'sguardsmangardengnome",
+          "astronautgardengnome",
+          "gnomeminerhat",
+          "gnomeexplorerhat",
+          "gnomebearskinhat",
+          "gnomeastronauthelmet",
+        ],
       },
     ],
   },

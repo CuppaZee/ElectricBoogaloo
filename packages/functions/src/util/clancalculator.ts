@@ -256,7 +256,7 @@ var tasks = {
     icon: "https://munzee.global.ssl.fastly.net/images/pins/reseller.png",
     icons: ["https://munzee.global.ssl.fastly.net/images/pins/reseller.png"],
     function: ({ cap, dep }: any) =>
-      [...cap, ...dep].filter(i => g(i)?.has_tag(TypeTags.TypeReseller)).length,
+      [...cap, ...dep].filter(i => g(i)?.has_tag(TypeTags.TypeReseller) && !g(i)?.has_tag(TypeTags.Scatter)).length,
   },
   31: {
     task_id: 32,

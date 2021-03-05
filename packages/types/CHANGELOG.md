@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.0.34 - 04/03/2021
+- Added Reseller Garden Gnomes and Scatters
 ## 0.0.33 - 01/03/2021
 - Added new Bee Evolution
 - Added Amon-Ra and Osiris Egyptian Zodiacs

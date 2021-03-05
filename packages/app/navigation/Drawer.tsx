@@ -376,9 +376,15 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
           }
         />
         <DrawerItem
-          disabled={true}
+          selected={page[1]?.name === "Tools" && page[2]?.name.startsWith("Type")}
           title={t("pages:tools_munzee_types")}
           accessoryLeft={props => <Icon {...props} name="database" />}
+          onPress={() =>
+            props.navigation.navigate("Tools", {
+              screen: "TypeCategory",
+              params: { category: "root"}
+            })
+          }
         />
         <DrawerItem
           selected={page[1]?.name === "Tools" && page[2]?.name === "Calendar"}

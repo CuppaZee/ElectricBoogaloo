@@ -3,12 +3,16 @@ export type RootStackParamList = {
   somewherewithoutcoffee: undefined;
 };
 
+type MainDrawerParams<Params> = {
+  [K in keyof Params]: { screen: K; params: Params[K] };
+}[keyof Params];
+
 export type MainDrawerParamList = {
-  Dashboard: undefined;
-  User: undefined;
-  Clan: undefined;
-  Tools: undefined;
-  Settings: undefined;
+  Dashboard: MainDrawerParams<DashStackParamList>;
+  User: MainDrawerParams<UserStackParamList>;
+  Clan: MainDrawerParams<ClanStackParamList>;
+  Tools: MainDrawerParams<ToolsStackParamList>;
+  Settings: MainDrawerParams<SettingsStackParamList>;
   Welcome: undefined;
 };
 
@@ -31,7 +35,6 @@ export type DashStackParamList = {
   Dash: undefined;
 };
 
-
 export type ClanStackParamList = {
   Requirements: { year?: number; month?: number };
   Bookmarks: { year?: number; month?: number };
@@ -50,6 +53,8 @@ export type ToolsStackParamList = {
   Nearby: undefined;
   POIPlanner: undefined;
   EvoPlanner: undefined;
+  TypeCategory: { category: string };
+  TypeMunzee: { type: string };
   WidgetConfigureActivityWidget: { id: string };
 };
 

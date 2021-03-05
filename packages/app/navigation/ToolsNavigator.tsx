@@ -1,11 +1,13 @@
-import { createStackNavigator } from "@react-navigation/stack";
+import { createStackNavigator, StackNavigationProp } from "@react-navigation/stack";
 import * as React from "react";
 
-import { ToolsStackParamList } from "../types";
+import { MainDrawerParamList, ToolsStackParamList } from "../types";
 import Header from "./Header";
 
 // Pages
 import { lazy } from "@loadable/component";
+import { CompositeNavigationProp } from "@react-navigation/native";
+import { DrawerNavigationProp } from "@react-navigation/drawer";
 const SearchScreen = lazy(() => import("../screens/Tools/Search"));
 const CalendarScreen = lazy(() => import("../screens/Tools/Calendar"));
 const CreditsScreen = lazy(() => import("../screens/Tools/Credits"));
@@ -17,9 +19,16 @@ const DonateScreen = lazy(() => import("../screens/Tools/Donate"));
 const POIPlannerScreen = lazy(() => import("../screens/Tools/POIPlanner"));
 const EvoPlannerScreen = lazy(() => import("../screens/Tools/EvoPlanner"));
 const MunzeeScreen = lazy(() => import("../screens/Tools/Munzee"));
+const TypeCategoryScreen = lazy(() => import("../screens/Tools/Types/Category"));
+const TypeMunzeeScreen = lazy(() => import("../screens/Tools/Types/Type"));
 const ActivityWidgetScreen = lazy(() => import("../screens/Tools/WidgetConfigure/ActivityWidget"));
 
 const ToolsStack = createStackNavigator<ToolsStackParamList>();
+
+export type ToolsNavigatorProp<T extends keyof ToolsStackParamList> = CompositeNavigationProp<
+  DrawerNavigationProp<MainDrawerParamList, "Tools">,
+  StackNavigationProp<ToolsStackParamList, T>
+>;
 
 export default function ToolsNavigator() {
   return (
@@ -41,6 +50,8 @@ export default function ToolsNavigator() {
       <ToolsStack.Screen name="POIPlanner" component={POIPlannerScreen} />
       <ToolsStack.Screen name="EvoPlanner" component={EvoPlannerScreen} />
       <ToolsStack.Screen name="Munzee" component={MunzeeScreen} />
+      <ToolsStack.Screen name="TypeCategory" component={TypeCategoryScreen} />
+      <ToolsStack.Screen name="TypeMunzee" component={TypeMunzeeScreen} />
       <ToolsStack.Screen name="WidgetConfigureActivityWidget" component={ActivityWidgetScreen} />
     </ToolsStack.Navigator>
   );

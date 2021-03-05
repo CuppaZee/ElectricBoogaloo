@@ -96,6 +96,20 @@ export const requirementMeta: {
       exclude: i => i.icon === "skyland",
     },
   },
+  9: {
+    task_id: 9,
+    top: "Greenie",
+    bottom: "Captures",
+    icon: "https://munzee.global.ssl.fastly.net/images/pins/munzee.png",
+    icons: [
+      "https://munzee.global.ssl.fastly.net/images/pins/munzee.png",
+      "https://munzee.global.ssl.fastly.net/images/pins/munzee.png",
+    ],
+    meta: {
+      activity: ["capture"],
+      types: i => i.icon === "munzee",
+    },
+  },
   10: {
     task_id: 10,
     top: "Deploy",
@@ -187,6 +201,20 @@ export const requirementMeta: {
     meta: {
       activity: ["deploy"],
       types: i => i.has_tag(TypeTags.TypeWeaponClan),
+    },
+  },
+  22: {
+    task_id: 22,
+    top: "Urban Fit",
+    bottom: "Activity",
+    icon: "https://munzee.global.ssl.fastly.net/images/pins/urbanfit.png",
+    icons: [
+      "https://munzee.global.ssl.fastly.net/images/pins/urbanfit.png",
+      "https://munzee.global.ssl.fastly.net/images/pins/urbanfit.png",
+    ],
+    meta: {
+      activity: ["capture", "deploy"],
+      types: i => i.icon === "urbanfit",
     },
   },
   23: {

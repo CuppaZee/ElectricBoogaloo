@@ -1,15 +1,22 @@
-import { createStackNavigator } from "@react-navigation/stack";
+import { createStackNavigator, StackNavigationProp } from "@react-navigation/stack";
 import * as React from "react";
 
-import { SettingsStackParamList } from "../types";
+import { MainDrawerParamList, SettingsStackParamList } from "../types";
 import Header from "./Header";
 
 // Pages
 import { lazy } from "@loadable/component";
+import { DrawerNavigationProp } from "@react-navigation/drawer";
+import { CompositeNavigationProp } from "@react-navigation/native";
 const PersonalisationScreen = lazy(() => import("../screens/Settings/Personalisation"));
 const AccountsScreen = lazy(() => import("../screens/Settings/Accounts"));
 const NotificationScreen = lazy(() => import("../screens/Settings/Notifications"));
 const BookmarksScreen = lazy(() => import("../screens/Settings/Bookmarks"));
+
+export type SettingsNavigatorProp<T extends keyof SettingsStackParamList> = CompositeNavigationProp<
+  DrawerNavigationProp<MainDrawerParamList, "Settings">,
+  StackNavigationProp<SettingsStackParamList, T>
+>;
 
 const SettingsStack = createStackNavigator<SettingsStackParamList>();
 

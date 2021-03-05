@@ -1,11 +1,13 @@
-import { createStackNavigator } from "@react-navigation/stack";
+import { createStackNavigator, StackNavigationProp } from "@react-navigation/stack";
 import * as React from "react";
 
-import { UserStackParamList } from "../types";
+import { MainDrawerParamList, UserStackParamList } from "../types";
 import Header from "./Header";
 
 // Pages
 import { lazy } from "@loadable/component";
+import { CompositeNavigationProp } from "@react-navigation/native";
+import { DrawerNavigationProp } from "@react-navigation/drawer";
 const UserProfileScreen = lazy(() => import("../screens/User/Profile"));
 const UserActivityScreen = lazy(() => import("../screens/User/Activity"));
 const UserInventoryScreen = lazy(() => import("../screens/User/Inventory"));
@@ -18,6 +20,11 @@ const UserClanScreen = lazy(() => import("../screens/User/Clan"));
 const UserUniversalScreen = lazy(() => import("../screens/User/Universal"));
 const UserBlastScreen = lazy(() => import("../screens/User/Blast"));
 const UserQRewScreen = lazy(() => import("../screens/User/QRew"));
+
+export type SettingsNavigatorProp<T extends keyof UserStackParamList> = CompositeNavigationProp<
+  DrawerNavigationProp<MainDrawerParamList, "User">,
+  StackNavigationProp<UserStackParamList, T>
+>;
 
 const UserStack = createStackNavigator<UserStackParamList>();
 

@@ -1,8 +1,9 @@
-import { Layout, Popover, Text } from "@ui-kitten/components";
+import { Button, Icon, Layout, Popover, Text } from "@ui-kitten/components";
 import React from "react";
 import { Pressable, StyleSheet } from "react-native";
 import { Type } from "@cuppazee/types";
 import TypeImage from "../Common/TypeImage";
+import { useNavigation } from "@react-navigation/native";
 
 export type CapturesIconProps = {
   type?: Type;
@@ -12,6 +13,7 @@ export type CapturesIconProps = {
 
 export function CapturesIcon({ type, count, icon }: CapturesIconProps) {
   const [visible, setVisible] = React.useState(false);
+  const nav = useNavigation();
   return (
     <Popover
       visible={visible}
@@ -31,6 +33,20 @@ export function CapturesIcon({ type, count, icon }: CapturesIconProps) {
         <Text style={{ textAlign: "center" }} category="h6">
           {count.toLocaleString()}x {type?.name ?? icon ?? ""}
         </Text>
+        <Button
+          style={{ margin: 4 }}
+          appearance="outline"
+          onPress={() =>
+            nav.navigate("Tools", {
+              screen: "TypeMunzee",
+              params: {
+                type: type?.icon ?? icon ?? "",
+              },
+            })
+          }
+          accessoryLeft={props => <Icon {...props} name="database" />}>
+          Type Info
+        </Button>
       </Layout>
     </Popover>
   );

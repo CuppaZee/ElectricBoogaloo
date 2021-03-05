@@ -68,7 +68,7 @@ const route: Route = {
         }
         var data = (
           await request(
-            "//statzee/player/day" as "statzee/player/day",
+            "statzee/player/day",
             { day: mhqStr() },
             token.access_token
           )

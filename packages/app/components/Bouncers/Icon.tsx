@@ -1,4 +1,4 @@
-import { Layout, Popover, Text } from "@ui-kitten/components";
+import { Layout, Text } from "@ui-kitten/components";
 import React from "react";
 import { Pressable, StyleSheet } from "react-native";
 import { Type } from "@cuppazee/types";
