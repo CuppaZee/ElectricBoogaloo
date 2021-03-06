@@ -2,10 +2,7 @@ import { RouteProp, useRoute } from "@react-navigation/native";
 import { Layout, Modal } from "@ui-kitten/components";
 import dayjs from "dayjs";
 import * as React from "react";
-import {
-  ActivityConverter,
-  UserActivityFilters,
-} from "../../components/Activity/Data";
+import { ActivityConverter, UserActivityFilters } from "../../components/Activity/Data";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import useComponentSize from "../../hooks/useComponentSize";
 import { UserStackParamList } from "../../types";
@@ -14,9 +11,10 @@ import UserActivityFilter from "../../components/Activity/Filter";
 import useTitle from "../../hooks/useTitle";
 import useActivity from "../../hooks/useActivity";
 import Loading from "../../components/Loading";
-import { ScrollView, View } from "react-native";
+import { useTranslation } from "react-i18next";
 
 export default function UserActivityScreen() {
+  const { t } = useTranslation();
   const [size, onLayout] = useComponentSize();
   const [visible, setVisible] = React.useState(false);
   const [filters, setFilters] = React.useState<UserActivityFilters>({
@@ -24,13 +22,17 @@ export default function UserActivityScreen() {
     category: new Set(),
     state: new Set(),
   });
-  const route = useRoute<RouteProp<UserStackParamList, "Activity">>();  
+  const route = useRoute<RouteProp<UserStackParamList, "Activity">>();
   useTitle(
-    `☕ ${route.params.username} - Activity - ${dayjs(route.params?.date ?? dayjs.mhqNow()).format(
-      "DD/MM/YYYY"
-    )}`
+    `☕ ${route.params.username} - ${t("pages:user_activity")} - ${dayjs(
+      route.params?.date ?? dayjs.mhqNow()
+    ).format("L")}`
   );
-  const user = useMunzeeRequest("user", { username: route.params?.username }, route.params?.username !== undefined);
+  const user = useMunzeeRequest(
+    "user",
+    { username: route.params?.username },
+    route.params?.username !== undefined
+  );
   const data = useActivity(user.data?.data?.user_id, route.params?.date);
   const d = React.useMemo(
     () =>
@@ -39,7 +41,7 @@ export default function UserActivityScreen() {
         : null,
     [data.dataUpdatedAt, filters]
   );
-  
+
   if (!user.isFetched || !data.isFetched || !d || !size) {
     return (
       <Layout style={{ flex: 1 }} onLayout={onLayout}>
@@ -64,12 +66,10 @@ export default function UserActivityScreen() {
           visible={visible}
           backdropStyle={{ backgroundColor: "#0007" }}
           onBackdropPress={() => setVisible(false)}>
-          <Layout level="3" style={{ maxHeight: "90%", height: "100%", width: 300, borderRadius: 8 }}>
-            <UserActivityFilter
-              d={d}
-              filters={filters}
-              setFilters={setFilters}
-            />
+          <Layout
+            level="3"
+            style={{ maxHeight: "90%", height: "100%", width: 300, borderRadius: 8 }}>
+            <UserActivityFilter d={d} filters={filters} setFilters={setFilters} />
           </Layout>
         </Modal>
       )}

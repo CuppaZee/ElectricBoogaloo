@@ -79,7 +79,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
         />
         <DrawerItem
           selected={page[1]?.name === "Tools" && page[2]?.name === "Nearby"}
-          title="Nearby Specials"
+          title={t("pages:tools_nearby")}
           accessoryLeft={props => <Icon {...props} name="map-marker-radius" />}
           onPress={() => props.navigation.navigate("Tools", { screen: "Nearby" })}
         />
@@ -154,11 +154,11 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
                 })
               }
             />
-            <DrawerItem
+            {/* <DrawerItem
               disabled={true}
               title={t("pages:user_zeeops")}
               accessoryLeft={props => <Icon {...props} name="briefcase" />}
-            />
+            /> */}
             <DrawerItem
               selected={
                 page[1]?.name === "User" &&
@@ -382,7 +382,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
           onPress={() =>
             props.navigation.navigate("Tools", {
               screen: "TypeCategory",
-              params: { category: "root"}
+              params: { category: "root" },
             })
           }
         />
@@ -398,7 +398,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
         />
         <DrawerItem
           selected={page[1]?.name === "Tools" && page[2]?.name === "POIPlanner"}
-          title="POI Planner"
+          title={t("pages:tools_poiplanner")}
           accessoryLeft={props => <Icon {...props} name="map-marker-circle" />}
           onPress={() =>
             props.navigation.navigate("Tools", {

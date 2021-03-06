@@ -4,6 +4,7 @@ import { Pressable, StyleSheet } from "react-native";
 import { Type } from "@cuppazee/types";
 import TypeImage from "../Common/TypeImage";
 import { useNavigation } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
 
 export type CapturesIconProps = {
   type?: Type;
@@ -12,6 +13,7 @@ export type CapturesIconProps = {
 };
 
 export function CapturesIcon({ type, count, icon }: CapturesIconProps) {
+  const { t } = useTranslation();
   const [visible, setVisible] = React.useState(false);
   const nav = useNavigation();
   return (
@@ -45,7 +47,7 @@ export function CapturesIcon({ type, count, icon }: CapturesIconProps) {
             })
           }
           accessoryLeft={props => <Icon {...props} name="database" />}>
-          Type Info
+          {t("user_activity:type_info")}
         </Button>
       </Layout>
     </Popover>

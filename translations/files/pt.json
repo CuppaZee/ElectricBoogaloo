@@ -21,6 +21,14 @@
     "tools_donate": "Doar"
   },
   "drawer": {},
+  "user_profile": {
+    "level": "\nNível {level}",
+    "rank": "Rank #{rank}",
+    "points": {
+      "one": "{n} Ponto",
+      "other": "{n} Pontos"
+    }
+  },
   "user_activity": {
     "overview_points": {
       "one": "{count} Ponto Total",
@@ -34,6 +42,7 @@
       "one": "{count} Implantação",
       "other": "{count} Implantações"
     },
+    "overview_passive_deploys": {},
     "overview_capons": {
       "one": "{count} Capon\n",
       "other": "{count} Capons"
@@ -53,6 +62,11 @@
     "history": "Historico"
   },
   "user_zeeops": {},
+  "user_blast_checker": {
+    "munzees": {}
+  },
+  "user_qrew_checker": {},
+  "user_universal_capper": {},
   "clan": {
     "requirements": "Requiisitos",
     "rewards": "Recompensas",
@@ -65,6 +79,7 @@
   "settings_common": {
     "save": "Guardar"
   },
+  "settings_personalisation": {},
   "settings_accounts": {
     "logout": "Sair"
   },
@@ -72,6 +87,7 @@
     "bouncers_override_search": "Procurar",
     "starred_users_search": "Procurar"
   },
+  "settings_bookmarks": {},
   "bouncers": {},
   "calendar": {},
   "open_source": {},
@@ -81,5 +97,13 @@
     "search": "Procurar"
   },
   "dashboard": {},
-  "tips": {}
+  "tips": {},
+  "type_details": {},
+  "poi_planner": {},
+  "evo_planner": {},
+  "donate": {},
+  "common": {},
+  "notifications": {},
+  "munzee_details": {},
+  "error": {}
 }

@@ -16,14 +16,16 @@ import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
 import Requirements from "../../components/Clan/Requirements";
 import { pickTextColor } from "../../components/Clan/Cell";
 import useSetting, { ClanPersonalisationAtom } from "../../hooks/useSetting";
+import { useTranslation } from "react-i18next";
 
 export default function UserClanScreen() {
+  const { t } = useTranslation();
   const [size, onLayout] = useComponentSize();
   const route = useRoute<RouteProp<UserStackParamList, "ClanProgress">>();
   const [style] = useSetting(ClanPersonalisationAtom);
   const game_id = monthToGameID();
   const nav = useNavigation();
-  useTitle(`☕ ${route.params.username} - Clan Progress`);
+  useTitle(`☕ ${route.params.username} - ${t("pages:user_clan_progress")}`);
   const user = useMunzeeRequest(
     "user",
     { username: route.params?.username },

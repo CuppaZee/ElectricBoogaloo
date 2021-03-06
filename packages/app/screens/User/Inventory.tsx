@@ -21,7 +21,7 @@ export default function UserInventoryScreen() {
   const [groupByState, setGroupByState] = React.useState(false);
   const { t } = useTranslation();
   const route = useRoute<RouteProp<UserStackParamList, "Inventory">>();
-  useTitle(`☕ ${route.params.username} - Inventory`);
+  useTitle(`☕ ${route.params.username} - ${t("pages:user_inventory")}`);
   const user = useMunzeeRequest("user", { username: route.params.username });
   const data = useCuppaZeeRequest<{ data: UserInventoryData }>(
     "user/inventory",
@@ -97,13 +97,13 @@ export default function UserInventoryScreen() {
             checked={includeZeroes}
             onChange={i => setIncludeZeroes(i)}
             style={{ margin: 8 }}>
-            Include Zeroes
+            {t("user_inventory:settings_zero")}
           </CheckBox>
           <CheckBox
             checked={!groupByState}
             onChange={i => setGroupByState(!i)}
             style={{ margin: 8 }}>
-            Group by Category
+            {t("user_inventory:settings_group")}
           </CheckBox>
         </View>
         <View style={styles.grid}>
@@ -118,9 +118,9 @@ export default function UserInventoryScreen() {
                 borderRadius: 4,
               }}>
               <Text category="h6" style={{ textAlign: "center" }}>
-                {("category" in c
+                {"category" in c
                   ? c.category.name
-                  : c.state.slice(0, 1).toUpperCase() + c.state.slice(1) + "s")}{" "}
+                  : c.state.slice(0, 1).toUpperCase() + c.state.slice(1) + "s"}{" "}
                 ({c.total || "0"})
               </Text>
               <View

@@ -1,6 +1,7 @@
 import { useLinkBuilder, useRoute } from "@react-navigation/native";
 import { Button, Icon, Layout, LayoutProps, Spinner, Text, useTheme } from "@ui-kitten/components";
 import * as React from "react";
+import { useTranslation } from "react-i18next";
 import { Image, View } from "react-native";
 import { QueryObserverResult } from "react-query";
 import useComponentSize from "../hooks/useComponentSize";
@@ -18,6 +19,7 @@ export default function Loading({
   }})[];
   level?: "1" | "2" | "3" | "4";
 }) {
+  const { t } = useTranslation();
   const [size, onLayout] = useComponentSize();
   const buildLink = useLinkBuilder();
   const route = useRoute();
@@ -46,15 +48,19 @@ export default function Loading({
             height: Math.min(100, size?.height || 0),
           }}
         />
-        <Text category="h4">Looks like {(route.params as any)?.username || "this user"} hasn't logged in on this device.</Text>
-        <Text category="s1">Requesting this data requires them to log in.</Text>
+        <Text category="h4">
+          {t("error:user_device_title", {
+            username: (route.params as any)?.username || "this user",
+          })}
+        </Text>
+        <Text category="s1">{t("error:user_device_description")}</Text>
         <Button
           onPress={login}
           style={{ margin: 4 }}
           appearance="outline"
           status="success"
           accessoryLeft={props => <Icon name="account-plus" {...props} />}>
-          Add Account
+          {t("error:user_device_add_account")}
         </Button>
       </Layout>
     );
@@ -81,20 +87,21 @@ export default function Loading({
           }}
         />
         <Text category="h4">
-          Looks like{" "}
-          {teakens.data[
-            data.find(i => i.tokenStatus?.status === "expired")?.tokenStatus?.user_id || ""
-          ]?.username || "you"}{" "}
-          needs to log in again.
+          {t("error:user_expired_title", {
+            username:
+              teakens.data[
+                data.find(i => i.tokenStatus?.status === "expired")?.tokenStatus?.user_id || ""
+              ]?.username || "you",
+          })}
         </Text>
-        <Text category="s1">Your Munzee API authentication is a bit too cold now.</Text>
+        <Text category="s1">{t("error:user_expired_description")}</Text>
         <Button
           onPress={login}
           style={{ margin: 4 }}
           appearance="outline"
           status="success"
           accessoryLeft={props => <Icon name="account-plus" {...props} />}>
-          Log in again
+          {t("error:user_expired_log_in")}
         </Button>
       </Layout>
     );
@@ -120,16 +127,15 @@ export default function Loading({
             height: Math.min(100, size?.height || 0),
           }}
         />
-        <Text category="h4">Looks like the coffee spilt out of the cup.</Text>
-        <Text category="s1">Something went wrong when requesting this data.</Text>
+        <Text category="h4">{t("error:error_title")}</Text>
+        <Text category="s1">{t("error:error_description")}</Text>
         {sentReport ? (
           <View>
             <Text status="success" style={{ textAlign: "center" }} category="h6">
-              Report Sent
+              {t("error:error_report_sent_title")}
             </Text>
             <Text status="success" style={{ textAlign: "center" }} category="p1">
-              Details about this error have been sent to CuppaZee. If you would like to give more
-              information on this issue, please contact us.
+              {t("error:error_report_sent_description")}
             </Text>
           </View>
         ) : (
@@ -138,8 +144,7 @@ export default function Loading({
               await fetch(`https://server.beta.cuppazee.app/report`, {
                 method: "POST",
                 body: JSON.stringify({
-                  reports: 
-                    data.map(i => (i.error instanceof Error ? i.error.toString() : i.error))
+                  reports: data.map(i => (i.error instanceof Error ? i.error.toString() : i.error)),
                 }),
               });
               setSentReport(true);
@@ -148,7 +153,7 @@ export default function Loading({
             appearance="outline"
             status="warning"
             accessoryLeft={props => <Icon name="message-alert" {...props} />}>
-            Report to CuppaZee
+            {t("error:error_report")}
           </Button>
         )}
       </Layout>

@@ -21,7 +21,6 @@ export default function UserDashCard({
 }: DashCardProps<{ username: string; user_id: string }>) {
   const { t } = useTranslation();
   const nav = useNavigation();
-  useTitle(`☕ Dashboard`);
   return (
     <Layout level="3" style={[styles.card, { flex: 1 }]}>
       <ScrollView onLayout={onOuterLayout} style={{ flex: 1 }}>
@@ -66,7 +65,7 @@ export default function UserDashCard({
               selected={false}
               title={() => (
                 <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
-                  {t(`pages:user_activity` as const)}
+                  {t("pages:user_activity")}
                 </Text>
               )}
               accessoryLeft={props => <Icon name="calendar" {...props} />}
@@ -98,7 +97,7 @@ export default function UserDashCard({
             <DrawerGroup
               title={() => (
                 <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
-                  Tools
+                  {t("pages:tools")}
                 </Text>
               )}
               style={{ backgroundColor: "transparent" }}
@@ -125,7 +124,7 @@ export default function UserDashCard({
             <DrawerGroup
               title={() => (
                 <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
-                  Captures
+                  {t("pages:user_captures")}
                 </Text>
               )}
               style={{ backgroundColor: "transparent" }}

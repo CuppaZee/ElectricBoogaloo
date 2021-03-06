@@ -13,6 +13,7 @@ import { MunzeeSpecialBouncer } from "@cuppazee/api/munzee/specials";
 import TypeImage from "../../components/Common/TypeImage";
 import useDay from "../../hooks/useDay";
 import Loading from "../../components/Loading";
+import { useTranslation } from "react-i18next";
 
 type Bouncer = NonNullable<UserDeploys["response"]["data"]>["munzees"][0] & {
   bouncer?: MunzeeSpecialBouncer & { hash: string };
@@ -29,11 +30,12 @@ type Bouncer = NonNullable<UserDeploys["response"]["data"]>["munzees"][0] & {
 }
 
 export default function UserBouncersScreen() {
+  const { t } = useTranslation();
   const nav = useNavigation();
   const day = useDay();
   const [size, onLayout] = useComponentSize();
   const route = useRoute<RouteProp<UserStackParamList, "Bouncers">>();
-  useTitle(`☕ ${route.params.username} - Bouncers`);
+  useTitle(`☕ ${route.params.username} - ${t("pages:user_bouncers")}`);
   const user = useMunzeeRequest(
     "user",
     { username: route.params?.username },
@@ -109,22 +111,27 @@ export default function UserBouncersScreen() {
                   {i.bouncer ? (
                     <>
                       <Text category="s1">
-                        At {i.bouncer.friendly_name} by {i.bouncer.full_url.split("/")[4]}
+                        {t("user_bouncers:host", {
+                          name: i.bouncer.friendly_name,
+                          creator: i.bouncer.full_url.split("/")[4],
+                        })}
                       </Text>
                       {i.location?.record && (
                         <Text category="s2">
-                          {i.location?.record?.name}, {i.location?.record?.countryCode} [
-                          {i.timezone.map(t => day().tz(t).format("HH:mm")).join(", ")}]
+                          {t("user_bouncers:location", {
+                            town: i.location?.record?.name,
+                            country: i.location?.record?.countryCode,
+                            times: i.timezone.map(t => day().tz(t).format("HH:mm")).join(", "),
+                          })}
                         </Text>
                       )}
                       <Text category="c1">
-                        {i.number_of_captures} Captures - Last Captured{" "}
-                        {i.last_captured_at ? day(i.last_captured_at).format("L LT") : "Never"}
+                        {t("user_bouncers:captures", {number: i.number_of_captures, date: i.last_captured_at ? day(i.last_captured_at).format("L LT") : "-"})}
                       </Text>
                     </>
                   ) : (
                     <>
-                      <Text category="s1">Having a Rest</Text>
+                        <Text category="s1">{t(`user_bouncers:rest_${(["a","b","c"] as const)[Math.floor(Math.random() * 3)]}` as const)}</Text>
                     </>
                   )}
                 </View>

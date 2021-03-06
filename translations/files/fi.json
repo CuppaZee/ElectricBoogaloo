@@ -21,6 +21,14 @@
     "tools_donate": "Lahjoita"
   },
   "drawer": {},
+  "user_profile": {
+    "level": "Taso {level}",
+    "rank": "Sijoitus #{rank}",
+    "points": {
+      "one": "{n} piste",
+      "other": "{n} pistettä"
+    }
+  },
   "user_activity": {
     "overview_points": {
       "one": "{count} piste yht.",
@@ -34,6 +42,7 @@
       "one": "{count} julkaisu",
       "other": "{count} julkaisua"
     },
+    "overview_passive_deploys": {},
     "overview_capons": {
       "one": "{count} napattu",
       "other": "{count} napattua"
@@ -53,6 +62,11 @@
     "history": "Historia"
   },
   "user_zeeops": {},
+  "user_blast_checker": {
+    "munzees": {}
+  },
+  "user_qrew_checker": {},
+  "user_universal_capper": {},
   "clan": {
     "requirements": "Vaatimukset",
     "rewards": "Palkinnot",
@@ -65,6 +79,7 @@
   "settings_common": {
     "save": "Tallenna"
   },
+  "settings_personalisation": {},
   "settings_accounts": {
     "logout": "Poistu"
   },
@@ -72,6 +87,7 @@
     "bouncers_override_search": "Etsi",
     "starred_users_search": "Etsi"
   },
+  "settings_bookmarks": {},
   "bouncers": {},
   "calendar": {},
   "open_source": {},
@@ -81,5 +97,13 @@
     "search": "Etsi"
   },
   "dashboard": {},
-  "tips": {}
+  "tips": {},
+  "type_details": {},
+  "poi_planner": {},
+  "evo_planner": {},
+  "donate": {},
+  "common": {},
+  "notifications": {},
+  "munzee_details": {},
+  "error": {}
 }

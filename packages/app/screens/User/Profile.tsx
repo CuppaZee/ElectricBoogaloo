@@ -57,7 +57,7 @@ export default function TabOneScreen() {
   const theme = useTheme();
   const nav = useNavigation();
   const route = useRoute<RouteProp<UserStackParamList, "Profile">>();
-  useTitle(`☕ ${route.params.username} - Profile`);
+  useTitle(`☕ ${route.params.username}`);
 
   const user = useMunzeeRequest(
     "user",
@@ -103,7 +103,10 @@ export default function TabOneScreen() {
                   })
                 }
               />
-              <UserActivityOverview user_id={user.data.data.user_id} day={dayjs.mhqNow().format("YYYY-MM-DD")} />
+              <UserActivityOverview
+                user_id={user.data.data.user_id}
+                day={dayjs.mhqNow().format("YYYY-MM-DD")}
+              />
             </Layout>
           </View>
 
@@ -131,7 +134,8 @@ export default function TabOneScreen() {
                       name="arrow-up"
                     />
                     <Text category="s1">
-                      Level {user.data.data.level} - {user.data.data.points.toLocaleString()} Points
+                      {t("user_profile:level", { level: user.data.data.level })} -{" "}
+                      {t("user_profile:points", { count: user.data.data.points })}
                     </Text>
                   </View>
                   <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -144,7 +148,9 @@ export default function TabOneScreen() {
                       }}
                       name="trophy"
                     />
-                    <Text category="s1">Rank #{user.data.data.rank}</Text>
+                    <Text category="s1">
+                      {t("user_profile:rank", { rank: user.data.data.rank })}
+                    </Text>
                   </View>
                   {user.data.data.titles && user.data.data.titles.length > 0 && (
                     <View style={{ flexDirection: "row", alignItems: "center" }}>

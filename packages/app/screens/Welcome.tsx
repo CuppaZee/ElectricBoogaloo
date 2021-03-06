@@ -8,14 +8,18 @@ import * as themes from "../themes";
 import { useTeakens } from "../hooks/useToken";
 import { useNavigation } from "@react-navigation/native";
 import useSetting, { ReadyAtom, ThemeAtom } from "../hooks/useSetting";
+import { Trans, useTranslation } from "react-i18next";
+import Select from "../components/Common/Select";
+import { LANGS } from "../lang/i18n";
 
 export default function WelcomeScreen() {
+  const { t, i18n } = useTranslation();
   const fb =
     window?.navigator?.userAgent &&
     (window.navigator.userAgent.match(/FBAN/) || window.navigator.userAgent.match(/FBAV/));
   const messenger = fb && window.navigator.userAgent.match(/Messenger/);
   const messengeriOS = messenger && window.navigator.userAgent.match(/iOS/);
-  useTitle("☕ Welcome");
+  useTitle(`☕ ${t("welcome:title")}`);
   const [readySetting, setReadySetting] = useSetting(ReadyAtom);
   const [theme, setTheme] = useSetting(ThemeAtom);
   const [, login, ready] = useLogin("");
@@ -41,29 +45,29 @@ export default function WelcomeScreen() {
         {fb ? (
           <Layout level="3" style={{ margin: 4, padding: 4, borderRadius: 8 }}>
             <Text category="h6">
-              CuppaZee isn't supported in the {messenger ? "Messenger" : "Facebook"} Browser
+              {messenger ? t("welcome:messenger_title") : t("welcome:facebook_title")}
             </Text>
             {messengeriOS ? (
               <Text category="p1">
-                You can press the <Icon name="open-in-new" style={{ height: 24, width: 24 }} /> Menu
-                icon in the bottom right corner and press "Open in Safari" button to view CuppaZee
-                in a supported browser.
+                <Trans i18nKey="welcome:messenger_ios_description">
+                  <Icon name="open-in-new" style={{ height: 24, width: 24 }} />
+                </Trans>
               </Text>
             ) : (
               <Text category="p1">
-                You can press the <Icon name="dots-horizontal" style={{ height: 24, width: 24 }} />{" "}
-                Menu icon in the top right corner and press "Open in Browser" button to view
-                CuppaZee in a supported browser.
+                <Trans i18nKey="welcome:facebook_description">
+                  <Icon name="dots-horizontal" style={{ height: 24, width: 24 }} />
+                </Trans>
               </Text>
             )}
           </Layout>
         ) : (
           <>
             <Text category="h2" style={{ textAlign: "center" }}>
-              Welcome to CuppaZee
+              {t("welcome:title")}
             </Text>
             <Text category="p1" style={{ textAlign: "center" }}>
-              By continuing to use this application, you agree to our Terms & Service and Privacy Policy as linked below.
+              {t("welcome:continuing_policy")}
             </Text>
             <View style={{ flexDirection: "row", flexWrap: "wrap", alignSelf: "stretch" }}>
               <Button
@@ -71,18 +75,18 @@ export default function WelcomeScreen() {
                 accessoryLeft={props => <Icon {...props} name="file-document-outline" />}
                 appearance="ghost"
                 onPress={() => Linking.openURL("https://server.cuppazee.app/terms")}>
-                Terms & Conditions
+                {t("welcome:terms")}
               </Button>
               <Button
                 style={{ margin: 4, flex: 1 }}
                 accessoryLeft={props => <Icon {...props} name="shield-key-outline" />}
                 appearance="ghost"
                 onPress={() => Linking.openURL("https://server.cuppazee.app/privacy")}>
-                Privacy Policy
+                {t("welcome:privacy")}
               </Button>
             </View>
             <Text category="h6" style={{ textAlign: "center", marginTop: 16 }}>
-              Pick a Theme
+              {t("welcome:theme")}
             </Text>
             <View
               style={{ width: 280, flexDirection: "row", flexWrap: "wrap", alignSelf: "center" }}>
@@ -104,13 +108,21 @@ export default function WelcomeScreen() {
               ))}
             </View>
             <Text category="h6" style={{ textAlign: "center", marginTop: 16 }}>
-              Select your Language
+              {t("welcome:language")}
             </Text>
-            <Text category="c1" style={{ textAlign: "center" }}>
-              Language Selector coming soon
-            </Text>
+            <Select
+              style={{ margin: 4 }}
+              value={i18n.language}
+              onValueChange={value => {
+                i18n.changeLanguage(value);
+              }}
+              options={LANGS.map(i => ({
+                value: i[0],
+                label: i[1],
+              }))}
+            />
             <Text category="h6" style={{ textAlign: "center", marginTop: 16 }}>
-              Add Accounts
+              {t("welcome:accounts")}
             </Text>
             {Object.entries(teakens).map(i => (
               <Layout
@@ -143,7 +155,9 @@ export default function WelcomeScreen() {
               appearance="outline"
               disabled={!ready}
               onPress={login}>
-              {`Add${Object.keys(teakens).length > 0 ? " Another" : ""} Account`}
+              {Object.keys(teakens).length > 0
+                ? t("welcome:add_extra_account")
+                : t("welcome:add_account")}
             </Button>
             {Object.keys(teakens).length > -0 && (
               <Button
@@ -153,7 +167,7 @@ export default function WelcomeScreen() {
                 onPress={() => {
                   setReadySetting("2020-02-12");
                 }}>
-                Continue to Dashboard
+                {t("welcome:continue")}
               </Button>
             )}
           </>

@@ -2,6 +2,7 @@ import { RouteProp, useIsFocused, useNavigation, useRoute } from "@react-navigat
 import { Layout } from "@ui-kitten/components";
 import dayjs from "dayjs";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { ScrollView, View } from "react-native";
 import { gameIDToMonth, monthToGameID } from "../../components/Clan/Data";
 import ClanRequirementsTable from "../../components/Clan/Requirements";
@@ -16,7 +17,8 @@ import useTitle from "../../hooks/useTitle";
 import { ClanStackParamList } from "../../types";
 
 export default function ClanBookmarksScreen() {
-  useTitle("☕ Bookmarked Clans");
+  const { t } = useTranslation();
+  useTitle(`☕ ${t("pages:clan_bookmarks")}`);
   const [size, onLayout] = useComponentSize();
   const scrollViewController = useSyncScrollViewController();
   const route = useRoute<RouteProp<ClanStackParamList, "Bookmarks">>();

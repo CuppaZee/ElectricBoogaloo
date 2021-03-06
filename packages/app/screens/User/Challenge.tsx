@@ -20,9 +20,9 @@ export default function UserChallengesScreen() {
   const [size, onLayout] = useComponentSize();
   const route = useRoute<RouteProp<UserStackParamList, "Challenge">>();
   useTitle(
-    `☕ ${route.params.username} - Challenges - ${dayjs(
+    `☕ ${route.params.username} - ${t("pages:user_challenges")} - ${dayjs(
       route.params?.date ?? dayjs.mhqNow()
-    ).format("DD/MM/YYYY")}`
+    ).format("L")}`
   );
   const user = useMunzeeRequest(
     "user",

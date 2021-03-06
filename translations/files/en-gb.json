@@ -14,6 +14,7 @@
     "user_bouncers": "Bouncers",
     "user_blast_checker": "Blast Checker",
     "user_qrew_checker": "QRew Checker",
+    "user_captures": "Captures",
     "user_universal_capper": "Universal Capper",
     "user_challenges": "Challenges",
     "clan_requirements": "Clan Requirements",
@@ -30,10 +31,21 @@
     "settings_bookmarks": "Bookmarks",
     "tools_credits": "Credits",
     "tools_open_source": "Open Source",
-    "tools_donate": "Donate"
+    "tools_donate": "Donate",
+    "tools_nearby": "Nearby Bouncers",
+    "tools_poiplanner": "POI Planner",
+    "tools": "Tools"
   },
   "drawer": {
     "more_clans": "More Clans"
+  },
+  "user_profile": {
+    "level": "Level {level}",
+    "rank": "Rank #{rank}",
+    "points": {
+      "one": "{n} Point",
+      "other": "{n} Points"
+    }
   },
   "user_activity": {
     "overview_points": {
@@ -48,10 +60,15 @@
       "one": "{count} Deploy",
       "other": "{count} Deploys"
     },
+    "overview_passive_deploys": {
+      "one": "{count} Passive Deploy",
+      "other": "{count} Passive Deploys"
+    },
     "overview_capons": {
       "one": "{count} Capon",
       "other": "{count} Capons"
     },
+    "filter_edit": "Edit Filters",
     "filter_save": "Save Filters",
     "filter_types": "Types",
     "filter_state": "State",
@@ -61,9 +78,12 @@
     "activity_capon": "{user} captured",
     "owned_by_user": "by {user}",
     "owned_by_self": "by you",
-    "none": "None"
+    "none": "None",
+    "type_info": "Type Info"
   },
   "user_inventory": {
+    "settings_zero": "Include Zeros",
+    "settings_group": "Group by Category",
     "amount_undeployed": {
       "one": "{count} Undeployed",
       "other": "{count} Undeployed"
@@ -85,7 +105,59 @@
     "history_test": "Test"
   },
   "user_zeeops": {
-    "collected": "Collected!"
+    "collected": "Collected!",
+    "spyderbot": "Spyderbot Collected!"
+  },
+  "user_blast_checker": {
+    "blast": "Blast {n}",
+    "munzees": {
+      "one": "{count} Munzee",
+      "other": "{count} Munzees"
+    },
+    "points": "{min} - {max} Pts (Avg. {avg})"
+  },
+  "user_qrew_checker": {
+    "check": "Checking if {username} will {state} QRew/ZeeQRew Status on {date}",
+    "state_keep": "keep",
+    "state_keep_gain": "keep/gain",
+    "state_gain": "gain",
+    "qrew": "QRew",
+    "zeeqrew": "ZeeQRew",
+    "premium": "Premium",
+    "yes": "Yes",
+    "no": "No",
+    "captures": "Captures",
+    "deploys": "Deploys",
+    "recent_capture": "Recent Capture",
+    "recent_deploy": "Recent Deploy",
+    "recent_no_captures": "No Captures after {date}",
+    "recent_no_deploy": "No Deploys after {date}",
+    "physical_captures": "Physical Captures",
+    "physical_deploys": "Physical Deploys",
+    "total_points": "Total Points"
+  },
+  "user_universal_capper": {
+    "remaining": "{remaining} remaining of {total}",
+    "owned_by": "by {username}",
+    "deploy": "Deployed {date}",
+    "next": "Next",
+    "report": "Report as Broken",
+    "submit": "Submit your Universal",
+    "submit_code": "Munzee Print Code",
+    "submit_code_hint": "This is the \"Barcode Value\" on the Munzee's Print Page",
+    "submit_submit": "Submit",
+    "submit_error": "Something went wrong... make sure the Print Code is correct, and that you've deployed the Munzee.",
+    "submit_try_again": "Try Again",
+    "submit_submitted": "Munzee Submitted",
+    "submit_close": "Close",
+    "report_invalid_secret_code": "Invalid Secret Code",
+    "report_not_deployed": "Munzee Not Deployed",
+    "report_other": "Other",
+    "report_note": "Note",
+    "report_report": "Report",
+    "report_sent": "Report Sent",
+    "report_close": "Close",
+    "empty": "We're all out of Universals for you to capture!"
   },
   "clan": {
     "requirements": "Requirements",
@@ -100,7 +172,12 @@
     "individual_level": "Indiv L{level}",
     "share_level": "Share L{level}",
     "group_level": "Group L{level}",
-    "group_total": "Group Total"
+    "group_total": "Group Total",
+    "settings_shadow": "Show Shadow Members",
+    "settings_subtract": "Subtract View",
+    "settings_share": "User Share Requirements",
+    "settings_goal": "Goal Level",
+    "settings_done": "Done"
   },
   "maps": {
     "location_fail": "Failed retrieving location"
@@ -108,6 +185,19 @@
   "settings_common": {
     "save": "Save",
     "saved": "Settings Saved"
+  },
+  "settings_personalisation": {
+    "theme": "Theme",
+    "clan_reverse": "Reverse Columns/Rows",
+    "clan_single_line": "Single Line Cells",
+    "clan_full_background": "Full Colour Background",
+    "clan_style": "Style",
+    "clan_style_0": "Large",
+    "clan_style_1": "Comfortable",
+    "clan_style_2": "Compact",
+    "clan_colours": "Colours",
+    "clan_preview": "Preview",
+    "language": "Language"
   },
   "settings_accounts": {
     "reauthenticate": "Reauthenticate",
@@ -120,8 +210,11 @@
     "bouncers_title": "Bouncers",
     "bouncers_enabled": "Enabled",
     "bouncers_distance_default": "Default Distance ({unit})",
+    "bouncers_distance_default_hint": "This is the distance used for any types that you haven't set an override for.",
     "bouncers_distance_starred": "Starred User Distance ({unit})",
     "bouncers_override_distance": "Distance ({unit})",
+    "bouncers_override_title": "Categories and Types Overrides",
+    "bouncers_override_description": "If you want a different distance for certain types, you can add them here.",
     "bouncers_override_search": "Search",
     "bouncers_override_search_hint": "You can search for Categories or individual Types",
     "bouncers_override_add": "Add Category/Type",
@@ -134,11 +227,23 @@
     "locations_static_name": "Location Name",
     "locations_static_done": "Done",
     "locations_static_add": "Add Static Location",
+    "locations_live_blocked": "You must allow CuppaZee to always access your location.",
+    "locations_live_confirm_title": "Use Live Location?",
+    "locations_live_confirm_description_1": "With Live Location enabled, CuppaZee will occasionally fetch your approximate location in the background.",
+    "locations_live_confirm_description_2": "Your background location will only be used in order to send alerts for Bouncers around your current location.",
+    "locations_live_cancel": "Cancel",
+    "locations_live_confirm": "Confirm",
     "other_title": "Other",
     "other_news_munzee": "Munzee Blog",
     "other_units_title": "Units",
     "other_units_metric": "Metric Units (km/m)",
     "other_units_imperial": "Imperial Units (mi/ft)"
+  },
+  "settings_bookmarks": {
+    "users": "Users",
+    "clans": "Clans",
+    "add_user": "Add User",
+    "add_clan": "Add Clan"
   },
   "bouncers": {
     "uncategorised": "Uncategorised"
@@ -168,7 +273,9 @@
     "never": "Never",
     "rest_a": "Having a Rest",
     "rest_b": "Catching a Flight",
-    "rest_c": "Waiting at the Bus Stop"
+    "rest_c": "Waiting at the Bus Stop",
+    "expires": "Expires {time}",
+    "by": "by {username}"
   },
   "welcome": {
     "facebook_title": "CuppaZee isn't supported in the Facebook Browser",
@@ -181,7 +288,10 @@
     "accounts": "Add Accounts",
     "add_account": "Add Account",
     "add_extra_account": "Add Another Account",
-    "continue": "Continue to Dashboard"
+    "continue": "Continue to Dashboard",
+    "continuing_policy": "By continuing to use this application, you agree to our Terms of Service and Privacy Policy as linked below.",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy"
   },
   "search": {
     "search": "Search",
@@ -199,5 +309,68 @@
     "drawer_clan_bookmarks": "You can add and remove clans from your Bookmarks in the Settings",
     "clan_stats_customisation": "There are a lot of options to make Clan Stats your own in the Personalisation settings",
     "search_munzee_types": "As well as searching for Players and Clans, you can also look up Munzee Types here to find out more about them!"
+  },
+  "type_details": {
+    "lands_on": "Lands on",
+    "can_host": "Can Host"
+  },
+  "poi_planner": {
+    "missing": "CuppaZee hasn't got a POI Planner yet. Whilst you're waiting for me to develop one, you should check out nzseries1's awesome POI Planner!",
+    "nzseries1": "nzseries1's POI Planner"
+  },
+  "evo_planner": {
+    "type": "Evolution Type",
+    "type_farm": "3 Stages (eg. Farm, Education)",
+    "type_flower": "5 Stages (eg. Carnation, Rose)",
+    "type_butterfly": "5 Stages (eg. Butterfly, Turtle)",
+    "type_bee": "5 Stages (eg. Bee)",
+    "stage": "Evolution Stage",
+    "stage_deploy": "Deploy on",
+    "stage_evolve": "Evolve to Stage {stage} on",
+    "description_deploy": "Deployed | Stage 1",
+    "description_stage": "Stage {stage}"
+  },
+  "donate": {
+    "patreon": "Become a Patron",
+    "kofi": "Buy me a Coffee",
+    "paypal_title": "Donations can also be sent via PayPal to {email}",
+    "paypal_description": "Please ensure this email address is typed correctly, noting that CuppaZee uses .app, not .com."
+  },
+  "common": {
+    "direction_n": "N",
+    "direction_ne": "NE",
+    "direction_e": "E",
+    "direction_se": "SE",
+    "direction_s": "S",
+    "direction_sw": "SW",
+    "direction_w": "W",
+    "direction_nw": "NW"
+  },
+  "notifications": {
+    "bouncer_title": "{name} by {username}",
+    "bouncer_title_with_multiple": "{name} by {username} [{amount}/{total}]",
+    "bouncer_description_location": "At {name} by {username}",
+    "bouncer_description_distance": "{distance} {direction} from {name}",
+    "munzee_blog": "Munzee Blog Post"
+  },
+  "munzee_details": {
+    "owner": "by {username}",
+    "deployed": "Deployed {date}",
+    "open": "Open on munzee.com",
+    "bouncer_hosting": "Hosting {name}",
+    "bouncer_expires": "Expires at {time}"
+  },
+  "error": {
+    "user_device_title": "Looks like {username} hasn't logged in on this device.",
+    "user_device_description": "Requesting this data requires them to log in.",
+    "user_device_add_account": "Add Account",
+    "user_expired_title": "Looks like {username} needs to log in again.",
+    "user_expired_description": "Your Munzee API authentication has expired.",
+    "user_expired_log_in": "Log in again",
+    "error_title": "Looks like the coffee spilt out of the cup.",
+    "error_description": "Something went wrong when requesting this data.",
+    "error_report_sent_title": "Report Sent",
+    "error_report_sent_description": "Details about this error have been sent to CuppaZee. If you would like to give more information on this issue, please contact us.",
+    "error_report": "Report to CuppaZee"
   }
 }

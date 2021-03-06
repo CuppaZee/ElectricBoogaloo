@@ -21,6 +21,14 @@
     "tools_donate": "Dons"
   },
   "drawer": {},
+  "user_profile": {
+    "level": "Niveau {level}",
+    "rank": "Rang #{rank}",
+    "points": {
+      "one": "",
+      "other": ""
+    }
+  },
   "user_activity": {
     "overview_points": {
       "one": "{count} point total",
@@ -34,6 +42,7 @@
       "one": "{count} Déploiement",
       "other": "{count} Déploiements"
     },
+    "overview_passive_deploys": {},
     "overview_capons": {
       "one": "{count} Cap-on",
       "other": "{count} Cap-ons"
@@ -53,6 +62,11 @@
     "history": "Historique"
   },
   "user_zeeops": {},
+  "user_blast_checker": {
+    "munzees": {}
+  },
+  "user_qrew_checker": {},
+  "user_universal_capper": {},
   "clan": {
     "requirements": "Exigences",
     "rewards": "Récompenses",
@@ -65,6 +79,7 @@
   "settings_common": {
     "save": "Sauvegarde"
   },
+  "settings_personalisation": {},
   "settings_accounts": {
     "logout": "Déconnexion"
   },
@@ -72,6 +87,7 @@
     "bouncers_override_search": "Recherche",
     "starred_users_search": "Recherche"
   },
+  "settings_bookmarks": {},
   "bouncers": {},
   "calendar": {},
   "open_source": {},
@@ -81,5 +97,13 @@
     "search": "Recherche"
   },
   "dashboard": {},
-  "tips": {}
+  "tips": {},
+  "type_details": {},
+  "poi_planner": {},
+  "evo_planner": {},
+  "donate": {},
+  "common": {},
+  "notifications": {},
+  "munzee_details": {},
+  "error": {}
 }

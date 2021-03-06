@@ -65,7 +65,7 @@ export default function ZeeOpsOverview({ user_id }: ZeeOpsOverviewProps) {
                 borderColor: theme["border-basic-color-1"],
               }}>
               <Text category="s1" style={{ textAlign: "center" }}>
-                Spyderbot Collected!
+                {t("user_zeeops:spyderbot")}
               </Text>
             </LinearGradient>
           </Layout>

@@ -30,6 +30,7 @@ const UserActivityOverviewItem = React.memo(function ({
   data,
   count,
 }: UserActivityOverviewItemProps) {
+  const { t } = useTranslation();
   const [visible, setVisible] = React.useState(false);
   const nav = useNavigation();
   return (
@@ -51,7 +52,7 @@ const UserActivityOverviewItem = React.memo(function ({
           {data.count.toLocaleString()}x {db.getType(icon)?.name || db.strip(icon)}
         </Text>
         <Text style={{ textAlign: "center" }} category="s1">
-          {data.points.toLocaleString()} Points
+          {t("user_activity:overview_points", { count: data.points })}
         </Text>
         <Button
           style={{ margin: 4 }}
@@ -65,7 +66,7 @@ const UserActivityOverviewItem = React.memo(function ({
             })
           }
           accessoryLeft={props => <Icon {...props} name="database" />}>
-          Type Info
+          {t("user_activity:type_info")}
         </Button>
       </Layout>
     </Popover>
@@ -122,7 +123,7 @@ export default function UserActivityOverview({
         ))}
       </View>
       <Text category="s1" style={{ textAlign: "center" }}>
-        {d.passive_deploys.count} Passive Deploy{d.passive_deploys.count === 1 ? "" : "s"} (
+        {t("user_activity:overview_passive_deploys", { count: d.passive_deploys.count })} (
         {t("user_activity:overview_points", { count: d.passive_deploys.points })})
       </Text>
       <View

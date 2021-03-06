@@ -1176,5 +1176,1102 @@
         "term_plural": "",
         "reference": "",
         "comment": ""
+    },
+    {
+        "term": "user_captures",
+        "definition": "Captures",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "tools_nearby",
+        "definition": "Nearby Bouncers",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "tools_poiplanner",
+        "definition": "POI Planner",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "tools",
+        "definition": "Tools",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "level",
+        "definition": "Level {level}",
+        "context": "\"user_profile\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "rank",
+        "definition": "Rank #{rank}",
+        "context": "\"user_profile\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "points",
+        "definition": {
+            "one": "{n} Point",
+            "other": "{n} Points"
+        },
+        "context": "\"user_profile\"",
+        "term_plural": "points",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "overview_passive_deploys",
+        "definition": {
+            "one": "{count} Passive Deploy",
+            "other": "{count} Passive Deploys"
+        },
+        "context": "\"user_activity\"",
+        "term_plural": "overview_passive_deploys",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "type_info",
+        "definition": "Type Info",
+        "context": "\"user_activity\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "settings_zero",
+        "definition": "Include Zeros",
+        "context": "\"user_inventory\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "settings_group",
+        "definition": "Group by Category",
+        "context": "\"user_inventory\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "blast",
+        "definition": "Blast {n}",
+        "context": "\"user_blast_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "munzees",
+        "definition": {
+            "one": "{count} Munzee",
+            "other": "{count} Munzees"
+        },
+        "context": "\"user_blast_checker\"",
+        "term_plural": "munzees",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "points",
+        "definition": "{min} - {max} Pts (Avg. {avg})",
+        "context": "\"user_blast_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "qrew",
+        "definition": "QRew",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "zeeqrew",
+        "definition": "ZeeQRew",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "premium",
+        "definition": "Premium",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "yes",
+        "definition": "Yes",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "no",
+        "definition": "No",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "captures",
+        "definition": "Captures",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "deploys",
+        "definition": "Deploys",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "recent_capture",
+        "definition": "Recent Capture",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "recent_deploy",
+        "definition": "Recent Deploy",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "physical_captures",
+        "definition": "Physical Captures",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "physical_deploys",
+        "definition": "Physical Deploys",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "total_points",
+        "definition": "Total Points",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "remaining",
+        "definition": "{remaining} remaining of {total}",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "owned_by",
+        "definition": "by {username}",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "deploy",
+        "definition": "Deployed {date}",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "next",
+        "definition": "Next",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "report",
+        "definition": "Report as Broken",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "submit",
+        "definition": "Submit your Universal",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "submit_code",
+        "definition": "Munzee Print Code",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "submit_code_hint",
+        "definition": "This is the \"Barcode Value\" on the Munzee's Print Page",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "submit_submit",
+        "definition": "Submit",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "submit_error",
+        "definition": "Something went wrong... make sure the Print Code is correct, and that you've deployed the Munzee.",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "submit_try_again",
+        "definition": "Try Again",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "submit_submitted",
+        "definition": "Munzee Submitted",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "submit_close",
+        "definition": "Close",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "report_invalid_secret_code",
+        "definition": "Invalid Secret Code",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "report_not_deployed",
+        "definition": "Munzee Not Deployed",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "report_other",
+        "definition": "Other",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "report_note",
+        "definition": "Note",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "report_report",
+        "definition": "Report",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "report_sent",
+        "definition": "Report Sent",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "report_close",
+        "definition": "Close",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "empty",
+        "definition": "We're all out of Universals for you to capture!",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "settings_shadow",
+        "definition": "Show Shadow Members",
+        "context": "\"clan\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "settings_subtract",
+        "definition": "Subtract View",
+        "context": "\"clan\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "settings_share",
+        "definition": "User Share Requirements",
+        "context": "\"clan\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "settings_goal",
+        "definition": "Goal Level",
+        "context": "\"clan\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "settings_done",
+        "definition": "Done",
+        "context": "\"clan\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "theme",
+        "definition": "Theme",
+        "context": "\"settings_personalisation\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan_reverse",
+        "definition": "Reverse Columns\/Rows",
+        "context": "\"settings_personalisation\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan_single_line",
+        "definition": "Single Line Cells",
+        "context": "\"settings_personalisation\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan_full_background",
+        "definition": "Full Colour Background",
+        "context": "\"settings_personalisation\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan_style",
+        "definition": "Style",
+        "context": "\"settings_personalisation\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan_style_0",
+        "definition": "Large",
+        "context": "\"settings_personalisation\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan_style_1",
+        "definition": "Comfortable",
+        "context": "\"settings_personalisation\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan_style_2",
+        "definition": "Compact",
+        "context": "\"settings_personalisation\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan_colours",
+        "definition": "Colours",
+        "context": "\"settings_personalisation\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan_preview",
+        "definition": "Preview",
+        "context": "\"settings_personalisation\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "language",
+        "definition": "Language",
+        "context": "\"settings_personalisation\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "users",
+        "definition": "Users",
+        "context": "\"settings_bookmarks\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clans",
+        "definition": "Clans",
+        "context": "\"settings_bookmarks\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "add_user",
+        "definition": "Add User",
+        "context": "\"settings_bookmarks\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "add_clan",
+        "definition": "Add Clan",
+        "context": "\"settings_bookmarks\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "expires",
+        "definition": "Expires {time}",
+        "context": "\"user_bouncers\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "by",
+        "definition": "by {username}",
+        "context": "\"user_bouncers\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "lands_on",
+        "definition": "Lands on",
+        "context": "\"type_details\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "can_host",
+        "definition": "Can Host",
+        "context": "\"type_details\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "missing",
+        "definition": "CuppaZee hasn't got a POI Planner yet. Whilst you're waiting for me to develop one, you should check out nzseries1's awesome POI Planner!",
+        "context": "\"poi_planner\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "nzseries1",
+        "definition": "nzseries1's POI Planner",
+        "context": "\"poi_planner\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "type",
+        "definition": "Evolution Type",
+        "context": "\"evo_planner\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "type_farm",
+        "definition": "3 Stages (eg. Farm, Education)",
+        "context": "\"evo_planner\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "type_flower",
+        "definition": "5 Stages (eg. Carnation, Rose)",
+        "context": "\"evo_planner\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "type_butterfly",
+        "definition": "5 Stages (eg. Butterfly, Turtle)",
+        "context": "\"evo_planner\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "type_bee",
+        "definition": "5 Stages (eg. Bee)",
+        "context": "\"evo_planner\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "stage",
+        "definition": "Evolution Stage",
+        "context": "\"evo_planner\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "stage_deploy",
+        "definition": "Deploy on",
+        "context": "\"evo_planner\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "stage_evolve",
+        "definition": "Evolve to Stage {stage} on",
+        "context": "\"evo_planner\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "description_deploy",
+        "definition": "Deployed | Stage 1",
+        "context": "\"evo_planner\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "description_stage",
+        "definition": "Stage {stage}",
+        "context": "\"evo_planner\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "patreon",
+        "definition": "Become a Patron",
+        "context": "\"donate\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "kofi",
+        "definition": "Buy me a Coffee",
+        "context": "\"donate\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "paypal_title",
+        "definition": "Donations can also be sent via PayPal to {email}",
+        "context": "\"donate\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "paypal_description",
+        "definition": "Please ensure this email address is typed correctly, noting that CuppaZee uses .app, not .com.",
+        "context": "\"donate\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "direction_n",
+        "definition": "N",
+        "context": "\"common\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "direction_ne",
+        "definition": "NE",
+        "context": "\"common\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "direction_e",
+        "definition": "E",
+        "context": "\"common\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "direction_se",
+        "definition": "SE",
+        "context": "\"common\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "direction_s",
+        "definition": "S",
+        "context": "\"common\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "direction_sw",
+        "definition": "SW",
+        "context": "\"common\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "direction_w",
+        "definition": "W",
+        "context": "\"common\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "direction_nw",
+        "definition": "NW",
+        "context": "\"common\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "bouncer_title",
+        "definition": "{name} by {username}",
+        "context": "\"notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "bouncer_title_with_multiple",
+        "definition": "{name} by {username} [{amount}\/{total}]",
+        "context": "\"notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "bouncer_description_location",
+        "definition": "At {name} by {username}",
+        "context": "\"notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "bouncer_description_distance",
+        "definition": "{distance} {direction} from {name}",
+        "context": "\"notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "munzee_blog",
+        "definition": "Munzee Blog Post",
+        "context": "\"notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "filter_edit",
+        "definition": "Edit Filters",
+        "context": "\"user_activity\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "spyderbot",
+        "definition": "Spyderbot Collected!",
+        "context": "\"user_zeeops\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "check",
+        "definition": "Checking if {username} will {state} QRew\/ZeeQRew Status on {date}",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "state_keep",
+        "definition": "keep",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "state_keep_gain",
+        "definition": "keep\/gain",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "state_gain",
+        "definition": "gain",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "recent_no_captures",
+        "definition": "No Captures after {date}",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "recent_no_deploy",
+        "definition": "No Deploys after {date}",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "bouncers_override_title",
+        "definition": "Categories and Types Overrides",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "bouncers_override_description",
+        "definition": "If you want a different distance for certain types, you can add them here.",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "locations_live_blocked",
+        "definition": "You must allow CuppaZee to always access your location.",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "locations_live_confirm_title",
+        "definition": "Use Live Location?",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "locations_live_confirm_description_1",
+        "definition": "With Live Location enabled, CuppaZee will occasionally fetch your approximate location in the background.",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "locations_live_confirm_description_2",
+        "definition": "Your background location will only be used in order to send alerts for Bouncers around your current location.",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "locations_live_cancel",
+        "definition": "Cancel",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "locations_live_confirm",
+        "definition": "Confirm",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "continuing_policy",
+        "definition": "By continuing to use this application, you agree to our Terms of Service and Privacy Policy as linked below.",
+        "context": "\"welcome\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "terms",
+        "definition": "Terms of Service",
+        "context": "\"welcome\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "privacy",
+        "definition": "Privacy Policy",
+        "context": "\"welcome\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "owner",
+        "definition": "by {username}",
+        "context": "\"munzee_details\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "deployed",
+        "definition": "Deployed {date}",
+        "context": "\"munzee_details\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "open",
+        "definition": "Open on munzee.com",
+        "context": "\"munzee_details\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "bouncer_hosting",
+        "definition": "Hosting {name}",
+        "context": "\"munzee_details\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "bouncer_expires",
+        "definition": "Expires at {time}",
+        "context": "\"munzee_details\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "user_device_title",
+        "definition": "Looks like {username} hasn't logged in on this device.",
+        "context": "\"error\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "user_device_description",
+        "definition": "Requesting this data requires them to log in.",
+        "context": "\"error\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "user_device_add_account",
+        "definition": "Add Account",
+        "context": "\"error\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "user_expired_title",
+        "definition": "Looks like {username} needs to log in again.",
+        "context": "\"error\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "user_expired_description",
+        "definition": "Your Munzee API authentication has expired.",
+        "context": "\"error\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "user_expired_log_in",
+        "definition": "Log in again",
+        "context": "\"error\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "error_title",
+        "definition": "Looks like the coffee spilt out of the cup.",
+        "context": "\"error\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "error_description",
+        "definition": "Something went wrong when requesting this data.",
+        "context": "\"error\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "error_report_sent_title",
+        "definition": "Report Sent",
+        "context": "\"error\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "error_report_sent_description",
+        "definition": "Details about this error have been sent to CuppaZee. If you would like to give more information on this issue, please contact us.",
+        "context": "\"error\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "error_report",
+        "definition": "Report to CuppaZee",
+        "context": "\"error\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "bouncers_distance_default_hint",
+        "definition": "This is the distance used for any types that you haven't set an override for.",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
     }
 ]

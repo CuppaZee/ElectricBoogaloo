@@ -947,7 +947,7 @@
     },
     {
         "term": "history_space_coast_geo_store",
-        "definition": null,
+        "definition": "Space Coast Geo Store",
         "context": "\"user_inventory\"",
         "term_plural": "",
         "reference": "",
@@ -955,7 +955,7 @@
     },
     {
         "term": "history_freeze_tag_store",
-        "definition": null,
+        "definition": "freeze Tag Store",
         "context": "\"user_inventory\"",
         "term_plural": "",
         "reference": "",
@@ -963,7 +963,7 @@
     },
     {
         "term": "history_pimedus",
-        "definition": null,
+        "definition": "Pimedus Rewards",
         "context": "\"user_inventory\"",
         "term_plural": "",
         "reference": "",
@@ -971,7 +971,7 @@
     },
     {
         "term": "history_magnetus",
-        "definition": null,
+        "definition": "Magnetus Rewards",
         "context": "\"user_inventory\"",
         "term_plural": "",
         "reference": "",
@@ -979,7 +979,7 @@
     },
     {
         "term": "history_prize_wheel",
-        "definition": null,
+        "definition": "Prize Wheel Rewards",
         "context": "\"user_inventory\"",
         "term_plural": "",
         "reference": "",
@@ -987,7 +987,7 @@
     },
     {
         "term": "history_premium",
-        "definition": null,
+        "definition": "Premium Rewards",
         "context": "\"user_inventory\"",
         "term_plural": "",
         "reference": "",
@@ -995,7 +995,7 @@
     },
     {
         "term": "history_clan",
-        "definition": null,
+        "definition": "Level {level} - {month} {year}",
         "context": "\"user_inventory\"",
         "term_plural": "",
         "reference": "",
@@ -1003,7 +1003,7 @@
     },
     {
         "term": "history_zeeops",
-        "definition": null,
+        "definition": "ZeeOps Rewards",
         "context": "\"user_inventory\"",
         "term_plural": "",
         "reference": "",
@@ -1011,7 +1011,7 @@
     },
     {
         "term": "history_support",
-        "definition": null,
+        "definition": "Munzee Support",
         "context": "\"user_inventory\"",
         "term_plural": "",
         "reference": "",
@@ -1019,8 +1019,1257 @@
     },
     {
         "term": "history_test",
-        "definition": null,
+        "definition": "Test",
         "context": "\"user_inventory\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan_bookmarks",
+        "definition": "Favoriete Clans",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "settings",
+        "definition": "Opties",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "tools_donate",
+        "definition": "Doneren",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "more_clans",
+        "definition": "Meer Clans",
+        "context": "\"drawer\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "rewards",
+        "definition": "Beloningen",
+        "context": "\"clan\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan_rewards",
+        "definition": "Clan Rewards",
+        "context": "\"clan\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "search",
+        "definition": "Zoeken",
+        "context": "\"search\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "type",
+        "definition": "Type",
+        "context": "\"search\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "category",
+        "definition": "Type Categorie",
+        "context": "\"search\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "player",
+        "definition": "Speler",
+        "context": "\"search\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan",
+        "definition": "Clan",
+        "context": "\"search\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clans",
+        "definition": "Clans",
+        "context": "\"dashboard\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "drawer_user_bookmarks",
+        "definition": "Je kunt spelers aan je favorieten toevoegen en verwijderen bij de instellingen",
+        "context": "\"tips\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "drawer_clan_bookmarks",
+        "definition": "Je kunt clans aan je favorieten toevoegen of verwijderen bij de instellingen",
+        "context": "\"tips\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan_stats_customisation",
+        "definition": "Er zijn opties om de kleurstelling e.d. van de clan statistieken aan te passen bij de persoonlijke instellingen.",
+        "context": "\"tips\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "search_munzee_types",
+        "definition": "Naast het zoeken naar spelers en clans, kun je ook verschillende munzee typen opzoeken en er meer over te weten komen.",
+        "context": "\"tips\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "share",
+        "definition": "Delen",
+        "context": "\"clan\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "share_level",
+        "definition": "Delen L{level}",
+        "context": "\"clan\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "title",
+        "definition": "Even een snelle tip!",
+        "context": "\"tips\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "user_captures",
+        "definition": "Captures",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "tools_nearby",
+        "definition": "Bouncers dichtbij",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "tools_poiplanner",
+        "definition": "POI Planner",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "tools",
+        "definition": "Gereedschap",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "level",
+        "definition": "Level {level}",
+        "context": "\"user_profile\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "rank",
+        "definition": "Rang #{rank}",
+        "context": "\"user_profile\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "points",
+        "definition": {
+            "one": "Punt",
+            "other": "Punten"
+        },
+        "context": "\"user_profile\"",
+        "term_plural": "points",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "overview_passive_deploys",
+        "definition": {
+            "one": "{count} Passieve Deploy",
+            "other": "{count} Passieve Deploys"
+        },
+        "context": "\"user_activity\"",
+        "term_plural": "overview_passive_deploys",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "type_info",
+        "definition": "Type Info",
+        "context": "\"user_activity\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "settings_zero",
+        "definition": "Inclusief Nul",
+        "context": "\"user_inventory\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "settings_group",
+        "definition": "Groep per Categorie",
+        "context": "\"user_inventory\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "blast",
+        "definition": "Blast {n}",
+        "context": "\"user_blast_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "munzees",
+        "definition": {
+            "one": "{count} Munzee",
+            "other": "{count} Munzees"
+        },
+        "context": "\"user_blast_checker\"",
+        "term_plural": "munzees",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "points",
+        "definition": "{min} - {max} Pnt (Gem. {avg})",
+        "context": "\"user_blast_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "qrew",
+        "definition": "QRew",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "zeeqrew",
+        "definition": "ZeeQrew",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "premium",
+        "definition": "Premium",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "yes",
+        "definition": "Ja",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "no",
+        "definition": "Nee",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "captures",
+        "definition": "Captures",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "deploys",
+        "definition": "Deploys",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "recent_capture",
+        "definition": "Recente Capture",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "recent_deploy",
+        "definition": "Recente Deploy",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "physical_captures",
+        "definition": "Fysieke Captures",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "physical_deploys",
+        "definition": "Fysieke Deploys",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "total_points",
+        "definition": "Totaal Punten",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "remaining",
+        "definition": "{remaining} resterend van {total}",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "owned_by",
+        "definition": "door {username}",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "deploy",
+        "definition": "Deployed {date}",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "next",
+        "definition": "Volgende",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "report",
+        "definition": "Rapporteer als niet werkend",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "submit",
+        "definition": "Voeg jouw Universal toe",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "submit_code",
+        "definition": "Munzee Print Code",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "submit_code_hint",
+        "definition": "Dit is de \u201c Barcode Value\u201d op de Munzee\u2019s Print Pagina",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "submit_submit",
+        "definition": "Inleveren",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "submit_error",
+        "definition": "Iets ging verkeerd... zorg ervoor dat de Print Code correct is en dat de Munzee ge-deployed is.",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "submit_try_again",
+        "definition": "Probeer nogmaals",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "submit_submitted",
+        "definition": "Munzee ingeleverd",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "submit_close",
+        "definition": "Sluiten",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "report_invalid_secret_code",
+        "definition": "Ongeldige Secret Code",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "report_not_deployed",
+        "definition": "Munzee is niet ge-deployed",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "report_other",
+        "definition": "Anders",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "report_note",
+        "definition": "Opmerking",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "report_report",
+        "definition": "Rapporteer",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "report_sent",
+        "definition": "Rapportage verzonden",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "report_close",
+        "definition": "Sluiten",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "empty",
+        "definition": "Je hebt alle, bij ons bekende, Universals al gevonden!",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "settings_shadow",
+        "definition": "Laat schaduw leden zien",
+        "context": "\"clan\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "settings_subtract",
+        "definition": "Subtract View",
+        "context": "\"clan\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "settings_share",
+        "definition": "Gebruikers deel requirements ",
+        "context": "\"clan\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "settings_goal",
+        "definition": "Doel Level",
+        "context": "\"clan\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "settings_done",
+        "definition": "Klaar",
+        "context": "\"clan\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "theme",
+        "definition": "Thema",
+        "context": "\"settings_personalisation\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan_reverse",
+        "definition": "Omgedraaide Kolommen\/Rijen",
+        "context": "\"settings_personalisation\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan_single_line",
+        "definition": "Een lijn Cellen",
+        "context": "\"settings_personalisation\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan_full_background",
+        "definition": "Volledige kleur achtergrond",
+        "context": "\"settings_personalisation\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan_style",
+        "definition": "Styl",
+        "context": "\"settings_personalisation\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan_style_0",
+        "definition": "Groot",
+        "context": "\"settings_personalisation\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan_style_1",
+        "definition": "Comfortabel",
+        "context": "\"settings_personalisation\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan_style_2",
+        "definition": "Compact",
+        "context": "\"settings_personalisation\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan_colours",
+        "definition": "Kleuren",
+        "context": "\"settings_personalisation\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan_preview",
+        "definition": "Voorbeeld",
+        "context": "\"settings_personalisation\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "language",
+        "definition": "Taal",
+        "context": "\"settings_personalisation\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "users",
+        "definition": "Gebruikers",
+        "context": "\"settings_bookmarks\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clans",
+        "definition": "Clans",
+        "context": "\"settings_bookmarks\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "add_user",
+        "definition": "Gebruiker toevoegen",
+        "context": "\"settings_bookmarks\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "add_clan",
+        "definition": "Clan toevoegen ",
+        "context": "\"settings_bookmarks\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "expires",
+        "definition": "Verloopt {time}",
+        "context": "\"user_bouncers\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "by",
+        "definition": "door {username}",
+        "context": "\"user_bouncers\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "lands_on",
+        "definition": "Geland op",
+        "context": "\"type_details\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "can_host",
+        "definition": "Kan hosten",
+        "context": "\"type_details\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "missing",
+        "definition": "CuppaZee heeft nog geen POI Planner. Wachtend op de ontwikkeling hiervan, kun je die van nzseries1 geweldige POI Planner gebruiken!",
+        "context": "\"poi_planner\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "nzseries1",
+        "definition": "nzseries1\u2019s POI Planner",
+        "context": "\"poi_planner\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "type",
+        "definition": "Evolutie soort",
+        "context": "\"evo_planner\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "type_farm",
+        "definition": "3 stages (bijv. Farm, Education)",
+        "context": "\"evo_planner\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "type_flower",
+        "definition": "5 stages (bijv. Carnation, Rose)",
+        "context": "\"evo_planner\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "type_butterfly",
+        "definition": "5 stages (bijv. Butterfly, Turtle)",
+        "context": "\"evo_planner\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "type_bee",
+        "definition": "5 stages (bijv. Bee)",
+        "context": "\"evo_planner\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "stage",
+        "definition": "Evolutie stage",
+        "context": "\"evo_planner\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "stage_deploy",
+        "definition": "Deploy op",
+        "context": "\"evo_planner\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "stage_evolve",
+        "definition": "Evolueert naar stage {stage} op",
+        "context": "\"evo_planner\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "description_deploy",
+        "definition": "Deployed | Stage 1",
+        "context": "\"evo_planner\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "description_stage",
+        "definition": "Stage {stage}",
+        "context": "\"evo_planner\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "patreon",
+        "definition": "Wordt een Patron",
+        "context": "\"donate\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "kofi",
+        "definition": "Koop een kopje koffie voor me",
+        "context": "\"donate\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "paypal_title",
+        "definition": "Do acties kunnen ook verzonden worden via PayPal naar {email}",
+        "context": "\"donate\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "paypal_description",
+        "definition": "Verzeker jezelf dat het mailadres goed is geschreven, opgemerkt dat CuppaZee gebruikt maakt van .app en niet .com.",
+        "context": "\"donate\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "direction_n",
+        "definition": "N",
+        "context": "\"common\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "direction_ne",
+        "definition": "NO",
+        "context": "\"common\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "direction_e",
+        "definition": "O",
+        "context": "\"common\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "direction_se",
+        "definition": "ZO",
+        "context": "\"common\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "direction_s",
+        "definition": "Z",
+        "context": "\"common\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "direction_sw",
+        "definition": "ZW",
+        "context": "\"common\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "direction_w",
+        "definition": "W",
+        "context": "\"common\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "direction_nw",
+        "definition": "NW",
+        "context": "\"common\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "bouncer_title",
+        "definition": "{name} door {username}",
+        "context": "\"notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "bouncer_title_with_multiple",
+        "definition": "{name} door {username} [{amount}\/{total}]",
+        "context": "\"notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "bouncer_description_location",
+        "definition": "Op {name} door {username}",
+        "context": "\"notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "bouncer_description_distance",
+        "definition": "{distance} {direction} van {name}",
+        "context": "\"notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "munzee_blog",
+        "definition": "Munzee Blog Post ",
+        "context": "\"notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "filter_edit",
+        "definition": "Filters aanpassen",
+        "context": "\"user_activity\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "spyderbot",
+        "definition": "Spyderbot Collected!",
+        "context": "\"user_zeeops\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "check",
+        "definition": "Controleer of {username} {state} Qrew\/ZeeQRew Status hebben op {date}",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "state_keep",
+        "definition": "houden",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "state_keep_gain",
+        "definition": "houden\/krijgt",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "state_gain",
+        "definition": "krijgt",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "recent_no_captures",
+        "definition": "Geen Captures na {date}",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "recent_no_deploy",
+        "definition": "Geen Deploys na {date}",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "bouncers_override_title",
+        "definition": "Categorie\u00ebn en soorten overschrijden",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "bouncers_override_description",
+        "definition": "Als je een andere afstand voor bepaalde soorten wilt, kun je ze hier toevoegen.",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "locations_live_blocked",
+        "definition": "Je moet toestaan dat CuppaZee altijd toegang heeft tot je locatie.",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "locations_live_confirm_title",
+        "definition": "Gebruik live locatie?",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "locations_live_confirm_description_1",
+        "definition": "Met live locatie in gebruik, CuppaZee zal op de achtergrond af en toe je locatie binnenhalen.",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "locations_live_confirm_description_2",
+        "definition": "Jouw achtergrond locatie zal alleen gebruikt worden voor het zenden van alerts voor Bouncers rondom jouw huidige locatie.",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "locations_live_cancel",
+        "definition": "Annuleer",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "locations_live_confirm",
+        "definition": "Bevestigen",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "continuing_policy",
+        "definition": "Bij het continueren van het gebruik van deze applicatie, geef je toestemming volgens onze \u201cTerms of Service and Privacy Policy\u201d, zie link hieronder.",
+        "context": "\"welcome\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "terms",
+        "definition": "Terms of Service",
+        "context": "\"welcome\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "privacy",
+        "definition": "Privacy Policy",
+        "context": "\"welcome\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "owner",
+        "definition": "Door {username}",
+        "context": "\"munzee_details\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "deployed",
+        "definition": "Deployed {date}",
+        "context": "\"munzee_details\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "open",
+        "definition": "Open via munzee.com",
+        "context": "\"munzee_details\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "bouncer_hosting",
+        "definition": "Hosting {name}",
+        "context": "\"munzee_details\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "bouncer_expires",
+        "definition": "Verloopt op {time}",
+        "context": "\"munzee_details\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "user_device_title",
+        "definition": "Het lijkt erop dat {username} niet ingelogd is op dit apparaat.",
+        "context": "\"error\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "user_device_description",
+        "definition": "Voor het opvragen van deze data is het nodig dat hij\/zij ingelogd is.",
+        "context": "\"error\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "user_device_add_account",
+        "definition": "Account toevoegen",
+        "context": "\"error\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "user_expired_title",
+        "definition": "Het lijkt erop dat {username} opnieuw moet inloggen.",
+        "context": "\"error\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "user_expired_description",
+        "definition": "Jouw Munzee API autorisatie is verlopen.",
+        "context": "\"error\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "user_expired_log_in",
+        "definition": "Log opnieuw in",
+        "context": "\"error\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "error_title",
+        "definition": "Het lijkt erop dat je geknoeid hebt met je kopje koffie.",
+        "context": "\"error\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "error_description",
+        "definition": "Iets ging verkeerd bij het ophalen van deze data.",
+        "context": "\"error\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "error_report_sent_title",
+        "definition": "Rapport verzonden",
+        "context": "\"error\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "error_report_sent_description",
+        "definition": "Details van deze error zijn aan CuppaZeee verzonden. Als je meer informatie over deze error wilt melden, neem dan contact met ons op.",
+        "context": "\"error\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "error_report",
+        "definition": "Rapporteer aan CuppaZee ",
+        "context": "\"error\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "bouncers_distance_default_hint",
+        "definition": "Dit is de afstand die gebruikt wordt voor alle types waar je geen andere afstand voor hebt ingesteld.",
+        "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
         "comment": ""

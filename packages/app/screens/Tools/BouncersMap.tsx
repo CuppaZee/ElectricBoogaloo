@@ -1,6 +1,7 @@
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { Layout } from "@ui-kitten/components";
 import * as React from "react";
+import { useTranslation } from "react-i18next";
 import Loading from "../../components/Loading";
 import MapView from "../../components/Maps/MapView";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
@@ -21,7 +22,8 @@ interface BouncerListData {
 export default function BouncersMapScreen() {
   const route = useRoute<RouteProp<ToolsStackParamList, "BouncersMap">>();
   const nav = useNavigation();
-  useTitle(`☕ Bouncers Map`);
+  const { t } = useTranslation();
+  useTitle(`☕ ${t("pages:tools_bouncers")} - ${route.params.type.split(",").join(", ")}`);
   const data = useCuppaZeeRequest<{ data: BouncerListData }>("bouncers/list", {
     list: route.params.type
   });

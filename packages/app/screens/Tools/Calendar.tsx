@@ -6,8 +6,9 @@ import {
   Text,
   useTheme,
 } from "@ui-kitten/components";
-import { Dayjs } from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 import * as React from "react";
+import { useTranslation } from "react-i18next";
 import { Image, Pressable, ScrollView, View } from "react-native";
 import useDay from "../../hooks/useDay";
 import useTitle from "../../hooks/useTitle";
@@ -74,12 +75,13 @@ function Date(date: Dayjs): CalendarData {
   return {
     date,
     western,
-    egyptian: ["nile"].includes(egyptian) ? egyptian : "egyptianzodiacsun",
+    egyptian: ["nile", "amon-ra", "osiris"].includes(egyptian) ? egyptian : "egyptianzodiacsun",
     qrewzee: date.date() % 3 === 0,
   };
 }
 
 function CalendarCell({ date }: { date: Dayjs }) {
+  const { t } = useTranslation();
   const data = Date(date);
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -98,27 +100,22 @@ function CalendarCell({ date }: { date: Dayjs }) {
                 flexWrap: "wrap",
                 alignItems: "center",
                 justifyContent: "center",
-              }}
-            >
+              }}>
               <View
                 style={{
                   height: 32,
                   width: 32,
                   justifyContent: "center",
                   alignItems: "center",
-                }}
-              >
-                <Text
-                  style={{ fontSize: 16, fontWeight: "bold", lineHeight: 0 }}
-                >
+                }}>
+                <Text style={{ fontSize: 16, fontWeight: "bold" }}>
                   {date.date()}
                 </Text>
               </View>
               <View>
                 <Image
                   source={{
-                    uri:
-                      "https://munzee.global.ssl.fastly.net/images/pins/qrewzee.png",
+                    uri: "https://munzee.global.ssl.fastly.net/images/pins/qrewzee.png",
                   }}
                   style={{
                     height: 28,
@@ -137,12 +134,15 @@ function CalendarCell({ date }: { date: Dayjs }) {
                       right: 0,
                       justifyContent: "center",
                       alignItems: "center",
-                    }}
-                  >
+                    }}>
                     <Text>
                       <Icon
                         name="close"
-                        style={{ height: 24, width: 24, color: theme.style === "dark" ? "#ff7777" : "#ff0000" }}
+                        style={{
+                          height: 24,
+                          width: 24,
+                          color: theme.style === "dark" ? "#ff7777" : "#ff0000",
+                        }}
                       />
                     </Text>
                   </View>
@@ -170,13 +170,9 @@ function CalendarCell({ date }: { date: Dayjs }) {
                       right: 0,
                       justifyContent: "center",
                       alignItems: "center",
-                    }}
-                  >
-                  <Text>
-                    <Icon
-                      name="lock-question"
-                      style={{ height: 16, width: 16 }}
-                    />
+                    }}>
+                    <Text>
+                      <Icon name="lock-question" style={{ height: 16, width: 16 }} />
                     </Text>
                   </View>
                 )}
@@ -189,16 +185,18 @@ function CalendarCell({ date }: { date: Dayjs }) {
               />
             </Layout>
           </Pressable>
-        )}
-      >
-        <Layout
-          level="4"
-          style={{ borderRadius: 8, padding: 4, alignItems: "center" }}
-        >
+        )}>
+        <Layout level="4" style={{ borderRadius: 8, padding: 4, alignItems: "center" }}>
           <Text category="s1">{date.format("D MMMM")}</Text>
-          <Text category="s2">QRewZees: {data.qrewzee ? "On" : "Off"}</Text>
-          <Text category="s2">Egyptian: {data.egyptian.toUpperCase()}</Text>
-          <Text category="s2">Western: {data.western.toUpperCase()}</Text>
+          <Text category="s2">
+            {data.qrewzee ? t("calendar:qrewzees_on") : t("calendar:qrewzees_off")}
+          </Text>
+          <Text category="s2">
+            {t("calendar:egyptian_status", { type: data.egyptian.toUpperCase() })}
+          </Text>
+          <Text category="s2">
+            {t("calendar:western_status", { type: data.western.toUpperCase() })}
+          </Text>
         </Layout>
       </Popover>
     </View>
@@ -206,6 +204,7 @@ function CalendarCell({ date }: { date: Dayjs }) {
 }
 
 function DayCell({ day }: { day: number }) {
+  const { t } = useTranslation();
   const chinese = [
     ["monkey"], // Sunday
     ["goat"], // Monday
@@ -231,23 +230,19 @@ function DayCell({ day }: { day: number }) {
                 flexWrap: "wrap",
                 alignItems: "center",
                 justifyContent: "center",
-              }}
-            >
+              }}>
               <View
                 style={{
                   height: 32,
                   width: 64,
                   justifyContent: "center",
                   alignItems: "center",
-                }}
-              >
-                <Text
-                  style={{ fontSize: 16, fontWeight: "bold", lineHeight: 0 }}
-                >
-                  {"SMTWTFS".split("")[day]}
+                }}>
+                <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+                  {dayjs.weekdaysShort()[day]}
                 </Text>
               </View>
-              {chinese.map((i) => (
+              {chinese.map(i => (
                 <Image
                   source={{
                     uri: `https://munzee.global.ssl.fastly.net/images/pins/${i}chinesezodiac.png`,
@@ -257,19 +252,17 @@ function DayCell({ day }: { day: number }) {
               ))}
             </Layout>
           </Pressable>
-        )}
-      >
+        )}>
         <Layout
           level="4"
           style={{
             borderRadius: 8,
             padding: 4,
             alignItems: "center",
-          }}
-        >
-          <Text category="s1">{"SMTWTFS".split("")[day]}</Text>
+          }}>
+          <Text category="s1">{dayjs.weekdays()[day]}</Text>
           <Text category="s2">
-            Chinese Zodiacs: {chinese.join(", ").toUpperCase()}
+            {t("calendar:chinese_status", { types: chinese.join(", ").toUpperCase() })}
           </Text>
         </Layout>
       </Popover>
@@ -278,12 +271,12 @@ function DayCell({ day }: { day: number }) {
 }
 
 export default function CalendarScreen() {
-  const day = useDay();
-  useTitle(`☕ Calendar`);
-  const [month, setMonth] = React.useState(day().format());
-  const monthStart = day(month).set("date", 1);
-  const monthEnd = day(month).set("date", 1).add(1, "month").subtract(1, "day");
-  const offset = -1 + 7;
+  const { t } = useTranslation();
+  useTitle(`☕ ${t("pages:tools_calendar")}`);
+  const [month, setMonth] = React.useState(dayjs().format());
+  const monthStart = dayjs(month).set("date", 1);
+  const monthEnd = dayjs(month).set("date", 1).add(1, "month").subtract(1, "day");
+  const offset = -dayjs().localeData().firstDayOfWeek() + 7;
   const array = [];
   for (
     let date = monthStart;
@@ -294,40 +287,38 @@ export default function CalendarScreen() {
   }
   return (
     <Layout style={{ flex: 1 }}>
-      <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1, justifyContent: "center" }}>
+      <ScrollView
+        style={{ flex: 1 }}
+        contentContainerStyle={{ flexGrow: 1, justifyContent: "center" }}>
         <View
           style={{
             width: 490,
             maxWidth: "100%",
             alignSelf: "center",
             padding: 4,
-          }}
-        >
+          }}>
           <Layout
             level="3"
             style={{
               borderRadius: 8,
               flexDirection: "row",
               alignItems: "center",
-            }}
-          >
+            }}>
             <Button
               appearance="ghost"
-              accessoryLeft={(props) => <Icon {...props} name="chevron-left" />}
+              accessoryLeft={props => <Icon {...props} name="chevron-left" />}
               onPress={() => {
-                setMonth(day(month).subtract(1, "month").format());
+                setMonth(dayjs(month).subtract(1, "month").format());
               }}
             />
             <Text category="h5" style={{ textAlign: "center", flex: 1 }}>
-              {day(month).format("MMMM YYYY")}
+              {dayjs(month).format("MMMM YYYY")}
             </Text>
             <Button
               appearance="ghost"
-              accessoryLeft={(props) => (
-                <Icon {...props} name="chevron-right" />
-              )}
+              accessoryLeft={props => <Icon {...props} name="chevron-right" />}
               onPress={() => {
-                setMonth(day(month).add(1, "month").format());
+                setMonth(dayjs(month).add(1, "month").format());
               }}
             />
           </Layout>
@@ -342,21 +333,20 @@ export default function CalendarScreen() {
             width: 490,
             maxWidth: "100%",
             alignSelf: "center",
-          }}
-        >
+          }}>
           {new Array(7)
             .fill(0)
-            .map((_, i) => (i + 1) % 7)
-            .map((i) => (
+            .map((_, i) => (i + dayjs().localeData().firstDayOfWeek()) % 7)
+            .map(i => (
               <DayCell day={i} />
             ))}
-          {new Array((monthStart.day() + offset) % 7).fill(1).map((_) => (
+          {new Array((monthStart.day() + offset) % 7).fill(1).map(_ => (
             <View style={{ width: 68, flexGrow: 1 }} />
           ))}
-          {array.map((i) => (
+          {array.map(i => (
             <CalendarCell date={i} />
           ))}
-          {new Array((6 + 7 - monthEnd.day() - offset) % 7).fill(1).map((_) => (
+          {new Array((6 + 7 - monthEnd.day() - offset) % 7).fill(1).map(_ => (
             <View style={{ width: 68, flexGrow: 1 }} />
           ))}
         </ScrollView>

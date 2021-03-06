@@ -18,6 +18,10 @@
     "tools_donate": "Doner"
   },
   "drawer": {},
+  "user_profile": {
+    "level": "Niveau {level}",
+    "rank": "Rang #{rank}"
+  },
   "user_activity": {
     "overview_points": {
       "one": "{count} total point",
@@ -31,6 +35,7 @@
       "one": "{count} placeret",
       "other": "{count} placerede"
     },
+    "overview_passive_deploys": {},
     "overview_capons": {
       "one": "{count} cap-on",
       "other": "{count} cap-ons"
@@ -48,6 +53,11 @@
     "history": "Historik"
   },
   "user_zeeops": {},
+  "user_blast_checker": {
+    "munzees": {}
+  },
+  "user_qrew_checker": {},
+  "user_universal_capper": {},
   "clan": {
     "requirements": "Krav",
     "rewards": "Gevinster",
@@ -60,6 +70,7 @@
   "settings_common": {
     "save": "Gem"
   },
+  "settings_personalisation": {},
   "settings_accounts": {
     "logout": "Log ud"
   },
@@ -67,6 +78,7 @@
     "bouncers_override_search": "Søg",
     "starred_users_search": "Søg"
   },
+  "settings_bookmarks": {},
   "bouncers": {},
   "calendar": {},
   "open_source": {},
@@ -76,5 +88,13 @@
     "search": "Søg"
   },
   "dashboard": {},
-  "tips": {}
+  "tips": {},
+  "type_details": {},
+  "poi_planner": {},
+  "evo_planner": {},
+  "donate": {},
+  "common": {},
+  "notifications": {},
+  "munzee_details": {},
+  "error": {}
 }

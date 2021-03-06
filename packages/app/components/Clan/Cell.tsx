@@ -450,7 +450,7 @@ export function TitleCell(props: TitleCellProps) {
           36
         )}.png`,
       }}
-      title={props.clan.data?.details.name ?? t("clan:loading")} //TODO: Translate
+      title={props.clan.data?.details.name ?? t("clan:loading")}
       subtitle={`#${props.clan.data?.result.rank}`}
     />
   );

@@ -23,6 +23,9 @@ import MapView from "../../components/Maps/MapView";
 import useSearch from "../../hooks/useSearch";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import fuse from "fuse.js";
+import { useTranslation } from "react-i18next";
+import { LANGS } from "../../lang/i18n";
+import Select from "../../components/Common/Select";
 
 interface LocationPickerModalProps {
   location: DeviceNotificationStaticLocation;
@@ -31,6 +34,7 @@ interface LocationPickerModalProps {
 }
 
 function LocationPickerModal({ location, close, remove }: LocationPickerModalProps) {
+  const { t } = useTranslation();
   return (
     <Layout level="4" style={{ borderRadius: 8, padding: 4 }}>
       <UpdateWrapper>
@@ -38,7 +42,7 @@ function LocationPickerModal({ location, close, remove }: LocationPickerModalPro
           <View>
             <Input
               style={{ margin: 4 }}
-              label="Location Name"
+              label={t("settings_notifications:locations_static_name")}
               value={location.name}
               onChangeText={text => {
                 location.name = text;
@@ -75,7 +79,7 @@ function LocationPickerModal({ location, close, remove }: LocationPickerModalPro
                 onPress={remove}
               />
               <Button style={{ margin: 4, flex: 1 }} onPress={close}>
-                Done
+                {t("settings_notifications:locations_static_done")}
               </Button>
             </View>
           </View>
@@ -91,31 +95,26 @@ interface ConfirmLocationModalProps {
 }
 
 function ConfirmLocationModal({ confirm, close }: ConfirmLocationModalProps) {
+  const { t } = useTranslation();
   return (
     <Layout level="4" style={{ borderRadius: 8, padding: 4, margin: 8 }}>
-      <Text category="h6">Use Live Location?</Text>
-      <Text category="p1">
-        With Live Location enabled, CuppaZee will occasionally fetch your approximate location in
-        the background.
-      </Text>
-      <Text category="p1">
-        Your background location will only be used in order to send alerts for Bouncers around your
-        current location.
-      </Text>
+      <Text category="h6">{t("settings_notifications:locations_live_confirm_title")}</Text>
+      <Text category="p1">{t("settings_notifications:locations_live_confirm_description_1")}</Text>
+      <Text category="p1">{t("settings_notifications:locations_live_confirm_description_2")}</Text>
       <View style={{ flexDirection: "row" }}>
         <Button
           style={{ margin: 4 }}
           appearance="ghost"
           accessoryLeft={props => <Icon name="close" {...props} />}
           onPress={close}>
-          Cancel
+          {t("settings_notifications:locations_live_cancel")}
         </Button>
         <Button
           style={{ margin: 4, flex: 1 }}
           status="success"
           accessoryLeft={props => <Icon name="check" {...props} />}
           onPress={confirm}>
-          Confirm
+          {t("settings_notifications:locations_live_confirm")}
         </Button>
       </View>
     </Layout>
@@ -126,11 +125,12 @@ interface UserSearchModalProps {
 }
 
 export function UserSearchModal({ close }: UserSearchModalProps) {
+  const { t } = useTranslation();
   const [value, search, onValue] = useSearch(500);
   const data = useMunzeeRequest("user/find", { text: search }, true, undefined, true);
   return (
     <Layout level="4" style={{ borderRadius: 8, padding: 4 }}>
-      <Input style={{ margin: 4 }} label="Search" value={value} onChangeText={onValue} />
+      <Input style={{ margin: 4 }} label={t("settings_notifications:starred_users_search")} value={value} onChangeText={onValue} />
 
       <List
         style={{
@@ -215,16 +215,17 @@ const OverrideSearch = new fuse([...Tags, ...Types], {
 });
 
 function OverrideSearchModal({ close }: OverrideSearchModalProps) {
+  const { t } = useTranslation();
   const [value, search, onValue] = useSearch(500);
   const results = search.length > 0 ? OverrideSearch.search(search).map(i => i.item) : Tags;
   return (
     <Layout level="4" style={{ borderRadius: 8, padding: 4 }}>
       <Input
         style={{ margin: 4 }}
-        label="Search"
+        label={t("settings_notifications:bouncers_override_search")}
         value={value}
         onChangeText={onValue}
-        caption="You can search for Categories and individual Types"
+        caption={t("settings_notifications:bouncers_override_search_hint")}
       />
 
       <List
@@ -337,10 +338,13 @@ export type DeviceNotificationSettings = {
 
   munzee_blog: boolean;
   imperial: boolean;
+
+  language?: string;
 };
 
 export default function NotificationScreen() {
-  useTitle("☕ Settings - Notifications");
+  const { t } = useTranslation();
+  useTitle(`☕ ${t("pages:settings")} - ${t("pages:settings_notifications")}`);
   const [settings, setSettings] = React.useState<DeviceNotificationSettings>();
   const [token, setToken] = React.useState<string>();
   const [saved, setSaved] = React.useState(0);
@@ -409,7 +413,7 @@ export default function NotificationScreen() {
   if (Platform.OS === "web")
     return (
       <Layout style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text category="h5">Notifications aren't supported on Web</Text>
+        <Text category="h5">{t("settings_notifications:error_web")}</Text>
       </Layout>
     );
   if (!token)
@@ -421,7 +425,7 @@ export default function NotificationScreen() {
   if (token === "_failed")
     return (
       <Layout style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text category="h5">Granting permissions failed. Did you allow notifications?</Text>
+        <Text category="h5">{t("settings_notifications:error_permissions")}</Text>
       </Layout>
     );
   if (!settings)
@@ -509,7 +513,7 @@ export default function NotificationScreen() {
         <View style={{ width: 400, flexGrow: 1, maxWidth: "100%", padding: 4 }}>
           <Layout level="2" style={{ margin: 4, padding: 4, flex: 1, borderRadius: 8 }}>
             <Text style={{ margin: 4 }} category="h6">
-              Bouncers
+              {t("settings_notifications:bouncers_title")}
             </Text>
             {token.includes("-8Xz") && (
               <>
@@ -523,7 +527,7 @@ export default function NotificationScreen() {
               onChange={checked =>
                 setSettings({ ...settings, bouncers: { ...settings.bouncers, enabled: checked } })
               }>
-              Enabled
+              {t("settings_notifications:bouncers_enabled")}
             </CheckBox>
             {settings.bouncers.enabled ? (
               <>
@@ -532,8 +536,10 @@ export default function NotificationScreen() {
                     <Input
                       style={{ margin: 4 }}
                       value={settings.bouncers.default}
-                      label={`Default Distance (${settings.imperial ? "mi" : "km"})`}
-                      caption="This is the distance used for any types that you haven't set an override for."
+                      label={t("settings_notifications:bouncers_distance_default", {
+                        unit: settings.imperial ? "mi" : "km",
+                      })}
+                      caption={t("settings_notifications:bouncers_distance_default_hint")}
                       onChangeText={text => {
                         settings.bouncers.default = text;
                         update();
@@ -546,7 +552,9 @@ export default function NotificationScreen() {
                     <Input
                       style={{ margin: 4 }}
                       value={settings.bouncers.starred}
-                      label={`Starred User Distance (${settings.imperial ? "mi" : "km"})`}
+                      label={t("settings_notifications:bouncers_distance_starred", {
+                        unit: settings.imperial ? "mi" : "km",
+                      })}
                       onChangeText={text => {
                         settings.bouncers.starred = text;
                         update();
@@ -555,10 +563,10 @@ export default function NotificationScreen() {
                   )}
                 </UpdateWrapper>
                 <Text style={{ margin: 4 }} category="s1">
-                  Categories and Types Overrides
+                  {t("settings_notifications:bouncers_override_title")}
                 </Text>
                 <Text style={{ margin: 4 }} category="p1">
-                  If you want a different distance for certain types, you can add them here.
+                  {t("settings_notifications:bouncers_override_description")}
                 </Text>
                 <UpdateWrapper>
                   {bigupdate => (
@@ -622,7 +630,9 @@ export default function NotificationScreen() {
                               <Input
                                 style={{ margin: 4 }}
                                 value={i.radius}
-                                label={`Distance (${settings.imperial ? "mi" : "km"})`}
+                                label={t("settings_notifications:bouncers_override_distance", {
+                                  unit: settings.imperial ? "mi" : "km",
+                                })}
                                 onChangeText={text => {
                                   i.radius = text;
                                   update();
@@ -640,7 +650,7 @@ export default function NotificationScreen() {
                         onPress={() => {
                           setDistanceOverrideModal(true);
                         }}>
-                        Add Category/Type
+                        {t("settings_notifications:bouncers_override_add")}
                       </Button>
                     </>
                   )}
@@ -653,7 +663,7 @@ export default function NotificationScreen() {
         <View style={{ width: 400, flexGrow: 1, maxWidth: "100%", padding: 4 }}>
           <Layout level="2" style={{ margin: 4, padding: 4, flex: 1, borderRadius: 8 }}>
             <Text style={{ margin: 4 }} category="h6">
-              Starred Users
+              {t("settings_notifications:starred_users_title")}
             </Text>
             <UpdateWrapper>
               {update => (
@@ -699,7 +709,7 @@ export default function NotificationScreen() {
                     onPress={() => {
                       setStarredUserModal(true);
                     }}>
-                    Add User
+                    {t("settings_notifications:starred_users_add")}
                   </Button>
                 </>
               )}
@@ -710,48 +720,49 @@ export default function NotificationScreen() {
         {/* Locations */}
         <View style={{ width: 400, flexGrow: 1, maxWidth: "100%", padding: 4 }}>
           <Layout level="2" style={{ margin: 4, padding: 4, flex: 1, borderRadius: 8 }}>
-            <Text category="h6">Locations</Text>
+            <Text category="h6">{t("settings_notifications:locations_title")}</Text>
             <UpdateWrapper>
-                {update => (
-                  <Layout
-                    level="3"
-                    style={{
-                      margin: 4,
-                      borderRadius: 8,
-                      padding: 4,
-                      paddingHorizontal: 8,
-                      flexDirection: "row",
-                      alignItems: "center",
-                    }}>
-                    <CheckBox
-                      checked={!!settings.locations.dynamic}
-                      onChange={async () => {
-                        if (settings.locations.dynamic) {
-                          settings.locations.dynamic = undefined;
-                        } else {
-                          setConfirmLocation(true);
-                        }
-                        update();
-                      }}
-                    />
+              {update => (
+                <Layout
+                  level="3"
+                  style={{
+                    margin: 4,
+                    borderRadius: 8,
+                    padding: 4,
+                    paddingHorizontal: 8,
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}>
+                  <CheckBox
+                    checked={!!settings.locations.dynamic}
+                    onChange={async () => {
+                      if (settings.locations.dynamic) {
+                        settings.locations.dynamic = undefined;
+                      } else {
+                        setConfirmLocation(true);
+                      }
+                      update();
+                    }}
+                  />
 
-                    <View style={{ marginHorizontal: 8, flex: 1 }}>
-                      <Text category="s1">
-                        <Icon style={{ height: 16, width: 16 }} name="crosshairs-gps" /> Live
-                        Location
+                  <View style={{ marginHorizontal: 8, flex: 1 }}>
+                    <Text category="s1">
+                      <Icon style={{ height: 16, width: 16 }} name="crosshairs-gps" />{" "}
+                      {t("settings_notifications:locations_live_title")}
+                    </Text>
+                    {settings.locations.dynamic ? (
+                      <Text category="c1">
+                        {settings.locations.dynamic.latitude} {settings.locations.dynamic.longitude}
                       </Text>
-                      {settings.locations.dynamic ? (
-                        <Text category="c1">
-                          {settings.locations.dynamic.latitude}{" "}
-                          {settings.locations.dynamic.longitude}
-                        </Text>
-                      ) : (
-                        <Text category="c1">Not Enabled</Text>
-                      )}
-                    </View>
-                  </Layout>
-                )}
-              </UpdateWrapper>
+                    ) : (
+                      <Text category="c1">
+                        {t("settings_notifications:locations_live_disabled")}
+                      </Text>
+                    )}
+                  </View>
+                </Layout>
+              )}
+            </UpdateWrapper>
             {settings.locations.static.map((i, index) => (
               <UpdateWrapper>
                 {update => (
@@ -802,7 +813,7 @@ export default function NotificationScreen() {
                 });
                 setLocationPickerIndex(settings.locations.static.length - 1);
               }}>
-              Add Static Location
+              {t("settings_notifications:locations_static_add")}
             </Button>
           </Layout>
         </View>
@@ -810,20 +821,31 @@ export default function NotificationScreen() {
         <View style={{ width: 400, flexGrow: 1, maxWidth: "100%", padding: 4 }}>
           <Layout level="2" style={{ margin: 4, padding: 4, flex: 1, borderRadius: 8 }}>
             <Text style={{ margin: 4 }} category="h6">
-              Other
+              {t("settings_notifications:other_title")}
             </Text>
             <CheckBox
               style={{ margin: 8 }}
               checked={settings.munzee_blog}
               onChange={checked => setSettings({ ...settings, munzee_blog: checked })}>
-              Munzee Blog
+              {t("settings_notifications:other_news_munzee")}
             </CheckBox>
             <CheckBox
               style={{ margin: 8 }}
               checked={settings.imperial}
               onChange={checked => setSettings({ ...settings, imperial: checked })}>
-              Imperial Units
+              {t("settings_notifications:other_units_imperial")}
             </CheckBox>
+
+            <Select
+              style={{ margin: 4 }}
+              label={t("settings_personalisation:language")}
+              value={settings.language || "en-GB"}
+              onValueChange={value => setSettings({ ...settings, language: value })}
+              options={LANGS.map(i => ({
+                value: i[0],
+                label: i[1],
+              }))}
+            />
           </Layout>
         </View>
       </ScrollView>
@@ -831,19 +853,18 @@ export default function NotificationScreen() {
         {saved > 0 && (
           <Layout level="3" style={{ margin: 4, borderRadius: 8, padding: 4 }}>
             <Text category="h6">
-              <Icon name="check" style={{ height: 24, width: 24 }} /> Settings Saved
+              <Icon name="check" style={{ height: 24, width: 24 }} /> {t("settings_common:saved")}
             </Text>
           </Layout>
         )}
         {saved === 2 && (
           <Layout level="3" style={{ margin: 4, borderRadius: 8, padding: 4 }}>
             <Text category="h6">
-              <Icon name="crosshairs-off" style={{ height: 24, width: 24 }} /> Live Location
-              Disabled
+              <Icon name="crosshairs-off" style={{ height: 24, width: 24 }} />{" "}
+              {t("settings_notifications:locations_live_title")}{" "}
+              {t("settings_notifications:locations_live_disabled")}
             </Text>
-            <Text category="s1">
-              You must allow CuppaZee to always access your location.
-            </Text>
+            <Text category="s1">{t("settings_notifications:locations_live_blocked")}</Text>
           </Layout>
         )}
         <Button
@@ -853,13 +874,10 @@ export default function NotificationScreen() {
               let n = 1;
               if (!settings) return;
               if (settings.locations.dynamic) {
-                const x = await Permissions.askAsync(Permissions.LOCATION)
+                const x = await Permissions.askAsync(Permissions.LOCATION);
                 const { status, permissions } = x;
                 setDebugStatus(`DATA: ${JSON.stringify(x)}`);
-                if (
-                  status === "granted" &&
-                  permissions.location?.scope === "always"
-                ) {
+                if (status === "granted" && permissions.location?.scope === "always") {
                   await Location.startLocationUpdatesAsync("BACKGROUND_LOCATION", {
                     accuracy: Location.Accuracy.Balanced,
                     distanceInterval: 250,
@@ -886,7 +904,7 @@ export default function NotificationScreen() {
             }
           }}
           accessoryLeft={props => <Icon {...props} name="content-save" />}>
-          Save
+          {t("settings_common:save")}
         </Button>
       </View>
     </Layout>

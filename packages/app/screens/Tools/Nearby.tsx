@@ -13,6 +13,7 @@ import types from "@cuppazee/types";
 import Loading from "../../components/Loading";
 import dayjs from "dayjs";
 import { useNavigation } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
 
 type Bouncer = (MunzeeSpecialBouncer | MunzeeSpecial) & {
   hash: string;
@@ -38,11 +39,12 @@ interface NearbySettings {
 }
 
 export default function NearbyScreen() {
+  const { t } = useTranslation();
   const nav = useNavigation();
   const [size, onLayout] = useComponentSize();
   const theme = useTheme();
   const [settings, setSettings] = React.useState<NearbySettings>();
-  useTitle(`☕ Nearby Bouncers`);
+  useTitle(`☕ ${t("pages:tools_nearby")}`);
   const data = useCuppaZeeRequest<{ data: Bouncer[] }>(
     "bouncers/nearby",
     settings ?? {},
@@ -101,12 +103,14 @@ export default function NearbyScreen() {
             .sort((a, b) => a.distance - b.distance)
             .map(i => (
               <Pressable
-                onPress={() => nav.navigate("Tools", {
-                  screen: "Munzee",
-                  params: {
-                    a: i.munzee_id
-                  }
-                })}
+                onPress={() =>
+                  nav.navigate("Tools", {
+                    screen: "Munzee",
+                    params: {
+                      a: i.munzee_id,
+                    },
+                  })
+                }
                 style={{
                   width: 400,
                   maxWidth: "100%",
@@ -134,17 +138,22 @@ export default function NearbyScreen() {
                         ? i.mythological_munzee.friendly_name
                         : types.getType(i.logo)?.name ?? i.logo.slice(49, -4)}
                       {"mythological_munzee" in i ? (
-                        <Text category="s1"> by {i.mythological_munzee.creator_username}</Text>
+                        <Text category="s1"> {t("user_bouncers:by", { username: i.mythological_munzee.creator_username })}</Text>
                       ) : (
                         ""
                       )}
                     </Text>
 
                     <Text category="s1">
-                      At {i.friendly_name} by {i.full_url.split("/")[4]}
+                      {t("user_bouncers:host", {
+                        name: i.friendly_name,
+                        creator: i.full_url.split("/")[4],
+                      })}
                     </Text>
                     <Text category="c1">
-                      Expires {dayjs(i.special_good_until * 1000).format("LTS")}
+                      {t("user_bouncers:expires", {
+                        time: dayjs(i.special_good_until * 1000).format("LTS"),
+                      })}
                     </Text>
                   </View>
                   <Layout
@@ -186,7 +195,7 @@ export default function NearbyScreen() {
                         }
                         style={{ color: theme["text-basic-color"], height: 20, width: 20 }}
                       />
-                      {i.direction.slice(2)}
+                      {t(`common:direction_${i.direction.slice(2).toLowerCase() as "n" | "ne" | "nw" | "e" | "w" | "se" | "sw" | "s"}` as const)}
                     </Text>
                   </Layout>
                 </Layout>

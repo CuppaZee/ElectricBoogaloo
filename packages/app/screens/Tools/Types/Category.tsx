@@ -12,7 +12,7 @@ export default function SearchScreen() {
   const route = useRoute<RouteProp<ToolsStackParamList, "TypeCategory">>();
   const category =
     types.getCategory(route.params.category) ?? types.getCategory("root") ?? types.categories[0];
-  useTitle(`☕ Munzee Types - ${category?.name || ""}`);
+  useTitle(`☕ ${category?.name || ""}`);
   const nav = useNavigation<ToolsNavigatorProp<"TypeCategory">>();
 
   return (

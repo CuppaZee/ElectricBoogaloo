@@ -8,6 +8,7 @@ import useTitle from "../../hooks/useTitle";
 import { UpdateWrapper, UserSearchModal } from "./Notifications";
 import Fuse from "fuse.js";
 import useSearch from "../../hooks/useSearch";
+import { useTranslation } from "react-i18next";
 
 interface ClanSearchModalProps {
   close: (data: { clan_id: number; name: string; tagline: string }) => void;
@@ -68,7 +69,8 @@ function ClanSearchModal({ close }: ClanSearchModalProps) {
 }
 
 export default function AccountsScreen() {
-  useTitle("☕ Settings - Accounts");
+  const { t } = useTranslation();
+  useTitle(`☕ ${t("pages:settings")} - ${t("pages:settings_bookmarks")}`);
   const [userBookmarks, setUserBookmarks] = useUserBookmarks();
   const [clanBookmarks, setClanBookmarks] = useClanBookmarks();
   const [addUserModal, setAddUserModal] = React.useState(false);
@@ -112,7 +114,7 @@ export default function AccountsScreen() {
         <View style={{ width: 400, flexGrow: 1, maxWidth: "100%", padding: 4 }}>
           <Layout level="2" style={{ margin: 4, padding: 4, flex: 1, borderRadius: 8 }}>
             <Text style={{ margin: 4 }} category="h6">
-              Users
+              {t("settings_bookmarks:users")}
             </Text>
             <UpdateWrapper>
               {update => (
@@ -194,7 +196,7 @@ export default function AccountsScreen() {
                     style={{ margin: 4 }}
                     onPress={() => setAddUserModal(true)}
                     accessoryLeft={props => <Icon {...props} name="account-plus" />}>
-                    Add User
+                    {t("settings_bookmarks:add_user")}
                   </Button>
                 </>
               )}
@@ -204,7 +206,7 @@ export default function AccountsScreen() {
         <View style={{ width: 400, flexGrow: 1, maxWidth: "100%", padding: 4 }}>
           <Layout level="2" style={{ margin: 4, padding: 4, flex: 1, borderRadius: 8 }}>
             <Text style={{ margin: 4 }} category="h6">
-              Clans
+              {t("settings_bookmarks:clans")}
             </Text>
             <UpdateWrapper>
               {update => (
@@ -286,7 +288,7 @@ export default function AccountsScreen() {
                     style={{ margin: 4 }}
                     onPress={() => setAddClanModal(true)}
                     accessoryLeft={props => <Icon {...props} name="shield-plus" />}>
-                    Add Clan
+                    {t("settings_bookmarks:add_clan")}
                   </Button>
                 </>
               )}
@@ -298,7 +300,7 @@ export default function AccountsScreen() {
         {saved && (
           <Layout level="3" style={{ margin: 4, borderRadius: 8, padding: 4 }}>
             <Text category="h6">
-              <Icon name="check" style={{ height: 24, width: 24 }} /> Settings Saved
+              <Icon name="check" style={{ height: 24, width: 24 }} /> {t("settings_common:saved")}
             </Text>
           </Layout>
         )}
@@ -318,8 +320,9 @@ export default function AccountsScreen() {
               setSaved(false);
             }, 5000);
           }}
+          appearance="outline"
           accessoryLeft={props => <Icon {...props} name="content-save" />}>
-          Save
+          {t("settings_common:save")}
         </Button>
       </View>
     </Layout>

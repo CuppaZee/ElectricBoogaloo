@@ -21,6 +21,14 @@
     "tools_donate": "Doneren"
   },
   "drawer": {},
+  "user_profile": {
+    "level": "Level {level}",
+    "rank": "Rang #{rank}",
+    "points": {
+      "one": "Punt",
+      "other": "Punten"
+    }
+  },
   "user_activity": {
     "overview_points": {
       "one": "{count} Totaal aantal punten",
@@ -34,6 +42,7 @@
       "one": "{count} Deploy",
       "other": "{count} Deploys"
     },
+    "overview_passive_deploys": {},
     "overview_capons": {
       "one": "{count} Capon",
       "other": "{count} Capons"
@@ -53,6 +62,11 @@
     "history": "Geschiedenis"
   },
   "user_zeeops": {},
+  "user_blast_checker": {
+    "munzees": {}
+  },
+  "user_qrew_checker": {},
+  "user_universal_capper": {},
   "clan": {
     "requirements": "Vereisten",
     "rewards": "Beloningen",
@@ -65,6 +79,7 @@
   "settings_common": {
     "save": "Opslaan"
   },
+  "settings_personalisation": {},
   "settings_accounts": {
     "logout": "Uitloggen"
   },
@@ -72,6 +87,7 @@
     "bouncers_override_search": "Zoeken",
     "starred_users_search": "Zoeken"
   },
+  "settings_bookmarks": {},
   "bouncers": {},
   "calendar": {},
   "open_source": {},
@@ -81,5 +97,13 @@
     "search": "Zoeken"
   },
   "dashboard": {},
-  "tips": {}
+  "tips": {},
+  "type_details": {},
+  "poi_planner": {},
+  "evo_planner": {},
+  "donate": {},
+  "common": {},
+  "notifications": {},
+  "munzee_details": {},
+  "error": {}
 }

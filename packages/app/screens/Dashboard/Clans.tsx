@@ -12,7 +12,6 @@ export default function ClansDashCard(props: DashCardProps<unknown>) {
   const { t } = useTranslation();
   const nav = useNavigation();
   const [clans] = useClanBookmarks();
-  useTitle(`☕ Dashboard`);
   return (
     <Layout level="3" style={[styles.card, { flex: 1 }]}>
       <ScrollView onLayout={props.onOuterLayout} style={{ flex: 1 }}>

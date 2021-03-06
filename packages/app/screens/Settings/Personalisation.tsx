@@ -1,12 +1,15 @@
 import { Button, CheckBox, Icon, Layout, Radio, RadioGroup, Text } from "@ui-kitten/components";
+import dayjs from "dayjs";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 import { Pressable, ScrollView, View } from "react-native";
 import { CommonCell, pickTextColor } from "../../components/Clan/Cell";
 import { requirementMeta } from "../../components/Clan/Data";
 import ColourPicker from "../../components/Common/ColourPicker";
+import Select from "../../components/Common/Select";
 import useSetting, { ClanPersonalisationAtom, ThemeAtom } from "../../hooks/useSetting";
 import useTitle from "../../hooks/useTitle";
+import { LANGS } from "../../lang/i18n";
 
 import * as themes from "../../themes";
 import { UpdateWrapper } from "./Notifications";
@@ -201,7 +204,8 @@ function MockTable({ settings }: { settings: ClanStyle }) {
 const clan_colours = ["0", "1", "2", "3", "4", "5", null, null, null, null, null, "I", "B", "G"];
 
 export default function PersonalisationScreen() {
-  useTitle("☕ Settings - Personalisation");
+  const { t, i18n } = useTranslation();
+  useTitle(`☕ ${t("pages:settings")} - ${t("pages:settings_personalisation")}`);
   const [storedClanSettings, setStoredClanSettings] = useSetting(ClanPersonalisationAtom);
   const [clanSettings, setClanSettings] = React.useState<ClanStyle>();
   const [theme, setTheme] = useSetting(ThemeAtom);
@@ -226,7 +230,7 @@ export default function PersonalisationScreen() {
         <View style={{ width: 400, flexGrow: 1, maxWidth: "100%", padding: 4 }}>
           <Layout level="2" style={{ margin: 4, padding: 4, flex: 1, borderRadius: 8 }}>
             <Text style={{ margin: 4 }} category="h6">
-              Theme
+              {t("settings_personalisation:theme")}
             </Text>
             <View
               style={{ width: 280, flexDirection: "row", flexWrap: "wrap", alignSelf: "center" }}>
@@ -247,43 +251,60 @@ export default function PersonalisationScreen() {
                 </Pressable>
               ))}
             </View>
+
+            <Text style={{ margin: 4 }} category="h6">
+              {t("settings_personalisation:language")}
+            </Text>
+            <Select
+              style={{ margin: 4 }}
+              value={i18n.language}
+              onValueChange={value => {
+                i18n.changeLanguage(value);
+              }}
+              options={LANGS.map(i => ({
+                value: i[0],
+                label: i[1],
+              }))}
+            />
           </Layout>
         </View>
 
         <View style={{ width: 400, flexGrow: 1, maxWidth: "100%", padding: 4 }}>
           <Layout level="2" style={{ margin: 4, padding: 4, flex: 1, borderRadius: 8 }}>
             <Text style={{ margin: 4 }} category="h6">
-              Clan Stats
+              {t("dashboard:clans")}
             </Text>
             <CheckBox
               style={{ margin: 8 }}
               checked={clanSettings.reverse}
               onChange={checked => setClanSettings({ ...clanSettings, reverse: checked })}>
-              Reverse Columns/Rows
+              {t("settings_personalisation:clan_reverse")}
             </CheckBox>
             <CheckBox
               disabled={clanSettings.style === 0}
               style={{ margin: 8 }}
               checked={clanSettings.single_line}
               onChange={checked => setClanSettings({ ...clanSettings, single_line: checked })}>
-              Single Line Cells
+              {t("settings_personalisation:clan_single_line")}
             </CheckBox>
             <CheckBox
               style={{ margin: 8 }}
               checked={clanSettings.full_background}
               onChange={checked => setClanSettings({ ...clanSettings, full_background: checked })}>
-              Full Colour Background
+              {t("settings_personalisation:clan_full_background")}
             </CheckBox>
-            <Text category="s1">Style</Text>
+            <Text category="s1">{t("settings_personalisation:clan_style")}</Text>
             <RadioGroup
               style={{ margin: 8 }}
               selectedIndex={clanSettings.style}
               onChange={index => setClanSettings({ ...clanSettings, style: index })}>
-              <Radio disabled={clanSettings.single_line}>Large</Radio>
-              <Radio>Comfortable</Radio>
-              <Radio>Compact</Radio>
+              <Radio disabled={clanSettings.single_line}>
+                {t("settings_personalisation:clan_style_0")}
+              </Radio>
+              <Radio>{t("settings_personalisation:clan_style_1")}</Radio>
+              <Radio>{t("settings_personalisation:clan_style_2")}</Radio>
             </RadioGroup>
-            <Text category="s1">Colours</Text>
+            <Text category="s1">{t("settings_personalisation:clan_colours")}</Text>
 
             <UpdateWrapper>
               {update => (
@@ -336,7 +357,7 @@ export default function PersonalisationScreen() {
                 </>
               )}
             </UpdateWrapper>
-            <Text category="s1">Preview</Text>
+            <Text category="s1">{t("settings_personalisation:clan_preview")}</Text>
             <MockTable settings={clanSettings} />
           </Layout>
         </View>
@@ -352,7 +373,7 @@ export default function PersonalisationScreen() {
         {saved && (
           <Layout level="3" style={{ margin: 4, borderRadius: 8, padding: 4 }}>
             <Text category="h6">
-              <Icon name="check" style={{ height: 24, width: 24 }} /> Settings Saved
+              <Icon name="check" style={{ height: 24, width: 24 }} /> {t("settings_common:saved")}
             </Text>
           </Layout>
         )}
@@ -365,8 +386,9 @@ export default function PersonalisationScreen() {
               setSaved(false);
             }, 5000);
           }}
+          appearance="outline"
           accessoryLeft={props => <Icon {...props} name="content-save" />}>
-          Save
+          {t("settings_common:save")}
         </Button>
       </View>
     </Layout>

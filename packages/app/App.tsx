@@ -22,6 +22,7 @@ import "./lang/i18n";
 
 import "./BackgroundLocation";
 import useSetting, { ThemeAtom } from "./hooks/useSetting";
+import { useTranslation } from "react-i18next";
 
 function MCIcon({ name, style }: { name: string | number | symbol; style: any }) {
   try {
@@ -71,6 +72,7 @@ function AppB() {
   const colorScheme = useColorScheme();
   const [themeValue] = useSetting(ThemeAtom);
   const theme = themes[themeValue];
+  const { i18n } = useTranslation();
   return (
     <>
       {Platform.OS === "web" && (
@@ -129,7 +131,7 @@ function AppB() {
           } as any
         }
         theme={theme}>
-        <Navigation colorScheme={colorScheme} />
+        <Navigation key={i18n.language} colorScheme={colorScheme} />
         <StatusBar />
       </ApplicationProvider>
     </>

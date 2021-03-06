@@ -12,15 +12,17 @@ import useActivity from "../../hooks/useActivity";
 import Loading from "../../components/Loading";
 import { Pressable, ScrollView, View } from "react-native";
 import TypeImage from "../../components/Common/TypeImage";
+import { useTranslation } from "react-i18next";
 
 export default function UserChallengesScreen() {
+  const { t } = useTranslation();
   const [size, onLayout] = useComponentSize();
   const route = useRoute<RouteProp<UserStackParamList, "Challenges">>();
   const nav = useNavigation();
   useTitle(
-    `☕ ${route.params.username} - Challenges - ${dayjs(
+    `☕ ${route.params.username} - ${t("pages:user_challenges")} - ${dayjs(
       route.params?.date ?? dayjs.mhqNow()
-    ).format("DD/MM/YYYY")}`
+    ).format("L")}`
   );
   const user = useMunzeeRequest(
     "user",

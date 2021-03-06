@@ -10,6 +10,7 @@ import { useSyncScrollViewController } from "../../components/Clan/SyncScrollVie
 import Select from "../../components/Common/Select";
 import Tip from "../../components/Common/Tip";
 import useSetting, { ClanPersonalisationAtom } from "../../hooks/useSetting";
+import useTitle from "../../hooks/useTitle";
 import { ClanStackParamList } from "../../types";
 
 export default function ClanStatsScreen2() {
@@ -22,6 +23,7 @@ export default function ClanStatsScreen2() {
     route.params.month ? Number(route.params.month) - 1 : undefined
   );
   const clan_id = Number(route.params.clanid);
+  useTitle(`☕ ${clan_id}`);
   return (
     <Layout style={{ flex: 1 }}>
       <ScrollView style={{ flex: 1 }}>

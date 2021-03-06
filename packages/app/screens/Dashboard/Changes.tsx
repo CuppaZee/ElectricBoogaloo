@@ -38,6 +38,15 @@ function BuildCard(build: Build) {
                   source={{ uri: feature.image }}
                 />
               )}
+              {feature.avatars && (
+                <View style={{ flexDirection: "row", justifyContent: "center", flexWrap: "wrap" }}>
+                  {feature.avatars.map(image => <Image
+                    resizeMode="contain"
+                    style={{ height: 64, width: 64, borderRadius: 32 }}
+                    source={{ uri: image }}
+                  />)}
+                </View>
+              )}
             </View>
           ))}
         </View>
@@ -118,7 +127,6 @@ function BuildCard(build: Build) {
 
 export default function ChangesDashCard(props: DashCardProps<unknown>) {
   const [build, setBuild] = useSetting(BuildAtom);
-  useTitle(`☕ Dashboard`);
   return (
     <Layout level="3" style={[styles.card, { flex: 1 }]}>
       <ScrollView onLayout={props.onOuterLayout} style={{ flex: 1 }}>

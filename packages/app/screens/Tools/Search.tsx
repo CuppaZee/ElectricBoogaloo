@@ -1,5 +1,4 @@
-import db, { TypeHidden, TypeTags } from "@cuppazee/types";
-import { Icon, Input, Layout, List, ListItem, Text } from "@ui-kitten/components";
+import { Icon, Input, Layout, ListItem, Text } from "@ui-kitten/components";
 import * as React from "react";
 import { FlatList, Image, View } from "react-native";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
@@ -11,9 +10,11 @@ import types from "@cuppazee/types";
 import TypeImage from "../../components/Common/TypeImage";
 import { useNavigation } from "@react-navigation/native";
 import Tip from "../../components/Common/Tip";
+import { useTranslation } from "react-i18next";
 
 export default function SearchScreen() {
-  useTitle(`☕ Search`);
+  const { t } = useTranslation();
+  useTitle(`☕ ${t("pages:tools_search")}`);
   const [value, search, onValue] = useSearch(500);
   const users = useMunzeeRequest("user/find", { text: search }, true, undefined, true);
   const clans = useCuppaZeeRequest("clan/list", { format: "list" }, true, undefined, true);
@@ -40,7 +41,7 @@ export default function SearchScreen() {
     <Layout style={{ padding: 4, flex: 1 }}>
       <Input
         style={{ margin: 4, width: 400, maxWidth: "100%", alignSelf: "center" }}
-        label="Search"
+        label={t("search:search")}
         value={value}
         onChangeText={onValue}
       />
@@ -103,11 +104,11 @@ export default function SearchScreen() {
             description={
               "icon" in item.item
                 ? "category" in item.item
-                  ? "Type"
-                  : "Type Category"
+                  ? t("search:type")
+                  : t("search:category")
                 : "user_id" in item.item
-                ? "Player"
-                : "Clan"
+                ? t("search:player")
+                : t("search:clan")
             }
             onPress={() => {
               if ("user_id" in item.item) {

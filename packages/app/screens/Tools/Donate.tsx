@@ -5,11 +5,13 @@ import {
   Text,
 } from "@ui-kitten/components";
 import * as React from "react";
+import { useTranslation } from "react-i18next";
 import { Linking } from "react-native";
 import useTitle from "../../hooks/useTitle";
 
 export default function DonateScreen() {
-  useTitle(`☕ Donate`);
+  const { t } = useTranslation();
+  useTitle(`☕ ${t("pages:tools_donate")}`);
   return (
     <Layout style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Button
@@ -17,20 +19,20 @@ export default function DonateScreen() {
         appearance="outline"
         style={{ margin: 4 }}
         accessoryLeft={props => <Icon name="patreon" {...props} />}>
-        Become a Patron
+        {t("donate:patreon")}
       </Button>
       <Button
         onPress={() => Linking.openURL("https://ko-fi.com/sohcah")}
         appearance="outline"
         style={{ margin: 4 }}
         accessoryLeft={props => <Icon name="coffee" {...props} />}>
-        Buy me a Coffee
+        {t("donate:kofi")}
       </Button>
       <Text style={{ textAlign: "center", maxWidth: "80%" }} category="s1">
-        Donations can also be sent via PayPal to donate@cuppazee.app
+        {t("donate:paypal_title", { email: "donate@cuppazee.app" })}
       </Text>
       <Text style={{ textAlign: "center", maxWidth: "80%" }} category="c1">
-        Please ensure this email address is typed correctly, noting that CuppaZee uses .app, not .com.
+        {t("donate:paypal_description")}
       </Text>
     </Layout>
   );

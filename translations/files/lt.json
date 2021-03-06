@@ -18,6 +18,10 @@
     "tools_donate": ""
   },
   "drawer": {},
+  "user_profile": {
+    "level": "",
+    "rank": ""
+  },
   "user_activity": {
     "overview_points": {
       "one": "{count} taškas",
@@ -34,6 +38,7 @@
       "few": "",
       "other": "{count} deployinta"
     },
+    "overview_passive_deploys": {},
     "overview_capons": {
       "one": "{count} caponas",
       "few": "",
@@ -52,6 +57,11 @@
     "history": ""
   },
   "user_zeeops": {},
+  "user_blast_checker": {
+    "munzees": {}
+  },
+  "user_qrew_checker": {},
+  "user_universal_capper": {},
   "clan": {
     "requirements": "",
     "rewards": "",
@@ -64,6 +74,7 @@
   "settings_common": {
     "save": ""
   },
+  "settings_personalisation": {},
   "settings_accounts": {
     "logout": ""
   },
@@ -71,6 +82,7 @@
     "bouncers_override_search": "Paieška",
     "starred_users_search": "Paieška"
   },
+  "settings_bookmarks": {},
   "bouncers": {},
   "calendar": {},
   "open_source": {},
@@ -80,5 +92,13 @@
     "search": "Paieška"
   },
   "dashboard": {},
-  "tips": {}
+  "tips": {},
+  "type_details": {},
+  "poi_planner": {},
+  "evo_planner": {},
+  "donate": {},
+  "common": {},
+  "notifications": {},
+  "munzee_details": {},
+  "error": {}
 }

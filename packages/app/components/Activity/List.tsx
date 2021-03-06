@@ -19,6 +19,8 @@ import {
 import UserActivityListItem from "./ListItem";
 import UserActivityOverview from "./Overview";
 import { UserStackParamList } from "../../types";
+import getDateService from "../Common/getDateService";
+import { useTranslation } from "react-i18next";
 
 export default function UserActivityList({
   d,
@@ -29,6 +31,7 @@ export default function UserActivityList({
   user_id: number;
   toggleFilterModal?: () => void;
 }) {
+  const { t } = useTranslation();
   const route = useRoute<RouteProp<UserStackParamList, "Activity">>();
   const nav = useNavigation<
     StackNavigationProp<UserStackParamList, "Activity">
@@ -51,6 +54,7 @@ export default function UserActivityList({
             date={new Date(route.params.date ?? dayjs.mhqNow().valueOf())}
             onSelect={nextDate => nav.setParams({ date: dayjs(nextDate).format("YYYY-MM-DD") })}
             accessoryRight={props => <Icon {...props} name="calendar" />}
+            dateService={getDateService()}
           />
           {toggleFilterModal && (
             <Button
@@ -58,10 +62,9 @@ export default function UserActivityList({
               size="small"
               appearance="ghost"
               accessoryLeft={props => <Icon {...props} name="filter" />}>
-              Edit Filters
+              {t("user_activity:filter_edit")}
             </Button>
           )}
-          {/* // TODO: Translate */}
           <UserActivityOverview
             user_id={user_id}
             day={route.params.date ?? dayjs.mhqNow().format("YYYY-MM-DD")}

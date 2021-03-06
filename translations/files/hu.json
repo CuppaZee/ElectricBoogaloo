@@ -18,6 +18,10 @@
     "tools_donate": "Adományozás"
   },
   "drawer": {},
+  "user_profile": {
+    "level": "Szint",
+    "rank": "Helyezés"
+  },
   "user_activity": {
     "overview_points": {
       "one": "{count} Össz pont\n",
@@ -31,6 +35,7 @@
       "one": "{count} Telepítés",
       "other": "{count} Telepítés"
     },
+    "overview_passive_deploys": {},
     "overview_capons": {
       "one": "{count} Capon",
       "other": "{count} Capon"
@@ -48,6 +53,11 @@
     "history": "Történet"
   },
   "user_zeeops": {},
+  "user_blast_checker": {
+    "munzees": {}
+  },
+  "user_qrew_checker": {},
+  "user_universal_capper": {},
   "clan": {
     "requirements": "Követelmények",
     "rewards": "Jutalmak",
@@ -60,6 +70,7 @@
   "settings_common": {
     "save": "Mentés"
   },
+  "settings_personalisation": {},
   "settings_accounts": {
     "logout": "Kijelentkezés"
   },
@@ -67,6 +78,7 @@
     "bouncers_override_search": "Keresés",
     "starred_users_search": "Keresés"
   },
+  "settings_bookmarks": {},
   "bouncers": {},
   "calendar": {},
   "open_source": {},
@@ -76,5 +88,13 @@
     "search": "Keresés"
   },
   "dashboard": {},
-  "tips": {}
+  "tips": {},
+  "type_details": {},
+  "poi_planner": {},
+  "evo_planner": {},
+  "donate": {},
+  "common": {},
+  "notifications": {},
+  "munzee_details": {},
+  "error": {}
 }

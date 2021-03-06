@@ -7,11 +7,13 @@ import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { ToolsStackParamList } from "../../../types";
 import TypeImage from "../../../components/Common/TypeImage";
 import { ToolsNavigatorProp } from "../../../navigation/ToolsNavigator";
+import { useTranslation } from "react-i18next";
 
 export default function SearchScreen() {
+  const { t } = useTranslation();
   const route = useRoute<RouteProp<ToolsStackParamList, "TypeMunzee">>();
   const type = types.getType(route.params.type);
-  useTitle(`☕ Munzee Types - ${type?.name || ""}`);
+  useTitle(`☕ ${type?.name || ""}`);
   const nav = useNavigation<ToolsNavigatorProp<"TypeMunzee">>();
   if (!type) {
     return nav.goBack();
@@ -79,7 +81,7 @@ export default function SearchScreen() {
           <View style={{ padding: 4, width: 600, maxWidth: "100%" }}>
             <Layout level="3" style={{ borderRadius: 8, padding: 8 }}>
               <Text style={{ textAlign: "center" }} category="h5">
-                Can Host
+                {t("type_details:can_host")}
               </Text>
               <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
                 {types.types
@@ -106,7 +108,7 @@ export default function SearchScreen() {
           <View style={{ padding: 4, width: 600, maxWidth: "100%" }}>
             <Layout level="3" style={{ borderRadius: 8, padding: 8 }}>
               <Text style={{ textAlign: "center" }} category="h5">
-                Lands on
+                {t("type_details:lands_on")}
               </Text>
               <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
                 {types.types

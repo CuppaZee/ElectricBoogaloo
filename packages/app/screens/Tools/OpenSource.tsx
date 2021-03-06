@@ -1,5 +1,6 @@
 import { Button, Icon, Layout, List, ListItem, Text } from "@ui-kitten/components";
 import * as React from "react";
+import { useTranslation } from "react-i18next";
 import { Linking } from "react-native";
 import dependencies from "../../assets/dependencies.json";
 import useTitle from "../../hooks/useTitle";
@@ -100,7 +101,8 @@ const libs: any[] = dependencies.data.body
   .sort((a, b) => (a.Name > b.Name ? 1 : (a.Name < b.Name ? -1 : 0)));
 
 export default function OpenSourceScreen() {
-  useTitle("☕ Open Source");
+  const { t } = useTranslation();
+  useTitle(`☕ ${t("pages:tools_open_source")}`);
   return (
     <Layout style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <List
@@ -108,30 +110,26 @@ export default function OpenSourceScreen() {
           <Layout>
             <Layout style={{ margin: 4, padding: 4, borderRadius: 8 }} level="3">
               <Text style={{ textAlign: "center" }} category="h5">
-                CuppaZee Open Source
+                {t("open_source:title")}
               </Text>
               <Text style={{ textAlign: "center" }} category="p1">
-                The source code for the CuppaZee App is available on GitHub
+                {t("open_source:description")}
               </Text>
               <Button
                 appearance="ghost"
                 size="small"
                 accessoryLeft={props => <Icon {...props} name="code-tags" />}
-                onPress={() => Linking.openURL("https://github.com/CuppaZee/ElectricBoogaloo")}
-              >
-                Source Code
+                onPress={() => Linking.openURL("https://github.com/CuppaZee/ElectricBoogaloo")}>
+                {t("open_source:source_code")}
               </Button>
               <Text style={{ textAlign: "center" }} category="p1">
-                CuppaZee publishes 3 packages on NPM
+                {t("open_source:packages")}
               </Text>
               <Text style={{ textAlign: "center" }} category="p2">
-                @cuppazee/types - A Database of Most Munzee Types
+                {t("open_source:packages_types")}
               </Text>
               <Text style={{ textAlign: "center" }} category="p2">
-                @cuppazee/icons - A Database of Most Munzee Type Icons
-              </Text>
-              <Text style={{ textAlign: "center" }} category="p2">
-                @cuppazee/api - TypeScript Definitions for the Munzee API
+                {t("open_source:packages_api")}
               </Text>
             </Layout>
           </Layout>
@@ -143,7 +141,7 @@ export default function OpenSourceScreen() {
         renderItem={({ item }: { item: Lib }) => (
           <ListItem
             title={`${item.Name} - ${item.Version}`}
-            description={`${item.VendorName} - ${item.VendorUrl}\n${item.License} License`}
+            description={`${item.VendorName} - ${item.VendorUrl}\n${t("open_source:license", { license: item.License })}`}
             accessoryLeft={item.Starred ? props => <Icon {...props} name="star" /> : undefined}
             accessoryRight={() => (
               <>

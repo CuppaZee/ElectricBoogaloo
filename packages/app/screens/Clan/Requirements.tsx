@@ -2,6 +2,7 @@ import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { Layout } from "@ui-kitten/components";
 import dayjs from "dayjs";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { ScrollView } from "react-native";
 import { gameIDToMonth, monthToGameID } from "../../components/Clan/Data";
 import ClanRequirementsTable from "../../components/Clan/Requirements";
@@ -9,9 +10,12 @@ import ClanRequirementsList from "../../components/Clan/RequirementsList";
 import ClanRewardsTable from "../../components/Clan/Rewards";
 import Select from "../../components/Common/Select";
 import Tip from "../../components/Common/Tip";
+import useTitle from "../../hooks/useTitle";
 import { ClanStackParamList } from "../../types";
 
 export default function ClanStatsScreen2() {
+  const { t } = useTranslation();
+  useTitle(`☕ ${t("pages:clan_requirements")}`);
   const route = useRoute<RouteProp<ClanStackParamList, "Requirements">>();
   const nav = useNavigation();
   const game_id = monthToGameID(

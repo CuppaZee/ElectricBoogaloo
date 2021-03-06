@@ -2,6 +2,7 @@ import db, { TypeHidden } from "@cuppazee/types";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { DrawerItem, Layout, Text } from "@ui-kitten/components";
 import * as React from "react";
+import { useTranslation } from "react-i18next";
 import { ScrollView, View } from "react-native";
 import { CapturesIcon } from "../../components/Captures/Icon";
 import TypeImage from "../../components/Common/TypeImage";
@@ -12,10 +13,11 @@ import useTitle from "../../hooks/useTitle";
 import { UserStackParamList } from "../../types";
 
 export default function UserCapturesScreen() {
+  const { t } = useTranslation();
   const [size, onLayout] = useComponentSize();
   const route = useRoute<RouteProp<UserStackParamList, "Captures">>();
   const nav = useNavigation();
-  useTitle(`☕ ${route.params.username} - Captures - ${route.params.category}`);
+  useTitle(`☕ ${route.params.username} - ${t("pages:user_captures")} - ${route.params.category}`);
   const user = useMunzeeRequest(
     "user",
     { username: route.params?.username },

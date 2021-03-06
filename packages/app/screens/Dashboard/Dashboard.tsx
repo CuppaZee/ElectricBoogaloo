@@ -1,5 +1,6 @@
 import { Icon, Layout, useTheme } from "@ui-kitten/components";
 import * as React from "react";
+import { useTranslation } from "react-i18next";
 import {
   FlatList,
   Image,
@@ -49,6 +50,7 @@ export interface DashCardProps<i> {
 }
 
 export default function DashboardScreen() {
+  const { t } = useTranslation();
   const theme = useTheme();
   const scrollRef = React.useRef<FlatList>();
   const scrollSize = React.useRef<{ width: number; height: number }>();
@@ -68,7 +70,7 @@ export default function DashboardScreen() {
   const [size, onLayout] = useComponentSize();
   const width = scrollSize.current?.width ?? size?.width ?? 0;
 
-  useTitle(`☕ Dashboard`);
+  useTitle(`☕ ${t("pages:dashboard_dashboard")}`);
   if (!size)
     return (
       <View style={{ flex: 1 }} onLayout={onLayout}>

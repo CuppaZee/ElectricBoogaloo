@@ -2,6 +2,7 @@ import db, { TypeHidden, TypeTags } from "@cuppazee/types";
 import { useNavigation } from "@react-navigation/native";
 import { Layout, Text, Icon, Button } from "@ui-kitten/components";
 import * as React from "react";
+import { useTranslation } from "react-i18next";
 import { ScrollView, View } from "react-native";
 import BouncerOverviewConverter from "../../components/Bouncers/Data";
 import { BouncerIcon } from "../../components/Bouncers/Icon";
@@ -10,7 +11,8 @@ import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
 import useTitle from "../../hooks/useTitle";
 
 export default function BouncersScreen() {
-  useTitle(`☕ Bouncers`);
+  const { t } = useTranslation();
+  useTitle(`☕ ${t("pages:tools_bouncers")}`);
   const nav = useNavigation();
   const data = useCuppaZeeRequest("bouncers/overview", {});
   const d = React.useMemo(() => data.data ? BouncerOverviewConverter(data.data.data) : null, [data.dataUpdatedAt]);

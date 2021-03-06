@@ -4,6 +4,7 @@ import { Pressable, StyleSheet, View } from "react-native";
 import db from "@cuppazee/types";
 import TypeImage from "../Common/TypeImage";
 import { BlastPointsData } from "../../screens/User/Blast";
+import { useTranslation } from "react-i18next";
 
 export type BlastIconProps = {
   icon: string;
@@ -12,6 +13,7 @@ export type BlastIconProps = {
 }
 
 export function BlastIcon({ icon, points, total }: BlastIconProps) {
+  const { t } = useTranslation();
   const [visible, setVisible] = React.useState(false);
   return (
     <Popover
@@ -30,7 +32,7 @@ export function BlastIcon({ icon, points, total }: BlastIconProps) {
           {total.toLocaleString()}x {db.getType(icon)?.name ?? icon ?? ""}
         </Text>
         <Text style={{ textAlign: "center" }} category="s1">
-          {points.min} - {points.max} Pts (Avg. {points.avg})
+          {t("user_blast_checker:points", points)}
         </Text>
       </Layout>
     </Popover>

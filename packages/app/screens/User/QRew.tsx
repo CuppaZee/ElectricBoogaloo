@@ -12,6 +12,7 @@ import { pickTextColor } from "../../components/Clan/Cell";
 import { TypeState } from "@cuppazee/types/lib";
 import dayjs from "dayjs";
 import useSetting, { ClanPersonalisationAtom } from "../../hooks/useSetting";
+import { useTranslation } from "react-i18next";
 
 interface QRewData {
   cap: {
@@ -64,8 +65,7 @@ function Card(props: CardProps) {
             borderLeftWidth: style.full_background ? 0 : 4,
             borderColor: style.colours[props.done ? 5 : 0],
             backgroundColor:
-              style.colours[props.done ? 5 : 0] +
-              (style.full_background ? "" : "22"),
+              style.colours[props.done ? 5 : 0] + (style.full_background ? "" : "22"),
             alignItems: "center",
           }}>
           <Icon
@@ -85,10 +85,11 @@ function Card(props: CardProps) {
 }
 
 export default function UserClanScreen() {
+  const { t } = useTranslation();
   const theme = useTheme();
   const [size, onLayout] = useComponentSize();
   const route = useRoute<RouteProp<UserStackParamList, "QRew">>();
-  useTitle(`☕ ${route.params.username} - QRew Checker`);
+  useTitle(`☕ ${route.params.username} - ${t("pages:user_qrew_checker")}`);
   const user = useMunzeeRequest(
     "user",
     { username: route.params?.username },
@@ -144,29 +145,47 @@ export default function UserClanScreen() {
                 />
               </View>
               <Text category="h6">
-                Checking if {user.data?.data?.username || ""} will{" "}
-                {user.data?.data?.titles.join(",").includes("ZeeQRew")
-                  ? "keep"
-                  : user.data?.data?.titles.join(",").includes("QRew")
-                  ? "keep/gain"
-                  : "gain"}{" "}
-                QRew/ZeeQRew Status on {dayjs(data.data.data.next_check).format("L")}
+                {t("user_qrew_checker:check", {
+                  username: user.data?.data?.username || "",
+                  state: t(
+                    `user_qrew_checker:state_${
+                      user.data?.data?.titles.join(",").includes("ZeeQRew")
+                        ? "keep"
+                        : user.data?.data?.titles.join(",").includes("QRew")
+                        ? "keep_gain"
+                        : "gain"
+                    }` as const
+                  ),
+                  date: dayjs(data.data.data.next_check).format("L"),
+                })}
               </Text>
             </Layout>
           </View>
           <View style={{ width: 300, flexGrow: 1, maxWidth: "100%" }}>
             <Text style={{ margin: 4 }} category="h4">
-              QRew
+              {t("user_qrew_checker:qrew")}
             </Text>
             <Card
-              title="Premium"
-              description={user.data?.data?.premium === 1 ? "Yes" : "No"}
+              title={t("user_qrew_checker:premium")}
+              description={
+                user.data?.data?.premium === 1
+                  ? t("user_qrew_checker:yes")
+                  : t("user_qrew_checker:no")
+              }
               done={user.data?.data?.premium === 1}
             />
-            <Card title="Captures" description={`${caps} / 1000`} done={caps >= 1000} />
-            <Card title="Deploys" description={`${deps} / 100`} done={deps >= 100} />
             <Card
-              title="Recent Capture"
+              title={t("user_qrew_checker:captures")}
+              description={`${caps} / 1000`}
+              done={caps >= 1000}
+            />
+            <Card
+              title={t("user_qrew_checker:deploys")}
+              description={`${deps} / 100`}
+              done={deps >= 100}
+            />
+            <Card
+              title={t("user_qrew_checker:recent_capture")}
               description={
                 data.data.data.recent_cap ||
                 `No Captures after ${dayjs(data.data.data.earliest).format("L")}`
@@ -174,7 +193,7 @@ export default function UserClanScreen() {
               done={!!data.data.data.recent_cap}
             />
             <Card
-              title="Recent Deploy"
+              title={t("user_qrew_checker:recent_deploy")}
               description={
                 data.data.data.recent_dep ||
                 `No Deploys after ${dayjs(data.data.data.earliest).format("L")}`
@@ -184,30 +203,34 @@ export default function UserClanScreen() {
           </View>
           <View style={{ width: 300, flexGrow: 1, maxWidth: "100%" }}>
             <Text style={{ margin: 4 }} category="h4">
-              ZeeQRew
+              {t("user_qrew_checker:zeeqrew")}
             </Text>
             <Card
-              title="Premium"
-              description={user.data?.data?.premium === 1 ? "Yes" : "No"}
+              title={t("user_qrew_checker:premium")}
+              description={
+                user.data?.data?.premium === 1
+                  ? t("user_qrew_checker:yes")
+                  : t("user_qrew_checker:no")
+              }
               done={user.data?.data?.premium === 1}
             />
             <Card
-              title="Physical Captures"
+              title={t("user_qrew_checker:physical_captures")}
               description={`${physCaps} / 500`}
               done={physCaps >= 500}
             />
             <Card
-              title="Physical Deploys"
+              title={t("user_qrew_checker:physical_deploys")}
               description={`${physDeps} / 250`}
               done={physDeps >= 250}
             />
             <Card
-              title="Total Points"
+              title={t("user_qrew_checker:total_points")}
               description={`${user.data?.data?.points} / 100000`}
               done={(user.data?.data?.points ?? 0) >= 100000}
             />
             <Card
-              title="Recent Capture"
+              title={t("user_qrew_checker:recent_capture")}
               description={
                 data.data.data.recent_cap ||
                 `No Captures after ${dayjs(data.data.data.earliest).format("L")}`
@@ -215,7 +238,7 @@ export default function UserClanScreen() {
               done={!!data.data.data.recent_cap}
             />
             <Card
-              title="Recent Deploy"
+              title={t("user_qrew_checker:recent_deploy")}
               description={
                 data.data.data.recent_dep ||
                 `No Deploys after ${dayjs(data.data.data.earliest).format("L")}`

@@ -38,19 +38,19 @@ export const Challenges: Challenge[] = [
     categories: [
       {
         icon: "rainbowunicorn",
-        name: "challenges:shc_lite.tob",
+        name: "TOB",
         types: db.types.filter(
           i => i.has_tags(TypeTags.BouncerPCEscaped) || i.has_tags(TypeTags.BouncerMythAlterna)
         ),
       },
       {
         icon: "nomad",
-        name: "challenges:shc_lite.nomad",
+        name: "Nomad",
         types: db.types.filter(i => i.has_tags(TypeTags.BouncerNomad)),
       },
       {
         icon: "yeti",
-        name: "challenges:shc_lite.myth_1",
+        name: "Original/Classical Myth",
         types: db.types.filter(
           i =>
             (i.has_tags(TypeTags.BouncerMythOriginal) ||
@@ -61,7 +61,7 @@ export const Challenges: Challenge[] = [
       },
       {
         icon: "mermaid",
-        name: "challenges:shc_lite.myth_2",
+        name: "Mirror/Modern Myth",
         types: db.types.filter(
           i =>
             (i.has_tags(TypeTags.BouncerMythMirror) || i.has_tags(TypeTags.BouncerMythModern)) &&
@@ -71,13 +71,13 @@ export const Challenges: Challenge[] = [
       },
       {
         icon: "tuli",
-        name: "challenges:shc_lite.pc_1",
+        name: "Season 1 Pouch Creature",
         types: db.types.filter(
           i => i.has_tags(TypeTags.BouncerPCS1) && !i.has_tag(TypeTags.BouncerPCEscaped)
         ),
       },
       {
-        icon: "oniks",
+        icon: "Season 2 / Funfinity Pouch Creature",
         name: "challenges:shc_lite.pc_2",
         types: db.types.filter(
           i =>
@@ -88,21 +88,21 @@ export const Challenges: Challenge[] = [
       },
       {
         icon: "tuxflatrob",
-        name: "challenges:shc_lite.flat",
+        name: "Fancy Flat",
         types: db.types.filter(
           i => i.has_tags(TypeTags.BouncerFlat) && !i.has_tag(TypeTags.BouncerFlatPhantom)
         ),
       },
       {
         icon: "butterfly",
-        name: "challenges:shc_lite.temp",
+        name: "Temp POB",
         types: db.types.filter(
           i => i.has_tags(TypeTags.BouncerTPOB) || i.has_tags(TypeTags.BouncerEvolution)
         ),
       },
       {
         icon: "scattered",
-        name: "challenges:shc_lite.scatter",
+        name: "Scatter",
         types: db.types.filter(i => i.has_tags(TypeTags.Scatter)),
       },
     ],
@@ -114,24 +114,24 @@ export const Challenges: Challenge[] = [
     categories: [
       {
         icon: "vikerkaar",
-        name: "challenges:shc_pro.tob",
+        name: "TOB",
         types: db.types.filter(
           i => i.has_tags(TypeTags.BouncerPCEscaped) || i.has_tags(TypeTags.BouncerMythAlterna)
         ),
       },
       {
         icon: "nomad",
-        name: "challenges:shc_pro.nomad",
+        name: "Nomad",
         types: db.types.filter(i => i.has_tags(TypeTags.BouncerNomad)),
       },
       {
         icon: "retiredleprechaun",
-        name: "challenges:shc_pro.retired",
+        name: "Retired Bouncer",
         types: db.types.filter(i => i.has_tags(TypeTags.BouncerRetired)),
       },
       {
         icon: "yeti",
-        name: "challenges:shc_pro.myth_1",
+        name: "Original Myth",
         types: db.types.filter(
           i =>
             i.has_tags(TypeTags.BouncerMythOriginal) &&
@@ -141,7 +141,7 @@ export const Challenges: Challenge[] = [
       },
       {
         icon: "cyclops",
-        name: "challenges:shc_pro.myth_2",
+        name: "Classical Myth",
         types: db.types.filter(
           i =>
             i.has_tags(TypeTags.BouncerMythClassical) &&
@@ -151,7 +151,7 @@ export const Challenges: Challenge[] = [
       },
       {
         icon: "mermaid",
-        name: "challenges:shc_lite.myth_3",
+        name: "Mirror Myth",
         types: db.types.filter(
           i =>
             i.has_tags(TypeTags.BouncerMythMirror) &&
@@ -161,7 +161,7 @@ export const Challenges: Challenge[] = [
       },
       {
         icon: "poseidon",
-        name: "challenges:shc_lite.myth_4",
+        name: "Modern Myth",
         types: db.types.filter(
           i =>
             i.has_tags(TypeTags.BouncerMythModern) &&
@@ -171,7 +171,7 @@ export const Challenges: Challenge[] = [
       },
       {
         icon: "tuli",
-        name: "challenges:shc_lite.pc_1",
+        name: "Season 1 Pouch Creature",
         types: db.types.filter(
           i =>
             i.has_tags(TypeTags.BouncerPCS1) &&
@@ -181,7 +181,7 @@ export const Challenges: Challenge[] = [
       },
       {
         icon: "magnetus",
-        name: "challenges:shc_lite.pc_2",
+        name: "Season 2 Pouch Creature",
         types: db.types.filter(
           i =>
             i.has_tags(TypeTags.BouncerPCS2) &&
@@ -191,7 +191,7 @@ export const Challenges: Challenge[] = [
       },
       {
         icon: "oniks",
-        name: "challenges:shc_lite.pc_fun",
+        name: "Funfinity Stone",
         types: db.types.filter(
           i =>
             i.has_tags(TypeTags.BouncerPCFunfinity) &&
@@ -201,26 +201,26 @@ export const Challenges: Challenge[] = [
       },
       {
         icon: "tuxflatrob",
-        name: "challenges:shc_lite.flat",
+        name: "Fancy Flat",
         types: db.types.filter(
           i => i.has_tags(TypeTags.BouncerFlat) && !i.has_tag(TypeTags.BouncerRetired)
         ),
       },
       {
         icon: "butterfly",
-        name: "challenges:shc_lite.temp",
+        name: "Temp POB",
         types: db.types.filter(
           i => i.has_tags(TypeTags.BouncerTPOB) || i.has_tags(TypeTags.BouncerEvolution)
         ),
       },
       {
         icon: "scattered",
-        name: "challenges:shc_lite.pscatter",
+        name: "Physical Scatter",
         types: db.types.filter(i => i.has_tags(TypeTags.Scatter) && i.state === TypeState.Physical),
       },
       {
         icon: "charge",
-        name: "challenges:shc_lite.vscatter",
+        name: "Virtual Scatter",
         types: db.types.filter(i => i.has_tags(TypeTags.Scatter) && i.state === TypeState.Virtual),
       },
     ],

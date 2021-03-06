@@ -2,6 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Button, Icon, Layout, Text } from "@ui-kitten/components";
 import { useAtom } from "jotai";
 import * as React from "react";
+import { useTranslation } from "react-i18next";
 import { Image, ScrollView, View } from "react-native";
 import useLogin from "../../hooks/useLogin";
 import useSetting, { ReadyAtom } from "../../hooks/useSetting";
@@ -9,7 +10,8 @@ import useTitle from "../../hooks/useTitle";
 import { teakensAtom, useTeakens } from "../../hooks/useToken";
 
 export default function AccountsScreen() {
-  useTitle("☕ Settings - Accounts");
+  const { t } = useTranslation();
+  useTitle(`☕ ${t("pages:settings")} - ${t("pages:settings_accounts")}`);
   const [loading, login, ready] = useLogin("settings/accounts");
   const { loaded } = useTeakens();
   const [teakens, setTeakens] = useAtom(teakensAtom);
@@ -50,7 +52,7 @@ export default function AccountsScreen() {
                 onPress={login}
                 disabled={!ready}
                 accessoryLeft={props => <Icon {...props} name="refresh" />}>
-                Reauthenticate
+                {t("settings_accounts:reauthenticate")}
               </Button>
               <Button
                 style={{ margin: 4, flex: 1 }}
@@ -75,7 +77,7 @@ export default function AccountsScreen() {
                   }
                 }}
                 accessoryLeft={props => <Icon {...props} name="logout" />}>
-                Logout
+                {t("settings_accounts:logout")}
               </Button>
             </View>
           </Layout>
@@ -86,8 +88,9 @@ export default function AccountsScreen() {
           style={{ margin: 4 }}
           onPress={login}
           disabled={!ready}
+          appearance="outline"
           accessoryLeft={props => <Icon {...props} name="account-plus" />}>
-          Add Account
+          {t("settings_accounts:add_account")}
         </Button>
       </View>
     </Layout>

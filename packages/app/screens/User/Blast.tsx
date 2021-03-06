@@ -10,6 +10,7 @@ import { ScrollView, View } from "react-native";
 import MapView from "../../components/Maps/MapView";
 import Loading from "../../components/Loading";
 import { BlastIcon } from "../../components/Blast/Icon";
+import { useTranslation } from "react-i18next";
 
 export interface BlastPointsData {
   min: number;
@@ -35,11 +36,12 @@ interface BlastInfo {
 }
 
 export default function UserBouncersScreen() {
+  const { t } = useTranslation();
   const [size, onLayout] = useComponentSize();
   const route = useRoute<RouteProp<UserStackParamList, "Blast">>();
   const [blastInfo, setBlastInfo] = React.useState<BlastInfo>();
   const pos = React.useRef<Omit<BlastInfo, "amount">>();
-  useTitle(`☕ ${route.params.username} - Blast Checker`);
+  useTitle(`☕ ${route.params.username} - ${t("pages:user_blast_checker")}`);
   const user = useMunzeeRequest(
     "user",
     { username: route.params?.username },
@@ -114,10 +116,11 @@ export default function UserBouncersScreen() {
                   padding: 4,
                 }}>
                 <Text category="h6">
-                  Blast {n + 1} - {i.total} Munzees
+                  {t("user_blast_checker:blast", { n: n + 1 })} -
+                  {t("user_blast_checker:munzees", { n: i.total })}
                 </Text>
                 <Text category="s1">
-                  {i.points.min} - {i.points.max} Pts (Avg. {i.points.avg})
+                  {t("user_blast_checker:points", i.points)}
                 </Text>
                 <View style={{ alignSelf: "stretch", flexDirection: "row", flexWrap: "wrap" }}>
                   {Object.entries(i.types).map(i => (

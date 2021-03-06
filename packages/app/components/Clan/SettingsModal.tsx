@@ -24,7 +24,7 @@ export default function ClanSettingsModal({ clan_id, close }: ClanSettingsModalP
               options[clan_id].shadow = checked;
               update();
             }}>
-            Show Shadow Members
+            {t("clan:settings_shadow")}
           </CheckBox>
         )}
       </UpdateWrapper>
@@ -37,7 +37,7 @@ export default function ClanSettingsModal({ clan_id, close }: ClanSettingsModalP
               options[clan_id].subtract = checked;
               update();
             }}>
-            Subtract View
+            {t("clan:settings_subtract")}
           </CheckBox>
         )}
       </UpdateWrapper>
@@ -50,7 +50,7 @@ export default function ClanSettingsModal({ clan_id, close }: ClanSettingsModalP
               options[clan_id].share = checked;
               update();
             }}>
-            User Share Requirements
+            {t("clan:settings_share")}
           </CheckBox>
         )}
       </UpdateWrapper>
@@ -58,7 +58,7 @@ export default function ClanSettingsModal({ clan_id, close }: ClanSettingsModalP
         {update => (
           <Select
             style={{ margin: 4 }}
-            label="Goal Level"
+            label={t("clan:settings_goal")}
             value={options[clan_id].level.toString()}
             onValueChange={value => {
               options[clan_id].level = Number(value);
@@ -77,7 +77,7 @@ export default function ClanSettingsModal({ clan_id, close }: ClanSettingsModalP
           close();
           setOptions({ ...options });
         }}>
-        Done
+        {t("clan:settings_done")}
       </Button>
     </Layout>
   );

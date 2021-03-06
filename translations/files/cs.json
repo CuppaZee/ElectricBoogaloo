@@ -21,6 +21,15 @@
     "tools_donate": "Darovat"
   },
   "drawer": {},
+  "user_profile": {
+    "level": "Level {level}",
+    "rank": "Pořadí #{rank}",
+    "points": {
+      "one": "{n} bod",
+      "few": "{n} body",
+      "other": "{n} bodů"
+    }
+  },
   "user_activity": {
     "overview_points": {
       "one": "{count} bod dohromady",
@@ -37,6 +46,7 @@
       "few": "{count} založení",
       "other": "{count} založení"
     },
+    "overview_passive_deploys": {},
     "overview_capons": {
       "one": "{count} zachycení vlastní",
       "few": "{count} zachycení vlastních",
@@ -57,6 +67,11 @@
     "history": "Historie"
   },
   "user_zeeops": {},
+  "user_blast_checker": {
+    "munzees": {}
+  },
+  "user_qrew_checker": {},
+  "user_universal_capper": {},
   "clan": {
     "requirements": "Požadavky",
     "rewards": "Odměny",
@@ -69,6 +84,7 @@
   "settings_common": {
     "save": "Uložit"
   },
+  "settings_personalisation": {},
   "settings_accounts": {
     "logout": "Odhlásit"
   },
@@ -76,6 +92,7 @@
     "bouncers_override_search": "Hledat",
     "starred_users_search": "Hledat"
   },
+  "settings_bookmarks": {},
   "bouncers": {},
   "calendar": {},
   "open_source": {},
@@ -85,5 +102,13 @@
     "search": "Hledat"
   },
   "dashboard": {},
-  "tips": {}
+  "tips": {},
+  "type_details": {},
+  "poi_planner": {},
+  "evo_planner": {},
+  "donate": {},
+  "common": {},
+  "notifications": {},
+  "munzee_details": {},
+  "error": {}
 }

@@ -18,6 +18,10 @@
     "tools_donate": "Spenden"
   },
   "drawer": {},
+  "user_profile": {
+    "level": "Level {level}",
+    "rank": "Rang #{rank}"
+  },
   "user_activity": {
     "overview_points": {
       "one": "{count} Gesamte Punkte",
@@ -31,6 +35,7 @@
       "one": "{count} Deploy",
       "other": "{count} Deploys"
     },
+    "overview_passive_deploys": {},
     "overview_capons": {
       "one": "{count} CapOn",
       "other": "{count} CapOns"
@@ -48,6 +53,11 @@
     "history": "Verlauf"
   },
   "user_zeeops": {},
+  "user_blast_checker": {
+    "munzees": {}
+  },
+  "user_qrew_checker": {},
+  "user_universal_capper": {},
   "clan": {
     "requirements": "Anforderungen",
     "rewards": "Belohnungen",
@@ -60,6 +70,7 @@
   "settings_common": {
     "save": "speichern"
   },
+  "settings_personalisation": {},
   "settings_accounts": {
     "logout": "Ausloggen"
   },
@@ -67,6 +78,7 @@
     "bouncers_override_search": "Suche",
     "starred_users_search": "Suche"
   },
+  "settings_bookmarks": {},
   "bouncers": {},
   "calendar": {},
   "open_source": {},
@@ -76,5 +88,13 @@
     "search": "Suche"
   },
   "dashboard": {},
-  "tips": {}
+  "tips": {},
+  "type_details": {},
+  "poi_planner": {},
+  "evo_planner": {},
+  "donate": {},
+  "common": {},
+  "notifications": {},
+  "munzee_details": {},
+  "error": {}
 }

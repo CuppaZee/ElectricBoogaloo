@@ -117,9 +117,9 @@ export default function MunzeeScreen() {
                 <TypeImage style={{ margin: 4, size: 48 }} icon={m.original_pin_image} />
                 <View style={{ padding: 4, flex: 1 }}>
                   <Text category="h6">{m.friendly_name}</Text>
-                  <Text category="s1">By {m.creator_username}</Text>
+                  <Text category="s1">{t("munzee_details:owner", { username: m.creator_username })}</Text>
                   {m.deployed_at && (
-                    <Text category="s2">Deployed {dayjs(m.deployed_at).format("L LT")}</Text>
+                    <Text category="s2">{t("munzee_details:deployed", { date: dayjs(m.deployed_at).format("L LT") })}</Text>
                   )}
                 </View>
               </View>
@@ -128,7 +128,7 @@ export default function MunzeeScreen() {
                 selected={false}
                 title={() => (
                   <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
-                    Open on munzee.com
+                    {t("munzee_details:open")}
                   </Text>
                 )}
                 accessoryLeft={props => <Icon name="open-in-new" {...props} />}
@@ -152,13 +152,13 @@ export default function MunzeeScreen() {
                     title={() => (
                       <View style={{ flex: 1, justifyContent: "center" }}>
                         <Text style={{ marginLeft: 4 }} category="s1">
-                          Hosting {b.unicorn_munzee.friendly_name}
+                          {t("munzee_details:bouncer_hosting", {name: b.unicorn_munzee.friendly_name})}
                           <Text style={{ marginLeft: 4 }} category="s2">
-                            by {b.unicorn_munzee.creator_username}
+                            {t("munzee_details:owner", {username: b.unicorn_munzee.creator_username})}
                           </Text>
                         </Text>
                         <Text style={{ marginLeft: 4 }} category="s2">
-                          Expires at {dayjs(b.good_until * 1000).format("LTS")}
+                          {t("munzee_details:bouncer_expires", { time: dayjs(b.good_until * 1000).format("LTS") })}
                         </Text>
                       </View>
                     )}

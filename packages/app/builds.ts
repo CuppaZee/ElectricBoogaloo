@@ -13,6 +13,7 @@ export interface Feature {
   description: string;
   image?: string;
   thanks?: string;
+  avatars?: string[];
 }
 
 export interface Improvement {
@@ -516,6 +517,22 @@ const builds: Build[] = [
           "gnomebearskinhat",
           "gnomeastronauthelmet",
         ],
+      },
+    ],
+  },
+  {
+    build: 27,
+    date: "2021-03-06",
+    features: [
+      {
+        title: "Full Translation System!",
+        description:
+          "After many hours of work, I've now got a full translation system implemented in CuppaZee V2, so we're closer to release than ever! English (UK), English (US), Emojis and Nederlands are the 4 languages available at launch.",
+      },
+      {
+        title: "🇳🇱 Dutch Translations!",
+        description: "Thanks to the amazing sverlaan, CuppaZee V2 is now near-fully translated to Dutch! You can switch to this language in the Personalisation Settings now!",
+        avatars: ["https://munzee.global.ssl.fastly.net/images/avatars/ua2ts8.png"],
       },
     ],
   },
