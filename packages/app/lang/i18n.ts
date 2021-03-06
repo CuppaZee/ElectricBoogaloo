@@ -40,10 +40,12 @@ AsyncStorage.getItem("LANG", (e, r) => {
 });
 
 export const LANGS = [
-  ["test", "Emojis"],
+  ["de", "Deutsch"],
   ["en-GB", "English (UK)"],
   ["en", "English (US)"],
+  ["fi", "Suomi"],
   ["nl", "Nederlands"],
+  ["test", "Emojis"],
 ];
 
 export default i18n;

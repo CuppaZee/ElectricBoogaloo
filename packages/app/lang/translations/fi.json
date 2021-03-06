@@ -1,0 +1,2277 @@
+[
+    {
+        "term": "title",
+        "definition": "Kahvia ei l\u00f6ydy",
+        "context": "\"404\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "subtitle",
+        "definition": "T\u00e4\u00e4ll\u00e4 ei ole kahvia",
+        "context": "\"404\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "home",
+        "definition": "Palaa kotisivulle",
+        "context": "\"404\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "dashboard_dashboard",
+        "definition": "kojelauta",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "user_profile",
+        "definition": "Profiili",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "user_activity",
+        "definition": "Aktiviteetit",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "user_inventory",
+        "definition": "Omistuksesi",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "user_zeeops",
+        "definition": "ZeeOps",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "user_clan_progress",
+        "definition": "Edistymisesi klaanissa",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "user_bouncers",
+        "definition": "Pomppijat",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "user_blast_checker",
+        "definition": "Pommitarkastin",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "user_qrew_checker",
+        "definition": "QRew-tarkastin",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "user_universal_capper",
+        "definition": "Sosiaaliker\u00e4in",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "user_challenges",
+        "definition": "Haasteet",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan_requirements",
+        "definition": "Klaanivaatimukset",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "tools_bouncers",
+        "definition": "Pomppijat",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "tools_munzee_types",
+        "definition": "Munzee tyypit",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "tools_calendar",
+        "definition": "Kalenteri",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "tools_evo_planner",
+        "definition": "Evojen kehitys",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "tools_search",
+        "definition": "Etsi",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "settings_personalisation",
+        "definition": "Personoi",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "settings_notifications",
+        "definition": "Ilmoitukset",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "settings_accounts",
+        "definition": "Tilit",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "settings_bookmarks",
+        "definition": "Kirjanmerkit",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "tools_credits",
+        "definition": "Crediitit",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "tools_open_source",
+        "definition": "L\u00e4hdekoodit",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "overview_points",
+        "definition": {
+            "one": "{count} piste",
+            "other": "{count} pistett\u00e4"
+        },
+        "context": "\"user_activity\"",
+        "term_plural": "overview_points",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "overview_captures",
+        "definition": {
+            "one": "{count} nappaus",
+            "other": "{count} nappausta"
+        },
+        "context": "\"user_activity\"",
+        "term_plural": "overview_captures",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "overview_deploys",
+        "definition": {
+            "one": "{count} julkaisu",
+            "other": "{count} julkaisua"
+        },
+        "context": "\"user_activity\"",
+        "term_plural": "overview_deploys",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "overview_capons",
+        "definition": {
+            "one": "{count} napattu",
+            "other": "{count} napattua"
+        },
+        "context": "\"user_activity\"",
+        "term_plural": "overview_capons",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "filter_save",
+        "definition": "Tallenna filtterit",
+        "context": "\"user_activity\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "filter_types",
+        "definition": "Tyypit",
+        "context": "\"user_activity\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "filter_state",
+        "definition": "Tyyppi",
+        "context": "\"user_activity\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "filter_category",
+        "definition": "Luokka",
+        "context": "\"user_activity\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "activity_capture",
+        "definition": "Nappasit",
+        "context": "\"user_activity\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "activity_deploy",
+        "definition": "Julkaisit",
+        "context": "\"user_activity\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "activity_capon",
+        "definition": "{user} nappasi",
+        "context": "\"user_activity\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "owned_by_user",
+        "definition": "{user}'n",
+        "context": "\"user_activity\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "owned_by_self",
+        "definition": "sinun",
+        "context": "\"user_activity\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "none",
+        "definition": "Nolla",
+        "context": "\"user_activity\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "amount_undeployed",
+        "definition": {
+            "one": "{count} julkaisematon",
+            "other": "{count} julkaisematonta"
+        },
+        "context": "\"user_inventory\"",
+        "term_plural": "amount_undeployed",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "amount_credits",
+        "definition": {
+            "one": "{count} crediitti",
+            "other": "{count} crediitti\u00e4"
+        },
+        "context": "\"user_inventory\"",
+        "term_plural": "amount_credits",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "history",
+        "definition": "Historia",
+        "context": "\"user_inventory\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "collected",
+        "definition": "Saatu!",
+        "context": "\"user_zeeops\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "requirements",
+        "definition": "Vaatimukset",
+        "context": "\"clan\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan_requirements",
+        "definition": "Klaanin vaatimukset",
+        "context": "\"clan\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "loading",
+        "definition": "Lataa",
+        "context": "\"clan\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "individual",
+        "definition": "Pelaaja",
+        "context": "\"clan\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "group",
+        "definition": "Klaani",
+        "context": "\"clan\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "level",
+        "definition": "Taso {level}",
+        "context": "\"clan\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "individual_level",
+        "definition": "Pelaaja T{level}",
+        "context": "\"clan\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "group_level",
+        "definition": "Klaani T{level}",
+        "context": "\"clan\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "group_total",
+        "definition": "Klaani yht.",
+        "context": "\"clan\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "location_fail",
+        "definition": "Paikannus ep\u00e4onnistui",
+        "context": "\"maps\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "save",
+        "definition": "Tallenna",
+        "context": "\"settings_common\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "saved",
+        "definition": "Asetukset talletettu",
+        "context": "\"settings_common\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "reauthenticate",
+        "definition": "Kirjaudu uudelleen",
+        "context": "\"settings_accounts\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "logout",
+        "definition": "Poistu",
+        "context": "\"settings_accounts\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "add_account",
+        "definition": "Lis\u00e4\u00e4 tili",
+        "context": "\"settings_accounts\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "error_web",
+        "definition": "Ei h\u00e4lytyksi\u00e4 selaimella",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "error_permissions",
+        "definition": "Lupapyynt\u00f6 ev\u00e4ttiin. Sallitko h\u00e4lytykset?",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "bouncers_title",
+        "definition": "Pomppijat",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "bouncers_enabled",
+        "definition": "Sallittu",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "bouncers_distance_default",
+        "definition": "Oletuset\u00e4isyys ({unit})",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "bouncers_distance_starred",
+        "definition": "T\u00e4htik\u00e4ytt\u00e4j\u00e4n et\u00e4isyys ({unit})",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "bouncers_override_distance",
+        "definition": "Et\u00e4isyys ({unit})",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "bouncers_override_search",
+        "definition": "Etsi",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "bouncers_override_search_hint",
+        "definition": "Voit etsi\u00e4 luokkia tai tyyppej\u00e4",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "bouncers_override_add",
+        "definition": "Lis\u00e4\u00e4 luokka\/tyyppi",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "starred_users_title",
+        "definition": "T\u00e4htik\u00e4ytt\u00e4j\u00e4t",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "starred_users_search",
+        "definition": "Etsi",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "starred_users_add",
+        "definition": "Lis\u00e4\u00e4 k\u00e4ytt\u00e4j\u00e4",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "locations_title",
+        "definition": "Sijainnit",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "locations_live_title",
+        "definition": "Laitteen sijainti",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "locations_live_disabled",
+        "definition": "Estetty",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "locations_static_name",
+        "definition": "Paikan nimi",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "locations_static_done",
+        "definition": "Valmis",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "locations_static_add",
+        "definition": "Lis\u00e4\u00e4 paikka",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "other_title",
+        "definition": "Muu",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "other_news_munzee",
+        "definition": "Munzee blogi",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "other_units_title",
+        "definition": "Yksik\u00f6t",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "other_units_metric",
+        "definition": "Metriset (km\/m)",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "other_units_imperial",
+        "definition": "Brittil\u00e4iset (mi\/ft)",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "uncategorised",
+        "definition": "Luokittelematon",
+        "context": "\"bouncers\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "dates",
+        "definition": "SMTKTPL",
+        "context": "\"calendar\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "qrewzees_on",
+        "definition": "QRewZees: On",
+        "context": "\"calendar\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "qrewzees_off",
+        "definition": "QRewZees: Ei",
+        "context": "\"calendar\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "egyptian_status",
+        "definition": "Egyptian: {type}",
+        "context": "\"calendar\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "western_status",
+        "definition": "Western: {type}",
+        "context": "\"calendar\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "chinese_status",
+        "definition": "Chinese: {types}",
+        "context": "\"calendar\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "title",
+        "definition": "CuppaZee l\u00e4hdekoodi",
+        "context": "\"open_source\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "description",
+        "definition": "CuppaZeen l\u00e4hdekoodi on saatavilla GitHub'ssa",
+        "context": "\"open_source\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "source_code",
+        "definition": "L\u00e4hdekoodi",
+        "context": "\"open_source\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "packages",
+        "definition": "CuppaZee julkaisee 3 pakettia NPM'll\u00e4",
+        "context": "\"open_source\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "packages_types",
+        "definition": "@cuppazee\/types - munzee tyyppien tietokanta",
+        "context": "\"open_source\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "packages_icons",
+        "definition": "@cuppazee\/icons - munzee ikonien tietokanta",
+        "context": "\"open_source\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "packages_api",
+        "definition": "@cuppazee\/api - Munzee APIn scriptien m\u00e4\u00e4ritykset",
+        "context": "\"open_source\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "license",
+        "definition": "{license} Lisenssi",
+        "context": "\"open_source\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "host",
+        "definition": "{creator}n munzeessa {name}",
+        "context": "\"user_bouncers\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "location",
+        "definition": "{town}, {country} [{times}]",
+        "context": "\"user_bouncers\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "captures",
+        "definition": "{number} nappausta - viimeksi {date}",
+        "context": "\"user_bouncers\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "never",
+        "definition": "Ei koskaan",
+        "context": "\"user_bouncers\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "rest_a",
+        "definition": "Huilailee",
+        "context": "\"user_bouncers\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "rest_b",
+        "definition": "Lentokent\u00e4ll\u00e4",
+        "context": "\"user_bouncers\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "rest_c",
+        "definition": "Odottaa bussia",
+        "context": "\"user_bouncers\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "facebook_title",
+        "definition": "Facebook-selain ei tue CuppaZeet\u00e4",
+        "context": "\"welcome\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "facebook_description",
+        "definition": "Voit painaa <1 \/> valintaa yl\u00e4oikealla ja sitten \"Open in Browser\" avataksesi CuppaZeen selaimessa",
+        "context": "\"welcome\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "messenger_title",
+        "definition": "Messenger-selain ei tue CuppaZeet\u00e4",
+        "context": "\"welcome\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "messenger_ios_description",
+        "definition": "Voit painaa <1 \/> valintaa yl\u00e4oikealla ja sitten \"Open in Safari\" avataksesi CuppaZeen selaimessa",
+        "context": "\"welcome\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "title",
+        "definition": "Tervetuloa",
+        "context": "\"welcome\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "theme",
+        "definition": "Valitse teema",
+        "context": "\"welcome\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "language",
+        "definition": "Valitse kieli",
+        "context": "\"welcome\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "accounts",
+        "definition": "Lis\u00e4\u00e4 tilej\u00e4",
+        "context": "\"welcome\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "add_account",
+        "definition": "Lis\u00e4\u00e4 tili",
+        "context": "\"welcome\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "add_extra_account",
+        "definition": "Lis\u00e4\u00e4 toinen tili",
+        "context": "\"welcome\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "continue",
+        "definition": "Jatka kojelaudalle",
+        "context": "\"welcome\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "history_space_coast_geo_store",
+        "definition": "Space Coast Geo kauppa",
+        "context": "\"user_inventory\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "history_freeze_tag_store",
+        "definition": "Freeze Tag kauppa",
+        "context": "\"user_inventory\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "history_pimedus",
+        "definition": "Pimedus palkinto",
+        "context": "\"user_inventory\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "history_magnetus",
+        "definition": "Magnetus palkinto",
+        "context": "\"user_inventory\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "history_prize_wheel",
+        "definition": "Prize Wheel palkinto",
+        "context": "\"user_inventory\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "history_premium",
+        "definition": "Premium palkinto",
+        "context": "\"user_inventory\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "history_clan",
+        "definition": "Taso {level} - {month} {year}",
+        "context": "\"user_inventory\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "history_zeeops",
+        "definition": "ZeeOps palkinto",
+        "context": "\"user_inventory\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "history_support",
+        "definition": "Munzee Support",
+        "context": "\"user_inventory\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "history_test",
+        "definition": "Testi",
+        "context": "\"user_inventory\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan_bookmarks",
+        "definition": "Valitut klaanit",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "settings",
+        "definition": "Asetukset",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "tools_donate",
+        "definition": "Lahjoita",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "more_clans",
+        "definition": "Lis\u00e4\u00e4 klaaneja",
+        "context": "\"drawer\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "rewards",
+        "definition": "Palkinnot",
+        "context": "\"clan\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan_rewards",
+        "definition": "Klaanipalkinnot",
+        "context": "\"clan\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "search",
+        "definition": "Etsi",
+        "context": "\"search\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "type",
+        "definition": "Tyyppi",
+        "context": "\"search\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "category",
+        "definition": "Luokka",
+        "context": "\"search\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "player",
+        "definition": "Pelaaja",
+        "context": "\"search\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan",
+        "definition": "Klaani",
+        "context": "\"search\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clans",
+        "definition": "Klaanit",
+        "context": "\"dashboard\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "drawer_user_bookmarks",
+        "definition": "Voit lis\u00e4t\u00e4 ja poistaa valittuja pelaajia asetuksissa",
+        "context": "\"tips\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "drawer_clan_bookmarks",
+        "definition": "Voit lis\u00e4t\u00e4 ja poistaa valittuja klaaneja asetuksissa",
+        "context": "\"tips\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan_stats_customisation",
+        "definition": "Voit tehd\u00e4 klaanitilastoista mieleisesi personointiasetuksissa",
+        "context": "\"tips\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "search_munzee_types",
+        "definition": "Pelaajien ja klaanien lis\u00e4ksi voit etsi\u00e4 my\u00f6s munzee tyyppej\u00e4!",
+        "context": "\"tips\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "share",
+        "definition": "Jaa",
+        "context": "\"clan\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "share_level",
+        "definition": "Jaa T{level}",
+        "context": "\"clan\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "title",
+        "definition": "Pikavinkki!",
+        "context": "\"tips\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "user_captures",
+        "definition": "Nappaukset",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "tools_nearby",
+        "definition": "L\u00e4hipomppijat",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "tools_poiplanner",
+        "definition": "POI ty\u00f6kalu",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "tools",
+        "definition": "Ty\u00f6kalut",
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "level",
+        "definition": "Taso {level}",
+        "context": "\"user_profile\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "rank",
+        "definition": "Sijoitus #{rank}",
+        "context": "\"user_profile\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "points",
+        "definition": {
+            "one": "{n} piste",
+            "other": "{n} pistett\u00e4"
+        },
+        "context": "\"user_profile\"",
+        "term_plural": "points",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "overview_passive_deploys",
+        "definition": {
+            "one": "{count} passiivinen julkaisu",
+            "other": "{count} passiivista julkaisua"
+        },
+        "context": "\"user_activity\"",
+        "term_plural": "overview_passive_deploys",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "type_info",
+        "definition": "Tyypin tiedot",
+        "context": "\"user_activity\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "settings_zero",
+        "definition": "N\u00e4yt\u00e4 nollat",
+        "context": "\"user_inventory\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "settings_group",
+        "definition": "Luokittele",
+        "context": "\"user_inventory\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "blast",
+        "definition": "Pommi {n}",
+        "context": "\"user_blast_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "munzees",
+        "definition": {
+            "one": "{count} Munzee",
+            "other": "{count} Munzeeta"
+        },
+        "context": "\"user_blast_checker\"",
+        "term_plural": "munzees",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "points",
+        "definition": "{min} - {max} pistett\u00e4 (Ka {avg})",
+        "context": "\"user_blast_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "qrew",
+        "definition": "QRew",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "zeeqrew",
+        "definition": "ZeeQRew",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "premium",
+        "definition": "Premium",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "yes",
+        "definition": "On",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "no",
+        "definition": "Ei",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "captures",
+        "definition": "Nappaukset",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "deploys",
+        "definition": "Julkaisut",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "recent_capture",
+        "definition": "Viime nappaukset",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "recent_deploy",
+        "definition": "Viime julkaisut",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "physical_captures",
+        "definition": "Fyysiset nappaukset",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "physical_deploys",
+        "definition": "Fyysiset julkaisut",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "total_points",
+        "definition": "Pisteet yht.",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "remaining",
+        "definition": "{remaining} puuttuu {total}",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "owned_by",
+        "definition": "{username}'n",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "deploy",
+        "definition": "Julkaistu {date}",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "next",
+        "definition": "Seur.",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "report",
+        "definition": "Ilmoita viallinen",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "submit",
+        "definition": "Lis\u00e4\u00e4 omasi",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "submit_code",
+        "definition": "Munzeen koodi",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "submit_code_hint",
+        "definition": "T\u00e4m\u00e4 on \"Barcode Value\" munzeen Print sivulla",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "submit_submit",
+        "definition": "L\u00e4het\u00e4",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "submit_error",
+        "definition": "Jokin meni pieleen... varmista, ett\u00e4 koodi on oikein ja ett\u00e4 olet julkaissut munzeen.",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "submit_try_again",
+        "definition": "Yrit\u00e4 uudelloeen",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "submit_submitted",
+        "definition": "Munzee l\u00e4hetetty",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "submit_close",
+        "definition": "Sulje",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "report_invalid_secret_code",
+        "definition": "V\u00e4\u00e4r\u00e4 salainen koodi",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "report_not_deployed",
+        "definition": "Munzeeta ei julkaistu",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "report_other",
+        "definition": "Muu",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "report_note",
+        "definition": "Huom",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "report_report",
+        "definition": "Ilmoita",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "report_sent",
+        "definition": "L\u00e4hetetty",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "report_close",
+        "definition": "Sulje",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "empty",
+        "definition": "Ei uusia Universaaleja!",
+        "context": "\"user_universal_capper\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "settings_shadow",
+        "definition": "N\u00e4yt\u00e4 varjopelaajat",
+        "context": "\"clan\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "settings_subtract",
+        "definition": "Erotusn\u00e4kym\u00e4",
+        "context": "\"clan\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "settings_share",
+        "definition": "Tasajakovaatimukset",
+        "context": "\"clan\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "settings_goal",
+        "definition": "Tavoitetaso",
+        "context": "\"clan\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "settings_done",
+        "definition": "Valmis",
+        "context": "\"clan\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "theme",
+        "definition": "Teema",
+        "context": "\"settings_personalisation\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan_reverse",
+        "definition": "Vaihda rivit ja sarakkeet",
+        "context": "\"settings_personalisation\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan_single_line",
+        "definition": "Yksiriviset solut",
+        "context": "\"settings_personalisation\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan_full_background",
+        "definition": "V\u00e4ritaustat",
+        "context": "\"settings_personalisation\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan_style",
+        "definition": "Tyyli",
+        "context": "\"settings_personalisation\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan_style_0",
+        "definition": "Suuri",
+        "context": "\"settings_personalisation\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan_style_1",
+        "definition": "Mukava",
+        "context": "\"settings_personalisation\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan_style_2",
+        "definition": "Tiivis",
+        "context": "\"settings_personalisation\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan_colours",
+        "definition": "V\u00e4rit",
+        "context": "\"settings_personalisation\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clan_preview",
+        "definition": "Esikatsele",
+        "context": "\"settings_personalisation\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "language",
+        "definition": "Kieli",
+        "context": "\"settings_personalisation\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "users",
+        "definition": "Pelaajat",
+        "context": "\"settings_bookmarks\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "clans",
+        "definition": "Klaanit",
+        "context": "\"settings_bookmarks\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "add_user",
+        "definition": "Lis\u00e4\u00e4 pelaaja",
+        "context": "\"settings_bookmarks\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "add_clan",
+        "definition": "Lis\u00e4\u00e4 klaani",
+        "context": "\"settings_bookmarks\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "expires",
+        "definition": "H\u00e4ipyy {time}",
+        "context": "\"user_bouncers\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "by",
+        "definition": "{username}'n",
+        "context": "\"user_bouncers\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "lands_on",
+        "definition": "Hyppykohteet",
+        "context": "\"type_details\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "can_host",
+        "definition": "Houkuttelee",
+        "context": "\"type_details\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "missing",
+        "definition": "CuppaZeess\u00e4 ei viel\u00e4 ole POI ty\u00f6kalua. Sit\u00e4 odotellessasi voisit vilkaista nzseries1'n hienoa ty\u00f6kalua.",
+        "context": "\"poi_planner\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "nzseries1",
+        "definition": "nzseries1'n POI ty\u00f6kalu",
+        "context": "\"poi_planner\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "type",
+        "definition": "Evo tyyppi",
+        "context": "\"evo_planner\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "type_farm",
+        "definition": "3-vaiheinen (esim Farm, Education)",
+        "context": "\"evo_planner\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "type_flower",
+        "definition": "5-vaiheinen (esim Carnation, Rose)",
+        "context": "\"evo_planner\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "type_butterfly",
+        "definition": "5-vaiheinen (esim Butterfly, Turtle)",
+        "context": "\"evo_planner\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "type_bee",
+        "definition": "5-vaiheinen (esim Bee)",
+        "context": "\"evo_planner\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "stage",
+        "definition": "Evo vaihe",
+        "context": "\"evo_planner\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "stage_deploy",
+        "definition": "Julkaise",
+        "context": "\"evo_planner\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "stage_evolve",
+        "definition": "Saavuttaa vaiheen {stage} ",
+        "context": "\"evo_planner\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "description_deploy",
+        "definition": "Julkaistu | Vaihe 1",
+        "context": "\"evo_planner\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "description_stage",
+        "definition": "Vaihe {stage}",
+        "context": "\"evo_planner\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "patreon",
+        "definition": "Tule Patron'iksi",
+        "context": "\"donate\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "kofi",
+        "definition": "Osta minulle kahvia",
+        "context": "\"donate\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "paypal_title",
+        "definition": "Lahjoitukset voi my\u00f6s l\u00e4hett\u00e4\u00e4 PayPalilla {email}",
+        "context": "\"donate\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "paypal_description",
+        "definition": "Onhan osoite oikein? CuppaZee k\u00e4ytt\u00e4\u00e4 .app eik\u00e4 .com!",
+        "context": "\"donate\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "direction_n",
+        "definition": null,
+        "context": "\"common\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "direction_ne",
+        "definition": null,
+        "context": "\"common\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "direction_e",
+        "definition": null,
+        "context": "\"common\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "direction_se",
+        "definition": null,
+        "context": "\"common\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "direction_s",
+        "definition": null,
+        "context": "\"common\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "direction_sw",
+        "definition": null,
+        "context": "\"common\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "direction_w",
+        "definition": null,
+        "context": "\"common\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "direction_nw",
+        "definition": null,
+        "context": "\"common\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "bouncer_title",
+        "definition": "{username}'n {name}",
+        "context": "\"notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "bouncer_title_with_multiple",
+        "definition": "{username}'n {name} [{amount}\/{total}]",
+        "context": "\"notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "bouncer_description_location",
+        "definition": "{username}'n {name}'lla",
+        "context": "\"notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "bouncer_description_distance",
+        "definition": "{distance} {direction} {name}'sta",
+        "context": "\"notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "munzee_blog",
+        "definition": "Munzee Blogin viesti",
+        "context": "\"notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "filter_edit",
+        "definition": "Muokkaa suodattimia",
+        "context": "\"user_activity\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "spyderbot",
+        "definition": "Spyderbot saatu!",
+        "context": "\"user_zeeops\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "check",
+        "definition": "Tarkistetaan tuleeko {username}'sta {state} QRew\/ZeeQRew {date}",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "state_keep",
+        "definition": null,
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "state_keep_gain",
+        "definition": null,
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "state_gain",
+        "definition": null,
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "recent_no_captures",
+        "definition": "Ei nappauksia {date} j\u00e4lkeen",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "recent_no_deploy",
+        "definition": "Ei julkaisuja  {date} j\u00e4lkeen",
+        "context": "\"user_qrew_checker\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "bouncers_override_title",
+        "definition": "Luokka ja tyyppi valinnat",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "bouncers_override_description",
+        "definition": "Jos haluat eri et\u00e4isyyden tietylle tyypille, voit lis\u00e4t\u00e4 sen t\u00e4ss\u00e4,",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "locations_live_blocked",
+        "definition": "Sinun on sallittava CuppaZeen lukea sijaintiisi",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "locations_live_confirm_title",
+        "definition": "K\u00e4yt\u00e4 laitteen sijaintia?",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "locations_live_confirm_description_1",
+        "definition": "Laitteen sijainti valittuna CuppaZee lukee ajoittain sijainnin taustalla.",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "locations_live_confirm_description_2",
+        "definition": "Laitteen sijaintia k\u00e4ytet\u00e4\u00e4n ainoastaan pomppijah\u00e4lytyksiin.",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "locations_live_cancel",
+        "definition": "Peru",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "locations_live_confirm",
+        "definition": "Vahvista",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "continuing_policy",
+        "definition": "Jatkamalla t\u00e4m\u00e4n sovelluksen k\u00e4ytt\u00f6\u00e4 hyv\u00e4ksyt alla linkatut k\u00e4ytt\u00f6ehdot ja yksityisyysk\u00e4yt\u00e4nn\u00f6t.",
+        "context": "\"welcome\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "terms",
+        "definition": "K\u00e4ytt\u00f6ehdot",
+        "context": "\"welcome\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "privacy",
+        "definition": "Yksityisyysk\u00e4yt\u00e4nn\u00f6t",
+        "context": "\"welcome\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "owner",
+        "definition": "{username}'n",
+        "context": "\"munzee_details\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "deployed",
+        "definition": "Julkaistu {date}",
+        "context": "\"munzee_details\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "open",
+        "definition": "Avaa munzee.com'ssa",
+        "context": "\"munzee_details\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "bouncer_hosting",
+        "definition": "Is\u00e4nt\u00e4n\u00e4 {name}'lle",
+        "context": "\"munzee_details\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "bouncer_expires",
+        "definition": "L\u00e4htee {time}",
+        "context": "\"munzee_details\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "user_device_title",
+        "definition": "{username} ei ole kirjautunut t\u00e4lle laitteelle.",
+        "context": "\"error\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "user_device_description",
+        "definition": "Tiedon hakeminen vaatii kirjautumista.",
+        "context": "\"error\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "user_device_add_account",
+        "definition": "Lis\u00e4\u00e4 tili",
+        "context": "\"error\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "user_expired_title",
+        "definition": "{username} pit\u00e4\u00e4 kirjautua uudelleen.",
+        "context": "\"error\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "user_expired_description",
+        "definition": "Munzee API valtuutuksesi on vanhentunut.",
+        "context": "\"error\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "user_expired_log_in",
+        "definition": "Kirjaudu uudelleen",
+        "context": "\"error\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "error_title",
+        "definition": "Kahvi taisi l\u00e4ikky\u00e4 kupista.",
+        "context": "\"error\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "error_description",
+        "definition": "T\u00e4m\u00e4n tiedon haku ep\u00e4onnistui.",
+        "context": "\"error\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "error_report_sent_title",
+        "definition": "Raportti l\u00e4hetetty",
+        "context": "\"error\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "error_report_sent_description",
+        "definition": "T\u00e4m\u00e4n virheen tiedot on l\u00e4hetetty CuppaZeelle. Jos haluat antaa lis\u00e4tietoja, ota yhteytt\u00e4.",
+        "context": "\"error\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "error_report",
+        "definition": "Ilmoita CuppaZeelle",
+        "context": "\"error\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "bouncers_distance_default_hint",
+        "definition": "T\u00e4t\u00e4 et\u00e4isyytt\u00e4 k\u00e4ytet\u00e4\u00e4n tyypeille, joille et ole asettanut et\u00e4isyytt\u00e4,",
+        "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    }
+]

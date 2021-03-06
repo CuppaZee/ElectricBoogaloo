@@ -531,8 +531,27 @@ const builds: Build[] = [
       },
       {
         title: "🇳🇱 Dutch Translations!",
-        description: "Thanks to the amazing sverlaan, CuppaZee V2 is now near-fully translated to Dutch! You can switch to this language in the Personalisation Settings now!",
+        description:
+          "Thanks to the amazing sverlaan, CuppaZee V2 is now near-fully translated to Dutch! You can switch to this language in the Personalisation Settings now!",
         avatars: ["https://munzee.global.ssl.fastly.net/images/avatars/ua2ts8.png"],
+      },
+    ],
+  },
+  {
+    build: 28,
+    date: "2021-03-06",
+    features: [
+      {
+        title: "🇫🇮 Finnish Translations!",
+        description:
+          "Thanks to stebu, CuppaZee V2 is now near-fully translated to Finnish! You can switch to this language in the Personalisation Settings now!",
+        avatars: ["https://munzee.global.ssl.fastly.net/images/avatars/ua1gpu.png"],
+      },
+      {
+        title: "🇩🇪 German Translations!",
+        description:
+          "Thanks to Bungi, CuppaZee V2 is now near-fully translated to German! You can switch to this language in the Personalisation Settings now!",
+        avatars: ["https://munzee.global.ssl.fastly.net/images/avatars/ua3uc5.png"],
       },
     ],
   },

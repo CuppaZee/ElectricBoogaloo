@@ -1,6 +1,8 @@
 const langs = {
   "en-GB": require("./translations/en-gb.json"),
   nl: require("./translations/nl.json"),
+  fi: require("./translations/fi.json"),
+  de: require("./translations/de.json"),
 };
 const path = require("path");
 const fs = require("fs");
@@ -58,7 +60,7 @@ fs.writeFileSync(
     .replace(/"%%",/g, "string;")
     .replace(/"%%"/g, "string;")};
 export const langs = {
-  ${Object.entries(langs).map(i => `"${i[0]}": ${JSON.stringify({ main: convert(i[1]) })}`)},
+  ${Object.entries(langs).map(i => `"${i[0]}": ${JSON.stringify({ main: convert(i[1], b => b.trim()) })}`)},
   "test": ${JSON.stringify({
     main: convert(langs["en-GB"], a =>
       a.replace(/(?!{{)\b[a-zA-Z]+\b(?!}})/g, b => random(b.length))
