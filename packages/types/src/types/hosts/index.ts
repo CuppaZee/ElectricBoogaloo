@@ -11,7 +11,7 @@ export const categories: TypeCategoryInterface[] = [
     name: "Bouncer Hosts",
     id: "bouncer_host",
     icon: "expiring_specials_filter",
-    parents: ["bouncers"],
+    parents: ["bouncer"],
   },
 ];
 

@@ -135,7 +135,7 @@ export default function TabOneScreen() {
                     />
                     <Text category="s1">
                       {t("user_profile:level", { level: user.data.data.level })} -{" "}
-                      {t("user_profile:points", { count: user.data.data.points })}
+                      {t("user_profile:points", { n: user.data.data.points, count: user.data.data.points })}
                     </Text>
                   </View>
                   <View style={{ flexDirection: "row", alignItems: "center" }}>

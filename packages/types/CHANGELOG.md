@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.37 - 08/03/2021
+- Fix Evolution Bouncer Tags
+## 0.0.36 - 08/03/2021
+- Moved Christmas 2020 Scatters to Seasonal Specials section
+## 0.0.35 - 08/03/2021
+- Fixed Bouncer Hosts
 ## 0.0.34 - 04/03/2021
 - Added Reseller Garden Gnomes and Scatters
 ## 0.0.33 - 01/03/2021

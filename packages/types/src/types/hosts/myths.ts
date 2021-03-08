@@ -179,4 +179,4 @@ const mythhosts: {
   },
 ];
 
-export default flathosts;
+export default mythhosts;

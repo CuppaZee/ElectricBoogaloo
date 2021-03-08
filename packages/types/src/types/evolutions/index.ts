@@ -82,7 +82,7 @@ for (const set of Object.keys(sets) as (keyof typeof sets)[]) {
       alt_icons: [],
       state: t.state,
       category: `evolution_${set}`,
-      tags: [TypeTags.Evolution, sets[set].tag, ...(t.tags ?? [])],
+      tags: [TypeTags.Evolution, sets[set].tag, ...(t.state === TypeState.Bouncer ? [TypeTags.Bouncer, TypeTags.BouncerEvolution, TypeTags.BouncerTPOB] : []), ...(t.tags ?? [])],
       meta: {
         evolution_base: t.base,
         evolution_stage: t.stage,

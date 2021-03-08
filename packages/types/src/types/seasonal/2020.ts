@@ -261,6 +261,63 @@ const s2020: SeasonalCategory[] = [
         lands_on: [],
       },
     ],
+    types: [
+      {
+        name: "Pixel Present",
+        icon: "pixelpresent",
+        id: 2704,
+        state: TypeState.Virtual,
+        tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+        hidden: [TypeHidden.Inventory],
+        meta: {
+          scatter_duration: 2,
+        },
+      },
+      {
+        name: "Snowball",
+        icon: "snowball",
+        id: 2697,
+        state: TypeState.Virtual,
+        tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+        hidden: [TypeHidden.Inventory],
+        meta: {
+          scatter_duration: 2,
+        },
+      },
+      {
+        name: "Rainbow Snowcone",
+        icon: "rainbowsnowcone",
+        id: 2699,
+        state: TypeState.Virtual,
+        tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+        hidden: [TypeHidden.Inventory],
+        meta: {
+          scatter_duration: 2,
+        },
+      },
+      {
+        name: "ChristmaZ Tree",
+        icon: "christmaztree",
+        id: 2700,
+        state: TypeState.Virtual,
+        tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+        hidden: [TypeHidden.Inventory],
+        meta: {
+          scatter_duration: 2,
+        },
+      },
+      {
+        name: "ChristmaZ Pickle",
+        icon: "christmazpickle",
+        id: 2702,
+        state: TypeState.Virtual,
+        tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+        hidden: [TypeHidden.Inventory],
+        meta: {
+          scatter_duration: 2,
+        },
+      },
+    ],
   },
   {
     name: "Walla EggZ",

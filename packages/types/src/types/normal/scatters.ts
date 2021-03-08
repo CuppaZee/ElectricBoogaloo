@@ -406,57 +406,6 @@ const scatters: {
     },
   },
   {
-    name: "Pixel Present",
-    icon: "pixelpresent",
-    id: 2704,
-    state: TypeState.Virtual,
-    scatter: {
-      duration: 2,
-      standalone: true,
-    },
-  },
-  {
-    name: "Snowball",
-    icon: "snowball",
-    id: 2697,
-    state: TypeState.Virtual,
-    scatter: {
-      duration: 36,
-      standalone: true,
-    },
-  },
-  {
-    name: "Rainbow Snowcone",
-    icon: "rainbowsnowcone",
-    id: 2699,
-    state: TypeState.Virtual,
-    scatter: {
-      duration: 36,
-      standalone: true,
-    },
-    alt_icons: ["snowballhidden"],
-  },
-  {
-    name: "ChristmaZ Tree",
-    icon: "christmaztree",
-    id: 2700,
-    state: TypeState.Virtual,
-    scatter: {
-      duration: 36,
-      standalone: true,
-    },
-  },
-  {
-    name: "ChristmaZ Pickle",
-    icon: "christmazpickle",
-    id: 2702,
-    state: TypeState.Virtual,
-    scatter: {
-      duration: 36,
-      standalone: true,
-    },
-  },
-  {
     name: "Ankh Artifact",
     icon: "ankhartifact",
     id: 2763,

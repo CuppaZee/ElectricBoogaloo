@@ -125,6 +125,20 @@ export default function SearchScreen() {
                     clanid: item.item.clan_id,
                   },
                 });
+              } else if ("category" in item.item) {
+                nav.navigate("Tools", {
+                  screen: "TypeMunzee",
+                  params: {
+                    type: item.item.icon,
+                  },
+                });
+              } else {
+                nav.navigate("Tools", {
+                  screen: "TypeCategory",
+                  params: {
+                    category: item.item.id,
+                  },
+                });
               }
             }}
           />

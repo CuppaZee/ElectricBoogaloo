@@ -363,7 +363,7 @@ const nature: {
     ],
     stage: 5,
     base: "butterflyegg",
-    hidden: [TypeHidden.Capture, TypeHidden.Deploy],
+    hidden: [TypeHidden.Capture, TypeHidden.Deploy, TypeHidden.Bouncers],
   },
   {
     name: "Morpho Butterfly",
@@ -507,7 +507,7 @@ const nature: {
     ],
     stage: 5,
     base: "frogegg",
-    hidden: [TypeHidden.Capture, TypeHidden.Deploy],
+    hidden: [TypeHidden.Capture, TypeHidden.Deploy, TypeHidden.Bouncers],
   },
   {
     name: "Tree Frog",
@@ -620,7 +620,7 @@ const nature: {
     ],
     stage: 5,
     base: "planulalarva",
-    hidden: [TypeHidden.Capture, TypeHidden.Deploy, TypeHidden.Inventory],
+    hidden: [TypeHidden.Capture, TypeHidden.Deploy, TypeHidden.Inventory, TypeHidden.Bouncers],
   },
   {
     name: "Box Jellyfish",
@@ -723,7 +723,7 @@ const nature: {
     ],
     stage: 5,
     base: "turtleegg",
-    hidden: [TypeHidden.Capture, TypeHidden.Deploy],
+    hidden: [TypeHidden.Capture, TypeHidden.Deploy, TypeHidden.Bouncers],
   },
   {
     name: "Sea Turtle",
@@ -828,7 +828,7 @@ const nature: {
     ],
     stage: 5,
     base: "beeeggs",
-    hidden: [TypeHidden.Capture, TypeHidden.Deploy],
+    hidden: [TypeHidden.Capture, TypeHidden.Deploy, TypeHidden.Bouncers],
   },
   {
     name: "Honey Bee",

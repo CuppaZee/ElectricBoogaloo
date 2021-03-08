@@ -1,4 +1,4 @@
-import db, { TypeHidden, TypeTags } from "@cuppazee/types";
+import db, { TypeHidden, TypeTags, TypeState } from "@cuppazee/types";
 import { useNavigation } from "@react-navigation/native";
 import { Layout, Text, Icon, Button } from "@ui-kitten/components";
 import * as React from "react";
@@ -51,7 +51,12 @@ export default function BouncersScreen() {
         {db.categories
           .filter(i => i.active)
           .filter(i =>
-            i.types.some(i => i.has_tag(TypeTags.Bouncer) || i.has_tag(TypeTags.Scatter))
+            i.types.some(
+              i =>
+                i.has_tag(TypeTags.Bouncer) ||
+                i.has_tag(TypeTags.Scatter) ||
+                i.state === TypeState.Bouncer
+            )
           )
           .map(i => (
             <View style={{ flexGrow: 1, width: 400, maxWidth: "100%", padding: 4 }}>
@@ -80,6 +85,12 @@ export default function BouncersScreen() {
                 <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
                   {i.types
                     .filter(i => !i.hidden(TypeHidden.Bouncers))
+                    .filter(
+                      i =>
+                        i.has_tag(TypeTags.Bouncer) ||
+                        i.has_tag(TypeTags.Scatter) ||
+                        i.state === TypeState.Bouncer
+                    )
                     .map(t => (
                       <BouncerIcon count={d?.counts[t.strippedIcon] || 0} type={t} />
                     ))}

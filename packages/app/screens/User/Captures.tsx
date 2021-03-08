@@ -12,6 +12,15 @@ import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import useTitle from "../../hooks/useTitle";
 import { UserStackParamList } from "../../types";
 
+const unavailable = new Set([
+  "1starmotelroom",
+  "hotelroom",
+  "virtual_resort_room",
+  "timeshareroom",
+  "vacationcondoroom",
+  "munzee",
+]);
+
 export default function UserCapturesScreen() {
   const { t } = useTranslation();
   const [size, onLayout] = useComponentSize();
@@ -104,6 +113,7 @@ export default function UserCapturesScreen() {
                 <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
                   {i.types
                     .filter(i => !i.hidden(TypeHidden.Capture))
+                    .filter(i=> !unavailable.has(i.icon))
                     .map(t => (
                       <CapturesIcon count={d[t.strippedIcon] || 0} type={t} />
                     ))}

@@ -555,6 +555,34 @@ const builds: Build[] = [
       },
     ],
   },
+  {
+    build: 29,
+    date: "2021-03-06",
+    fixes: [
+      {
+        description: "Fixed Points not displaying on the User Profile page",
+        thanks: "HiTechMD",
+      },
+      {
+        description: "Fixed Bouncer Hosts not showing on Bouncer Captures page",
+      },
+      {
+        description: "Fixed Evo Bouncers not showing on Bouncers page",
+      },
+      {
+        description: "Fixed searching for Munzee Types and Categories",
+      },
+      {
+        description: "Fixed location of Christmas 2020 Scatters",
+      },
+    ],
+    improvements: [
+      {
+        description:
+          "Removed Greenies and Destination Rooms from Normal Captures page as they always show 0",
+      },
+    ],
+  },
 ];
 
 export default builds;
