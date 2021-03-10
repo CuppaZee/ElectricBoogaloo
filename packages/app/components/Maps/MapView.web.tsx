@@ -1,11 +1,12 @@
 import React from "react";
-import { MapProps } from "./MapView";
+import { MapMarkerProps, MapProps } from "./MapView";
 import mapboxgl, { GeoJSONSource } from "mapbox-gl";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import { getTypeImage } from "../Common/TypeImage";
 import { useTheme } from "@ui-kitten/components";
+import circle from "@turf/circle";
 
 mapboxgl.accessToken =
   "pk.eyJ1Ijoic29oY2FoIiwiYSI6ImNqeWVqcm8wdTAxc2MzaXFpa282Yzd2aHEifQ.afYbt2sVMZ-kbwdx5_PekQ";
@@ -14,6 +15,17 @@ function WebMap(props: MapProps) {
   const mapContainerRef = React.useRef<HTMLDivElement | null>();
   const mapRef = React.useRef<mapboxgl.Map>();
   const markers = React.useRef<Map<string, any>>(new Map());
+  const markerProp = React.useRef<MapMarkerProps[]>();
+  const onMarkerDragEnd = React.useRef<(event: any) => void>();
+  const onMarkerPress = React.useRef<(event: any) => void>();
+
+  React.useEffect(() => {
+    onMarkerDragEnd.current = props.onMarkerDragEnd;
+  }, [props.onMarkerDragEnd])
+
+  React.useEffect(() => {
+    onMarkerPress.current = props.onMarkerPress;
+  }, [props.onMarkerPress])
 
   const [lng, setLng] = React.useState(props.longitude);
   const [lat, setLat] = React.useState(props.latitude);
@@ -36,52 +48,90 @@ function WebMap(props: MapProps) {
   function placeMarkers() {
     if (!mapRef.current) return;
     const map = mapRef.current;
-    const features = map.querySourceFeatures("markers");
-    const keepMarkers: Set<string> = new Set();
 
-    for (let i = 0; i < features.length; i++) {
-      const geometry = features[i].geometry;
-      if (geometry.type !== "Point") continue;
-      const coords = geometry.coordinates;
-      const props = features[i].properties;
-      const featureID = props?.id;
+    const markersSource = map.getSource("markers");
+    if (markersSource?.type !== "geojson") return;
+    markersSource.setData({
+      type: "FeatureCollection",
+      features: (markerProp.current ?? []).map(i => ({
+        type: "Feature",
+        id: i.id,
+        properties: {
+          id: i.id,
+          icon: i.icon,
+          center: "center" in i,
+          draggable: i.draggable,
+          munzee: i.munzee,
+        },
+        geometry: {
+          type: "Point",
+          coordinates: "center" in i ? [map.getCenter().lng, map.getCenter().lat] : [i.lng, i.lat],
+        },
+      })),
+    });
+    map.triggerRepaint();
 
-      if (props?.cluster) {
-      } else if (markers.current?.has(featureID?.toString() || "")) {
-        //Feature marker is already on screen
-        keepMarkers.add(featureID?.toString() || "");
-      } else {
-        //Feature is not clustered and has not been created, create an icon for it
-        const el = new Image();
-        const img = getTypeImage(props?.icon);
-        el.src = typeof img === "object" && "uri" in img ? img.uri : img;
-        el.className = "mapMarker";
-        el.style.width = "48px";
-        el.style.height = "48px";
-        el.style.marginTop = "-24px";
-        el.dataset.type = props?.type;
-        if(props?.munzee) el.addEventListener("click", function () {
-          props.nav?.navigate("Tools", {
-            screen: "Munzee",
-            params: {a: props.munzee}
-          })
-        })
-        const marker = new mapboxgl.Marker(el).setLngLat([coords[0], coords[1]]);
-        marker.addTo(map);
-        keepMarkers.add(featureID?.toString() || "");
-        markers.current?.set(featureID?.toString() || "", el);
+    map.on("sourcedata", function load(e) {
+      if (!e.isSourceLoaded) return;
+      const features = map.querySourceFeatures("markers");
+      if (features.length !== 0 || !markerProp.current?.length) {
+        map.off("sourcedata", load);
+      } else return;
+      const keepMarkers: Set<string> = new Set();
+
+      for (let i = 0; i < features.length; i++) {
+        const geometry = features[i].geometry;
+        if (geometry.type !== "Point") continue;
+        const coords = geometry.coordinates;
+        const props = features[i].properties;
+        const featureID = props?.id;
+
+        if (props?.cluster) {
+        } else if (markers.current?.has(featureID?.toString() || "")) {
+          //Feature marker is already on screen
+          keepMarkers.add(featureID?.toString() || "");
+        } else {
+          //Feature is not clustered and has not been created, create an icon for it
+          const el = new Image();
+          const img = getTypeImage(props?.icon);
+          el.src = typeof img === "object" && "uri" in img ? img.uri : img;
+          el.className = "mapMarker";
+          el.style.width = "48px";
+          el.style.height = "48px";
+          el.style.marginTop = "-24px";
+          el.dataset.type = props?.type;
+          if (props?.munzee) {
+            el.addEventListener("click", function () {
+              props.nav?.navigate("Tools", {
+                screen: "Munzee",
+                params: { a: props.munzee },
+              });
+            });
+          }
+          if (onMarkerPress.current) {
+            el.addEventListener("click", function (event) {
+              onMarkerPress.current?.({event, id: props?.id});
+            });
+          }
+          const marker = new mapboxgl.Marker(el, {draggable: props?.draggable}).setLngLat([coords[0], coords[1]]);
+          marker.addTo(map);
+          if (props?.draggable && onMarkerDragEnd.current)
+            marker.on("dragend", event => onMarkerDragEnd.current?.({ event, id: props.id }));
+          keepMarkers.add(featureID?.toString() || "");
+          markers.current?.set(featureID?.toString() || "", el);
+        }
       }
-    }
 
-    //Let's clean-up any old markers. Loop through all markers
-    markers.current?.forEach((value, key, map) => {
-      //If marker exists but is not in the keep array
-      if (!keepMarkers.has(key)) {
-        //Remove it from the page
-        value.remove();
-        //Remove it from markers map
-        map.delete(key);
-      }
+      //Let's clean-up any old markers. Loop through all markers
+      markers.current?.forEach((value, key, map) => {
+        //If marker exists but is not in the keep array
+        if (!keepMarkers.has(key)) {
+          //Remove it from the page
+          value.remove();
+          //Remove it from markers map
+          map.delete(key);
+        }
+      });
     });
   }
 
@@ -111,36 +161,22 @@ function WebMap(props: MapProps) {
       setLng(Number(map.getCenter().lng.toFixed(4)));
       setLat(Number(map.getCenter().lat.toFixed(4)));
       setZoom(Number(map.getZoom().toFixed(2)));
-      const markers = map.getSource("markers");
-      if (markers?.type === "geojson") {
-        markers.setData({
-          type: "FeatureCollection",
-          features: (props.markers ?? []).map(i => ({
-            type: "Feature",
-            id: `${i.id}_${Date.now()}`,
-            properties: {
-              id: `${i.id}_${Date.now()}`,
-              icon: i.icon,
-              center: "center" in i,
-              munzee: i.munzee,
-            },
-            geometry: {
-              type: "Point",
-              coordinates:
-                "center" in i ? [map.getCenter().lng, map.getCenter().lat] : [i.lng, i.lat],
-            },
-          })),
-        });
-        placeMarkers();
-      }
+      placeMarkers();
     });
 
     map.on("moveend", () => {
       props.onRegionChange?.({
         latitude: map.getCenter().lat,
-        longitude: map.getCenter().lng
-      })
-    })
+        longitude: map.getCenter().lng,
+        zoom: map.getZoom(),
+        bounds: {
+          lat1: map.getBounds().getSouthWest().lat,
+          lng1: map.getBounds().getSouthWest().lng,
+          lat2: map.getBounds().getNorthEast().lat,
+          lng2: map.getBounds().getNorthEast().lng,
+        },
+      });
+    });
 
     map.on("load", () => {
       map.addSource("markers", {
@@ -153,6 +189,7 @@ function WebMap(props: MapProps) {
             properties: {
               id: i.id,
               icon: i.icon,
+              draggable: i.draggable,
               center: "center" in i,
             },
             geometry: {
@@ -164,6 +201,25 @@ function WebMap(props: MapProps) {
         cluster: props.cluster ? true : false,
         clusterMaxZoom: props.clusterMaxZoomLevel ?? 10,
         clusterRadius: props.clusterRadius ?? 50,
+      });
+      map.addSource("circlesSource", {
+        type: "geojson",
+        data: {
+          type: "FeatureCollection",
+          features: (props.circles ?? []).map(i =>
+            circle("center" in i ? [lng, lat] : [i.lng, i.lat], i.radius / 1000, {
+              properties: {
+                id: i.id,
+                radius: i.radius,
+                fill: i.fill.slice(0, 7),
+                opacity: parseInt(i.fill.slice(7) || "ff", 16) / 255,
+                stroke: i.stroke.slice(0, 7),
+                strokeOpacity: parseInt(i.stroke.slice(7) || "ff", 16) / 255,
+                center: "center" in i,
+              },
+            })
+          ),
+        },
       });
 
       map.addLayer({
@@ -202,8 +258,27 @@ function WebMap(props: MapProps) {
         },
       });
 
-      map.on("data", function (e) {
-        if (e.sourceId !== "markers" || !e.isSourceLoaded) return;
+      map.addLayer({
+        id: "circles",
+        type: "fill",
+        source: "circlesSource",
+        paint: {
+          "fill-color": ["get", "fill"],
+          "fill-opacity": ["get", "opacity"],
+        },
+      });
+
+      map.addLayer({
+        id: "circlesOutline",
+        type: "line",
+        source: "circlesSource",
+        paint: {
+          "line-color": ["get", "stroke"],
+          "line-opacity": ["get", "stokeOpacity"]
+        },
+      });
+
+      map.on("load", function () {
         map.on("moveend", placeMarkers);
         map.on("boxzoomend", placeMarkers);
         map.on("pitchend", placeMarkers);
@@ -238,8 +313,32 @@ function WebMap(props: MapProps) {
   }, []);
 
   React.useEffect(() => {
+    markerProp.current = props.markers;
     placeMarkers();
   }, [props.markers]);
+
+  React.useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+    const circlesSource = map.getSource("circlesSource");
+    if (circlesSource?.type !== "geojson") return;
+    circlesSource.setData({
+      type: "FeatureCollection",
+      features: (props.circles ?? []).map(i =>
+        circle("center" in i ? [lng, lat] : [i.lng, i.lat], i.radius / 1000, {
+          properties: {
+            id: i.id,
+            radius: i.radius,
+            fill: i.fill.slice(0, 7),
+            opacity: parseInt(i.fill.slice(7) || "ff", 16) / 255,
+            stroke: i.stroke.slice(0, 7),
+            strokeOpacity: parseInt(i.stroke.slice(7) || "ff", 16) / 255,
+            center: "center" in i,
+          },
+        })
+      ),
+    });
+  }, [props.circles]);
 
   return <div style={{ display: "flex", flex: 1 }} ref={ref => (mapContainerRef.current = ref)} />;
 }

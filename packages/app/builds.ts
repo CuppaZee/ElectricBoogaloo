@@ -557,7 +557,7 @@ const builds: Build[] = [
   },
   {
     build: 29,
-    date: "2021-03-06",
+    date: "2021-03-08",
     fixes: [
       {
         description: "Fixed Points not displaying on the User Profile page",
@@ -580,6 +580,27 @@ const builds: Build[] = [
       {
         description:
           "Removed Greenies and Destination Rooms from Normal Captures page as they always show 0",
+      },
+    ],
+  },
+  {
+    build: 30,
+    date: "2021-03-08",
+    features: [
+      {
+        title: "POI/Destination Planners",
+        description:
+          "CuppaZee now has POI and Destination planners available (in early beta, expect bugs)! Try them out now!",
+      },
+    ],
+  },
+  {
+    build: 31,
+    date: "2021-03-09",
+    improvements: [
+      {
+        description:
+          "Improved reliability and functionality of POI and Destination planners",
       },
     ],
   },

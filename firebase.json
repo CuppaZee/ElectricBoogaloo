@@ -31,6 +31,22 @@
       ],
       "rewrites": [
         {
+          "source": "/terms",
+          "destination": "/cuppazeeterms.html"
+        },
+        {
+          "source": "/privacy",
+          "destination": "/cuppazeeprivacy.html"
+        },
+        {
+          "source": "/support",
+          "destination": "/cuppazeesupport.html"
+        },
+        {
+          "source": "/requirements/*",
+          "destination": "/missing.png"
+        },
+        {
           "source": "/user/bouncers",
           "function": "apibeta_bouncers"
         },

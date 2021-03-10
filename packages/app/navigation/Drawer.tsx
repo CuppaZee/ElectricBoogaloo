@@ -8,7 +8,7 @@ import {
   Text,
 } from "@ui-kitten/components";
 import React from "react";
-import { Image, Platform, ScrollView } from "react-native";
+import { Image, Linking, Platform, ScrollView } from "react-native";
 import { useClanBookmarks, useUserBookmarks } from "../hooks/useBookmarks";
 import useDay from "../hooks/useDay";
 import { useTranslation } from "react-i18next";
@@ -61,6 +61,13 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
       <ScrollView
         style={{ flexGrow: 1 }}
         contentContainerStyle={{ paddingTop: insets.top, paddingBottom: insets.bottom }}>
+        {Platform.OS === "web" && <DrawerItem
+          title="Return to V1"
+          accessoryLeft={props => <Icon {...props} name="exit-run" />}
+          onPress={() =>
+            Linking.openURL("https://v1.cuppazee.app")
+          }
+        />}
         <DrawerItem
           selected={page[1]?.name === "Tools" && page[2]?.name === "Search"}
           title={t("pages:tools_search")}
@@ -403,6 +410,16 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
           onPress={() =>
             props.navigation.navigate("Tools", {
               screen: "POIPlanner",
+            })
+          }
+        />
+        <DrawerItem
+          selected={page[1]?.name === "Tools" && page[2]?.name === "POIPlanner"}
+          title="Destination Planner"
+          accessoryLeft={props => <Icon {...props} name="home-circle-outline" />}
+          onPress={() =>
+            props.navigation.navigate("Tools", {
+              screen: "DestinationPlanner",
             })
           }
         />

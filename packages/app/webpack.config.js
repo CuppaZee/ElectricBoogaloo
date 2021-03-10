@@ -37,5 +37,30 @@ module.exports = async function (env, argv) {
       }
     });
   }
+
+  for (const rule of config.module.rules) {
+    if (
+      rule.oneOf &&
+      rule.oneOf.some(
+        i =>
+          i.include &&
+          typeof i.include === "object" &&
+          i.include.some &&
+          i.include.some(b => b.includes("react-native-vector-icons"))
+      )
+    ) {
+      const r = rule.oneOf.find(
+        i =>
+          i.include &&
+          typeof i.include === "object" &&
+          i.include.some &&
+          i.include.some(b => b.includes("react-native-vector-icons"))
+      );
+      r.use[0].options.name = "./fonts/[name].[hash:8].[ext]";
+    }
+  }
+
+  console.log(JSON.stringify(config.module.rules, null, 2))
+
   return config;
 };

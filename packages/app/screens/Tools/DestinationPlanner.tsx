@@ -1,6 +1,6 @@
 import { MapBoundingboxV4 } from "@cuppazee/api/map/v4";
 import db from "@cuppazee/types";
-import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import { Button, Icon, Layout, Text } from "@ui-kitten/components";
 import * as React from "react";
 import { Pressable, View } from "react-native";
@@ -9,13 +9,6 @@ import MapView from "../../components/Maps/MapView";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import useTitle from "../../hooks/useTitle";
 import Clipboard from "expo-clipboard";
-import { ToolsStackParamList } from "../../types";
-
-interface BouncerListData {
-  list: string[];
-  keys: ["latitude", "longitude", "logo", "munzee_id"];
-  data: [number, number, number, number][];
-}
 
 export default function BouncersMapScreen() {
   const nav = useNavigation();
@@ -23,18 +16,128 @@ export default function BouncersMapScreen() {
   const [markers, setMarkers] = React.useState<{ lat: number; lng: number; type: string }[]>([]);
   const [selectedMarker, setSelectedMarker] = React.useState<number>();
   const center = React.useRef<{ lat: number; lng: number }>();
-  useTitle(`☕ POI Planner`);
+  useTitle(`☕ Destination Planner`);
   const [location, setLocation] = React.useState<
     MapBoundingboxV4["request"]["params"]["points"]["main"]
   >();
-  const types = useMunzeeRequest<any>("map/filters/v4", {});
-  const pois: { id: string; image: string; name: string }[] | undefined | null = (types.data as any)
-    ?.data[2].subcategories.Places.filters;
+  const destinations = [
+    {
+      filterID: "36",
+      name: "Motel",
+      icon: "motel",
+      distance: [
+        {
+          type: "motel",
+          distance: 228.6,
+        },
+      ],
+    },
+    {
+      filterID: "35",
+      name: "Hotel",
+      icon: "hotel",
+      distance: [
+        {
+          type: "hotel",
+          distance: 609.6,
+        },
+      ],
+    },
+    {
+      filterID: "97",
+      name: "Time Share",
+      icon: "timeshare",
+      distance: [
+        {
+          type: "timeshare",
+          distance: 609.6,
+        },
+        {
+          type: "motel",
+          distance: 152.4,
+        },
+        {
+          type: "hotel",
+          distance: 152.4,
+        },
+        {
+          type: "treehouse",
+          distance: 152.4,
+        },
+      ],
+    },
+    {
+      filterID: "137",
+      name: "Treehouse",
+      icon: "treehouse",
+      distance: [
+        {
+          type: "treehouse",
+          distance: 304.8,
+        },
+      ],
+    },
+    {
+      filterID: "59",
+      name: "Virtual Resort",
+      icon: "virtualresort",
+      distance: [
+        {
+          type: "virtualresort",
+          distance: 1065,
+        },
+      ],
+    },
+    {
+      filterID: "138",
+      name: "Vacation Condo",
+      icon: "vacationcondo",
+      distance: [
+        {
+          type: "vacationcondo",
+          distance: 762,
+        },
+        {
+          type: "virtualresort",
+          distance: 152.4,
+        },
+      ],
+    },
+    {
+      filterID: "144",
+      name: "Skyland",
+      icon: "skyland",
+      distance: [
+        {
+          type: "skyland",
+          distance: 1219.2,
+        },
+        {
+          type: "virtualresort",
+          distance: 152.4,
+        },
+        {
+          type: "vacationcondo",
+          distance: 152.4,
+        },
+      ],
+    },
+  ];
+
+  function getRadiusForType(type: string) {
+    return Math.max(
+      0,
+      destinations.find(i => i.icon === selected)?.distance.find(i => i.type === type)?.distance ??
+        0,
+      destinations.find(i => i.icon === type)?.distance.find(i => i.type === selected)?.distance ??
+        0
+    );
+  }
 
   const data = useMunzeeRequest(
     "map/boundingbox/v4",
     {
-      filters: "13,14," + pois?.map(i => i.id).join(","),
+      filters: "13,14," + destinations?.map(i => i.filterID).join(","),
       points: location
         ? {
             main: location,
@@ -42,13 +145,20 @@ export default function BouncersMapScreen() {
         : {},
       fields: "latitude,longitude,munzee_id,friendly_name,original_pin_image",
     },
-    !!pois && !!location,
+    !!location,
     undefined,
     undefined,
     { keepPreviousData: true }
   );
 
-  const munzees = data.data?.data?.[0]?.munzees;
+  const munzees = data.data?.data?.[0]?.munzees.map(i => ({
+    ...i,
+    icon: db
+      .strip(i.original_pin_image ?? "")
+      .replace(/[0-9]starmotel/, "motel")
+      .replace(/skyland[0-9]/, "skyland")
+      .replace(/treehouse[0-9]/, "treehouse"),
+  }));
 
   return (
     <Layout style={{ flex: 1 }}>
@@ -113,25 +223,22 @@ export default function BouncersMapScreen() {
         circles={[
           ...markers.map((i, n) => ({
             ...i,
-            radius: i.type === "poivirtualgarden" ? 1609.344 / 2 : 1609.344,
+            radius: getRadiusForType(i.type),
             id: `circle_${n}`,
             fill: "#00ffff11",
             stroke: "#00ffff",
           })),
           ...(munzees
-            ?.filter(i => !selected || selected === db.strip(i.original_pin_image ?? ""))
+            ?.filter(i => getRadiusForType(i.icon) > 0)
             .map(i => ({
               lat: Number(i.latitude ?? 0),
               lng: Number(i.longitude ?? 0),
-              radius:
-                db.strip(i.original_pin_image ?? "") === "poivirtualgarden"
-                  ? 1609.344 / 2
-                  : 1609.344,
+              radius: getRadiusForType(i.icon),
               id: `circle_${i.munzee_id}`,
               fill: "#ff000011",
               stroke: "#ff0000",
             })) ?? []),
-        ]}
+        ].filter(i => i.radius > 0)}
         markers={[
           ...markers.map((i, n) => ({
             ...i,
@@ -139,13 +246,15 @@ export default function BouncersMapScreen() {
             id: n.toString(),
             draggable: true,
           })),
-          ...(munzees?.map(i => ({
-            lat: Number(i.latitude ?? 0),
-            lng: Number(i.longitude ?? 0),
-            icon: db.strip(i.original_pin_image ?? ""),
-            id: i.munzee_id?.toString() ?? "",
-            munzee: i.munzee_id?.toString() ?? "",
-          })) ?? []),
+          ...(munzees
+            ?.filter(i => !selected || getRadiusForType(i.icon) > 0)
+            .map(i => ({
+              lat: Number(i.latitude ?? 0),
+              lng: Number(i.longitude ?? 0),
+              icon: i.icon,
+              id: i.munzee_id?.toString() ?? "",
+              munzee: i.munzee_id?.toString() ?? "",
+            })) ?? []),
         ]}
         hideUserLocation={true}
       />
@@ -163,9 +272,7 @@ export default function BouncersMapScreen() {
             appearance="ghost"
             accessoryLeft={props => <Icon name="close" {...props} />}
             status="danger"
-            onPress={() =>
-              setMarkers(value => value.filter((_,n) => n !== selectedMarker))
-            }
+            onPress={() => setMarkers(value => value.filter((_, n) => n !== selectedMarker))}
           />
           <Text category="s1" style={{ flex: 1 }}>
             {markers[selectedMarker].lat} {markers[selectedMarker].lng}
@@ -197,25 +304,19 @@ export default function BouncersMapScreen() {
             flexGrow: 100,
             maxWidth: "100%",
           }}>
-          {pois?.map(i => (
+          {destinations?.map(i => (
             <Pressable
               onPress={() => {
-                setSelected(db.strip(i.image.replace("v4pins", "pins")));
+                setSelected(i.icon);
               }}>
               <Layout
-                level={selected === db.strip(i.image.replace("v4pins", "pins")) ? "4" : "3"}
-                style={{ borderRadius: 8, paddingVertical: 4 }}>
+                level={selected === i.icon ? "4" : "3"}
+                style={{ borderRadius: 8, padding: 4 }}>
                 <TypeImage
-                  icon={i.image.replace("v4pins", "pins")}
+                  icon={i.icon}
                   style={{
                     size: 36,
-                    opacity: munzees?.some(
-                      m =>
-                        db.strip(m.original_pin_image ?? "") ===
-                        db.strip(i.image.replace("v4pins", "pins"))
-                    )
-                      ? 1
-                      : 0.4,
+                    opacity: munzees?.some(m => m.icon === i.icon) ? 1 : 0.4,
                   }}
                 />
               </Layout>

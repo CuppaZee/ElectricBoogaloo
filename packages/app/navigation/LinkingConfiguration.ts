@@ -52,6 +52,7 @@ export default {
               Credits: "credits",
               Donate: "donate",
               POIPlanner: "poiplanner",
+              DestinationPlanner: "destinationplanner",
               EvoPlanner: "evoplanner",
               OpenSource: "opensource",
               WidgetConfigureActivityWidget: "widget_configure_activity_widget/:id",

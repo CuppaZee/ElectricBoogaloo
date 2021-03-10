@@ -6,10 +6,10 @@
     "cuppazee-app": {
       "hosting": {
         "app": [
-          "cuppazee-app-beta"
+          "cuppazee-app"
         ],
         "server": [
-          "cuppazee-server-beta"
+          "cuppazee-server"
         ],
         "icons": [
           "cuppazee-icons"

@@ -40,6 +40,7 @@
     "@react-navigation/drawer": "^5.11.4",
     "@react-navigation/native": "^5.8.9",
     "@react-navigation/stack": "^5.12.6",
+    "@turf/circle": "^6.3.0",
     "@types/color": "^3.0.1",
     "@types/loadable__component": "^5.13.2",
     "@types/mapbox-gl": "^2.0.4",

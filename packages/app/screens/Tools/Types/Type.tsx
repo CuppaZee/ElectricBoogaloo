@@ -16,7 +16,8 @@ export default function SearchScreen() {
   useTitle(`☕ ${type?.name || ""}`);
   const nav = useNavigation<ToolsNavigatorProp<"TypeMunzee">>();
   if (!type) {
-    return nav.goBack();
+    nav.goBack();
+    return null;
   }
 
   return (

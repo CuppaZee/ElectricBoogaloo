@@ -52,6 +52,7 @@ export type ToolsStackParamList = {
   Munzee: { a: string; b?: string };
   Nearby: undefined;
   POIPlanner: undefined;
+  DestinationPlanner: undefined;
   EvoPlanner: undefined;
   TypeCategory: { category: string };
   TypeMunzee: { type: string };

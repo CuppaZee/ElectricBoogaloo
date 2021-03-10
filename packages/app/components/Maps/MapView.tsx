@@ -1,7 +1,8 @@
 import React from "react";
 import * as Location from "expo-location";
-import { getRemoteTypeImage, getTypeImage } from "../Common/TypeImage";
+import TypeImage, { getRemoteTypeImage, getTypeImage } from "../Common/TypeImage";
 import { Button, Icon } from "@ui-kitten/components";
+import circle from "@turf/circle";
 
 import MapboxGL from "@react-native-mapbox-gl/maps";
 import { PixelRatio, View } from "react-native";
@@ -21,13 +22,23 @@ export type MapProps = {
   clusterMaxZoomLevel?: number;
   markers?: MapMarkerProps[];
   circles?: MapCircle[];
-  onRegionChange?: (props: { latitude: number; longitude: number }) => void;
+  onRegionChange?: (props: {
+    latitude: number;
+    longitude: number;
+    zoom: number;
+    bounds: { [key in "lat1" | "lng1" | "lat2" | "lng2"]: number };
+  }) => void;
+  onMarkerDragEnd?(event: any): void;
+  onMarkerPress?(event: any): void;
+  hideUserLocation?: boolean;
 };
 
-export type MapLocation = {
-  lat: number;
-  lng: number;
-} | { center: true }
+export type MapLocation =
+  | {
+      lat: number;
+      lng: number;
+    }
+  | { center: true };
 
 export type MapCircle = {
   id: string;
@@ -40,6 +51,7 @@ export type MapMarkerProps = {
   id: string;
   icon: string;
   munzee?: string;
+  draggable?: boolean;
 } & MapLocation;
 
 function getImages(markers: MapMarkerProps[]) {
@@ -80,9 +92,16 @@ export default function MapView(props: MapProps) {
           props.onRegionChange?.({
             latitude: region.geometry.coordinates[1],
             longitude: region.geometry.coordinates[0],
+            bounds: {
+              lat1: region.properties.visibleBounds[0][1],
+              lng1: region.properties.visibleBounds[0][0],
+              lat2: region.properties.visibleBounds[1][1],
+              lng2: region.properties.visibleBounds[1][0],
+            },
+            zoom: region.properties.zoomLevel,
           });
         }}>
-        <MapboxGL.UserLocation />
+        {!props.hideUserLocation && <MapboxGL.UserLocation />}
         <MapboxGL.Camera
           ref={r => (camRef.current = r)}
           zoomLevel={props.zoom}
@@ -94,34 +113,67 @@ export default function MapView(props: MapProps) {
             id="circles_source"
             shape={{
               type: "FeatureCollection",
-              features: props.circles.map(i => ({
-                type: "Feature",
-                id: i.id,
-                properties: i,
-                geometry: {
-                  type: "Point",
-                  coordinates: "center" in i ? center : [i.lng, i.lat],
-                },
-              })),
+              features: props.circles.map(i =>
+                circle("center" in i ? center : [i.lng, i.lat], i.radius / 1000, {
+                  properties: {
+                    ...i,
+                    fill: i.fill.slice(0, 7),
+                    opacity: parseInt(i.fill.slice(7) || "ff", 16) / 255,
+                    stroke: i.stroke.slice(0, 7),
+                    strokeOpacity: parseInt(i.stroke.slice(7) || "ff", 16) / 255,
+                  },
+                })
+              ),
             }}>
-            <MapboxGL.CircleLayer
+            <MapboxGL.FillLayer
               id="circles"
               style={{
-                circleRadius: ["get", "radius"],
-                circleColor: ["get", "fill"],
-                circleStrokeColor: ["get", "stroke"],
+                fillColor: ["get", "fill"],
+                fillOpacity: ["get", "opacity"],
+              }}
+            />
+            <MapboxGL.LineLayer
+              id="circlesLine"
+              style={{
+                lineColor: ["get", "stroke"],
+                lineOpacity: ["get", "strokeOpacity"],
               }}
             />
           </MapboxGL.ShapeSource>
         )}
+        {props.markers
+          ?.filter(i => i.draggable)
+          .map(i => (
+            <MapboxGL.PointAnnotation
+              coordinate={"center" in i ? center : [i.lng, i.lat]}
+              id={i.id}
+              draggable={true}
+              onDragEnd={(event?: any) => {
+                props.onMarkerDragEnd?.({ event, id: i.id });
+              }}
+              anchor={{
+                x: 0.5,
+                y: 1,
+              }}
+              onSelected={(event?: any) => {
+                props.onMarkerPress?.({ event, id: i.id });
+              }}>
+              <TypeImage
+                icon={i.icon}
+                iconSize={128}
+                style={{ size: 64 * 0.2 * PixelRatio.get() }}
+              />
+            </MapboxGL.PointAnnotation>
+          ))}
         {props.markers && (
           <MapboxGL.ShapeSource
-            onPress={(ev) => {
+            onPress={ev => {
               const m = ev.features[0].properties?.munzee;
-              if (m) props.nav?.navigate("Tools", {
-                screen: "Munzee",
-                params: {a: m}
-              })
+              if (m)
+                props.nav?.navigate("Tools", {
+                  screen: "Munzee",
+                  params: { a: m },
+                });
             }}
             id="markers_source"
             cluster={props.cluster}
@@ -129,18 +181,20 @@ export default function MapView(props: MapProps) {
             clusterMaxZoomLevel={props.clusterMaxZoomLevel}
             shape={{
               type: "FeatureCollection",
-              features: props.markers.map(i => ({
-                type: "Feature",
-                id: i.id,
-                properties: {
-                  ...i,
-                  image: getRemoteTypeImage(i.icon, 64),
-                },
-                geometry: {
-                  type: "Point",
-                  coordinates: "center" in i ? center : [i.lng, i.lat],
-                },
-              })),
+              features: props.markers
+                .filter(i => !i.draggable)
+                .map(i => ({
+                  type: "Feature",
+                  id: i.id,
+                  properties: {
+                    ...i,
+                    image: getRemoteTypeImage(i.icon, 128),
+                  },
+                  geometry: {
+                    type: "Point",
+                    coordinates: "center" in i ? center : [i.lng, i.lat],
+                  },
+                })),
             }}>
             <MapboxGL.SymbolLayer
               id="pointCount"
@@ -179,7 +233,7 @@ export default function MapView(props: MapProps) {
               id="symbols"
               filter={["!", ["has", "point_count"]]}
               style={{
-                iconSize: 0.3 * PixelRatio.get(),
+                iconSize: 0.2 * PixelRatio.get(),
                 iconAnchor: "bottom",
                 iconImage: ["get", "icon"],
                 iconAllowOverlap: true,
