@@ -1,5 +1,5 @@
 import { RouteProp, useRoute } from "@react-navigation/native";
-import { Icon, Layout, Text, useTheme } from "@ui-kitten/components";
+import { Layout, Text, useTheme } from "@ui-kitten/components";
 import dayjs from "dayjs";
 import * as React from "react";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
@@ -13,6 +13,7 @@ import Loading from "../../components/Loading";
 import { ScrollView, View } from "react-native";
 import TypeImage from "../../components/Common/TypeImage";
 import { useTranslation } from "react-i18next";
+import Icon from "../../components/Common/Icon";
 
 export default function UserChallengesScreen() {
   const { t } = useTranslation();

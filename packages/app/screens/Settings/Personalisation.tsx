@@ -1,4 +1,4 @@
-import { Button, CheckBox, Icon, Layout, Radio, RadioGroup, Text } from "@ui-kitten/components";
+import { Button, CheckBox, Layout, Radio, RadioGroup, Text } from "@ui-kitten/components";
 import dayjs from "dayjs";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
@@ -6,6 +6,7 @@ import { Pressable, ScrollView, View } from "react-native";
 import { CommonCell, pickTextColor } from "../../components/Clan/Cell";
 import { requirementMeta } from "../../components/Clan/Data";
 import ColourPicker from "../../components/Common/ColourPicker";
+import Icon from "../../components/Common/Icon";
 import Select from "../../components/Common/Select";
 import useSetting, { ClanPersonalisationAtom, ThemeAtom } from "../../hooks/useSetting";
 import useTitle from "../../hooks/useTitle";

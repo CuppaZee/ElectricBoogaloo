@@ -1,10 +1,11 @@
-import { Button, Icon, Layout, Popover, Text } from "@ui-kitten/components";
+import { Button, Layout, Popover, Text } from "@ui-kitten/components";
 import React from "react";
 import { Pressable, StyleSheet } from "react-native";
 import { Type } from "@cuppazee/types";
 import TypeImage from "../Common/TypeImage";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
+import Icon from "../Common/Icon";
 
 export type CapturesIconProps = {
   type?: Type;

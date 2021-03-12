@@ -1,16 +1,9 @@
-import db, { TypeHidden, TypeTags } from "@cuppazee/types";
-import { Datepicker, Icon, Input, Layout, List, ListItem, Text } from "@ui-kitten/components";
+import { Datepicker, Layout, Text } from "@ui-kitten/components";
 import * as React from "react";
-import { FlatList, Image, ScrollView, View } from "react-native";
-import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
-import useMunzeeRequest from "../../hooks/useMunzeeRequest";
-import useSearch from "../../hooks/useSearch";
+import { ScrollView, View } from "react-native";
 import useTitle from "../../hooks/useTitle";
-import Fuse from "fuse.js";
-import types from "@cuppazee/types";
 import TypeImage from "../../components/Common/TypeImage";
 import { useNavigation } from "@react-navigation/native";
-import Tip from "../../components/Common/Tip";
 import Select from "../../components/Common/Select";
 import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";

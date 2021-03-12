@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Pressable, StyleSheet, View, Image, Linking } from "react-native";
-import { Button, Icon, Layout, Text } from "@ui-kitten/components";
+import { Button, Layout, Text } from "@ui-kitten/components";
 import useLogin from "../hooks/useLogin";
 import { ScrollView } from "react-native-gesture-handler";
 import useTitle from "../hooks/useTitle";
@@ -11,6 +11,7 @@ import useSetting, { ReadyAtom, ThemeAtom } from "../hooks/useSetting";
 import { Trans, useTranslation } from "react-i18next";
 import Select from "../components/Common/Select";
 import { LANGS } from "../lang/i18n";
+import Icon from "../components/Common/Icon";
 
 export default function WelcomeScreen() {
   const { t, i18n } = useTranslation();

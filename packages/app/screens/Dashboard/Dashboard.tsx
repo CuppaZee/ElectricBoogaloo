@@ -1,4 +1,4 @@
-import { Icon, Layout, useTheme } from "@ui-kitten/components";
+import { Layout, useTheme } from "@ui-kitten/components";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -11,10 +11,11 @@ import {
   ViewProps,
 } from "react-native";
 import builds from "../../builds";
+import Icon from "../../components/Common/Icon";
 import Loading from "../../components/Loading";
 import { useUserBookmarks } from "../../hooks/useBookmarks";
 import useComponentSize from "../../hooks/useComponentSize";
-import useSetting, { BuildAtom, ClanPersonalisationAtom } from "../../hooks/useSetting";
+import useSetting, { BuildAtom } from "../../hooks/useSetting";
 import useTitle from "../../hooks/useTitle";
 import ChangesDashCard from "./Changes";
 import ClansDashCard from "./Clans";

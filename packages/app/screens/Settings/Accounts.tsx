@@ -1,9 +1,10 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Button, Icon, Layout, Text } from "@ui-kitten/components";
+import { Button, Layout, Text } from "@ui-kitten/components";
 import { useAtom } from "jotai";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 import { Image, ScrollView, View } from "react-native";
+import Icon from "../../components/Common/Icon";
 import useLogin from "../../hooks/useLogin";
 import useSetting, { ReadyAtom } from "../../hooks/useSetting";
 import useTitle from "../../hooks/useTitle";

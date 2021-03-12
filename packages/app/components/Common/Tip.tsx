@@ -1,9 +1,10 @@
 import React from "react";
 import TypeImage from "./TypeImage";
-import { Button, Icon, Layout, Text } from "@ui-kitten/components";
+import { Button, Layout, Text } from "@ui-kitten/components";
 import { View, ViewStyle } from "react-native";
 import { useTranslation } from "react-i18next";
 import useSetting, { TipsAtom } from "../../hooks/useSetting";
+import Icon from "./Icon";
 
 const babyAnimals: [string, string][] = [
   ["babyhippo", "Baby Hippo"],

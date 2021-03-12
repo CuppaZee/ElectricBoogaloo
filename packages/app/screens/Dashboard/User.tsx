@@ -1,16 +1,16 @@
 import { useNavigation } from "@react-navigation/native";
-import { Icon, Layout, Text, DrawerItem, DrawerGroup } from "@ui-kitten/components";
+import { Layout, Text, DrawerItem, DrawerGroup } from "@ui-kitten/components";
 import dayjs from "dayjs";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 import { Image, Pressable, ScrollView, StyleSheet, View } from "react-native";
 import UserActivityOverview from "../../components/Activity/Overview";
 import ZeeOpsOverview from "../../components/ZeeOps/Overview";
-import useTitle from "../../hooks/useTitle";
 import { DashCardProps } from "./Dashboard";
 import db from "@cuppazee/types";
 import TypeImage from "../../components/Common/TypeImage";
 import { UserPagesNow, UserPagesTools } from "../User/Profile";
+import Icon from "../../components/Common/Icon";
 
 export default function UserDashCard({
   item,

@@ -1,15 +1,9 @@
-import {
-  Button,
-  Icon,
-  Layout,
-  Popover,
-  Text,
-  useTheme,
-} from "@ui-kitten/components";
+import { Button, Layout, Popover, Text, useTheme } from "@ui-kitten/components";
 import dayjs, { Dayjs } from "dayjs";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 import { Image, Pressable, ScrollView, View } from "react-native";
+import Icon from "../../components/Common/Icon";
 import useDay from "../../hooks/useDay";
 import useTitle from "../../hooks/useTitle";
 
@@ -69,9 +63,8 @@ type CalendarData = {
 
 function Date(date: Dayjs): CalendarData {
   const dm = (date.month() + 1) * 100 + date.date();
-  const western = westernTimes.find((i) => i[0] <= dm)?.[1] || "zodiac";
-  const egyptian =
-    egyptianTimes.find((i) => i[0] <= dm)?.[1] || "egyptianzodiacsun";
+  const western = westernTimes.find(i => i[0] <= dm)?.[1] || "zodiac";
+  const egyptian = egyptianTimes.find(i => i[0] <= dm)?.[1] || "egyptianzodiacsun";
   return {
     date,
     western,
@@ -108,9 +101,7 @@ function CalendarCell({ date }: { date: Dayjs }) {
                   justifyContent: "center",
                   alignItems: "center",
                 }}>
-                <Text style={{ fontSize: 16, fontWeight: "bold" }}>
-                  {date.date()}
-                </Text>
+                <Text style={{ fontSize: 16, fontWeight: "bold" }}>{date.date()}</Text>
               </View>
               <View>
                 <Image
@@ -278,11 +269,7 @@ export default function CalendarScreen() {
   const monthEnd = dayjs(month).set("date", 1).add(1, "month").subtract(1, "day");
   const offset = -dayjs().localeData().firstDayOfWeek() + 7;
   const array = [];
-  for (
-    let date = monthStart;
-    date.valueOf() <= monthEnd.valueOf();
-    date = date.add(1, "day")
-  ) {
+  for (let date = monthStart; date.valueOf() <= monthEnd.valueOf(); date = date.add(1, "day")) {
     array.push(date);
   }
   return (

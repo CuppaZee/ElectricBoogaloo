@@ -1,4 +1,4 @@
-import { Icon, Input, Layout, ListItem, Text } from "@ui-kitten/components";
+import { Input, Layout, ListItem, Text } from "@ui-kitten/components";
 import * as React from "react";
 import { FlatList, Image, View } from "react-native";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
@@ -12,6 +12,7 @@ import { useNavigation } from "@react-navigation/native";
 import Tip from "../../components/Common/Tip";
 import { useTranslation } from "react-i18next";
 import dayjs from "dayjs";
+import Icon from "../../components/Common/Icon";
 
 export default function SearchScreen() {
   const { t } = useTranslation();

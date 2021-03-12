@@ -1,4 +1,4 @@
-import { Icon, Input, Layout, ListItem, Text } from "@ui-kitten/components";
+import { Input, Layout, ListItem, Text } from "@ui-kitten/components";
 import * as React from "react";
 import { FlatList, Image, View } from "react-native";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
@@ -11,6 +11,7 @@ import TypeImage from "../../components/Common/TypeImage";
 import { useNavigation } from "@react-navigation/native";
 import Tip from "../../components/Common/Tip";
 import { useTranslation } from "react-i18next";
+import Icon from "../../components/Common/Icon";
 
 export default function SearchScreen() {
   const { t } = useTranslation();
@@ -97,7 +98,7 @@ export default function SearchScreen() {
                     ? "account"
                     : "shield-half-full"
                 }
-                {...props}
+                style={props?.style as any}
               />
             )}
             title={item.item.username ?? item.item.name}

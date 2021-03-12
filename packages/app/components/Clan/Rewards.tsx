@@ -1,4 +1,4 @@
-import { Icon, Layout, Spinner, Text, useTheme } from "@ui-kitten/components";
+import { Layout, Spinner, Text, useTheme } from "@ui-kitten/components";
 import dayjs from "dayjs";
 import React from "react";
 import { useTranslation } from "react-i18next";
@@ -16,6 +16,7 @@ import {
 import useComponentSize from "../../hooks/useComponentSize";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
 import useSetting, { ClanPersonalisationAtom } from "../../hooks/useSetting";
+import Icon from "../Common/Icon";
 
 const levels: { level: number; type: "group" | "individual" }[] = [
   { level: 1, type: "individual" },

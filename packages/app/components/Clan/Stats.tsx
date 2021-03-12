@@ -1,4 +1,4 @@
-import { Button, Icon, Layout, Modal, Spinner, Text, useTheme } from "@ui-kitten/components";
+import { Button, Layout, Modal, Spinner, Text, useTheme } from "@ui-kitten/components";
 import React from "react";
 import { Image, PixelRatio, StyleSheet, View } from "react-native";
 import {
@@ -24,6 +24,7 @@ import ClanSettingsModal from "./SettingsModal";
 import SyncScrollView, { SyncScrollViewController } from "./SyncScrollView";
 import Loading from "../Loading";
 import useSetting, { ClanPersonalisationAtom, ClansAtom } from "../../hooks/useSetting";
+import Icon from "../Common/Icon";
 export interface ClanStatsTableProps {
   game_id: number;
   clan_id: number;

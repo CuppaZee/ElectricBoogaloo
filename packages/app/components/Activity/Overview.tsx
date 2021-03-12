@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { Button, Icon, Layout, Popover, Spinner, Text } from "@ui-kitten/components";
+import { Button, Layout, Popover, Spinner, Text } from "@ui-kitten/components";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
 import db from "@cuppazee/types";
 import { Pressable, View } from "react-native";
@@ -9,6 +9,7 @@ import { useTranslation } from "react-i18next";
 import useActivity from "../../hooks/useActivity";
 import Loading from "../Loading";
 import { useNavigation } from "@react-navigation/native";
+import Icon from "../Common/Icon";
 
 export type UserActivityOverviewProps = {
   user_id: number;

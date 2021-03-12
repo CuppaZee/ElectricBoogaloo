@@ -1,7 +1,6 @@
 import {
   Button,
   CheckBox,
-  Icon,
   Input,
   Layout,
   List,
@@ -26,6 +25,7 @@ import fuse from "fuse.js";
 import { useTranslation } from "react-i18next";
 import { LANGS } from "../../lang/i18n";
 import Select from "../../components/Common/Select";
+import Icon from "../../components/Common/Icon";
 
 interface LocationPickerModalProps {
   location: DeviceNotificationStaticLocation;

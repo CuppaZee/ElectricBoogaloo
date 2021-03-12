@@ -7,7 +7,6 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import {
   Button,
   Datepicker,
-  Icon,
   Layout,
 } from "@ui-kitten/components";
 import dayjs from "dayjs";
@@ -21,6 +20,7 @@ import UserActivityOverview from "./Overview";
 import { UserStackParamList } from "../../types";
 import getDateService from "../Common/getDateService";
 import { useTranslation } from "react-i18next";
+import Icon from "../Common/Icon";
 
 export default function UserActivityList({
   d,

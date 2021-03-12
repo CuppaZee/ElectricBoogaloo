@@ -1,4 +1,4 @@
-import { Icon, Layout, Spinner, Text, useTheme } from "@ui-kitten/components";
+import { Layout, Spinner, Text, useTheme } from "@ui-kitten/components";
 import * as React from "react";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
 import useComponentSize from "../../hooks/useComponentSize";
@@ -14,6 +14,7 @@ import Loading from "../../components/Loading";
 import dayjs from "dayjs";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
+import Icon from "../../components/Common/Icon";
 
 type Bouncer = (MunzeeSpecialBouncer | MunzeeSpecial) & {
   hash: string;
@@ -172,7 +173,7 @@ export default function NearbyScreen() {
                     <Text style={{ textAlign: "center" }} category="s1">
                       <Icon
                         name={
-                          {
+                          ({
                             N: "arrow-up-thick",
                             NW: "arrow-top-left-thick",
                             NE: "arrow-top-right-thick",
@@ -181,7 +182,7 @@ export default function NearbyScreen() {
                             SW: "arrow-bottom-left-thick",
                             SE: "arrow-bottom-right-thick",
                             S: "arrow-down-thick",
-                          }[
+                          } as const)[
                             i.direction.slice(2) as
                               | "N"
                               | "NE"

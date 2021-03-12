@@ -1,24 +1,18 @@
 import { DrawerActions } from "@react-navigation/native";
 import { StackHeaderProps } from "@react-navigation/stack";
-import {
-  Icon,
-  Layout,
-  Spinner,
-  TopNavigation,
-  TopNavigationAction,
-} from "@ui-kitten/components";
+import { Layout, Spinner, TopNavigation, TopNavigationAction } from "@ui-kitten/components";
 import React from "react";
 import { useIsFetching, useQueryClient } from "react-query";
 import day from "dayjs";
 import { useWindowDimensions } from "react-native";
+import Icon from "../components/Common/Icon";
 
 export default function Header(props: StackHeaderProps) {
   const dimensions = useWindowDimensions();
   const loading = useIsFetching();
   const queryClient = useQueryClient();
   const titleData = (
-    props.scene.descriptor.options.headerTitle?.toString() ??
-    props.scene.route.name
+    props.scene.descriptor.options.headerTitle?.toString() ?? props.scene.route.name
   ).split("|");
   return (
     <Layout style={{ paddingTop: props.insets.top }}>

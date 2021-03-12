@@ -1,8 +1,9 @@
 import { useNavigation } from "@react-navigation/native";
-import { Button, Icon, Layout, Text, useTheme } from "@ui-kitten/components";
+import { Button, Layout, Text, useTheme } from "@ui-kitten/components";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 import { Image } from "react-native";
+import Icon from "../components/Common/Icon";
 import useTitle from "../hooks/useTitle";
 
 export default function SomewhereWithoutCoffeeScreen() {

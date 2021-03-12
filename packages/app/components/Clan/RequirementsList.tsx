@@ -1,4 +1,4 @@
-import { Icon, Layout, Spinner, Text, useTheme } from "@ui-kitten/components";
+import { Layout, Spinner, Text, useTheme } from "@ui-kitten/components";
 import dayjs from "dayjs";
 import React from "react";
 import { useTranslation } from "react-i18next";
@@ -14,6 +14,7 @@ import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import TypeImage from "../Common/TypeImage";
 import Loading from "../Loading";
+import Icon from "../Common/Icon";
 
 export interface ClanRequirementsListProps {
   game_id: number;

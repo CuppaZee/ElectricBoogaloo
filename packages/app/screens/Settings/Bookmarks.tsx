@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Button, Icon, Input, Layout, List, ListItem, Modal, Text, useTheme } from "@ui-kitten/components";
+import { Button, Input, Layout, List, ListItem, Modal, Text, useTheme } from "@ui-kitten/components";
 import * as React from "react";
 import { Image, ScrollView, View } from "react-native";
 import { useClanBookmarks, useUserBookmarks } from "../../hooks/useBookmarks";
@@ -9,6 +9,7 @@ import { UpdateWrapper, UserSearchModal } from "./Notifications";
 import Fuse from "fuse.js";
 import useSearch from "../../hooks/useSearch";
 import { useTranslation } from "react-i18next";
+import Icon from "../../components/Common/Icon";
 
 interface ClanSearchModalProps {
   close: (data: { clan_id: number; name: string; tagline: string }) => void;

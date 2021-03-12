@@ -1,12 +1,13 @@
 import React from "react";
 import * as Location from "expo-location";
 import TypeImage, { getRemoteTypeImage, getTypeImage } from "../Common/TypeImage";
-import { Button, Icon } from "@ui-kitten/components";
+import { Button } from "@ui-kitten/components";
 import circle from "@turf/circle";
 
 import MapboxGL from "@react-native-mapbox-gl/maps";
 import { PixelRatio, View } from "react-native";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
+import Icon from "../Common/Icon";
 
 MapboxGL.setAccessToken(
   "pk.eyJ1Ijoic29oY2FoIiwiYSI6ImNqeWVqcm8wdTAxc2MzaXFpa282Yzd2aHEifQ.afYbt2sVMZ-kbwdx5_PekQ"

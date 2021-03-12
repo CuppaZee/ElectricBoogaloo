@@ -1,5 +1,5 @@
 import { useLinkBuilder, useRoute } from "@react-navigation/native";
-import { Button, Icon, Layout, LayoutProps, Spinner, Text, useTheme } from "@ui-kitten/components";
+import { Button, Layout, LayoutProps, Spinner, Text, useTheme } from "@ui-kitten/components";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 import { Image, View } from "react-native";
@@ -7,6 +7,7 @@ import { QueryObserverResult } from "react-query";
 import useComponentSize from "../hooks/useComponentSize";
 import useLogin from "../hooks/useLogin";
 import { useTeakens } from "../hooks/useToken";
+import Icon from "./Common/Icon";
 
 export default function Loading({
   data,

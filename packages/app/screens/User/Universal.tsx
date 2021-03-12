@@ -2,7 +2,6 @@ import { RouteProp, useRoute } from "@react-navigation/native";
 import {
   Button,
   CheckBox,
-  Icon,
   Input,
   Layout,
   Radio,
@@ -22,6 +21,7 @@ import QRCode from "react-native-qrcode-svg";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
 import TypeImage from "../../components/Common/TypeImage";
 import { useTranslation } from "react-i18next";
+import Icon from "../../components/Common/Icon";
 
 interface ReportModalProps {
   munzee: UniversalMunzee;
@@ -296,19 +296,21 @@ export default function UserChallengesScreen() {
 
   return (
     <Layout onLayout={onLayout} style={{ flex: 1 }}>
-      {munzee && <Modal
-        backdropStyle={{ backgroundColor: "#00000077" }}
-        visible={reportModal}
-        onBackdropPress={() => setReportModal(false)}>
-        <ReportModal
-          close={() => setReportModal(false)}
-          closeWithNext={() => {
-            setReportModal(false);
-            setIndex(index + 1);
-          }}
-          munzee={munzee}
-        />
-      </Modal>}
+      {munzee && (
+        <Modal
+          backdropStyle={{ backgroundColor: "#00000077" }}
+          visible={reportModal}
+          onBackdropPress={() => setReportModal(false)}>
+          <ReportModal
+            close={() => setReportModal(false)}
+            closeWithNext={() => {
+              setReportModal(false);
+              setIndex(index + 1);
+            }}
+            munzee={munzee}
+          />
+        </Modal>
+      )}
       <Modal
         backdropStyle={{ backgroundColor: "#00000077" }}
         visible={submitModal}
@@ -392,7 +394,7 @@ export default function UserChallengesScreen() {
       ) : (
         <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
           <Text style={{ textAlign: "center" }} category="s1">
-              {t("user_universal_capper:empty")}
+            {t("user_universal_capper:empty")}
           </Text>
         </View>
       )}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Icon, Layout, Text, useTheme } from "@ui-kitten/components";
+import { Layout, Text, useTheme } from "@ui-kitten/components";
 import { Image, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
@@ -8,6 +8,7 @@ import Svg, { Text as SvgText } from "react-native-svg";
 import { useTranslation } from "react-i18next";
 import Loading from "../Loading";
 import TypeImage from "../Common/TypeImage";
+import Icon from "../Common/Icon";
 
 export type ZeeOpsOverviewProps = {
   user_id: number;

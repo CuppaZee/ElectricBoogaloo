@@ -1,9 +1,10 @@
-import { Button, CheckBox, Icon, Text } from "@ui-kitten/components";
+import { Button, CheckBox, Text } from "@ui-kitten/components";
 import * as React from "react";
 import { UserActivityConverterOutput, UserActivityFilters } from "./Data";
 import { TypeState } from "@cuppazee/types";
 import { useTranslation } from "react-i18next";
 import { ScrollView } from "react-native-gesture-handler";
+import Icon from "../Common/Icon";
 
 const types: {
   label: string;

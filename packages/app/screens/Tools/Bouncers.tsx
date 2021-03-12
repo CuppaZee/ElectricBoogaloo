@@ -1,11 +1,12 @@
 import db, { TypeHidden, TypeTags, TypeState } from "@cuppazee/types";
 import { useNavigation } from "@react-navigation/native";
-import { Layout, Text, Icon, Button } from "@ui-kitten/components";
+import { Layout, Text, Button } from "@ui-kitten/components";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 import { ScrollView, View } from "react-native";
 import BouncerOverviewConverter from "../../components/Bouncers/Data";
 import { BouncerIcon } from "../../components/Bouncers/Icon";
+import Icon from "../../components/Common/Icon";
 import Loading from "../../components/Loading";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
 import useTitle from "../../hooks/useTitle";

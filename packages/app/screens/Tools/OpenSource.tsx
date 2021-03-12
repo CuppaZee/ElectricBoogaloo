@@ -1,8 +1,9 @@
-import { Button, Icon, Layout, List, ListItem, Text } from "@ui-kitten/components";
+import { Button, Layout, List, ListItem, Text } from "@ui-kitten/components";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 import { Linking } from "react-native";
 import dependencies from "../../assets/dependencies.json";
+import Icon from "../../components/Common/Icon";
 import useTitle from "../../hooks/useTitle";
 
 type Lib = {

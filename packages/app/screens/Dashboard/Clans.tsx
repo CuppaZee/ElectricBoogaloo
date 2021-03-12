@@ -1,8 +1,9 @@
 import { useNavigation } from "@react-navigation/native";
-import { Icon, Layout, Text, DrawerItem } from "@ui-kitten/components";
+import { Layout, Text, DrawerItem } from "@ui-kitten/components";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 import { Image, StyleSheet, ScrollView, View } from "react-native";
+import Icon from "../../components/Common/Icon";
 import Tip from "../../components/Common/Tip";
 import { useClanBookmarks } from "../../hooks/useBookmarks";
 import useTitle from "../../hooks/useTitle";

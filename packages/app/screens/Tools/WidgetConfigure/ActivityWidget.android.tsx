@@ -1,5 +1,5 @@
 import { RouteProp, useRoute } from "@react-navigation/native";
-import { Button, Icon, Input, Layout, Text } from "@ui-kitten/components";
+import { Button, Input, Layout, Text } from "@ui-kitten/components";
 import * as React from "react";
 import { ToolsStackParamList } from "../../../types";
 

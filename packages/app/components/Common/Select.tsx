@@ -1,10 +1,11 @@
-import { Icon, IndexPath, Select as UIKittenSelect, SelectItem, SelectProps as UIKittenSelectProps } from "@ui-kitten/components";
+import { IndexPath, Select as UIKittenSelect, SelectItem, SelectProps as UIKittenSelectProps } from "@ui-kitten/components";
 import * as React from "react";
+import Icon, { IconName } from "./Icon";
 
 export type SelectOption = {
   value: string;
   label: string;
-  icon?: string;
+  icon?: IconName;
 };
 
 export type SelectProps = Omit<

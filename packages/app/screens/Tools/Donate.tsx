@@ -1,12 +1,8 @@
-import {
-  Button,
-  Icon,
-  Layout,
-  Text,
-} from "@ui-kitten/components";
+import { Button, Layout, Text } from "@ui-kitten/components";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 import { Linking } from "react-native";
+import Icon from "../../components/Common/Icon";
 import useTitle from "../../hooks/useTitle";
 
 export default function DonateScreen() {

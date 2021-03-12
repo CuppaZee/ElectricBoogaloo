@@ -1,4 +1,4 @@
-import { Icon, Layout, Spinner, Text, useTheme } from "@ui-kitten/components";
+import { Layout, Spinner, Text, useTheme } from "@ui-kitten/components";
 import dayjs from "dayjs";
 import React from "react";
 import { useTranslation } from "react-i18next";
@@ -14,6 +14,7 @@ import SyncScrollView, { SyncScrollViewController } from "./SyncScrollView";
 import Loading from "../Loading";
 import { useQueryClient } from "react-query";
 import useSetting, { ClanPersonalisationAtom } from "../../hooks/useSetting";
+import Icon from "../Common/Icon";
 
 const levels: { level: number; type: "group" | "individual" }[] = [
   { level: 1, type: "individual" },

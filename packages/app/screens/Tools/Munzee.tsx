@@ -1,5 +1,5 @@
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
-import { DrawerItem, Icon, Layout, Text, useTheme } from "@ui-kitten/components";
+import { DrawerItem, Layout, Text, useTheme } from "@ui-kitten/components";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 import { ScrollView, View, Image, Linking } from "react-native";
@@ -12,6 +12,7 @@ import db from "@cuppazee/types";
 import TypeImage from "../../components/Common/TypeImage";
 import MapView from "../../components/Maps/MapView";
 import dayjs from "dayjs";
+import Icon from "../../components/Common/Icon";
 
 export const UserPagesNow = [
   {

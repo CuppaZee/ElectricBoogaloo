@@ -1,5 +1,5 @@
 import { RouteProp, useRoute } from "@react-navigation/native";
-import { Icon, Layout, Text, useTheme } from "@ui-kitten/components";
+import { Layout, Text, useTheme } from "@ui-kitten/components";
 import * as React from "react";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import useComponentSize from "../../hooks/useComponentSize";
@@ -13,6 +13,7 @@ import { TypeState } from "@cuppazee/types/lib";
 import dayjs from "dayjs";
 import useSetting, { ClanPersonalisationAtom } from "../../hooks/useSetting";
 import { useTranslation } from "react-i18next";
+import Icon from "../../components/Common/Icon";
 
 interface QRewData {
   cap: {

@@ -1,12 +1,6 @@
 import { DrawerContentComponentProps, DrawerContentOptions } from "@react-navigation/drawer";
 import { NavigationState, PartialState, useNavigationState } from "@react-navigation/native";
-import {
-  DrawerGroup,
-  DrawerItem,
-  Icon,
-  Layout,
-  Text,
-} from "@ui-kitten/components";
+import { DrawerGroup, DrawerItem, Layout, Text } from "@ui-kitten/components";
 import React from "react";
 import { Image, Linking, Platform, ScrollView } from "react-native";
 import { useClanBookmarks, useUserBookmarks } from "../hooks/useBookmarks";
@@ -14,6 +8,7 @@ import useDay from "../hooks/useDay";
 import { useTranslation } from "react-i18next";
 import Tip from "../components/Common/Tip";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import Icon from "../components/Common/Icon";
 
 type NavigationRoute = {
   state?: NavigationState | PartialState<NavigationState>;

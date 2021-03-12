@@ -1,7 +1,7 @@
 import { MapBoundingboxV4 } from "@cuppazee/api/map/v4";
 import db from "@cuppazee/types";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
-import { Button, Icon, Layout, Text } from "@ui-kitten/components";
+import { Button, Layout, Text } from "@ui-kitten/components";
 import * as React from "react";
 import { Pressable, View } from "react-native";
 import TypeImage from "../../components/Common/TypeImage";
@@ -10,6 +10,7 @@ import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import useTitle from "../../hooks/useTitle";
 import Clipboard from "expo-clipboard";
 import { ToolsStackParamList } from "../../types";
+import Icon from "../../components/Common/Icon";
 
 interface BouncerListData {
   list: string[];

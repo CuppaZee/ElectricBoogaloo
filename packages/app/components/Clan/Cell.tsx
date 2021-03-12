@@ -1,4 +1,4 @@
-import { Icon, Layout, Text, useTheme } from "@ui-kitten/components";
+import { Layout, Text, useTheme } from "@ui-kitten/components";
 import React, { PropsWithChildren } from "react";
 import {
   Image,
@@ -23,6 +23,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigation } from "@react-navigation/native";
 import { useUserBookmarks } from "../../hooks/useBookmarks";
 import useSetting, { ClanPersonalisationAtom, ClansAtom } from "../../hooks/useSetting";
+import Icon, { IconName } from "../Common/Icon";
 
 export function pickTextColor(
   bgColor: string,
@@ -55,10 +56,10 @@ export interface CommonCellProps {
   type: "title" | "header" | "header_stack" | "data";
   color?: number;
   image?: ImageSourcePropType;
-  icon?: string;
+  icon?: IconName;
   title?: string;
   titleBold?: boolean;
-  titleIcon?: string;
+  titleIcon?: IconName;
   subtitle?: string;
   clanStyle?: typeof ClanPersonalisationAtom["init"]["data"];
   onPress?: () => void;
@@ -512,8 +513,8 @@ export function RequirementCell(props: RequirementCellProps) {
       titleIcon={
         props.sortBy && Math.abs(props.sortBy) === props.task_id
           ? props.sortBy > 0
-            ? `chevron-${style.reverse ? "right" : "down"}`
-            : `chevron-${style.reverse ? "left" : "up"}`
+            ? (`chevron-${style.reverse ? "right" : "down"}` as const)
+            : (`chevron-${style.reverse ? "left" : "up"}` as const)
           : undefined
       }
       subtitle={requirementMeta[props.task_id]?.bottom}
