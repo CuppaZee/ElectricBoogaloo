@@ -609,8 +609,22 @@ const builds: Build[] = [
     features: [
       {
         title: "Bouncing Soon",
-        description:
-          "Find bouncers that are about to bounce! Search by type or player!",
+        description: "Find bouncers that are about to bounce! Search by type or player!",
+      },
+    ],
+  },
+  {
+    build: 33,
+    date: "2021-03-12",
+    features: [
+      {
+        title: "Tappable Notifications",
+        description: "You can now tap on Bouncer notifications to view details on the Munzee, and on Blog notifications to read the blog post. Please be aware that this currently doesn't work when tapping on a notification on iOS when the app is killed, due to an issue with one of CuppaZee's dependencies. This issue will be resolved in a future update."
+      }
+    ],
+    improvements: [
+      {
+        description: "Reworked system for loading icon symbols to allow for faster loading times and to allow notifications to be tappable.",
       },
     ],
   },
