@@ -77,8 +77,8 @@ export const Challenges: Challenge[] = [
         ),
       },
       {
-        icon: "Season 2 / Funfinity Pouch Creature",
-        name: "challenges:shc_lite.pc_2",
+        icon: "oniks",
+        name: "Season 2 / Funfinity Pouch Creature",
         types: db.types.filter(
           i =>
             (i.has_tags(TypeTags.BouncerPCS2) || i.has_tags(TypeTags.BouncerPCFunfinity)) &&

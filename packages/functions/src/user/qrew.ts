@@ -2,7 +2,7 @@ import { UserArchivedMunzee } from "@cuppazee/api/user/archived";
 import { Route } from "../types";
 import { retrieve, request } from "../util";
 import typesDB from "@cuppazee/types";
-import { DestinationType } from "@cuppazee/types/lib/munzee";
+import { DestinationType, TypeState } from "@cuppazee/types/lib/munzee";
 import day from "../util/day";
 
 const route: Route = {
@@ -11,7 +11,16 @@ const route: Route = {
   versions: [
     {
       version: 1,
-      async function({ params: { username, user_id }, db }: any) {
+      async function({ params: { username, user_id, from } }) {
+        function convertState(state?: TypeState) {
+          if (!from || !from.includes("_1.2_")) {
+            return state;
+          }
+          if (state === TypeState.Physical) {
+            return "physical"
+          }
+          return "virtual";
+        }
         var token = await retrieve({ user_id, teaken: false }, 60);
         try {
           var [captures, deploys, capture_dates, deploy_dates] = await Promise.all([
@@ -44,7 +53,7 @@ const route: Route = {
           var g = typesDB.getType(i.name);
           return {
             type: Number(i.capture_type_id),
-            state: g?.meta.destination_type === DestinationType.Room ? "room" : g?.state,
+            state: g?.meta.destination_type === DestinationType.Room ? "room" : convertState(g?.state),
             name: i.name,
             icon: g?.icon,
             amount: Number(i.captures),
@@ -54,7 +63,7 @@ const route: Route = {
           var g = typesDB.getType(i.name);
           return {
             type: Number(i.capture_type_id),
-            state: g?.meta.destination_type === DestinationType.Room ? "room" : g?.state,
+            state: g?.meta.destination_type === DestinationType.Room ? "room" : convertState(g?.state),
             name: i.name,
             icon: g?.icon,
             amount: Number(i.munzees) - (formattedArchived[i.capture_type_id] || 0),

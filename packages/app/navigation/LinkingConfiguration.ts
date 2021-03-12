@@ -1,7 +1,9 @@
+import { LinkingOptions } from "@react-navigation/native";
 import * as Linking from "expo-linking";
+import * as Notifications from "expo-notifications";
 import { Platform } from "react-native";
 
-export default {
+const config: LinkingOptions = {
   prefixes:
     Platform.OS === "web" ? [Linking.makeUrl("/")] : ["cuppazee://", "uk.cuppazee.paper://"],
   config: {
@@ -44,6 +46,7 @@ export default {
               Search: "search",
               Calendar: "calendar",
               Bouncers: "bouncers",
+              BouncersExpiring: "bouncers/expiring",
               BouncersMap: "bouncers/:type",
               Munzee: "munzee/:a/:b?",
               TypeCategory: "db/:category",
@@ -73,4 +76,32 @@ export default {
       somewherewithoutcoffee: "*",
     },
   },
+  subscribe(listener) {
+    const onReceiveURL = ({ url }: { url: string }) => listener(url);
+
+    // Listen to incoming links from deep linking
+    Linking.addEventListener("url", onReceiveURL);
+
+    // Listen to expo push notifications
+    const subscription = Notifications.addNotificationResponseReceivedListener(response => {
+      const path = response.notification.request.content.data.path;
+      const url = response.notification.request.content.data.url;
+
+      if (path && typeof path === "string") {
+        listener(path);
+      }
+
+      if (url && typeof url === "string") {
+        Linking.openURL(url);
+      }
+    });
+
+    return () => {
+      // Clean up the event listeners
+      Linking.removeEventListener("url", onReceiveURL);
+      subscription.remove();
+    };
+  },
 };
+
+export default config;

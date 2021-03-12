@@ -61,13 +61,13 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
       <ScrollView
         style={{ flexGrow: 1 }}
         contentContainerStyle={{ paddingTop: insets.top, paddingBottom: insets.bottom }}>
-        {Platform.OS === "web" && <DrawerItem
-          title="Return to V1"
-          accessoryLeft={props => <Icon {...props} name="exit-run" />}
-          onPress={() =>
-            Linking.openURL("https://v1.cuppazee.app")
-          }
-        />}
+        {Platform.OS === "web" && (
+          <DrawerItem
+            title="Return to V1"
+            accessoryLeft={props => <Icon {...props} name="exit-run" />}
+            onPress={() => Linking.openURL("https://v1.cuppazee.app")}
+          />
+        )}
         <DrawerItem
           selected={page[1]?.name === "Tools" && page[2]?.name === "Search"}
           title={t("pages:tools_search")}
@@ -379,6 +379,16 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
           onPress={() =>
             props.navigation.navigate("Tools", {
               screen: "Bouncers",
+            })
+          }
+        />
+        <DrawerItem
+          selected={page[1]?.name === "Tools" && page[2]?.name === "BouncersExpiring"}
+          title="Bouncing Soon"
+          accessoryLeft={props => <Icon {...props} name="clock" />}
+          onPress={() =>
+            props.navigation.navigate("Tools", {
+              screen: "BouncersExpiring",
             })
           }
         />

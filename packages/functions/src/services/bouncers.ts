@@ -153,8 +153,7 @@ export default async function () {
             })
             .join("\n")}`,
           data: {
-            type: "bouncer",
-            bouncer: i.bouncer.full_url,
+            path: `/tools/munzee/${i.bouncer.munzee_id}`,
           },
         };
       })

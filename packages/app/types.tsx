@@ -48,6 +48,7 @@ export type ToolsStackParamList = {
   Credits: undefined;
   OpenSource: undefined;
   Bouncers: undefined;
+  BouncersExpiring: undefined;
   BouncersMap: { type: string };
   Munzee: { a: string; b?: string };
   Nearby: undefined;

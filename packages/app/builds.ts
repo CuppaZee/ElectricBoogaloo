@@ -599,8 +599,18 @@ const builds: Build[] = [
     date: "2021-03-09",
     improvements: [
       {
+        description: "Improved reliability and functionality of POI and Destination planners",
+      },
+    ],
+  },
+  {
+    build: 32,
+    date: "2021-03-10",
+    features: [
+      {
+        title: "Bouncing Soon",
         description:
-          "Improved reliability and functionality of POI and Destination planners",
+          "Find bouncers that are about to bounce! Search by type or player!",
       },
     ],
   },

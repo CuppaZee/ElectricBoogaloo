@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useQuery, UseQueryOptions } from "react-query";
 import useToken from "./useToken";
 import stringify from "fast-json-stable-stringify";
 import { useIsFocused } from "@react-navigation/native";
@@ -8,13 +8,10 @@ const getCuppaZeeData = async <T>(
   params: { [key: string]: any },
   token: string
 ): Promise<T> => {
-  const response = await fetch(
-    `https://server.beta.cuppazee.app/${endpoint}`,
-    {
-      method: "POST",
-      body: JSON.stringify({ ...params, access_token: token }),
-    }
-  );
+  const response = await fetch(`https://server.beta.cuppazee.app/${endpoint}`, {
+    method: "POST",
+    body: JSON.stringify({ ...params, access_token: token }),
+  });
   if (!response.ok) {
     throw {
       json: response.json(),
@@ -36,7 +33,8 @@ export default function useCuppaZeeRequest<T = any>(
   params: { [key: string]: any },
   run?: boolean,
   user_id?: number,
-  bypassIsFocused?: boolean
+  bypassIsFocused?: boolean,
+  options?: UseQueryOptions<T, unknown, T>
 ) {
   const isFocused = bypassIsFocused ?? useIsFocused();
   const token = useToken(user_id);
@@ -44,6 +42,7 @@ export default function useCuppaZeeRequest<T = any>(
     ["cuppazee", endpoint, stringify(params), user_id],
     () => getCuppaZeeData<T>(endpoint, params, token?.token?.access_token),
     {
+      ...options ?? {},
       enabled: isFocused && (run ?? true) && token.status === "valid",
     }
   );

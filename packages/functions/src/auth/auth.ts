@@ -18,8 +18,8 @@ const route: Route = {
       }) {
         try {
 
-          var state_data = JSON.parse(state || "{}");
-          var d = await fetch("https://api.munzee.com/oauth/login", {
+          const state_data = JSON.parse(state || "{}");
+          const d = await fetch("https://api.munzee.com/oauth/login", {
             method: "POST",
             body: new URLSearchParams({
               client_id: config.client_id,
@@ -29,22 +29,22 @@ const route: Route = {
               redirect_uri: config.redirect_uri,
             }),
           });
-          var data = await d.json();
-          var teaken = crypto.randomBytes(20).toString("hex");
-          var user_d = await fetch("https://api.munzee.com/user", {
+          const data = await d.json();
+          const teaken = crypto.randomBytes(20).toString("hex");
+          const user_d = await fetch("https://api.munzee.com/user", {
             method: "POST",
             body: new URLSearchParams({
               access_token: data.data.token.access_token,
               data: JSON.stringify({
-                user_id: data.data.user_id
-              })
+                user_id: data.data.user_id,
+              }),
             }),
           });
-          var user_data = await user_d.json();
-          var { username, user_id } = user_data.data;
+          const user_data = await user_d.json();
+          const { username, user_id } = user_data.data;
           
-          var doc = db.collection('auth').doc(user_id.toString())
-          var doc_data = (await doc.get()).data();
+          const doc = db.collection("auth").doc(user_id.toString());
+          const doc_data = (await doc.get()).data();
   
           await doc.set({
             token: data.data.token,
@@ -62,12 +62,14 @@ const route: Route = {
           );
   
   
-          var platform = {
+          const platform = {
             android: "🤖",
             ios: "🍎",
             web: "🌐"
           }[state_data.platform as "android" | "ios" | "web"]||`[${state_data.platform}] `;
-          var {list} = (await db.collection('data').doc('user_list').get()).data() ?? {list:[]};
+          const { list } = (await db.collection("data").doc("user_list").get()).data() ?? {
+            list: [],
+          };
           let discordmessage = ``;
           if(list.includes(username)){
               discordmessage = `${platform}🔁 ${username} | ${list.length} Users [#${list.indexOf(username)+1}]`

@@ -13,17 +13,18 @@ import { firestore } from "firebase-admin";
 async function sendNotifications({ link, title }: any, db: firestore.Firestore, tokens: Promise<DeviceNotificationSettings[]>) {
   await notification(
     db,
-    (await tokens).filter(i=>i.munzee_blog).map(i => ({
-      to: i.token,
-      sound: "default",
-      title: "Munzee Blog Post",
-      body: title,
+    (await tokens)
+      .filter(i => i.munzee_blog)
+      .map(i => ({
+        to: i.token,
+        sound: "default",
+        title: "Munzee Blog Post",
+        body: title,
 
-      data: {
-        type: "blog",
-        link: link,
-      },
-    }))
+        data: {
+          url: link,
+        },
+      }))
   );
 }
 
