@@ -26,6 +26,7 @@ import { useTranslation } from "react-i18next";
 import { LANGS } from "../../lang/i18n";
 import Select from "../../components/Common/Select";
 import Icon from "../../components/Common/Icon";
+import useSetting, { LiveLocationErrorAtom } from "../../hooks/useSetting";
 
 interface LocationPickerModalProps {
   location: DeviceNotificationStaticLocation;
@@ -353,6 +354,7 @@ export default function NotificationScreen() {
   const [distanceOverrideModal, setDistanceOverrideModal] = React.useState(false);
   const [confirmLocation, setConfirmLocation] = React.useState(false);
   const [debugStatus, setDebugStatus] = React.useState("");
+  const [, setLiveLocationError] = useSetting(LiveLocationErrorAtom);
 
   async function registerForPushNotificationsAsync() {
     try {
@@ -871,31 +873,43 @@ export default function NotificationScreen() {
           style={{ margin: 4 }}
           onPress={async () => {
             try {
-              let n = 1;
+              let responseCode = 1;
               if (!settings) return;
+              
+              // Setup Dynamic Locations
               if (settings.locations.dynamic) {
-                const x = await Permissions.askAsync(Permissions.LOCATION);
-                const { status, permissions } = x;
-                setDebugStatus(`DATA: ${JSON.stringify(x)}`);
+                // Ask for Location Permission
+                const permissionsResponse = await Permissions.askAsync(Permissions.LOCATION);
+                const { status, permissions } = permissionsResponse;
+                setDebugStatus(`DATA: ${JSON.stringify(permissionsResponse)}`);
+                
+                // Check Permission allowed Always
                 if (status === "granted" && permissions.location?.scope === "always") {
+                  // Start
                   await Location.startLocationUpdatesAsync("BACKGROUND_LOCATION", {
-                    accuracy: Location.Accuracy.Balanced,
-                    distanceInterval: 250,
+                    accuracy: Location.Accuracy.Low,
+                    deferredUpdatesDistance: 250,
+                    deferredUpdatesTimeout: 900000,
                   });
                 } else {
+                  // Error
                   settings.locations.dynamic = undefined;
-                  n = 2;
+                  responseCode = 2;
                 }
               } else {
                 try {
+                  // Stop Location Updates
                   await Location.stopLocationUpdatesAsync("BACKGROUND_LOCATION");
                 } catch (e) {}
               }
+
+              // Update Settings Server-side
               await fetch(`https://server.beta.cuppazee.app/notifications/signup`, {
                 method: "POST",
                 body: JSON.stringify({ data: JSON.stringify(settings) }),
               });
-              setSaved(n);
+              setLiveLocationError("");
+              setSaved(responseCode);
               setTimeout(() => {
                 setSaved(0);
               }, 5000);

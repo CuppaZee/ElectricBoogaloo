@@ -1,25 +1,65 @@
 import * as TaskManager from "expo-task-manager";
-import { LocationObject } from "expo-location";
-import * as Notifications from "expo-notifications";
+import * as Permissions from "expo-permissions";
+import {
+  stopLocationUpdatesAsync,
+  startLocationUpdatesAsync,
+  Accuracy,
+} from "expo-location";
+import { NativeModules, Platform } from "react-native";
 
-TaskManager.defineTask("BACKGROUND_LOCATION", async ({ data, error }) => {
-  if (error) {
-    // check `error.message` for more details.
-    return;
+export default async function CheckStatus() {
+  if (Platform.OS === "web") return "";
+
+  if ("LiveLocation" in NativeModules) {
+    try {
+      const status = await NativeModules.LiveLocation.getLocationUpdatesStatus();
+      
+      // Running using LiveLocation Module
+      if (status) {
+        // Check Permission allowed Always
+        const { status, permissions } = await Permissions.getAsync(Permissions.LOCATION);
+        if (status !== "granted" || permissions.location?.scope !== "always") {
+          NativeModules.LiveLocation.stopLocationUpdates();
+          return "permission_failed";
+        }
+
+        return "";
+      }
+    } catch(e){ }
   }
-  if (data) {
-  const locs = ((data as any).locations.slice() as LocationObject[]).sort((a, b) => b.timestamp - a.timestamp);
-  await fetch(`https://server.beta.cuppazee.app/notifications/location`, {
-    method: "POST",
-    body: JSON.stringify({
-      latitude: locs[0].coords.latitude,
-      longitude: locs[0].coords.longitude,
-      token: (
-        await Notifications.getExpoPushTokenAsync({
-          experienceId: "@sohcah/PaperZee",
-        })
-      ).data,
-    }),
-  });
+
+  const taskManagerOptions = (await TaskManager.getTaskOptionsAsync("BACKGROUND_LOCATION")) as any;
+  if (taskManagerOptions && typeof taskManagerOptions === "object") {
+    // Check Permission allowed Always
+    const { status, permissions } = await Permissions.getAsync(Permissions.LOCATION);
+    if (status !== "granted" || permissions.location?.scope !== "always") {
+      await stopLocationUpdatesAsync("BACKGROUND_LOCATION");
+      return "permission_failed";
+    }
+
+    // Update to LiveLocation Module
+    if ("LiveLocation" in NativeModules) {
+      await stopLocationUpdatesAsync("BACKGROUND_LOCATION");
+      NativeModules.LiveLocation.startLocationUpdates(900000, 600000, 1800000);
+      return "updated_native";
+    }
+
+    // Update to latest configuration
+    if (
+      taskManagerOptions.accuracy !== Accuracy.Low ||
+      taskManagerOptions.deferredUpdatesDistance !== 250 ||
+      taskManagerOptions.deferredUpdatesTimeout !== 900000
+    ) {
+      await stopLocationUpdatesAsync("BACKGROUND_LOCATION");
+      await startLocationUpdatesAsync("BACKGROUND_LOCATION", {
+        accuracy: Accuracy.Low,
+        deferredUpdatesDistance: 250,
+        deferredUpdatesTimeout: 900000,
+      });
+      return "updated";
+    }
   }
-});
+
+  // Everything is fine (hopefully? maybe? maybe better to say slightly less likely to be wrong?)
+  return "";
+}

@@ -8,9 +8,43 @@ const path = require("path");
 const fs = require("fs");
 
 const obj = {};
+const params = {};
 
 for (let item of langs["en-GB"]) {
   obj[`${item.context.replace(/"/g, "")}:${item.term}`] = "%%";
+  params[`${item.context.replace(/"/g, "")}:${item.term}`] =
+    (item.definition.one || item.definition).match(/{[^}]+}/g) || [];
+}
+
+for (let lang in langs) {
+  for (let item of langs[lang]) {
+    if (!item.definition) {
+      console.error(
+        `Missing definition for ${lang}:${item.context.replace(/"/g, "")}:${item.term}`
+      );
+      continue;
+    }
+    const itemParams =
+      (typeof item.definition === "string"
+        ? item.definition
+        : item.definition[Object.keys(item.definition)[Object.keys(item.definition).length - 1]]
+      ).match(/{[^}]+}/g) || [];
+    const expectedItemParams = params[`${item.context.replace(/"/g, "")}:${item.term}`];
+    for (let param of itemParams) {
+      if (!expectedItemParams.includes(param)) {
+        console.error(
+          `Invalid parameter ${param} in ${lang}:${item.context.replace(/"/g, "")}:${item.term}`
+        );
+      }
+    }
+    for (let param of expectedItemParams) {
+      if (!itemParams.includes(param)) {
+        console.error(
+          `Missing parameter ${param} in ${lang}:${item.context.replace(/"/g, "")}:${item.term}`
+        );
+      }
+    }
+  }
 }
 
 function convert(n, s) {
@@ -60,7 +94,9 @@ fs.writeFileSync(
     .replace(/"%%",/g, "string;")
     .replace(/"%%"/g, "string;")};
 export const langs = {
-  ${Object.entries(langs).map(i => `"${i[0]}": ${JSON.stringify({ main: convert(i[1], b => b.trim()) })}`)},
+  ${Object.entries(langs).map(
+    i => `"${i[0]}": ${JSON.stringify({ main: convert(i[1], b => b.trim()) })}`
+  )},
   "test": ${JSON.stringify({
     main: convert(langs["en-GB"], a =>
       a.replace(/(?!{{)\b[a-zA-Z]+\b(?!}})/g, b => random(b.length))
