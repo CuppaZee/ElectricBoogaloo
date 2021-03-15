@@ -203,6 +203,7 @@ dependencies {
         exclude group:'com.facebook.flipper'
     }
     addUnimodulesDependencies()
+    implementation 'androidx.work:work-runtime:2.5.0'
 
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/";

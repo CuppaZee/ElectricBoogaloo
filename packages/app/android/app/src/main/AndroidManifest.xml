@@ -56,6 +56,13 @@
                 <action android:name="uk.cuppazee.paper.LocationUpdatesBroadcastReceiver.ACTION_PROCESS_UPDATES" />
             </intent-filter>
         </receiver>
+        <service
+            android:name=".NotificationHandlerService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
 
         <meta-data android:name="expo.modules.updates.EXPO_UPDATE_URL" android:value="https://exp.host/@sohcah/PaperZee" />
         <meta-data android:name="expo.modules.updates.EXPO_SDK_VERSION" android:value="40.0.0" />

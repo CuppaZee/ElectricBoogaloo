@@ -684,6 +684,18 @@ const builds: Build[] = [
       },
     ],
   },
+  {
+    build: 38,
+    date: "2021-03-15",
+    fixes: [
+      {
+        description: "Fixed issue with Dashboard Card loading",
+      },
+      {
+        description: "Fixed crash on iOS when opening or closing the sidebar with a swipe gesture, or tapping on the background to close the sidebar",
+      },
+    ],
+  },
 ];
 
 export default builds;
