@@ -226,6 +226,7 @@ export default function DashboardScreen() {
           snapToStart={true}
           data={dashCards}
           CellRendererComponent={FlexView}
+          keyExtractor={item => "nonUser" in item ? item.nonUser : item.user_id}
           renderItem={({ item, index: cardIndex }) => {
             const props: DashCardProps<any> = {
               item,

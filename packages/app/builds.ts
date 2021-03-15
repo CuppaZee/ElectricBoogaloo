@@ -663,6 +663,27 @@ const builds: Build[] = [
       },
     ],
   },
+  {
+    build: 37,
+    date: "2021-03-15",
+    improvements: [
+      {
+        description: "Reworked navigation system with better Back Button functionality",
+      },
+      {
+        description: "Reworked User Activity Overview to support filtering and improve performance",
+      },
+      {
+        description: "Added Dashboard button to Header",
+      },
+      {
+        description: "Prepared for release of native Live Location module",
+      },
+      {
+        description: "Fixed issues with Icon flashing",
+      },
+    ],
+  },
 ];
 
 export default builds;

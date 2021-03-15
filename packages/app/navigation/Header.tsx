@@ -22,30 +22,44 @@ export default function Header(props: StackHeaderProps) {
         subtitle={titleData[1] ?? day.mhqNow().format("L LT [MHQ]")}
         accessoryLeft={() => (
           <>
-            {props.navigation.canGoBack() && (
-              <TopNavigationAction
-                icon={props => <Icon {...props} name="arrow-left" />}
-                onPress={() => props.navigation.goBack()}
-              />
-            )}
             {dimensions.width <= 1000 && (
               <TopNavigationAction
                 onPress={() => props.navigation.dispatch(DrawerActions.toggleDrawer())}
                 icon={props => <Icon {...props} name="menu" />}
               />
             )}
+            {props.navigation.canGoBack() && (
+              <TopNavigationAction
+                icon={props => <Icon {...props} name="arrow-left" />}
+                onPress={() => props.navigation.goBack()}
+              />
+            )}
           </>
         )}
         accessoryRight={() => (
-          <TopNavigationAction
-            icon={props => (loading ? <Spinner /> : <Icon {...props} name="refresh" />)}
-            onPress={() =>
-              queryClient.refetchQueries({
-                predicate: query => query.queryKey[0] !== "token",
-                active: true,
-              })
-            }
-          />
+          <>
+            <TopNavigationAction
+              icon={props => <Icon {...props} name="home" />}
+              onPress={() =>
+                props.navigation.reset({
+                  routes: [
+                    {
+                      name: "Root",
+                    },
+                  ],
+                })
+              }
+            />
+            <TopNavigationAction
+              icon={props => (loading ? <Spinner /> : <Icon {...props} name="refresh" />)}
+              onPress={() =>
+                queryClient.refetchQueries({
+                  predicate: query => query.queryKey[0] !== "token",
+                  active: true,
+                })
+              }
+            />
+          </>
         )}
       />
     </Layout>

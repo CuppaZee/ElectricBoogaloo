@@ -1,11 +1,10 @@
 import loadable from "@loadable/component";
 import React from "react";
-import AppLoading from "expo-app-loading";
+import "react-native-gesture-handler";
 
 import * as TaskManager from "expo-task-manager";
 import { LocationObject } from "expo-location";
 import { getExpoPushTokenAsync } from "expo-notifications";
-import { View } from "react-native";
 
 TaskManager.defineTask("BACKGROUND_LOCATION", async ({ data, error }) => {
   if (error) {
