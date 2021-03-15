@@ -1,5 +1,5 @@
 import { DrawerContentComponentProps, DrawerContentOptions } from "@react-navigation/drawer";
-import { NavigationState, PartialState, useNavigationState } from "@react-navigation/native";
+import { getPathFromState, NavigationState, PartialState, useNavigationState } from "@react-navigation/native";
 import { DrawerGroup, DrawerItem, Layout, Text } from "@ui-kitten/components";
 import React from "react";
 import { Image, Linking, Platform, ScrollView } from "react-native";
@@ -24,31 +24,18 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
   const [clans] = useClanBookmarks();
   const day = useDay();
   const state = useNavigationState(i => i);
-  const page: NavigationRoute[] = [state.routes[state.routes.length - 1]];
-  while (page[page.length - 1].state) {
-    const p = page[page.length - 1].state;
-    if (p?.history && p?.routes) {
-      const history = (p.history as { type: string; key?: string }[]).filter(
-        i => i.type !== "drawer"
-      );
-      const x = (p.routes as NavigationRoute[]).find(
-        i => i.key === history[history.length - 1]?.key
-      );
-      if (x) {
-        page.push(x);
-      } else {
-        console.log("BREAK ERR - A", p);
-        break;
-      }
-    } else {
-      const x = p?.routes[(p?.routes.length ?? 0) - 1];
-      if (x) {
-        page.push(x as NavigationRoute);
-      } else {
-        console.log("BREAK ERR - B", p);
-        break;
-      }
-    }
+  const pathURL = getPathFromState(state);
+  const path = pathURL.split("?")[0];
+  const params = Object.fromEntries((pathURL.split("?")[1] || "").split("&").filter(i=>i).map(i => i.split("=").map(i => decodeURIComponent(i))));
+  const page = path.split("/").slice(1).map(i => ({
+    name: i,
+    params: params.screen ? params.params : params,
+  }));
+  if (params.screen) {
+    page.push({
+      name: params.screen,
+      params: params.params,
+    })
   }
 
   return (

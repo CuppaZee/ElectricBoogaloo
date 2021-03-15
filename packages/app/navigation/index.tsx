@@ -6,8 +6,9 @@ import { ColorSchemeName, Platform } from 'react-native';
 
 import SomewhereWithoutCoffeeScreen from '../screens/SomewhereWithoutCoffee';
 import { RootStackParamList } from '../types';
-import StackNavigator from './MainNavigator';
+import MainNavigator from "./MainNavigator";
 import LinkingConfiguration from './LinkingConfiguration';
+import Header from './Header';
 
 // If you are not familiar with React Navigation, we recommend going through the
 // "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
@@ -29,14 +30,20 @@ const Stack = createStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
   return (
-    <Stack.Navigator screenOptions={{
-      headerShown: false,
-      cardStyle: {
-        maxHeight: Platform.OS === "web" ? "100vh" : undefined,
-      },
-    }}>
-      <Stack.Screen name="Root" component={StackNavigator} />
-      <Stack.Screen name="somewherewithoutcoffee" component={SomewhereWithoutCoffeeScreen} options={{ title: 'Somewhere without Coffee' }} />
+    <Stack.Navigator
+      screenOptions={{
+        // header: props => <Header {...props} />,
+        headerShown: false,
+        cardStyle: {
+          maxHeight: Platform.OS === "web" ? "100vh" : undefined,
+        },
+      }}>
+      <Stack.Screen name="Root" component={MainNavigator} />
+      <Stack.Screen
+        name="somewherewithoutcoffee"
+        component={SomewhereWithoutCoffeeScreen}
+        options={{ title: "Somewhere without Coffee" }}
+      />
     </Stack.Navigator>
   );
 }

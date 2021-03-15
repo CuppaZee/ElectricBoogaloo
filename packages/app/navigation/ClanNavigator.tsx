@@ -30,7 +30,11 @@ export default function ClanNavigator() {
       }}>
       <ClanStack.Screen name="Bookmarks" component={ClanBookmarksScreen} />
       <ClanStack.Screen name="Requirements" component={ClanRequirementsScreen} />
-      <ClanStack.Screen name="Stats" component={ClanStatsScreen} />
+      <ClanStack.Screen
+        getId={({ params }) => params.clanid.toString()}
+        name="Stats"
+        component={ClanStatsScreen}
+      />
     </ClanStack.Navigator>
   );
 }

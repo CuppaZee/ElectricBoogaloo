@@ -16,10 +16,9 @@ import useSetting, { ReadyAtom } from "../hooks/useSetting";
 
 const Drawer = createDrawerNavigator<MainDrawerParamList>();
 
-export default function StackNavigator() {
+export default function MainNavigator() {
   const dimensions = useWindowDimensions();
   const [ready, , loaded] = useSetting(ReadyAtom);
-  console.log(ready, loaded);
   return (
     <React.Suspense
       fallback={
@@ -28,13 +27,18 @@ export default function StackNavigator() {
         </Layout>
       }>
       <Drawer.Navigator
+        backBehavior="history"
         drawerContent={props => (ready === "2020-02-12" ? <DrawerContent {...props} /> : null)}
         drawerType={dimensions.width > 1000 ? "permanent" : "front"}
         drawerStyle={{ width: ready === "2020-02-12" ? 256 : 0 }}>
         {(!loaded || ready === "2020-02-12") && (
           <>
             <Drawer.Screen name="Dashboard" component={DashNavigator} />
-            <Drawer.Screen name="User" component={UserNavigator} />
+            <Drawer.Screen
+              getId={({ params }) => params.username}
+              name="User"
+              component={UserNavigator}
+            />
             <Drawer.Screen name="Tools" component={ToolsNavigator} />
             <Drawer.Screen name="Settings" component={SettingsNavigator} />
             <Drawer.Screen name="Clan" component={ClanNavigator} />

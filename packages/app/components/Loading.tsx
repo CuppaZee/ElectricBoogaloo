@@ -1,5 +1,5 @@
 import { useLinkBuilder, useRoute } from "@react-navigation/native";
-import { Button, Layout, LayoutProps, Spinner, Text, useTheme } from "@ui-kitten/components";
+import { Button, Layout, Spinner, Text, useTheme } from "@ui-kitten/components";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 import { Image, View } from "react-native";
@@ -12,13 +12,22 @@ import Icon from "./Common/Icon";
 export default function Loading({
   data,
   level,
+  skeleton: Skeleton,
 }: {
-  data: (QueryObserverResult & {tokenStatus?: {
-    status: string,
-    user_id: string | number,
-    token?: any,
-  }})[];
+  data: (QueryObserverResult & {
+    tokenStatus?: {
+      status: string;
+      user_id: string | number;
+      token?: any;
+    };
+  })[];
   level?: "1" | "2" | "3" | "4";
+  skeleton?: (props: {
+    backgroundColor?: string;
+    colors?: string[];
+    backgroundSize?: number;
+    colorMode?: "light" | "dark";
+  }) => React.ReactElement;
 }) {
   const { t } = useTranslation();
   const [size, onLayout] = useComponentSize();
@@ -166,10 +175,14 @@ export default function Loading({
       level={level}
       onLayout={onLayout}
       style={[
-        { flex: 1, justifyContent: "center", alignItems: "center" },
+        Skeleton ? { flex: 1 } : { flex: 1, justifyContent: "center", alignItems: "center" },
         !level && { backgroundColor: "transparent" },
       ]}>
-      <Spinner size="large" status="primary" />
+      {Skeleton ? (
+        <Skeleton colorMode={theme.style === "dark" ? "dark" : "light"} colors={["blue", "cyan"]} />
+      ) : (
+        <Spinner size="large" status="primary" />
+      )}
     </Layout>
   );
 }

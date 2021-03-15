@@ -68,6 +68,7 @@ export default function UserActivityList({
           <UserActivityOverview
             user_id={user_id}
             day={route.params.date ?? dayjs.mhqNow().format("YYYY-MM-DD")}
+            activityData={d}
           />
         </Layout>
       )}

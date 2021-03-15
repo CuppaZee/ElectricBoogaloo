@@ -16,8 +16,7 @@ const BouncersScreen = lazy(() => import("../screens/Tools/Bouncers"));
 const BouncersExpiringScreen = lazy(() => import("../screens/Tools/BouncersExpiring"));
 const BouncersMapScreen = lazy(() => import("../screens/Tools/BouncersMap"));
 const NearbyScreen = lazy(() => import("../screens/Tools/Nearby"));
-// const DonateScreen = lazy(() => import("../screens/Tools/Donate"));
-import DonateScreen from "../screens/Tools/Donate";
+const DonateScreen = lazy(() => import("../screens/Tools/Donate"));
 const POIPlannerScreen = lazy(() => import("../screens/Tools/POIPlanner"));
 const DestinationPlannerScreen = lazy(() => import("../screens/Tools/DestinationPlanner"));
 const EvoPlannerScreen = lazy(() => import("../screens/Tools/EvoPlanner"));
@@ -54,9 +53,9 @@ export default function ToolsNavigator() {
       <ToolsStack.Screen name="POIPlanner" component={POIPlannerScreen} />
       <ToolsStack.Screen name="DestinationPlanner" component={DestinationPlannerScreen} />
       <ToolsStack.Screen name="EvoPlanner" component={EvoPlannerScreen} />
-      <ToolsStack.Screen name="Munzee" component={MunzeeScreen} />
-      <ToolsStack.Screen name="TypeCategory" component={TypeCategoryScreen} />
-      <ToolsStack.Screen name="TypeMunzee" component={TypeMunzeeScreen} />
+      <ToolsStack.Screen getId={({params}) => `${params.a}/${params.b}`} name="Munzee" component={MunzeeScreen} />
+      <ToolsStack.Screen getId={({params}) => params.category} name="TypeCategory" component={TypeCategoryScreen} />
+      <ToolsStack.Screen getId={({params}) => params.type} name="TypeMunzee" component={TypeMunzeeScreen} />
       <ToolsStack.Screen name="WidgetConfigureActivityWidget" component={ActivityWidgetScreen} />
     </ToolsStack.Navigator>
   );

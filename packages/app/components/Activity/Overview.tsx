@@ -1,20 +1,21 @@
 import React, { useMemo } from "react";
-import { Button, Layout, Popover, Spinner, Text } from "@ui-kitten/components";
-import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
+import { Button, Layout, Popover, Text } from "@ui-kitten/components";
 import db from "@cuppazee/types";
 import { Pressable, View } from "react-native";
-import { ActivityConverter, UserActivityData } from "./Data";
+import { ActivityConverter, UserActivityConverterOutput, UserActivityData } from "./Data";
 import TypeImage from "../Common/TypeImage";
 import { useTranslation } from "react-i18next";
 import useActivity from "../../hooks/useActivity";
 import Loading from "../Loading";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "../Common/Icon";
+import { Skeleton } from "@motify/skeleton";
 
 export type UserActivityOverviewProps = {
   user_id: number;
   day: string;
   enabled?: boolean;
+  activityData?: UserActivityConverterOutput;
 };
 
 export type UserActivityOverviewItemProps = {
@@ -26,69 +27,70 @@ export type UserActivityOverviewItemProps = {
   count: number;
 };
 
-const UserActivityOverviewItem = React.memo(function ({
-  icon,
-  data,
-  count,
-}: UserActivityOverviewItemProps) {
-  const { t } = useTranslation();
-  const [visible, setVisible] = React.useState(false);
-  const nav = useNavigation();
-  return (
-    <Popover
-      visible={visible}
-      anchor={() => (
-        <Pressable onPress={() => setVisible(true)}>
-          <View style={{ padding: 0, alignItems: "center" }}>
-            <TypeImage icon={icon} style={{ size: count > 30 ? 24 : 32 }} />
-            <Text style={{ textAlign: "center", fontSize: count > 30 ? 12 : 16 }}>
-              {data.count.toLocaleString()}
-            </Text>
-          </View>
-        </Pressable>
-      )}
-      onBackdropPress={() => setVisible(false)}>
-      <Layout style={{ padding: 4 }}>
-        <Text style={{ textAlign: "center" }} category="h6">
-          {data.count.toLocaleString()}x {db.getType(icon)?.name || db.strip(icon)}
-        </Text>
-        <Text style={{ textAlign: "center" }} category="s1">
-          {t("user_activity:overview_points", { count: data.points })}
-        </Text>
-        <Button
-          style={{ margin: 4 }}
-          appearance="outline"
-          onPress={() =>
-            nav.navigate("Tools", {
-              screen: "TypeMunzee",
-              params: {
-                type: db.strip(icon),
-              },
-            })
-          }
-          accessoryLeft={props => <Icon {...props} name="database" />}>
-          {t("user_activity:type_info")}
-        </Button>
-      </Layout>
-    </Popover>
-  );
-}, (prev, now) => (prev.icon === now.icon && prev.data.count === now.data.count && prev.data.points === now.data.points && (prev.count > 30) === (now.count > 30)))
-
-export default function UserActivityOverview({
-  user_id,
-  day,
-}: UserActivityOverviewProps) {
+const UserActivityOverviewItem = React.memo(
+  function ({ icon, data, count }: UserActivityOverviewItemProps) {
+    const { t } = useTranslation();
+    const [visible, setVisible] = React.useState(false);
+    const nav = useNavigation();
+    return (
+      <Popover
+        visible={visible}
+        anchor={() => (
+          <Pressable onPress={() => setVisible(true)}>
+            <View style={{ padding: 0, alignItems: "center" }}>
+              <TypeImage icon={icon} style={{ size: count > 30 ? 24 : 32 }} />
+              <Text style={{ textAlign: "center", fontSize: count > 30 ? 12 : 16 }}>
+                {data.count.toLocaleString()}
+              </Text>
+            </View>
+          </Pressable>
+        )}
+        onBackdropPress={() => setVisible(false)}>
+        <Layout style={{ padding: 4 }}>
+          <Text style={{ textAlign: "center" }} category="h6">
+            {data.count.toLocaleString()}x {db.getType(icon)?.name || db.strip(icon)}
+          </Text>
+          <Text style={{ textAlign: "center" }} category="s1">
+            {t("user_activity:overview_points", { count: data.points })}
+          </Text>
+          <Button
+            style={{ margin: 4 }}
+            appearance="outline"
+            onPress={() =>
+              nav.navigate("Tools", {
+                screen: "TypeMunzee",
+                params: {
+                  type: db.strip(icon),
+                },
+              })
+            }
+            accessoryLeft={props => <Icon {...props} name="database" />}>
+            {t("user_activity:type_info")}
+          </Button>
+        </Layout>
+      </Popover>
+    );
+  },
+  (prev, now) =>
+    prev.icon === now.icon &&
+    prev.data.count === now.data.count &&
+    prev.data.points === now.data.points &&
+    prev.count > 30 === now.count > 30
+);
+export default function UserActivityOverview({ user_id, day, activityData }: UserActivityOverviewProps) {
   const { t } = useTranslation();
   const data = useActivity(user_id, day);
   const d = useMemo(
     () =>
-      data.data?.data
+      activityData
+        ? activityData
+        : data.data?.data
         ? ActivityConverter(data.data?.data, undefined, { username: "sohcah" })
         : null,
-    [data.dataUpdatedAt]
+    [data.dataUpdatedAt, activityData]
   );
   if (!data.isFetched || !d) {
-    return <Loading level="3" data={[data]} />
+    return <Loading level="3" data={[data]} />;
   }
   return (
     <View style={{ padding: 4 }}>
