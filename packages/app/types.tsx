@@ -9,7 +9,7 @@ type MainDrawerParams<Params> = {
 
 export type MainDrawerParamList = {
   Dashboard: MainDrawerParams<DashStackParamList>;
-  User: MainDrawerParams<UserStackParamList>;
+  User: MainDrawerParams<UserStackParamList> & {username: string};
   Clan: MainDrawerParams<ClanStackParamList>;
   Tools: MainDrawerParams<ToolsStackParamList>;
   Settings: MainDrawerParams<SettingsStackParamList>;

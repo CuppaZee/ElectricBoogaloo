@@ -38,13 +38,29 @@ export default function UserNavigator() {
         },
       }}>
       <UserStack.Screen name="Profile" component={UserProfileScreen} />
-      <UserStack.Screen name="Activity" component={UserActivityScreen} />
+      <UserStack.Screen
+        getId={({ params }) => params.date}
+        name="Activity"
+        component={UserActivityScreen}
+      />
       <UserStack.Screen name="Inventory" component={UserInventoryScreen} />
       <UserStack.Screen name="ZeeOps" component={UserZeeOpsScreen} />
       <UserStack.Screen name="Bouncers" component={UserBouncersScreen} />
-      <UserStack.Screen name="Challenges" component={UserChallengesScreen} />
-      <UserStack.Screen name="Challenge" component={UserChallengeScreen} />
-      <UserStack.Screen name="Captures" component={UserCapturesScreen} />
+      <UserStack.Screen
+        getId={({ params }) => params.date}
+        name="Challenges"
+        component={UserChallengesScreen}
+      />
+      <UserStack.Screen
+        getId={({ params }) => `${params.date}/${params.challenge}`}
+        name="Challenge"
+        component={UserChallengeScreen}
+      />
+      <UserStack.Screen
+        getId={({ params }) => params.category}
+        name="Captures"
+        component={UserCapturesScreen}
+      />
       <UserStack.Screen name="ClanProgress" component={UserClanScreen} />
       <UserStack.Screen name="Universal" component={UserUniversalScreen} />
       <UserStack.Screen name="Blast" component={UserBlastScreen} />
