@@ -96,6 +96,12 @@ export const ReadyAtom = atom<Setting<string | false>>({
   key: "@cuppazee/ready",
 });
 
+export const LiveLocationErrorAtom = atom<Setting<"" | "permission_failed" | "updated" | "updated_native">>({
+  data: "",
+  loaded: false,
+  key: "@cuppazee/errors/live_location",
+});
+
 export default function useSetting<T>(atom: WritableAtom<Setting<T>, Setting<T>>) {
   const [value, setValue] = useAtom(atom);
   useEffect(() => {

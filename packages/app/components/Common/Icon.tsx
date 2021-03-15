@@ -12,7 +12,9 @@ async function loadIconFont() {
   }
   return false;
 }
+const iconLoadedRef = {iconLoaded: 0}
 const iconLoaded = loadIconFont();
+iconLoaded.then(() => (iconLoadedRef.iconLoaded = 1)).catch(() => (iconLoadedRef.iconLoaded = 2));
 
 export type IconName = keyof typeof MaterialCommunityIcons.glyphMap;
 export default React.memo(function Icon({
@@ -23,9 +25,9 @@ export default React.memo(function Icon({
   style?: StyleProp<Partial<ImageStyle> & Partial<TextStyle> & Partial<ViewStyle>>;
 }) {
   const { height, tintColor, color, ...iconStyle } = StyleSheet.flatten(style);
-  const [loaded, setLoaded] = React.useState(0);
+  const [loaded, setLoaded] = React.useState(iconLoadedRef.iconLoaded);
   React.useEffect(() => {
-    iconLoaded.then(() => setLoaded(1)).catch(() => setLoaded(2));
+    if(!loaded) iconLoaded.then(() => setLoaded(1)).catch(() => setLoaded(2));
   });
   return (
     <View style={{ height }}>

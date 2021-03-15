@@ -22,6 +22,7 @@ public class SharedStoragePackager implements ReactPackage {
         List<NativeModule> modules = new ArrayList<>();
 
         modules.add(new SharedStorage(reactContext));
+        modules.add(new LiveLocationModule(reactContext));
 
         return modules;
     }

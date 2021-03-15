@@ -619,12 +619,47 @@ const builds: Build[] = [
     features: [
       {
         title: "Tappable Notifications",
-        description: "You can now tap on Bouncer notifications to view details on the Munzee, and on Blog notifications to read the blog post. Please be aware that this currently doesn't work when tapping on a notification on iOS when the app is killed, due to an issue with one of CuppaZee's dependencies. This issue will be resolved in a future update."
-      }
+        description:
+          "You can now tap on Bouncer notifications to view details on the Munzee, and on Blog notifications to read the blog post. Please be aware that this currently doesn't work when tapping on a notification on iOS when the app is killed, due to an issue with one of CuppaZee's dependencies. This issue will be resolved in a future update.",
+      },
     ],
     improvements: [
       {
-        description: "Reworked system for loading icon symbols to allow for faster loading times and to allow notifications to be tappable.",
+        description:
+          "Reworked system for loading icon symbols to allow for faster loading times and to allow notifications to be tappable.",
+      },
+    ],
+  },
+  {
+    build: 34,
+    date: "2021-03-13",
+    improvements: [
+      {
+        description: "Improved configuration settings for Live Location for lower battery drain",
+      },
+      {
+        description: "Added better error handling for Live Location settings",
+      },
+      {
+        description: "Improved app loading times",
+      },
+    ],
+  },
+  {
+    build: 35,
+    date: "2021-03-13",
+    improvements: [
+      {
+        description: "User Activity/ZeeOps data now starts loading sooner on the dashboard",
+      },
+    ],
+  },
+  {
+    build: 36,
+    date: "2021-03-13",
+    improvements: [
+      {
+        description: "Improved swiping between Dashboard cards on mobile devices",
       },
     ],
   },

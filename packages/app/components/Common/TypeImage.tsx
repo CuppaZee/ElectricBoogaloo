@@ -22,7 +22,7 @@ export function getTypeImage(icon: string, iconSize = 64) {
   return { uri: getRemoteTypeImage(icon, iconSize) };
 }
 
-export default function TypeImage({ icon, iconSize, style, ...rest }: TypeImageProps) {
+export default function TypeImage({ icon, iconSize, style: {size, ...style}, ...rest }: TypeImageProps) {
   const source = getTypeImage(icon, iconSize);
 
   return (
@@ -30,8 +30,8 @@ export default function TypeImage({ icon, iconSize, style, ...rest }: TypeImageP
       source={source}
       style={{
         ...style,
-        height: style.size,
-        width: style.size,
+        height: size,
+        width: size,
       }}
       {...rest}
     />

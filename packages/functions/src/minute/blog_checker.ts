@@ -95,27 +95,28 @@ const route: Route = {
             await db.collection("data").doc("blog").update(update);
           }
         }
-        await check();
-        await Promise.all([
-          new Promise((resolve, reject) => {
-            setTimeout(async function () {
-              await check();
-              resolve("Success!");
-            }, 15000);
-          }),
-          new Promise((resolve, reject) => {
-            setTimeout(async function () {
-              await check();
-              resolve("Success!");
-            }, 30000);
-          }),
-          new Promise((resolve, reject) => {
-            setTimeout(async function () {
-              await check(true);
-              resolve("Success!");
-            }, 45000);
-          }),
-        ]);
+        await check(true);
+        // await check();
+        // await Promise.all([
+        //   new Promise((resolve, reject) => {
+        //     setTimeout(async function () {
+        //       await check();
+        //       resolve("Success!");
+        //     }, 15000);
+        //   }),
+        //   new Promise((resolve, reject) => {
+        //     setTimeout(async function () {
+        //       await check();
+        //       resolve("Success!");
+        //     }, 30000);
+        //   }),
+        //   new Promise((resolve, reject) => {
+        //     setTimeout(async function () {
+        //       await check(true);
+        //       resolve("Success!");
+        //     }, 45000);
+        //   }),
+        // ]);
         return {
           status: "success",
           data: update,

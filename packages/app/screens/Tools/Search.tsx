@@ -1,6 +1,6 @@
-import { Input, Layout, ListItem, Text } from "@ui-kitten/components";
+import { Input, Layout, ListItem } from "@ui-kitten/components";
 import * as React from "react";
-import { FlatList, Image, View } from "react-native";
+import { FlatList, Image } from "react-native";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import useSearch from "../../hooks/useSearch";

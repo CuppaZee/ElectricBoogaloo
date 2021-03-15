@@ -51,7 +51,15 @@
           "function": "apibeta_bouncers"
         },
         {
+          "source": "/user/bouncers/*",
+          "function": "apibeta_bouncers"
+        },
+        {
           "source": "/bouncers/*",
+          "function": "apibeta_bouncers"
+        },
+        {
+          "source": "/bouncers/*/*",
           "function": "apibeta_bouncers"
         },
         {

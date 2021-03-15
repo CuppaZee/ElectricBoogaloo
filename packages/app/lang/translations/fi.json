@@ -25,7 +25,7 @@
     },
     {
         "term": "dashboard_dashboard",
-        "definition": "kojelauta",
+        "definition": "Aloitus",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -531,7 +531,7 @@
     },
     {
         "term": "bouncers_distance_starred",
-        "definition": "T\u00e4htik\u00e4ytt\u00e4j\u00e4n et\u00e4isyys ({unit})",
+        "definition": "Kavereiden munzeen h\u00e4lyet\u00e4isyys ({unit})",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -571,7 +571,7 @@
     },
     {
         "term": "starred_users_title",
-        "definition": "T\u00e4htik\u00e4ytt\u00e4j\u00e4t",
+        "definition": "Kaverit",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -803,7 +803,7 @@
     },
     {
         "term": "host",
-        "definition": "{creator}n munzeessa {name}",
+        "definition": "{creator}'n munzeessa {name}",
         "context": "\"user_bouncers\"",
         "term_plural": "",
         "reference": "",
@@ -939,7 +939,7 @@
     },
     {
         "term": "continue",
-        "definition": "Jatka kojelaudalle",
+        "definition": "Siirry alkuun",
         "context": "\"welcome\"",
         "term_plural": "",
         "reference": "",
@@ -1396,7 +1396,7 @@
     },
     {
         "term": "remaining",
-        "definition": "{remaining} puuttuu {total}",
+        "definition": "{remaining} j\u00e4ljell\u00e4 {total}'sta",
         "context": "\"user_universal_capper\"",
         "term_plural": "",
         "reference": "",
@@ -1420,7 +1420,7 @@
     },
     {
         "term": "next",
-        "definition": "Seur.",
+        "definition": "Seuraava",
         "context": "\"user_universal_capper\"",
         "term_plural": "",
         "reference": "",
@@ -1884,7 +1884,7 @@
     },
     {
         "term": "direction_n",
-        "definition": null,
+        "definition": "N",
         "context": "\"common\"",
         "term_plural": "",
         "reference": "",
@@ -1892,7 +1892,7 @@
     },
     {
         "term": "direction_ne",
-        "definition": null,
+        "definition": "NE",
         "context": "\"common\"",
         "term_plural": "",
         "reference": "",
@@ -1900,7 +1900,7 @@
     },
     {
         "term": "direction_e",
-        "definition": null,
+        "definition": "E",
         "context": "\"common\"",
         "term_plural": "",
         "reference": "",
@@ -1908,7 +1908,7 @@
     },
     {
         "term": "direction_se",
-        "definition": null,
+        "definition": "SE",
         "context": "\"common\"",
         "term_plural": "",
         "reference": "",
@@ -1916,7 +1916,7 @@
     },
     {
         "term": "direction_s",
-        "definition": null,
+        "definition": "S",
         "context": "\"common\"",
         "term_plural": "",
         "reference": "",
@@ -1924,7 +1924,7 @@
     },
     {
         "term": "direction_sw",
-        "definition": null,
+        "definition": "SW",
         "context": "\"common\"",
         "term_plural": "",
         "reference": "",
@@ -1932,7 +1932,7 @@
     },
     {
         "term": "direction_w",
-        "definition": null,
+        "definition": "W",
         "context": "\"common\"",
         "term_plural": "",
         "reference": "",
@@ -1940,7 +1940,7 @@
     },
     {
         "term": "direction_nw",
-        "definition": null,
+        "definition": "NW",
         "context": "\"common\"",
         "term_plural": "",
         "reference": "",
@@ -2004,11 +2004,11 @@
     },
     {
         "term": "check",
-        "definition": "Tarkistetaan tuleeko {username}'sta {state} QRew\/ZeeQRew {date}",
+        "definition": "Tarkistetaan onko {username} (edelleen) QRew\/ZeeQRew {date}",
         "context": "\"user_qrew_checker\"",
         "term_plural": "",
         "reference": "",
-        "comment": ""
+        "comment": "The {state} needs to be translated, too"
     },
     {
         "term": "state_keep",
@@ -2270,6 +2270,14 @@
         "term": "bouncers_distance_default_hint",
         "definition": "T\u00e4t\u00e4 et\u00e4isyytt\u00e4 k\u00e4ytet\u00e4\u00e4n tyypeille, joille et ole asettanut et\u00e4isyytt\u00e4,",
         "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "history_rover",
+        "definition": "Rooveri l\u00f6ysi",
+        "context": "\"user_inventory\"",
         "term_plural": "",
         "reference": "",
         "comment": ""

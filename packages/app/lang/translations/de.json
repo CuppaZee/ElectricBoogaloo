@@ -491,7 +491,7 @@
     },
     {
         "term": "error_web",
-        "definition": "Keine Benachtigungen \u00fcber den Browser m\u00f6glich",
+        "definition": "Keine Benachrichtigungen \u00fcber den Browser m\u00f6glich",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -1003,7 +1003,7 @@
     },
     {
         "term": "history_zeeops",
-        "definition": "ZeeOps Preise",
+        "definition": "ZeeOps Preis",
         "context": "\"user_inventory\"",
         "term_plural": "",
         "reference": "",
@@ -1257,7 +1257,7 @@
     },
     {
         "term": "settings_zero",
-        "definition": "Nicht im Besitz befindliche auch anzeigen",
+        "definition": "Nicht im Besitz befindliche anzeigen",
         "context": "\"user_inventory\"",
         "term_plural": "",
         "reference": "",
@@ -1620,7 +1620,7 @@
     },
     {
         "term": "clan_single_line",
-        "definition": "Single Line Cells",
+        "definition": "einzeilige Zellen",
         "context": "\"settings_personalisation\"",
         "term_plural": "",
         "reference": "",
@@ -1628,7 +1628,7 @@
     },
     {
         "term": "clan_full_background",
-        "definition": "Full Colour Background",
+        "definition": "vollfarbiger Hintergrund",
         "context": "\"settings_personalisation\"",
         "term_plural": "",
         "reference": "",
@@ -2270,6 +2270,14 @@
         "term": "bouncers_distance_default_hint",
         "definition": "Das ist der Abstand, der f\u00fcr alle Typen verwendet wird, f\u00fcr die du keine \u00dcberschreibung festgelegt hast.",
         "context": "\"settings_notifications\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "history_rover",
+        "definition": null,
+        "context": "\"user_inventory\"",
         "term_plural": "",
         "reference": "",
         "comment": ""

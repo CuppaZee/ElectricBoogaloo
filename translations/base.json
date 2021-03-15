@@ -82,7 +82,8 @@
     "history_clan": "Level {level} - {month} {year}",
     "history_zeeops": "ZeeOps Rewards",
     "history_support": "Munzee Support",
-    "history_test": "Test"
+    "history_test": "Test",
+    "history_rover": "Found by a Rover"
   },
   "user_zeeops": {
     "collected": "Collected!",

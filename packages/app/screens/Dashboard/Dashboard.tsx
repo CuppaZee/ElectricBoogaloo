@@ -1,4 +1,5 @@
-import { Layout, useTheme } from "@ui-kitten/components";
+import { useNavigation } from "@react-navigation/core";
+import { Button, Layout, Text, useTheme } from "@ui-kitten/components";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -15,7 +16,7 @@ import Icon from "../../components/Common/Icon";
 import Loading from "../../components/Loading";
 import { useUserBookmarks } from "../../hooks/useBookmarks";
 import useComponentSize from "../../hooks/useComponentSize";
-import useSetting, { BuildAtom } from "../../hooks/useSetting";
+import useSetting, { BuildAtom, LiveLocationErrorAtom } from "../../hooks/useSetting";
 import useTitle from "../../hooks/useTitle";
 import ChangesDashCard from "./Changes";
 import ClansDashCard from "./Clans";
@@ -52,6 +53,7 @@ export interface DashCardProps<i> {
 
 export default function DashboardScreen() {
   const { t } = useTranslation();
+  const nav = useNavigation();
   const theme = useTheme();
   const scrollRef = React.useRef<FlatList>();
   const scrollSize = React.useRef<{ width: number; height: number }>();
@@ -64,12 +66,14 @@ export default function DashboardScreen() {
     };
   }>({});
   const position = React.useRef<number>();
-  const [build] = useSetting(BuildAtom);
+  const [build, , buildLoaded] = useSetting(BuildAtom);
   const [users] = useUserBookmarks();
-  const [touched, setTouched] = React.useState<number[]>([0]);
-  const [index, setIndex] = React.useState<number>(0);
+  const [touched, setTouched] = React.useState<number[]>([1]);
+  const [index, setIndex] = React.useState<number>(1);
   const [size, onLayout] = useComponentSize();
   const width = scrollSize.current?.width ?? size?.width ?? 0;
+
+  const [liveLocationError, setLiveLocationError] = useSetting(LiveLocationErrorAtom);
 
   useTitle(`☕ ${t("pages:dashboard_dashboard")}`);
   if (!size)
@@ -78,7 +82,7 @@ export default function DashboardScreen() {
         <Loading level="1" data={[]} />
       </View>
     );
-  
+
   const dashCards = [
     { nonUser: "clan" },
     ...(builds.some(i => i.build > build) ? [{ nonUser: "changes" }] : []),
@@ -86,6 +90,39 @@ export default function DashboardScreen() {
   ];
   return (
     <Layout onLayout={onLayout} style={{ flex: 1 }}>
+      {liveLocationError === "permission_failed" && (
+        <Layout style={{ margin: 8, borderRadius: 8, padding: 4 }} level="3">
+          <Text category="h5">It seems that CuppaZee no longer has Live Location access</Text>
+          <Text category="p1">
+            Please head to CuppaZee's Notifications Settings page to disable Live Location, or save
+            your Settings to re-enabled Live Location.
+          </Text>
+          <Button
+            onPress={() =>
+              nav.navigate("Settings", {
+                screen: "Notifications",
+              })
+            }
+            appearance="outline"
+            style={{ marginTop: 4 }}>
+            Notification Settings
+          </Button>
+        </Layout>
+      )}
+      {liveLocationError === "updated" && (
+        <Layout style={{ margin: 8, borderRadius: 8, padding: 4 }} level="3">
+          <Text category="h5">CuppaZee has updated your Live Location settings</Text>
+          <Text category="p1">
+            These changes should help to prevent battery drain, and ensure that CuppaZee continues running smoothly.
+          </Text>
+          <Button
+            onPress={() => setLiveLocationError("")}
+            appearance="outline"
+            style={{ marginTop: 4 }}>
+            Dismiss
+          </Button>
+        </Layout>
+      )}
       <View
         style={{
           flexDirection: "row",
@@ -222,7 +259,7 @@ export default function DashboardScreen() {
                   height: "100%",
                   flex: 1,
                   alignSelf: "center",
-                  opacity: index === cardIndex ? 1 : 0.75,
+                  opacity: index === cardIndex || width <= 600 ? 1 : 0.75,
                 }}>
                 {"nonUser" in item ? (
                   item.nonUser === "clan" ? (
@@ -233,7 +270,7 @@ export default function DashboardScreen() {
                 ) : (
                   <UserDashCard {...props} />
                 )}
-                {index !== cardIndex && (
+                {index !== cardIndex && width > 600 && (
                   <Pressable
                     onPress={() => {
                       scrollRef.current?.scrollToOffset({
