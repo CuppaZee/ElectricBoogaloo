@@ -1,14 +1,15 @@
 import { DrawerContentComponentProps, DrawerContentOptions } from "@react-navigation/drawer";
 import { getPathFromState, NavigationState, PartialState, useNavigationState } from "@react-navigation/native";
-import { DrawerGroup, DrawerItem, Layout, Text } from "@ui-kitten/components";
+import { DrawerGroup as UIKittenDrawerGroup, DrawerGroupProps, DrawerItem as UIKittenDrawerItem, DrawerItemProps, Layout, Text } from "@ui-kitten/components";
 import React from "react";
-import { Image, Linking, Platform, ScrollView } from "react-native";
+import { Image, Linking, Platform, ScrollView, useWindowDimensions, View } from "react-native";
 import { useClanBookmarks, useUserBookmarks } from "../hooks/useBookmarks";
 import useDay from "../hooks/useDay";
 import { useTranslation } from "react-i18next";
 import Tip from "../components/Common/Tip";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../components/Common/Icon";
+import useSetting, { DrawerAtom } from "../hooks/useSetting";
 
 type NavigationRoute = {
   state?: NavigationState | PartialState<NavigationState>;
@@ -16,6 +17,46 @@ type NavigationRoute = {
   name: string;
   params?: any;
 };
+
+function DrawerItem({ title, style, ...props }: DrawerItemProps) {
+  const [drawerSettings] = useSetting(DrawerAtom);
+  const dimensions = useWindowDimensions();
+  const open = drawerSettings.open || dimensions.width <= 1000;
+  return (
+    <UIKittenDrawerItem
+      {...props}
+      title={open ? title : ""}
+      style={[
+        style,
+        open
+          ? undefined
+          : {
+              width: 52,
+              paddingLeft: 8,
+            },
+      ]}
+    />
+  );
+}
+
+function DrawerGroup({ title, style, ...props }: DrawerGroupProps) {
+  const [drawerSettings] = useSetting(DrawerAtom);
+  const dimensions = useWindowDimensions();
+  const open = drawerSettings.open || dimensions.width <= 1000;
+  return (
+    <UIKittenDrawerGroup
+      {...props}
+      title={open ? title : ""}
+      accessoryRight={open ? undefined : () => <></>}
+      style={[
+        style,
+        open ? undefined : {
+          width: 52,
+        },
+      ]}
+    />
+  );
+}
 
 export default function DrawerContent(props: DrawerContentComponentProps<DrawerContentOptions>) {
   const insets = useSafeAreaInsets();
@@ -31,6 +72,9 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
     name: i,
     params: params.screen ? params.params : params,
   }));
+  const [drawerSettings, setDrawerSettings] = useSetting(DrawerAtom);
+  const dimensions = useWindowDimensions();
+  const open = drawerSettings.open || dimensions.width <= 1000;
   if (params.screen) {
     page.push({
       name: params.screen,
@@ -41,6 +85,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
   return (
     <Layout style={{ flex: 1 }}>
       <ScrollView
+        showsVerticalScrollIndicator={open}
         style={{ flexGrow: 1 }}
         contentContainerStyle={{ paddingTop: insets.top, paddingBottom: insets.bottom }}>
         {Platform.OS === "web" && (
@@ -240,12 +285,14 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
             />
           </DrawerGroup>
         ))}
-        <Tip
-          wrapperStyle={{ margin: 4 }}
-          small
-          id="drawer_user_bookmarks"
-          tip="You can add and remove users from your Bookmarks in the Settings"
-        />
+        {open && (
+          <Tip
+            wrapperStyle={{ margin: 4 }}
+            small
+            id="drawer_user_bookmarks"
+            tip="You can add and remove users from your Bookmarks in the Settings"
+          />
+        )}
 
         <Layout level="4" style={{ height: 1 }} />
 
@@ -344,12 +391,14 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
             ))}
           </DrawerGroup>
         )}
-        <Tip
-          wrapperStyle={{ margin: 4 }}
-          small
-          id="drawer_clan_bookmarks"
-          tip="You can add and remove clans from your Bookmarks in the Settings"
-        />
+        {open && (
+          <Tip
+            wrapperStyle={{ margin: 4 }}
+            small
+            id="drawer_clan_bookmarks"
+            tip="You can add and remove clans from your Bookmarks in the Settings"
+          />
+        )}
 
         <Layout level="4" style={{ height: 1 }} />
 
@@ -507,7 +556,14 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
             })
           }
         />
+        {dimensions.width > 1000 && <View style={{ height: 44 }} />}
       </ScrollView>
+      {dimensions.width > 1000 && <DrawerItem
+        style={{ position: "absolute", bottom: 0, left: 0, width: open ? 255 : 52 }}
+        title="Minimise"
+        accessoryLeft={props => <Icon {...props} name={open ? "chevron-left" : "chevron-right"} />}
+        onPress={() => setDrawerSettings({ ...drawerSettings, open: !drawerSettings.open })}
+      />}
     </Layout>
   );
 }

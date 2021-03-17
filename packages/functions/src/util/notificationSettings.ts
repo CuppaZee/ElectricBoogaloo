@@ -81,6 +81,8 @@ export type DeviceNotificationSettings = {
 
   munzee_blog?: boolean;
   imperial?: boolean;
+
+  platform?: "android_2.0.1" | "android_2.0.2" | "ios";
 };
 
 export type FullDeviceNotificationSettings = {

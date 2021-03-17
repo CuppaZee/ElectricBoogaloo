@@ -20,6 +20,7 @@ import useSetting, { BuildAtom, LiveLocationErrorAtom } from "../../hooks/useSet
 import useTitle from "../../hooks/useTitle";
 import ChangesDashCard from "./Changes";
 import ClansDashCard from "./Clans";
+import ToolsDashCard from "./Tools";
 import UserDashCard from "./User";
 
 function WheelWrapper({
@@ -51,6 +52,8 @@ export interface DashCardProps<i> {
   onOuterLayout: (event: LayoutChangeEvent) => void;
 }
 
+const pageOffset = 2;
+
 export default function DashboardScreen() {
   const { t } = useTranslation();
   const nav = useNavigation();
@@ -67,9 +70,10 @@ export default function DashboardScreen() {
   }>({});
   const position = React.useRef<number>();
   const [build, , buildLoaded] = useSetting(BuildAtom);
+  const [opacity, setOpacity] = React.useState(Platform.OS === "web" ? 0 : 1);
   const [users] = useUserBookmarks();
-  const [touched, setTouched] = React.useState<number[]>([1]);
-  const [index, setIndex] = React.useState<number>(1);
+  const [touched, setTouched] = React.useState<number[]>([pageOffset]);
+  const [index, setIndex] = React.useState<number>(pageOffset);
   const [size, onLayout] = useComponentSize();
   const width = scrollSize.current?.width ?? size?.width ?? 0;
 
@@ -84,6 +88,7 @@ export default function DashboardScreen() {
     );
 
   const dashCards = [
+    { nonUser: "tools" },
     { nonUser: "clan" },
     ...(builds.some(i => i.build > build) ? [{ nonUser: "changes" }] : []),
     ...users,
@@ -113,7 +118,8 @@ export default function DashboardScreen() {
         <Layout style={{ margin: 8, borderRadius: 8, padding: 4 }} level="3">
           <Text category="h5">CuppaZee has updated your Live Location settings</Text>
           <Text category="p1">
-            These changes should help to prevent battery drain, and ensure that CuppaZee continues running smoothly.
+            These changes should help to prevent battery drain, and ensure that CuppaZee continues
+            running smoothly.
           </Text>
           <Button
             onPress={() => setLiveLocationError("")}
@@ -165,7 +171,13 @@ export default function DashboardScreen() {
                       ? { color: theme["text-basic-color"], height: 24, width: 24 }
                       : { color: theme["text-basic-color"], height: 12, width: 12 }
                   }
-                  name={i.nonUser === "clan" ? "shield-half-full" : "playlist-check"}
+                  name={
+                    i.nonUser === "clan"
+                      ? "shield-half-full"
+                      : i.nonUser === "tools"
+                      ? "hammer-screwdriver"
+                      : "playlist-check"
+                  }
                 />
               </Layout>
             ) : (
@@ -197,14 +209,14 @@ export default function DashboardScreen() {
           });
         }}>
         <FlatList
-          style={{ flexGrow: 1 }}
+          style={{ flexGrow: 1, opacity }}
           decelerationRate="fast"
           ref={sv => {
             scrollRef.current = sv || undefined;
           }}
           horizontal={true}
           pagingEnabled={Platform.OS === "web"}
-          contentOffset={{ x: Math.min(600, width), y: 0 }}
+          contentOffset={{ x: pageOffset * Math.min(600, width), y: 0 }}
           onScroll={ev => {
             if (ev.nativeEvent.contentOffset.x !== undefined) {
               position.current = ev.nativeEvent.contentOffset.x;
@@ -214,8 +226,9 @@ export default function DashboardScreen() {
             }
           }}
           onContentSizeChange={() => {
+            if (Platform.OS === "web" && opacity === 0) setOpacity(1);
             scrollRef.current?.scrollToOffset({
-              offset: Math.min(600, width),
+              offset: pageOffset * Math.min(600, width),
               animated: false,
             });
           }}
@@ -226,7 +239,7 @@ export default function DashboardScreen() {
           snapToStart={true}
           data={dashCards}
           CellRendererComponent={FlexView}
-          keyExtractor={item => "nonUser" in item ? item.nonUser : item.user_id}
+          keyExtractor={item => ("nonUser" in item ? item.nonUser : item.user_id)}
           renderItem={({ item, index: cardIndex }) => {
             const props: DashCardProps<any> = {
               item,
@@ -263,7 +276,9 @@ export default function DashboardScreen() {
                   opacity: index === cardIndex || width <= 600 ? 1 : 0.75,
                 }}>
                 {"nonUser" in item ? (
-                  item.nonUser === "clan" ? (
+                  item.nonUser === "tools" ? (
+                    <ToolsDashCard {...props} />
+                  ) : item.nonUser === "clan" ? (
                     <ClansDashCard {...props} />
                   ) : item.nonUser === "changes" ? (
                     <ChangesDashCard {...props} />

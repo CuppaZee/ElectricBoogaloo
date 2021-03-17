@@ -692,7 +692,29 @@ const builds: Build[] = [
         description: "Fixed issue with Dashboard Card loading",
       },
       {
-        description: "Fixed crash on iOS when opening or closing the sidebar with a swipe gesture, or tapping on the background to close the sidebar",
+        description:
+          "Fixed crash on iOS when opening or closing the sidebar with a swipe gesture, or tapping on the background to close the sidebar",
+      },
+    ],
+  },
+  {
+    build: 39,
+    date: "2021-03-16",
+    improvements: [
+      {
+        description: "Added Tools card to the Dashboard",
+      },
+      {
+        description: "Made the sidebar collapsible on Tablets/Desktop",
+      },
+    ],
+  },
+  {
+    build: 40,
+    date: "2021-03-16",
+    fixes: [
+      {
+        description: "Fixed issues with User Activity Filter modal covering Safe Areas on some android devices",
       },
     ],
   },

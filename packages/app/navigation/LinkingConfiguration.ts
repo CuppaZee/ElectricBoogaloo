@@ -2,7 +2,7 @@ import { LinkingOptions } from "@react-navigation/native";
 import * as Linking from "expo-linking";
 import * as Notifications from "expo-notifications";
 import { NotificationResponse } from "expo-notifications";
-import { Alert, Platform } from "react-native";
+import { Alert, NativeModules, Platform, DeviceEventEmitter } from "react-native";
 
 export default function getConfig(notification?: NotificationResponse): LinkingOptions {
   return {

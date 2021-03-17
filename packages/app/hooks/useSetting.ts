@@ -102,6 +102,16 @@ export const LiveLocationErrorAtom = atom<Setting<"" | "permission_failed" | "up
   key: "@cuppazee/errors/live_location",
 });
 
+export const DrawerAtom = atom<Setting<{
+  open?: boolean;
+}>>({
+  data: {
+    open: true,
+  },
+  loaded: false,
+  key: "@cuppazee/personalisation/drawer",
+});
+
 export default function useSetting<T>(atom: WritableAtom<Setting<T>, Setting<T>>) {
   const [value, setValue] = useAtom(atom);
   useEffect(() => {

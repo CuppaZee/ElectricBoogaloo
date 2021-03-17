@@ -1,5 +1,5 @@
 import { RouteProp, useRoute } from "@react-navigation/native";
-import { Layout, Modal } from "@ui-kitten/components";
+import { Layout, Modal, Text } from "@ui-kitten/components";
 import dayjs from "dayjs";
 import * as React from "react";
 import { ActivityConverter, UserActivityFilters } from "../../components/Activity/Data";
@@ -12,6 +12,7 @@ import useTitle from "../../hooks/useTitle";
 import useActivity from "../../hooks/useActivity";
 import Loading from "../../components/Loading";
 import { useTranslation } from "react-i18next";
+import useModalSafeArea from "../../hooks/useModalSafeArea";
 
 export default function UserActivityScreen() {
   const { t } = useTranslation();
@@ -41,6 +42,7 @@ export default function UserActivityScreen() {
         : null,
     [data.dataUpdatedAt, filters]
   );
+  const modalSafeArea = useModalSafeArea();
 
   if (!user.isFetched || !data.isFetched || !d || !size) {
     return (
@@ -62,14 +64,14 @@ export default function UserActivityScreen() {
         </Layout>
       ) : (
         <Modal
-          style={{ justifyContent: "center", alignItems: "center", height: "100%" }}
+          // style={{ justifyContent: "center", alignItems: "center", height: "100%" }}
           visible={visible}
           backdropStyle={{ backgroundColor: "#0007" }}
           onBackdropPress={() => setVisible(false)}>
           <Layout
             level="3"
-            style={{ maxHeight: "90%", height: "100%", width: 300, borderRadius: 8 }}>
-            <UserActivityFilter d={d} filters={filters} setFilters={setFilters} />
+              style={[modalSafeArea, { width: 300, borderRadius: 8 }]}>
+              <UserActivityFilter d={d} filters={filters} setFilters={(value) => { setFilters(value); setVisible(false) }} />
           </Layout>
         </Modal>
       )}

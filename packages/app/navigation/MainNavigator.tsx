@@ -12,13 +12,15 @@ import ToolsNavigator from "./ToolsNavigator";
 import SettingsNavigator from "./SettingsNavigator";
 import ClanNavigator from "./ClanNavigator";
 import { Layout, Spinner } from "@ui-kitten/components";
-import useSetting, { ReadyAtom } from "../hooks/useSetting";
+import useSetting, { DrawerAtom, ReadyAtom } from "../hooks/useSetting";
 
 const Drawer = createDrawerNavigator<MainDrawerParamList>();
 
 export default function MainNavigator() {
   const dimensions = useWindowDimensions();
   const [ready, , loaded] = useSetting(ReadyAtom);
+  const [drawerSettings] = useSetting(DrawerAtom);
+  const open = drawerSettings.open || dimensions.width <= 1000;
   return (
     <React.Suspense
       fallback={
@@ -30,7 +32,7 @@ export default function MainNavigator() {
         backBehavior="history"
         drawerContent={props => (ready === "2020-02-12" ? <DrawerContent {...props} /> : null)}
         drawerType={dimensions.width > 1000 ? "permanent" : "front"}
-        drawerStyle={{ width: ready === "2020-02-12" ? 256 : 0 }}>
+        drawerStyle={{ width: ready === "2020-02-12" ? (open ? 256 : 53) : 0 }}>
         {(!loaded || ready === "2020-02-12") && (
           <>
             <Drawer.Screen name="Dashboard" component={DashNavigator} />

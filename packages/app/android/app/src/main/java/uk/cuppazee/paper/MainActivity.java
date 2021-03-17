@@ -3,10 +3,14 @@ import android.content.res.Configuration;
 import android.content.Intent;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
+import com.facebook.react.bridge.Arguments;
+import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
 
 import expo.modules.splashscreen.singletons.SplashScreen;
@@ -26,10 +30,10 @@ public class MainActivity extends ReactActivity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    // SplashScreen.show(...) has to be called after super.onCreate(...)
-    // Below line is handled by '@expo/configure-splash-screen' command and it's discouraged to modify it manually
-    SplashScreen.show(this, SplashScreenImageResizeMode.CONTAIN, ReactRootView.class, false);
+      super.onCreate(savedInstanceState);
+      // SplashScreen.show(...) has to be called after super.onCreate(...)
+      // Below line is handled by '@expo/configure-splash-screen' command and it's discouraged to modify it manually
+      SplashScreen.show(this, SplashScreenImageResizeMode.CONTAIN, ReactRootView.class, false);
   }
 
 

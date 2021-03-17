@@ -87,8 +87,8 @@ public class NotificationHandlerService extends FirebaseMessagingService {
 
     private void sendBouncerNotification(JSONObject data) {
         try {
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            Intent intent = new Intent (Intent.ACTION_VIEW);
+            intent.setData (Uri.parse("uk.cuppazee.paper://" + data.getString("path")));
             PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                     PendingIntent.FLAG_ONE_SHOT);
 
