@@ -17,6 +17,8 @@
 		FD459C7C25C4BC3C006C9D95 /* ActivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD459C7B25C4BC3C006C9D95 /* ActivityService.swift */; };
 		FD459C8925C4C025006C9D95 /* NewsWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = FD459C8825C4C025006C9D95 /* NewsWidget.intentdefinition */; };
 		FD459C9025C4C592006C9D95 /* NewsWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = FD459C8825C4C025006C9D95 /* NewsWidget.intentdefinition */; };
+		FD6A092B260288F000D6460A /* LiveLocationModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6A092A260288F000D6460A /* LiveLocationModule.swift */; };
+		FD6A09302602891F00D6460A /* LiveLocationModuleBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6A092F2602891F00D6460A /* LiveLocationModuleBridge.m */; };
 		FD8A253A25C49B7D00F8D462 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD8A253925C49B7D00F8D462 /* WidgetKit.framework */; };
 		FD8A253C25C49B7D00F8D462 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD8A253B25C49B7D00F8D462 /* SwiftUI.framework */; };
 		FD8A253F25C49B7D00F8D462 /* NewsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8A253E25C49B7D00F8D462 /* NewsWidget.swift */; };
@@ -82,6 +84,9 @@
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		FD459C7B25C4BC3C006C9D95 /* ActivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityService.swift; sourceTree = "<group>"; };
 		FD459C8825C4C025006C9D95 /* NewsWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = NewsWidget.intentdefinition; sourceTree = "<group>"; };
+		FD6A0929260288F000D6460A /* CuppaZee-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CuppaZee-Bridging-Header.h"; sourceTree = "<group>"; };
+		FD6A092A260288F000D6460A /* LiveLocationModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveLocationModule.swift; sourceTree = "<group>"; };
+		FD6A092F2602891F00D6460A /* LiveLocationModuleBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiveLocationModuleBridge.m; sourceTree = "<group>"; };
 		FD8A253825C49B7D00F8D462 /* NewsWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NewsWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD8A253925C49B7D00F8D462 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		FD8A253B25C49B7D00F8D462 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -138,6 +143,9 @@
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
+				FD6A092A260288F000D6460A /* LiveLocationModule.swift */,
+				FD6A0929260288F000D6460A /* CuppaZee-Bridging-Header.h */,
+				FD6A092F2602891F00D6460A /* LiveLocationModuleBridge.m */,
 			);
 			name = CuppaZee;
 			sourceTree = "<group>";
@@ -297,12 +305,12 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1230;
+				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1130;
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = U33W77XN79;
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1240;
 					};
 					FD8A253725C49B7D00F8D462 = {
 						CreatedOnToolsVersion = 12.3;
@@ -470,7 +478,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				FD6A09302602891F00D6460A /* LiveLocationModuleBridge.m in Sources */,
 				FD459C9025C4C592006C9D95 /* NewsWidget.intentdefinition in Sources */,
+				FD6A092B260288F000D6460A /* LiveLocationModule.swift in Sources */,
 				FD8A257025C4BA6000F8D462 /* ActivityWidget.intentdefinition in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
@@ -550,6 +560,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = uk.cuppazee.paper;
 				PRODUCT_NAME = paper;
+				SWIFT_OBJC_BRIDGING_HEADER = "CuppaZee-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -578,6 +589,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = uk.cuppazee.paper;
 				PRODUCT_NAME = paper;
+				SWIFT_OBJC_BRIDGING_HEADER = "CuppaZee-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";

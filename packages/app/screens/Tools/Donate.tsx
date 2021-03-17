@@ -22,6 +22,32 @@ function DevScreen() {
         <Text>{data}</Text>
         <Text>Hey!</Text>
         <Text>{JSON.stringify(liveLocationError)}</Text>
+        <Text category="h6">iOS</Text>
+        <Button
+          style={{ margin: 4 }}
+          appearance="outline"
+          onPress={() => {
+            NativeModules.LiveLocationModule.simulatorNotifications();
+          }}>
+            Notifications
+        </Button>
+        <Button
+          style={{ margin: 4 }}
+          appearance="outline"
+          onPress={() => {
+            NativeModules.LiveLocationModule.start();
+          }}>
+          Increment
+        </Button>
+        <Button
+          style={{ margin: 4 }}
+          appearance="outline"
+          onPress={() => {
+            NativeModules.LiveLocationModule.stop();
+          }}>
+          Decrement
+        </Button>
+        <Text category="h6">Android</Text>
         <Button
           style={{ margin: 4 }}
           appearance="outline"
