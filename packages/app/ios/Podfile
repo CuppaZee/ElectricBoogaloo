@@ -21,4 +21,19 @@ target 'CuppaZee' do
   #  post_install do |installer|
   #    flipper_post_install(installer)
   #  end
+
+  pre_install do |installer|
+    fix_mapbox_events(installer)
+  end
+
+  def fix_mapbox_events(installer)
+    installer.pod_targets.each do |pod|
+      if pod.name == 'MapboxMobileEvents'
+        def pod.build_type;
+          Pod::BuildType.dynamic_framework
+        end
+      end
+    end
+  end
+
 end
