@@ -42,7 +42,7 @@ export default React.memo(
     const [size, onLayout] = useComponentSize();
     const fontScale = PixelRatio.getFontScale();
     const [style] = useSetting(ClanPersonalisationAtom);
-    const [options] = useSetting(ClansAtom);
+    const [options, setOptions] = useSetting(ClansAtom);
     if (!options[actual_clan_id])
       options[actual_clan_id] = {
         shadow: true,
@@ -185,6 +185,21 @@ export default React.memo(
               {clan_data.data.data?.details.tagline}
             </Text>
           </View>
+          <Button
+            appearance="ghost"
+            accessoryLeft={props => (
+              <Icon {...props} name="plus-minus" />
+            )}
+            onPress={() =>
+              setOptions({
+                ...options,
+                [actual_clan_id]: {
+                  ...options[actual_clan_id],
+                  subtract: !options[actual_clan_id].subtract,
+                },
+              })
+            }
+          />
           <Button
             appearance="ghost"
             accessoryLeft={props => <Icon {...props} name="cog" />}

@@ -130,7 +130,7 @@ export default function useSetting<T>(atom: WritableAtom<Setting<T>, Setting<T>>
     value.data,
     (data: T) => {
       setValue({ ...value, data });
-      AsyncStorage.setItem(value.key, JSON.stringify(data));
+      return AsyncStorage.setItem(value.key, JSON.stringify(data));
     },
     value.loaded,
   ] as const;

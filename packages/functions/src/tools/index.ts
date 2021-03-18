@@ -1,4 +1,3 @@
 import report from "./report";
-export default [
-  report
-];
+import vgpexpansionpack from "./vgpexpansionpack";
+export default [report, vgpexpansionpack];

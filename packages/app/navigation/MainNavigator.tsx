@@ -33,7 +33,7 @@ export default function MainNavigator() {
         drawerContent={props => (ready === "2020-02-12" ? <DrawerContent {...props} /> : null)}
         drawerType={dimensions.width > 1000 ? "permanent" : "front"}
         drawerStyle={{ width: ready === "2020-02-12" ? (open ? 256 : 53) : 0 }}>
-        {(!loaded || ready === "2020-02-12") && (
+        {!loaded || ready === "2020-02-12" ? (
           <>
             <Drawer.Screen name="Dashboard" component={DashNavigator} />
             <Drawer.Screen
@@ -45,8 +45,9 @@ export default function MainNavigator() {
             <Drawer.Screen name="Settings" component={SettingsNavigator} />
             <Drawer.Screen name="Clan" component={ClanNavigator} />
           </>
+        ) : (
+          <Drawer.Screen name="Welcome" component={WelcomeScreen} />
         )}
-        <Drawer.Screen name="Welcome" component={WelcomeScreen} />
       </Drawer.Navigator>
     </React.Suspense>
   );

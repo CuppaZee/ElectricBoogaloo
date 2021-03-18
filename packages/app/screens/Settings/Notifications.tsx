@@ -16,6 +16,7 @@ import Constants from "expo-constants";
 import * as Notifications from "expo-notifications";
 import * as Location from "expo-location";
 import * as Permissions from "expo-permissions";
+import * as Application from "expo-application";
 import db, { TypeTags } from "@cuppazee/types";
 import TypeImage from "../../components/Common/TypeImage";
 import MapView from "../../components/Maps/MapView";
@@ -906,7 +907,15 @@ export default function NotificationScreen() {
               // Update Settings Server-side
               await fetch(`https://server.beta.cuppazee.app/notifications/signup`, {
                 method: "POST",
-                body: JSON.stringify({ data: JSON.stringify(settings) }),
+                body: JSON.stringify({
+                  data: JSON.stringify({
+                    ...settings,
+                    platform:
+                      Platform.OS === "android"
+                        ? `android_${Application.nativeApplicationVersion === "2.0.1" ? "2.0.1" : "2.0.2"}`
+                        : "ios",
+                  }),
+                }),
               });
               setLiveLocationError("");
               setSaved(responseCode);

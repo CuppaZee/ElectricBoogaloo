@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Pressable, StyleSheet, View, Image, Linking } from "react-native";
-import { Button, Layout, Text } from "@ui-kitten/components";
+import { Button, Layout, Spinner, Text } from "@ui-kitten/components";
 import useLogin from "../hooks/useLogin";
 import { ScrollView } from "react-native-gesture-handler";
 import useTitle from "../hooks/useTitle";
@@ -12,6 +12,7 @@ import { Trans, useTranslation } from "react-i18next";
 import Select from "../components/Common/Select";
 import { LANGS } from "../lang/i18n";
 import Icon from "../components/Common/Icon";
+import * as Updates from "expo-updates";
 
 export default function WelcomeScreen() {
   const { t, i18n } = useTranslation();
@@ -23,12 +24,30 @@ export default function WelcomeScreen() {
   useTitle(`☕ ${t("welcome:title")}`);
   const [readySetting, setReadySetting] = useSetting(ReadyAtom);
   const [theme, setTheme] = useSetting(ThemeAtom);
+  const [loading, setLoading] = React.useState(false);
   const [, login, ready] = useLogin("");
-  const nav = useNavigation();
+  const updatesStatusRef = React.useRef<Promise<boolean>>();
   const { data: teakens } = useTeakens();
+  
+  React.useEffect(() => {
+    updatesStatusRef.current = (async function () {
+      const hasUpdates = await Updates.checkForUpdateAsync();
+      if (hasUpdates.isAvailable) {
+        const downloaded = await Updates.fetchUpdateAsync();
+        return downloaded.isNew;
+      }
+      return false;
+    })();
+  }, []);
 
   if (readySetting === "2020-02-12") {
-    nav.navigate("Dashboard");
+    return null;
+  }
+
+  if (loading) {
+    return <Layout style={[styles.page, { justifyContent: "center", alignItems: "center" }]}>
+      <Spinner />
+    </Layout>
   }
 
   return (
@@ -165,8 +184,14 @@ export default function WelcomeScreen() {
                 style={{ margin: 4 }}
                 accessoryLeft={props => <Icon {...props} name="home" />}
                 appearance="outline"
-                onPress={() => {
-                  setReadySetting("2020-02-12");
+                onPress={async () => {
+                  setLoading(true);
+                  const shouldRestart = await updatesStatusRef.current;
+                  await setReadySetting("2020-02-12");
+                  if (shouldRestart) {
+                    await Updates.reloadAsync();
+                  }
+                  setLoading(false);
                 }}>
                 {t("welcome:continue")}
               </Button>

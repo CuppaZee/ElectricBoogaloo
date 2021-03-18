@@ -123,35 +123,55 @@ export default async function () {
           title = `New ${i.bouncer.logo.slice(49, -4) || "Unknown Type"} Nearby`;
         }
         const onThisHost = all_bouncers.filter(b => b.full_url === i.bouncer.full_url).length;
+        if (onThisHost > 1) {
+          title = title + ` [${onThisHost}/6]`;
+        }
+        const body = `At ${i.bouncer.friendly_name} by ${
+          i.bouncer.full_url.split("/")[4]
+        }\n${i.found
+          .map(location => {
+            let direction = ["↓ S", "↙ SW", "← W", "↖ NW", "↑ N", "↗ NE", "→ E", "↘ SE"][
+              Math.floor((location.direction + 202.5) / 45) % 8
+            ];
+            let distance;
+            if (i.device.imperial) {
+              let feet = location.distance * 3.28084;
+              let miles = feet * 0.000189394;
+              if (feet < 4000) {
+                distance = `${Math.round(feet + Number.EPSILON)}ft`;
+              } else {
+                distance = `${Math.round((miles + Number.EPSILON) * 100) / 100}mi`;
+              }
+            } else {
+              let kms = location.distance / 1000;
+              if (location.distance < 700) {
+                distance = `${Math.round(location.distance + Number.EPSILON)}m`;
+              } else {
+                distance = `${Math.round((kms + Number.EPSILON) * 100) / 100}km`;
+              }
+            }
+            return `${distance} ${direction} from ${location.location.name}`;
+          })
+            .join("\n")}`;
+        if (i.device.platform === "android_2.0.2") {
+          return {
+            to: i.device.token,
+            data: {
+              type: "bouncer",
+              path: `/tools/munzee/${i.bouncer.munzee_id}`,
+              title,
+              description: body,
+              latitude: Number(i.bouncer.latitude),
+              longitude: Number(i.bouncer.longitude),
+              image: `https://icons.cuppazee.app/64/${("mythological_munzee" in i.bouncer ? i.bouncer.mythological_munzee.munzee_logo : i.bouncer.logo).slice(-4, 49)}.png`,
+            },
+          };
+        }
         return {
           to: i.device.token,
           sound: "default",
-          title: title + (onThisHost > 1 ? ` [${onThisHost}/6]` : ""),
-          body: `At ${i.bouncer.friendly_name} by ${i.bouncer.full_url.split("/")[4]}\n${i.found
-            .map(location => {
-              let direction = ["↓ S", "↙ SW", "← W", "↖ NW", "↑ N", "↗ NE", "→ E", "↘ SE"][
-                Math.floor((location.direction + 202.5) / 45) % 8
-              ];
-              let distance;
-              if (i.device.imperial) {
-                let feet = location.distance * 3.28084;
-                let miles = feet * 0.000189394;
-                if (feet < 4000) {
-                  distance = `${Math.round(feet + Number.EPSILON)}ft`;
-                } else {
-                  distance = `${Math.round((miles + Number.EPSILON) * 100) / 100}mi`;
-                }
-              } else {
-                let kms = location.distance / 1000;
-                if (location.distance < 700) {
-                  distance = `${Math.round(location.distance + Number.EPSILON)}m`;
-                } else {
-                  distance = `${Math.round((kms + Number.EPSILON) * 100) / 100}km`;
-                }
-              }
-              return `${distance} ${direction} from ${location.location.name}`;
-            })
-            .join("\n")}`,
+          title,
+          body,
           data: {
             path: `/tools/munzee/${i.bouncer.munzee_id}`,
           },

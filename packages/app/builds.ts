@@ -714,7 +714,30 @@ const builds: Build[] = [
     date: "2021-03-16",
     fixes: [
       {
-        description: "Fixed issues with User Activity Filter modal covering Safe Areas on some android devices",
+        description:
+          "Fixed issues with User Activity Filter modal covering Safe Areas on some android devices",
+      },
+    ],
+  },
+  {
+    build: 41,
+    date: "2021-03-18",
+    improvements: [
+      {
+        description: "Improved handling of new updates after app installation",
+      },
+      {
+        description: "Added an Easy-Access Subtract View toggle to Clan Stats Cards",
+      },
+    ],
+  },
+  {
+    build: 42,
+    date: "2021-03-18",
+    features: [
+      {
+        title: "New Bouncer Notifications for Android",
+        description: `Build 2.0.2 Only. You will need to download this update from Google Play to access this function. Once you've downloaded this update, hit "Save Settings" in the Notification Settings page to activate icons and addresses on Bouncer Notifications!`,
       },
     ],
   },

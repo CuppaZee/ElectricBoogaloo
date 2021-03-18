@@ -12,7 +12,7 @@ async function loadIconFont() {
   }
   return false;
 }
-const iconLoadedRef = {iconLoaded: 0}
+const iconLoadedRef = { iconLoaded: 0 };
 const iconLoaded = loadIconFont();
 iconLoaded.then(() => (iconLoadedRef.iconLoaded = 1)).catch(() => (iconLoadedRef.iconLoaded = 2));
 
@@ -24,7 +24,7 @@ export default React.memo(function Icon({
   name?: IconName;
   style?: StyleProp<Partial<ImageStyle> & Partial<TextStyle> & Partial<ViewStyle>>;
 }) {
-  const { height, tintColor, color, ...iconStyle } = StyleSheet.flatten(style);
+  const { height, tintColor, color, marginHorizontal, ...iconStyle } = StyleSheet.flatten(style);
   const [loaded, setLoaded] = React.useState(iconLoadedRef.iconLoaded);
   React.useEffect(() => {
     if (!loaded) iconLoaded.then(() => setLoaded(1)).catch(() => setLoaded(2));
@@ -46,7 +46,7 @@ export default React.memo(function Icon({
           name={name}
           size={Number(height)}
           color={color ?? tintColor}
-          style={iconStyle}
+          style={[iconStyle, { marginHorizontal: marginHorizontal === 10 ? 2 : marginHorizontal }]}
         />
       ) : (
         <View style={{ width: Number(height) + 16, height }} />
