@@ -31,6 +31,7 @@ export default function WelcomeScreen() {
   
   React.useEffect(() => {
     updatesStatusRef.current = (async function () {
+      if(__DEV__) return false;
       const hasUpdates = await Updates.checkForUpdateAsync();
       if (hasUpdates.isAvailable) {
         const downloaded = await Updates.fetchUpdateAsync();
@@ -188,7 +189,7 @@ export default function WelcomeScreen() {
                   setLoading(true);
                   const shouldRestart = await updatesStatusRef.current;
                   await setReadySetting("2020-02-12");
-                  if (shouldRestart) {
+                  if (!__DEV__ && shouldRestart) {
                     await Updates.reloadAsync();
                   }
                   setLoading(false);
