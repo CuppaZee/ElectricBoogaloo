@@ -244,11 +244,10 @@ export const icons = functions
         );
       } catch (e) {}
 
-    // Redirect to Missing Image
+    // Get "Missing" Image
     if (!image)
       try {
-        res.redirect("https://icons.cuppazee.app/missing.png");
-        return;
+        image = await Jimp.read(`https://icons.cuppazee.app/missing.png`);
       } catch (e) {}
     image?.resize(size, size).autocrop().contain(size, size);
     res

@@ -123,6 +123,21 @@ export default function DashboardScreen() {
           </Button>
         </Layout>
       )}
+      {liveLocationError === "updated_native" && (
+        <Layout style={{ margin: 8, borderRadius: 8, padding: 4 }} level="3">
+          <Text category="h5">CuppaZee has switch you to the Native Live Location system</Text>
+          <Text category="p1">
+            These changes should help to prevent battery drain, and ensure that CuppaZee continues
+            running smoothly.
+          </Text>
+          <Button
+            onPress={() => setLiveLocationError("")}
+            appearance="outline"
+            style={{ marginTop: 4 }}>
+            Dismiss
+          </Button>
+        </Layout>
+      )}
       <View
         style={{
           flexDirection: "row",

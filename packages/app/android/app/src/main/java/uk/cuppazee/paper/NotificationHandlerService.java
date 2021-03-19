@@ -40,6 +40,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -154,7 +155,8 @@ public class NotificationHandlerService extends FirebaseMessagingService {
                 notificationManager.createNotificationChannel(channel);
             }
 
-            notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
+            int m = (int) ((new Date().getTime() / 1000L) % Integer.MAX_VALUE);
+            notificationManager.notify(m, notificationBuilder.build());
         } catch(JSONException e) {
             Log.e(TAG, e.toString());
         }

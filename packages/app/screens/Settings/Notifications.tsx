@@ -10,7 +10,7 @@ import {
   Text,
 } from "@ui-kitten/components";
 import * as React from "react";
-import { Platform, ScrollView, View, Image } from "react-native";
+import { Platform, ScrollView, View, Image, NativeModules } from "react-native";
 import useTitle from "../../hooks/useTitle";
 import Constants from "expo-constants";
 import * as Notifications from "expo-notifications";
@@ -890,11 +890,19 @@ export default function NotificationScreen() {
                 // Check Permission allowed Always
                 if (status === "granted" && permissions.location?.scope === "always") {
                   // Start
-                  await Location.startLocationUpdatesAsync("BACKGROUND_LOCATION", {
-                    accuracy: Location.Accuracy.Low,
-                    deferredUpdatesDistance: 250,
-                    deferredUpdatesTimeout: 900000,
-                  });
+                  if ("LiveLocation" in NativeModules) {
+                    try {
+                      // Stop Location Updates
+                      await Location.stopLocationUpdatesAsync("BACKGROUND_LOCATION");
+                    } catch (e) {}
+                    NativeModules.LiveLocation.startLocationUpdates(900000, 600000, 1800000);
+                  } else {
+                    await Location.startLocationUpdatesAsync("BACKGROUND_LOCATION", {
+                      accuracy: Location.Accuracy.Low,
+                      deferredUpdatesDistance: 250,
+                      deferredUpdatesTimeout: 900000,
+                    });
+                  }
                 } else {
                   // Error
                   settings.locations.dynamic = undefined;
@@ -903,6 +911,7 @@ export default function NotificationScreen() {
               } else {
                 try {
                   // Stop Location Updates
+                  if("LiveLocation" in NativeModules) NativeModules.LiveLocation.stopLocationUpdates();
                   await Location.stopLocationUpdatesAsync("BACKGROUND_LOCATION");
                 } catch (e) {}
               }
