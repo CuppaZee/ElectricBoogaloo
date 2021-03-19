@@ -43,14 +43,17 @@ function DrawerGroup({ title, style, ...props }: DrawerGroupProps) {
   const [drawerSettings] = useSetting(DrawerAtom);
   const dimensions = useWindowDimensions();
   const open = drawerSettings.open || dimensions.width <= 1000;
+  if (open) {
+    return <UIKittenDrawerGroup {...props} title={title} style={style} />
+  }
   return (
     <UIKittenDrawerGroup
       {...props}
-      title={open ? title : ""}
-      accessoryRight={open ? undefined : () => <></>}
+      title=""
+      accessoryRight={() => <></>}
       style={[
         style,
-        open ? undefined : {
+        {
           width: 52,
         },
       ]}

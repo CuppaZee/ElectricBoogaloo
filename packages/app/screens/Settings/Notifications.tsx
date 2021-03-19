@@ -28,6 +28,7 @@ import { LANGS } from "../../lang/i18n";
 import Select from "../../components/Common/Select";
 import Icon from "../../components/Common/Icon";
 import useSetting, { LiveLocationErrorAtom } from "../../hooks/useSetting";
+import Loading from "../../components/Loading";
 
 interface LocationPickerModalProps {
   location: DeviceNotificationStaticLocation;
@@ -355,6 +356,7 @@ export default function NotificationScreen() {
   const [distanceOverrideModal, setDistanceOverrideModal] = React.useState(false);
   const [confirmLocation, setConfirmLocation] = React.useState(false);
   const [debugStatus, setDebugStatus] = React.useState("");
+  const [errors, setErrors] = React.useState<any[]>([]);
   const [, setLiveLocationError] = useSetting(LiveLocationErrorAtom);
 
   async function registerForPushNotificationsAsync() {
@@ -440,6 +442,7 @@ export default function NotificationScreen() {
 
   return (
     <Layout style={{ flex: 1 }}>
+      {errors.length > 0 && <Loading customErrors={errors} />}
       <Modal
         backdropStyle={{ backgroundColor: "#00000077" }}
         visible={locationPickerIndex !== undefined}
@@ -923,7 +926,7 @@ export default function NotificationScreen() {
                 setSaved(0);
               }, 5000);
             } catch (e) {
-              setDebugStatus(d => d + `\nError Saving: ${e.toString()}`);
+              setErrors(d => [...d, e]);
             }
           }}
           accessoryLeft={props => <Icon {...props} name="content-save" />}>

@@ -741,6 +741,21 @@ const builds: Build[] = [
       },
     ],
   },
+  {
+    build: 43,
+    date: "2021-03-19",
+    improvements: [
+      {
+        description: `Added "Report to CuppaZee" button for errors on the Notification Settings page`,
+      },
+    ],
+    fixes: [
+      {
+        description: `Fixed dropdown icons not displaying in the sidebar`,
+        thanks: "PelicanRouge",
+      },
+    ],
+  },
 ];
 
 export default builds;

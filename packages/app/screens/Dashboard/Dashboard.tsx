@@ -80,12 +80,6 @@ export default function DashboardScreen() {
   const [liveLocationError, setLiveLocationError] = useSetting(LiveLocationErrorAtom);
 
   useTitle(`☕ ${t("pages:dashboard_dashboard")}`);
-  if (!size)
-    return (
-      <View style={{ flex: 1 }} onLayout={onLayout}>
-        <Loading level="1" data={[]} />
-      </View>
-    );
 
   const dashCards = [
     { nonUser: "tools" },
@@ -209,7 +203,7 @@ export default function DashboardScreen() {
           });
         }}>
         <FlatList
-          style={{ flexGrow: 1, opacity }}
+          style={{ flexGrow: 1, opacity: width ? opacity : 0 }}
           decelerationRate="fast"
           ref={sv => {
             scrollRef.current = sv || undefined;

@@ -11,16 +11,18 @@ import Icon from "./Common/Icon";
 
 export default function Loading({
   data,
+  customErrors,
   level,
   skeleton: Skeleton,
 }: {
-  data: (QueryObserverResult & {
+  data?: (QueryObserverResult & {
     tokenStatus?: {
       status: string;
       user_id: string | number;
       token?: any;
     };
   })[];
+  customErrors?: any[];
   level?: "1" | "2" | "3" | "4";
   skeleton?: (props: {
     backgroundColor?: string;
@@ -37,7 +39,7 @@ export default function Loading({
   const teakens = useTeakens();
   const [sentReport, setSentReport] = React.useState(false);
   const theme = useTheme();
-  if (data.some(i => i.tokenStatus?.status === "missing")) {
+  if (data?.some(i => i.tokenStatus?.status === "missing")) {
     return (
       <Layout
         level={level}
@@ -75,7 +77,7 @@ export default function Loading({
       </Layout>
     );
   }
-  if (data.some(i => i.tokenStatus?.status === "expired")) {
+  if (data?.some(i => i.tokenStatus?.status === "expired")) {
     return (
       <Layout
         level={level}
@@ -116,7 +118,7 @@ export default function Loading({
       </Layout>
     );
   }
-  if (data.some(i => i.isError)) {
+  if (customErrors?.length || data?.some(i => i.isError)) {
     return (
       <Layout
         level={level}
@@ -154,7 +156,7 @@ export default function Loading({
               await fetch(`https://server.beta.cuppazee.app/report`, {
                 method: "POST",
                 body: JSON.stringify({
-                  reports: data.map(i => (i.error instanceof Error ? i.error.toString() : i.error)),
+                  reports: ([...customErrors ?? [], ...data ?? []]).map(i => (i.error instanceof Error ? i.error.toString() : i.error)),
                 }),
               });
               setSentReport(true);
