@@ -1,7 +1,7 @@
 import React from "react";
 import * as Location from "expo-location";
 import TypeImage, { getRemoteTypeImage, getTypeImage } from "../Common/TypeImage";
-import { Button } from "@ui-kitten/components";
+import { Button, useTheme } from "@ui-kitten/components";
 import circle from "@turf/circle";
 
 import MapboxGL from "@react-native-mapbox-gl/maps";
@@ -66,6 +66,7 @@ function getImages(markers: MapMarkerProps[]) {
 }
 
 export default function MapView(props: MapProps) {
+  const theme = useTheme();
   const mapRef = React.useRef<MapboxGL.MapView | null>();
   const camRef = React.useRef<MapboxGL.Camera | null>();
   const [center, setCenter] = React.useState([0, 0]);
@@ -86,6 +87,7 @@ export default function MapView(props: MapProps) {
   return (
     <View style={{ flex: 1 }}>
       <MapboxGL.MapView
+        styleURL={theme.mapboxURL}
         style={{ flex: 1 }}
         ref={r => (mapRef.current = r)}
         onRegionDidChange={region => {

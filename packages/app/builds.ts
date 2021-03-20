@@ -756,6 +756,18 @@ const builds: Build[] = [
       },
     ],
   },
+  {
+    build: 44,
+    date: "2021-03-20",
+    improvements: [
+      {
+        description: `Added theme-based styles for maps in Dark Mode`,
+      },
+      {
+        description: `Added Dark Mode maps on iOS and Android`,
+      },
+    ],
+  },
 ];
 
 export default builds;

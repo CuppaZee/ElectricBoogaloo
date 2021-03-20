@@ -133,14 +133,18 @@ public class NotificationHandlerService extends FirebaseMessagingService {
             if (image != null) {
                 notificationBuilder.setLargeIcon(image);
             }
-            String description = data.getString("description");
+            String description  = data.getString("description");
+            String mainLine = description.split("\n", 2)[0];
 
             if (address != null) {
                 notificationBuilder
+                        .setContentText(mainLine)
                         .setStyle(new NotificationCompat.BigTextStyle()
                                 .bigText(description + "\n" + address));
             } else {
-                notificationBuilder.setStyle(new NotificationCompat.BigTextStyle()
+                notificationBuilder
+                        .setContentText(mainLine)
+                        .setStyle(new NotificationCompat.BigTextStyle()
                                 .bigText(description));
             }
 

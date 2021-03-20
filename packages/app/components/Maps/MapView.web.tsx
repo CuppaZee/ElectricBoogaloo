@@ -39,11 +39,11 @@ function WebMap(props: MapProps) {
   const theme = useTheme();
   React.useEffect(() => {
     mapRef.current?.setStyle(
-      `mapbox://styles/mapbox/${
-        satellite ? "satellite-streets-v11" : theme.style === "dark" ? "dark-v10" : "streets-v11"
-      }`
+      satellite
+          ? "mapbox://styles/mapbox/satellite-streets-v11"
+          : theme.mapboxURL
     );
-  }, [theme.style, satellite]);
+  }, [theme.mapboxURL, satellite]);
 
   function placeMarkers() {
     if (!mapRef.current) return;
@@ -139,9 +139,7 @@ function WebMap(props: MapProps) {
     if (!mapContainerRef.current) return;
     const map = new mapboxgl.Map({
       container: mapContainerRef.current,
-      style: `mapbox://styles/mapbox/${
-        satellite ? "satellite-streets-v11" : theme.style === "dark" ? "dark-v10" : "streets-v11"
-      }`,
+      style: satellite ? "mapbox://styles/mapbox/satellite-streets-v11" : theme.mapboxURL,
       center: [lng, lat],
       zoom: zoom ?? 0,
     });

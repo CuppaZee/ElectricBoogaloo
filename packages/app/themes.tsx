@@ -15,96 +15,96 @@ const light = {
   "color-basic-1000": "#101426",
 };
 
-type Theme = typeof dark & { style: "light" | "dark" };
+type Theme = typeof dark & { style: "light" | "dark"; mapboxURL: string };
 
 // export const white_light: Theme = { ...light, style: "light" };
 
 export const green_light: Theme = generateLightTheme(
   light,
-  (c) => {
+  c => {
     let x = color(c);
-    return x
-      .hue((x.hue() || 220) - 80)
-      .saturationv((x.saturationv() + 5) * 2.5);
+    return x.hue((x.hue() || 220) - 80).saturationv((x.saturationv() + 5) * 2.5);
   },
-  (c) => {
+  c => {
     let x = color(c);
     return x.hue((x.hue() || 220) - 80);
   },
-  (c) => {
+  c => {
     let x = color(c);
     return x.hue((x.hue() || 220) - 80).value(0);
   },
-  (c) => {
+  c => {
     let x = color(c);
     return x.hue((x.hue() || 220) - 80).darken(0.8);
   },
-  "light"
+  "light",
+  "mapbox://styles/mapbox/streets-v11"
 );
 
 export const blue_light: Theme = generateLightTheme(
   light,
-  (c) => {
+  c => {
     let x = color(c);
     return x.hue((x.hue() || 220) - 20).saturationv((x.saturationv() + 15) * 2);
   },
-  (c) => {
+  c => {
     let x = color(c);
     return x.hue((x.hue() || 220) - 20);
   },
-  (c) => {
+  c => {
     let x = color(c);
     return x.hue((x.hue() || 220) - 20).value(0);
   },
-  (c) => {
+  c => {
     let x = color(c);
     return x.hue((x.hue() || 220) - 20).darken(0.8);
   },
-  "light"
+  "light",
+  "mapbox://styles/mapbox/streets-v11"
 );
 
 export const teal_light: Theme = generateLightTheme(
   light,
-  (c) => {
+  c => {
     let x = color(c);
-    return x
-      .hue((x.hue() || 220) - 45)
-      .saturationv((x.saturationv() + 5) * 2.5);
+    return x.hue((x.hue() || 220) - 45).saturationv((x.saturationv() + 5) * 2.5);
   },
-  (c) => {
+  c => {
     let x = color(c);
     return x.hue((x.hue() || 220) - 45);
   },
-  (c) => {
+  c => {
     let x = color(c);
     return x.hue((x.hue() || 220) - 45).value(0);
   },
-  (c) => {
+  c => {
     let x = color(c);
     return x.hue((x.hue() || 220) - 45).darken(0.8);
   },
-  "light"
+  "light",
+  "mapbox://styles/mapbox/streets-v11"
 );
 
 export const purple_light: Theme = generateLightTheme(
   light,
-  (c) => {
+  c => {
     let x = color(c);
     return x.hue((x.hue() || 220) + 50).saturationv((x.saturationv() + 5) * 2);
   },
-  (c) => {
+  c => {
     let x = color(c);
     return x.hue((x.hue() || 220) + 50);
   },
-  (c) => {
+  c => {
     let x = color(c);
     return x.hue((x.hue() || 220) + 50).value(0);
   },
-  (c) => {
+  c => {
     let x = color(c);
     return x.hue((x.hue() || 220) + 50).darken(0.8);
   },
-  "light"
+  "light",
+  "mapbox://styles/mapbox/streets-v11"
 );
 
 // export const purple_light: Theme = generateLightTheme(
@@ -130,66 +130,76 @@ export const purple_light: Theme = generateLightTheme(
 
 export const gray_light: Theme = generateLightTheme(
   light,
-  (c) => {
+  c => {
     let x = color(c);
     return x.hue((x.hue() || 220) + 25).saturationv(0); //.value((x.value() * 2.5) - 160)
   },
-  (c) => {
+  c => {
     let x = color(c);
     return x.hue((x.hue() || 220) + 25).saturationv(0); //.value((x.value() * 2.5) - 160)
   },
-  (c) => {
+  c => {
     let x = color(c);
     return x
       .hue((x.hue() || 220) + 25)
       .saturationv(0)
       .value(0);
   },
-  (c) => {
+  c => {
     let x = color(c);
     return x
       .hue((x.hue() || 220) + 25)
       .saturationv(0)
       .darken(0.8);
   },
-  "light"
+  "light",
+  "mapbox://styles/mapbox/streets-v11"
 );
 
 export const green_dark: Theme = generateTheme(
   dark,
   c => color(c).rotate(-70),
   c => color(c).rotate(-70).saturationv(90),
-  "dark"
+  "dark",
+  "mapbox://styles/sohcah/ckmhpjzea357h17mka0tjl024"
 );
 
-export const blue_dark: Theme = { ...dark, style: "dark" };
+export const blue_dark: Theme = {
+  ...dark,
+  style: "dark",
+  mapboxURL: "mapbox://styles/sohcah/ckmhpks8s90c317qlb7gmutgt",
+};
 
 export const teal_dark: Theme = generateTheme(
   dark,
   c => color(c).rotate(-35).lighten(0.5),
   c => color(c).rotate(-35).lighten(0.5).saturationv(100),
-  "dark"
+  "dark",
+  "mapbox://styles/sohcah/ckmhp35zs0jhp17ph3qmcjw9b"
 );
 
 export const purple_dark: Theme = generateTheme(
   dark,
-  (c) => color(c).rotate(70),
-  (c) => color(c).rotate(70).saturationv(100).lighten(0.3),
-  "dark"
+  c => color(c).rotate(70),
+  c => color(c).rotate(70).saturationv(100).lighten(0.3),
+  "dark",
+  "mapbox://styles/sohcah/ckmhphnje2wie17mfzfjgryk5"
 );
 
 export const gray_dark: Theme = generateTheme(
   dark,
-  (c) => color(c).rotate(70).saturationv(0),
-  (c) => color(c).rotate(70).saturationv(0).darken(0.5),
-  "dark"
+  c => color(c).rotate(70).saturationv(0),
+  c => color(c).rotate(70).saturationv(0).darken(0.5),
+  "dark",
+  "mapbox://styles/sohcah/ckmhpiun60jzp18qv0wa0icyz"
 );
 
 function generateTheme(
   base: Record<string, string>,
   a: (c: string, l: string) => color,
   b: (c: string, l: string) => color,
-  style: "dark" | "light"
+  style: "dark" | "light",
+  mapboxURL: string,
 ): Theme {
   return {
     ...Object.fromEntries(
@@ -211,6 +221,7 @@ function generateTheme(
       })
     ),
     style,
+    mapboxURL,
   } as Theme;
 }
 
@@ -220,7 +231,8 @@ function generateLightTheme(
   b: (c: string, l: string) => color,
   c: (c: string, l: string) => color,
   d: (c: string, l: string) => color,
-  style: "dark" | "light"
+  style: "dark" | "light",
+  mapboxURL: string,
 ): Theme {
   return {
     ...Object.fromEntries(
@@ -244,5 +256,6 @@ function generateLightTheme(
       })
     ),
     style,
+    mapboxURL,
   } as Theme;
 }
