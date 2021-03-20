@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Pressable, StyleSheet, View, Image, Linking } from "react-native";
+import { Pressable, StyleSheet, View, Image, Linking, Platform } from "react-native";
 import { Button, Layout, Spinner, Text } from "@ui-kitten/components";
 import useLogin from "../hooks/useLogin";
 import { ScrollView } from "react-native-gesture-handler";
@@ -31,7 +31,7 @@ export default function WelcomeScreen() {
   
   React.useEffect(() => {
     updatesStatusRef.current = (async function () {
-      if(__DEV__) return false;
+      if(__DEV__ || Platform.OS === "web") return false;
       const hasUpdates = await Updates.checkForUpdateAsync();
       if (hasUpdates.isAvailable) {
         const downloaded = await Updates.fetchUpdateAsync();
@@ -41,7 +41,7 @@ export default function WelcomeScreen() {
     })();
   }, []);
 
-  if (readySetting === "2020-02-12") {
+  if (readySetting === "2020-03-20") {
     return null;
   }
 
@@ -188,7 +188,7 @@ export default function WelcomeScreen() {
                 onPress={async () => {
                   setLoading(true);
                   const shouldRestart = await updatesStatusRef.current;
-                  await setReadySetting("2020-02-12");
+                  await setReadySetting("2020-03-20");
                   if (!__DEV__ && shouldRestart) {
                     await Updates.reloadAsync();
                   }

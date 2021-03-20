@@ -11,7 +11,7 @@
     "build-translations": "node ./lang/generate.js",
     "eject": "expo eject",
     "test": "jest --watchAll",
-    "deploy-app": "expo publish --target bare"
+    "deploy-app": "expo publish --target bare --release-channel 2.0.5"
   },
   "jest": {
     "preset": "jest-expo"
@@ -41,6 +41,7 @@
     "@react-navigation/drawer": "^5.12.4",
     "@react-navigation/native": "^5.9.3",
     "@react-navigation/stack": "^5.14.3",
+    "@sentry/react-native": "^2.3.0",
     "@turf/circle": "^6.3.0",
     "@types/color": "^3.0.1",
     "@types/loadable__component": "^5.13.2",
@@ -61,6 +62,7 @@
     "expo-camera": "~9.1.0",
     "expo-clipboard": "~1.0.1",
     "expo-constants": "~9.3.0",
+    "expo-firebase-analytics": "~2.6.0",
     "expo-font": "~8.4.0",
     "expo-linear-gradient": "~8.4.0",
     "expo-linking": "~2.0.0",
@@ -72,6 +74,7 @@
     "expo-updates": "~0.4.0",
     "expo-web-browser": "~8.6.0",
     "fast-json-stable-stringify": "^2.1.0",
+    "firebase": "7.9.0",
     "fuse.js": "^6.4.6",
     "i18next": "^19.8.5",
     "jotai": "^0.12.0",
@@ -92,7 +95,8 @@
     "react-native-unimodules": "~0.12.0",
     "react-native-web": "^0.15.0",
     "react-native-web-swiper": "^2.1.9",
-    "react-query": "^3.3.0"
+    "react-query": "^3.3.0",
+    "sentry-expo": "^3.0.5"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",

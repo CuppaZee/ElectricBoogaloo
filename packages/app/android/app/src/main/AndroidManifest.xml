@@ -85,7 +85,7 @@
             android:name="expo.modules.notifications.default_notification_color"
             android:resource="@color/notification_icon_color" />
 
-        <meta-data android:name="expo.modules.updates.EXPO_RELEASE_CHANNEL" android:value="default" />
+        <meta-data android:name="expo.modules.updates.EXPO_RELEASE_CHANNEL" android:value="2.0.5" />
 
   <activity
     android:name=".MainActivity"

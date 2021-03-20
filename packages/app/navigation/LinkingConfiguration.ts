@@ -119,6 +119,6 @@ export default function getConfig(notification?: NotificationResponse): LinkingO
         Linking.removeEventListener("url", onReceiveURL);
         subscription.remove();
       };
-    },
+    }
   };
 }
