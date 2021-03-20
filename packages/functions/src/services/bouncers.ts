@@ -33,13 +33,13 @@ export default async function () {
   try {
     // Calculate Notifications to Send
     const sent = {
-      "regular": new Set(list.regular.match(/.{8}/g)),
-      "mythological": new Set(list.mythological.match(/.{8}/g)),
-      "pouchcreatures": new Set(list.pouchcreatures.match(/.{8}/g)),
-      "flat": new Set(list.flat.match(/.{8}/g)),
-      "bouncers": new Set(list.bouncers.match(/.{8}/g)),
-      "retired": new Set(list.retired.match(/.{8}/g)),
-    }
+      regular: new Set(list.regular.match(/.{8}/g)),
+      mythological: new Set(list.mythological.match(/.{8}/g)),
+      pouchcreatures: new Set(list.pouchcreatures.match(/.{8}/g)),
+      flat: new Set(list.flat.match(/.{8}/g)),
+      bouncers: new Set(list.bouncers.match(/.{8}/g)),
+      retired: new Set(list.retired.match(/.{8}/g)),
+    };
     const all_bouncers = await getBouncers(true);
     var bouncers = all_bouncers
       .filter(i => !sent[i.endpoint].has(i.hash))
@@ -56,7 +56,7 @@ export default async function () {
         let found = [];
         const locations = device.locations?.static.filter(i => i.enabled) ?? [];
         if (device.locations?.dynamic) {
-          locations.push({
+          locations.unshift({
             enabled: true,
             name: "Current Location",
             latitude: device.locations.dynamic.latitude.toString(),
@@ -126,9 +126,7 @@ export default async function () {
         if (onThisHost > 1) {
           title = title + ` [${onThisHost}/6]`;
         }
-        const body = `At ${i.bouncer.friendly_name} by ${
-          i.bouncer.full_url.split("/")[4]
-        }\n${i.found
+        const body = `${i.found
           .map(location => {
             let direction = ["↓ S", "↙ SW", "← W", "↖ NW", "↑ N", "↗ NE", "→ E", "↘ SE"][
               Math.floor((location.direction + 202.5) / 45) % 8
@@ -152,7 +150,7 @@ export default async function () {
             }
             return `${distance} ${direction} from ${location.location.name}`;
           })
-            .join("\n")}`;
+          .join("\n")}\nAt ${i.bouncer.friendly_name} by ${i.bouncer.full_url.split("/")[4]}`;
         if (i.device.platform === "android_2.0.2") {
           return {
             to: i.device.token,
@@ -163,7 +161,10 @@ export default async function () {
               description: body,
               latitude: Number(i.bouncer.latitude),
               longitude: Number(i.bouncer.longitude),
-              image: `https://icons.cuppazee.app/64/${("mythological_munzee" in i.bouncer ? i.bouncer.mythological_munzee.munzee_logo : i.bouncer.logo).slice(49, -4)}.png`,
+              image: `https://icons.cuppazee.app/64/${("mythological_munzee" in i.bouncer
+                ? i.bouncer.mythological_munzee.munzee_logo
+                : i.bouncer.logo
+              ).slice(49, -4)}.png`,
             },
           };
         }
@@ -185,7 +186,7 @@ export default async function () {
         return {
           ...a,
           [b.endpoint]: a[b.endpoint] + b.hash,
-        }
+        };
       },
       {
         regular: "",
