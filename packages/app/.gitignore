@@ -81,3 +81,5 @@ buck-out/
 web-build/
 
 # @end expo-cli
+sentry.config.json
+sentry.properties

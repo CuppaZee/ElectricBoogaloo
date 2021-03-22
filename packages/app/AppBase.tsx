@@ -22,6 +22,13 @@ import useSetting, {
   ThemeAtom,
 } from "./hooks/useSetting";
 import { useTranslation } from "react-i18next";
+import "expo-firebase-analytics";
+import * as Sentry from "sentry-expo";
+
+Sentry.init({
+  dsn: "https://7823a6409bf1417dafa6f3e3ab47b6ed@o444031.ingest.sentry.io/5418530",
+  enableInExpoDevelopment: true,
+} as any);
 
 const queryClient = new QueryClient({
   defaultOptions: {

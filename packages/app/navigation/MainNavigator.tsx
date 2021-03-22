@@ -30,10 +30,10 @@ export default function MainNavigator() {
       }>
       <Drawer.Navigator
         backBehavior="history"
-        drawerContent={props => (ready === "2020-02-12" ? <DrawerContent {...props} /> : null)}
+        drawerContent={props => (ready === "2020-03-20" ? <DrawerContent {...props} /> : null)}
         drawerType={dimensions.width > 1000 ? "permanent" : "front"}
-        drawerStyle={{ width: ready === "2020-02-12" ? (open ? 256 : 53) : 0 }}>
-        {!loaded || ready === "2020-02-12" ? (
+        drawerStyle={{ width: ready === "2020-03-20" ? (open ? 256 : 53) : 0 }}>
+        {!loaded || ready === "2020-03-20" ? (
           <>
             <Drawer.Screen name="Dashboard" component={DashNavigator} />
             <Drawer.Screen

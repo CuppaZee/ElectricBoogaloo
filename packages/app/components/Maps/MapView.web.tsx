@@ -151,6 +151,7 @@ function WebMap(props: MapProps) {
       new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
         mapboxgl: map,
+        marker: false,
       }),
       "top-left"
     );

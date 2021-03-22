@@ -768,6 +768,24 @@ const builds: Build[] = [
       },
     ],
   },
+  {
+    build: 45,
+    date: "2021-03-22",
+    improvements: [
+      {
+        description: "Added Capture Distance circles to POI and Destination Planner",
+        thanks: "nuttynan"
+      },
+    ],
+    fixes: [
+      {
+        description: "Fixed Crash with Login Page on Android"
+      },
+      {
+        description: "Reverted to old Live Location module on Android"
+      }
+    ]
+  },
 ];
 
 export default builds;

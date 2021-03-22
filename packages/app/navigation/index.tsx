@@ -1,4 +1,4 @@
-import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme, DarkTheme, getPathFromState } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 import * as Notifications from "expo-notifications";
@@ -8,7 +8,7 @@ import SomewhereWithoutCoffeeScreen from '../screens/SomewhereWithoutCoffee';
 import { RootStackParamList } from '../types';
 import MainNavigator from "./MainNavigator";
 import LinkingConfiguration from './LinkingConfiguration';
-import Header from './Header';
+import * as Analytics from "expo-firebase-analytics";
 
 // If you are not familiar with React Navigation, we recommend going through the
 // "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
@@ -18,7 +18,12 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
   return (
     <NavigationContainer
       linking={LinkingConfig}
-      theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      onStateChange={(state) => {
+        if (!state) return;
+        const currentScreen = getPathFromState(state);
+        Analytics.setCurrentScreen(currentScreen);
+      }}
+      theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <RootNavigator />
     </NavigationContainer>
   );

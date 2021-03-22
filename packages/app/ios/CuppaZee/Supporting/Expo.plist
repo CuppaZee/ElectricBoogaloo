@@ -13,6 +13,6 @@
     <key>EXUpdatesLaunchWaitMs</key>
     <integer>30000</integer>
     <key>EXUpdatesReleaseChannel</key>
-    <string>default</string>
+    <string>2.0.5</string>
   </dict>
 </plist>
