@@ -46,9 +46,13 @@ export default function useLogin(
 
   React.useEffect(() => {
     if (Platform.OS !== "web") {
-      WebBrowser.warmUpAsync();
+      try {
+        WebBrowser.warmUpAsync();
+      } catch (e) {}
       return () => {
-        WebBrowser.coolDownAsync();
+        try {
+          WebBrowser.coolDownAsync();
+        } catch (e) {}
       };
     }
   });

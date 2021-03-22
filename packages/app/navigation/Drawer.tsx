@@ -458,7 +458,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
           }
         />
         <DrawerItem
-          selected={page[1]?.name === "Tools" && page[2]?.name === "POIPlanner"}
+          selected={page[1]?.name === "Tools" && page[2]?.name === "DestinationPlanner"}
           title="Destination Planner"
           accessoryLeft={props => <Icon {...props} name="home-circle-outline" />}
           onPress={() =>

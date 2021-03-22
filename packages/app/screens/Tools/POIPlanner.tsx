@@ -112,6 +112,13 @@ export default function BouncersMapScreen() {
             fill: "#00ffff11",
             stroke: "#00ffff",
           })),
+          ...markers.map((i, n) => ({
+            ...i,
+            radius: 304.8,
+            id: `circle_${n}_capture`,
+            fill: "#00ff0011",
+            stroke: "#00ff00",
+          })),
           ...(munzees
             ?.filter(i => !selected || selected === db.strip(i.original_pin_image ?? ""))
             .map(i => ({
@@ -157,9 +164,7 @@ export default function BouncersMapScreen() {
             appearance="ghost"
             accessoryLeft={props => <Icon name="close" {...props} />}
             status="danger"
-            onPress={() =>
-              setMarkers(value => value.filter((_,n) => n !== selectedMarker))
-            }
+            onPress={() => setMarkers(value => value.filter((_, n) => n !== selectedMarker))}
           />
           <Text category="s1" style={{ flex: 1 }}>
             {markers[selectedMarker].lat} {markers[selectedMarker].lng}

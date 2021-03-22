@@ -79,6 +79,7 @@ export default function BouncersMapScreen() {
       ],
     },
     {
+      capture: 152.4,
       filterID: "59",
       name: "Virtual Resort",
       icon: "virtualresort",
@@ -90,6 +91,7 @@ export default function BouncersMapScreen() {
       ],
     },
     {
+      capture: 152.4,
       filterID: "138",
       name: "Vacation Condo",
       icon: "vacationcondo",
@@ -105,6 +107,7 @@ export default function BouncersMapScreen() {
       ],
     },
     {
+      capture: 304.8,
       filterID: "144",
       name: "Skyland",
       icon: "skyland",
@@ -222,6 +225,15 @@ export default function BouncersMapScreen() {
           }
         }}
         circles={[
+          ...markers
+            .filter(i => destinations.find(x => i.type === x.icon)?.capture)
+            .map((i, n) => ({
+              ...i,
+              radius: destinations.find(x => i.type === x.icon)?.capture || 0,
+              id: `circle_${n}_capture`,
+              fill: "#00ff0011",
+              stroke: "#00ff00",
+            })),
           ...markers.map((i, n) => ({
             ...i,
             radius: getRadiusForType(i.type),
