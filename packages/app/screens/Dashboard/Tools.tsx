@@ -108,7 +108,7 @@ export const ToolsPagesOther = [
   },
 ] as const;
 
-export default function ToolsDashCard(props: DashCardProps<unknown>) {
+export default React.memo(function ToolsDashCard(props: DashCardProps<unknown>) {
   const { t } = useTranslation();
   const nav = useNavigation();
   const [clans] = useClanBookmarks();
@@ -121,11 +121,16 @@ export default function ToolsDashCard(props: DashCardProps<unknown>) {
           </Text>
           {ToolsPages.map(i => (
             <DrawerItem
+              key={i.screen}
               style={{ backgroundColor: "transparent" }}
               selected={false}
               title={() => (
                 <Text
-                  style={{ flex: 1, marginLeft: 4, opacity: "disabled" in i && i.disabled ? 0.5 : 1 }}
+                  style={{
+                    flex: 1,
+                    marginLeft: 4,
+                    opacity: "disabled" in i && i.disabled ? 0.5 : 1,
+                  }}
                   category="s1">
                   {"title" in i ? t(`pages:${i.title}` as const) : i.nontranslatedtitle}
                 </Text>
@@ -145,6 +150,7 @@ export default function ToolsDashCard(props: DashCardProps<unknown>) {
           </Text>
           {ToolsPagesBouncers.map(i => (
             <DrawerItem
+              key={i.screen}
               style={{ backgroundColor: "transparent" }}
               selected={false}
               title={() => (
@@ -165,6 +171,7 @@ export default function ToolsDashCard(props: DashCardProps<unknown>) {
           </Text>
           {ToolsPagesMaps.map(i => (
             <DrawerItem
+              key={i.screen}
               style={{ backgroundColor: "transparent" }}
               selected={false}
               title={() => (
@@ -185,6 +192,7 @@ export default function ToolsDashCard(props: DashCardProps<unknown>) {
           </Text>
           {ToolsPagesSettings.filter(i => !("hidden" in i) || !i.hidden).map(i => (
             <DrawerItem
+              key={"settings_" + i.screen}
               style={{ backgroundColor: "transparent" }}
               selected={false}
               title={() => (
@@ -205,6 +213,7 @@ export default function ToolsDashCard(props: DashCardProps<unknown>) {
           </Text>
           {ToolsPagesOther.map(i => (
             <DrawerItem
+              key={i.screen}
               style={{ backgroundColor: "transparent" }}
               selected={false}
               title={() => (
@@ -224,7 +233,7 @@ export default function ToolsDashCard(props: DashCardProps<unknown>) {
       </ScrollView>
     </Layout>
   );
-}
+}, () => true)
 
 const styles = StyleSheet.create({
   card: { margin: 4, borderRadius: 4 },

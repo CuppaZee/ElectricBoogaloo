@@ -3,6 +3,7 @@ import { Button, Layout, Text, useTheme } from "@ui-kitten/components";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 import {
+  Dimensions,
   FlatList,
   Image,
   LayoutChangeEvent,
@@ -47,7 +48,7 @@ const FlexView = (props: ViewProps) => <View {...props} style={[props.style, { f
 export interface DashCardProps<i> {
   item: i;
   index: number;
-  touched: number[];
+  touched: boolean;
   onInnerLayout: (event: LayoutChangeEvent) => void;
   onOuterLayout: (event: LayoutChangeEvent) => void;
 }
@@ -75,7 +76,7 @@ export default function DashboardScreen() {
   const [touched, setTouched] = React.useState<number[]>([pageOffset]);
   const [index, setIndex] = React.useState<number>(pageOffset);
   const [size, onLayout] = useComponentSize();
-  const width = scrollSize.current?.width ?? size?.width ?? 0;
+  const width = scrollSize.current?.width ?? size?.width ?? Dimensions.get("window").width;
 
   const [liveLocationError, setLiveLocationError] = useSetting(LiveLocationErrorAtom);
 
@@ -147,6 +148,7 @@ export default function DashboardScreen() {
         }}>
         {dashCards.map((i, n) => (
           <Pressable
+            key={"nonUser" in i ? i.nonUser : i.user_id}
             onPress={() => {
               scrollRef.current?.scrollToOffset({
                 offset: (position.current || 0) + (n - index) * Math.min(600, width),
@@ -253,7 +255,7 @@ export default function DashboardScreen() {
             const props: DashCardProps<any> = {
               item,
               index: cardIndex,
-              touched,
+              touched: touched.includes(cardIndex),
               onInnerLayout: event => {
                 scrollViewDimensions.current[cardIndex] = {
                   inner: {
@@ -278,7 +280,7 @@ export default function DashboardScreen() {
                 style={{
                   width: Math.min(600, width),
                   padding: 8,
-                  zIndex: -index,
+                  zIndex: -cardIndex,
                   height: "100%",
                   flex: 1,
                   alignSelf: "center",

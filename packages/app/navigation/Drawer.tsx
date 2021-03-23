@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 import Tip from "../components/Common/Tip";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../components/Common/Icon";
-import useSetting, { DrawerAtom } from "../hooks/useSetting";
+import useSetting, { DrawerAtom, ReadyAtom } from "../hooks/useSetting";
 
 type NavigationRoute = {
   state?: NavigationState | PartialState<NavigationState>;
@@ -84,6 +84,9 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
       params: params.params,
     })
   }
+  
+  const [ready] = useSetting(ReadyAtom);
+  if (ready !== "2020-03-20") return null;
 
   return (
     <Layout style={{ flex: 1 }}>
@@ -126,6 +129,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
         {/* Users */}
         {users.map(user => (
           <DrawerGroup
+            key={user.user_id}
             title={user.username}
             accessoryLeft={() => (
               <Image
@@ -324,6 +328,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
         )}
         {clans?.slice(0, 5).map(clan => (
           <DrawerItem
+            key={clan.clan_id}
             selected={
               page[1]?.name === "Clan" &&
               page[2]?.name === "Stats" &&
@@ -362,6 +367,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
             accessoryLeft={props => <Icon {...props} name="shield-half-full" />}>
             {clans?.slice(5).map(clan => (
               <DrawerItem
+                key={clan.clan_id}
                 selected={
                   page[1]?.name === "Clan" &&
                   page[2]?.name === "Stats" &&
@@ -561,12 +567,16 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
         />
         {dimensions.width > 1000 && <View style={{ height: 44 }} />}
       </ScrollView>
-      {dimensions.width > 1000 && <DrawerItem
-        style={{ position: "absolute", bottom: 0, left: 0, width: open ? 255 : 52 }}
-        title="Minimise"
-        accessoryLeft={props => <Icon {...props} name={open ? "chevron-left" : "chevron-right"} />}
-        onPress={() => setDrawerSettings({ ...drawerSettings, open: !drawerSettings.open })}
-      />}
+      {dimensions.width > 1000 && (
+        <DrawerItem
+          style={{ position: "absolute", bottom: 0, left: 0, width: open ? 255 : 52 }}
+          title="Minimise"
+          accessoryLeft={props => (
+            <Icon {...props} name={open ? "chevron-left" : "chevron-right"} />
+          )}
+          onPress={() => setDrawerSettings({ ...drawerSettings, open: !drawerSettings.open })}
+        />
+      )}
     </Layout>
   );
 }

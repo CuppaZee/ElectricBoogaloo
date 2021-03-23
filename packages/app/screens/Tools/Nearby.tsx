@@ -104,6 +104,7 @@ export default function NearbyScreen() {
             .sort((a, b) => a.distance - b.distance)
             .map(i => (
               <Pressable
+                key={i.hash}
                 onPress={() =>
                   nav.navigate("Tools", {
                     screen: "Munzee",
@@ -118,7 +119,6 @@ export default function NearbyScreen() {
                   flexGrow: 1,
                 }}>
                 <Layout
-                  key={i.hash}
                   level="2"
                   style={{
                     margin: 4,

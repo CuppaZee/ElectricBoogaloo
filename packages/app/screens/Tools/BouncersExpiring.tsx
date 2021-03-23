@@ -65,26 +65,27 @@ export default function SearchScreen() {
             .filter((i: any) => !type || i[1].includes(typeS))
             .filter((i: any) => !player || i[6]?.toLowerCase().includes(playerS)) ?? []
         }
-        keyExtractor={i => i[4]}
-        renderItem={({ item, index }) => (
-          <ListItem
-            accessoryLeft={() => <TypeImage style={{ size: 32 }} icon={item[1]} />}
-            title={item[5] ? `${item[5]} by ${item[6]}` : types.getType(item[1])?.name ?? item[1]}
-            description={`${Math.floor((item[2] - now / 1000) / 60)}:${(
-              Math.floor(item[2] - now / 1000) % 60
-            )
-              .toString()
-              .padStart(2, "0")}`}
-            onPress={() => {
-              nav.navigate("Tools", {
-                screen: "Munzee",
-                params: {
-                  a: item[3],
-                },
-              });
-            }}
-          />
-        )}
+        keyExtractor={i => i[4].toString()}
+        renderItem={
+          ({ item, index }) => (
+            <ListItem
+              accessoryLeft={() => <TypeImage style={{ size: 32 }} icon={item[1]} />}
+              title={item[5] ? `${item[5]} by ${item[6]}` : types.getType(item[1])?.name ?? item[1]}
+              description={`${Math.floor((item[2] - now / 1000) / 60)}:${(
+                Math.floor(item[2] - now / 1000) % 60
+              )
+                .toString()
+                .padStart(2, "0")}`}
+              onPress={() => {
+                nav.navigate("Tools", {
+                  screen: "Munzee",
+                  params: {
+                    a: item[3],
+                  },
+                });
+              }}
+            />
+          )}
       />
     </Layout>
   );

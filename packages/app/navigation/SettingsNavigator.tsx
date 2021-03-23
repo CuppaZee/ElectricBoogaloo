@@ -5,7 +5,7 @@ import { MainDrawerParamList, SettingsStackParamList } from "../types";
 import Header from "./Header";
 
 // Pages
-import { lazy } from "@loadable/component";
+import lazy from "../components/lazy";
 import { DrawerNavigationProp } from "@react-navigation/drawer";
 import { CompositeNavigationProp } from "@react-navigation/native";
 const PersonalisationScreen = lazy(() => import("../screens/Settings/Personalisation"));

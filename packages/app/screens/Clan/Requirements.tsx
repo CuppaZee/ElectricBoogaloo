@@ -12,6 +12,7 @@ import Select from "../../components/Common/Select";
 import Tip from "../../components/Common/Tip";
 import useTitle from "../../hooks/useTitle";
 import { ClanStackParamList } from "../../types";
+import { ClanPersonalisationModal } from "../Settings/Personalisation";
 
 export default function ClanStatsScreen2() {
   const { t } = useTranslation();
@@ -24,6 +25,7 @@ export default function ClanStatsScreen2() {
   );
   return (
     <Layout style={{ flex: 1 }}>
+      <ClanPersonalisationModal />
       <ScrollView style={{ flex: 1 }}>
         <Tip
           wrapperStyle={{ margin: 4, width: 400, maxWidth: "100%", alignSelf: "center" }}
@@ -39,21 +41,20 @@ export default function ClanStatsScreen2() {
               month: gameIDToMonth(Number(value)).m + 1,
             });
           }}
-          options={new Array(monthToGameID() - 77).fill(0).map((_, i) => {
-            const { m, y } = gameIDToMonth(i + 79);
-            return {
-              label: dayjs().set("month", m).set("year", y).format("MMMM YYYY"),
-              value: (i + 79).toString(),
-            };
-          }).reverse()}
+          options={new Array(monthToGameID() - 77)
+            .fill(0)
+            .map((_, i) => {
+              const { m, y } = gameIDToMonth(i + 79);
+              return {
+                label: dayjs().set("month", m).set("year", y).format("MMMM YYYY"),
+                value: (i + 79).toString(),
+              };
+            })
+            .reverse()}
         />
-        <ClanRequirementsTable
-          game_id={game_id}
-        />
+        <ClanRequirementsTable game_id={game_id} />
         <ClanRewardsTable game_id={game_id} />
-        <ClanRequirementsList
-          game_id={game_id}
-        />
+        <ClanRequirementsList game_id={game_id} />
       </ScrollView>
     </Layout>
   );

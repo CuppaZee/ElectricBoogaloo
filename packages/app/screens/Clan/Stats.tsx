@@ -12,6 +12,7 @@ import Tip from "../../components/Common/Tip";
 import useSetting, { ClanPersonalisationAtom } from "../../hooks/useSetting";
 import useTitle from "../../hooks/useTitle";
 import { ClanStackParamList } from "../../types";
+import { ClanPersonalisationModal } from "../Settings/Personalisation";
 
 export default function ClanStatsScreen2() {
   const [style] = useSetting(ClanPersonalisationAtom);
@@ -26,6 +27,7 @@ export default function ClanStatsScreen2() {
   useTitle(`☕ ${clan_id}`);
   return (
     <Layout style={{ flex: 1 }}>
+      <ClanPersonalisationModal />
       <ScrollView style={{ flex: 1 }}>
         <Tip
           wrapperStyle={{ margin: 4, width: 400, maxWidth: "100%", alignSelf: "center" }}

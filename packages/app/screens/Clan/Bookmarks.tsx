@@ -15,6 +15,7 @@ import useComponentSize from "../../hooks/useComponentSize";
 import useSetting, { ClanPersonalisationAtom } from "../../hooks/useSetting";
 import useTitle from "../../hooks/useTitle";
 import { ClanStackParamList } from "../../types";
+import { ClanPersonalisationModal } from "../Settings/Personalisation";
 
 export default function ClanBookmarksScreen() {
   const { t } = useTranslation();
@@ -33,6 +34,7 @@ export default function ClanBookmarksScreen() {
   if(!isFocused || !size) return <Layout onLayout={onLayout} style={{ flex: 1 }}></Layout>
   return (
     <Layout onLayout={onLayout} style={{ flex: 1 }}>
+      <ClanPersonalisationModal />
       <ScrollView style={{ flex: 1 }}>
         <Tip
           wrapperStyle={{ margin: 4, width: 400, maxWidth: "100%", alignSelf: "center" }}

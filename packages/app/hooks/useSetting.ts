@@ -34,6 +34,7 @@ export const ClanPersonalisationAtom = atom<
     single_line: boolean;
     full_background: boolean;
     colours: string[];
+    edited: boolean;
   }>
 >({
   data: {
@@ -41,6 +42,7 @@ export const ClanPersonalisationAtom = atom<
     reverse: false,
     single_line: false,
     full_background: false,
+    edited: false,
     colours: [
       "#eb0000",
       "#ef6500",

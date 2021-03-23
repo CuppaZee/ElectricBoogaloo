@@ -5,7 +5,7 @@ import { ClanStackParamList, MainDrawerParamList } from "../types";
 import Header from "./Header";
 
 // Pages
-import {lazy} from '@loadable/component'
+import lazy from "../components/lazy";
 import { CompositeNavigationProp } from "@react-navigation/native";
 import { DrawerNavigationProp } from "@react-navigation/drawer";
 const ClanStatsScreen = lazy(() => import("../screens/Clan/Stats"));

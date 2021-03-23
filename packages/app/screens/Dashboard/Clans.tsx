@@ -9,7 +9,7 @@ import { useClanBookmarks } from "../../hooks/useBookmarks";
 import useTitle from "../../hooks/useTitle";
 import { DashCardProps } from "./Dashboard";
 
-export default function ClansDashCard(props: DashCardProps<unknown>) {
+export default React.memo(function ClansDashCard(props: DashCardProps<unknown>) {
   const { t } = useTranslation();
   const nav = useNavigation();
   const [clans] = useClanBookmarks();
@@ -26,6 +26,7 @@ export default function ClansDashCard(props: DashCardProps<unknown>) {
             tip="You can add and remove clans from your Bookmarks in the Settings"
           />
           <DrawerItem
+            key="clan_requirements"
             style={{ backgroundColor: "transparent" }}
             selected={false}
             title={() => (
@@ -42,6 +43,7 @@ export default function ClansDashCard(props: DashCardProps<unknown>) {
           />
           {!!clans && clans.length > 0 && (
             <DrawerItem
+              key="clan_bookmarks"
               style={{ backgroundColor: "transparent" }}
               selected={false}
               title={() => (
@@ -59,6 +61,7 @@ export default function ClansDashCard(props: DashCardProps<unknown>) {
           )}
           {clans?.map(clan => (
             <DrawerItem
+              key={clan.clan_id}
               style={{ backgroundColor: "transparent" }}
               selected={false}
               title={() => (
@@ -94,7 +97,7 @@ export default function ClansDashCard(props: DashCardProps<unknown>) {
       </ScrollView>
     </Layout>
   );
-}
+}, () => true)
 
 const styles = StyleSheet.create({
   card: { margin: 4, borderRadius: 4 },

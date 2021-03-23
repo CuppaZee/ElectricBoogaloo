@@ -187,9 +187,7 @@ export default React.memo(
           </View>
           <Button
             appearance="ghost"
-            accessoryLeft={props => (
-              <Icon {...props} name="plus-minus" />
-            )}
+            accessoryLeft={props => <Icon {...props} name="plus-minus" />}
             onPress={() =>
               setOptions({
                 ...options,
@@ -241,6 +239,7 @@ export default React.memo(
                   />
                 ) : "type" in row ? (
                   <View
+                    key={`${row.level}_${row.type}`}
                     style={{
                       [style.reverse
                         ? row.type === "group"
@@ -251,7 +250,7 @@ export default React.memo(
                         : "borderBottomWidth"]: 2,
                       borderColor,
                     }}>
-                    <LevelCell key={`${row.level}_${row.type}`} level={row.level} type={row.type} />
+                    <LevelCell level={row.level} type={row.type} />
                   </View>
                 ) : (
                   <UserCell key={"user_id" in row ? row.user_id : "Clan Total"} user={row} />
@@ -342,6 +341,7 @@ export default React.memo(
                   if (!user || !task_id) return null;
                   return "type" in user ? (
                     <View
+                      key={key}
                       style={{
                         [style.reverse
                           ? user.type === "group"
@@ -354,7 +354,6 @@ export default React.memo(
                       }}>
                       <RequirementDataCell
                         members={Object.keys(stats.users).length}
-                        key={key}
                         task={task_id}
                         level={user.level}
                         type={user.type}

@@ -24,7 +24,7 @@ function BuildCard(build: Build) {
             New Features
           </Text>
           {build.features.map(feature => (
-            <View>
+            <View key={feature.title}>
               <Text category="h6" style={{ textAlign: "center" }}>
                 {feature.title}
               </Text>
@@ -40,11 +40,13 @@ function BuildCard(build: Build) {
               )}
               {feature.avatars && (
                 <View style={{ flexDirection: "row", justifyContent: "center", flexWrap: "wrap" }}>
-                  {feature.avatars.map(image => <Image
-                    resizeMode="contain"
-                    style={{ height: 64, width: 64, borderRadius: 32 }}
-                    source={{ uri: image }}
-                  />)}
+                  {feature.avatars.map(image => (
+                    <Image
+                      resizeMode="contain"
+                      style={{ height: 64, width: 64, borderRadius: 32 }}
+                      source={{ uri: image }}
+                    />
+                  ))}
                 </View>
               )}
             </View>
@@ -56,8 +58,8 @@ function BuildCard(build: Build) {
           <Text category="h6" style={{ textAlign: "center" }}>
             New Munzee Types
           </Text>
-          {build.types.map(type => (
-            <View>
+          {build.types.map((type, typeIndex) => (
+            <View key={type.title || type.description || typeIndex}>
               {type.title && (
                 <Text category="s1" style={{ textAlign: "center" }}>
                   {type.title}
@@ -76,7 +78,7 @@ function BuildCard(build: Build) {
                     .map(i => i.icon) ?? []),
                   ...(type.function?.() ?? []).map(i => i.icon),
                 ].map(t => (
-                  <TypeImage icon={t} style={{ size: 48, margin: 4 }} />
+                  <TypeImage key={t} icon={t} style={{ size: 48, margin: 4 }} />
                 ))}
               </View>
             </View>
@@ -89,7 +91,7 @@ function BuildCard(build: Build) {
             Improvements
           </Text>
           {build.improvements.map(improvement => (
-            <View>
+            <View key={improvement.description}>
               <Text category="p1" style={{ textAlign: "center" }}>
                 {improvement.description}
               </Text>
@@ -108,7 +110,7 @@ function BuildCard(build: Build) {
             Bug Fixes
           </Text>
           {build.fixes.map(fix => (
-            <View>
+            <View key={fix.description}>
               <Text category="p1" style={{ textAlign: "center" }}>
                 {fix.description}
               </Text>
@@ -125,7 +127,7 @@ function BuildCard(build: Build) {
   );
 }
 
-export default function ChangesDashCard(props: DashCardProps<unknown>) {
+export default React.memo(function ChangesDashCard(props: DashCardProps<unknown>) {
   const [build, setBuild] = useSetting(BuildAtom);
   return (
     <Layout level="3" style={[styles.card, { flex: 1 }]}>
@@ -138,7 +140,7 @@ export default function ChangesDashCard(props: DashCardProps<unknown>) {
           {builds
             .filter(i => i.build > build)
             .map(i => (
-              <BuildCard {...i} />
+              <BuildCard key={i.build} {...i} />
             ))}
           <Button
             appearance="outline"
@@ -152,7 +154,7 @@ export default function ChangesDashCard(props: DashCardProps<unknown>) {
       </ScrollView>
     </Layout>
   );
-}
+}, () => true)
 
 const styles = StyleSheet.create({
   card: { margin: 4, borderRadius: 4 },

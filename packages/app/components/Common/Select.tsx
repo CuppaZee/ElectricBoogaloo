@@ -27,6 +27,7 @@ export default function Select({ value, onValueChange, options, ...rest }: Selec
       onSelect={value => onValueChange(options[(value as IndexPath).row].value)}>
       {options.map(i => (
         <SelectItem
+          key={i.value}
           accessoryLeft={i.icon ? props => <Icon {...props} name={i.icon} /> : undefined}
           title={i.label}
         />

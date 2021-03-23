@@ -890,19 +890,19 @@ export default function NotificationScreen() {
                 // Check Permission allowed Always
                 if (status === "granted" && permissions.location?.scope === "always") {
                   // Start
-                  if ("LiveLocation" in NativeModules) {
-                    try {
-                      // Stop Location Updates
-                      await Location.stopLocationUpdatesAsync("BACKGROUND_LOCATION");
-                    } catch (e) {}
-                    NativeModules.LiveLocation.startLocationUpdates(900000, 600000, 1800000);
-                  } else {
-                    await Location.startLocationUpdatesAsync("BACKGROUND_LOCATION", {
-                      accuracy: Location.Accuracy.Low,
-                      deferredUpdatesDistance: 250,
-                      deferredUpdatesTimeout: 900000,
-                    });
-                  }
+                  // if ("LiveLocation" in NativeModules) {
+                  //   try {
+                  //     // Stop Location Updates
+                  //     await Location.stopLocationUpdatesAsync("BACKGROUND_LOCATION");
+                  //   } catch (e) {}
+                  //   NativeModules.LiveLocation.startLocationUpdates(900000, 600000, 1800000);
+                  // } else {
+                  await Location.startLocationUpdatesAsync("BACKGROUND_LOCATION", {
+                    accuracy: Location.Accuracy.Low,
+                    deferredUpdatesDistance: 250,
+                    deferredUpdatesTimeout: 900000,
+                  });
+                  // }
                 } else {
                   // Error
                   settings.locations.dynamic = undefined;

@@ -1,4 +1,4 @@
-import { Button, CheckBox, Layout, Radio, RadioGroup, Text } from "@ui-kitten/components";
+import { Button, CheckBox, Layout, Modal, Radio, RadioGroup, Text } from "@ui-kitten/components";
 import dayjs from "dayjs";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
@@ -8,6 +8,7 @@ import { requirementMeta } from "../../components/Clan/Data";
 import ColourPicker from "../../components/Common/ColourPicker";
 import Icon from "../../components/Common/Icon";
 import Select from "../../components/Common/Select";
+import useModalSafeArea from "../../hooks/useModalSafeArea";
 import useSetting, { ClanPersonalisationAtom, ThemeAtom } from "../../hooks/useSetting";
 import useTitle from "../../hooks/useTitle";
 import { LANGS } from "../../lang/i18n";
@@ -204,6 +205,145 @@ function MockTable({ settings }: { settings: ClanStyle }) {
 
 const clan_colours = ["0", "1", "2", "3", "4", "5", null, null, null, null, null, "I", "B", "G"];
 
+function ClanPersonalisation({
+  clanSettings,
+  setClanSettings,
+  title,
+}: {
+  title?: string;
+  clanSettings: ClanStyle;
+  setClanSettings: (value: ClanStyle) => void;
+}) {
+  const { t } = useTranslation();
+  const [clanColourSelect, setClanColourSelect] = React.useState<number>();
+  return (
+    <>
+      <Text style={{ margin: 4 }} category="h6">
+        {title || t("dashboard:clans")}
+      </Text>
+      <CheckBox
+        style={{ margin: 8 }}
+        checked={clanSettings.reverse}
+        onChange={checked => setClanSettings({ ...clanSettings, reverse: checked })}>
+        {t("settings_personalisation:clan_reverse")}
+      </CheckBox>
+      <CheckBox
+        disabled={clanSettings.style === 0}
+        style={{ margin: 8 }}
+        checked={clanSettings.single_line}
+        onChange={checked => setClanSettings({ ...clanSettings, single_line: checked })}>
+        {t("settings_personalisation:clan_single_line")}
+      </CheckBox>
+      <CheckBox
+        style={{ margin: 8 }}
+        checked={clanSettings.full_background}
+        onChange={checked => setClanSettings({ ...clanSettings, full_background: checked })}>
+        {t("settings_personalisation:clan_full_background")}
+      </CheckBox>
+      <Text category="s1">{t("settings_personalisation:clan_style")}</Text>
+      <RadioGroup
+        style={{ margin: 8 }}
+        selectedIndex={clanSettings.style}
+        onChange={index => setClanSettings({ ...clanSettings, style: index })}>
+        <Radio disabled={clanSettings.single_line}>
+          {t("settings_personalisation:clan_style_0")}
+        </Radio>
+        <Radio>{t("settings_personalisation:clan_style_1")}</Radio>
+        <Radio>{t("settings_personalisation:clan_style_2")}</Radio>
+      </RadioGroup>
+      <Text category="s1">{t("settings_personalisation:clan_colours")}</Text>
+
+      <UpdateWrapper>
+        {update => (
+          <>
+            <View
+              style={{
+                width: 340,
+                flexDirection: "row",
+                flexWrap: "wrap",
+                alignSelf: "center",
+              }}>
+              {clan_colours.map((i, n) =>
+                i ? (
+                  <Pressable onPress={() => setClanColourSelect(n)} style={{ padding: 4 }}>
+                    <View
+                      style={{
+                        borderRadius: 32,
+                        height: 48,
+                        width: 48,
+                        borderWidth: 2,
+                        backgroundColor: clanSettings.colours[n],
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}>
+                      <Text
+                        style={{
+                          textAlignVertical: "center",
+                          textAlign: "center",
+                          color: pickTextColor(clanSettings.colours[n]),
+                        }}
+                        category="h2">
+                        {i}
+                      </Text>
+                    </View>
+                  </Pressable>
+                ) : null
+              )}
+            </View>
+            {clanColourSelect !== undefined && (
+              <View style={{ alignSelf: "center" }}>
+                <ColourPicker
+                  colour={clanSettings.colours[clanColourSelect]}
+                  setColour={colour => {
+                    clanSettings.colours[clanColourSelect] = colour;
+                    update();
+                  }}
+                />
+              </View>
+            )}
+          </>
+        )}
+      </UpdateWrapper>
+      <Text category="s1">{t("settings_personalisation:clan_preview")}</Text>
+      <MockTable settings={clanSettings} />
+    </>
+  );
+}
+
+export function ClanPersonalisationModal() {
+  const [clanSettings, setClanSettings] = useSetting(ClanPersonalisationAtom);
+  const modalSafeArea = useModalSafeArea();
+  if (clanSettings.edited) return null;
+  return (
+    <Modal visible={true} backdropStyle={{ backgroundColor: "#0007" }}>
+      <Layout level="3" style={[modalSafeArea, { width: 350, borderRadius: 8 }]}>
+        <ScrollView style={{ flex: 1 }}>
+          <Text style={{ margin: 4 }} category="h4">
+            Welcome to Clan Stats
+          </Text>
+          <Text style={{ margin: 4 }} category="s1">
+            If you want a more classic look, check "Single Line Cells" and "Full Colour Background".
+          </Text>
+          <ClanPersonalisation
+            title="Personalisation"
+            clanSettings={clanSettings}
+            setClanSettings={setClanSettings}
+          />
+          <Text style={{ margin: 4 }} category="s1">
+            You can change this at any time in the Personalisation Settings
+          </Text>
+          <Button
+            style={{ margin: 4 }}
+            onPress={() => setClanSettings({ ...clanSettings, edited: true })}
+            appearance="outline">
+            Done
+          </Button>
+        </ScrollView>
+      </Layout>
+    </Modal>
+  );
+}
+
 export default function PersonalisationScreen() {
   const { t, i18n } = useTranslation();
   useTitle(`☕ ${t("pages:settings")} - ${t("pages:settings_personalisation")}`);
@@ -211,7 +351,6 @@ export default function PersonalisationScreen() {
   const [clanSettings, setClanSettings] = React.useState<ClanStyle>();
   const [theme, setTheme] = useSetting(ThemeAtom);
   const [saved, setSaved] = React.useState(false);
-  const [clanColourSelect, setClanColourSelect] = React.useState<number>();
   React.useEffect(() => {
     setClanSettings({ ...storedClanSettings });
   }, [storedClanSettings]);
@@ -272,94 +411,7 @@ export default function PersonalisationScreen() {
 
         <View style={{ width: 400, flexGrow: 1, maxWidth: "100%", padding: 4 }}>
           <Layout level="2" style={{ margin: 4, padding: 4, flex: 1, borderRadius: 8 }}>
-            <Text style={{ margin: 4 }} category="h6">
-              {t("dashboard:clans")}
-            </Text>
-            <CheckBox
-              style={{ margin: 8 }}
-              checked={clanSettings.reverse}
-              onChange={checked => setClanSettings({ ...clanSettings, reverse: checked })}>
-              {t("settings_personalisation:clan_reverse")}
-            </CheckBox>
-            <CheckBox
-              disabled={clanSettings.style === 0}
-              style={{ margin: 8 }}
-              checked={clanSettings.single_line}
-              onChange={checked => setClanSettings({ ...clanSettings, single_line: checked })}>
-              {t("settings_personalisation:clan_single_line")}
-            </CheckBox>
-            <CheckBox
-              style={{ margin: 8 }}
-              checked={clanSettings.full_background}
-              onChange={checked => setClanSettings({ ...clanSettings, full_background: checked })}>
-              {t("settings_personalisation:clan_full_background")}
-            </CheckBox>
-            <Text category="s1">{t("settings_personalisation:clan_style")}</Text>
-            <RadioGroup
-              style={{ margin: 8 }}
-              selectedIndex={clanSettings.style}
-              onChange={index => setClanSettings({ ...clanSettings, style: index })}>
-              <Radio disabled={clanSettings.single_line}>
-                {t("settings_personalisation:clan_style_0")}
-              </Radio>
-              <Radio>{t("settings_personalisation:clan_style_1")}</Radio>
-              <Radio>{t("settings_personalisation:clan_style_2")}</Radio>
-            </RadioGroup>
-            <Text category="s1">{t("settings_personalisation:clan_colours")}</Text>
-
-            <UpdateWrapper>
-              {update => (
-                <>
-                  <View
-                    style={{
-                      width: 340,
-                      flexDirection: "row",
-                      flexWrap: "wrap",
-                      alignSelf: "center",
-                    }}>
-                    {clan_colours.map((i, n) =>
-                      i ? (
-                        <Pressable onPress={() => setClanColourSelect(n)} style={{ padding: 4 }}>
-                          <View
-                            style={{
-                              borderRadius: 32,
-                              height: 48,
-                              width: 48,
-                              borderWidth: 2,
-                              backgroundColor: clanSettings.colours[n],
-                              justifyContent: "center",
-                              alignItems: "center",
-                            }}>
-                            <Text
-                              style={{
-                                textAlignVertical: "center",
-                                textAlign: "center",
-                                color: pickTextColor(clanSettings.colours[n]),
-                              }}
-                              category="h2">
-                              {i}
-                            </Text>
-                          </View>
-                        </Pressable>
-                      ) : null
-                    )}
-                  </View>
-                  {clanColourSelect !== undefined && (
-                    <View style={{ alignSelf: "center" }}>
-                      <ColourPicker
-                        colour={clanSettings.colours[clanColourSelect]}
-                        setColour={colour => {
-                          clanSettings.colours[clanColourSelect] = colour;
-                          update();
-                        }}
-                      />
-                    </View>
-                  )}
-                </>
-              )}
-            </UpdateWrapper>
-            <Text category="s1">{t("settings_personalisation:clan_preview")}</Text>
-            <MockTable settings={clanSettings} />
+            <ClanPersonalisation clanSettings={clanSettings} setClanSettings={setClanSettings} />
           </Layout>
         </View>
 

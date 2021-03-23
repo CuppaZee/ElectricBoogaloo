@@ -30,7 +30,7 @@ export default function MainNavigator() {
       }>
       <Drawer.Navigator
         backBehavior="history"
-        drawerContent={props => (ready === "2020-03-20" ? <DrawerContent {...props} /> : null)}
+        drawerContent={props => <DrawerContent {...props} />}
         drawerType={dimensions.width > 1000 ? "permanent" : "front"}
         drawerStyle={{ width: ready === "2020-03-20" ? (open ? 256 : 53) : 0 }}>
         {!loaded || ready === "2020-03-20" ? (

@@ -12,9 +12,8 @@ import TypeImage from "../../components/Common/TypeImage";
 import { UserPagesNow, UserPagesTools } from "../User/Profile";
 import Icon from "../../components/Common/Icon";
 
-export default function UserDashCard({
+export default React.memo(function UserDashCard({
   item,
-  index,
   touched,
   onInnerLayout,
   onOuterLayout,
@@ -50,7 +49,7 @@ export default function UserDashCard({
               <Text category="h5">{item.username}</Text>
             </View>
           </Pressable>
-          {touched.includes(index) ? (
+          {touched ? (
             <>
               <UserActivityOverview
                 user_id={Number(item?.user_id)}
@@ -78,6 +77,7 @@ export default function UserDashCard({
             />
             {UserPagesNow.map(i => (
               <DrawerItem
+                key={i.screen}
                 style={{ backgroundColor: "transparent" }}
                 selected={false}
                 title={() => (
@@ -104,6 +104,7 @@ export default function UserDashCard({
               accessoryLeft={props => <Icon {...props} name="tools" />}>
               {UserPagesTools.map(i => (
                 <DrawerItem
+                  key={i.screen}
                   style={{ backgroundColor: "transparent" }}
                   selected={false}
                   title={() => (
@@ -134,6 +135,7 @@ export default function UserDashCard({
                 ?.children.filter(i => i.children.length > 0)
                 .map(c => (
                   <DrawerItem
+                    key={c.id}
                     style={{ backgroundColor: "transparent" }}
                     selected={false}
                     title={() => (
@@ -158,7 +160,7 @@ export default function UserDashCard({
       </ScrollView>
     </Layout>
   );
-};
+}, (a, b) => a.touched === b.touched && a.item.user_id === b.item.user_id);
 
 const styles = StyleSheet.create({
   card: { margin: 4, borderRadius: 4 },

@@ -51,7 +51,7 @@ export default function ZeeOpsOverview({ user_id }: ZeeOpsOverviewProps) {
                 0,
                 1,
                 1.0001,
-                1,
+                2,
               ]}
               colors={[
                 theme["text-success-color"] + "66",
@@ -108,7 +108,7 @@ export default function ZeeOpsOverview({ user_id }: ZeeOpsOverviewProps) {
               0,
               (current.rewardCollected ? current.goal : current?.progress) / current.goal,
               (current.rewardCollected ? current.goal : current?.progress) / current.goal + 0.0001,
-              1,
+              2,
             ]}
             colors={[
               theme["text-success-color"] + "66",

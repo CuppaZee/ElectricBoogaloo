@@ -774,17 +774,58 @@ const builds: Build[] = [
     improvements: [
       {
         description: "Added Capture Distance circles to POI and Destination Planner",
-        thanks: "nuttynan"
+        thanks: "nuttynan",
       },
     ],
     fixes: [
       {
-        description: "Fixed Crash with Login Page on Android"
+        description: "Fixed Crash with Login Page on Android",
       },
       {
-        description: "Reverted to old Live Location module on Android"
-      }
-    ]
+        description: "Reverted to old Live Location module on Android",
+      },
+    ],
+  },
+  {
+    build: 46,
+    date: "2021-03-22",
+    improvements: [
+      {
+        description: "Reworked Dashboard for Performance Improvements",
+      },
+      {
+        description: "Improved Performance across the app",
+      },
+      {
+        description: "Improved Page Load Performance",
+      },
+    ],
+  },
+  {
+    build: 47,
+    date: "2021-03-22",
+    fixes: [
+      {
+        description: "Fixed crash on Mobile Device",
+      },
+      {
+        description: "Fixed error when enabling Live Location on iOS",
+      },
+    ],
+  },
+  {
+    build: 48,
+    date: "2021-03-22",
+    improvements: [
+      {
+        description:
+          "Added Clan Personalisation popup to make the settings more obvious to new users",
+      },
+      {
+        description:
+          "Improved Dashboard performance when loading",
+      },
+    ],
   },
 ];
 
