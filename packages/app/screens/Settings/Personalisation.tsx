@@ -351,9 +351,13 @@ export default function PersonalisationScreen() {
   const [clanSettings, setClanSettings] = React.useState<ClanStyle>();
   const [theme, setTheme] = useSetting(ThemeAtom);
   const [saved, setSaved] = React.useState(false);
+  const themeRef = React.useRef("");
   React.useEffect(() => {
     setClanSettings({ ...storedClanSettings });
   }, [storedClanSettings]);
+  React.useEffect(() => {
+    themeRef.current = theme;
+  }, [theme]);
   if (!clanSettings) return null;
   return (
     <Layout style={{ flex: 1 }}>
@@ -372,25 +376,98 @@ export default function PersonalisationScreen() {
             <Text style={{ margin: 4 }} category="h6">
               {t("settings_personalisation:theme")}
             </Text>
-            <View
-              style={{ width: 280, flexDirection: "row", flexWrap: "wrap", alignSelf: "center" }}>
-              {Object.entries(themes).map(i => (
-                <Pressable
-                  onPress={() => setTheme(i[0] as typeof theme)}
-                  style={{ padding: theme === i[0] ? 0 : 4 }}>
+
+            <UpdateWrapper>
+              {update => (
+                <>
                   <View
                     style={{
-                      borderRadius: 32,
-                      height: theme === i[0] ? 56 : 48,
-                      width: theme === i[0] ? 56 : 48,
-                      borderWidth: 2,
-                      backgroundColor:
-                        i[1][i[1].style === "dark" ? "color-basic-800" : "color-basic-200"],
-                    }}
-                  />
-                </Pressable>
-              ))}
-            </View>
+                      width: 280,
+                      flexDirection: "row",
+                      flexWrap: "wrap",
+                      alignSelf: "center",
+                    }}>
+                    {Object.entries(themes)
+                      .filter(i => i[0] !== "generate")
+                      .map(i => (
+                        <Pressable
+                          onPress={() => { themeRef.current = i[0] as typeof theme; setTheme(i[0] as typeof theme) }}
+                          style={{ padding: theme === i[0] ? 0 : 4 }}>
+                          <View
+                            style={{
+                              borderRadius: 32,
+                              height: theme === i[0] ? 56 : 48,
+                              width: theme === i[0] ? 56 : 48,
+                              borderWidth: 2,
+                              backgroundColor: (i[1] as any)[
+                                (i[1] as any).style === "dark"
+                                  ? "color-basic-800"
+                                  : "color-basic-200"
+                              ],
+                            }}
+                          />
+                        </Pressable>
+                      ))}
+                    <Button
+                      appearance="outline"
+                      onPress={() => {
+                        if (theme in themes) {
+                          themeRef.current = "#ABF2BE";
+                        } else {
+                          themeRef.current = themeRef.current.startsWith("$")
+                            ? themeRef.current.slice(1)
+                            : themeRef.current;
+                        }
+                        setTheme(themeRef.current);
+                      }}
+                      style={{ margin: 4, width: 132 }}>
+                      Custom Light
+                    </Button>
+                    <Button
+                      appearance="outline"
+                      onPress={() => {
+                        if (theme in themes) {
+                          themeRef.current = "$#063824";
+                        } else {
+                          themeRef.current = themeRef.current.startsWith("$")
+                            ? themeRef.current
+                            : "$" + themeRef.current;
+                        }
+                        setTheme(themeRef.current);
+                      }}
+                      style={{ margin: 4, width: 132 }}>
+                      Custom Dark
+                    </Button>
+                  </View>
+                  {themeRef.current.includes("#") && (
+                    <View style={{ alignSelf: "center" }}>
+                      <ColourPicker
+                        colour={
+                          themeRef.current.startsWith("$")
+                            ? themeRef.current.slice(1)
+                            : themeRef.current
+                        }
+                        setColour={colour => {
+                          update();
+                          themeRef.current = themeRef.current.startsWith("$")
+                            ? `$${colour}`
+                            : colour;
+                        }}
+                      />
+                      <Button
+                        style={{ margin: 4 }}
+                        onPress={async () => {
+                          setTheme(themeRef.current);
+                        }}
+                        appearance="outline"
+                        accessoryLeft={props => <Icon {...props} name="brush" />}>
+                        Apply Theme
+                      </Button>
+                    </View>
+                  )}
+                </>
+              )}
+            </UpdateWrapper>
 
             <Text style={{ margin: 4 }} category="h6">
               {t("settings_personalisation:language")}

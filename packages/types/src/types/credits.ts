@@ -83,6 +83,10 @@ const credits: {
     icon: "jewel_shards",
     name: "Jewel Shards",
   },
+  {
+    icon: "weapon_shards",
+    name: "Weapon Shards",
+  },
 ];
 
 export default credits;

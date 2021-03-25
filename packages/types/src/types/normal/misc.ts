@@ -191,8 +191,14 @@ const misc: {
     name: "SleepZee",
     icon: "sleepzee",
     id: 2744,
-    state: TypeState.Physical,
+    state: TypeState.Virtual,
     hidden: [TypeHidden.Inventory, TypeHidden.Deploy],
+  },
+  {
+    name: "Virtual Shamrock",
+    icon: "virtualshamrock",
+    id: "null_virtualshamrock",
+    state: TypeState.Virtual,
   },
 ];
 

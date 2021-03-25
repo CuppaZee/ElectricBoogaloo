@@ -822,9 +822,40 @@ const builds: Build[] = [
           "Added Clan Personalisation popup to make the settings more obvious to new users",
       },
       {
-        description:
-          "Improved Dashboard performance when loading",
+        description: "Improved Dashboard performance when loading",
       },
+    ],
+  },
+  {
+    build: 49,
+    date: "2021-03-24",
+    features: [
+      {
+        title: "Custom Themes",
+        description: "You can now make some custom themes.",
+      },
+    ],
+    types: [
+      {
+        title: "Weapon Shards",
+        types: ["weaponshards"],
+      },
+      {
+        title: "Zee Folk",
+        types: ["zeefolk"],
+      },
+      {
+        title: "Virtual Shamrocks",
+        types: ["virtualshamrock", "cloverleaf"],
+      },
+      {
+        title: "St. Patrick's Day Cards",
+        types: ["greencheerscard", "kissmeimirishcard", "luckycharmcard"],
+      },
+      {
+        title: "Golden L.A.S.E.R. Shark",
+        types: ["goldenlasershark"]
+      }
     ],
   },
 ];

@@ -21,7 +21,7 @@ export const BuildAtom = atom<Setting<number>>({
   key: "@cuppazee/build",
 });
 
-export const ThemeAtom = atom<Setting<keyof typeof themes>>({
+export const ThemeAtom = atom<Setting<string>>({
   data: "green_light",
   loaded: false,
   key: "@cuppazee/personalisation/theme",

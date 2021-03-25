@@ -33,6 +33,21 @@ const c2021: {
     icon: "motivationalmessagecard4",
     id: 2833,
   },
+  {
+    name: "Green Cheers Card",
+    icon: "greencheerscard",
+    id: "null_greencheerscard",
+  },
+  {
+    name: "Kiss Me I'm Irish Card",
+    icon: "kissmeimirishcard",
+    id: "null_kissmeimirishcard",
+  },
+  {
+    name: "Lucky Charm Card",
+    icon: "luckycharmcard",
+    id: "null_luckycharmcard",
+  },
 ];
 
 export default c2021;

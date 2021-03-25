@@ -111,22 +111,25 @@ export default function WelcomeScreen() {
             </Text>
             <View
               style={{ width: 280, flexDirection: "row", flexWrap: "wrap", alignSelf: "center" }}>
-              {Object.entries(themes).map(i => (
-                <Pressable
-                  onPress={() => setTheme(i[0] as typeof theme)}
-                  style={{ padding: theme === i[0] ? 0 : 4 }}>
-                  <View
-                    style={{
-                      borderRadius: 32,
-                      height: theme === i[0] ? 56 : 48,
-                      width: theme === i[0] ? 56 : 48,
-                      borderWidth: 2,
-                      backgroundColor:
-                        i[1][i[1].style === "dark" ? "color-basic-800" : "color-basic-200"],
-                    }}
-                  />
-                </Pressable>
-              ))}
+              {Object.entries(themes)
+                .filter(i => i[0] !== "generate")
+                .map(i => (
+                  <Pressable
+                    onPress={() => setTheme(i[0] as typeof theme)}
+                    style={{ padding: theme === i[0] ? 0 : 4 }}>
+                    <View
+                      style={{
+                        borderRadius: 32,
+                        height: theme === i[0] ? 56 : 48,
+                        width: theme === i[0] ? 56 : 48,
+                        borderWidth: 2,
+                        backgroundColor: (i[1] as any)[
+                          (i[1] as any).style === "dark" ? "color-basic-800" : "color-basic-200"
+                        ],
+                      }}
+                    />
+                  </Pressable>
+                ))}
             </View>
             <Text category="h6" style={{ textAlign: "center", marginTop: 16 }}>
               {t("welcome:language")}

@@ -31,6 +31,16 @@ const tpobs: {
       type => type.has_tag(TypeTags.TypeWeaponZeeops),
     ],
   },
+  {
+    name: "Golden L.A.S.E.R. Shark",
+    icon: "goldenlasershark",
+    id: "null_goldenlasershark",
+    lands_on: [
+      type => type.has_tag(TypeTags.TypeMysteryElemental),
+      type => type.has_tag(TypeTags.TypeWeaponZeeops),
+      "premium",
+    ],
+  },
 ];
 
 

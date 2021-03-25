@@ -52,7 +52,7 @@ function AppBase() {
       CheckStatus().then(value => setLiveLocationError(value));
     }
   }, [liveLocationErrorLoaded]);
-  const theme = themes[themeValue];
+  const theme = themeValue !== "generate" && themeValue in themes ? (themes as any)[themeValue] : themes.generate(themeValue);
   const { i18n } = useTranslation();
   return (
     <>

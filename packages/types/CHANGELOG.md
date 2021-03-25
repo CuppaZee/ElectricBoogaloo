@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.0.39 - 25/03/2021
+- Fixed Duration for Zee Folk
+## 0.0.38 - 24/03/2021
+- Added Weapon Shards
+- Added Zee Folk
+- Added Clover Leaf
+- Added Virtual Shamrock
+- Added Green Cheers, Kiss Me I'm Irish and Lucky Charm Cards
+- Added Golden L.A.S.E.R. Shark
 ## 0.0.37 - 08/03/2021
 - Fix Evolution Bouncer Tags
 ## 0.0.36 - 08/03/2021

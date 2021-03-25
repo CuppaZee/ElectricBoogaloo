@@ -521,6 +521,16 @@ const scatters: {
     },
     tags: [TypeTags.TypeReseller],
   },
+  {
+    name: "Clover Leaf",
+    icon: "cloverleaf",
+    id: "null_cloverleaf",
+    state: TypeState.Virtual,
+    scatter: {
+      standalone: true,
+      duration: 2,
+    },
+  },
 ];
 
 export default scatters;
