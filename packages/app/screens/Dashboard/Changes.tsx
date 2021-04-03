@@ -142,16 +142,14 @@ export default React.memo(function ChangesDashCard(props: DashCardProps<unknown>
             .map(i => (
               <BuildCard key={i.build} {...i} />
             ))}
-          <Button
-            appearance="outline"
-            onPress={() =>
-              setBuild(builds[builds.length - 1].build)
-            }
-            style={{ margin: 4 }}>
-            Close
-          </Button>
         </View>
       </ScrollView>
+      <Button
+        appearance="outline"
+        onPress={() => setBuild(builds[builds.length - 1].build)}
+        style={{ margin: 8 }}>
+        Dismiss
+      </Button>
     </Layout>
   );
 }, () => true)

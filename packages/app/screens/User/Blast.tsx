@@ -90,6 +90,7 @@ export default function UserBouncersScreen() {
             [50, "Mini"],
             [100, "Normal"],
             [500, "MEGA"],
+            //[50000, "Inter-Continental (Beta)"],
           ] as const).map(([n, l]) => (
             <Button
               appearance="outline"
@@ -117,11 +118,9 @@ export default function UserBouncersScreen() {
                 }}>
                 <Text category="h6">
                   {t("user_blast_checker:blast", { n: n + 1 })} -
-                  {t("user_blast_checker:munzees", { n: i.total })}
+                  {t("user_blast_checker:munzees", { count: i.total })}
                 </Text>
-                <Text category="s1">
-                  {t("user_blast_checker:points", i.points)}
-                </Text>
+                <Text category="s1">{t("user_blast_checker:points", i.points)}</Text>
                 <View style={{ alignSelf: "stretch", flexDirection: "row", flexWrap: "wrap" }}>
                   {Object.entries(i.types).map(i => (
                     <View style={{ margin: 4, flexGrow: 1, width: 40, alignItems: "center" }}>

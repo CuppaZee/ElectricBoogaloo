@@ -123,6 +123,12 @@ export default React.memo(
             </Text>
           </View>
         </Layout>
+        {!Object.values(rewards.levels[0]).some(i=>i !== 1) && (
+          <Text style={{ padding: 4 }}>
+            Please be aware that the Munzee API is still returning April Fools rewards. I have
+            not manually typed inthe actual rewards, so this is still displaying the April Fools rewards.
+          </Text>
+        )}
         <View style={{ flexDirection: "row" }}>
           {showSidebar && (
             <View

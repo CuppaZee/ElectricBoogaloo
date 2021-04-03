@@ -531,6 +531,36 @@ const scatters: {
       duration: 2,
     },
   },
+  {
+    name: "Scarab Artifact",
+    icon: "scarabartifact",
+    id: "null_scarabartifact",
+    state: TypeState.Virtual,
+    scatter: {
+      duration: 2,
+      standalone: true,
+    },
+  },
+  {
+    name: "Eye of Ra Artifact",
+    icon: "eyeofraartifact",
+    id: "null_eyeofraartifact",
+    state: TypeState.Virtual,
+    scatter: {
+      duration: 2,
+      standalone: true,
+    },
+  },
+  {
+    name: "Shen Artifact",
+    icon: "shenartifact",
+    id: "null_shenartifact",
+    state: TypeState.Virtual,
+    scatter: {
+      duration: 2,
+      standalone: true,
+    },
+  },
 ];
 
 export default scatters;

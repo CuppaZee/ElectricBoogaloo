@@ -116,6 +116,7 @@ const groupsdata: {
           { clan_id: 1441, clan_name: "cocoa" },
           { clan_id: 1902, clan_name: "hot choc" },
           { clan_id: 1870, clan_name: "horlicks" },
+          { clan_id: 3224, clan_name: "latte" },
           { clan_id: -1, clan_name: "shadow", shadow_name: "CuppaClans Shadow Crew" },
         ],
       },

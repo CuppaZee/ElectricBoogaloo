@@ -173,6 +173,14 @@ export default React.memo(
             </Text>
           </View>
         </Layout>
+        {requirements.isAprilFools && (
+          <Text style={{ padding: 4 }}>
+            Please be aware that the Munzee API is still returning April Fools requirements. I have
+            tried my best to manually input the real reqirements here, however there may be a few
+            typos. Once Munzee disables the April Fools requirements, CuppaZee will return back to
+            using the accurate data provided by Munzee automatically.
+          </Text>
+        )}
         <View style={{ flexDirection: "row" }}>
           {showSidebar && (
             <View

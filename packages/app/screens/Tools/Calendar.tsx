@@ -68,7 +68,9 @@ function Date(date: Dayjs): CalendarData {
   return {
     date,
     western,
-    egyptian: ["nile", "amon-ra", "osiris"].includes(egyptian) ? egyptian : "egyptianzodiacsun",
+    egyptian: ["nile", "amon-ra", "osiris", "thoth"].includes(egyptian)
+      ? egyptian
+      : "egyptianzodiacsun",
     qrewzee: date.date() % 3 === 0,
   };
 }

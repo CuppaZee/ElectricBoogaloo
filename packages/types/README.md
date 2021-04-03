@@ -2,4 +2,4 @@
 
 This library provides information on (nearly) all Munzee Types.
 
-## Last Update - 25/03/2021
+## Last Update - 03/04/2021

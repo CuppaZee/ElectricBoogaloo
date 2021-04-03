@@ -2,7 +2,7 @@ import { retrieve, request } from "../util";
 // import { get } = require("../util/db");
 import types from "@cuppazee/types";
 import * as spherical from "spherical-geometry-js";
-import { PointsType } from "@cuppazee/types/lib/munzee";
+import { PointsType, TypeState } from "@cuppazee/types/lib/munzee";
 import { Route } from "../types";
 
 const pointsForBlast: {
@@ -126,6 +126,9 @@ const pointsForBlast: {
   crossbow: 20,
 
   temporaryvirtual: "25-50",
+  envelope: "40-50",
+
+  virtualreseller: "35",
 };
 
 const route: Route = {
@@ -137,20 +140,92 @@ const route: Route = {
       async function({ params: { user_id, lat, lng, amount } }) {
         var token = await retrieve({ user_id, teaken: false }, 60);
 
+        if (amount === 50000) {
+          // @ts-expect-error
+          const global = await request("statzee/global/types", {}, token.access_token);
+          // @ts-expect-error
+          const captures = await request("user/specials", { user_id }, token.access_token);
+
+          const filtered = (global?.data as any[]).filter(
+            i => types.getType(i.logo || "")?.state === TypeState.Virtual
+          );
+
+          const total = filtered.reduce((a, b) => a + Number(b.number), 0);
+
+          const list: any[] = [];
+          let index = 0;
+          let count = 0;
+          let next = {
+            total: 0,
+            points: {
+              min: 0,
+              max: 0,
+              avg: 0,
+            },
+            types: {} as any
+          };
+          x: for (let i = 0; i < Math.ceil(total / 50000); i++) {
+            while (next.total < 50000) {
+              const current = filtered[index];
+              if (!current) {
+                list.push(next);
+                break x;
+              }
+              const currentCount =
+                Number(current.number) -
+                ((captures?.data as any[]).find(
+                  c =>
+                    types.getType(c.icon || "")?.icon &&
+                    types.getType(c.icon || "")?.icon === types.getType(current.logo || "")?.icon
+                )?.count ?? 0) -
+                count;
+                
+              if(next.total + currentCount < 50000) {
+                next.total += currentCount;
+                next.types[types.strip(current.logo || "")] = {
+                  total: currentCount,
+                  points: { min: 0, max: 0, avg: 0 },
+                };
+                index++;
+                count = 0;
+              } else {
+                count += 50000 - next.total;
+                next.types[types.strip(current.logo)] = { total: 50000 - next.total, points: { min: 0, max: 0, avg: 0 } };
+                next.total = 50000;
+              }
+            }
+            list.push(next);
+            next = {
+              total: 0,
+              points: {
+                min: 0,
+                max: 0,
+                avg: 0,
+              },
+              types: {},
+            };
+          }
+
+          return {
+            data: list,
+            status: "success",
+          };
+        }
+
         var boundaries = [
           spherical.computeOffset({ lat, lng }, 1700, 0),
           spherical.computeOffset({ lat, lng }, 1700, 90),
           spherical.computeOffset({ lat, lng }, 1700, 180),
           spherical.computeOffset({ lat, lng }, 1700, 270),
         ];
-        var lat1 = Math.min(...boundaries.map((i) => i.lat()));
-        var lat2 = Math.max(...boundaries.map((i) => i.lat()));
-        var lng1 = Math.min(...boundaries.map((i) => i.lng()));
-        var lng2 = Math.max(...boundaries.map((i) => i.lng()));
+        var lat1 = Math.min(...boundaries.map(i => i.lat()));
+        var lat2 = Math.max(...boundaries.map(i => i.lat()));
+        var lng1 = Math.min(...boundaries.map(i => i.lng()));
+        var lng2 = Math.max(...boundaries.map(i => i.lng()));
         var data = await request(
           "map/boundingbox/v4",
           {
-            filters: "12, 105, 76, 34, 139, 140, 143, 98, 93, 51, 686",
+            filters: "12, 105, 76, 34, 139, 140, 143, 98, 93, 51, 686, 158, 60",
             points: {
               box1: {
                 lat1,
@@ -196,10 +271,7 @@ const route: Route = {
                 i.original_pin_image.match(/\/([^/]+)\.png/) &&
                 pointsForBlast[i.original_pin_image.match(/\/([^/]+)\.png/)[1]]
               ) {
-                let p =
-                  pointsForBlast[
-                    i.original_pin_image.match(/\/([^/]+)\.png/)[1]
-                  ];
+                let p = pointsForBlast[i.original_pin_image.match(/\/([^/]+)\.png/)[1]];
                 if (typeof p === "string") {
                   let x = p.split("-").map(Number);
                   i.points = [x[0], (x[0] + x[1]) / 2, x[1]];
@@ -213,8 +285,7 @@ const route: Route = {
             });
           var output = [];
           for (var munzee of munzees) {
-            const type = types.getType(munzee.original_pin_image ?? "")
-              ?.points;
+            const type = types.getType(munzee.original_pin_image ?? "")?.points;
             let typePoints = type
               ? {
                   min: type.capture,
@@ -236,10 +307,7 @@ const route: Route = {
                 max: (type.split ?? 0) - (type.min ?? 0),
               };
             }
-            if (
-              output.length === 0 ||
-              output[output.length - 1].total === Number(amount || 100)
-            ) {
+            if (output.length === 0 || output[output.length - 1].total === Number(amount || 100)) {
               output.push({
                 total: 0,
                 points: {
@@ -265,14 +333,8 @@ const route: Route = {
               max: output[output.length - 1].points.max + (typePoints.max ?? 0),
               avg: output[output.length - 1].points.avg + (typePoints.avg ?? 0),
             };
-            if (
-              !output[output.length - 1].types[
-                munzee.original_pin_image?.slice(49, -4) ?? ""
-              ]
-            )
-              output[output.length - 1].types[
-                munzee.original_pin_image?.slice(49, -4) ?? ""
-              ] = {
+            if (!output[output.length - 1].types[munzee.original_pin_image?.slice(49, -4) ?? ""])
+              output[output.length - 1].types[munzee.original_pin_image?.slice(49, -4) ?? ""] = {
                 total: 0,
                 points: {
                   min: 0,
@@ -280,26 +342,20 @@ const route: Route = {
                   avg: 0,
                 },
               };
-            output[output.length - 1].types[
-              munzee.original_pin_image?.slice(49, -4) ?? ""
-            ] = {
+            output[output.length - 1].types[munzee.original_pin_image?.slice(49, -4) ?? ""] = {
               total:
-                output[output.length - 1].types[
-                  munzee.original_pin_image?.slice(49, -4) ?? ""
-                ].total + 1,
+                output[output.length - 1].types[munzee.original_pin_image?.slice(49, -4) ?? ""]
+                  .total + 1,
               points: {
                 min:
-                  output[output.length - 1].types[
-                    munzee.original_pin_image?.slice(49, -4) ?? ""
-                  ].points.min + (typePoints.min ?? 0),
+                  output[output.length - 1].types[munzee.original_pin_image?.slice(49, -4) ?? ""]
+                    .points.min + (typePoints.min ?? 0),
                 max:
-                  output[output.length - 1].types[
-                    munzee.original_pin_image?.slice(49, -4) ?? ""
-                  ].points.max + (typePoints.max ?? 0),
+                  output[output.length - 1].types[munzee.original_pin_image?.slice(49, -4) ?? ""]
+                    .points.max + (typePoints.max ?? 0),
                 avg:
-                  output[output.length - 1].types[
-                    munzee.original_pin_image?.slice(49, -4) ?? ""
-                  ].points.avg + (typePoints.avg ?? 0),
+                  output[output.length - 1].types[munzee.original_pin_image?.slice(49, -4) ?? ""]
+                    .points.avg + (typePoints.avg ?? 0),
               },
             };
           }

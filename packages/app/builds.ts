@@ -854,8 +854,56 @@ const builds: Build[] = [
       },
       {
         title: "Golden L.A.S.E.R. Shark",
-        types: ["goldenlasershark"]
-      }
+        types: ["goldenlasershark"],
+      },
+    ],
+  },
+  {
+    build: 50,
+    date: "2021-04-01",
+    types: [
+      {
+        title: "April Fools' Day",
+        types: db.types
+          .filter(i => i.category?.id === "seasonal_2021_april-fools")
+          .map(i => i.icon),
+      },
+      {
+        title: "Jack in Zee Box",
+        types: db.types
+          .filter(i => i.category?.id === "seasonal_2021_jack-in-zee-box")
+          .map(i => i.icon),
+      },
+    ],
+  },
+  {
+    build: 51,
+    date: "2021-04-02",
+    improvements: [
+      {
+        description:
+          "Manually typed in the requirements for April 2021 to override the April Fools' Day requirements. In the case that Munzee does not revert the April Fools' Day requirements by the beginning of the Clan War, CuppaZee should still display accurate stats for the month.",
+      },
+    ],
+  },
+  {
+    build: 52,
+    date: "2021-04-03",
+    types: [
+      {
+        title: "Baby Animals",
+        types: db.types
+          .filter(i => i.category?.id === "seasonal_2021_baby-animals")
+          .map(i => i.icon),
+      },
+      {
+        title: "Thoth Zodiac and New Artifacts",
+        types: ["thoth", "scarabartifact", "eyeofraartifact", "shenartifact"],
+      },
+      {
+        title: "Running Garden Gnome",
+        types: ["runninggardengnome", "gnomeheadphones"],
+      },
     ],
   },
 ];

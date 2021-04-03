@@ -3,11 +3,209 @@ import { TypeHidden, TypeState, TypeTags } from "../../munzee";
 
 const s2021: SeasonalCategory[] = [
   {
+    name: "Baby Animals",
+    id: "babyanimals2021",
+    starts: "2021-04-01T00:00:00-05:00",
+    ends: "2021-05-31T23:59:00-05:00",
+    pobs: [
+      {
+        name: "Doge Pup",
+        icon: "dogepup",
+        id: "null_dogepup",
+        lands_on: [],
+      },
+      {
+        name: "Itty Bitty Kitty",
+        icon: "ittybittykitty",
+        id: "null_ittybittykitty",
+        lands_on: [],
+      },
+      {
+        name: "Baby Monkey",
+        icon: "babymonkey",
+        id: "null_babymonkey",
+        lands_on: [],
+      },
+    ],
+  },
+  {
+    name: "April Fools",
+    id: "aprilfools2021",
+    starts: "2021-04-01T12:00:00-05:00",
+    ends: "2021-04-30T23:59:00-05:00",
+    specials: [
+      {
+        name: "Bag of Tricks",
+        icon: "bagoftricks",
+        id: "null_bagoftricks",
+        lands_on: [],
+      },
+      {
+        name: "Sack of Surprises",
+        icon: "sackofsurprises",
+        id: "null_sackofsurprises",
+        lands_on: [],
+      },
+    ],
+    types: [
+      {
+        name: "Squirting Flower",
+        icon: "squirtingflower",
+        id: "null_squirtingflower",
+        state: TypeState.Virtual,
+        tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+        hidden: [TypeHidden.Inventory],
+        meta: {
+          scatter_duration: 2,
+        },
+      },
+      {
+        name: "Sneezing Powder",
+        icon: "sneezingpowder",
+        id: "null_sneezingpowder",
+        state: TypeState.Virtual,
+        tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+        hidden: [TypeHidden.Inventory],
+        meta: {
+          scatter_duration: 2,
+        },
+      },
+      {
+        name: "Can of Snakes",
+        icon: "canofsnakes",
+        id: "null_canofsnakes",
+        state: TypeState.Virtual,
+        tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+        hidden: [TypeHidden.Inventory],
+        meta: {
+          scatter_duration: 2,
+        },
+      },
+      {
+        name: "Spider Gum",
+        icon: "spidergum",
+        id: "null_spidergum",
+        state: TypeState.Virtual,
+        tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+        hidden: [TypeHidden.Inventory],
+        meta: {
+          scatter_duration: 2,
+        },
+      },
+      {
+        name: "Whoopee Cushion",
+        icon: "whoopeecushion",
+        id: "null_whoopeecushion",
+        state: TypeState.Virtual,
+        tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+        hidden: [TypeHidden.Inventory],
+        meta: {
+          scatter_duration: 2,
+        },
+      },
+      {
+        name: "Buzzer Ring",
+        icon: "buzzerring",
+        id: "null_buzzerring",
+        state: TypeState.Virtual,
+        tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+        hidden: [TypeHidden.Inventory],
+        meta: {
+          scatter_duration: 2,
+        },
+      },
+    ],
+  },
+  {
+    name: "Jack in Zee Box",
+    id: "jackinzeebox",
+    starts: "2021-03-31T12:00:00-05:00",
+    ends: "2021-05-11T23:59:00-05:00",
+    pobs: [
+      {
+        name: "Jack in Zee Box",
+        icon: "jackinzeebox",
+        id: "null_jackinzeebox",
+        lands_on: [],
+      },
+      {
+        name: "Applejack in Zee Box",
+        icon: "jackinzeebox-applejackinthebox",
+        id: "null_applejackinthebox",
+        lands_on: [],
+        hidden: [TypeHidden.Bouncers],
+      },
+      {
+        name: "Blast in Zee Box",
+        icon: "jackinzeebox-blastinthebox",
+        id: "null_blastinthebox",
+        lands_on: [],
+        hidden: [TypeHidden.Bouncers],
+      },
+      {
+        name: "Boxing Glove",
+        icon: "jackinzeebox-boxingglove",
+        id: "null_jackinzeebox",
+        lands_on: [],
+        hidden: [TypeHidden.Bouncers],
+      },
+      {
+        name: "Fire Prankster",
+        icon: "jackinzeebox-fireprankster",
+        id: "null_jackinzeebox-fireprankster",
+        lands_on: [],
+        hidden: [TypeHidden.Bouncers],
+      },
+      {
+        name: "High Five",
+        icon: "jackinzeebox-highfive",
+        id: "null_jackinzeebox-highfive",
+        lands_on: [],
+        hidden: [TypeHidden.Bouncers],
+      },
+      {
+        name: "Ice Prankster",
+        icon: "jackinzeebox-iceprankster",
+        id: "null_jackinzeebox-iceprankster",
+        lands_on: [],
+        hidden: [TypeHidden.Bouncers],
+      },
+      {
+        name: "Prankster",
+        icon: "jackinzeebox-prankster",
+        id: "null_jackinzeebox-prankster",
+        lands_on: [],
+        hidden: [TypeHidden.Bouncers],
+      },
+      {
+        name: "ROBblehead",
+        icon: "jackinzeebox-robblehead",
+        id: "null_jackinzeebox-robblehead",
+        lands_on: [],
+        hidden: [TypeHidden.Bouncers],
+      },
+      {
+        name: "Unicorn",
+        icon: "jackinzeebox-unicorn",
+        id: "null_jackinzeebox-unicorn",
+        lands_on: [],
+        hidden: [TypeHidden.Bouncers],
+      },
+      {
+        name: "Zack in The Box",
+        icon: "jackinzeebox-zackinthebox",
+        id: "null_jackinzeebox-zackinthebox",
+        lands_on: [],
+        hidden: [TypeHidden.Bouncers],
+      },
+    ],
+  },
+  {
     name: "Zee Folk",
     id: "zeefolk2020",
     starts: "2021-03-17T00:00:00-05:00",
     ends: "2021-03-31T23:59:00-05:00",
-    pobs: [
+    specials: [
       {
         name: "Zee Folk",
         icon: "zeefolk",
@@ -435,6 +633,19 @@ const s2021: SeasonalCategory[] = [
         ],
       },
       {
+        name: "Running Garden Gnome",
+        icon: "runninggardengnome",
+        id: 2779,
+        duration: 6,
+        lands_on: [
+          type => type.has_tag(TypeTags.TypeVirtual),
+          "munzee",
+          "urbanfit",
+          "treehouse",
+          "skyland",
+        ],
+      },
+      {
         name: "Aussie Explorer Garden Gnome",
         icon: "aussieexplorergardengnome",
         id: "null_aussieexplorergardengnome",
@@ -561,6 +772,17 @@ const s2021: SeasonalCategory[] = [
         name: "Gnome Astronaut Helmet",
         icon: "gnomeastronauthelmet",
         id: "null_gnomeastronauthelmet",
+        state: TypeState.Virtual,
+        tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+        hidden: [TypeHidden.Inventory],
+        meta: {
+          scatter_duration: 2,
+        },
+      },
+      {
+        name: "Gnome Headphones",
+        icon: "gnomeheadphones",
+        id: 2805,
         state: TypeState.Virtual,
         tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
         hidden: [TypeHidden.Inventory],

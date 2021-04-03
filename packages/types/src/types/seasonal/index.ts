@@ -46,6 +46,7 @@ export type SeasonalCategory = {
     tags?: TypeTags[];
     lands_on: TypeID[];
     meta?: TypeMeta;
+    hidden?: TypeHidden[];
   }[];
   types?: Partial<TypeInterface>[];
 };

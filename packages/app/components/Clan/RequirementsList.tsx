@@ -1,8 +1,8 @@
-import { Layout, Spinner, Text, useTheme } from "@ui-kitten/components";
+import { Layout, Text, useTheme } from "@ui-kitten/components";
 import dayjs from "dayjs";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Image, PixelRatio, StyleSheet, View } from "react-native";
+import { Image, PixelRatio, StyleSheet, View, Pressable } from "react-native";
 import {
   ClanRequirementsConverter,
   ClanRewardsData,
@@ -83,14 +83,22 @@ export default React.memo(
           />
           <View>
             <Text category="h6">{t("clan:clan_requirements")}</Text>
-            <Text category="s1">
+            <Pressable onPress={() => {console.log(JSON.stringify(requirements.all))}}><Text category="s1">
               {dayjs()
                 .set("month", gameIDToMonth(game_id).m)
                 .set("year", gameIDToMonth(game_id).y)
                 .format("MMMM YYYY")}
-            </Text>
+            </Text></Pressable>
           </View>
         </Layout>
+        {requirements.isAprilFools && (
+          <Text style={{ padding: 4 }}>
+            Please be aware that the Munzee API is still returning April Fools requirements. I have
+            tried my best to manually input the real reqirements here, however there may be a few
+            typos. Once Munzee disables the April Fools requirements, CuppaZee will return back to
+            using the accurate data provided by Munzee automatically.
+          </Text>
+        )}
         {[1, 2, 3, 4, 5].map(level => (
           <View style={{ paddingBottom: 16 }}>
             <Text style={{ margin: 4 }} category="h6">

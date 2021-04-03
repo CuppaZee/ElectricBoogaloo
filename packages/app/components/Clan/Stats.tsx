@@ -75,7 +75,7 @@ export default React.memo(
         clan_id: actual_clan_id,
         game_id,
       },
-      [-1, 1349, 1441, 457, 1902, 2042, 1870].includes(actual_clan_id)
+      [-1, 1349, 1441, 457, 1902, 2042, 1870, 3224].includes(actual_clan_id)
     );
 
     const requirements = React.useMemo(
@@ -113,7 +113,7 @@ export default React.memo(
       !requirements ||
       !size ||
       !clan_data.data ||
-      (!shadow_data.data && [-1, 1349, 1441, 457, 1902, 2042, 1870].includes(actual_clan_id))
+      (!shadow_data.data && [-1, 1349, 1441, 457, 1902, 2042, 1870, 3224].includes(actual_clan_id))
     ) {
       return (
         <Layout style={{ flex: 1 }} onLayout={onLayout}>
@@ -210,6 +210,14 @@ export default React.memo(
           onBackdropPress={() => setModalVisible(false)}>
           <ClanSettingsModal close={() => setModalVisible(false)} clan_id={actual_clan_id} />
         </Modal>
+        {requirements.isAprilFools && (
+          <Text style={{ padding: 4 }}>
+            Please be aware that the Munzee API is still returning April Fools requirements. I have
+            tried my best to manually input the real reqirements here, however there may be a few
+            typos. Once Munzee disables the April Fools requirements, CuppaZee will return back to
+            using the accurate data provided by Munzee automatically.
+          </Text>
+        )}
         <View style={{ flexDirection: "row" }}>
           {showSidebar && (
             <View

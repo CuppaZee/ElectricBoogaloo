@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.0.42 - 03/04/2021
+- Added New Zodiac Artifacts
+- Added Running Garden Gnome and Scatters
+## 0.0.41 - 03/04/2021
+- Added 2021 Baby Animals
+- Added Thoth Zodiac
+
+## 0.0.40 - 01/04/2021
+- Added April Fools' Day Specials
+- Added Jack in Zee Box Specials
 ## 0.0.39 - 25/03/2021
 - Fixed Duration for Zee Folk
 ## 0.0.38 - 24/03/2021
