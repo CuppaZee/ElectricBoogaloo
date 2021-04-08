@@ -203,6 +203,7 @@ export const bouncersServiceHttp = functions
 export const icons = functions
   .runWith({
     timeoutSeconds: 30,
+    memory: "128MB",
   })
   .https.onRequest(async (req, res) => {
     const parts = req.path
@@ -252,6 +253,7 @@ export const icons = functions
     image?.resize(size, size).autocrop().contain(size, size);
     res
       .set("Cache-Control", "public, max-age=43200, s-maxage=43200")
+      .set("Access-Control-Allow-Origin", "*")
       .type(type)
       .send(await image?.getBufferAsync(`image/${type}`));
   });

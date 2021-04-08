@@ -59,6 +59,16 @@ const route: Route = {
                 [-1, -1, -1],
                 "",
               ]),
+              [
+                "Any Reseller",
+                `https://icons.cuppazee.app/64/virtualreseller`,
+                "reseller",
+                1,
+                1234,
+                32,
+                [-1, -1, -1],
+                "",
+              ],
             ],
           },
         };

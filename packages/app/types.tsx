@@ -36,6 +36,7 @@ export type DashStackParamList = {
 };
 
 export type ClanStackParamList = {
+  Cuppa: undefined;
   Requirements: { year?: number; month?: number };
   Bookmarks: { year?: number; month?: number };
   Stats: { clanid: number; year?: number; month?: number };
@@ -46,6 +47,7 @@ export type ToolsStackParamList = {
   Donate: undefined;
   Calendar: undefined;
   Credits: undefined;
+  TestScan: undefined;
   OpenSource: undefined;
   Bouncers: undefined;
   BouncersExpiring: undefined;
@@ -58,6 +60,7 @@ export type ToolsStackParamList = {
   TypeCategory: { category: string };
   TypeMunzee: { type: string };
   WidgetConfigureActivityWidget: { id: string };
+  GardenPainter: undefined;
 };
 
 export type SettingsStackParamList = {

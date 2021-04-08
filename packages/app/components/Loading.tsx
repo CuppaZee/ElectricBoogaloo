@@ -9,6 +9,13 @@ import useLogin from "../hooks/useLogin";
 import { useTeakens } from "../hooks/useToken";
 import Icon from "./Common/Icon";
 
+function LoginError({ children }: { children: (login: () => void) => React.ReactElement }) {
+  const buildLink = useLinkBuilder();
+  const route = useRoute();
+  const [loading, login, ready] = useLogin(buildLink(route.name, route.params) || "");
+  return children(login);
+}
+
 export default function Loading({
   data,
   customErrors,
@@ -33,9 +40,7 @@ export default function Loading({
 }) {
   const { t } = useTranslation();
   const [size, onLayout] = useComponentSize();
-  const buildLink = useLinkBuilder();
   const route = useRoute();
-  const [loading, login, ready] = useLogin(buildLink(route.name, route.params) || "");
   const teakens = useTeakens();
   const [sentReport, setSentReport] = React.useState(false);
   const theme = useTheme();
@@ -66,14 +71,18 @@ export default function Loading({
           })}
         </Text>
         <Text category="s1">{t("error:user_device_description")}</Text>
-        <Button
-          onPress={login}
-          style={{ margin: 4 }}
-          appearance="outline"
-          status="success"
-          accessoryLeft={props => <Icon name="account-plus" {...props} />}>
-          {t("error:user_device_add_account")}
-        </Button>
+        <LoginError>
+          {login => (
+            <Button
+              onPress={login}
+              style={{ margin: 4 }}
+              appearance="outline"
+              status="success"
+              accessoryLeft={props => <Icon name="account-plus" {...props} />}>
+              {t("error:user_device_add_account")}
+            </Button>
+          )}
+        </LoginError>
       </Layout>
     );
   }
@@ -107,14 +116,18 @@ export default function Loading({
           })}
         </Text>
         <Text category="s1">{t("error:user_expired_description")}</Text>
-        <Button
-          onPress={login}
-          style={{ margin: 4 }}
-          appearance="outline"
-          status="success"
-          accessoryLeft={props => <Icon name="account-plus" {...props} />}>
-          {t("error:user_expired_log_in")}
-        </Button>
+        <LoginError>
+          {login => (
+            <Button
+              onPress={login}
+              style={{ margin: 4 }}
+              appearance="outline"
+              status="success"
+              accessoryLeft={props => <Icon name="account-plus" {...props} />}>
+              {t("error:user_expired_log_in")}
+            </Button>
+          )}
+        </LoginError>
       </Layout>
     );
   }
@@ -156,7 +169,9 @@ export default function Loading({
               await fetch(`https://server.beta.cuppazee.app/report`, {
                 method: "POST",
                 body: JSON.stringify({
-                  reports: ([...customErrors ?? [], ...data ?? []]).map(i => (i.error instanceof Error ? i.error.toString() : i.error)),
+                  reports: [...(customErrors ?? []), ...(data ?? [])].map(i =>
+                    i.error instanceof Error ? i.error.toString() : i.error
+                  ),
                 }),
               });
               setSentReport(true);

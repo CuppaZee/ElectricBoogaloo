@@ -107,7 +107,7 @@ export function ActivityConverter(
       subCaptures: [],
       time: capture.captured_at,
       bouncerHost: true,
-      key: capture.capture_id,
+      key: `c/${capture.capture_id}/${userdata?.username}`,
       munzee_type: db.getType(capture.pin),
     });
   }
@@ -127,7 +127,7 @@ export function ActivityConverter(
       subCaptures: [],
       time: capture.captured_at,
       bouncerHost: true,
-      key: capture.capture_id,
+      key: `c/${capture.capture_id}/${userdata?.username}`,
       munzee_type: db.getType(capture.pin),
     });
   }
@@ -148,7 +148,7 @@ export function ActivityConverter(
         pin: capture.pin,
         points: Number(capture.points),
         time: capture.captured_at,
-        key: capture.capture_id,
+        key: `c/${capture.capture_id}/${userdata?.username}`,
         sub: true,
         munzee_type: db.getType(capture.pin),
       });
@@ -163,7 +163,7 @@ export function ActivityConverter(
         points: Number(capture.points),
         subCaptures: [],
         time: capture.captured_at,
-        key: capture.capture_id,
+        key: `c/${capture.capture_id}/${userdata?.username}`,
         munzee_type: db.getType(capture.pin),
       });
     }
@@ -191,7 +191,7 @@ export function ActivityConverter(
         points: Number(capture.points_for_creator),
         subCaptures: [],
         time: capture.captured_at,
-        key: capture.capture_id,
+        key: `co/${capture.capture_id}/${userdata?.username}`,
         munzee_type: db.getType(capture.pin),
       });
     }
@@ -211,7 +211,7 @@ export function ActivityConverter(
       points: Number(deploy.points),
       subCaptures: [],
       time: deploy.deployed_at,
-      key: deploy.id,
+      key: `d/${deploy.id}/${userdata?.username}`,
       munzee_type: db.getType(deploy.pin),
     });
   }

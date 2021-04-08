@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.44 - 05/04/2021
+- Added Christmas Event 2020 Card
+- Added March in May Event Card
+## 0.0.43 - 03/04/2021
+- Added 2021 Easter Cards
 ## 0.0.42 - 03/04/2021
 - Added New Zodiac Artifacts
 - Added Running Garden Gnome and Scatters

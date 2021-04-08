@@ -37,30 +37,39 @@ export default function getConfig(notification?: NotificationResponse): LinkingO
             },
             Clan: {
               screens: {
+                Cuppa: "clanmanager",
                 Bookmarks: "clans/:group?/:month?/:year?",
                 Requirements: "clan/requirements/:month?/:year?",
                 Stats: "clan/:clanid/:month?/:year?",
               },
             },
             Tools: {
-              path: "tools",
               screens: {
                 Search: "search",
-                Calendar: "calendar",
-                Bouncers: "bouncers",
+
+                Calendar: "tools/calendar",
+                EvoPlanner: "tools/evoplanner",
+                TestScan: "tools/testscan",
+                WidgetConfigureActivityWidget: "tools/widget_configure_activity_widget/:id",
+
+                Bouncers: "bouncers/overview",
                 BouncersExpiring: "bouncers/expiring",
+                Nearby: "bouncers/nearby",
                 BouncersMap: "bouncers/:type",
+
+                POIPlanner: "planner/poi",
+                DestinationPlanner: "planner/destination",
+
                 Munzee: "munzee/:a/:b?",
+
                 TypeCategory: "db/:category",
                 TypeMunzee: "db/type/:type?",
-                Nearby: "nearby",
-                Credits: "credits",
-                Donate: "donate",
-                POIPlanner: "poiplanner",
-                DestinationPlanner: "destinationplanner",
-                EvoPlanner: "evoplanner",
-                OpenSource: "opensource",
-                WidgetConfigureActivityWidget: "widget_configure_activity_widget/:id",
+
+                Credits: "about/credits",
+                Donate: "about/donate",
+                OpenSource: "about/opensource",
+
+                GardenPainter: "garden/painter",
               },
             },
             Settings: {
@@ -119,6 +128,6 @@ export default function getConfig(notification?: NotificationResponse): LinkingO
         Linking.removeEventListener("url", onReceiveURL);
         subscription.remove();
       };
-    }
+    },
   };
 }

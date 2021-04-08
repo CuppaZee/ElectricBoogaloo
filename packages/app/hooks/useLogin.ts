@@ -44,18 +44,18 @@ export default function useLogin(
   const [loading, setLoading] = React.useState<boolean>(false);
   const [redirect, setRedirect] = React.useState<string | null>(null);
 
-  React.useEffect(() => {
-    if (Platform.OS !== "web") {
-      try {
-        WebBrowser.warmUpAsync();
-      } catch (e) {}
-      return () => {
-        try {
-          WebBrowser.coolDownAsync();
-        } catch (e) {}
-      };
-    }
-  });
+  // React.useEffect(() => {
+  //   if (Platform.OS !== "web") {
+  //     try {
+  //       WebBrowser.warmUpAsync();
+  //     } catch (e) {}
+  //     return () => {
+  //       try {
+  //         WebBrowser.coolDownAsync();
+  //       } catch (e) {}
+  //     };
+  //   }
+  // });
 
   async function login() {
     setLoading(true);

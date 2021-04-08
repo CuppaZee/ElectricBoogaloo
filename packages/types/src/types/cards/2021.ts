@@ -34,6 +34,11 @@ const c2021: {
     id: 2833,
   },
   {
+    name: "March into May Event Card",
+    icon: "march_into_may_event_card",
+    id: "null_march_into_may_event_card",
+  },
+  {
     name: "Green Cheers Card",
     icon: "greencheerscard",
     id: "null_greencheerscard",
@@ -47,6 +52,36 @@ const c2021: {
     name: "Lucky Charm Card",
     icon: "luckycharmcard",
     id: "null_luckycharmcard",
+  },
+  {
+    name: "Easter Basket Card",
+    icon: "easterbasketcard",
+    id: "null_easterbasketcard",
+  },
+  {
+    name: "Pink Easter Egg Card",
+    icon: "pinkeastereggcard",
+    id: "null_pinkeastereggcard",
+  },
+  {
+    name: "Blue Easter Egg Card",
+    icon: "blueeastereggcard",
+    id: "null_blueeastereggcard",
+  },
+  {
+    name: "Green Easter Egg Card",
+    icon: "greeneastereggcard",
+    id: "null_greeneastereggcard",
+  },
+  {
+    name: "Easter Bunny Card",
+    icon: "easterbunnycard",
+    id: "null_easterbunnycard",
+  },
+  {
+    name: "Easter Chick Card",
+    icon: "easterchickcard",
+    id: "null_easterchickcard",
   },
 ];
 

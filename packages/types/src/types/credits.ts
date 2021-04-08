@@ -82,10 +82,12 @@ const credits: {
   {
     icon: "jewel_shards",
     name: "Jewel Shards",
+    category: "jewel",
   },
   {
     icon: "weapon_shards",
     name: "Weapon Shards",
+    category: "weapon_clan",
   },
 ];
 

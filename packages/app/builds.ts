@@ -906,6 +906,35 @@ const builds: Build[] = [
       },
     ],
   },
+  {
+    build: 53,
+    date: "2021-04-03",
+    types: [
+      {
+        title: "Easter Cards",
+        types: [
+          "easterbasketcard",
+          "pinkeastereggcard",
+          "blueeastereggcard",
+          "greeneastereggcard",
+          "easterbunnycard",
+          "easterchickcard",
+        ],
+      },
+    ],
+  },
+  {
+    build: 54,
+    date: "2021-04-06",
+    fixes: [
+      {
+        description: "Fixed Error with Android Browser Warm-up"
+      },
+      {
+        description: "Minor Bug Fixes"
+      },
+    ],
+  },
 ];
 
 export default builds;

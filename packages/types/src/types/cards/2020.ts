@@ -103,6 +103,11 @@ const c2020: {
     icon: "killthemwithkindnesscard",
     id: 2691,
   },
+  {
+    name: "Christmas Event 2020 Card",
+    icon: "christmasevent2020card",
+    id: "null_christmasevent2020card",
+  },
 ];
 
 export default c2020;

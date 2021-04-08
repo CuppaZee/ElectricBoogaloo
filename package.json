@@ -18,6 +18,7 @@
     "server": "yarn workspace @cuppazee/functions lint && yarn workspace @cuppazee/functions build && firebase serve",
     "web": "yarn workspace @cuppazee/app web",
     "deploy-web": "yarn workspace @cuppazee/app build-web && firebase deploy --only hosting:app",
+    "deploy-all": "yarn workspace @cuppazee/app build-web && firebase deploy --only hosting && yarn workspace @cuppazee/app deploy-app && firebase deploy --only functions",
     "start": "run-p server web",
     "postinstall": "yarn licenses list --json -s | node tail > packages/app/assets/dependencies.json && node copy ./packages/types ./packages/app/node_modules/@cuppazee/types",
     "deploy-server": "firebase deploy --only functions:apibeta",

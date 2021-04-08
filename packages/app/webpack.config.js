@@ -15,13 +15,13 @@ module.exports = async function (env, argv) {
   );
   // Customize the config before returning it.
 
-    if (env.mode === "production") {
-      config.plugins.push(
-        new BundleAnalyzerPlugin({
-          path: "web-report",
-        })
-      );
-    }
+    // if (env.mode === "production") {
+    //   config.plugins.push(
+    //     new BundleAnalyzerPlugin({
+    //       path: "web-report",
+    //     })
+    //   );
+    // }
 
   if (config["plugins"]) {
     config["plugins"].forEach(plugin => {

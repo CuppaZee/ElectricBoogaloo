@@ -11,6 +11,7 @@ import { DrawerNavigationProp } from "@react-navigation/drawer";
 const ClanStatsScreen = lazy(() => import("../screens/Clan/Stats"));
 const ClanBookmarksScreen = lazy(() => import("../screens/Clan/Bookmarks"));
 const ClanRequirementsScreen = lazy(() => import("../screens/Clan/Requirements"));
+const CuppaManagerScreen = lazy(() => import("../screens/Clan/CuppaManager"));
 
 export type ClanNavigatorProp<T extends keyof ClanStackParamList> = CompositeNavigationProp<
   DrawerNavigationProp<MainDrawerParamList, "Dashboard">,
@@ -29,9 +30,10 @@ export default function ClanNavigator() {
         },
       }}>
       <ClanStack.Screen name="Bookmarks" component={ClanBookmarksScreen} />
+      <ClanStack.Screen name="Cuppa" component={CuppaManagerScreen} />
       <ClanStack.Screen name="Requirements" component={ClanRequirementsScreen} />
       <ClanStack.Screen
-        getId={({ params }) => params.clanid.toString()}
+        getId={({ params }) => params?.clanid.toString()}
         name="Stats"
         component={ClanStatsScreen}
       />
