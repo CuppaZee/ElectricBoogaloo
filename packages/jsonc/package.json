@@ -1,0 +1,24 @@
+{
+  "name": "@cuppazee/compress",
+  "version": "0.0.1",
+  "main": "lib",
+  "license": "MPL-2.0",
+  "keywords": [
+    "munzee",
+    "cuppazee"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CuppaZee/ElectricBoogaloo.git"
+  },
+  "author": "CuppaZee",
+  "scripts": {
+    "build": "node index"
+  },
+  "dependencies": {
+    "jimp": "^0.16.1",
+    "jsonc": "^2.0.0",
+    "lz-string": "^1.4.4",
+    "lzwcompress": "^0.7.1"
+  }
+}
