@@ -18,7 +18,7 @@ type NavigationRoute = {
   params?: any;
 };
 
-function DrawerItem({ title, style, ...props }: DrawerItemProps) {
+const DrawerItem = React.memo(function ({ title, style, ...props }: DrawerItemProps) {
   const [drawerSettings] = useSetting(DrawerAtom);
   const dimensions = useWindowDimensions();
   const open = drawerSettings.open || dimensions.width <= 1000;
@@ -31,15 +31,15 @@ function DrawerItem({ title, style, ...props }: DrawerItemProps) {
         open
           ? undefined
           : {
-              width: 52,
-              paddingLeft: 8,
-            },
+            width: 52,
+            paddingLeft: 8,
+          },
       ]}
     />
   );
-}
+}, (a, b) => a.title === b.title && a.selected === b.selected);
 
-function DrawerGroup({ title, style, ...props }: DrawerGroupProps) {
+function DrawerGroup ({ title, style, ...props }: DrawerGroupProps) {
   const [drawerSettings] = useSetting(DrawerAtom);
   const dimensions = useWindowDimensions();
   const open = drawerSettings.open || dimensions.width <= 1000;
@@ -59,35 +59,21 @@ function DrawerGroup({ title, style, ...props }: DrawerGroupProps) {
       ]}
     />
   );
-}
+};
 
-export default function DrawerContent(props: DrawerContentComponentProps<DrawerContentOptions>) {
+const MainDrawerContent = React.memo(function ({ page, navigation }: {
+  page: any[];
+  navigation: any;
+}) {
   const insets = useSafeAreaInsets();
   const { t } = useTranslation();
   const [users] = useUserBookmarks();
   const [clans] = useClanBookmarks();
   const day = useDay();
-  const state = useNavigationState(i => i);
-  const pathURL = getPathFromState(state);
-  const path = pathURL.split("?")[0];
-  const params = Object.fromEntries((pathURL.split("?")[1] || "").split("&").filter(i=>i).map(i => i.split("=").map(i => decodeURIComponent(i))));
-  const page = path.split("/").slice(1).map(i => ({
-    name: i,
-    params: params.screen ? params.params : params,
-  }));
   const [drawerSettings, setDrawerSettings] = useSetting(DrawerAtom);
   const dimensions = useWindowDimensions();
   const open = drawerSettings.open || dimensions.width <= 1000;
-  if (params.screen) {
-    page.push({
-      name: params.screen,
-      params: params.params,
-    })
-  }
-  
-  const [ready] = useSetting(ReadyAtom);
-  if (ready !== "2020-03-20") return null;
-
+  console.log("Main Drawer Render");
   return (
     <Layout style={{ flex: 1 }}>
       <ScrollView
@@ -106,7 +92,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
           title={t("pages:tools_search")}
           accessoryLeft={props => <Icon {...props} name="magnify" />}
           onPress={() =>
-            props.navigation.navigate("Tools", {
+            navigation.navigate("Tools", {
               screen: "Search",
             })
           }
@@ -115,13 +101,13 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
           selected={page[1]?.name === "Dashboard"}
           title={t("pages:dashboard_dashboard")}
           accessoryLeft={props => <Icon {...props} name="home" />}
-          onPress={() => props.navigation.navigate("Dashboard")}
+          onPress={() => navigation.navigate("Dashboard")}
         />
         <DrawerItem
           selected={page[1]?.name === "Tools" && page[2]?.name === "Nearby"}
           title={t("pages:tools_nearby")}
           accessoryLeft={props => <Icon {...props} name="map-marker-radius" />}
-          onPress={() => props.navigation.navigate("Tools", { screen: "Nearby" })}
+          onPress={() => navigation.navigate("Tools", { screen: "Nearby" })}
         />
 
         <Layout level="4" style={{ height: 1 }} />
@@ -156,7 +142,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
               title={t("pages:user_profile")}
               accessoryLeft={props => <Icon {...props} name="account" />}
               onPress={() =>
-                props.navigation.navigate("User", {
+                navigation.navigate("User", {
                   params: { username: user.username },
                   screen: "Profile",
                 })
@@ -171,7 +157,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
               title={t("pages:user_activity")}
               accessoryLeft={props => <Icon {...props} name="calendar" />}
               onPress={() =>
-                props.navigation.navigate("User", {
+                navigation.navigate("User", {
                   params: {
                     username: user.username,
                     date: day.mhqNow().format("YYYY-MM-DD"),
@@ -189,7 +175,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
               title={t("pages:user_inventory")}
               accessoryLeft={props => <Icon {...props} name="archive" />}
               onPress={() =>
-                props.navigation.navigate("User", {
+                navigation.navigate("User", {
                   params: { username: user.username },
                   screen: "Inventory",
                 })
@@ -209,7 +195,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
               title={t("pages:user_clan_progress")}
               accessoryLeft={props => <Icon {...props} name="shield" />}
               onPress={() =>
-                props.navigation.navigate("User", {
+                navigation.navigate("User", {
                   params: { username: user.username },
                   screen: "ClanProgress",
                 })
@@ -224,7 +210,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
               title={t("pages:user_bouncers")}
               accessoryLeft={props => <Icon {...props} name="star" />}
               onPress={() =>
-                props.navigation.navigate("User", {
+                navigation.navigate("User", {
                   params: { username: user.username },
                   screen: "Bouncers",
                 })
@@ -239,7 +225,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
               title={t("pages:user_blast_checker")}
               accessoryLeft={props => <Icon {...props} name="bomb" />}
               onPress={() =>
-                props.navigation.navigate("User", {
+                navigation.navigate("User", {
                   params: { username: user.username },
                   screen: "Blast",
                 })
@@ -254,7 +240,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
               title={t("pages:user_qrew_checker")}
               accessoryLeft={props => <Icon {...props} name="hammer" />}
               onPress={() =>
-                props.navigation.navigate("User", {
+                navigation.navigate("User", {
                   params: { username: user.username },
                   screen: "QRew",
                 })
@@ -269,7 +255,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
               title={t("pages:user_universal_capper")}
               accessoryLeft={props => <Icon {...props} name="earth" />}
               onPress={() =>
-                props.navigation.navigate("User", {
+                navigation.navigate("User", {
                   params: { username: user.username },
                   screen: "Universal",
                 })
@@ -284,7 +270,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
               title={t("pages:user_challenges")}
               accessoryLeft={props => <Icon {...props} name="trophy" />}
               onPress={() =>
-                props.navigation.navigate("User", {
+                navigation.navigate("User", {
                   params: { username: user.username },
                   screen: "Challenges",
                 })
@@ -309,7 +295,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
           title={t("pages:clan_requirements")}
           accessoryLeft={props => <Icon {...props} name="star" />}
           onPress={() =>
-            props.navigation.navigate("Clan", {
+            navigation.navigate("Clan", {
               screen: "Requirements",
             })
           }
@@ -320,7 +306,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
             title={t("pages:clan_bookmarks")}
             accessoryLeft={props => <Icon {...props} name="bookmark" />}
             onPress={() =>
-              props.navigation.navigate("Clan", {
+              navigation.navigate("Clan", {
                 screen: "Bookmarks",
               })
             }
@@ -352,7 +338,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
               />
             )}
             onPress={() =>
-              props.navigation.navigate("Clan", {
+              navigation.navigate("Clan", {
                 params: { clanid: clan.clan_id.toString() },
                 screen: "Stats",
               })
@@ -391,7 +377,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
                   />
                 )}
                 onPress={() =>
-                  props.navigation.navigate("Clan", {
+                  navigation.navigate("Clan", {
                     params: { clanid: clan.clan_id.toString() },
                     screen: "Stats",
                   })
@@ -417,7 +403,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
           title={t("pages:tools_bouncers")}
           accessoryLeft={props => <Icon {...props} name="map-marker" />}
           onPress={() =>
-            props.navigation.navigate("Tools", {
+            navigation.navigate("Tools", {
               screen: "Bouncers",
             })
           }
@@ -427,7 +413,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
           title="Bouncing Soon"
           accessoryLeft={props => <Icon {...props} name="clock" />}
           onPress={() =>
-            props.navigation.navigate("Tools", {
+            navigation.navigate("Tools", {
               screen: "BouncersExpiring",
             })
           }
@@ -437,7 +423,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
           title={t("pages:tools_munzee_types")}
           accessoryLeft={props => <Icon {...props} name="database" />}
           onPress={() =>
-            props.navigation.navigate("Tools", {
+            navigation.navigate("Tools", {
               screen: "TypeCategory",
               params: { category: "root" },
             })
@@ -448,7 +434,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
           title={t("pages:tools_calendar")}
           accessoryLeft={props => <Icon {...props} name="calendar" />}
           onPress={() =>
-            props.navigation.navigate("Tools", {
+            navigation.navigate("Tools", {
               screen: "Calendar",
             })
           }
@@ -458,7 +444,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
           title={t("pages:tools_poiplanner")}
           accessoryLeft={props => <Icon {...props} name="map-marker-circle" />}
           onPress={() =>
-            props.navigation.navigate("Tools", {
+            navigation.navigate("Tools", {
               screen: "POIPlanner",
             })
           }
@@ -468,7 +454,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
           title="Destination Planner"
           accessoryLeft={props => <Icon {...props} name="home-circle-outline" />}
           onPress={() =>
-            props.navigation.navigate("Tools", {
+            navigation.navigate("Tools", {
               screen: "DestinationPlanner",
             })
           }
@@ -478,7 +464,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
           title={t("pages:tools_evo_planner")}
           accessoryLeft={props => <Icon {...props} name="dna" />}
           onPress={() =>
-            props.navigation.navigate("Tools", {
+            navigation.navigate("Tools", {
               screen: "EvoPlanner",
             })
           }
@@ -493,7 +479,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
             title={t("pages:settings_personalisation")}
             accessoryLeft={props => <Icon {...props} name="palette" />}
             onPress={() =>
-              props.navigation.navigate("Settings", {
+              navigation.navigate("Settings", {
                 screen: "Personalisation",
               })
             }
@@ -504,7 +490,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
               title={t("pages:settings_notifications")}
               accessoryLeft={props => <Icon {...props} name="bell" />}
               onPress={() =>
-                props.navigation.navigate("Settings", {
+                navigation.navigate("Settings", {
                   screen: "Notifications",
                 })
               }
@@ -517,7 +503,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
             title={t("pages:settings_accounts")}
             accessoryLeft={props => <Icon {...props} name="account-multiple" />}
             onPress={() =>
-              props.navigation.navigate("Settings", {
+              navigation.navigate("Settings", {
                 screen: "Accounts",
               })
             }
@@ -527,7 +513,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
             title={t("pages:settings_bookmarks")}
             accessoryLeft={props => <Icon {...props} name="bookmark-multiple" />}
             onPress={() =>
-              props.navigation.navigate("Settings", {
+              navigation.navigate("Settings", {
                 screen: "Bookmarks",
               })
             }
@@ -540,7 +526,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
           title={t("pages:tools_credits")}
           accessoryLeft={props => <Icon {...props} name="heart" />}
           onPress={() =>
-            props.navigation.navigate("Tools", {
+            navigation.navigate("Tools", {
               screen: "Credits",
             })
           }
@@ -550,7 +536,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
           title={t("pages:tools_open_source")}
           accessoryLeft={props => <Icon {...props} name="code-tags" />}
           onPress={() =>
-            props.navigation.navigate("Tools", {
+            navigation.navigate("Tools", {
               screen: "OpenSource",
             })
           }
@@ -560,7 +546,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
           title={t("pages:tools_donate")}
           accessoryLeft={props => <Icon {...props} name="currency-usd-circle" />}
           onPress={() =>
-            props.navigation.navigate("Tools", {
+            navigation.navigate("Tools", {
               screen: "Donate",
             })
           }
@@ -579,4 +565,41 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
       )}
     </Layout>
   );
+}, (a, b) => {
+  return a.page === b.page;
+})
+
+
+export default function DrawerContent(props: DrawerContentComponentProps<DrawerContentOptions>) {
+  const state = useNavigationState(i => i);
+  const pathURL = getPathFromState(state);
+  const page = React.useMemo(() => {
+    const path = pathURL.split("?")[0];
+    const params = Object.fromEntries(
+      (pathURL.split("?")[1] || "")
+        .split("&")
+        .filter(i => i)
+        .map(i => i.split("=").map(i => decodeURIComponent(i)))
+    );
+    const page = path
+      .split("/")
+      .slice(1)
+      .map(i => ({
+        name: i,
+        params: params.screen ? params.params : params,
+      }));
+    if (params.screen) {
+      page.push({
+        name: params.screen,
+        params: params.params,
+      });
+    }
+    return page;
+  }, [pathURL]);
+  
+  const [ready] = useSetting(ReadyAtom);
+  console.log("Drawer Render");
+  if (ready !== "2020-03-20") return null;
+
+  return <MainDrawerContent page={page} navigation={props.navigation} />;
 }

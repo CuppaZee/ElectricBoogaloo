@@ -3549,27 +3549,27 @@
     "@babel/runtime" "^7.12.0"
     gl-matrix "^3.0.0"
 
-"@motify/components@^0.6.4":
-  version "0.6.4"
-  resolved "https://registry.yarnpkg.com/@motify/components/-/components-0.6.4.tgz#fba126a95289ed60270b3b9a52efd5271a8e1371"
-  integrity sha512-1xpHQiIPOxvzqpYV+g72YGynuBa7fg0mkQTO4VG2LDGWn3Pc2Dmj6FLcTdaiaplf237aTO7EfRK+WAKR2Ob5Pg==
+"@motify/components@^0.8.2":
+  version "0.8.2"
+  resolved "https://registry.yarnpkg.com/@motify/components/-/components-0.8.2.tgz#0a4e9289a27e7e38cf178ef01ffba71dfd45de3a"
+  integrity sha512-GHvaPU28p51i2y5KVeba6xc9/ru+vmJdCAwQ9aVutcIoS77vofxTNvt8oW0s4aXdgrZg2iuEn/joYX80Ic5Wvg==
   dependencies:
-    "@motify/core" "^0.6.4"
+    "@motify/core" "^0.8.2"
 
-"@motify/core@^0.6.4":
-  version "0.6.4"
-  resolved "https://registry.yarnpkg.com/@motify/core/-/core-0.6.4.tgz#db8ef4a169bb59c1b317ca9e8624fd7d2875b523"
-  integrity sha512-YTO1/WBEEznllW7hB3wS516J3crtE/MswFDapBStLa0fkKdiXeHNWlnTX8Y0MrC5cyJGYYdkcVtrpEcjNuADsA==
+"@motify/core@^0.8.2":
+  version "0.8.2"
+  resolved "https://registry.yarnpkg.com/@motify/core/-/core-0.8.2.tgz#c5a7ff1490964a20ce6ea4937be7c5590ee37a40"
+  integrity sha512-VI/ynB55rIhJfRRtN2lsocITzjJMw+hbFLNTE/YIkHLqQEsvq6MZ1aTo3hEbYPHyue04DKq+V2CHgF48T6BKHg==
   dependencies:
     framer-motion "^3.9.1"
 
-"@motify/skeleton@^0.6.4":
-  version "0.6.4"
-  resolved "https://registry.yarnpkg.com/@motify/skeleton/-/skeleton-0.6.4.tgz#a3ede8dee26df67811764de84d94f62d9681d8e8"
-  integrity sha512-1Xm9P0/L0sddx6gfgVU4RYUTG5V+G6RhuRQrKehHMlDf7FQ4bbuq6+Q1qLY+TBxJsQ8490EhQToBQyBTI+2h+A==
+"@motify/skeleton@^0.8.2":
+  version "0.8.2"
+  resolved "https://registry.yarnpkg.com/@motify/skeleton/-/skeleton-0.8.2.tgz#e0a4dfd96534a9ba028b8025efd697fd3458ca46"
+  integrity sha512-4LsI7cF2A+tVz7u0Qwa+mBuBI+EEGnF5UHZJQ5MimECohZO8YqFjklXNdlM6P1d7XXlVCN9/XDcXvlJO/sP65Q==
   dependencies:
-    "@motify/components" "^0.6.4"
-    "@motify/core" "^0.6.4"
+    "@motify/components" "^0.8.2"
+    "@motify/core" "^0.8.2"
 
 "@nodelib/fs.scandir@2.1.4":
   version "2.1.4"

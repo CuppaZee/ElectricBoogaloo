@@ -2,7 +2,7 @@ import { useLinkBuilder, useRoute } from "@react-navigation/native";
 import { Button, Layout, Spinner, Text, useTheme } from "@ui-kitten/components";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
-import { Image, View } from "react-native";
+import { ActivityIndicator, Image, View } from "react-native";
 import { QueryObserverResult } from "react-query";
 import useComponentSize from "../hooks/useComponentSize";
 import useLogin from "../hooks/useLogin";
@@ -196,9 +196,27 @@ export default function Loading({
         !level && { backgroundColor: "transparent" },
       ]}>
       {Skeleton ? (
-        <Skeleton colorMode={theme.style === "dark" ? "dark" : "light"} colors={["blue", "cyan"]} />
+        <Skeleton
+          colorMode={theme.style === "dark" ? "dark" : "light"}
+          colors={
+            theme.style === "dark"
+              ? [
+                  theme["color-basic-800"],
+                  theme["color-basic-900"],
+                  theme["color-basic-800"],
+                  theme["color-basic-900"],
+                ]
+              : [
+                  theme["color-basic-500"],
+                  theme["color-basic-400"],
+                  theme["color-basic-500"],
+                  theme["color-basic-400"],
+                ]
+          }
+        />
       ) : (
-        <Spinner size="large" status="primary" />
+        // <Spinner size="large" status="primary" />
+        <ActivityIndicator color={theme["color-primary-500"]} />
       )}
     </Layout>
   );

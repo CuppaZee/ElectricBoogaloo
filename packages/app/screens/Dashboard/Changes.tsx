@@ -4,7 +4,6 @@ import * as React from "react";
 import { StyleSheet, ScrollView, View, Image } from "react-native";
 import builds, { Build } from "../../builds";
 import TypeImage from "../../components/Common/TypeImage";
-import useTitle from "../../hooks/useTitle";
 import { DashCardProps } from "./Dashboard";
 import db from "@cuppazee/types";
 import useSetting, { BuildAtom } from "../../hooks/useSetting";
@@ -128,16 +127,15 @@ function BuildCard(build: Build) {
 }
 
 export default React.memo(function ChangesDashCard(props: DashCardProps<unknown>) {
-  const [build, setBuild] = useSetting(BuildAtom);
+  const [build, setBuild, loaded] = useSetting(BuildAtom);
   return (
     <Layout level="3" style={[styles.card, { flex: 1 }]}>
       <ScrollView onLayout={props.onOuterLayout} style={{ flex: 1 }}>
         <View onLayout={props.onInnerLayout} style={{ padding: 4 }}>
           <Text style={{ marginLeft: 4, textAlign: "center" }} category="h5">
-            {/* {t("dashboard:changes")} */}
             Changes
           </Text>
-          {builds
+          {!!loaded && builds
             .filter(i => i.build > build)
             .map(i => (
               <BuildCard key={i.build} {...i} />

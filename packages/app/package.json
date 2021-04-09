@@ -32,7 +32,7 @@
     "@formatjs/intl-relativetimeformat": "^8.0.4",
     "@loadable/component": "^5.14.1",
     "@mapbox/mapbox-gl-geocoder": "^4.7.0",
-    "@motify/skeleton": "^0.6.4",
+    "@motify/skeleton": "^0.8.2",
     "@react-google-maps/api": "^2.1.1",
     "@react-native-async-storage/async-storage": "^1.13.0",
     "@react-native-community/masked-view": "0.1.10",

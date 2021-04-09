@@ -2,6 +2,7 @@ import * as React from "react";
 import { StyleSheet, View } from "react-native";
 import { Layout, Text } from "@ui-kitten/components";
 import { Camera } from "expo-camera";
+import * as BarCodeScanner from "expo-barcode-scanner";
 
 export default function TestScanScreen() {
   const [zoom, setZoom] = React.useState(0);
@@ -9,12 +10,20 @@ export default function TestScanScreen() {
   const [type, setType] = React.useState(Camera.Constants.Type.back);
   return (
     <Camera
+      barCodeScannerSettings={{
+        barCodeTypes: [BarCodeScanner.Constants.BarCodeType.qr],
+      }}
+      onBarCodeScanned={i=>console.log(i)}
+    />
+  );
+  return (
+    <Camera
       style={{ flex: 1 }}
       zoom={zoom}
       type={type}
       flashMode={flash ? Camera.Constants.FlashMode.torch : Camera.Constants.FlashMode.off}
       barCodeScannerSettings={{
-        barCodeTypes: ["qr"],
+        barCodeTypes: [Constants.BarCodeType.QR],
       }}
       onBarCodeScanned={a => {
         console.log(a);

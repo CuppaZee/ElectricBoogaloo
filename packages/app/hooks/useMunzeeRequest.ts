@@ -18,10 +18,11 @@ const getMunzeeData = async <Path extends keyof Endpoints>(
     "https://api.munzee.com/" +
       endpoint?.replace(/{([A-Za-z0-9_]+)}/g, string => {
         return params?.[string[1] as keyof FetchRequest<Path>["params"]] || "";
-      }),
+      }) +
+      ((params as any)?.method === "get" ? `?access_token=${encodeURIComponent(token)}` : ""),
     {
-      method: "POST",
-      body,
+      method: (params as any)?.method === "get" ? "GET" : "POST",
+      body: (params as any)?.method === "get" ? undefined : body,
     }
   );
   if (!response.ok) {
