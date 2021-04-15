@@ -216,7 +216,7 @@ export default function Loading({
         />
       ) : (
         // <Spinner size="large" status="primary" />
-        <ActivityIndicator color={theme["color-primary-500"]} />
+        <ActivityIndicator color={theme["color-primary-500"]} size={24} />
       )}
     </Layout>
   );

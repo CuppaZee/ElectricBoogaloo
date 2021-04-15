@@ -9,7 +9,7 @@ import ZeeOpsOverview from "../../components/ZeeOps/Overview";
 import { DashCardProps } from "./Dashboard";
 import db from "@cuppazee/types";
 import TypeImage from "../../components/Common/TypeImage";
-import { UserPagesNow, UserPagesTools } from "../User/Profile";
+import { UserPagesNow } from "../User/Profile";
 import Icon from "../../components/Common/Icon";
 
 export default React.memo(function UserDashCard({
@@ -94,7 +94,7 @@ export default React.memo(function UserDashCard({
                 }
               />
             ))}
-            <DrawerGroup
+            {/* <DrawerGroup
               title={() => (
                 <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
                   {t("pages:tools")}
@@ -121,7 +121,7 @@ export default React.memo(function UserDashCard({
                   }
                 />
               ))}
-            </DrawerGroup>
+            </DrawerGroup> */}
             <DrawerGroup
               title={() => (
                 <Text style={{ flex: 1, marginLeft: 4 }} category="s1">

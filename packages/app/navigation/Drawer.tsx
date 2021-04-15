@@ -1,8 +1,8 @@
 import { DrawerContentComponentProps, DrawerContentOptions } from "@react-navigation/drawer";
-import { getPathFromState, NavigationState, PartialState, useNavigationState } from "@react-navigation/native";
-import { DrawerGroup as UIKittenDrawerGroup, DrawerGroupProps, DrawerItem as UIKittenDrawerItem, DrawerItemProps, Layout, Text } from "@ui-kitten/components";
+import { getPathFromState, useNavigationState } from "@react-navigation/native";
+import { DrawerGroup as UIKittenDrawerGroup, DrawerGroupProps, DrawerItem as UIKittenDrawerItem, DrawerItemProps, Layout } from "@ui-kitten/components";
 import React from "react";
-import { Image, Linking, Platform, ScrollView, useWindowDimensions, View } from "react-native";
+import { Image, Platform, ScrollView, useWindowDimensions, View } from "react-native";
 import { useClanBookmarks, useUserBookmarks } from "../hooks/useBookmarks";
 import useDay from "../hooks/useDay";
 import { useTranslation } from "react-i18next";
@@ -10,13 +10,6 @@ import Tip from "../components/Common/Tip";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../components/Common/Icon";
 import useSetting, { DrawerAtom, ReadyAtom } from "../hooks/useSetting";
-
-type NavigationRoute = {
-  state?: NavigationState | PartialState<NavigationState>;
-  key: string;
-  name: string;
-  params?: any;
-};
 
 const DrawerItem = React.memo(function ({ title, style, ...props }: DrawerItemProps) {
   const [drawerSettings] = useSetting(DrawerAtom);
@@ -61,7 +54,7 @@ function DrawerGroup ({ title, style, ...props }: DrawerGroupProps) {
   );
 };
 
-const MainDrawerContent = React.memo(function ({ page, navigation }: {
+const MainDrawerContent = function ({ page, navigation }: {
   page: any[];
   navigation: any;
 }) {
@@ -73,20 +66,12 @@ const MainDrawerContent = React.memo(function ({ page, navigation }: {
   const [drawerSettings, setDrawerSettings] = useSetting(DrawerAtom);
   const dimensions = useWindowDimensions();
   const open = drawerSettings.open || dimensions.width <= 1000;
-  console.log("Main Drawer Render");
   return (
     <Layout style={{ flex: 1 }}>
       <ScrollView
         showsVerticalScrollIndicator={open}
         style={{ flexGrow: 1 }}
         contentContainerStyle={{ paddingTop: insets.top, paddingBottom: insets.bottom }}>
-        {Platform.OS === "web" && (
-          <DrawerItem
-            title="Return to V1"
-            accessoryLeft={props => <Icon {...props} name="exit-run" />}
-            onPress={() => Linking.openURL("https://v1.cuppazee.app")}
-          />
-        )}
         <DrawerItem
           selected={page[1]?.name === "Tools" && page[2]?.name === "Search"}
           title={t("pages:tools_search")}
@@ -565,9 +550,7 @@ const MainDrawerContent = React.memo(function ({ page, navigation }: {
       )}
     </Layout>
   );
-}, (a, b) => {
-  return a.page === b.page;
-})
+};
 
 
 export default function DrawerContent(props: DrawerContentComponentProps<DrawerContentOptions>) {
@@ -598,7 +581,6 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
   }, [pathURL]);
   
   const [ready] = useSetting(ReadyAtom);
-  console.log("Drawer Render");
   if (ready !== "2020-03-20") return null;
 
   return <MainDrawerContent page={page} navigation={props.navigation} />;

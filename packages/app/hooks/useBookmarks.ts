@@ -1,6 +1,4 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useEffect } from "react";
-import { atom, useAtom } from "jotai";
+import useSetting, { atom, Setting } from "./useSetting";
 
 export type ClanBookmark = {
   clan_id: number;
@@ -13,51 +11,22 @@ export type UserBookmark = {
   username: string;
 };
 
-export const clanBookmarksAtom = atom<{
-  data: ClanBookmark[];
-  loaded: boolean;
-}>({
+export const ClanBookmarksAtom = atom<Setting<ClanBookmark[]>>({
   data: [],
   loaded: false,
+  key: "CLAN_BOOKMARKS",
 });
 
-export const userBookmarksAtom = atom<{
-  data: UserBookmark[];
-  loaded: boolean;
-}>({
+export const UserBookmarksAtom = atom<Setting<UserBookmark[]>>({
   data: [],
   loaded: false,
+  key: "USER_BOOKMARKS",
 });
 
 export function useUserBookmarks() {
-  const [user, setUser] = useAtom(userBookmarksAtom);
-  useEffect(() => {
-    if (!user.loaded) {
-      AsyncStorage.getItem("USER_BOOKMARKS").then((data) => {
-        setUser({
-          data: JSON.parse(
-            data ||
-              `[]`
-          ),
-          loaded: true,
-        });
-      });
-    }
-  }, [user.loaded]);
-  return [user.loaded ? user.data : [], setUser] as const;
+  return useSetting(UserBookmarksAtom);
 }
 
 export function useClanBookmarks() {
-  const [clan, setClan] = useAtom(clanBookmarksAtom);
-  useEffect(() => {
-    if (!clan.loaded) {
-      AsyncStorage.getItem("CLAN_BOOKMARKS").then((data) => {
-        setClan({
-          data: JSON.parse(data || "[]"),
-          loaded: true,
-        });
-      });
-    }
-  }, [clan.loaded]);
-  return [clan.loaded ? clan.data : null, setClan] as const;
+  return useSetting(ClanBookmarksAtom);
 }

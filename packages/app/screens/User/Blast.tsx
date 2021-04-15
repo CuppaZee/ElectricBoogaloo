@@ -11,6 +11,7 @@ import MapView from "../../components/Maps/MapView";
 import Loading from "../../components/Loading";
 import { BlastIcon } from "../../components/Blast/Icon";
 import { useTranslation } from "react-i18next";
+import { AutoMap, LocationPickerMap } from "../../components/Map/Map";
 
 export interface BlastPointsData {
   min: number;
@@ -67,23 +68,12 @@ export default function UserBouncersScreen() {
     <Layout onLayout={onLayout} style={{ flex: 1, flexDirection: "row" }}>
       <ScrollView style={{ flex: 1 }} contentContainerStyle={{ padding: 4 }}>
         <Layout style={{ height: 400, margin: 4, borderRadius: 8 }}>
-          <MapView
-            latitude={0}
-            longitude={0}
-            onRegionChange={({ latitude, longitude }) => {
-              pos.current = {
-                lat: latitude,
-                lng: longitude,
-              };
-            }}
-            markers={[
-              {
-                center: true,
-                icon: "munzee",
-                id: "center",
-              },
-            ]}
-          />
+          <LocationPickerMap icon="blastcapture" onPositionChange={viewport => {
+            pos.current = {
+              lat: viewport.latitude,
+              lng: viewport.longitude
+            }
+          }} />
         </Layout>
         <View style={{ flexDirection: "row" }}>
           {([

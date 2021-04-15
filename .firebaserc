@@ -6,7 +6,7 @@
     "cuppazee-app": {
       "hosting": {
         "app": [
-          "cuppazee-app"
+          "cuppazee-app-beta"
         ],
         "server": [
           "cuppazee-server"

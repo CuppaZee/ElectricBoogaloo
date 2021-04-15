@@ -14,7 +14,6 @@ import {
 } from "react-native";
 import builds from "../../builds";
 import Icon from "../../components/Common/Icon";
-import Loading from "../../components/Loading";
 import { useUserBookmarks } from "../../hooks/useBookmarks";
 import useComponentSize from "../../hooks/useComponentSize";
 import useSetting, { BuildAtom, LiveLocationErrorAtom } from "../../hooks/useSetting";
@@ -70,7 +69,7 @@ export default function DashboardScreen() {
     };
   }>({});
   const position = React.useRef<number>();
-  const [build, , buildLoaded] = useSetting(BuildAtom);
+  const [build,,buildLoaded] = useSetting(BuildAtom);
   const [opacity, setOpacity] = React.useState(Platform.OS === "web" ? 0 : 1);
   const [users] = useUserBookmarks();
   const [touched, setTouched] = React.useState<number[]>([pageOffset]);
@@ -85,7 +84,7 @@ export default function DashboardScreen() {
   const dashCards = [
     { nonUser: "tools" },
     { nonUser: "clan" },
-    ...(builds.some(i => i.build > build) ? [{ nonUser: "changes" }] : []),
+    ...(builds.some(i => buildLoaded && i.build > build) ? [{ nonUser: "changes" }] : []),
     ...users,
   ];
   return (

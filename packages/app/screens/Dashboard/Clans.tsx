@@ -6,7 +6,6 @@ import { Image, StyleSheet, ScrollView, View } from "react-native";
 import Icon from "../../components/Common/Icon";
 import Tip from "../../components/Common/Tip";
 import { useClanBookmarks } from "../../hooks/useBookmarks";
-import useTitle from "../../hooks/useTitle";
 import { DashCardProps } from "./Dashboard";
 
 export default React.memo(function ClansDashCard(props: DashCardProps<unknown>) {

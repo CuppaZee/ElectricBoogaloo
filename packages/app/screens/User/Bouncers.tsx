@@ -14,6 +14,8 @@ import TypeImage from "../../components/Common/TypeImage";
 import useDay from "../../hooks/useDay";
 import Loading from "../../components/Loading";
 import { useTranslation } from "react-i18next";
+import { AutoMap, Icons, Layer, Source } from "../../components/Map/Map";
+import db from "@cuppazee/types/lib";
 
 type Bouncer = NonNullable<UserDeploys["response"]["data"]>["munzees"][0] & {
   bouncer?: MunzeeSpecialBouncer & { hash: string };
@@ -27,7 +29,7 @@ type Bouncer = NonNullable<UserDeploys["response"]["data"]>["munzees"][0] & {
     distance: number;
   };
   timezone: string[];
-}
+};
 
 export default function UserBouncersScreen() {
   const { t } = useTranslation();
@@ -60,20 +62,53 @@ export default function UserBouncersScreen() {
     <Layout onLayout={onLayout} style={{ flex: 1, flexDirection: "row" }}>
       <ScrollView style={{ flex: 1 }} contentContainerStyle={{ padding: 4 }}>
         <Layout style={{ height: 400, margin: 4, borderRadius: 8 }}>
-          <MapView
-            nav={nav}
-            latitude={0}
-            longitude={0}
-            markers={data.data.data
-              .filter(i => i.bouncer)
-              .map(i => ({
-                lat: Number(i.bouncer?.latitude),
-                lng: Number(i.bouncer?.longitude),
-                icon: i.pin_icon,
-                id: i.munzee_id,
-                munzee: i.bouncer?.munzee_id,
-              }))}
-          />
+          <AutoMap
+            onPress={point => {
+              const munzee = point.features?.find(i => i.source === "bouncers");
+              if (munzee) {
+                nav.navigate("Tools", {
+                  screen: "Munzee",
+                  params: { a: munzee.id },
+                });
+              }
+            }}>
+            <Icons
+              icons={Object.keys(
+                data.data.data.reduce((a, b) => ({ ...a, [db.strip(b.pin_icon)]: 1 }), {} as any)
+              )}
+            />
+            <Source
+              id="bouncers"
+              type="geojson"
+              data={{
+                type: "FeatureCollection",
+                features: data.data.data
+                  .filter(i => i.bouncer)
+                  .map(i => ({
+                    type: "Feature",
+                    geometry: {
+                      type: "Point",
+                      coordinates: [Number(i.bouncer?.longitude), Number(i.bouncer?.latitude)],
+                    },
+                    properties: {
+                      icon: db.strip(i.pin_icon),
+                      id: i.munzee_id,
+                    },
+                  })),
+              }}>
+              <Layer
+                id="bouncers_symbols"
+                type="symbol"
+                paint={{}}
+                layout={{
+                  "icon-allow-overlap": true,
+                  "icon-anchor": "bottom",
+                  "icon-size": 0.8,
+                  "icon-image": ["get", "icon"],
+                }}
+              />
+            </Source>
+          </AutoMap>
         </Layout>
         <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
           {data.data.data.map(i => (
@@ -126,12 +161,21 @@ export default function UserBouncersScreen() {
                         </Text>
                       )}
                       <Text category="c1">
-                        {t("user_bouncers:captures", {number: i.number_of_captures, date: i.last_captured_at ? day(i.last_captured_at).format("L LT") : "-"})}
+                        {t("user_bouncers:captures", {
+                          number: i.number_of_captures,
+                          date: i.last_captured_at ? day(i.last_captured_at).format("L LT") : "-",
+                        })}
                       </Text>
                     </>
                   ) : (
                     <>
-                        <Text category="s1">{t(`user_bouncers:rest_${(["a","b","c"] as const)[Math.floor(Math.random() * 3)]}` as const)}</Text>
+                      <Text category="s1">
+                        {t(
+                          `user_bouncers:rest_${
+                            (["a", "b", "c"] as const)[Math.floor(Math.random() * 3)]
+                          }` as const
+                        )}
+                      </Text>
                     </>
                   )}
                 </View>

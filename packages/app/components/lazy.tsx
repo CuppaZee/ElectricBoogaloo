@@ -17,8 +17,7 @@ export default function lazy(
         }
         return () => (
           <Layout style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-            {/* <Spinner size="large" status="primary" /> */}
-            <ActivityIndicator />
+            <ActivityIndicator size={24} />
           </Layout>
         );
       }
@@ -26,8 +25,7 @@ export default function lazy(
     {
       fallback: (
         <Layout style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-          {/* <Spinner size="large" status="primary" /> */}
-          <ActivityIndicator />
+          <ActivityIndicator size={24} />
         </Layout>
       ),
       ...(options ?? {}),

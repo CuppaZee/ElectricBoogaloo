@@ -1,16 +1,37 @@
 import { DrawerActions } from "@react-navigation/native";
 import { StackHeaderProps } from "@react-navigation/stack";
-import { Layout, Spinner, TopNavigation, TopNavigationAction } from "@ui-kitten/components";
+import { Layout, TopNavigation, TopNavigationAction, useTheme } from "@ui-kitten/components";
 import React from "react";
 import { useIsFetching, useQueryClient } from "react-query";
 import day from "dayjs";
-import { useWindowDimensions } from "react-native";
+import { ActivityIndicator, useWindowDimensions } from "react-native";
 import Icon from "../components/Common/Icon";
+
+function LoadIcon() {
+  const loading = useIsFetching();
+  const queryClient = useQueryClient();
+  const theme = useTheme();
+  return (
+    <TopNavigationAction
+      icon={props =>
+        loading ? (
+          <ActivityIndicator color={theme["color-primary-500"]} size={24} />
+        ) : (
+          <Icon {...props} name="refresh" />
+        )
+      }
+      onPress={() =>
+        queryClient.refetchQueries({
+          predicate: query => query.queryKey[0] !== "token",
+          active: true,
+        })
+      }
+    />
+  );
+}
 
 export default function Header(props: StackHeaderProps) {
   const dimensions = useWindowDimensions();
-  const loading = useIsFetching();
-  const queryClient = useQueryClient();
   const titleData = (
     props.scene.descriptor.options.headerTitle?.toString() ?? props.scene.route.name
   ).split("|");
@@ -50,15 +71,7 @@ export default function Header(props: StackHeaderProps) {
                 })
               }
             />
-            <TopNavigationAction
-              icon={props => (loading ? <Spinner /> : <Icon {...props} name="refresh" />)}
-              onPress={() =>
-                queryClient.refetchQueries({
-                  predicate: query => query.queryKey[0] !== "token",
-                  active: true,
-                })
-              }
-            />
+            <LoadIcon />
           </>
         )}
       />

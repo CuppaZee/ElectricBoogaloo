@@ -15,6 +15,8 @@ import dayjs from "dayjs";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import Icon from "../../components/Common/Icon";
+import { AutoMap, Icons, Layer, Source } from "../../components/Map/Map";
+import db from "@cuppazee/types";
 
 type Bouncer = (MunzeeSpecialBouncer | MunzeeSpecial) & {
   hash: string;
@@ -85,18 +87,63 @@ export default function NearbyScreen() {
     <Layout onLayout={onLayout} style={{ flex: 1, flexDirection: "row" }}>
       <ScrollView style={{ flex: 1 }} contentContainerStyle={{ padding: 4 }}>
         <Layout style={{ height: 400, margin: 4, borderRadius: 8 }}>
-          <MapView
-            nav={nav}
-            latitude={settings.latitude}
-            longitude={settings.longitude}
-            zoom={10}
-            markers={data.data?.data.map(i => ({
-              lat: Number(i.latitude),
-              lng: Number(i.longitude),
-              icon: "logo" in i ? i.logo : i.mythological_munzee.munzee_logo,
-              id: i.munzee_id,
-            }))}
-          />
+          <AutoMap
+            defaultViewport={{
+              latitude: settings.latitude,
+              longitude: settings.longitude,
+              zoom: 10,
+            }}
+            onPress={point => {
+              const munzee = point.features?.find(i => i.source === "bouncers");
+              if (munzee) {
+                nav.navigate("Tools", {
+                  screen: "Munzee",
+                  params: { a: munzee.id },
+                });
+              }
+            }}>
+            <Icons
+              icons={Object.keys(
+                data.data?.data.reduce(
+                  (a, b) => ({
+                    ...a,
+                    ["logo" in b ? b.logo : b.mythological_munzee.munzee_logo]: 1,
+                  }),
+                  {} as any
+                ) ?? {}
+              )}
+            />
+            <Source
+              id="bouncers"
+              type="geojson"
+              data={{
+                type: "FeatureCollection",
+                features:
+                  data.data?.data?.map(i => ({
+                    type: "Feature",
+                    geometry: {
+                      type: "Point",
+                      coordinates: [Number(i.longitude), Number(i.latitude)],
+                    },
+                    properties: {
+                      icon: db.strip("logo" in i ? i.logo : i.mythological_munzee.munzee_logo),
+                      id: i.munzee_id,
+                    },
+                  })) ?? [],
+              }}>
+              <Layer
+                id="bouncerCircles"
+                type="symbol"
+                paint={{}}
+                layout={{
+                  "icon-allow-overlap": true,
+                  "icon-anchor": "bottom",
+                  "icon-size": 0.8,
+                  "icon-image": ["get", "icon"],
+                }}
+              />
+            </Source>
+          </AutoMap>
         </Layout>
         <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
           {data.data?.data
@@ -139,7 +186,12 @@ export default function NearbyScreen() {
                         ? i.mythological_munzee.friendly_name
                         : types.getType(i.logo)?.name ?? i.logo.slice(49, -4)}
                       {"mythological_munzee" in i ? (
-                        <Text category="s1"> {t("user_bouncers:by", { username: i.mythological_munzee.creator_username })}</Text>
+                        <Text category="s1">
+                          {" "}
+                          {t("user_bouncers:by", {
+                            username: i.mythological_munzee.creator_username,
+                          })}
+                        </Text>
                       ) : (
                         ""
                       )}
@@ -196,7 +248,19 @@ export default function NearbyScreen() {
                         }
                         style={{ color: theme["text-basic-color"], height: 20, width: 20 }}
                       />
-                      {t(`common:direction_${i.direction.slice(2).toLowerCase() as "n" | "ne" | "nw" | "e" | "w" | "se" | "sw" | "s"}` as const)}
+                      {t(
+                        `common:direction_${
+                          i.direction.slice(2).toLowerCase() as
+                            | "n"
+                            | "ne"
+                            | "nw"
+                            | "e"
+                            | "w"
+                            | "se"
+                            | "sw"
+                            | "s"
+                        }` as const
+                      )}
                     </Text>
                   </Layout>
                 </Layout>

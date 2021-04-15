@@ -44,19 +44,6 @@ export default function useLogin(
   const [loading, setLoading] = React.useState<boolean>(false);
   const [redirect, setRedirect] = React.useState<string | null>(null);
 
-  // React.useEffect(() => {
-  //   if (Platform.OS !== "web") {
-  //     try {
-  //       WebBrowser.warmUpAsync();
-  //     } catch (e) {}
-  //     return () => {
-  //       try {
-  //         WebBrowser.coolDownAsync();
-  //       } catch (e) {}
-  //     };
-  //   }
-  // });
-
   async function login() {
     setLoading(true);
     const response = await WebBrowser.openAuthSessionAsync(
@@ -104,10 +91,7 @@ export default function useLogin(
       );
 
       if (!users.some(i => i.user_id === params.user_id)) {
-        setUsers({
-          loaded: true,
-          data: [...users, { user_id: params.user_id, username: params.username }],
-        });
+        setUsers([...users, { user_id: params.user_id, username: params.username }]);
         AsyncStorage.setItem(
           "USER_BOOKMARKS",
           JSON.stringify([...users, { user_id: params.user_id, username: params.username }])

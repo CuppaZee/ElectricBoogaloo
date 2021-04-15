@@ -1,15 +1,18 @@
 import { MapBoundingboxV4 } from "@cuppazee/api/map/v4";
 import db from "@cuppazee/types";
-import { useNavigation } from "@react-navigation/native";
+import { CurrentRenderContext, useNavigation } from "@react-navigation/native";
 import { Button, Layout, Text } from "@ui-kitten/components";
 import * as React from "react";
-import { Pressable, View } from "react-native";
+import { Image, Pressable, View } from "react-native";
 import TypeImage from "../../components/Common/TypeImage";
 import MapView from "../../components/Maps/MapView";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import useTitle from "../../hooks/useTitle";
 import Clipboard from "expo-clipboard";
 import Icon from "../../components/Common/Icon";
+import { AutoMap, Icons, Layer, Marker, Source } from "../../components/Map/Map";
+import WebMercatorViewport from "viewport-mercator-project";
+import circle from "@turf/circle";
 
 export default function BouncersMapScreen() {
   const nav = useNavigation();
@@ -48,7 +51,6 @@ export default function BouncersMapScreen() {
     <Layout style={{ flex: 1 }}>
       {!location && (
         <Layout
-          level="3"
           style={{
             padding: 4,
             flexDirection: "row",
@@ -59,100 +61,191 @@ export default function BouncersMapScreen() {
           <Text category="h5">Zoom in to load Munzees</Text>
         </Layout>
       )}
-      <MapView
-        cluster={false}
-        latitude={0}
-        longitude={0}
-        onRegionChange={d => {
-          center.current = { lat: d.latitude, lng: d.longitude };
-          if (d.zoom > 10) {
-            setLocation(d.bounds);
+      <AutoMap
+        onPositionChange={viewport => {
+          center.current = {
+            lat: viewport.latitude,
+            lng: viewport.longitude,
+          };
+        }}
+        onPositionFinishChange={async viewport => {
+          if (viewport.zoom > 10) {
+            const bounds =
+              (await viewport.getBounds?.()) ??
+              new WebMercatorViewport(viewport as any).getBoundingRegion();
+            setLocation({
+              lat1: Math.min(...bounds.map(i => i[1])),
+              lng1: Math.min(...bounds.map(i => i[0])),
+              lat2: Math.max(...bounds.map(i => i[1])),
+              lng2: Math.max(...bounds.map(i => i[0])),
+            });
           } else {
             setLocation(undefined);
           }
-        }}
-        nav={nav}
-        onMarkerPress={event => {
-          if (markers[event.id]) setSelectedMarker(Number(event.id));
-        }}
-        onMarkerDragEnd={event => {
-          if ("target" in event.event) {
-            const lngLat = event.event.target.getLngLat();
-            setMarkers(value =>
-              value.map((i, n) =>
-                n.toString() === event.id
-                  ? {
-                      ...i,
-                      lat: lngLat.lat,
-                      lng: lngLat.lng,
-                    }
-                  : i
-              )
-            );
-          } else if ("geometry" in event.event) {
-            const coordinates = event.event.geometry.coordinates;
-            setMarkers(value =>
-              value.map((i, n) =>
-                n.toString() === event.id
-                  ? {
-                      ...i,
-                      lat: coordinates[1],
-                      lng: coordinates[0],
-                    }
-                  : i
-              )
-            );
-          }
-        }}
-        circles={[
-          ...markers.map((i, n) => ({
-            ...i,
-            radius: i.type === "poivirtualgarden" ? 1609.344 / 2 : 1609.344,
-            id: `circle_${n}`,
-            fill: "#00ffff11",
-            stroke: "#00ffff",
-          })),
-          ...markers.map((i, n) => ({
-            ...i,
-            radius: 304.8,
-            id: `circle_${n}_capture`,
-            fill: "#00ff0011",
-            stroke: "#00ff00",
-          })),
-          ...(munzees
-            ?.filter(i => !selected || selected === db.strip(i.original_pin_image ?? ""))
-            .map(i => ({
-              lat: Number(i.latitude ?? 0),
-              lng: Number(i.longitude ?? 0),
-              radius:
-                db.strip(i.original_pin_image ?? "") === "poivirtualgarden"
-                  ? 1609.344 / 2
-                  : 1609.344,
-              id: `circle_${i.munzee_id}`,
-              fill: "#ff000011",
-              stroke: "#ff0000",
-            })) ?? []),
-        ]}
-        markers={[
-          ...markers.map((i, n) => ({
-            ...i,
-            icon: i.type,
-            id: n.toString(),
-            draggable: true,
-          })),
-          ...(munzees?.map(i => ({
-            lat: Number(i.latitude ?? 0),
-            lng: Number(i.longitude ?? 0),
-            icon: db.strip(i.original_pin_image ?? ""),
-            id: i.munzee_id?.toString() ?? "",
-            munzee: i.munzee_id?.toString() ?? "",
-          })) ?? []),
-        ]}
-        hideUserLocation={true}
-      />
+        }}>
+        <Icons icons={pois?.map(i => db.strip(i.image.replace("v4pins", "pins"))) ?? []} />
+        {!!munzees && (
+          <Source
+            id="existingDeploy"
+            type="geojson"
+            data={{
+              type: "FeatureCollection",
+              features: [
+                ...munzees
+                  .filter(i => !selected || selected === db.strip(i.original_pin_image ?? ""))
+                  .map(i =>
+                    circle(
+                      [Number(i.longitude), Number(i.latitude)],
+                      db.strip(i.original_pin_image ?? "") === "poivirtualgarden" ? 0.5 : 1,
+                      {
+                        units: "miles",
+                        properties: { colour: "#ff0000" },
+                      }
+                    )
+                  ),
+                ...markers
+                  .filter(i => !selected || selected === i.type)
+                  .map(i =>
+                    circle([i.lng, i.lat], i.type === "poivirtualgarden" ? 0.5 : 1, {
+                      units: "miles",
+                      properties: { colour: "#ffaa00" },
+                    })
+                  ),
+              ],
+            }}>
+            <Layer
+              id="existingDeployFill"
+              type="fill"
+              paint={{
+                "fill-color": ["get", "colour"],
+                "fill-opacity": 0.1,
+              }}
+            />
+            <Layer
+              id="existingDeployStroke"
+              type="line"
+              paint={{
+                "line-color": ["get", "colour"],
+              }}
+            />
+          </Source>
+        )}
+        {!!munzees && (
+          <Source
+            id="existingCapture"
+            type="geojson"
+            data={{
+              type: "FeatureCollection",
+              features: [
+                ...munzees
+                  .filter(i => !selected || selected === db.strip(i.original_pin_image ?? ""))
+                  .map(i =>
+                    circle(
+                      [Number(i.longitude), Number(i.latitude)],
+                      db.strip(i.original_pin_image ?? "") === "poiairport" ? 5280 : 1000,
+                      {
+                        units: "feet",
+                        properties: { colour: "#00ff00" },
+                      }
+                    )
+                  ),
+                ...markers
+                  .filter(i => !selected || selected === i.type)
+                  .map(i =>
+                    circle([i.lng, i.lat], i.type === "poiairport" ? 5280 : 1000, {
+                      units: "feet",
+                      properties: { colour: "#00ffaa" },
+                    })
+                  ),
+              ],
+            }}>
+            <Layer
+              id="existingCaptureFill"
+              type="fill"
+              paint={{
+                "fill-color": ["get", "colour"],
+                "fill-opacity": 0.1,
+              }}
+            />
+            <Layer
+              id="existingCaptureStroke"
+              type="line"
+              paint={{
+                "line-color": ["get", "colour"],
+              }}
+            />
+          </Source>
+        )}
+        {!!munzees && (
+          <Source
+            id="existingPins"
+            type="geojson"
+            data={{
+              type: "FeatureCollection",
+              features: munzees
+                .filter(i => !selected || selected === db.strip(i.original_pin_image ?? ""))
+                .map(i => ({
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [Number(i.longitude), Number(i.latitude)],
+                  },
+                  id: i.munzee_id?.toString(),
+                  properties: {
+                    icon: db.strip(i.original_pin_image ?? ""),
+                    munzee_id: i.munzee_id?.toString(),
+                  },
+                })),
+            }}>
+            <Layer
+              id="existingPinsIcons"
+              type="symbol"
+              paint={{}}
+              filter={["!", ["has", "point_count"]]}
+              layout={{
+                "icon-allow-overlap": true,
+                "icon-anchor": "bottom",
+                "icon-size": 0.8,
+                "icon-image": ["get", "icon"],
+              }}
+            />
+          </Source>
+        )}
+        {markers.map((i, n) => (
+          <Marker
+            id={`marker_${n}`}
+            latitude={i.lat}
+            longitude={i.lng}
+            offsetLeft={-25.6}
+            offsetTop={-51.2}
+            draggable={true}
+            onDragEnd={ev => {
+              setMarkers(value =>
+                value.map((i2, n2) =>
+                  n2 === n
+                    ? {
+                        ...i2,
+                        lat: ev.lngLat[1],
+                        lng: ev.lngLat[0],
+                      }
+                    : i2
+                )
+              );
+            }}
+            onPress={() => {
+              setSelectedMarker(n);
+            }}>
+            <Pressable
+              onPress={() => {
+                setSelectedMarker(n);
+              }}>
+              <TypeImage icon={i.type} style={{ size: 51.2 }} />
+            </Pressable>
+          </Marker>
+        ))}
+      </AutoMap>
       {selectedMarker !== undefined && markers[selectedMarker] && (
         <Layout
-          level="3"
           style={{
             padding: 4,
             flexDirection: "row",
@@ -179,7 +272,6 @@ export default function BouncersMapScreen() {
         </Layout>
       )}
       <Layout
-        level="3"
         style={{
           padding: 4,
           flexDirection: "row",
@@ -199,10 +291,14 @@ export default function BouncersMapScreen() {
           {pois?.map(i => (
             <Pressable
               onPress={() => {
-                setSelected(db.strip(i.image.replace("v4pins", "pins")));
+                if (selected === db.strip(i.image.replace("v4pins", "pins"))) {
+                  setSelected(undefined);
+                } else {
+                  setSelected(db.strip(i.image.replace("v4pins", "pins")));
+                }
               }}>
               <Layout
-                level={selected === db.strip(i.image.replace("v4pins", "pins")) ? "4" : "3"}
+                level={selected === db.strip(i.image.replace("v4pins", "pins")) ? "3" : "1"}
                 style={{ borderRadius: 8, paddingVertical: 4 }}>
                 <TypeImage
                   icon={i.image.replace("v4pins", "pins")}

@@ -309,11 +309,11 @@ export default function AccountsScreen() {
           style={{ margin: 4 }}
           onPress={async () => {
             if (clanBookmarks) {
-              setClanBookmarks({ loaded: true, data: clanBookmarks });
+              setClanBookmarks(clanBookmarks);
               AsyncStorage.setItem("CLAN_BOOKMARKS", JSON.stringify(clanBookmarks));
             }
             if (userBookmarks) {
-              setUserBookmarks({ loaded: true, data: userBookmarks });
+              setUserBookmarks(userBookmarks);
               AsyncStorage.setItem("USER_BOOKMARKS", JSON.stringify(userBookmarks));
             }
             setSaved(true);

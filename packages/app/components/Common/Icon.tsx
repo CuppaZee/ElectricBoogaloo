@@ -23,7 +23,7 @@ export default React.memo(function Icon({
 }: {
   name?: IconName;
   style?: StyleProp<Partial<ImageStyle> & Partial<TextStyle> & Partial<ViewStyle>>;
-}) {
+  }) {
   const { height, tintColor, color, marginHorizontal, ...iconStyle } = StyleSheet.flatten(style);
   const [loaded, setLoaded] = React.useState(iconLoadedRef.iconLoaded);
   React.useEffect(() => {
@@ -46,7 +46,13 @@ export default React.memo(function Icon({
           name={name}
           size={Number(height)}
           color={color ?? tintColor}
-          style={[iconStyle, { marginHorizontal: marginHorizontal === 10 ? 2 : marginHorizontal }]}
+          style={[
+            iconStyle,
+            {
+              marginHorizontal:
+                marginHorizontal === 10 ? 2 : marginHorizontal,
+            },
+          ]}
         />
       ) : (
         <View style={{ width: Number(height) + 16, height }} />

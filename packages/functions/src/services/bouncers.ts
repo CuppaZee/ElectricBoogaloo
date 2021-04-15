@@ -156,7 +156,7 @@ export default async function () {
             to: i.device.token,
             data: {
               type: "bouncer",
-              path: `/tools/munzee/${i.bouncer.munzee_id}`,
+              path: `/munzee/${i.bouncer.munzee_id}`,
               title,
               description: body,
               latitude: Number(i.bouncer.latitude),
@@ -174,7 +174,7 @@ export default async function () {
           title,
           body,
           data: {
-            path: `/tools/munzee/${i.bouncer.munzee_id}`,
+            path: `/munzee/${i.bouncer.munzee_id}`,
           },
         };
       })

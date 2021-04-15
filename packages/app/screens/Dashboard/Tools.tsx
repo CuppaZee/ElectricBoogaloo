@@ -54,6 +54,11 @@ export const ToolsPages = [
     screen: "TestScan",
     disabled: true,
   },
+  {
+    icon: "earth",
+    nontranslatedtitle: "Universal Capper",
+    screen: "UniversalCapper",
+  },
 ] as const;
 export const ToolsPagesMaps = [
   {
@@ -65,6 +70,11 @@ export const ToolsPagesMaps = [
     icon: "home-circle-outline",
     nontranslatedtitle: "Destination Planner",
     screen: "DestinationPlanner",
+  },
+  {
+    icon: "bomb",
+    nontranslatedtitle: "Blast Planner",
+    screen: "BlastPlanner",
   },
 ] as const;
 export const ToolsPagesSettings = [
@@ -111,7 +121,6 @@ export const ToolsPagesOther = [
 export default React.memo(function ToolsDashCard(props: DashCardProps<unknown>) {
   const { t } = useTranslation();
   const nav = useNavigation();
-  const [clans] = useClanBookmarks();
   return (
     <Layout level="3" style={[styles.card, { flex: 1 }]}>
       <ScrollView onLayout={props.onOuterLayout} style={{ flex: 1 }}>

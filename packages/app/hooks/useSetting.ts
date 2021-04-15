@@ -1,11 +1,9 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect } from "react";
 import { atom as jotaiAtom, useAtom, WritableAtom } from "jotai";
-import * as themes from "../themes";
 import builds from "../builds";
-import { Atom, PrimitiveAtom, SetStateAction, WithInitialValue } from "jotai/core/types";
 
-function atom<T>(initial: T) {
+export function atom<T>(initial: T) {
   return jotaiAtom<T>(initial);
 }
 
@@ -114,10 +112,17 @@ export const DrawerAtom = atom<Setting<{
   key: "@cuppazee/personalisation/drawer",
 });
 
-export default function useSetting<T>(atom: WritableAtom<Setting<T>, Setting<T>>) {
+export const MapStyleAtom = atom<Setting<"monochrome" | "streets" | "satellite">>({
+  data: "monochrome",
+  loaded: false,
+  key: "@cuppazee/personalisation/maps",
+});
+
+export default function useSetting<T>(atom: WritableAtom<Setting<T>, Setting<T>> & {loading?: number}) {
   const [value, setValue] = useAtom(atom);
   useEffect(() => {
-    if (!value.loaded) {
+    if (!value.loaded && (!atom.loading || atom.loading < Date.now() - 10000)) {
+      atom.loading = Date.now();
       AsyncStorage.getItem(value.key).then(data => {
         const jsonData = JSON.parse(data || "null");
         if (typeof value.data === "object" && !Array.isArray(value.data)) {

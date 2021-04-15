@@ -29,22 +29,10 @@ export const UserPagesNow = [
     title: "user_challenges",
     screen: "Challenges",
   },
-] as const;
-export const UserPagesTools = [
   {
     icon: "shield",
     title: "user_clan_progress",
     screen: "ClanProgress",
-  },
-  {
-    icon: "earth",
-    title: "user_universal_capper",
-    screen: "Universal",
-  },
-  {
-    icon: "bomb",
-    title: "user_blast_checker",
-    screen: "Blast",
   },
   {
     icon: "hammer",
@@ -52,6 +40,18 @@ export const UserPagesTools = [
     screen: "QRew",
   },
 ] as const;
+// export const UserPagesTools = [
+//   {
+//     icon: "earth",
+//     title: "user_universal_capper",
+//     screen: "Universal",
+//   },
+//   {
+//     icon: "bomb",
+//     title: "user_blast_checker",
+//     screen: "Blast",
+//   },
+// ] as const;
 
 export default function TabOneScreen() {
   const { t } = useTranslation();
@@ -190,7 +190,7 @@ export default function TabOneScreen() {
             </Layout>
           </View>
 
-          <View style={{ padding: 4, width: 400, maxWidth: "100%", flexGrow: 1 }}>
+          {/* <View style={{ padding: 4, width: 400, maxWidth: "100%", flexGrow: 1 }}>
             <Layout level="3" style={{ margin: 4, borderRadius: 4, flex: 1 }}>
               {UserPagesTools.map(i => (
                 <DrawerItem
@@ -211,7 +211,7 @@ export default function TabOneScreen() {
                 />
               ))}
             </Layout>
-          </View>
+          </View> */}
 
           <View style={{ padding: 4, width: 400, maxWidth: "100%", flexGrow: 1 }}>
             <Layout level="3" style={{ margin: 4, borderRadius: 4, flex: 1 }}>

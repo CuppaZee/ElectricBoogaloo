@@ -16,7 +16,7 @@ import useSetting, { DrawerAtom, ReadyAtom } from "../hooks/useSetting";
 
 const Drawer = createDrawerNavigator<MainDrawerParamList>();
 
-export default function MainNavigator() {
+export default React.memo(function MainNavigator() {
   const dimensions = useWindowDimensions();
   const [ready, , loaded] = useSetting(ReadyAtom);
   const [drawerSettings] = useSetting(DrawerAtom);
@@ -51,4 +51,4 @@ export default function MainNavigator() {
       </Drawer.Navigator>
     </React.Suspense>
   );
-}
+}, () => true)
