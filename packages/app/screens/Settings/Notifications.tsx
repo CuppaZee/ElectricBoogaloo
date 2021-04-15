@@ -15,7 +15,6 @@ import useTitle from "../../hooks/useTitle";
 import Constants from "expo-constants";
 import * as Notifications from "expo-notifications";
 import * as Location from "expo-location";
-import * as Permissions from "expo-permissions";
 import * as Application from "expo-application";
 import db, { TypeTags } from "@cuppazee/types";
 import TypeImage from "../../components/Common/TypeImage";
@@ -29,6 +28,7 @@ import Select from "../../components/Common/Select";
 import Icon from "../../components/Common/Icon";
 import useSetting, { LiveLocationErrorAtom } from "../../hooks/useSetting";
 import Loading from "../../components/Loading";
+import { LocationPickerMap } from "../../components/Map/Map";
 
 interface LocationPickerModalProps {
   location: DeviceNotificationStaticLocation;
@@ -53,26 +53,18 @@ function LocationPickerModal({ location, close, remove }: LocationPickerModalPro
               }}
             />
             <View style={{ flex: 1, margin: 4, height: 400, width: 400, maxWidth: "100%" }}>
-              <UpdateWrapper>
-                {mini => (
-                  <MapView
-                    latitude={0}
-                    longitude={0}
-                    zoom={10}
-                    markers={[
-                      {
-                        id: "main",
-                        center: true,
-                        icon: "munzee",
-                      },
-                    ]}
-                    onRegionChange={({ latitude, longitude }) => {
-                      location.latitude = latitude.toString();
-                      location.longitude = longitude.toString();
-                    }}
-                  />
-                )}
-              </UpdateWrapper>
+              <LocationPickerMap
+                defaultViewport={{
+                  latitude: 0,
+                  longitude: 0,
+                  zoom: 10,
+                }}
+                icon="munzee"
+                onPositionChange={({ latitude, longitude }) => {
+                  location.latitude = latitude.toString();
+                  location.longitude = longitude.toString();
+                }}
+              />
             </View>
             <View style={{ flexDirection: "row" }}>
               <Button
@@ -474,7 +466,7 @@ export default function NotificationScreen() {
         <ConfirmLocationModal
           confirm={async () => {
             try {
-              await Location.requestPermissionsAsync();
+              await Location.requestBackgroundPermissionsAsync();
               const loc =
                 (await Location.getLastKnownPositionAsync()) ??
                 (await Location.getCurrentPositionAsync());
@@ -883,26 +875,17 @@ export default function NotificationScreen() {
               // Setup Dynamic Locations
               if (settings.locations.dynamic) {
                 // Ask for Location Permission
-                const permissionsResponse = await Permissions.askAsync(Permissions.LOCATION);
-                const { status, permissions } = permissionsResponse;
+                const permissionsResponse = await Location.requestBackgroundPermissionsAsync();
+                const { status } = permissionsResponse;
                 setDebugStatus(`DATA: ${JSON.stringify(permissionsResponse)}`);
                 
                 // Check Permission allowed Always
-                if (status === "granted" && permissions.location?.scope === "always") {
-                  // Start
-                  // if ("LiveLocation" in NativeModules) {
-                  //   try {
-                  //     // Stop Location Updates
-                  //     await Location.stopLocationUpdatesAsync("BACKGROUND_LOCATION");
-                  //   } catch (e) {}
-                  //   NativeModules.LiveLocation.startLocationUpdates(900000, 600000, 1800000);
-                  // } else {
+                if (status === "granted") {
                   await Location.startLocationUpdatesAsync("BACKGROUND_LOCATION", {
                     accuracy: Location.Accuracy.Low,
                     deferredUpdatesDistance: 250,
                     deferredUpdatesTimeout: 900000,
                   });
-                  // }
                 } else {
                   // Error
                   settings.locations.dynamic = undefined;

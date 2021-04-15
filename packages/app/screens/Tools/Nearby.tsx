@@ -56,7 +56,7 @@ export default function NearbyScreen() {
 
   React.useEffect(() => {
     (async () => {
-      await Location.requestPermissionsAsync();
+      await Location.requestForegroundPermissionsAsync();
       const loc = await Location.getCurrentPositionAsync();
       let token;
       if (Platform.OS !== "web") {

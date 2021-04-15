@@ -6,14 +6,20 @@ import { Linking, Pressable, ScrollView, NativeModules } from "react-native";
 import Icon from "../../components/Common/Icon";
 import useSetting, { LiveLocationErrorAtom } from "../../hooks/useSetting";
 import useTitle from "../../hooks/useTitle";
-import { getAsync, LOCATION } from "expo-permissions";
+import { getBackgroundPermissionsAsync } from "expo-location"
 
 function DevScreen() {
   const [data, setData] = React.useState("");
   const [liveLocationError] = useSetting(LiveLocationErrorAtom);
   React.useEffect(() => {
     (async function () {
-      setData(JSON.stringify([await getTaskOptionsAsync("BACKGROUND_LOCATION"), await getAsync(LOCATION)], null, 2));
+      setData(
+        JSON.stringify(
+          [await getTaskOptionsAsync("BACKGROUND_LOCATION"), await getBackgroundPermissionsAsync()],
+          null,
+          2
+        )
+      );
     })();
   }, []);
   return (

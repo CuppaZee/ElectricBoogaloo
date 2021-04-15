@@ -13,6 +13,7 @@ import TypeImage from "../../components/Common/TypeImage";
 import MapView from "../../components/Maps/MapView";
 import dayjs from "dayjs";
 import Icon from "../../components/Common/Icon";
+import { AutoMap, Icons, Layer, Source } from "../../components/Map/Map";
 
 export const UserPagesNow = [
   {
@@ -94,23 +95,65 @@ export default function MunzeeScreen() {
             flexWrap: "wrap",
             alignSelf: "center",
           }}>
-          <View style={{ padding: 4, width: 1000, maxWidth: "100%", flexGrow: 1 }}>
-            <Layout level="3" style={{ margin: 4, borderRadius: 4, height: 400 }}>
-              <MapView
-                latitude={Number(m.latitude)}
-                longitude={Number(m.longitude)}
-                zoom={8}
-                markers={[
-                  {
-                    lat: Number(m.latitude),
-                    lng: Number(m.longitude),
-                    icon: m.pin_icon,
-                    id: m.munzee_id.toString(),
-                  },
-                ]}
-              />
-            </Layout>
-          </View>
+          {(((m as any).unicorn_host?.latitude ?? m.latitude) !== "0" ||
+            ((m as any).unicorn_host?.longitude ?? m.longitude) !== "0") && (
+            <View style={{ padding: 4, width: 1000, maxWidth: "100%", flexGrow: 1 }}>
+              <Layout level="3" style={{ margin: 4, borderRadius: 4, height: 400 }}>
+                <AutoMap
+                  key={m.munzee_id}
+                  defaultViewport={{
+                    latitude: Number((m as any).unicorn_host?.latitude ?? m.latitude),
+                    longitude: Number((m as any).unicorn_host?.longitude ?? m.longitude),
+                    zoom: 14,
+                  }}
+                  onPress={point => {
+                    const munzee = point.features?.find(i => i.source === "bouncers");
+                    if (munzee) {
+                      nav.navigate("Tools", {
+                        screen: "Munzee",
+                        params: { a: munzee.id },
+                      });
+                    }
+                  }}>
+                  <Icons icons={[db.strip(m.pin_icon)]} />
+                  <Source
+                    id="munzee"
+                    type="geojson"
+                    data={{
+                      type: "FeatureCollection",
+                      features: [
+                        {
+                          type: "Feature",
+                          geometry: {
+                            type: "Point",
+                            coordinates: [
+                              Number((m as any).unicorn_host?.longitude ?? m.longitude),
+                              Number((m as any).unicorn_host?.latitude ?? m.latitude),
+                            ],
+                          },
+                          properties: {
+                            icon: db.strip(m.pin_icon),
+                            id: m.munzee_id,
+                          },
+                        },
+                      ],
+                    }}>
+                    <Layer
+                      id="munzeePin"
+                      type="symbol"
+                      paint={{}}
+                      layout={{
+                        "icon-allow-overlap": true,
+                        "icon-anchor": "bottom",
+                        "icon-size": 0.8,
+                        "icon-image": ["get", "icon"],
+                      }}
+                    />
+                  </Source>
+                </AutoMap>
+              </Layout>
+            </View>
+          )}
 
           <View style={{ padding: 4, width: 400, maxWidth: "100%", flexGrow: 1 }}>
             <Layout level="3" style={{ margin: 4, borderRadius: 4, flex: 1 }}>
@@ -118,9 +161,13 @@ export default function MunzeeScreen() {
                 <TypeImage style={{ margin: 4, size: 48 }} icon={m.original_pin_image} />
                 <View style={{ padding: 4, flex: 1 }}>
                   <Text category="h6">{m.friendly_name}</Text>
-                  <Text category="s1">{t("munzee_details:owner", { username: m.creator_username })}</Text>
+                  <Text category="s1">
+                    {t("munzee_details:owner", { username: m.creator_username })}
+                  </Text>
                   {m.deployed_at && (
-                    <Text category="s2">{t("munzee_details:deployed", { date: dayjs(m.deployed_at).format("L LT") })}</Text>
+                    <Text category="s2">
+                      {t("munzee_details:deployed", { date: dayjs(m.deployed_at).format("L LT") })}
+                    </Text>
                   )}
                 </View>
               </View>
@@ -153,13 +200,19 @@ export default function MunzeeScreen() {
                     title={() => (
                       <View style={{ flex: 1, justifyContent: "center" }}>
                         <Text style={{ marginLeft: 4 }} category="s1">
-                          {t("munzee_details:bouncer_hosting", {name: b.unicorn_munzee.friendly_name})}
+                          {t("munzee_details:bouncer_hosting", {
+                            name: b.unicorn_munzee.friendly_name,
+                          })}
                           <Text style={{ marginLeft: 4 }} category="s2">
-                            {t("munzee_details:owner", {username: b.unicorn_munzee.creator_username})}
+                            {t("munzee_details:owner", {
+                              username: b.unicorn_munzee.creator_username,
+                            })}
                           </Text>
                         </Text>
                         <Text style={{ marginLeft: 4 }} category="s2">
-                          {t("munzee_details:bouncer_expires", { time: dayjs(b.good_until * 1000).format("LTS") })}
+                          {t("munzee_details:bouncer_expires", {
+                            time: dayjs(b.good_until * 1000).format("LTS"),
+                          })}
                         </Text>
                       </View>
                     )}
@@ -176,7 +229,7 @@ export default function MunzeeScreen() {
                     onPress={() =>
                       nav.setParams({
                         a: b.unicorn_munzee.creator_username,
-                        b: b.unicorn_munzee.code.split('/').reverse()[1],
+                        b: b.unicorn_munzee.code.split("/").reverse()[1],
                       })
                     }
                   />

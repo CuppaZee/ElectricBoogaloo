@@ -1,9 +1,9 @@
 import * as TaskManager from "expo-task-manager";
-import * as Permissions from "expo-permissions";
 import {
   stopLocationUpdatesAsync,
   startLocationUpdatesAsync,
   Accuracy,
+  getBackgroundPermissionsAsync
 } from "expo-location";
 import { NativeModules, Platform } from "react-native";
 
@@ -34,8 +34,8 @@ export default async function CheckStatus() {
   const taskManagerOptions = (await TaskManager.getTaskOptionsAsync("BACKGROUND_LOCATION")) as any;
   if (hasNativeLiveLocationEnabled || (taskManagerOptions && typeof taskManagerOptions === "object")) {
     // Check Permission allowed Always
-    const { status, permissions } = await Permissions.getAsync(Permissions.LOCATION);
-    if (status !== "granted" || permissions.location?.scope !== "always") {
+    const { status } = await getBackgroundPermissionsAsync();
+    if (status !== "granted") {
       await stopLocationUpdatesAsync("BACKGROUND_LOCATION");
       return "permission_failed";
     }

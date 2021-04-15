@@ -541,7 +541,7 @@ const MainDrawerContent = function ({ page, navigation }: {
       {dimensions.width > 1000 && (
         <DrawerItem
           style={{ position: "absolute", bottom: 0, left: 0, width: open ? 255 : 52 }}
-          title="Minimise"
+          title={open ? "Minimise" : ""}
           accessoryLeft={props => (
             <Icon {...props} name={open ? "chevron-left" : "chevron-right"} />
           )}

@@ -72,7 +72,7 @@ export default function MapView(props: MapProps) {
   const [center, setCenter] = React.useState([0, 0]);
   const [locError, setLocError] = React.useState(false);
   async function getLocation() {
-    var { status } = await Location.requestPermissionsAsync();
+    var { status } = await Location.requestForegroundPermissionsAsync();
     if (status !== "granted") {
       setLocError(true);
       return;
