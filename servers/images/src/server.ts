@@ -2,11 +2,24 @@ import Fastify from "fastify";
 import FastifyStatic from "fastify-static";
 const fastify = Fastify({ logger: true });
 import path from "path";
-import Jimp from "jimp";
+import sharp from "sharp";
+import fetch from "node-fetch";
 
 fastify.register(FastifyStatic, {
   root: path.join(__dirname, "../dist"),
 });
+
+async function getImage(urls: string[]) {
+  for (var url of urls) {
+    const response = await fetch(url);
+    if (response.ok) {
+      return response;
+    }
+  }
+  return null;
+}
+
+type Format = "png" | "jpeg";
 
 fastify.get("/types/:size/:type", async function (request, reply) {
   const params = request.params as {
@@ -19,53 +32,35 @@ fastify.get("/types/:size/:type", async function (request, reply) {
     return;
   }
   const type = params.type.split(".").slice(0, -1).join(".");
-  const format = params.type.split(".").slice(-1)[0];
+  const format = params.type.split(".").slice(-1)[0] as Format;
+  if (format !== "jpeg" && format !== "png") {
+    reply.send(`Invalid Size: ${size}. Size >0, <=512`);
+    return;
+  }
 
-  let image;
+  const urls: string[] = [
+    !type.match(/[A-Z\s]/) && `https://munzee.global.ssl.fastly.net/images/pins/${encodeURIComponent(type)}.png`,
+    !type.match(/[A-Z\s]/) && `https://munzee.global.ssl.fastly.net/images/pins/${encodeURIComponent(type.toLowerCase().replace(/\s/g, ""))}.png`,
+    !type.match(/[A-Z\s]/) && `https://munzee.global.ssl.fastly.net/images/pins/${encodeURIComponent(type.toLowerCase().replace(/\s/g, "_"))}.png`,
+  ].filter(Boolean).filter((v,i,a) => a.indexOf(v) === i) as string[];
 
-  // Get Image Normally
-  try {
-    if (!type.match(/[A-Z\s]/)) {
-      image = await Jimp.read(
-        `https://munzee.global.ssl.fastly.net/images/pins/${encodeURIComponent(type)}.png`
-      );
-    }
-  } catch (e) {}
+  const response = await getImage(urls);
 
-  // Get Image without Spaces
-  if (!image)
-    try {
-      image = await Jimp.read(
-        `https://munzee.global.ssl.fastly.net/images/pins/${encodeURIComponent(
-          type.toLowerCase().replace(/\s/g, "")
-        )}.png`
-      );
-    } catch (e) {}
+  if (response) {
+    const transformer = sharp()
+      .resize(size)
+      [format]();
+    reply
+      .headers({
+        "Cache-Control": "public, max-age=43200, s-maxage=43200",
+        "Access-Control-Allow-Origin": "*",
+      })
+      .type(`image/${format}`)
+      .send(response.body.pipe(transformer));
+    return;
+  }
 
-  // Get Image with Underscores replacing Spaces
-  if (!image)
-    try {
-      image = await Jimp.read(
-        `https://munzee.global.ssl.fastly.net/images/pins/${encodeURIComponent(
-          type.toLowerCase().replace(/\s/g, "_")
-        )}.png`
-      );
-    } catch (e) {}
-
-  // Get "Missing" Image
-  if (!image)
-    try {
-      image = await Jimp.read(path.join(__dirname, "../dist/missing.png"));
-    } catch (e) {}
-  image?.autocrop().contain(size, size);
-
-  reply
-    .headers({
-      "Cache-Control": "public, max-age=43200, s-maxage=43200",
-      "Access-Control-Allow-Origin": "*",
-    })
-    .type(format)
-    .send(await image?.getBufferAsync(`image/${format}`));
+  reply.sendFile(path.join(__dirname, "../dist/missing.png"))
 });
 
 const start = async () => {
