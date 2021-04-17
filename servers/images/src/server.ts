@@ -1,13 +1,9 @@
 import Fastify from "fastify";
-import FastifyStatic from "fastify-static";
 const fastify = Fastify({ logger: true });
 import path from "path";
 import sharp from "sharp";
 import fetch from "node-fetch";
-
-fastify.register(FastifyStatic, {
-  root: path.join(__dirname, "../dist"),
-});
+import { createReadStream, createWriteStream, promises } from "fs";
 
 async function getImage(urls: string[]) {
   for (var url of urls) {
@@ -38,6 +34,20 @@ fastify.get("/types/:size/:type", async function (request, reply) {
     return;
   }
 
+  try {
+    await promises.access(path.join(__dirname, "../icons", `${size.toString()}_${type}.${format}`));
+    reply
+      .headers({
+        "Cache-Control": "public, max-age=43200, s-maxage=43200",
+        "Access-Control-Allow-Origin": "*",
+      })
+      .type(`image/${format}`)
+      .send(
+        createReadStream(path.join(__dirname, "../icons", `${size.toString()}_${type}.${format}`))
+      );
+    return;
+  } catch(e){}
+
   const urls: string[] = [
     !type.match(/[A-Z\s]/) && `https://munzee.global.ssl.fastly.net/images/pins/${encodeURIComponent(type)}.png`,
     !type.match(/[A-Z\s]/) && `https://munzee.global.ssl.fastly.net/images/pins/${encodeURIComponent(type.toLowerCase().replace(/\s/g, ""))}.png`,
@@ -50,17 +60,27 @@ fastify.get("/types/:size/:type", async function (request, reply) {
     const transformer = sharp()
       .resize(size)
       [format]();
+    const stream = response.body.pipe(transformer);
+    stream
+      .clone()
+      .pipe(createWriteStream(path.join(__dirname, "../icons", `${size.toString()}_${type}.${format}`)));
     reply
       .headers({
         "Cache-Control": "public, max-age=43200, s-maxage=43200",
         "Access-Control-Allow-Origin": "*",
       })
       .type(`image/${format}`)
-      .send(response.body.pipe(transformer));
+      .send(stream);
     return;
   }
 
-  reply.sendFile(path.join(__dirname, "../dist/missing.png"))
+  reply
+    .headers({
+      "Cache-Control": "public, max-age=43200, s-maxage=43200",
+      "Access-Control-Allow-Origin": "*",
+    })
+    .type(`image/png`)
+    .send(createReadStream(path.join(__dirname, "../icons/missing.png")));
 });
 
 const start = async () => {

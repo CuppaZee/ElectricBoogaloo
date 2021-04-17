@@ -16,7 +16,7 @@
     "lint": "tslint --project tsconfig.json",
     "prebuild": "node prebuild",
     "build": "tsc",
-    "docker-build": "node prebuild && tsc && docker build . -t cuppazee-images-alpine",
+    "docker-build": "tsc && docker build . -t cuppazee-images-alpine",
     "dev": "tsc-watch --onSuccess \"node --enable-source-maps ./lib/server.js\""
   },
   "dependencies": {
