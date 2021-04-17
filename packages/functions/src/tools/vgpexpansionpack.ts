@@ -35,7 +35,7 @@ const route: Route = {
             types: [
               [
                 "Generic",
-                `https://icons.cuppazee.app/64/envelope`,
+                `https://images.cuppazee.app/types/64/envelope`,
                 "envelope",
                 1,
                 1235,
@@ -45,7 +45,7 @@ const route: Route = {
               ],
               ...types.map(i => [
                 i.name.replace(/ Card$/, ""),
-                `https://icons.cuppazee.app/64/${i.icon}`,
+                `https://images.cuppazee.app/types/64/${i.icon}`,
                 i.strippedIcon,
                 1,
                 i.has_tag(TypeTags.Card)
@@ -61,7 +61,7 @@ const route: Route = {
               ]),
               [
                 "Any Reseller",
-                `https://icons.cuppazee.app/64/virtualreseller`,
+                `https://images.cuppazee.app/types/64/virtualreseller`,
                 "reseller",
                 1,
                 1234,
