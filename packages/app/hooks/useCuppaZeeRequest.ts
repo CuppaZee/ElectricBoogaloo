@@ -2,13 +2,14 @@ import { useQuery, UseQueryOptions } from "react-query";
 import useToken from "./useToken";
 import stringify from "fast-json-stable-stringify";
 import { useIsFocused } from "@react-navigation/native";
+import baseURL from "../baseURL";
 
 const getCuppaZeeData = async <T>(
   endpoint: string,
   params: { [key: string]: any },
   token: string
 ): Promise<T> => {
-  const response = await fetch(`https://server.beta.cuppazee.app/${endpoint}`, {
+  const response = await fetch(`${baseURL}/${endpoint}`, {
     method: "POST",
     body: JSON.stringify({ ...params, access_token: token }),
   });

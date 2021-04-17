@@ -17,6 +17,7 @@ import Requirements from "../../components/Clan/Requirements";
 import { pickTextColor } from "../../components/Clan/Cell";
 import useSetting, { ClanPersonalisationAtom } from "../../hooks/useSetting";
 import { useTranslation } from "react-i18next";
+import baseURL from "../../baseURL";
 
 export default function UserClanScreen() {
   const { t } = useTranslation();
@@ -78,7 +79,7 @@ export default function UserClanScreen() {
                 <Image
                   style={{ width: 32, height: 32, margin: 8 }}
                   source={{
-                    uri: `https://server.beta.cuppazee.app/requirements/${requirement}.png`,
+                    uri: `${baseURL}/requirements/${requirement}.png`,
                   }}
                 />
                 <View style={{ paddingVertical: 8, flex: 1 }}>

@@ -22,6 +22,7 @@ import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
 import TypeImage from "../../components/Common/TypeImage";
 import { useTranslation } from "react-i18next";
 import Icon from "../../components/Common/Icon";
+import baseURL from "../../baseURL";
 
 interface ReportModalProps {
   munzee: UniversalMunzee;
@@ -90,7 +91,7 @@ function ReportModal({ munzee, close, closeWithNext }: ReportModalProps) {
           style={{ margin: 4, flex: 1 }}
           onPress={async () => {
             await fetch(
-              `https://server.beta.cuppazee.app/user/universal/report/v1?report=${encodeURIComponent(
+              `${baseURL}/user/universal/report/v1?report=${encodeURIComponent(
                 JSON.stringify({ qr: munzee, data: type }, null, 2)
               )}`
             );
@@ -174,7 +175,7 @@ function SubmitModal({ close }: SubmitModalProps) {
           style={{ margin: 4, flex: 1 }}
           onPress={async () => {
             const response = await fetch(
-              `https://server.beta.cuppazee.app/user/universal/submit/v1?code=${encodeURIComponent(
+              `${baseURL}/user/universal/submit/v1?code=${encodeURIComponent(
                 code
               )}`
             );

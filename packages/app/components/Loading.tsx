@@ -8,6 +8,7 @@ import useComponentSize from "../hooks/useComponentSize";
 import useLogin from "../hooks/useLogin";
 import { useTeakens } from "../hooks/useToken";
 import Icon from "./Common/Icon";
+import baseURL from "../baseURL";
 
 function LoginError({ children }: { children: (login: () => void) => React.ReactElement }) {
   const buildLink = useLinkBuilder();
@@ -166,7 +167,7 @@ export default function Loading({
         ) : (
           <Button
             onPress={async () => {
-              await fetch(`https://server.beta.cuppazee.app/report`, {
+              await fetch(`${baseURL}/report`, {
                 method: "POST",
                 body: JSON.stringify({
                   reports: [...(customErrors ?? []), ...(data ?? [])].map(i =>

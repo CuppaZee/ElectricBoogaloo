@@ -11,6 +11,10 @@ const configs = {
     redirect_uri: "https://server.cuppazee.app/auth/auth/v1",
     client_id: "91714935879f433364bff187bda66183",
   },
+  dev: {
+    redirect_uri: "http://localhost/auth/auth/v1",
+    client_id: "628ed7ab83b0a6f59674f1bf04e4afa2",
+  },
   team: {
     client_id: "c983d59354542f8d15e11924ed61bae6",
     redirect_uri: "https://server.cuppazee.app/auth/auth/team/v1",
@@ -28,7 +32,7 @@ WebBrowser.maybeCompleteAuthSession({
 export default function useLogin(
   path: string,
   shouldRedirect?: boolean,
-  application: keyof typeof configs = "main"
+  application: keyof typeof configs = "dev"
 ) {
   const redirectUri =
     Platform.OS === "web"

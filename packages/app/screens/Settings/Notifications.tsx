@@ -29,6 +29,7 @@ import Icon from "../../components/Common/Icon";
 import useSetting, { LiveLocationErrorAtom } from "../../hooks/useSetting";
 import Loading from "../../components/Loading";
 import { LocationPickerMap } from "../../components/Map/Map";
+import baseURL from "../../baseURL";
 
 interface LocationPickerModalProps {
   location: DeviceNotificationStaticLocation;
@@ -396,7 +397,7 @@ export default function NotificationScreen() {
     if (Platform.OS === "web") return;
     if (token && token !== "_failed") {
       (async function () {
-        const response = await fetch(`https://server.beta.cuppazee.app/notifications/get`, {
+        const response = await fetch(`${baseURL}/notifications/get`, {
           method: "POST",
           body: JSON.stringify({ token }),
         });
@@ -900,7 +901,7 @@ export default function NotificationScreen() {
               }
 
               // Update Settings Server-side
-              await fetch(`https://server.beta.cuppazee.app/notifications/signup`, {
+              await fetch(`${baseURL}/notifications/signup`, {
                 method: "POST",
                 body: JSON.stringify({
                   data: JSON.stringify({

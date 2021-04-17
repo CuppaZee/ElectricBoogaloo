@@ -2,10 +2,11 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createContext, useContext, useEffect } from "react";
 import { useQuery } from "react-query";
 import { atom, useAtom } from "jotai";
+import baseURL from "../baseURL";
 
 const getToken = async (teaken: string, user_id: number) => {
   const response = await fetch(
-    `https://server.beta.cuppazee.app/auth/get/v2?teaken=${encodeURIComponent(
+    `${baseURL}/auth/get/v2?teaken=${encodeURIComponent(
       teaken
     )}&user_id=${encodeURIComponent(user_id)}`
   );

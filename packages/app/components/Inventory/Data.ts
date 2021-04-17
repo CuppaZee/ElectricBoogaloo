@@ -108,7 +108,7 @@ export default function InventoryConverter(
 
   for (const credit in dataraw.credits) {
     const type = db.getType(credit);
-    const d = data.types.find(i => i.type === type);
+    const d = data.types.find(i => i.type !== undefined && i.type !== null && i.type === type);
     if (d) {
       d.credit = Number(dataraw.credits[credit]);
       d.amount += d.credit;
