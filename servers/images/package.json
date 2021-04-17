@@ -20,6 +20,7 @@
     "dev": "tsc-watch --onSuccess \"node --enable-source-maps ./lib/server.js\""
   },
   "dependencies": {
+    "@cuppazee/types": "^0.0.44",
     "cors": "^2.8.5",
     "fastify": "^3.14.2",
     "fastify-static": "^4.0.1",

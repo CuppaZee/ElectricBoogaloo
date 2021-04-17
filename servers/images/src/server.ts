@@ -4,6 +4,7 @@ import path from "path";
 import sharp from "sharp";
 import fetch from "node-fetch";
 import { createReadStream, createWriteStream, promises } from "fs";
+import types from "@cuppazee/types";
 
 async function getImage(urls: string[]) {
   for (var url of urls) {
@@ -27,7 +28,8 @@ fastify.get("/types/:size/:type", async function (request, reply) {
     reply.send(`Invalid Size: ${size}. Size >0, <=512`);
     return;
   }
-  const type = params.type.split(".").slice(0, -1).join(".");
+  let type = params.type.split(".").slice(0, -1).join(".");
+  type = types.getType(type)?.icon ?? type;
   const format = params.type.split(".").slice(-1)[0] as Format;
   if (format !== "jpeg" && format !== "png") {
     reply.send(`Invalid Size: ${size}. Size >0, <=512`);
