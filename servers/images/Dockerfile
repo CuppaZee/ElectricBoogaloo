@@ -7,7 +7,7 @@ COPY package*.json ./
 RUN yarn install --prod
 
 COPY lib lib
-COPY icons icons
+COPY override override
 
 EXPOSE 80
 CMD [ "node", "lib/server.js" ]
