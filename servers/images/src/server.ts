@@ -93,7 +93,7 @@ fastify.get("/types/:size/:type", async function (request, reply) {
 
 const start = async () => {
   try {
-    await fastify.listen(1234);
+    await fastify.listen(80, "0.0.0.0");
   } catch (err) {
     fastify.log.error(err);
     process.exit(1);
