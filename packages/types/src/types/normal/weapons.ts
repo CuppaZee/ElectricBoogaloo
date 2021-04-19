@@ -6,7 +6,7 @@ const weapons: {
   id: TypeID;
   state: TypeState;
   weapon: "zeecret" | "clan";
-  alt_icons?: TypeID[];
+  alt_icons?: string[];
   points?: PointsInterface;
   tags?: TypeTags[];
   hidden?: TypeHidden[];

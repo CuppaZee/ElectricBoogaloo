@@ -83,6 +83,21 @@ const c2021: {
     icon: "easterchickcard",
     id: "null_easterchickcard",
   },
+  {
+    name: "Thinking of You Card",
+    icon: "thinkingofyoucard",
+    id: "null_thinkingofyoucard",
+  },
+  {
+    name: "Knock Knock Joke Card",
+    icon: "knockknockjokecard",
+    id: "null_knockknockjokecard",
+  },
+  {
+    name: "It's 5 O' Clock Somewhere Card",
+    icon: "it's5o'clocksomewherecard",
+    id: "null_it's5o'clocksomewherecard",
+  },
 ];
 
 export default c2021;

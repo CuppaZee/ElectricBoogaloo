@@ -311,7 +311,7 @@ for (const t of weapons) {
     name: t.name,
     icon: t.icon,
     id: t.id,
-    alt_icons: [],
+    alt_icons: t.alt_icons ?? [],
     state: t.state,
     category: `weapon_${t.weapon}`,
     tags: [

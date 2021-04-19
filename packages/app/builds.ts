@@ -928,10 +928,31 @@ const builds: Build[] = [
     date: "2021-04-06",
     fixes: [
       {
-        description: "Fixed Error with Android Browser Warm-up"
+        description: "Fixed Error with Android Browser Warm-up",
       },
       {
-        description: "Minor Bug Fixes"
+        description: "Minor Bug Fixes",
+      },
+    ],
+  },
+  {
+    build: 55,
+    date: "2021-04-19",
+    types: [
+      {
+        title: "New Cards",
+        types: ["thinkingofyoucard", "knockknockjokecard", "it's5o'clocksomewherecard"],
+      },
+      {
+        title: "Golden Four Leaf Clover",
+        description: "Took me a while to find the icon for this. Sorry for the delay.",
+        types: ["goldenfourleafclover"],
+      },
+    ],
+    fixes: [
+      {
+        description:
+          'I finally figured out the issue with the "Nvgoggles" and "Horse" type aliases not working, so icons and names will now show correctly for them in the Inventory.',
       },
     ],
   },
