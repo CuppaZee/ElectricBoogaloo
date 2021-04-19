@@ -64,7 +64,7 @@ fastify.get("/types/:size/:type", async function (request, reply) {
     return;
   }
 
-  const cacheFilePath = path.join(cacheDir, `${size.toString()}_${type}.${format}`);
+  const cacheFilePath = path.join(cacheDir, `${size.toString()}_${type.toLowerCase().replace(/[^a-z0-9]/g, "")}.${format}`);
 
   try {
     // Already Cached
