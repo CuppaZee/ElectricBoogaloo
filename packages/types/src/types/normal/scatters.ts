@@ -532,6 +532,16 @@ const scatters: {
     },
   },
   {
+    name: "Golden Four Leaf Clover",
+    icon: "goldenfourleafclover",
+    id: "null_goldenfourleafclover",
+    state: TypeState.Virtual,
+    scatter: {
+      standalone: true,
+      duration: 2,
+    },
+  },
+  {
     name: "Scarab Artifact",
     icon: "scarabartifact",
     id: "null_scarabartifact",

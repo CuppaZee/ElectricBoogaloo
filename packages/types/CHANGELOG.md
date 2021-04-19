@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.46 - 19/04/2021
+- Added Golden Four Leaf Clover
+## 0.0.45 - 19/04/2021
+- Fixed Horse and Nvgoggles Aliases
+- Added Thinking of You, Knock Knock Joke and It's 5 O'Clock Somewhere Cards
 ## 0.0.44 - 05/04/2021
 - Added Christmas Event 2020 Card
 - Added March in May Event Card
