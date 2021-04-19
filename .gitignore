@@ -85,3 +85,4 @@ public/
 db.sqlite
 
 /packages/app/android/app/google-services.json
+dependencies.json
