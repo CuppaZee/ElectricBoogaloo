@@ -60,7 +60,5 @@ module.exports = async function (env, argv) {
     }
   }
 
-  console.log(JSON.stringify(config.module.rules, null, 2))
-
   return config;
 };

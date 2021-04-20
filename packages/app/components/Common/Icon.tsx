@@ -27,7 +27,22 @@ export default React.memo(function Icon({
   const { height, tintColor, color, marginHorizontal, ...iconStyle } = StyleSheet.flatten(style);
   const [loaded, setLoaded] = React.useState(iconLoadedRef.iconLoaded);
   React.useEffect(() => {
-    if (!loaded) iconLoaded.then(() => setLoaded(1)).catch(() => setLoaded(2));
+    const unloadedRef = { value: false };
+    if (!loaded) {
+      (async function () {
+        try {
+          await iconLoaded;
+          if (!unloadedRef.value) {
+            setLoaded(1);
+          }
+        } catch (e) {
+          if (!unloadedRef.value) {
+            setLoaded(2);
+          }
+        }
+      })();
+    }
+    return () => {unloadedRef.value = true}
   });
   return (
     <View style={{ height }}>

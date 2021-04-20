@@ -1,5 +1,5 @@
 import { RouteProp, useRoute } from "@react-navigation/native";
-import { Button, Layout, Spinner, Text } from "@ui-kitten/components";
+import { Button, Layout, Text } from "@ui-kitten/components";
 import * as React from "react";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
@@ -7,11 +7,10 @@ import useComponentSize from "../../hooks/useComponentSize";
 import { UserStackParamList } from "../../types";
 import useTitle from "../../hooks/useTitle";
 import { ScrollView, View } from "react-native";
-import MapView from "../../components/Maps/MapView";
 import Loading from "../../components/Loading";
 import { BlastIcon } from "../../components/Blast/Icon";
 import { useTranslation } from "react-i18next";
-import { AutoMap, LocationPickerMap } from "../../components/Map/Map";
+import { LocationPickerMap } from "../../components/Map/Map";
 
 export interface BlastPointsData {
   min: number;

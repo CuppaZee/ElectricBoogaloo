@@ -1768,10 +1768,10 @@
   resolved "https://registry.yarnpkg.com/@cuppazee/api/-/api-0.0.9.tgz#2e41ebd69ebd8ac80fe2bf565e40b96f33ab608d"
   integrity sha512-cwk1iRY6owgZhojStztlzfuDvw/fGePRijNS4puK7E71+S7xEI1Mvahpv3k92ZiNl9NlvToSFGPfRbHx7icuHQ==
 
-"@cuppazee/types@^0.0.45":
-  version "0.0.45"
-  resolved "https://registry.yarnpkg.com/@cuppazee/types/-/types-0.0.45.tgz#97a0c9ffef47b3927fb7e6e30abf2f1af6238d7b"
-  integrity sha512-B0dVJDytQ/clruxtZKtFvzLiu55M+y2yE8bgHFY0FCuE3AMR1/6Huaetr4peRxoaPeMZIUsIDX378NbfVabvTQ==
+"@cuppazee/types@^0.0.44":
+  version "0.0.44"
+  resolved "https://registry.yarnpkg.com/@cuppazee/types/-/types-0.0.44.tgz#bf6bcb0044f2c0ce812c32807fece4b46d804f51"
+  integrity sha512-NdwnrvhABpOqVbRMUywdLlqNKRPQtdX7TneGY3daEGqBdfKU8EDiztN9AbLSn76ulaakSc3O9lWWJnX4ycKtFA==
 
 "@egjs/hammerjs@^2.0.17":
   version "2.0.17"
@@ -4738,10 +4738,17 @@
     "@types/react" "*"
     "@types/react-native" "*"
 
-"@types/react-native@*", "@types/react-native@~0.63.2":
+"@types/react-native@*":
   version "0.63.46"
   resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.63.46.tgz#942df5af29046c6f22227495e00d5297cc1cea73"
   integrity sha512-SnBnWRErpISIaWk4K8kAfIKqSPdZ8fdH6HIw7kVdz6jMl/5FAf6iXeIwRfVZg1bCMh+ymNPCpSENNNEVprxj/w==
+  dependencies:
+    "@types/react" "*"
+
+"@types/react-native@~0.63.4":
+  version "0.63.52"
+  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.63.52.tgz#449beb4a413ec0f2c172cbf676a95f5b0952adf4"
+  integrity sha512-sBXvvtJaIUSXQLDh9NZitx1KHkKUdBLZy34lFKJaIXtpHIh5OEbBXeyUTFBtFwjk/RD0tneAtUqsdhheZRzAzw==
   dependencies:
     "@types/react" "*"
 
@@ -4753,7 +4760,7 @@
     "@types/prop-types" "*"
     csstype "^3.0.2"
 
-"@types/react@~16.9.35":
+"@types/react@^16.9.56":
   version "16.9.56"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.56.tgz#ea25847b53c5bec064933095fc366b1462e2adf0"
   integrity sha512-gIkl4J44G/qxbuC6r2Xh+D3CGZpJ+NdWTItAPmZbR5mUS+JQ8Zvzpl0ea5qT/ZT3ZNTUcDKUVqV3xBE8wv/DyQ==
@@ -16991,11 +16998,6 @@ typescript@^4.2.4:
   version "4.2.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.2.4.tgz#8610b59747de028fda898a8aef0e103f156d0961"
   integrity sha512-V+evlYHZnQkaz8TRBuxTA92yZBPotr5H+WhQ7bD3hZUndx5tGOa1fuCgeSjxAzM1RiN5IzvadIXTVefuuwZCRg==
-
-typescript@~4.0.0:
-  version "4.0.5"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.0.5.tgz#ae9dddfd1069f1cb5beb3ef3b2170dd7c1332389"
-  integrity sha512-ywmr/VrTVCmNTJ6iV2LwIrfG1P+lv6luD8sUJs+2eI9NLGigaN+nUQc13iHqisq7bra9lnmUSYqbJvegraBOPQ==
 
 ua-parser-js@^0.7.18:
   version "0.7.23"

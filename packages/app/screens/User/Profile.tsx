@@ -29,11 +29,11 @@ export const UserPagesNow = [
     title: "user_challenges",
     screen: "Challenges",
   },
-  {
-    icon: "shield",
-    title: "user_clan_progress",
-    screen: "ClanProgress",
-  },
+  // {
+  //   icon: "shield",
+  //   title: "user_clan_progress",
+  //   screen: "ClanProgress",
+  // },
   {
     icon: "hammer",
     title: "user_qrew_checker",

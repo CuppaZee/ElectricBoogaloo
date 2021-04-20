@@ -11,6 +11,7 @@ import db from "@cuppazee/types";
 import TypeImage from "../../components/Common/TypeImage";
 import { UserPagesNow } from "../User/Profile";
 import Icon from "../../components/Common/Icon";
+import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 
 export default React.memo(function UserDashCard({
   item,
@@ -20,6 +21,7 @@ export default React.memo(function UserDashCard({
 }: DashCardProps<{ username: string; user_id: string }>) {
   const { t } = useTranslation();
   const nav = useNavigation();
+  const user = useMunzeeRequest("user", { username: item.username }, touched);
   return (
     <Layout level="3" style={[styles.card, { flex: 1 }]}>
       <ScrollView onLayout={onOuterLayout} style={{ flex: 1 }}>
@@ -94,6 +96,48 @@ export default React.memo(function UserDashCard({
                 }
               />
             ))}
+            {!!user.data?.data?.clan ? (
+              <DrawerItem
+                key="Clan"
+                style={{ backgroundColor: "transparent" }}
+                selected={false}
+                title={() => (
+                  <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
+                    {user.data?.data?.clan?.name}
+                  </Text>
+                )}
+                accessoryLeft={() => (
+                  <Image
+                    source={{ uri: user.data?.data?.clan?.logo ?? "" }}
+                    style={{ height: 32, width: 32, borderRadius: 16, marginVertical: -4, marginHorizontal: 2 }}
+                  />
+                )}
+                onPress={() =>
+                  nav.navigate("Clan", {
+                    screen: "Stats",
+                    params: { clanid: user.data?.data?.clan?.id },
+                  })
+                }
+              />
+            ) : (
+              <DrawerItem
+                key="Clan"
+                style={{ backgroundColor: "transparent" }}
+                selected={false}
+                title={() => (
+                  <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
+                    {t(`pages:user_clan_progress`)}
+                  </Text>
+                )}
+                accessoryLeft={props => <Icon name="shield-half-full" {...props} />}
+                onPress={() =>
+                  nav.navigate("User", {
+                    screen: "Clan",
+                    params: { username: item.username },
+                  })
+                }
+              />
+            )}
             {/* <DrawerGroup
               title={() => (
                 <Text style={{ flex: 1, marginLeft: 4 }} category="s1">

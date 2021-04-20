@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/core";
-import { Button, Layout, Text, useTheme } from "@ui-kitten/components";
+import { BottomNavigation, BottomNavigationTab, Button, Layout, Text, useTheme } from "@ui-kitten/components";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -88,7 +88,7 @@ export default function DashboardScreen() {
     ...users,
   ];
   return (
-    <Layout onLayout={onLayout} style={{ flex: 1 }}>
+    <Layout onLayout={onLayout} style={{ flex: 1, marginTop: -4 }}>
       {liveLocationError === "permission_failed" && (
         <Layout style={{ margin: 8, borderRadius: 8, padding: 4 }} level="3">
           <Text category="h5">It seems that CuppaZee no longer has Live Location access</Text>
@@ -138,75 +138,6 @@ export default function DashboardScreen() {
           </Button>
         </Layout>
       )}
-      <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "center",
-          marginBottom: -8,
-        }}>
-        {dashCards.map((i, n) => (
-          <Pressable
-            key={"nonUser" in i ? i.nonUser : i.user_id}
-            onPress={() => {
-              scrollRef.current?.scrollToOffset({
-                offset: (position.current || 0) + (n - index) * Math.min(600, width),
-              });
-            }}>
-            {"nonUser" in i ? (
-              <Layout
-                level="2"
-                style={
-                  index === n
-                    ? {
-                        height: 32,
-                        width: 32,
-                        borderRadius: 16,
-                        marginHorizontal: 2,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }
-                    : {
-                        height: 16,
-                        width: 16,
-                        borderRadius: 8,
-                        marginHorizontal: 2,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }
-                }>
-                <Icon
-                  style={
-                    index === n
-                      ? { color: theme["text-basic-color"], height: 24, width: 24 }
-                      : { color: theme["text-basic-color"], height: 12, width: 12 }
-                  }
-                  name={
-                    i.nonUser === "clan"
-                      ? "shield-half-full"
-                      : i.nonUser === "tools"
-                      ? "hammer-screwdriver"
-                      : "playlist-check"
-                  }
-                />
-              </Layout>
-            ) : (
-              <Image
-                style={
-                  index === n
-                    ? { height: 32, width: 32, borderRadius: 16, marginHorizontal: 2 }
-                    : { height: 16, width: 16, borderRadius: 8, marginHorizontal: 2 }
-                }
-                source={{
-                  uri: `https://munzee.global.ssl.fastly.net/images/avatars/ua${Number(
-                    i.user_id
-                  ).toString(36)}.png`,
-                }}
-              />
-            )}
-          </Pressable>
-        ))}
-      </View>
       <WheelWrapper
         onWheel={ev => {
           if (
@@ -320,6 +251,47 @@ export default function DashboardScreen() {
           ListHeaderComponent={<View style={{ width: (width - Math.min(600, width)) / 2 }} />}
         />
       </WheelWrapper>
+
+      <BottomNavigation
+        style={{ marginTop: -8 }}
+        selectedIndex={index}
+        onSelect={newIndex => {
+          scrollRef.current?.scrollToOffset({
+            offset: (position.current || 0) + (newIndex - index) * Math.min(600, width),
+          });
+        }}>
+        {dashCards.map((card, cardIndex) => (
+          <BottomNavigationTab
+            key={("nonUser" in card ? card.nonUser : card.user_id) + (cardIndex === index ? "true" : "false")}
+            icon={props => {
+              if ("nonUser" in card) {
+                return (
+                  <Icon
+                    name={
+                      card.nonUser === "clan"
+                        ? "shield-half-full"
+                        : card.nonUser === "tools"
+                        ? "hammer-screwdriver"
+                        : "playlist-check"
+                    }
+                    {...props}
+                  />
+                );
+              }
+              return (
+                <Image
+                  style={{ height: 32, width: 32, margin: -4, borderRadius: 16 }}
+                  source={{
+                    uri: `https://munzee.global.ssl.fastly.net/images/avatars/ua${Number(
+                      card.user_id
+                    ).toString(36)}.png`,
+                  }}
+                />
+              );
+            }}
+          />
+        ))}
+      </BottomNavigation>
     </Layout>
   );
 }
