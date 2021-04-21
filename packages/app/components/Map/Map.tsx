@@ -18,12 +18,18 @@ import type { CamelCase } from "type-fest";
 import { MapSearchModal } from "./MapShared";
 import Icon from "../Common/Icon";
 import * as Location from "expo-location";
+import circle from "@turf/circle";
 
 MapboxGL.setAccessToken(
   "pk.eyJ1Ijoic29oY2FoIiwiYSI6ImNqeWVqcm8wdTAxc2MzaXFpa282Yzd2aHEifQ.afYbt2sVMZ-kbwdx5_PekQ"
 );
 
-export function LocationPickerMap({ icon, onPositionChange }: LocationPickerMapProps) {
+export function LocationPickerMap({
+  icon,
+  onPositionChange,
+  circleRadius,
+  circleColor,
+}: LocationPickerMapProps) {
   const [viewport, setViewport] = React.useState<MapViewport>();
   return (
     <AutoMap
@@ -50,6 +56,36 @@ export function LocationPickerMap({ icon, onPositionChange }: LocationPickerMapP
               "icon-anchor": "bottom",
               "icon-size": 0.8,
               "icon-image": icon,
+            }}
+          />
+        </Source>
+      )}
+      {!!viewport && !!circleRadius && !!circleColor && (
+        <Source
+          id="radius"
+          type="geojson"
+          data={{
+            type: "FeatureCollection",
+            features: [
+              circle([viewport.longitude, viewport.latitude], circleRadius, {
+                units: "meters",
+                properties: { colour: circleColor },
+              }),
+            ],
+          }}>
+          <Layer
+            id="radiusFill"
+            type="fill"
+            paint={{
+              "fill-color": ["get", "colour"],
+              "fill-opacity": 0.1,
+            }}
+          />
+          <Layer
+            id="radiusStroke"
+            type="line"
+            paint={{
+              "line-color": ["get", "colour"],
             }}
           />
         </Source>
@@ -382,24 +418,25 @@ export function Icons(props: IconsProps) {
 }
 
 export function Marker(props: MarkerProps) {
-  return <MapboxGL.PointAnnotation
-    id={props.id}
-    coordinate={[props.longitude, props.latitude]}
-    draggable={props.draggable}
-    onDragEnd={(event?: any) => {
-      props.onDragEnd?.({ 
-        type: "dragend",
-        lngLat: event.geometry.coordinates,
-      });
-    }}
-    anchor={{
-      x: 0.5,
-      y: 1,
-    }}
-    onSelected={() => {
-      props.onPress?.();
-    }}
-  >
-    {props.children}
-  </MapboxGL.PointAnnotation>;
+  return (
+    <MapboxGL.PointAnnotation
+      id={props.id}
+      coordinate={[props.longitude, props.latitude]}
+      draggable={props.draggable}
+      onDragEnd={(event?: any) => {
+        props.onDragEnd?.({
+          type: "dragend",
+          lngLat: event.geometry.coordinates,
+        });
+      }}
+      anchor={{
+        x: 0.5,
+        y: 1,
+      }}
+      onSelected={() => {
+        props.onPress?.();
+      }}>
+      {props.children}
+    </MapboxGL.PointAnnotation>
+  );
 }

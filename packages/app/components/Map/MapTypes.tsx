@@ -28,6 +28,8 @@ export interface LocationPickerMapProps {
   onPositionChange?(viewport: MapViewport): void;
   onPositionFinishChange?(viewport: MapViewport): void;
   defaultViewport?: MapViewport;
+  circleRadius?: number;
+  circleColor?: string;
 }
 
 export interface AutoMapProps {

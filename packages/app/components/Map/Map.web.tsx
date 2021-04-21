@@ -30,8 +30,9 @@ import {
 } from "./MapTypes";
 import * as Location from "expo-location";
 import { MapSearchModal } from "./MapShared";
+import circle from "@turf/circle";
 
-export function LocationPickerMap({ icon, onPositionChange }: LocationPickerMapProps) {
+export function LocationPickerMap({ icon, onPositionChange, circleColor, circleRadius }: LocationPickerMapProps) {
   const [viewport, setViewport] = React.useState<MapViewport>();
   return (
     <AutoMap
@@ -58,6 +59,37 @@ export function LocationPickerMap({ icon, onPositionChange }: LocationPickerMapP
               "icon-anchor": "bottom",
               "icon-size": 0.8,
               "icon-image": icon,
+            }}
+          />
+        </Source>
+      )}
+
+      {!!viewport && !!circleRadius && !!circleColor && (
+        <Source
+          id="radius"
+          type="geojson"
+          data={{
+            type: "FeatureCollection",
+            features: [
+              circle([viewport.longitude, viewport.latitude], circleRadius, {
+                units: "meters",
+                properties: { colour: circleColor },
+              }),
+            ],
+          }}>
+          <Layer
+            id="radiusFill"
+            type="fill"
+            paint={{
+              "fill-color": ["get", "colour"],
+              "fill-opacity": 0.1,
+            }}
+          />
+          <Layer
+            id="radiusStroke"
+            type="line"
+            paint={{
+              "line-color": ["get", "colour"],
             }}
           />
         </Source>

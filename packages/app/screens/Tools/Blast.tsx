@@ -72,6 +72,8 @@ export default function BlastPlannerScreen() {
         <Select label="Blasting as" {...props} />
         <Layout style={{ height: 400, margin: 4, borderRadius: 8 }}>
           <LocationPickerMap
+            circleRadius={1609.344}
+            circleColor="#00ff00"
             icon="blastcapture"
             onPositionChange={viewport => {
               pos.current = {
