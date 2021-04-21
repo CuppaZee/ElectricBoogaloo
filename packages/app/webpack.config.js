@@ -60,5 +60,9 @@ module.exports = async function (env, argv) {
     }
   }
 
+  config.optimization.runtimeChunk = {
+    name: entrypoint => `runtime---${entrypoint.name}`,
+  };
+
   return config;
 };
