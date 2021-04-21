@@ -117,7 +117,6 @@ async function apiResponder(req: functions.Request, res: functions.Response) {
         use.function({
           params: params,
           res,
-          db: null as any,
           notificationData,
         })
       );

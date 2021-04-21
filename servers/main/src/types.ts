@@ -1,4 +1,3 @@
-import type { firestore } from "firebase-admin";
 import type { Response } from "firebase-functions"
 import { DeviceNotificationSettings } from "./util/notificationSettings";
 
@@ -19,7 +18,6 @@ export type RouteData = {
     [key:string]: any;
   };
   res: Response;
-  db: firestore.Firestore;
   notificationData: () => Promise<DeviceNotificationSettings[]>;
 }
 

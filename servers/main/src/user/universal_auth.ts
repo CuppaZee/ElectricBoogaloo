@@ -13,8 +13,7 @@ const route: Route = {
       version: 1,
       async function({
         params: { code, state },
-        res,
-        db
+        res
       }) {
         try {
         return { status: "error", data: "__error_unimplemented" };

@@ -115,9 +115,6 @@ async function apiResponder(req: express.Request, res: express.Response) {
       use.function({
         params: params,
         res,
-        // db,
-        db: null as any,
-        // notificationData,
         notificationData: null as any,
       })
     );

@@ -9,9 +9,7 @@ const route: Route = {
   versions: [
     {
       version: 1,
-      async function({
-        db
-      }) {
+      async function() {
         if (mhq().date() < 3) return {
           status: "error",
           data: null,

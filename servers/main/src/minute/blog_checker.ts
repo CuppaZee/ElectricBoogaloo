@@ -8,16 +8,13 @@ import notification from "../util/notification";
 import sendEmail from "../util/nodemailer";
 import { Route } from "../types";
 import { DeviceNotificationSettings } from "../util/notificationSettings";
-import { firestore } from "firebase-admin";
 import mongo from "../util/mongo";
 
 async function sendNotifications(
   { link, title }: any,
-  db: firestore.Firestore,
   tokens: Promise<DeviceNotificationSettings[]>
 ) {
   await notification(
-    db,
     (await tokens)
       .filter(i => i.munzee_blog)
       .map(i => ({
@@ -39,7 +36,7 @@ const route: Route = {
   versions: [
     {
       version: 1,
-      async function({ db, notificationData }) {
+      async function({ notificationData }) {
         var data = await mongo.db("notifications").collection("feeds").findOne({ id: "munzee" });
         if (!data.run)
           return {
@@ -57,7 +54,7 @@ const route: Route = {
             console.log("New Munzee Blog", feed.items[0].guid);
             let img = cheerio.load(feed.items[0]["content:encoded"] || "")("img")[0];
             if (!data.dev)
-              sendNotifications(feed.items[0], db, notificationData()).catch(() =>
+              sendNotifications(feed.items[0], notificationData()).catch(() =>
                 console.log("Sending Notifications Failed")
               );
             if (
