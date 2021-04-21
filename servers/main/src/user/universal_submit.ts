@@ -1,7 +1,8 @@
 import {request} from "../util";
-// import admin from 'firebase-admin';
 import types from './universal_types.json';
 import { Route } from "../types";
+import mongo from "../util/mongo";
+import db from "@cuppazee/types";
 
 const route: Route = {
   path: "user/universal/submit",
@@ -10,32 +11,33 @@ const route: Route = {
     {
       version: 1,
       async function({
-        params: { code, access_token },
-        db
-      }: any) {
+        params: { code, access_token }
+      }) {
         var codeData = code.match(/(?:https?:\/\/(?:www.)?)?(?:munzee.com)?\/?m\/([^/]{0,30})\/([0-9]+)\/([0-9a-zA-Z]{6})/);
         var munzee = await request('munzee', { url: `/m/${codeData[1]}/${codeData[2]}` }, access_token);
-        var type = types.find(i => i.icon === munzee?.data?.pin_icon);
+        console.log(codeData, types, munzee?.data?.pin_icon);
+        var type = types.find(i => db.strip(i.icon) === db.strip(munzee?.data?.pin_icon || ""));
         if(!type) {
           return {
-            status: "success",
+            status: "error",
             data: "We don't yet support this type of Munzee."
           }
         }
         if(!munzee?.data?.deployed_at) {
           return {
-            status: "success",
+            status: "error",
             data: "You must deploy the Munzee before submitting."
           }
         }
-        return { status: "error", data: "__error_unimplemented" };
-        // await db.collection('data').doc('universal').update({
-        //   munzees: admin.firestore.FieldValue.arrayUnion(`${codeData[1]}/${codeData[2]}/${codeData[3].toUpperCase()}/${munzee?.data?.munzee_id}/${type.id}`)
-        // });
-        // return {
-        //   status: "success",
-        //   data: true
-        // }
+        await mongo.db("universal").collection("munzees").insertOne({
+          code: `${codeData[1]}/${codeData[2]}/${codeData[3].toUpperCase()}`,
+          munzee_id: munzee?.data?.munzee_id,
+          type: type?.id,
+        });
+        return {
+          status: "success",
+          data: true
+        }
       },
     },
   ],
