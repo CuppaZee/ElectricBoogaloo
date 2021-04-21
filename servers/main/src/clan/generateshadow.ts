@@ -1,5 +1,5 @@
 import { request, retrieve } from "../util";
-import config from "../config.json";
+import config from "../config";
 import { Route } from "../types";
 import mongo from "../util/mongo";
 const Airtable = require("airtable");

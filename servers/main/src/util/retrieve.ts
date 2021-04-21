@@ -1,7 +1,7 @@
 // import { logger } from "firebase-functions";
 import fetch from "node-fetch";
 import { URLSearchParams } from "url";
-import _config from "../config.json";
+import _config from "../config";
 // import db from "./db";
 import mongo from "./mongo";
 

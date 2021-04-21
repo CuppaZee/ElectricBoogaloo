@@ -1,7 +1,7 @@
 import fetch from "node-fetch";
 import crypto from "crypto";
 import { URLSearchParams } from "url";
-import config from "../config.json";
+import config from "../config";
 import { Route } from "../types";
 import mongo from "../util/mongo";
 

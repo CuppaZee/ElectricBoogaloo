@@ -1,5 +1,5 @@
 import { retrieve } from "../util";
-import config from '../config.json';
+import config from '../config';
 import { Route } from "../types";
 
 const route: Route = {

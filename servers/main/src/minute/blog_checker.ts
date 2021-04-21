@@ -3,7 +3,7 @@ const parser = new rss();
 import fetch from "node-fetch";
 import { URLSearchParams } from "url";
 import cheerio from "cheerio";
-import config from "../config.json";
+import config from "../config";
 import notification from "../util/notification";
 import sendEmail from "../util/nodemailer";
 import { Route } from "../types";

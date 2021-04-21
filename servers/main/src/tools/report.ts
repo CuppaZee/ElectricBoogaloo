@@ -1,4 +1,4 @@
-import config from "../config.json";
+import config from "../config";
 import fetch from "node-fetch";
 import { Route } from "../types";
 import { URLSearchParams } from "url";

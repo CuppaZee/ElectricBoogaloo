@@ -1,4 +1,4 @@
-import config from '../config.json';
+import config from '../config';
 import nodemailer from 'nodemailer';
 const transporter = nodemailer.createTransport(config.nodemailer);
 

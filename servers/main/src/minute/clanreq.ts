@@ -1,6 +1,6 @@
 import { Route } from "../types";
 
-import config from '../config.json';
+import config from '../config';
 import sendEmail from '../util/nodemailer';
 
 const route: Route = {
