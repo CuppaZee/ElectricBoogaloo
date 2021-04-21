@@ -1,2 +1,1 @@
-// export default "http://localhost";
-export default "https://server.beta.cuppazee.app"
+export default "https://nextserver.cuppazee.app"
