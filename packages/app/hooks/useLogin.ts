@@ -12,7 +12,7 @@ const configs = {
     client_id: "91714935879f433364bff187bda66183",
   },
   dev: {
-    redirect_uri: "http://localhost/auth/auth/v1",
+    redirect_uri: "http://nextserver.cuppazee.app/auth/auth/v1",
     client_id: "628ed7ab83b0a6f59674f1bf04e4afa2",
   },
   team: {
