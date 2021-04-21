@@ -17,13 +17,15 @@ export type UserActivityData = StatzeePlayerDay["response"]["data"];
 // };
 
 export type UserActivityItem = {
-  type: "capture" | "capon" | "deploy" | "passive_deploy";
+  type: "capture" | "capon" | "deploy" | "passive_deploy" | "capture_owned";
   creator?: string;
   capper?: string;
   code: string;
   name: string;
   pin: string;
   points: number;
+  cap_points?: number;
+  capon_points?: number;
   subCaptures?: UserActivityItem[];
   time: string;
   bouncerHost?: boolean;
@@ -179,7 +181,10 @@ export function ActivityConverter(
         i.pin === capture.pin
     );
     if (ownCapture !== -1) {
+      activityList[ownCapture].cap_points = activityList[ownCapture].points;
+      activityList[ownCapture].capon_points = Number(capture.points_for_creator);
       activityList[ownCapture].points += Number(capture.points_for_creator);
+      activityList[ownCapture].type = "capture_owned";
     } else {
       activityList.push({
         type: "capon",
@@ -200,7 +205,6 @@ export function ActivityConverter(
   for (const deploy of data.deploys) {
     activityList.push({
       type:
-        db.getType(deploy.pin)?.has_tag(TypeTags.Bouncer) ||
         db.getType(deploy.pin)?.has_tag(TypeTags.Scatter)
           ? "passive_deploy"
           : "deploy",
@@ -216,16 +220,6 @@ export function ActivityConverter(
     });
   }
   activityList.sort((a, b) => new Date(b.time).valueOf() - new Date(a.time).valueOf());
-  // var heightTotal = 0;
-  // for(const index in activityList) {
-  //   const h = 8 + (59 * ((activityList[index].subCaptures?.length||0)+1));
-  //   activityList[index] = {
-  //     ...activityList[index],
-  //     height: h,
-  //     offset: heightTotal
-  //   }
-  //   heightTotal += h;
-  // }
   return {
     list: activityList,
     categories: Array.from(
@@ -239,66 +233,114 @@ export function ActivityConverter(
         return a;
       }, new Set<TypeCategory>())
     ),
-    points: ([
-      ...data.captures_on,
-      ...data.captures,
-      ...data.deploys,
-    ] as const).reduce(
+    points: ([...data.captures_on, ...data.captures, ...data.deploys] as const).reduce(
       (a, b) => a + Number("points_for_creator" in b ? b.points_for_creator : b.points),
       0
     ),
-    ...activityList.map(i=>[i, ...i.subCaptures ?? []]).flat().reduce(
-      (ax, b) => {
-        const a = ax[`${b.type}s` as const];
-        return {
-          ...ax,
-          [`${b.type}s` as const]: {
-            points: a.points + Number(b.points),
-            count: a.count + 1,
-            types: {
-              ...a.types,
-              [b.pin]: {
-                points: (a.types[b.pin]?.points || 0) + Number(b.points),
-                count: (a.types[b.pin]?.count || 0) + 1,
+    ...activityList
+      .map(i => [i, ...(i.subCaptures ?? [])])
+      .flat()
+      .reduce(
+        (ax, b) => {
+          if (b.type === "capture_owned") {
+          const a = ax["captures"];
+          const ac = ax["capons"];
+          return {
+            ...ax,
+            [`captures` as any]: {
+              points: a.points + Number(b.cap_points),
+              count: a.count + 1,
+              types: {
+                ...a.types,
+                [b.pin]: {
+                  points: (a.types[b.pin]?.points || 0) + Number(b.cap_points),
+                  count: (a.types[b.pin]?.count || 0) + 1,
+                },
               },
+              users:
+                "users" in a
+                  ? {
+                      ...a.users,
+                      [b.creator || ""]: {
+                        points: (a.types[b.creator || ""]?.points || 0) + Number(b.cap_points),
+                        count: (a.types[b.creator || ""]?.count || 0) + 1,
+                      },
+                    }
+                  : undefined,
             },
-            users:
-              "users" in a
-                ? {
-                    ...a.users,
-                    [b.creator || ""]: {
-                      points: (a.types[b.creator || ""]?.points || 0) + Number(b.points),
-                      count: (a.types[b.creator || ""]?.count || 0) + 1,
-                    },
-                  }
-                : undefined,
-          },
-        };
-      },
-      {
-        captures: {
-          points: 0,
-          count: 0,
-          types: {},
-          users: {},
-        } as UserActivityOverviewType,
-        capons: {
-          points: 0,
-          count: 0,
-          types: {},
-          users: {},
-        } as UserActivityOverviewType,
-        deploys: {
-          points: 0,
-          count: 0,
-          types: {},
-        } as Omit<UserActivityOverviewType, "users">,
-        passive_deploys: {
-          points: 0,
-          count: 0,
-          types: {},
-        } as Omit<UserActivityOverviewType, "users">,
-      }
-    ),
+            [`capons` as any]: {
+              points: ac.points + Number(b.capon_points),
+              count: ac.count + 1,
+              types: {
+                ...ac.types,
+                [b.pin]: {
+                  points: (ac.types[b.pin]?.points || 0) + Number(b.capon_points),
+                  count: (ac.types[b.pin]?.count || 0) + 1,
+                },
+              },
+              users:
+                "users" in ac
+                  ? {
+                      ...ac.users,
+                      [b.creator || ""]: {
+                        points: (ac.types[b.creator || ""]?.points || 0) + Number(b.capon_points),
+                        count: (ac.types[b.creator || ""]?.count || 0) + 1,
+                      },
+                    }
+                  : undefined,
+            },
+          };
+          }
+          const a = ax[`${b.type}s` as const];
+          return {
+            ...ax,
+            [`${b.type}s` as const]: {
+              points: a.points + Number(b.points),
+              count: a.count + 1,
+              types: {
+                ...a.types,
+                [b.pin]: {
+                  points: (a.types[b.pin]?.points || 0) + Number(b.points),
+                  count: (a.types[b.pin]?.count || 0) + 1,
+                },
+              },
+              users:
+                "users" in a
+                  ? {
+                      ...a.users,
+                      [b.creator || ""]: {
+                        points: (a.types[b.creator || ""]?.points || 0) + Number(b.points),
+                        count: (a.types[b.creator || ""]?.count || 0) + 1,
+                      },
+                    }
+                  : undefined,
+            },
+          };
+        },
+        {
+          captures: {
+            points: 0,
+            count: 0,
+            types: {},
+            users: {},
+          } as UserActivityOverviewType,
+          capons: {
+            points: 0,
+            count: 0,
+            types: {},
+            users: {},
+          } as UserActivityOverviewType,
+          deploys: {
+            points: 0,
+            count: 0,
+            types: {},
+          } as Omit<UserActivityOverviewType, "users">,
+          passive_deploys: {
+            points: 0,
+            count: 0,
+            types: {},
+          } as Omit<UserActivityOverviewType, "users">,
+        }
+      ),
   };
 }
