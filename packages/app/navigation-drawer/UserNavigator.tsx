@@ -60,7 +60,6 @@ export default function UserNavigator() {
         component={UserCapturesScreen}
       />
       <UserStack.Screen name="ClanProgress" component={UserClanScreen} />
-      <UserStack.Screen name="Blast" component={UserBlastScreen} />
       <UserStack.Screen name="QRew" component={UserQRewScreen} />
     </UserStack.Navigator>
   );
