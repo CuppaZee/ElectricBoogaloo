@@ -20,7 +20,7 @@ export default function getConfig(notification?: NotificationResponse): LinkingO
             },
             User: {
               path: "user",
-              screens: {
+              screens: Object.fromEntries(Object.entries({
                 Profile: ":username",
                 Activity: ":username/activity/:date?",
                 Inventory: ":username/inventory",
@@ -33,7 +33,15 @@ export default function getConfig(notification?: NotificationResponse): LinkingO
                 Universal: ":username/universal",
                 Blast: ":username/blast",
                 QRew: ":username/qrew",
-              },
+              }).map(i => [i[0], {
+                path: i[1],
+                parse: {
+                  username: value => value === "@me" ? "sohcah"  : value,
+                },
+                stringify: {
+                  username: value => value === "sohcah" ? "@me"  : value,
+                }
+              }])),
             },
             Clan: {
               screens: {

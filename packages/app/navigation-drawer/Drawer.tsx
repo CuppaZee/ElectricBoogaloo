@@ -1,6 +1,12 @@
 import { DrawerContentComponentProps, DrawerContentOptions } from "@react-navigation/drawer";
 import { getPathFromState, useNavigationState } from "@react-navigation/native";
-import { DrawerGroup as UIKittenDrawerGroup, DrawerGroupProps, DrawerItem as UIKittenDrawerItem, DrawerItemProps, Layout } from "@ui-kitten/components";
+import {
+  DrawerGroup as UIKittenDrawerGroup,
+  DrawerGroupProps,
+  DrawerItem as UIKittenDrawerItem,
+  DrawerItemProps,
+  Layout,
+} from "@ui-kitten/components";
 import React from "react";
 import { Image, Platform, ScrollView, useWindowDimensions, View } from "react-native";
 import { useClanBookmarks, useUserBookmarks } from "../hooks/useBookmarks";
@@ -11,33 +17,36 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../components/Common/Icon";
 import useSetting, { DrawerAtom, ReadyAtom } from "../hooks/useSetting";
 
-const DrawerItem = React.memo(function ({ title, style, ...props }: DrawerItemProps) {
-  const [drawerSettings] = useSetting(DrawerAtom);
-  const dimensions = useWindowDimensions();
-  const open = drawerSettings.open || dimensions.width <= 1000;
-  return (
-    <UIKittenDrawerItem
-      {...props}
-      title={open ? title : ""}
-      style={[
-        style,
-        open
-          ? undefined
-          : {
-            width: 52,
-            paddingLeft: 8,
-          },
-      ]}
-    />
-  );
-}, (a, b) => a.title === b.title && a.selected === b.selected);
+const DrawerItem = React.memo(
+  function ({ title, style, ...props }: DrawerItemProps) {
+    const [drawerSettings] = useSetting(DrawerAtom);
+    const dimensions = useWindowDimensions();
+    const open = drawerSettings.open || dimensions.width <= 1000;
+    return (
+      <UIKittenDrawerItem
+        {...props}
+        title={open ? title : ""}
+        style={[
+          style,
+          open
+            ? undefined
+            : {
+                width: 52,
+                paddingLeft: 8,
+              },
+        ]}
+      />
+    );
+  },
+  (a, b) => a.title === b.title && a.selected === b.selected
+);
 
-function DrawerGroup ({ title, style, ...props }: DrawerGroupProps) {
+function DrawerGroup({ title, style, ...props }: DrawerGroupProps) {
   const [drawerSettings] = useSetting(DrawerAtom);
   const dimensions = useWindowDimensions();
   const open = drawerSettings.open || dimensions.width <= 1000;
   if (open) {
-    return <UIKittenDrawerGroup {...props} title={title} style={style} />
+    return <UIKittenDrawerGroup {...props} title={title} style={style} />;
   }
   return (
     <UIKittenDrawerGroup
@@ -52,12 +61,9 @@ function DrawerGroup ({ title, style, ...props }: DrawerGroupProps) {
       ]}
     />
   );
-};
+}
 
-const MainDrawerContent = function ({ page, navigation }: {
-  page: any[];
-  navigation: any;
-}) {
+const MainDrawerContent = function ({ page, navigation }: { page: any[]; navigation: any }) {
   const insets = useSafeAreaInsets();
   const { t } = useTranslation();
   const [users] = useUserBookmarks();
@@ -204,21 +210,6 @@ const MainDrawerContent = function ({ page, navigation }: {
             <DrawerItem
               selected={
                 page[1]?.name === "User" &&
-                page[2]?.name === "Blast" &&
-                (page[2]?.params as any)?.username === user.username
-              }
-              title={t("pages:user_blast_checker")}
-              accessoryLeft={props => <Icon {...props} name="bomb" />}
-              onPress={() =>
-                navigation.navigate("User", {
-                  params: { username: user.username },
-                  screen: "Blast",
-                })
-              }
-            />
-            <DrawerItem
-              selected={
-                page[1]?.name === "User" &&
                 page[2]?.name === "QRew" &&
                 (page[2]?.params as any)?.username === user.username
               }
@@ -228,21 +219,6 @@ const MainDrawerContent = function ({ page, navigation }: {
                 navigation.navigate("User", {
                   params: { username: user.username },
                   screen: "QRew",
-                })
-              }
-            />
-            <DrawerItem
-              selected={
-                page[1]?.name === "User" &&
-                page[2]?.name === "Universal" &&
-                (page[2]?.params as any)?.username === user.username
-              }
-              title={t("pages:user_universal_capper")}
-              accessoryLeft={props => <Icon {...props} name="earth" />}
-              onPress={() =>
-                navigation.navigate("User", {
-                  params: { username: user.username },
-                  screen: "Universal",
                 })
               }
             />
@@ -425,6 +401,29 @@ const MainDrawerContent = function ({ page, navigation }: {
           }
         />
         <DrawerItem
+          selected={page[1]?.name === "Tools" && page[2]?.name === "Universal"}
+          title={t("pages:user_universal_capper")}
+          accessoryLeft={props => <Icon {...props} name="earth" />}
+          onPress={() =>
+            navigation.navigate("Tools", {
+              screen: "Universal",
+            })
+          }
+        />
+
+        <Layout level="4" style={{ height: 1 }} />
+
+        <DrawerItem
+          selected={page[1]?.name === "Tools" && page[2]?.name === "Blast"}
+          title="Blast Planner"
+          accessoryLeft={props => <Icon {...props} name="bomb" />}
+          onPress={() =>
+            navigation.navigate("Tools", {
+              screen: "Blast",
+            })
+          }
+        />
+        <DrawerItem
           selected={page[1]?.name === "Tools" && page[2]?.name === "POIPlanner"}
           title={t("pages:tools_poiplanner")}
           accessoryLeft={props => <Icon {...props} name="map-marker-circle" />}
@@ -454,6 +453,8 @@ const MainDrawerContent = function ({ page, navigation }: {
             })
           }
         />
+
+        <Layout level="4" style={{ height: 1 }} />
 
         {/* Settings */}
         <DrawerGroup
@@ -552,7 +553,6 @@ const MainDrawerContent = function ({ page, navigation }: {
   );
 };
 
-
 export default function DrawerContent(props: DrawerContentComponentProps<DrawerContentOptions>) {
   const state = useNavigationState(i => i);
   const pathURL = getPathFromState(state);
@@ -579,7 +579,7 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
     }
     return page;
   }, [pathURL]);
-  
+
   const [ready] = useSetting(ReadyAtom);
   if (ready !== "2020-03-20") return null;
 

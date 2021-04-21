@@ -15,46 +15,6 @@ import dayjs from "dayjs";
 import Icon from "../../components/Common/Icon";
 import { AutoMap, Icons, Layer, Source } from "../../components/Map/Map";
 
-export const UserPagesNow = [
-  {
-    icon: "archive",
-    title: "user_inventory",
-    screen: "Inventory",
-  },
-  {
-    icon: "star",
-    title: "user_bouncers",
-    screen: "Bouncers",
-  },
-  {
-    icon: "trophy",
-    title: "user_challenges",
-    screen: "Challenges",
-  },
-] as const;
-export const UserPagesTools = [
-  {
-    icon: "shield",
-    title: "user_clan_progress",
-    screen: "ClanProgress",
-  },
-  {
-    icon: "earth",
-    title: "user_universal_capper",
-    screen: "Universal",
-  },
-  {
-    icon: "bomb",
-    title: "user_blast_checker",
-    screen: "Blast",
-  },
-  {
-    icon: "hammer",
-    title: "user_qrew_checker",
-    screen: "QRew",
-  },
-] as const;
-
 export default function MunzeeScreen() {
   const { t } = useTranslation();
   const theme = useTheme();

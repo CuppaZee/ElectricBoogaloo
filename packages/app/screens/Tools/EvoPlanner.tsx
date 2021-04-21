@@ -94,15 +94,15 @@ const options = [
         icon: "beelarvae",
       },
       {
-        days: 6,
+        days: 9,
         icon: "beepupae",
       },
       {
-        days: 12,
+        days: 21,
         icon: "emptyhoneycomb",
       },
       {
-        days: 12,
+        days: 21,
         icon: "wallabee",
       },
     ],

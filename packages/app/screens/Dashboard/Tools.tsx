@@ -44,11 +44,6 @@ export const ToolsPages = [
     screen: "Calendar",
   },
   {
-    icon: "dna",
-    title: "tools_evo_planner",
-    screen: "EvoPlanner",
-  },
-  {
     icon: "qrcode",
     nontranslatedtitle: "Test Scan",
     screen: "TestScan",
@@ -57,10 +52,10 @@ export const ToolsPages = [
   {
     icon: "earth",
     nontranslatedtitle: "Universal Capper",
-    screen: "UniversalCapper",
+    screen: "Universal",
   },
 ] as const;
-export const ToolsPagesMaps = [
+export const ToolsPagesPlanners = [
   {
     icon: "map-marker-circle",
     title: "tools_poiplanner",
@@ -75,6 +70,11 @@ export const ToolsPagesMaps = [
     icon: "bomb",
     nontranslatedtitle: "Blast Planner",
     screen: "BlastPlanner",
+  },
+  {
+    icon: "dna",
+    title: "tools_evo_planner",
+    screen: "EvoPlanner",
   },
 ] as const;
 export const ToolsPagesSettings = [
@@ -257,9 +257,9 @@ export default React.memo(function ToolsDashCard(props: DashCardProps<unknown>) 
             />
           ))}
           <Text style={{ marginLeft: 4 }} category="h6">
-            Maps
+            Planners
           </Text>
-          {ToolsPagesMaps.map(i => (
+          {ToolsPagesPlanners.map(i => (
             <DrawerItem
               key={i.screen}
               style={{ backgroundColor: "transparent" }}

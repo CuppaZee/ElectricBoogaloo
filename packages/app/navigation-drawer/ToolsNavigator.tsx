@@ -26,6 +26,8 @@ const TypeCategoryScreen = lazy(() => import("../screens/Tools/Types/Category"))
 const TypeMunzeeScreen = lazy(() => import("../screens/Tools/Types/Type"));
 const ActivityWidgetScreen = lazy(() => import("../screens/Tools/WidgetConfigure/ActivityWidget"));
 const GardenPainterScreen = lazy(() => import("../screens/Tools/Garden/Painter"));
+const UniversalScreen = lazy(() => import("../screens/Tools/Universal"));
+const BlastScreen = lazy(() => import("../screens/Tools/Blast"));
 
 const ToolsStack = createStackNavigator<ToolsStackParamList>();
 
@@ -48,6 +50,7 @@ export default function ToolsNavigator() {
       <ToolsStack.Screen name="Calendar" component={CalendarScreen} />
       <ToolsStack.Screen name="EvoPlanner" component={EvoPlannerScreen} />
       <ToolsStack.Screen name="TestScan" component={TestScanScreen} />
+      <ToolsStack.Screen name="Universal" component={UniversalScreen} />
       <ToolsStack.Screen name="WidgetConfigureActivityWidget" component={ActivityWidgetScreen} />
 
       <ToolsStack.Screen name="Bouncers" component={BouncersScreen} />
@@ -55,6 +58,7 @@ export default function ToolsNavigator() {
       <ToolsStack.Screen name="Nearby" component={NearbyScreen} />
       <ToolsStack.Screen name="BouncersMap" component={BouncersMapScreen} />
 
+      <ToolsStack.Screen name="Blast" component={BlastScreen} />
       <ToolsStack.Screen name="POIPlanner" component={POIPlannerScreen} />
       <ToolsStack.Screen name="DestinationPlanner" component={DestinationPlannerScreen} />
 

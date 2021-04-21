@@ -11,6 +11,8 @@ import Loading from "../../components/Loading";
 import { BlastIcon } from "../../components/Blast/Icon";
 import { useTranslation } from "react-i18next";
 import { LocationPickerMap } from "../../components/Map/Map";
+import useUsernameSelect from "./UserSelect";
+import Select from "../../components/Common/Select";
 
 export interface BlastPointsData {
   min: number;
@@ -35,17 +37,17 @@ interface BlastInfo {
   amount: number;
 }
 
-export default function UserBouncersScreen() {
+export default function BlastPlannerScreen() {
   const { t } = useTranslation();
   const [size, onLayout] = useComponentSize();
-  const route = useRoute<RouteProp<UserStackParamList, "Blast">>();
   const [blastInfo, setBlastInfo] = React.useState<BlastInfo>();
   const pos = React.useRef<Omit<BlastInfo, "amount">>();
-  useTitle(`☕ ${route.params.username} - ${t("pages:user_blast_checker")}`);
+  const [username, props] = useUsernameSelect();
+  useTitle(`☕ Blast Planner`);
   const user = useMunzeeRequest(
     "user",
-    { username: route.params?.username },
-    route.params?.username !== undefined
+    { username: username || "" },
+    username !== undefined
   );
   const data = useCuppaZeeRequest<{ data: BlastData[] }>(
     "map/blast",
@@ -59,6 +61,7 @@ export default function UserBouncersScreen() {
   if (!size) {
     return (
       <Layout style={{ flex: 1 }} onLayout={onLayout}>
+        <Select label="Blasting as" {...props} />
         <Loading data={[user, data]} />
       </Layout>
     );
@@ -66,13 +69,17 @@ export default function UserBouncersScreen() {
   return (
     <Layout onLayout={onLayout} style={{ flex: 1, flexDirection: "row" }}>
       <ScrollView style={{ flex: 1 }} contentContainerStyle={{ padding: 4 }}>
+        <Select label="Blasting as" {...props} />
         <Layout style={{ height: 400, margin: 4, borderRadius: 8 }}>
-          <LocationPickerMap icon="blastcapture" onPositionChange={viewport => {
-            pos.current = {
-              lat: viewport.latitude,
-              lng: viewport.longitude
-            }
-          }} />
+          <LocationPickerMap
+            icon="blastcapture"
+            onPositionChange={viewport => {
+              pos.current = {
+                lat: viewport.latitude,
+                lng: viewport.longitude,
+              };
+            }}
+          />
         </Layout>
         <View style={{ flexDirection: "row" }}>
           {([

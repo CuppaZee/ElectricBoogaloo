@@ -26,8 +26,6 @@ export type UserStackParamList = {
   ZeeOps: { username: string };
   Bouncers: { username: string };
   ClanProgress: { username: string };
-  Universal: { username: string };
-  Blast: { username: string };
   QRew: { username: string };
 };
 
@@ -57,6 +55,8 @@ export type ToolsStackParamList = {
   POIPlanner: undefined;
   DestinationPlanner: undefined;
   EvoPlanner: undefined;
+  Universal: undefined;
+  Blast: undefined;
   TypeCategory: { category: string };
   TypeMunzee: { type: string };
   WidgetConfigureActivityWidget: { id: string };

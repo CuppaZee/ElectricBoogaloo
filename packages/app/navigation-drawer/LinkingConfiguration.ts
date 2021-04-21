@@ -1,8 +1,11 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { LinkingOptions } from "@react-navigation/native";
 import * as Linking from "expo-linking";
 import * as Notifications from "expo-notifications";
 import { NotificationResponse } from "expo-notifications";
 import { Alert, NativeModules, Platform, DeviceEventEmitter } from "react-native";
+
+const mainUser = { value: "sohcah" };
 
 export default function getConfig(notification?: NotificationResponse): LinkingOptions {
   return {
@@ -20,20 +23,31 @@ export default function getConfig(notification?: NotificationResponse): LinkingO
             },
             User: {
               path: "user",
-              screens: {
-                Profile: ":username",
-                Activity: ":username/activity/:date?",
-                Inventory: ":username/inventory",
-                ZeeOps: ":username/zeeops",
-                Challenges: ":username/challenges/:date?",
-                Challenge: ":username/challenge/:challenge/:date?",
-                Captures: ":username/captures/:category?",
-                Bouncers: ":username/bouncers",
-                ClanProgress: ":username/clan",
-                Universal: ":username/universal",
-                Blast: ":username/blast",
-                QRew: ":username/qrew",
-              },
+              screens: Object.fromEntries(
+                Object.entries({
+                  Profile: ":username",
+                  Activity: ":username/activity/:date?",
+                  Inventory: ":username/inventory",
+                  ZeeOps: ":username/zeeops",
+                  Challenges: ":username/challenges/:date?",
+                  Challenge: ":username/challenge/:challenge/:date?",
+                  Captures: ":username/captures/:category?",
+                  Bouncers: ":username/bouncers",
+                  ClanProgress: ":username/clan",
+                  QRew: ":username/qrew",
+                }).map(i => [
+                  i[0],
+                  {
+                    path: i[1],
+                    parse: {
+                      username: value => (value === "_" ? mainUser.value : value),
+                    },
+                    stringify: {
+                      username: value => (value === mainUser.value ? "_" : value),
+                    },
+                  },
+                ])
+              ),
             },
             Clan: {
               screens: {
@@ -50,6 +64,7 @@ export default function getConfig(notification?: NotificationResponse): LinkingO
                 Calendar: "tools/calendar",
                 EvoPlanner: "tools/evoplanner",
                 TestScan: "tools/testscan",
+                Universal: "tools/universal",
                 WidgetConfigureActivityWidget: "tools/widget_configure_activity_widget/:id",
 
                 Bouncers: "bouncers/overview",
@@ -57,6 +72,7 @@ export default function getConfig(notification?: NotificationResponse): LinkingO
                 Nearby: "bouncers/nearby",
                 BouncersMap: "bouncers/:type",
 
+                Blast: "planner/blast",
                 POIPlanner: "planner/poi",
                 DestinationPlanner: "planner/destination",
 
@@ -104,17 +120,27 @@ export default function getConfig(notification?: NotificationResponse): LinkingO
       return;
     },
     subscribe(listener) {
-      const onReceiveURL = ({ url }: { url: string }) => listener(url);
+      const loadedMainuser = AsyncStorage.getItem("USER_BOOKMARKS").then(data => {
+        try {
+          const d = JSON.parse(data || "{}");
+          mainUser.value = d[0].username;
+        } catch {}
+      });
+      const onReceiveURL = async ({ url }: { url: string }) => {
+        await loadedMainuser;
+        listener(url);
+      };
 
       // Listen to incoming links from deep linking
       Linking.addEventListener("url", onReceiveURL);
 
       // Listen to expo push notifications
-      const subscription = Notifications.addNotificationResponseReceivedListener(response => {
+      const subscription = Notifications.addNotificationResponseReceivedListener(async response => {
         const path = response.notification.request.content.data.path;
         const url = response.notification.request.content.data.url;
 
         if (path && typeof path === "string") {
+          await loadedMainuser;
           listener("uk.cuppazee.paper://" + path);
         }
 

@@ -13,7 +13,7 @@ import {
 import * as React from "react";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import useComponentSize from "../../hooks/useComponentSize";
-import { UserStackParamList } from "../../types";
+import { ToolsStackParamList, UserStackParamList } from "../../types";
 import useTitle from "../../hooks/useTitle";
 import Loading from "../../components/Loading";
 import { View } from "react-native";
@@ -23,6 +23,9 @@ import TypeImage from "../../components/Common/TypeImage";
 import { useTranslation } from "react-i18next";
 import Icon from "../../components/Common/Icon";
 import baseURL from "../../baseURL";
+import { useUserBookmarks } from "../../hooks/useBookmarks";
+import useUsernameSelect from "./UserSelect";
+import Select from "../../components/Common/Select";
 
 interface ReportModalProps {
   munzee: UniversalMunzee;
@@ -252,26 +255,26 @@ function useWatch(munzee_id?: string, user_id?: number, token?: string) {
   return munzee_id !== undefined && response === munzee_id;
 }
 
-export default function UserChallengesScreen() {
+export default function UniversalScreen() {
   const { t } = useTranslation();
   const [size, onLayout] = useComponentSize();
-  const route = useRoute<RouteProp<UserStackParamList, "Universal">>();
   const theme = useTheme();
   const [index, setIndex] = React.useState(0);
   const [filter, setFilter] = React.useState<string[]>([]);
   const [filterID, setFilterID] = React.useState(0);
   const [reportModal, setReportModal] = React.useState(false);
   const [submitModal, setSubmitModal] = React.useState(false);
-  useTitle(`☕ ${route.params.username} - ${t("pages:user_universal_capper")}`);
+  const [username, props] = useUsernameSelect();
+  useTitle(`☕ ${t("pages:user_universal_capper")}`);
   const user = useMunzeeRequest(
     "user",
-    { username: route.params?.username },
-    route.params?.username !== undefined
+    { username: username || "" },
+    username !== undefined
   );
   const data = useCuppaZeeRequest<{ data: UniversalData }>(
     "user/universal/v5",
-    { username: route.params?.username, filter: filter.join(","), filterID },
-    route.params?.username !== undefined && user.data?.data?.user_id !== undefined,
+    { username, filter: filter.join(","), filterID },
+    username !== undefined && user.data?.data?.user_id !== undefined,
     user.data?.data?.user_id
   );
   const munzee = data.data?.data.munzees[index];
@@ -290,6 +293,7 @@ export default function UserChallengesScreen() {
   if (!data.data || !size) {
     return (
       <Layout onLayout={onLayout} style={{ flex: 1 }}>
+        <Select label="Capping as" {...props} />
         <Loading data={[user, data]} />
       </Layout>
     );
@@ -319,6 +323,7 @@ export default function UserChallengesScreen() {
         <SubmitModal close={() => setSubmitModal(false)} />
       </Modal>
       <View style={{ alignSelf: "center", maxWidth: "100%" }}>
+        <Select label="Capping as" {...props} />
         <Text style={{ textAlign: "center" }} category="h6">
           {t("user_universal_capper:remaining", {
             remaining: data.data.data.total - data.data.data.capped - index,
