@@ -3,7 +3,7 @@
 <plist version="1.0">
   <dict>
     <key>EXUpdatesSDKVersion</key>
-    <string>40.0.0</string>
+    <string>41.0.0</string>
     <key>EXUpdatesURL</key>
     <string>https://exp.host/@sohcah/PaperZee</string>
     <key>EXUpdatesEnabled</key>
@@ -13,6 +13,6 @@
     <key>EXUpdatesLaunchWaitMs</key>
     <integer>30000</integer>
     <key>EXUpdatesReleaseChannel</key>
-    <string>2.0.5</string>
+    <string>2.1</string>
   </dict>
 </plist>

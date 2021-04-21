@@ -14,7 +14,7 @@ import {
 } from "react-native";
 import builds from "../../builds";
 import Icon from "../../components/Common/Icon";
-import { useUserBookmarks } from "../../hooks/useBookmarks";
+import { useClanBookmarks, useUserBookmarks } from "../../hooks/useBookmarks";
 import useComponentSize from "../../hooks/useComponentSize";
 import useSetting, { BuildAtom, LiveLocationErrorAtom } from "../../hooks/useSetting";
 import useTitle from "../../hooks/useTitle";
@@ -52,12 +52,11 @@ export interface DashCardProps<i> {
   onOuterLayout: (event: LayoutChangeEvent) => void;
 }
 
-const pageOffset = 2;
-
 export default function DashboardScreen() {
   const { t } = useTranslation();
   const nav = useNavigation();
-  const theme = useTheme();
+  const [clans] = useClanBookmarks();
+  const pageOffset = clans.length > 2 ? 2 : 1;
   const scrollRef = React.useRef<FlatList>();
   const scrollSize = React.useRef<{ width: number; height: number }>();
   const scrollViewDimensions = React.useRef<{
@@ -83,7 +82,7 @@ export default function DashboardScreen() {
 
   const dashCards = [
     { nonUser: "tools" },
-    { nonUser: "clan" },
+    ...(clans.length > 2 ? [{ nonUser: "clan" }] : []),
     ...(builds.some(i => buildLoaded && i.build > build) ? [{ nonUser: "changes" }] : []),
     ...users,
   ];

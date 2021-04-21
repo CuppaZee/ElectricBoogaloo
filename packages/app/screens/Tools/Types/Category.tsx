@@ -6,7 +6,7 @@ import types from "@cuppazee/types";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { ToolsStackParamList } from "../../../types";
 import TypeImage from "../../../components/Common/TypeImage";
-import { ToolsNavigatorProp } from "../../../navigation/ToolsNavigator";
+import { ToolsNavigatorProp } from "../../../navigation-drawer/ToolsNavigator";
 
 export default function SearchScreen() {
   const route = useRoute<RouteProp<ToolsStackParamList, "TypeCategory">>();

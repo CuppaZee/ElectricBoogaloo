@@ -5,7 +5,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import "./polyfill";
 
 import { Platform, useColorScheme } from "react-native";
-import Navigation from "./navigation";
+import Navigation from "./navigation-drawer";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Provider as JotaiProvider } from "jotai";
 
@@ -18,14 +18,12 @@ import "./lang/i18n";
 
 import CheckStatus from "./BackgroundLocation";
 import useSetting, {
-  BuildAtom,
   LiveLocationErrorAtom,
   ThemeAtom,
 } from "./hooks/useSetting";
 import { useTranslation } from "react-i18next";
 import "expo-firebase-analytics";
 import * as Sentry from "sentry-expo";
-import { useUserBookmarks } from "./hooks/useBookmarks";
 
 Sentry.init({
   dsn: "https://7823a6409bf1417dafa6f3e3ab47b6ed@o444031.ingest.sentry.io/5418530",
