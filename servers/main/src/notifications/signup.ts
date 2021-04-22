@@ -11,7 +11,7 @@ const route: Route = {
       async function({
         params: { data }
       }: any) {
-        var d = JSON.parse(data);
+        var { _id, ...d } = JSON.parse(data);
         if (!Expo.isExpoPushToken(d.token)) {
           console.error(`Push token ${d.token} is not a valid Expo push token`);
           return {

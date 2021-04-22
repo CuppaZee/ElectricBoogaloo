@@ -168,6 +168,9 @@ var app = express();
 app.use(cors({ origin: true }));
 app.use(express.text());
 app.use(express.json());
+app.use(express.static("./public", {
+  extensions: ['html']
+}))
 
 app.all("**", apiResponder);
 
