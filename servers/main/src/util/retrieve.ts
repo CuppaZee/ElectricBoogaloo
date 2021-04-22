@@ -58,7 +58,7 @@ export default async function (
       await mongo
         .db("auth")
         .collection(application === "default" ? "main" : application)
-        .updateOne({ user_id }, { token: { ...token, ...ne.data.token } });
+        .updateOne({ user_id }, { $set: { token: { ...token, ...ne.data.token } } });
       return ne.data.token;
     } else {
       return null;

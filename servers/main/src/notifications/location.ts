@@ -19,9 +19,11 @@ const route: Route = {
           }
         }
         await mongo.db("notifications").collection('settings').updateOne({ token }, {
-          "locations.dynamic": {
-            latitude: Number(latitude),
-            longitude: Number(longitude),
+          $set: {
+            "locations.dynamic": {
+              latitude: Number(latitude),
+              longitude: Number(longitude),
+            }
           }
         });
         return {

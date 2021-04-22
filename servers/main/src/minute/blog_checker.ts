@@ -7,7 +7,7 @@ import config from "../config";
 import notification from "../util/notification";
 import sendEmail from "../util/nodemailer";
 import { Route } from "../types";
-import { DeviceNotificationSettings } from "../util/notificationSettings";
+import notificationSettings, { DeviceNotificationSettings } from "../util/notificationSettings";
 import mongo from "../util/mongo";
 
 async function sendNotifications(
@@ -36,7 +36,7 @@ const route: Route = {
   versions: [
     {
       version: 1,
-      async function({ notificationData }) {
+      async function() {
         var data = await mongo.db("notifications").collection("feeds").findOne({ id: "munzee" });
         if (!data.run)
           return {
@@ -54,7 +54,7 @@ const route: Route = {
             console.log("New Munzee Blog", feed.items[0].guid);
             let img = cheerio.load(feed.items[0]["content:encoded"] || "")("img")[0];
             if (!data.dev)
-              sendNotifications(feed.items[0], notificationData()).catch(() =>
+              sendNotifications(feed.items[0], notificationSettings()).catch(() =>
                 console.log("Sending Notifications Failed")
               );
             if (
@@ -96,31 +96,10 @@ const route: Route = {
           }
 
           if (x && Object.keys(update).length > 0) {
-            await mongo.db("notifications").collection("feeds").updateOne({ id: "munzee" }, update);
+            await mongo.db("notifications").collection("feeds").updateOne({ id: "munzee" }, { $set: update });
           }
         }
         await check(true);
-        // await check();
-        // await Promise.all([
-        //   new Promise((resolve, reject) => {
-        //     setTimeout(async function () {
-        //       await check();
-        //       resolve("Success!");
-        //     }, 15000);
-        //   }),
-        //   new Promise((resolve, reject) => {
-        //     setTimeout(async function () {
-        //       await check();
-        //       resolve("Success!");
-        //     }, 30000);
-        //   }),
-        //   new Promise((resolve, reject) => {
-        //     setTimeout(async function () {
-        //       await check(true);
-        //       resolve("Success!");
-        //     }, 45000);
-        //   }),
-        // ]);
         return {
           status: "success",
           data: update,
