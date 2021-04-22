@@ -22,7 +22,7 @@ struct Provider: IntentTimelineProvider {
           let currentDate = Date()
           let refreshDate = Calendar.current.date(byAdding: .minute, value: 15, to: currentDate)!
           
-      ActivityService().getActivity(url: URL(string: "https://server.beta.cuppazee.app/widget/activity?username=\(configuration.username ?? "")")!) { (result) in
+      ActivityService().getActivity(url: URL(string: "https://server.cuppazee.app/widget/activity?username=\(configuration.username ?? "")")!) { (result) in
             let activity: ActivityData
               
               if case .success(let fetchedData) = result {

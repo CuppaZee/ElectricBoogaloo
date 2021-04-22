@@ -21,7 +21,7 @@ struct NewsResponse: Codable {
 }
 
 class NewsService {
-    let url = URL(string: "https://server.beta.cuppazee.app/widget/news")!
+    let url = URL(string: "https://server.cuppazee.app/widget/news")!
     
     func getNews(completion: @escaping (Result<[NewsEntry], Error>) -> Void) {
         URLSession.shared.dataTask(with: url) { data, response, error in
@@ -40,6 +40,6 @@ class NewsService {
         if let newsD = newsData {
             return newsD.data
         }
-      return [NewsEntry(id: "err", show_at: "", title: "Error", image_url: "https://server.beta.cuppazee.app/missing.png", blog_url: "https://server.beta.cuppazee.app/missing.png")]
+      return [NewsEntry(id: "err", show_at: "", title: "Error", image_url: "https://server.cuppazee.app/missing.png", blog_url: "https://server.cuppazee.app/missing.png")]
     }
 }

@@ -32,7 +32,7 @@ WebBrowser.maybeCompleteAuthSession({
 export default function useLogin(
   path: string,
   shouldRedirect?: boolean,
-  application: keyof typeof configs = "dev"
+  application: keyof typeof configs = "main"
 ) {
   const redirectUri =
     Platform.OS === "web"

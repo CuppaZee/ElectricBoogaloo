@@ -33,7 +33,7 @@ struct Provider: IntentTimelineProvider {
               if case .success(let fetchedData) = result {
                   newsInfo = fetchedData
               } else {
-                  newsInfo = [NewsEntry(id: "err", show_at: "", title: "Error", image_url: "https://server.beta.cuppazee.app/missing.png", blog_url: "https://server.beta.cuppazee.app/missing.png")]
+                  newsInfo = [NewsEntry(id: "err", show_at: "", title: "Error", image_url: "https://server.cuppazee.app/missing.png", blog_url: "https://server.cuppazee.app/missing.png")]
               }
               
             let entry = SimpleEntry(date: currentDate, newsEntries: newsInfo, configuration: configuration)
