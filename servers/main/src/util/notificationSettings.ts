@@ -1,5 +1,4 @@
-import { firestore } from "firebase-admin";
-// import database from "./db";
+import mongo from "./mongo";
 
 export type Device = {
   bouncers?: {
@@ -124,30 +123,6 @@ export type FullDeviceNotificationSettings = {
   imperial: boolean;
 };
 
-export default (function (db: firestore.Firestore) {
-  let devices: DeviceNotificationSettings[] = [];
-
-  let hasData = false;
-
-  let waiting: (() => void)[] = [];
-
-  // __error_unimplemented
-
-  // db.collection("notification_settings").onSnapshot(querySnapshot => {
-  //   devices = querySnapshot.docs.map(i => i.data() as DeviceNotificationSettings);
-  //   hasData = true;
-  //   waiting.forEach(i => i());
-  //   waiting = [];
-  // });
-
-  return function (): Promise<DeviceNotificationSettings[]> {
-    return new Promise((resolve, reject) => {
-      if (hasData) {
-        resolve(devices);
-        return;
-      } else {
-        waiting.push(() => resolve(devices));
-      }
-    });
-  };
-})(null as any)
+export default function (options?: any): Promise<DeviceNotificationSettings[]> {
+  return mongo.db("notifications").collection("settings").find(options ?? {}).toArray()
+}

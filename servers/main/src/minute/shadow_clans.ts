@@ -55,7 +55,7 @@ const route: Route = {
         shadowData._updated_at = Date.now();
         await mongo.db("shadow").collection(gameID().toString()).updateOne({
           clan_id: shadowData.clan_id,
-        }, shadowData);
+        }, { $set: shadowData });
         return {
           status: "success",
           data: 1
