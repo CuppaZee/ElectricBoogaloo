@@ -9,8 +9,7 @@ const route: Route = {
     {
       version: 1,
       async function({
-        params: { data },
-        db
+        params: { data }
       }: any) {
         var d = JSON.parse(data);
         if (!Expo.isExpoPushToken(d.token)) {
