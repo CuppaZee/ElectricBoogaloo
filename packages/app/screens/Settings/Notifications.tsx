@@ -404,7 +404,7 @@ export default function NotificationScreen() {
     if (Platform.OS === "web") return;
     if (token && token !== "_failed") {
       (async function () {
-        const response = await fetch(`https://server.beta.cuppazee.app/notifications/get`, {
+        const response = await fetch(`https://server.cuppazee.app/notifications/get`, {
           method: "POST",
           body: JSON.stringify({ token }),
         });
@@ -917,7 +917,7 @@ export default function NotificationScreen() {
               }
 
               // Update Settings Server-side
-              await fetch(`https://server.beta.cuppazee.app/notifications/signup`, {
+              await fetch(`https://server.cuppazee.app/notifications/signup`, {
                 method: "POST",
                 body: JSON.stringify({
                   data: JSON.stringify({

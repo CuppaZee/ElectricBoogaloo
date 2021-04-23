@@ -15,7 +15,7 @@ TaskManager.defineTask("BACKGROUND_LOCATION", async ({ data, error }) => {
     const locs = ((data as any).locations.slice() as LocationObject[]).sort(
       (a, b) => b.timestamp - a.timestamp
     );
-    await fetch(`https://server.beta.cuppazee.app/notifications/location`, {
+    await fetch(`https://server.cuppazee.app/notifications/location`, {
       method: "POST",
       body: JSON.stringify({
         latitude: locs[0].coords.latitude,

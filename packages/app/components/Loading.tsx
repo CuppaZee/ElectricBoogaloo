@@ -166,7 +166,7 @@ export default function Loading({
         ) : (
           <Button
             onPress={async () => {
-              await fetch(`https://server.beta.cuppazee.app/report`, {
+              await fetch(`https://server.cuppazee.app/report`, {
                 method: "POST",
                 body: JSON.stringify({
                   reports: [...(customErrors ?? []), ...(data ?? [])].map(i =>

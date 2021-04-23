@@ -8,7 +8,7 @@ const getCuppaZeeData = async <T>(
   params: { [key: string]: any },
   token: string
 ): Promise<T> => {
-  const response = await fetch(`https://server.beta.cuppazee.app/${endpoint}`, {
+  const response = await fetch(`https://server.cuppazee.app/${endpoint}`, {
     method: "POST",
     body: JSON.stringify({ ...params, access_token: token }),
   });

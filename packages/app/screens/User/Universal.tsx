@@ -90,7 +90,7 @@ function ReportModal({ munzee, close, closeWithNext }: ReportModalProps) {
           style={{ margin: 4, flex: 1 }}
           onPress={async () => {
             await fetch(
-              `https://server.beta.cuppazee.app/user/universal/report/v1?report=${encodeURIComponent(
+              `https://server.cuppazee.app/user/universal/report/v1?report=${encodeURIComponent(
                 JSON.stringify({ qr: munzee, data: type }, null, 2)
               )}`
             );
@@ -174,7 +174,7 @@ function SubmitModal({ close }: SubmitModalProps) {
           style={{ margin: 4, flex: 1 }}
           onPress={async () => {
             const response = await fetch(
-              `https://server.beta.cuppazee.app/user/universal/submit/v1?code=${encodeURIComponent(
+              `https://server.cuppazee.app/user/universal/submit/v1?code=${encodeURIComponent(
                 code
               )}`
             );
