@@ -1,96 +1,116 @@
+import fetch from "node-fetch";
+import crypto from "crypto";
+import { URLSearchParams } from "url";
+import config from "../config";
 import { Route } from "../types";
-// import fetch from "node-fetch";
-// import crypto from "crypto";
-// import { URLSearchParams } from "url";
-// import config from '../config';
-// import firebase from "firebase-admin";
+import mongo from "../util/mongo";
 
 const route: Route = {
-  path: "auth/auth/universal",
+  path: "auth/auth",
   latest: 1,
   versions: [
     {
       version: 1,
-      async function({
-        params: { code, state },
-        res
-      }) {
+      async function({ params: { code, state }, res }) {
         try {
-        return { status: "error", data: "__error_unimplemented" };
+          const state_data = JSON.parse(state || "{}");
+          const d = await fetch("https://api.munzee.com/oauth/login", {
+            method: "POST",
+            body: new URLSearchParams({
+              client_id: config.universal.client_id,
+              client_secret: config.universal.client_secret,
+              grant_type: "authorization_code",
+              code,
+              redirect_uri: config.universal.redirect_uri,
+            }),
+          });
+          const data = await d.json();
+          const teaken = crypto.randomBytes(20).toString("hex");
+          const user_d = await fetch("https://api.munzee.com/user", {
+            method: "POST",
+            body: new URLSearchParams({
+              access_token: data.data.token.access_token,
+              data: JSON.stringify({
+                user_id: data.data.user_id,
+              }),
+            }),
+          });
+          const user_data = await user_d.json();
+          const { username, user_id } = user_data.data;
 
-          // var state_data = JSON.parse(state || "{}");
-          // var d = await fetch("https://api.munzee.com/oauth/login", {
-          //   method: "POST",
-          //   body: new URLSearchParams({
-          //     client_id: config.__disabled__universal.client_id,
-          //     client_secret: config.__disabled__universal.client_secret,
-          //     grant_type: "authorization_code",
-          //     code,
-          //     redirect_uri: config.__disabled__universal.redirect_uri,
-          //   }),
-          // });
-          // var data = await d.json();
-          // var teaken = crypto.randomBytes(20).toString("hex");
-          // var user_d = await fetch("https://api.munzee.com/user", {
-          //   method: "POST",
-          //   body: new URLSearchParams({
-          //     access_token: data.data.token.access_token,
-          //     data: JSON.stringify({
-          //       user_id: data.data.user_id
-          //     })
-          //   }),
-          // });
-          // var user_data = await user_d.json();
-          // var { username, user_id } = user_data.data;
+          const doc_data = await mongo.collection("auth").findOne({ application: "universal", user_id: user_id });
 
-          // var doc = db.collection('auth_universal').doc(user_id.toString())
-          // var doc_data = (await doc.get()).data();
+          let user_number = doc_data?.user_number;
+          let user_count = 0;
 
-          // await doc.set({
-          //   token: data.data.token,
-          //   user_id,
-          //   teakens: [
-          //     ...(doc_data ? (doc_data.teakens || []) : []),
-          //     teaken
-          //   ]
-          // })
+          if (doc_data) {
+            
+            user_count = (await mongo
+              .collection("counters")
+              .findOne({ id: "auth_universal" })).value;
+            await mongo
+              .collection("auth")
+              .updateOne(
+                {
+                  application: "universal",
+                  user_id: user_id,
+                },
+                {
+                  $set: {
+                    application: "universal",
+                    token: data.data.token,
+                    user_id,
+                    username,
+                    teakens: [...(doc_data?.teakens ?? []), teaken],
+                  },
+                }
+              );
+          } else {
+            const count = await mongo.collection("counters").findOneAndUpdate(
+              { id: "auth_universal" },
+              { $inc: { value: 1 } }
+            );
+            user_number = (count.value?.value ?? -2) + 1;
+            user_count = user_number;
+            await mongo.collection("auth").insertOne({
+              application: "universal",
+              token: data.data.token,
+              user_id,
+              username,
+              teakens: [teaken],
+              user_number,
+            })
+          }
 
-          // res.redirect(
-          //   `${state_data.redirect}?teaken=${encodeURIComponent(
-          //     teaken
-          //   )}&username=${username}&user_id=${user_id}&state=${encodeURIComponent(state)}`
-          // );
+          res.redirect(
+            `${state_data.redirect}?teaken=${encodeURIComponent(
+              teaken
+            )}&username=${username}&user_id=${user_id}&state=${encodeURIComponent(state)}`
+          );
 
-
-          // var platform = {
-          //   android: "🤖",
-          //   ios: "🍎",
-          //   web: "🌐"
-          // }[state_data.platform as "android" | "ios" | "web"] || `[${state_data.platform}] `;
-          // var { list } = (await db.collection('data').doc('user_list_universal').get()).data() ?? {list:[]};
-          // var discordmessage = "n/a";
-          // if (list.includes(username)) {
-          //   discordmessage = `${platform}🔁 ${username} | ${list.length} Users [#${list.indexOf(username) + 1}]`
-          // } else {
-          //   discordmessage = `${platform}🆕 ${username} | User #${list.length + 1}`;
-          //   await db.collection('data').doc('user_list_universal').update({
-          //     list: firebase.firestore.FieldValue.arrayUnion(username)
-          //   })
-          // }
-          // await fetch(
-          //   config.discord.authorization_universal,
-          //   {
-          //     method: "POST",
-          //     body: new URLSearchParams({
-          //       content: discordmessage
-          //     })
-          //   }
-          // )
-          // return {
-          //   norespond: true,
-          // };
+          const platform =
+            {
+              android: "🤖",
+              ios: "🍎",
+              web: "🌐",
+            }[state_data.platform as "android" | "ios" | "web"] || `[${state_data.platform}] `;
+          let discordmessage = ``;
+          if (doc_data) {
+            discordmessage = `${platform}🔁 ${username} | ${user_count} Users [#${user_number}]`;
+          } else {
+            discordmessage = `${platform}🆕 ${username} | User #${user_number}`;
+          }
+          await fetch(config.discord.authorization_universal, {
+            method: "POST",
+            body: new URLSearchParams({
+              content: discordmessage,
+            }),
+          });
+          return {
+            norespond: true,
+          };
         } catch (e) {
-          console.log(e);
+          console.error(e);
           res.send(
             `<!DOCTYPE html>
             <html lang="en">
@@ -123,11 +143,10 @@ const route: Route = {
           );
           return {
             norespond: true,
-          }
+          };
         }
       },
     },
   ],
 };
-
 export default route;
