@@ -9,9 +9,9 @@ const route: Route = {
       version: 1,
       async function({ db }: any) {
         var token = await retrieve({ user_id: 455935, teaken: false }, 60, "universal");
-        var counter = await mongo.db("clans").collection("list_count").findOne({});
+        var counter = await mongo.collection("counters").findOne({id: "clans_list"});
         var array = [];
-        for (var i = counter.counter; i < counter.counter + 20; i++) {
+        for (var i = counter.value; i < counter.value + 20; i++) {
           array.push(request("clan/v2", { clan_id: i }, token.access_token));
         }
         var found = false;
@@ -23,7 +23,7 @@ const route: Route = {
             if (det?.name && det.members) {
               found = true;
               promises.push(
-                mongo.db("clans").collection("list").updateOne(
+                mongo.collection("clans_list").updateOne(
                   { clan_id: det.clan_id },
                   {
                     $set: {
@@ -38,7 +38,7 @@ const route: Route = {
             } else if (det?.name) {
               found = true;
               promises.push(
-                mongo.db("clans").collection("list").deleteOne({ clan_id: det.clan_id })
+                mongo.collection("clans_list").deleteOne({ clan_id: det.clan_id })
               );
             }
           } catch (e) {
@@ -47,9 +47,8 @@ const route: Route = {
         }
         promises.push(
           mongo
-            .db("clans")
-            .collection("list_count")
-            .updateOne({}, { $set: { counter: found ? i : 0 } })
+            .collection("counters")
+            .updateOne({id: "clans_list"}, { $set: { value: found ? i : 0 } })
         );
         await Promise.all(promises);
         return {

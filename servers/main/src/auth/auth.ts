@@ -38,7 +38,7 @@ const route: Route = {
           const user_data = await user_d.json();
           const { username, user_id } = user_data.data;
 
-          const doc_data = await mongo.db("auth").collection("main").findOne({ user_id: user_id });
+          const doc_data = await mongo.collection("auth").findOne({ application: "main", user_id: user_id });
 
           let user_number = doc_data?.user_number;
           let user_count = 0;
@@ -46,18 +46,18 @@ const route: Route = {
           if (doc_data) {
             
             user_count = (await mongo
-              .db("auth")
-              .collection("sequence")
-              .findOne({ application: "main" })).value;
+              .collection("counters")
+              .findOne({ id: "auth_main" })).value;
             await mongo
-              .db("auth")
-              .collection("main")
+              .collection("auth")
               .updateOne(
                 {
+                  application: "main",
                   user_id: user_id,
                 },
                 {
                   $set: {
+                    application: "main",
                     token: data.data.token,
                     user_id,
                     username,
@@ -66,13 +66,14 @@ const route: Route = {
                 }
               );
           } else {
-            const count = await mongo.db("auth").collection("sequence").findOneAndUpdate(
-              { application: "main" },
+            const count = await mongo.collection("counters").findOneAndUpdate(
+              { id: "auth_main" },
               { $inc: { value: 1 } }
             );
             user_number = (count.value?.value ?? -2) + 1;
             user_count = user_number;
-            await mongo.db("auth").collection("main").insertOne({
+            await mongo.collection("auth").insertOne({
+              application: "main",
               token: data.data.token,
               user_id,
               username,

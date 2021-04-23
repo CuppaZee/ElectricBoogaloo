@@ -29,7 +29,7 @@ const route: Route = {
             data: "You must deploy the Munzee before submitting."
           }
         }
-        await mongo.db("universal").collection("munzees").insertOne({
+        await mongo.collection("universals").insertOne({
           code: `${codeData[1]}/${codeData[2]}/${codeData[3].toUpperCase()}`,
           munzee_id: munzee?.data?.munzee_id,
           type: type?.id,

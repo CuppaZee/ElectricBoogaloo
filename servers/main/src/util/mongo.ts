@@ -10,4 +10,4 @@ const mongo = new MongoClient(uri, {
 
 mongo.connect();
 
-export default mongo;
+export default mongo.db("cuppazee");

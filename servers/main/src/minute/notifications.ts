@@ -12,8 +12,7 @@ const route: Route = {
       version: 1,
       async function() {
         var notificationData = await mongo
-          .db("notifications")
-          .collection("tickets")
+          .collection("notification_tickets")
           .find({ sent_at: { $gte: Date.now() - 1800000 } })
           .toArray();
         let receiptIds = [];

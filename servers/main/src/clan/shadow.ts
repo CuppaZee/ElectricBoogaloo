@@ -10,7 +10,7 @@ const route: Route = {
       async function({
         params: { game_id, clan_id }
       }) {
-        var d = await mongo.db("shadow").collection(game_id.toString()).findOne({ clan_id: clan_id || 1349 });
+        var d = await mongo.collection("shadow").findOne({ game_id: game_id.toString(), clan_id: clan_id || 1349 });
         if (!d) {
           return {
             status: "success",

@@ -25,7 +25,7 @@ const route: Route = {
       version: 5,
       async function({ params: { username, access_token, filter } }: any) {
         var token = await retrieve({ user_id: 455935, teaken: false }, 60, "universal");
-        var data = (await mongo.db("universal").collection("munzees").find({}).toArray() as UniversalEntry[])
+        var data = (await mongo.collection("universals").find({}).toArray() as UniversalEntry[])
           .filter(i => i.code.split("/")[0] !== username)
           .filter(i => !filter || filter.split(",").includes(i.type?.toString() || "0"));
         var valid = new Set(

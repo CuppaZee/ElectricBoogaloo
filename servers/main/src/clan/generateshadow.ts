@@ -173,9 +173,8 @@ const route: Route = {
         }));
         for (let { clan_id, clan_name, shadow_name } of clansdata.months[game_id].clans) {
           var d = await mongo
-            .db("shadow")
-            .collection(game_id.toString())
-            .findOne({ clan_id: clan_id.toString() });
+            .collection("shadow")
+            .findOne({ game_id: game_id.toString(), clan_id: clan_id.toString() });
           var users = all_users.filter((i: any) =>
             (i.Clan || "").toLowerCase().includes(clan_name)
           );
@@ -219,14 +218,12 @@ const route: Route = {
           if (shadow_name) final._details.name = shadow_name;
           if (d) {
             await mongo
-              .db("shadow")
-              .collection(game_id.toString())
-              .updateOne({ clan_id: clan_id.toString() }, { $set: final });
+              .collection("shadow")
+              .updateOne({ game_id: game_id.toString(), clan_id: clan_id.toString() }, { $set: final });
           } else {
             await mongo
-              .db("shadow")
-              .collection(game_id.toString())
-              .updateOne({ clan_id: clan_id.toString() }, { $set: final });
+              .collection("shadow")
+              .updateOne({ game_id: game_id.toString(), clan_id: clan_id.toString() }, { $set: final });
           }
         }
         return {

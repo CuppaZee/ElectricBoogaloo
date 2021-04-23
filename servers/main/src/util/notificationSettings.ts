@@ -124,5 +124,5 @@ export type FullDeviceNotificationSettings = {
 };
 
 export default function (options?: any): Promise<DeviceNotificationSettings[]> {
-  return mongo.db("notifications").collection("settings").find(options ?? {}).toArray()
+  return mongo.collection("notification_settings").find(options ?? {}).toArray()
 }

@@ -18,7 +18,7 @@ const route: Route = {
             data: "Invalid Token"
           }
         }
-        await mongo.db("notifications").collection('settings').updateOne({ token }, {
+        await mongo.collection('notification_settings').updateOne({ token }, {
           $set: {
             "locations.dynamic": {
               latitude: Number(latitude),

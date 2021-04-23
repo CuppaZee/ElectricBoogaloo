@@ -37,7 +37,7 @@ const route: Route = {
     {
       version: 1,
       async function() {
-        var data = await mongo.db("notifications").collection("feeds").findOne({ id: "munzee" });
+        var data = await mongo.collection("notification_feeds").findOne({ id: "munzee" });
         if (!data.run)
           return {
             status: "success",
@@ -96,7 +96,7 @@ const route: Route = {
           }
 
           if (x && Object.keys(update).length > 0) {
-            await mongo.db("notifications").collection("feeds").updateOne({ id: "munzee" }, { $set: update });
+            await mongo.collection("notification_feeds").updateOne({ id: "munzee" }, { $set: update });
           }
         }
         await check(true);

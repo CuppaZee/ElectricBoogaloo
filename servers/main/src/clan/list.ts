@@ -8,16 +8,9 @@ const route: Route = {
     {
       version: 1,
       async function({
-        db,
         params: { query, limit, format }
       }: any) {
-        var list = await mongo.db("clans").collection("list").find().toArray();
-        // var list = Object.entries(data).map(i => ({
-        //   clan_id: Number(i[0]),
-        //   name: i[1].name,
-        //   tagline: i[1].tagline,
-        //   logo: i[1].logo,
-        // }));
+        var list = await mongo.collection("clans_list").find().toArray();
         if (query) {
           var fuse = new Fuse(list, {
             keys: [

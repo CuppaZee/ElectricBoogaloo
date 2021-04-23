@@ -14,7 +14,7 @@ const route: Route = {
           status: "error",
           data: null,
         };
-        var shadowData = await mongo.db("shadow").collection(gameID().toString()).find({}).sort("_updated_at").next();
+        var shadowData = await mongo.collection("shadow").find({ game_id: gameID().toString() }).sort("_updated_at").next();
         var members = shadowData._members||[];
         shadowData.archive = shadowData.archive || {};
         shadowData.total = {};
@@ -53,7 +53,8 @@ const route: Route = {
           }
         }
         shadowData._updated_at = Date.now();
-        await mongo.db("shadow").collection(gameID().toString()).updateOne({
+        await mongo.collection("shadow").updateOne({
+          game_id: gameID().toString(),
           clan_id: shadowData.clan_id,
         }, { $set: shadowData });
         return {

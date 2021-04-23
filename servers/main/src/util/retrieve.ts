@@ -27,15 +27,14 @@ import mongo from "./mongo";
 export default async function (
   { user_id, teaken }: { user_id: number | string; teaken: string | boolean },
   time: number,
-  application: "default" | "team" | "universal" = "default"
+  application: "main" | "team" | "universal" = "main"
 ) {
-  application = "default";
+  application = "main";
   try {
     const config = application in _config ? (_config as any)[application] : _config;
     const data = await mongo
-      .db("auth")
-      .collection(application === "default" ? "main" : application)
-      .findOne({ user_id: Number(user_id) });
+      .collection("auth")
+      .findOne({ application, user_id: Number(user_id) });
     if (!data) return null;
     if (teaken === false || data.teakens.includes(teaken)) {
       const token = data.token;
@@ -56,9 +55,8 @@ export default async function (
       });
       const ne = await n.json();
       await mongo
-        .db("auth")
-        .collection(application === "default" ? "main" : application)
-        .updateOne({ user_id }, { $set: { token: { ...token, ...ne.data.token } } });
+        .collection("auth")
+        .updateOne({ application, user_id }, { $set: { token: { ...token, ...ne.data.token } } });
       return ne.data.token;
     } else {
       return null;

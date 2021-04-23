@@ -19,7 +19,7 @@ const route: Route = {
             data: "Invalid Token"
           }
         }
-        const data = (await mongo.db("notifications").collection("settings").findOne({ token })) as Partial<DeviceNotificationSettings> | null;
+        const data = (await mongo.collection("notification_settings").findOne({ token })) as Partial<DeviceNotificationSettings> | null;
         var d: FullDeviceNotificationSettings = {
           type: "expo",
           token,

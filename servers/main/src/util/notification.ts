@@ -16,7 +16,7 @@ export default async function (messages: ExpoPushMessage[]) {
     }
   }
 
-  return await mongo.db('notifications').collection("tickets").insertOne({
+  return await mongo.collection("notification_tickets").insertOne({
     tickets,
     sent_at: Date.now()
   });

@@ -19,7 +19,7 @@ const route: Route = {
             data: "Invalid Token"
           }
         }
-        await mongo.db("notifications").collection("settings").updateOne({ token: d.token }, { $set: d }, {upsert: true});
+        await mongo.collection("notification_settings").updateOne({ token: d.token }, { $set: d }, {upsert: true});
         return {
           status: "success",
           data: d
