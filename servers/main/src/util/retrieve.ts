@@ -29,7 +29,6 @@ export default async function (
   time: number,
   application: "main" | "team" | "universal" = "main"
 ) {
-  application = "main";
   try {
     const config = application in _config ? (_config as any)[application] : _config;
     const data = await mongo
@@ -38,7 +37,6 @@ export default async function (
     if (!data) return null;
     if (teaken === false || data.teakens.includes(teaken)) {
       const token = data.token;
-      console.log("token", token);
       if (time && token.expires * 1000 > Date.now() + time * 1000) {
         const { refresh_token: _, ...r } = token;
         return r;
