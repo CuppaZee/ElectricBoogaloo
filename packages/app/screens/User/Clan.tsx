@@ -79,11 +79,7 @@ export default function UserClanScreen() {
                 <Image
                   style={{ width: 32, height: 32, margin: 8 }}
                   source={{
-<<<<<<< HEAD
                     uri: `${baseURL}/requirements/${requirement}.png`,
-=======
-                    uri: `https://server.cuppazee.app/requirements/${requirement}.png`,
->>>>>>> main
                   }}
                 />
                 <View style={{ paddingVertical: 8, flex: 1 }}>
