@@ -40,6 +40,24 @@
         "**/.*",
         "**/node_modules/**"
       ],
+      "headers": [
+        {
+          "source": "/:page*",
+          "headers": [
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            }
+          ]
+        }
+      ],
+      "redirects": [
+        {
+          "source": "/:page*",
+          "destination": "https://nextserver.cuppazee.app/:page",
+          "type": 307
+        }
+      ],
       "rewrites": [
         {
           "source": "/terms",

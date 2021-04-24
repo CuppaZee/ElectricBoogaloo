@@ -13,6 +13,44 @@ import Icon from "../../components/Common/Icon";
 import { AutoMap, Icons, Layer, Marker, Source } from "../../components/Map/Map";
 import WebMercatorViewport from "viewport-mercator-project";
 import circle from "@turf/circle";
+import { point } from "@turf/helpers";
+import { getCoord } from "@turf/invariant";
+import destination from "@turf/destination";
+
+export function getExpandedBounds(bounds: number[][], expansion: number) {
+  const topLeft = getCoord(
+    destination(
+      destination(
+        point([Math.min(...bounds.map(i => i[0])), Math.max(...bounds.map(i => i[1]))]),
+        expansion,
+        -90,
+        { units: "kilometers" }
+      ),
+      expansion,
+      0,
+      { units: "kilometers" }
+    )
+  );
+  const bottomRight = getCoord(
+    destination(
+      destination(
+        point([Math.max(...bounds.map(i => i[0])), Math.min(...bounds.map(i => i[1]))]),
+        expansion,
+        90,
+        { units: "kilometers" }
+      ),
+      expansion,
+      180,
+      { units: "kilometers" }
+    )
+  );
+  return {
+    lat1: topLeft[1],
+    lng1: bottomRight[0],
+    lat2: bottomRight[1],
+    lng2: topLeft[0],
+  };
+}
 
 export default function BouncersMapScreen() {
   const nav = useNavigation();
@@ -194,12 +232,13 @@ export default function BouncersMapScreen() {
             const bounds =
               (await viewport.getBounds?.()) ??
               new WebMercatorViewport(viewport as any).getBoundingRegion();
-            setLocation({
-              lat1: Math.min(...bounds.map(i => i[1])),
-              lng1: Math.min(...bounds.map(i => i[0])),
-              lat2: Math.max(...bounds.map(i => i[1])),
-              lng2: Math.max(...bounds.map(i => i[0])),
-            });
+            setLocation(getExpandedBounds(bounds, 1.4));
+            // setLocation({
+            //   lat1: Math.min(...bounds.map(i => i[1])),
+            //   lng1: Math.min(...bounds.map(i => i[0])),
+            //   lat2: Math.max(...bounds.map(i => i[1])),
+            //   lng2: Math.max(...bounds.map(i => i[0])),
+            // });
           } else {
             setLocation(undefined);
           }

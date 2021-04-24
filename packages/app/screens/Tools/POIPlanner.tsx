@@ -13,6 +13,7 @@ import Icon from "../../components/Common/Icon";
 import { AutoMap, Icons, Layer, Marker, Source } from "../../components/Map/Map";
 import WebMercatorViewport from "viewport-mercator-project";
 import circle from "@turf/circle";
+import { getExpandedBounds } from "./DestinationPlanner";
 
 export default function BouncersMapScreen() {
   const nav = useNavigation();
@@ -73,12 +74,7 @@ export default function BouncersMapScreen() {
             const bounds =
               (await viewport.getBounds?.()) ??
               new WebMercatorViewport(viewport as any).getBoundingRegion();
-            setLocation({
-              lat1: Math.min(...bounds.map(i => i[1])),
-              lng1: Math.min(...bounds.map(i => i[0])),
-              lat2: Math.max(...bounds.map(i => i[1])),
-              lng2: Math.max(...bounds.map(i => i[0])),
-            });
+            setLocation(getExpandedBounds(bounds, 1.8));
           } else {
             setLocation(undefined);
           }

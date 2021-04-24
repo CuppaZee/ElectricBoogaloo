@@ -61,6 +61,19 @@ async function apiResponder(req: functions.Request, res: functions.Response) {
         raw: path.join("/"),
         params: null,
       };
+      if (Date.now() > 1619257500000) {
+        res.send(({
+          data: null,
+          status: {
+            text: "Maintenance in Progress",
+            id: "maintenance",
+            code: 503,
+          },
+          route: routeDetails,
+          executed_in: executed_in(),
+        }));
+        return;
+      }
       var use_route = routes.find(i => i.path === route);
       if (!use_route) {
         return res.send({
