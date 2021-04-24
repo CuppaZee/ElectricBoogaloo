@@ -44,11 +44,11 @@ export default function TypeImage({ icon, iconSize, style: { size, ...style }, .
     <View style={{ ...style, height: size, width: size }}>
       <Image
         source={source}
-        style={{
-          ...style,
+        style={[style, {
           height: size,
           width: size,
-        }}
+          margin: 0,
+        }]}
         {...rest}
       />
       {hostIcon && (

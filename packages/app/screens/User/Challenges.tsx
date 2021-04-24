@@ -1,5 +1,5 @@
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
-import { Layout, Text } from "@ui-kitten/components";
+import { Datepicker, Layout, Text } from "@ui-kitten/components";
 import dayjs from "dayjs";
 import * as React from "react";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
@@ -13,6 +13,8 @@ import Loading from "../../components/Loading";
 import { Pressable, ScrollView, View } from "react-native";
 import TypeImage from "../../components/Common/TypeImage";
 import { useTranslation } from "react-i18next";
+import getDateService from "../../components/Common/getDateService";
+import Icon from "../../components/Common/Icon";
 
 export default function UserChallengesScreen() {
   const { t } = useTranslation();
@@ -48,6 +50,14 @@ export default function UserChallengesScreen() {
   return (
     <Layout onLayout={onLayout} style={{ flex: 1 }}>
       <ScrollView style={{ flex: 1 }} contentContainerStyle={{ alignItems: "center" }}>
+        <View style={{ width: 400, maxWidth: "100%", padding: 4 }}>
+          <Datepicker
+            date={new Date(dayjs.mhqParse(route.params.date).valueOf() ?? dayjs.mhqNow().valueOf())}
+            onSelect={nextDate => nav.setParams({ date: dayjs(nextDate).format("YYYY-MM-DD") })}
+            accessoryRight={props => <Icon {...props} name="calendar" />}
+            dateService={getDateService()}
+          />
+        </View>
         {d
           .slice()
           .sort(
@@ -57,7 +67,8 @@ export default function UserChallengesScreen() {
           )
           .map(c => (
             <View style={{ width: 400, maxWidth: "100%", padding: 4 }}>
-              <Pressable onPress={() => nav.navigate("Challenge", {...route.params, challenge: c.id})}>
+              <Pressable
+                onPress={() => nav.navigate("Challenge", { ...route.params, challenge: c.id })}>
                 <Layout
                   level="3"
                   style={{ flexDirection: "row", alignItems: "center", borderRadius: 8 }}>

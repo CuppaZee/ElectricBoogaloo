@@ -26,6 +26,7 @@ import baseURL from "../../baseURL";
 import { useUserBookmarks } from "../../hooks/useBookmarks";
 import useUsernameSelect from "./UserSelect";
 import Select from "../../components/Common/Select";
+import useToken from "../../hooks/useToken";
 
 interface ReportModalProps {
   munzee: UniversalMunzee;
@@ -115,6 +116,7 @@ function SubmitModal({ close }: SubmitModalProps) {
   const { t } = useTranslation();
   const [code, setCode] = React.useState("");
   const [submitted, setSubmitted] = React.useState(0);
+  const token = useToken();
 
   if (submitted === 2) {
     return (
@@ -180,7 +182,7 @@ function SubmitModal({ close }: SubmitModalProps) {
             const response = await fetch(
               `${baseURL}/user/universal/submit/v1?code=${encodeURIComponent(
                 code
-              )}`
+              )}&access_token=${encodeURIComponent(token?.token?.access_token)}`
             );
             if (response.ok) {
               setSubmitted(2);
