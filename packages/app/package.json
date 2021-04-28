@@ -11,7 +11,7 @@
     "build-translations": "node ./lang/generate.js",
     "eject": "expo eject",
     "test": "jest --watchAll",
-    "deploy-app": "expo publish --target bare --release-channel 2.1"
+    "deploy-app": "expo publish --release-channel 2.1 && expo publish --release-channel v2.1"
   },
   "jest": {
     "preset": "jest-expo"
@@ -106,7 +106,8 @@
     "react-native-web-swiper": "^2.1.9",
     "react-query": "^3.3.0",
     "sentry-expo": "^3.1.0",
-    "type-fest": "^1.0.1"
+    "type-fest": "^1.0.1",
+    "typescript": "^4.2.4"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",
