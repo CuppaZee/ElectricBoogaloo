@@ -216,15 +216,9 @@ const route: Route = {
             },
           };
           if (shadow_name) final._details.name = shadow_name;
-          if (d) {
-            await mongo
-              .collection("shadow")
-              .updateOne({ game_id: game_id.toString(), clan_id: clan_id.toString() }, { $set: final });
-          } else {
-            await mongo
-              .collection("shadow")
-              .updateOne({ game_id: game_id.toString(), clan_id: clan_id.toString() }, { $set: final });
-          }
+          await mongo
+            .collection("shadow")
+            .updateOne({ game_id: game_id.toString(), clan_id: Number(clan_id) }, { $set: final }, {upsert: true});
         }
         return {
           status: "success",
