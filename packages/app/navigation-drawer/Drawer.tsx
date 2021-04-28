@@ -1,6 +1,7 @@
 import { DrawerContentComponentProps, DrawerContentOptions } from "@react-navigation/drawer";
 import { getPathFromState, useNavigationState } from "@react-navigation/native";
 import {
+  ApplicationProvider,
   DrawerGroup as UIKittenDrawerGroup,
   DrawerGroupProps,
   DrawerItem as UIKittenDrawerItem,
@@ -16,6 +17,7 @@ import Tip from "../components/Common/Tip";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../components/Common/Icon";
 import useSetting, { DrawerAtom, ReadyAtom } from "../hooks/useSetting";
+import EvaWrapper from "../EvaWrapper";
 
 const DrawerItem = React.memo(
   function ({ title, style, ...props }: DrawerItemProps) {
@@ -583,5 +585,9 @@ export default function DrawerContent(props: DrawerContentComponentProps<DrawerC
   const [ready] = useSetting(ReadyAtom);
   if (ready !== "2020-03-20") return null;
 
-  return <MainDrawerContent page={page} navigation={props.navigation} />;
+  return (
+    // <EvaWrapper dark>
+      <MainDrawerContent page={page} navigation={props.navigation} />
+    // </EvaWrapper>
+  );
 }

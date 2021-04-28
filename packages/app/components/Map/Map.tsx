@@ -338,14 +338,14 @@ export function Source({ children, data, id, ...rest }: SourceProps) {
   return null;
 }
 
-type CamelKeys<T> = { [K in keyof T as K extends string ? CamelCase<K> : K]: T[K] };
-function kebabToCamel<K extends string>(value: K): CamelCase<K> {
-  return (value.replace(/-[a-z]/g, a => a[1].toUpperCase()) as unknown) as CamelCase<K>;
+// type CamelKeys<T> = { [K in keyof T as K extends string ? CamelCase<K> : K]: T[K] };
+function kebabToCamel<K extends string>(value: K): any { //CamelCase<K>
+  return (value.replace(/-[a-z]/g, a => a[1].toUpperCase()) as any);// as CamelCase<K>;
 }
-function objectKebabToCamel<T extends { [key: string]: any }>(obj: T): CamelKeys<T> {
+function objectKebabToCamel<T extends { [key: string]: any }>(obj: T): any { //CamelKeys<T>
   return (Object.fromEntries(
     Object.entries(obj).map(i => [kebabToCamel(i[0]), i[1]])
-  ) as unknown) as CamelKeys<T>;
+  ) as any);// as CamelKeys<T>;
 }
 
 export function Layer(props: LayerProps) {

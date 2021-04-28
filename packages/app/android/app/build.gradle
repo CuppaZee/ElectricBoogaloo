@@ -137,7 +137,7 @@ android {
         applicationId 'uk.cuppazee.paper'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 15
+        versionCode 18
         versionName "2.1"
     }
     splits {
@@ -163,6 +163,7 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
+//            debuggable true
             signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
@@ -191,6 +192,7 @@ dependencies {
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
     implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation "com.squareup.okhttp3:okhttp:3.14.9"
     implementation 'jp.wasabeef:picasso-transformations:2.4.0'
     implementation 'com.android.volley:volley:1.1.1'
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {

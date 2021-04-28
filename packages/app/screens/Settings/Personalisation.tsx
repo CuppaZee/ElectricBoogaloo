@@ -372,7 +372,7 @@ export default function PersonalisationScreen() {
           flexWrap: "wrap",
         }}>
         <View style={{ width: 400, flexGrow: 1, maxWidth: "100%", padding: 4 }}>
-          <Layout level="2" style={{ margin: 4, padding: 4, flex: 1, borderRadius: 8 }}>
+          <Layout level="3" style={{ margin: 4, padding: 4, flex: 1, borderRadius: 8 }}>
             <Text style={{ margin: 4 }} category="h6">
               {t("settings_personalisation:theme")}
             </Text>
@@ -487,7 +487,7 @@ export default function PersonalisationScreen() {
         </View>
 
         <View style={{ width: 400, flexGrow: 1, maxWidth: "100%", padding: 4 }}>
-          <Layout level="2" style={{ margin: 4, padding: 4, flex: 1, borderRadius: 8 }}>
+          <Layout level="3" style={{ margin: 4, padding: 4, flex: 1, borderRadius: 8 }}>
             <ClanPersonalisation clanSettings={clanSettings} setClanSettings={setClanSettings} />
           </Layout>
         </View>
