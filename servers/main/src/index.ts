@@ -112,7 +112,6 @@ async function apiResponder(req: functions.Request, res: functions.Response) {
         console.error(e);
       }
       var params = Object.assign({}, req.query || {}, body || {});
-      console.log(params);
       var response = await Promise.resolve(
         use.function({
           params: params,

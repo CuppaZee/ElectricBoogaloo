@@ -109,8 +109,6 @@ async function apiResponder(req: express.Request, res: express.Response) {
       console.error(e);
     }
     var params = Object.assign({}, req.query || {}, body || {});
-    console.log("params");
-    console.log(params, req.body);
     var response = await Promise.resolve(
       use.function({
         params: params,

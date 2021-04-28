@@ -8,7 +8,6 @@ import mongo from "../util/mongo";
 
 async function getLease() {
   const result = await mongo.collection("notification_feeds").findOneAndUpdate({ id: "bouncers", locked: { $lt: Date.now() } }, { $set: { locked: Date.now() + 300000 } });
-  console.log(result);
   if (result.value) {
     return result.value;
   }
