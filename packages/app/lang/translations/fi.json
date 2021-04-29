@@ -1,7 +1,7 @@
 [
     {
         "term": "title",
-        "definition": "Kahvia ei l\u00f6ydy",
+        "definition": "Kuppi nurin",
         "context": "\"404\"",
         "term_plural": "",
         "reference": "",
@@ -9,7 +9,7 @@
     },
     {
         "term": "subtitle",
-        "definition": "T\u00e4\u00e4ll\u00e4 ei ole kahvia",
+        "definition": "T\u00e4\u00e4lt\u00e4 ei l\u00f6ydy kahvia.",
         "context": "\"404\"",
         "term_plural": "",
         "reference": "",
@@ -2004,7 +2004,7 @@
     },
     {
         "term": "check",
-        "definition": "Tarkistetaan onko {username} (edelleen) QRew\/ZeeQRew {date}",
+        "definition": "Tarkistetaan {state} {username} QRew\/ZeeQRew alkaen {date}",
         "context": "\"user_qrew_checker\"",
         "term_plural": "",
         "reference": "",
@@ -2012,7 +2012,7 @@
     },
     {
         "term": "state_keep",
-        "definition": null,
+        "definition": "pit\u00e4\u00e4k\u00f6",
         "context": "\"user_qrew_checker\"",
         "term_plural": "",
         "reference": "",
@@ -2020,7 +2020,7 @@
     },
     {
         "term": "state_keep_gain",
-        "definition": null,
+        "definition": "pit\u00e4\u00e4k\u00f6\/saako",
         "context": "\"user_qrew_checker\"",
         "term_plural": "",
         "reference": "",
@@ -2028,7 +2028,7 @@
     },
     {
         "term": "state_gain",
-        "definition": null,
+        "definition": "saako",
         "context": "\"user_qrew_checker\"",
         "term_plural": "",
         "reference": "",
@@ -2278,6 +2278,70 @@
         "term": "history_rover",
         "definition": "Rooveri l\u00f6ysi",
         "context": "\"user_inventory\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "user_qrates",
+        "definition": null,
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "user_cubimals",
+        "definition": null,
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "tools_bouncers_overview",
+        "definition": null,
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "tools_bouncing_soon",
+        "definition": null,
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "tools_testscan",
+        "definition": null,
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "tools_universal",
+        "definition": null,
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "tools_destinationplanner",
+        "definition": null,
+        "context": "\"pages\"",
+        "term_plural": "",
+        "reference": "",
+        "comment": ""
+    },
+    {
+        "term": "tools_blastplanner",
+        "definition": null,
+        "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
         "comment": ""

@@ -29,29 +29,17 @@ export const UserPagesNow = [
     title: "user_challenges",
     screen: "Challenges",
   },
-  // {
-  //   icon: "shield",
-  //   title: "user_clan_progress",
-  //   screen: "ClanProgress",
-  // },
   {
     icon: "hammer",
     title: "user_qrew_checker",
     screen: "QRew",
   },
+  // {
+  //   icon: "star-box",
+  //   title: "user_qrates",
+  //   screen: "QRates",
+  // },
 ] as const;
-// export const UserPagesTools = [
-//   {
-//     icon: "earth",
-//     title: "user_universal_capper",
-//     screen: "Universal",
-//   },
-//   {
-//     icon: "bomb",
-//     title: "user_blast_checker",
-//     screen: "Blast",
-//   },
-// ] as const;
 
 export default function TabOneScreen() {
   const { t } = useTranslation();

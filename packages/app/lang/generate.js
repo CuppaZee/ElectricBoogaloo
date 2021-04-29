@@ -3,6 +3,10 @@ const langs = {
   nl: require("./translations/nl.json"),
   fi: require("./translations/fi.json"),
   de: require("./translations/de.json"),
+  cs: require("./translations/cs.json"),
+  da: require("./translations/da.json"),
+  fr: require("./translations/fr.json"),
+  hu: require("./translations/hu.json"),
 };
 const path = require("path");
 const fs = require("fs");
@@ -33,14 +37,14 @@ for (let lang in langs) {
     for (let param of itemParams) {
       if (!expectedItemParams.includes(param)) {
         console.error(
-          `Invalid parameter ${param} in ${lang}:${item.context.replace(/"/g, "")}:${item.term}`
+          `\x1b[91mInvalid parameter ${param} in ${lang}:${item.context.replace(/"/g, "")}:${item.term}\x1b[39m`
         );
       }
     }
     for (let param of expectedItemParams) {
       if (!itemParams.includes(param)) {
         console.error(
-          `Missing parameter ${param} in ${lang}:${item.context.replace(/"/g, "")}:${item.term}`
+          `\x1b[91mMissing parameter ${param} in ${lang}:${item.context.replace(/"/g, "")}:${item.term}\x1b[39m`
         );
       }
     }

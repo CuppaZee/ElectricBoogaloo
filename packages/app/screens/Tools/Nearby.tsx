@@ -116,6 +116,7 @@ export default function NearbyScreen() {
             <Source
               id="bouncers"
               type="geojson"
+              key={data.data?.data?.length || 0}
               data={{
                 type: "FeatureCollection",
                 features:

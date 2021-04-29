@@ -1,7 +1,7 @@
 [
     {
         "term": "title",
-        "definition": "Kaffee nicht gefunden",
+        "definition": "Kafe nenalezeno",
         "context": "\"404\"",
         "term_plural": "",
         "reference": "",
@@ -9,7 +9,7 @@
     },
     {
         "term": "subtitle",
-        "definition": "Sieht so aus, als g\u00e4be es hier keinen Kaffee",
+        "definition": "Vypad\u00e1 to, \u017ee tu nen\u00ed \u017e\u00e1dn\u00e9 kafe.",
         "context": "\"404\"",
         "term_plural": "",
         "reference": "",
@@ -17,7 +17,7 @@
     },
     {
         "term": "home",
-        "definition": "Zur\u00fcck zur Startseite",
+        "definition": "Zp\u011bt dom\u016f",
         "context": "\"404\"",
         "term_plural": "",
         "reference": "",
@@ -25,7 +25,7 @@
     },
     {
         "term": "dashboard_dashboard",
-        "definition": "Dashboard",
+        "definition": "Dom\u016f",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -41,7 +41,7 @@
     },
     {
         "term": "user_activity",
-        "definition": "Aktivit\u00e4t",
+        "definition": "Aktivita",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -49,7 +49,7 @@
     },
     {
         "term": "user_inventory",
-        "definition": "Inventar",
+        "definition": "Invent\u00e1\u0159",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -65,7 +65,7 @@
     },
     {
         "term": "user_clan_progress",
-        "definition": "Clan Fortschritt",
+        "definition": "Postup klanu",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -73,7 +73,7 @@
     },
     {
         "term": "user_bouncers",
-        "definition": "Bouncers",
+        "definition": "Cestovatel\u00e9",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -81,7 +81,7 @@
     },
     {
         "term": "user_blast_checker",
-        "definition": "Blast Checker",
+        "definition": "Pl\u00e1nov\u00e1n\u00ed bomb",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -89,7 +89,7 @@
     },
     {
         "term": "user_qrew_checker",
-        "definition": "QRew Checker",
+        "definition": "Kontrola QRew",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -97,7 +97,7 @@
     },
     {
         "term": "user_universal_capper",
-        "definition": "Universal Capper",
+        "definition": "Chyt\u00e1n\u00ed Univers\u00e1l\u016f",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -105,7 +105,7 @@
     },
     {
         "term": "user_challenges",
-        "definition": "Herausforderungen",
+        "definition": "V\u00fdzvy",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -113,7 +113,7 @@
     },
     {
         "term": "clan_requirements",
-        "definition": "Clan Anforderungen",
+        "definition": "Podm\u00ednky pro klany",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -121,7 +121,7 @@
     },
     {
         "term": "tools_bouncers",
-        "definition": "Bouncers",
+        "definition": "Cestovatel\u00e9",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -129,7 +129,7 @@
     },
     {
         "term": "tools_munzee_types",
-        "definition": "Munzee-Typen",
+        "definition": "Typy munzee",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -137,7 +137,7 @@
     },
     {
         "term": "tools_calendar",
-        "definition": "Kalender",
+        "definition": "Kalend\u00e1\u0159",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -145,7 +145,7 @@
     },
     {
         "term": "tools_evo_planner",
-        "definition": "Evo Planer",
+        "definition": "Pl\u00e1nov\u00e1n\u00ed evoluc\u00ed",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -153,7 +153,7 @@
     },
     {
         "term": "tools_search",
-        "definition": "Suche",
+        "definition": "Hledat",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -161,7 +161,7 @@
     },
     {
         "term": "settings_personalisation",
-        "definition": "Personalisierung",
+        "definition": "P\u0159izp\u016fsoben\u00ed",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -169,7 +169,7 @@
     },
     {
         "term": "settings_notifications",
-        "definition": "Benachrichtigungen",
+        "definition": "notifikace",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -177,7 +177,7 @@
     },
     {
         "term": "settings_accounts",
-        "definition": "Accounts",
+        "definition": "\u00da\u010dty",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -185,7 +185,7 @@
     },
     {
         "term": "settings_bookmarks",
-        "definition": "Lesezeichen",
+        "definition": "Z\u00e1lo\u017eky",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -193,7 +193,7 @@
     },
     {
         "term": "tools_credits",
-        "definition": "Credits",
+        "definition": "Kredity",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -210,8 +210,9 @@
     {
         "term": "overview_points",
         "definition": {
-            "one": "{count} Punkt",
-            "other": "{count} Punkte"
+            "one": "{count} Bod",
+            "few": "{count} body",
+            "other": "{count} bod\u016f"
         },
         "context": "\"user_activity\"",
         "term_plural": "overview_points",
@@ -221,8 +222,9 @@
     {
         "term": "overview_captures",
         "definition": {
-            "one": "{count} Capture",
-            "other": "{count} Captures"
+            "one": "{count} zachycen\u00ed",
+            "few": "{count} zachycen\u00ed",
+            "other": "{count} zachycen\u00ed"
         },
         "context": "\"user_activity\"",
         "term_plural": "overview_captures",
@@ -232,8 +234,9 @@
     {
         "term": "overview_deploys",
         "definition": {
-            "one": "{count} Deploy",
-            "other": "{count} Deploys"
+            "one": "{count} zalo\u017een\u00ed",
+            "few": "{count} zalo\u017een\u00ed",
+            "other": "{count} zalo\u017een\u00ed"
         },
         "context": "\"user_activity\"",
         "term_plural": "overview_deploys",
@@ -243,8 +246,9 @@
     {
         "term": "overview_capons",
         "definition": {
-            "one": "{count} CapOn",
-            "other": "{count} CapOns"
+            "one": "{count} zachycen\u00ed vlastn\u00ed",
+            "few": "{count} zachycen\u00ed vlastn\u00edch",
+            "other": "{count} zachycen\u00ed vlastn\u00edch"
         },
         "context": "\"user_activity\"",
         "term_plural": "overview_capons",
@@ -253,7 +257,7 @@
     },
     {
         "term": "filter_save",
-        "definition": "Speichere Filter",
+        "definition": "Ulo\u017een\u00e9 fitry",
         "context": "\"user_activity\"",
         "term_plural": "",
         "reference": "",
@@ -261,7 +265,7 @@
     },
     {
         "term": "filter_types",
-        "definition": "Typen",
+        "definition": "Typy",
         "context": "\"user_activity\"",
         "term_plural": "",
         "reference": "",
@@ -269,7 +273,7 @@
     },
     {
         "term": "filter_state",
-        "definition": "Status",
+        "definition": "Zem\u011b",
         "context": "\"user_activity\"",
         "term_plural": "",
         "reference": "",
@@ -285,7 +289,7 @@
     },
     {
         "term": "activity_capture",
-        "definition": "Du erfasstest",
+        "definition": "Zachytil jste",
         "context": "\"user_activity\"",
         "term_plural": "",
         "reference": "",
@@ -293,7 +297,7 @@
     },
     {
         "term": "activity_deploy",
-        "definition": "Du verteiltest",
+        "definition": "Zalo\u017eil jste",
         "context": "\"user_activity\"",
         "term_plural": "",
         "reference": "",
@@ -301,7 +305,7 @@
     },
     {
         "term": "activity_capon",
-        "definition": "{user} erfasste",
+        "definition": "{user} zachytil",
         "context": "\"user_activity\"",
         "term_plural": "",
         "reference": "",
@@ -309,7 +313,7 @@
     },
     {
         "term": "owned_by_user",
-        "definition": "von {user}",
+        "definition": "u\u017eivatelem {user}",
         "context": "\"user_activity\"",
         "term_plural": "",
         "reference": "",
@@ -317,7 +321,7 @@
     },
     {
         "term": "owned_by_self",
-        "definition": "von dir",
+        "definition": "v\u00e1mi",
         "context": "\"user_activity\"",
         "term_plural": "",
         "reference": "",
@@ -325,7 +329,7 @@
     },
     {
         "term": "none",
-        "definition": "keine",
+        "definition": "Nic",
         "context": "\"user_activity\"",
         "term_plural": "",
         "reference": "",
@@ -334,8 +338,9 @@
     {
         "term": "amount_undeployed",
         "definition": {
-            "one": "{count} Undeployed",
-            "other": "{count} Undeployed"
+            "one": "{count} Nepublikovan\u00e1",
+            "few": "{count} Nepublikovan\u00e9",
+            "other": "{count} Nepublikovan\u00fdch"
         },
         "context": "\"user_inventory\"",
         "term_plural": "amount_undeployed",
@@ -345,8 +350,9 @@
     {
         "term": "amount_credits",
         "definition": {
-            "one": "{count} Credit",
-            "other": "{count} Credits"
+            "one": "{count} Kredit",
+            "few": "{count} Kredity",
+            "other": "{count} Kredit\u016f"
         },
         "context": "\"user_inventory\"",
         "term_plural": "amount_credits",
@@ -355,7 +361,7 @@
     },
     {
         "term": "history",
-        "definition": "Verlauf",
+        "definition": "Historie",
         "context": "\"user_inventory\"",
         "term_plural": "",
         "reference": "",
@@ -363,7 +369,7 @@
     },
     {
         "term": "collected",
-        "definition": "Gesammelt!",
+        "definition": "Vyzvednuto!",
         "context": "\"user_zeeops\"",
         "term_plural": "",
         "reference": "",
@@ -371,7 +377,7 @@
     },
     {
         "term": "requirements",
-        "definition": "Anforderungen",
+        "definition": "Po\u017eadavky",
         "context": "\"clan\"",
         "term_plural": "",
         "reference": "",
@@ -379,7 +385,7 @@
     },
     {
         "term": "clan_requirements",
-        "definition": "Clan Anforderungen",
+        "definition": "Podm\u00ednky pro klany",
         "context": "\"clan\"",
         "term_plural": "",
         "reference": "",
@@ -387,7 +393,7 @@
     },
     {
         "term": "loading",
-        "definition": "L\u00e4dt",
+        "definition": "Na\u010d\u00edt\u00e1m",
         "context": "\"clan\"",
         "term_plural": "",
         "reference": "",
@@ -395,7 +401,7 @@
     },
     {
         "term": "individual",
-        "definition": "Individuelle",
+        "definition": "Osobn\u00ed",
         "context": "\"clan\"",
         "term_plural": "",
         "reference": "",
@@ -403,7 +409,7 @@
     },
     {
         "term": "group",
-        "definition": "Gruppe",
+        "definition": "Skupinov\u00e9",
         "context": "\"clan\"",
         "term_plural": "",
         "reference": "",
@@ -419,7 +425,7 @@
     },
     {
         "term": "individual_level",
-        "definition": "Indiv L{level}",
+        "definition": "Osobn\u00ed L{level}",
         "context": "\"clan\"",
         "term_plural": "",
         "reference": "",
@@ -427,7 +433,7 @@
     },
     {
         "term": "group_level",
-        "definition": "Gruppe L{level}",
+        "definition": "Skupinov\u00fd L{level}",
         "context": "\"clan\"",
         "term_plural": "",
         "reference": "",
@@ -435,7 +441,7 @@
     },
     {
         "term": "group_total",
-        "definition": "Gruppe gesamt",
+        "definition": "Celkem na klan",
         "context": "\"clan\"",
         "term_plural": "",
         "reference": "",
@@ -443,7 +449,7 @@
     },
     {
         "term": "location_fail",
-        "definition": "Fehler beim Abrufen des Orts",
+        "definition": "Nepoda\u0159ilo se z\u00edskat pozici",
         "context": "\"maps\"",
         "term_plural": "",
         "reference": "",
@@ -451,7 +457,7 @@
     },
     {
         "term": "save",
-        "definition": "speichern",
+        "definition": "Ulo\u017eit",
         "context": "\"settings_common\"",
         "term_plural": "",
         "reference": "",
@@ -459,7 +465,7 @@
     },
     {
         "term": "saved",
-        "definition": "Einstellungen gespeichert",
+        "definition": "Nastaven\u00ed \u00falo\u017eeno",
         "context": "\"settings_common\"",
         "term_plural": "",
         "reference": "",
@@ -467,7 +473,7 @@
     },
     {
         "term": "reauthenticate",
-        "definition": "Neu authentifizieren",
+        "definition": "Znovu se p\u0159ihl\u00e1sit",
         "context": "\"settings_accounts\"",
         "term_plural": "",
         "reference": "",
@@ -475,7 +481,7 @@
     },
     {
         "term": "logout",
-        "definition": "Logout",
+        "definition": "Odhl\u00e1sit",
         "context": "\"settings_accounts\"",
         "term_plural": "",
         "reference": "",
@@ -483,7 +489,7 @@
     },
     {
         "term": "add_account",
-        "definition": "Account hinzuf\u00fcgen",
+        "definition": "P\u0159idat \u00fa\u010det",
         "context": "\"settings_accounts\"",
         "term_plural": "",
         "reference": "",
@@ -491,7 +497,7 @@
     },
     {
         "term": "error_web",
-        "definition": "Keine Benachrichtigungen \u00fcber den Browser m\u00f6glich",
+        "definition": "Notifikace nejsou podporov\u00e1ny na webu",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -499,7 +505,7 @@
     },
     {
         "term": "error_permissions",
-        "definition": "Anfordern von Berechtigungen nicht m\u00f6glich. Hast du Benachrichtigungen erlaubt?",
+        "definition": "Selhalo z\u00edsk\u00e1v\u00e1n\u00ed opr\u00e1vn\u011bn\u00ed. Povolili jste notifikace?",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -507,7 +513,7 @@
     },
     {
         "term": "bouncers_title",
-        "definition": "Bouncers",
+        "definition": "P\u0159\u00ed\u0161erky",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -515,7 +521,7 @@
     },
     {
         "term": "bouncers_enabled",
-        "definition": "aktiviert",
+        "definition": "Povoleno",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -523,7 +529,7 @@
     },
     {
         "term": "bouncers_distance_default",
-        "definition": "Standardentfernung ({unit})",
+        "definition": "V\u00fdchoz\u00ed vzd\u00e1lenost ({unit})",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -531,7 +537,7 @@
     },
     {
         "term": "bouncers_distance_starred",
-        "definition": "Markierte Nutzer Entfernung ({unit})",
+        "definition": "Vzd\u00e1lenost pro ozna\u010den\u00e9 u\u017eivatele ({unit})",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -539,7 +545,7 @@
     },
     {
         "term": "bouncers_override_distance",
-        "definition": "Distanz ({unit})",
+        "definition": "Vzd\u00e1lenost ({unit})",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -547,7 +553,7 @@
     },
     {
         "term": "bouncers_override_search",
-        "definition": "Suche",
+        "definition": "Hledat",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -555,7 +561,7 @@
     },
     {
         "term": "bouncers_override_search_hint",
-        "definition": "Du kannst nach Kategorien oder einzelnen Typen suchen",
+        "definition": "M\u016f\u017eete hledat jak kategorie tak jednotliv\u00e9 typy",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -563,7 +569,7 @@
     },
     {
         "term": "bouncers_override_add",
-        "definition": "Kategorie oder Typ hinzuf\u00fcgen",
+        "definition": "P\u0159idat kategorii\/typ",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -571,7 +577,7 @@
     },
     {
         "term": "starred_users_title",
-        "definition": "Markierte Nutzer",
+        "definition": "Ozna\u010den\u00ed u\u017eivatel\u00e9",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -579,7 +585,7 @@
     },
     {
         "term": "starred_users_search",
-        "definition": "Suche",
+        "definition": "Hledat",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -587,7 +593,7 @@
     },
     {
         "term": "starred_users_add",
-        "definition": "Nutzer hinzuf\u00fcgen",
+        "definition": "P\u0159idat u\u017eivatele",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -595,7 +601,7 @@
     },
     {
         "term": "locations_title",
-        "definition": "Locations",
+        "definition": "Um\u00edst\u011bn\u00ed",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -603,7 +609,7 @@
     },
     {
         "term": "locations_live_title",
-        "definition": "Live Location",
+        "definition": "\u017div\u00e1 pozice",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -611,7 +617,7 @@
     },
     {
         "term": "locations_live_disabled",
-        "definition": "nicht tauglich",
+        "definition": "Zak\u00e1z\u00e1no",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -619,7 +625,7 @@
     },
     {
         "term": "locations_static_name",
-        "definition": "Heimatort",
+        "definition": "Jm\u00e9no pozice",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -627,7 +633,7 @@
     },
     {
         "term": "locations_static_done",
-        "definition": "Erledigt",
+        "definition": "Hotovo",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -635,7 +641,7 @@
     },
     {
         "term": "locations_static_add",
-        "definition": "Heimatort hinzuf\u00fcgen",
+        "definition": "P\u0159idat statickou pozici",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -643,7 +649,7 @@
     },
     {
         "term": "other_title",
-        "definition": "Andere",
+        "definition": "Ostatn\u00ed",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -651,7 +657,7 @@
     },
     {
         "term": "other_news_munzee",
-        "definition": "Munzee Blog",
+        "definition": "Munzee blog",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -659,7 +665,7 @@
     },
     {
         "term": "other_units_title",
-        "definition": "Einheiten",
+        "definition": "Jednotky",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -667,7 +673,7 @@
     },
     {
         "term": "other_units_metric",
-        "definition": "Metrische Einheiten (km\/m)",
+        "definition": "Metrick\u00e9 jednotky (km\/m)",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -675,7 +681,7 @@
     },
     {
         "term": "other_units_imperial",
-        "definition": "Imperiale Einheiten (mi\/ft)",
+        "definition": "Imperi\u00e1ln\u00ed jednotky (mi\/ft)",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -683,7 +689,7 @@
     },
     {
         "term": "uncategorised",
-        "definition": "ohne Kategorie",
+        "definition": "Bez kategorie",
         "context": "\"bouncers\"",
         "term_plural": "",
         "reference": "",
@@ -699,7 +705,7 @@
     },
     {
         "term": "qrewzees_on",
-        "definition": "QRewZees: Ein",
+        "definition": "QRewZees: Ano",
         "context": "\"calendar\"",
         "term_plural": "",
         "reference": "",
@@ -707,7 +713,7 @@
     },
     {
         "term": "qrewzees_off",
-        "definition": "QRewZees: Aus",
+        "definition": "QRewZees: Ne",
         "context": "\"calendar\"",
         "term_plural": "",
         "reference": "",
@@ -715,7 +721,7 @@
     },
     {
         "term": "egyptian_status",
-        "definition": "\u00c4gyptische: {type}",
+        "definition": "Egyptsk\u00fd: {type}",
         "context": "\"calendar\"",
         "term_plural": "",
         "reference": "",
@@ -723,7 +729,7 @@
     },
     {
         "term": "western_status",
-        "definition": "Westliche: {type}",
+        "definition": "Z\u00e1padn\u00ed: {type}",
         "context": "\"calendar\"",
         "term_plural": "",
         "reference": "",
@@ -731,7 +737,7 @@
     },
     {
         "term": "chinese_status",
-        "definition": "Chinesische: {types}",
+        "definition": "\u010c\u00ednsk\u00fd: {type}",
         "context": "\"calendar\"",
         "term_plural": "",
         "reference": "",
@@ -747,7 +753,7 @@
     },
     {
         "term": "description",
-        "definition": "Der Quellcode f\u00fcr die CuppaZee App ist auf GitHub verf\u00fcgbar",
+        "definition": "Zdrojov\u00fd k\u00f3d pro aplikaci CuppaZee je k dispozici na GitHubu",
         "context": "\"open_source\"",
         "term_plural": "",
         "reference": "",
@@ -755,7 +761,7 @@
     },
     {
         "term": "source_code",
-        "definition": "Quellcode",
+        "definition": "Zdrojov\u00fd k\u00f3d",
         "context": "\"open_source\"",
         "term_plural": "",
         "reference": "",
@@ -763,7 +769,7 @@
     },
     {
         "term": "packages",
-        "definition": "CuppaZee ver\u00f6ffentlicht 3 Pakete auf NPM",
+        "definition": "CuppaZee publikuje 3 bal\u00ed\u010dky na NPM",
         "context": "\"open_source\"",
         "term_plural": "",
         "reference": "",
@@ -771,7 +777,7 @@
     },
     {
         "term": "packages_types",
-        "definition": "@cuppazee\/types - Die Datenbank f\u00fcr Munzee-Typen",
+        "definition": "@cuppazee\/types - Datab\u00e1ze s v\u011bt\u0161inou typ\u016f munzee",
         "context": "\"open_source\"",
         "term_plural": "",
         "reference": "",
@@ -779,7 +785,7 @@
     },
     {
         "term": "packages_icons",
-        "definition": "@cuppazee\/icons - Die Datenbank f\u00fcr die Icons der Munzee-Typen",
+        "definition": "@cuppazee\/icons - Datab\u00e1ze s ikonami pro v\u011bt\u0161inu munzee ",
         "context": "\"open_source\"",
         "term_plural": "",
         "reference": "",
@@ -787,7 +793,7 @@
     },
     {
         "term": "packages_api",
-        "definition": "@cuppazee\/api - TypeScript Definitionen f\u00fcr die Munzee API",
+        "definition": "@cuppazee\/api - Definice pro Munzee API v TypeScriptu",
         "context": "\"open_source\"",
         "term_plural": "",
         "reference": "",
@@ -795,7 +801,7 @@
     },
     {
         "term": "license",
-        "definition": "{license} Lizenz",
+        "definition": "{license} Licence",
         "context": "\"open_source\"",
         "term_plural": "",
         "reference": "",
@@ -803,7 +809,7 @@
     },
     {
         "term": "host",
-        "definition": "auf {name} von {creator}",
+        "definition": "Na {name} od {creator}",
         "context": "\"user_bouncers\"",
         "term_plural": "",
         "reference": "",
@@ -819,7 +825,7 @@
     },
     {
         "term": "captures",
-        "definition": "{number} mal erfasst - zuletzt am {date}",
+        "definition": "{number} zachycen\u00ed - naposledy dne {date}",
         "context": "\"user_bouncers\"",
         "term_plural": "",
         "reference": "",
@@ -827,7 +833,7 @@
     },
     {
         "term": "never",
-        "definition": "niemals",
+        "definition": "Nikdy",
         "context": "\"user_bouncers\"",
         "term_plural": "",
         "reference": "",
@@ -835,7 +841,7 @@
     },
     {
         "term": "rest_a",
-        "definition": "Macht eine Pause",
+        "definition": "Odpo\u010d\u00edv\u00e1",
         "context": "\"user_bouncers\"",
         "term_plural": "",
         "reference": "",
@@ -843,7 +849,7 @@
     },
     {
         "term": "rest_b",
-        "definition": "Macht ein Nickerchen",
+        "definition": "Chyt\u00e1 letadlo",
         "context": "\"user_bouncers\"",
         "term_plural": "",
         "reference": "",
@@ -851,7 +857,7 @@
     },
     {
         "term": "rest_c",
-        "definition": "chillt an der Bushaltestelle",
+        "definition": "\u010cek\u00e1 na zast\u00e1vce",
         "context": "\"user_bouncers\"",
         "term_plural": "",
         "reference": "",
@@ -859,7 +865,7 @@
     },
     {
         "term": "facebook_title",
-        "definition": "CuppaZee wird nicht unterst\u00fctzt im Facebook-Browser",
+        "definition": "CuppaZee nen\u00ed podporovan\u00e9 v prohl\u00ed\u017ee\u010di Facebooku",
         "context": "\"welcome\"",
         "term_plural": "",
         "reference": "",
@@ -867,7 +873,7 @@
     },
     {
         "term": "facebook_description",
-        "definition": "Dr\u00fccke den <1 \/> Men\u00fc Button rechts oben und klicke dann auf \"im Browser \u00f6ffnen\", um CuppaZee in einem unterst\u00fctzten Browser zu nutzen",
+        "definition": "M\u016f\u017eete zm\u00e1\u010dknout <1 \/>  ikonu v menu v prav\u00e9m horn\u00edm rohu a \"Otev\u0159\u00edt v prohl\u00ed\u017ee\u010di\" pro otev\u0159en\u00ed CuppaZee v podporovan\u00e9m prohl\u00ed\u017ee\u010di.",
         "context": "\"welcome\"",
         "term_plural": "",
         "reference": "",
@@ -875,7 +881,7 @@
     },
     {
         "term": "messenger_title",
-        "definition": "CuppaZee wird nicht unterst\u00fctzt im Messenger-Browser",
+        "definition": "CuppaZee nen\u00ed podrpovan\u00e9 v prohl\u00ed\u017ee\u010di od Messengeru",
         "context": "\"welcome\"",
         "term_plural": "",
         "reference": "",
@@ -883,7 +889,7 @@
     },
     {
         "term": "messenger_ios_description",
-        "definition": "Dr\u00fccke den <1 \/> Men\u00fc Button rechts oben und klicke dann auf \"in Safari \u00f6ffnen\", um CuppaZee in einem unterst\u00fctzten Browser zu nutzen",
+        "definition": "M\u016f\u017eete zm\u00e1\u010dknout <1 \/>  ikonu v menu v prav\u00e9m horn\u00edm rohu a \"Otev\u0159\u00edt v Safari\" pro otev\u0159en\u00ed CuppaZee v podporovan\u00e9m prohl\u00ed\u017ee\u010di.",
         "context": "\"welcome\"",
         "term_plural": "",
         "reference": "",
@@ -891,7 +897,7 @@
     },
     {
         "term": "title",
-        "definition": "Willkommen!",
+        "definition": "V\u00edtejte",
         "context": "\"welcome\"",
         "term_plural": "",
         "reference": "",
@@ -899,7 +905,7 @@
     },
     {
         "term": "theme",
-        "definition": "W\u00e4hle ein Design",
+        "definition": "Vyberte t\u00e9ma",
         "context": "\"welcome\"",
         "term_plural": "",
         "reference": "",
@@ -907,7 +913,7 @@
     },
     {
         "term": "language",
-        "definition": "Sprache ausw\u00e4hlen",
+        "definition": "Vyberte v\u00e1\u0161 jazyk",
         "context": "\"welcome\"",
         "term_plural": "",
         "reference": "",
@@ -915,7 +921,7 @@
     },
     {
         "term": "accounts",
-        "definition": "Accounts hinzuf\u00fcgen",
+        "definition": "P\u0159idejte \u00fa\u010dty",
         "context": "\"welcome\"",
         "term_plural": "",
         "reference": "",
@@ -923,7 +929,7 @@
     },
     {
         "term": "add_account",
-        "definition": "Account hinzuf\u00fcgen",
+        "definition": "P\u0159idat \u00fa\u010det",
         "context": "\"welcome\"",
         "term_plural": "",
         "reference": "",
@@ -931,7 +937,7 @@
     },
     {
         "term": "add_extra_account",
-        "definition": "einen weiteren Account hinzuf\u00fcgen",
+        "definition": "P\u0159idat dal\u0161\u00ed \u00fa\u010det",
         "context": "\"welcome\"",
         "term_plural": "",
         "reference": "",
@@ -939,7 +945,7 @@
     },
     {
         "term": "continue",
-        "definition": "Zur\u00fcck zum Dashboard",
+        "definition": "Pokra\u010dovat na hlavn\u00ed str\u00e1nku",
         "context": "\"welcome\"",
         "term_plural": "",
         "reference": "",
@@ -947,7 +953,7 @@
     },
     {
         "term": "history_space_coast_geo_store",
-        "definition": "Space Coast Geo Store",
+        "definition": "Geo Obchod Space Coast",
         "context": "\"user_inventory\"",
         "term_plural": "",
         "reference": "",
@@ -955,7 +961,7 @@
     },
     {
         "term": "history_freeze_tag_store",
-        "definition": "Freeze Tag Store",
+        "definition": "Freeze Tag obchod",
         "context": "\"user_inventory\"",
         "term_plural": "",
         "reference": "",
@@ -963,7 +969,7 @@
     },
     {
         "term": "history_pimedus",
-        "definition": "Pimedus Preis",
+        "definition": "Odm\u011bna od Pimeduse",
         "context": "\"user_inventory\"",
         "term_plural": "",
         "reference": "",
@@ -971,7 +977,7 @@
     },
     {
         "term": "history_magnetus",
-        "definition": "Magnetus Preis",
+        "definition": "Odm\u011bna od Magnetuse",
         "context": "\"user_inventory\"",
         "term_plural": "",
         "reference": "",
@@ -979,7 +985,7 @@
     },
     {
         "term": "history_prize_wheel",
-        "definition": "Prize Wheel Preis",
+        "definition": "Odm\u011bna z kola \u0161t\u011bst\u00ed",
         "context": "\"user_inventory\"",
         "term_plural": "",
         "reference": "",
@@ -987,7 +993,7 @@
     },
     {
         "term": "history_premium",
-        "definition": "Premium Belohnung",
+        "definition": "Odm\u011bna za pr\u00e9miov\u00e9 \u010dlenstv\u00ed",
         "context": "\"user_inventory\"",
         "term_plural": "",
         "reference": "",
@@ -1003,7 +1009,7 @@
     },
     {
         "term": "history_zeeops",
-        "definition": "ZeeOps Preis",
+        "definition": "Odm\u011bna za ZeeOps",
         "context": "\"user_inventory\"",
         "term_plural": "",
         "reference": "",
@@ -1011,7 +1017,7 @@
     },
     {
         "term": "history_support",
-        "definition": "Munzee Support",
+        "definition": "Munzee podpora",
         "context": "\"user_inventory\"",
         "term_plural": "",
         "reference": "",
@@ -1027,7 +1033,7 @@
     },
     {
         "term": "clan_bookmarks",
-        "definition": "Gespeicherte Clans",
+        "definition": "Obl\u00edben\u00e9 klany",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -1035,7 +1041,7 @@
     },
     {
         "term": "settings",
-        "definition": "Einstellungen",
+        "definition": "Nastaven\u00ed",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -1043,7 +1049,7 @@
     },
     {
         "term": "tools_donate",
-        "definition": "Spenden",
+        "definition": "Darovat",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -1051,7 +1057,7 @@
     },
     {
         "term": "more_clans",
-        "definition": "mehr Clans",
+        "definition": "V\u00edce klan\u016f",
         "context": "\"drawer\"",
         "term_plural": "",
         "reference": "",
@@ -1059,7 +1065,7 @@
     },
     {
         "term": "rewards",
-        "definition": "Belohnungen",
+        "definition": "Odm\u011bny",
         "context": "\"clan\"",
         "term_plural": "",
         "reference": "",
@@ -1067,7 +1073,7 @@
     },
     {
         "term": "clan_rewards",
-        "definition": "Clan Belohnungen",
+        "definition": "Klanov\u00e9 odm\u011bny",
         "context": "\"clan\"",
         "term_plural": "",
         "reference": "",
@@ -1075,7 +1081,7 @@
     },
     {
         "term": "search",
-        "definition": "Suche",
+        "definition": "Hledat",
         "context": "\"search\"",
         "term_plural": "",
         "reference": "",
@@ -1091,7 +1097,7 @@
     },
     {
         "term": "category",
-        "definition": "Typ Kategorie",
+        "definition": "Kategorie typu",
         "context": "\"search\"",
         "term_plural": "",
         "reference": "",
@@ -1099,7 +1105,7 @@
     },
     {
         "term": "player",
-        "definition": "Spieler",
+        "definition": "Hr\u00e1\u010d",
         "context": "\"search\"",
         "term_plural": "",
         "reference": "",
@@ -1107,7 +1113,7 @@
     },
     {
         "term": "clan",
-        "definition": "Clan",
+        "definition": "Klan",
         "context": "\"search\"",
         "term_plural": "",
         "reference": "",
@@ -1115,7 +1121,7 @@
     },
     {
         "term": "clans",
-        "definition": "Clans",
+        "definition": "Klany",
         "context": "\"dashboard\"",
         "term_plural": "",
         "reference": "",
@@ -1123,7 +1129,7 @@
     },
     {
         "term": "drawer_user_bookmarks",
-        "definition": "Du kannst Lesezeichen f\u00fcr andere Spieler in den Einstellungen hinzuf\u00fcgen oder entfernen",
+        "definition": "M\u016f\u017eete p\u0159idat nebo odebrat u\u017eivatele z va\u0161ich obl\u00edben\u00fdch v nastaven\u00ed",
         "context": "\"tips\"",
         "term_plural": "",
         "reference": "",
@@ -1131,7 +1137,7 @@
     },
     {
         "term": "drawer_clan_bookmarks",
-        "definition": "Du kannst Lesezeichen f\u00fcr andere Clans in den Einstellungen hinzuf\u00fcgen oder entfernen",
+        "definition": "M\u016f\u017eete p\u0159idat nebo odebrat klany z va\u0161ich obl\u00edben\u00fdch v nastaven\u00ed",
         "context": "\"tips\"",
         "term_plural": "",
         "reference": "",
@@ -1139,7 +1145,7 @@
     },
     {
         "term": "clan_stats_customisation",
-        "definition": "Es gibt eine Menge M\u00f6glichkeiten, um die Clan Statistiken zu personalisieren",
+        "definition": "M\u00e1me mnoho nastaven\u00ed jak si p\u0159izp\u016fsobit klanov\u00e9 statistiky v nastaven\u00ed",
         "context": "\"tips\"",
         "term_plural": "",
         "reference": "",
@@ -1147,7 +1153,7 @@
     },
     {
         "term": "search_munzee_types",
-        "definition": "Hier kannst du nach Munzeetypen suchen, um mehr \u00fcber diese zu erfahren!",
+        "definition": "Stejn\u011b jako hled\u00e1te hr\u00e1\u010de nebo klany, m\u016f\u017eete hledat typy munzee abyste se o nich dozved\u011bli v\u00edce!",
         "context": "\"tips\"",
         "term_plural": "",
         "reference": "",
@@ -1155,7 +1161,7 @@
     },
     {
         "term": "share",
-        "definition": "Teilen",
+        "definition": "Pod\u00edl",
         "context": "\"clan\"",
         "term_plural": "",
         "reference": "",
@@ -1163,7 +1169,7 @@
     },
     {
         "term": "share_level",
-        "definition": "Geteiltes L{level}",
+        "definition": "Pod\u00edl L{level}",
         "context": "\"clan\"",
         "term_plural": "",
         "reference": "",
@@ -1171,7 +1177,7 @@
     },
     {
         "term": "title",
-        "definition": "Hier ein kleiner Trick!",
+        "definition": "Tady je rychl\u00fd tip!",
         "context": "\"tips\"",
         "term_plural": "",
         "reference": "",
@@ -1179,7 +1185,7 @@
     },
     {
         "term": "user_captures",
-        "definition": "Captures",
+        "definition": "Zachycen\u00ed",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -1187,7 +1193,7 @@
     },
     {
         "term": "tools_nearby",
-        "definition": "Bouncer in der N\u00e4he",
+        "definition": "Okoln\u00ed speci\u00e1ln\u00ed",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -1195,7 +1201,7 @@
     },
     {
         "term": "tools_poiplanner",
-        "definition": "POI Planer",
+        "definition": "Pl\u00e1novan\u00ed POI",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -1203,7 +1209,7 @@
     },
     {
         "term": "tools",
-        "definition": "Tools",
+        "definition": "N\u00e1stroje",
         "context": "\"pages\"",
         "term_plural": "",
         "reference": "",
@@ -1219,7 +1225,7 @@
     },
     {
         "term": "rank",
-        "definition": "Rang #{rank}",
+        "definition": "Po\u0159ad\u00ed #{rank}",
         "context": "\"user_profile\"",
         "term_plural": "",
         "reference": "",
@@ -1228,8 +1234,9 @@
     {
         "term": "points",
         "definition": {
-            "one": "{n} Punkt",
-            "other": "{n} Punkt"
+            "one": "{n} bod",
+            "few": "{n} body",
+            "other": "{n} bod\u016f"
         },
         "context": "\"user_profile\"",
         "term_plural": "points",
@@ -1239,8 +1246,9 @@
     {
         "term": "overview_passive_deploys",
         "definition": {
-            "one": "{count} Passiver Deploy",
-            "other": "{count} Passive Deploys"
+            "one": "{count} pasivn\u00ed publikace",
+            "few": "{count} pasivn\u00ed publikace",
+            "other": "{count} pasivn\u00edch publikac\u00ed"
         },
         "context": "\"user_activity\"",
         "term_plural": "overview_passive_deploys",
@@ -1249,7 +1257,7 @@
     },
     {
         "term": "type_info",
-        "definition": "Typ Info",
+        "definition": "Info o typu",
         "context": "\"user_activity\"",
         "term_plural": "",
         "reference": "",
@@ -1257,7 +1265,7 @@
     },
     {
         "term": "settings_zero",
-        "definition": "Nicht im Besitz befindliche anzeigen",
+        "definition": "Zahrnout nuly",
         "context": "\"user_inventory\"",
         "term_plural": "",
         "reference": "",
@@ -1265,7 +1273,7 @@
     },
     {
         "term": "settings_group",
-        "definition": "Gruppieren nach Kategorie",
+        "definition": "Seskupit podle kategorie",
         "context": "\"user_inventory\"",
         "term_plural": "",
         "reference": "",
@@ -1283,7 +1291,8 @@
         "term": "munzees",
         "definition": {
             "one": "{count} Munzee",
-            "other": "{count} Munzees"
+            "few": "{count} Munzee",
+            "other": "{count} Munzee"
         },
         "context": "\"user_blast_checker\"",
         "term_plural": "munzees",
@@ -1292,7 +1301,7 @@
     },
     {
         "term": "points",
-        "definition": "{min} - {max} Punkte (Durchschn. {avg})",
+        "definition": "{min} - {max} Bod\u016f (pr\u016fm\u011brn\u011b {avg})",
         "context": "\"user_blast_checker\"",
         "term_plural": "",
         "reference": "",
@@ -1316,7 +1325,7 @@
     },
     {
         "term": "premium",
-        "definition": "Premium",
+        "definition": "Premiov\u00fd",
         "context": "\"user_qrew_checker\"",
         "term_plural": "",
         "reference": "",
@@ -1324,7 +1333,7 @@
     },
     {
         "term": "yes",
-        "definition": "Ja",
+        "definition": "Ano",
         "context": "\"user_qrew_checker\"",
         "term_plural": "",
         "reference": "",
@@ -1332,7 +1341,7 @@
     },
     {
         "term": "no",
-        "definition": "Nein",
+        "definition": "Ne",
         "context": "\"user_qrew_checker\"",
         "term_plural": "",
         "reference": "",
@@ -1340,7 +1349,7 @@
     },
     {
         "term": "captures",
-        "definition": "Captures",
+        "definition": "Zachycen\u00ed",
         "context": "\"user_qrew_checker\"",
         "term_plural": "",
         "reference": "",
@@ -1348,7 +1357,7 @@
     },
     {
         "term": "deploys",
-        "definition": "Deploys",
+        "definition": "Zalo\u017een\u00ed",
         "context": "\"user_qrew_checker\"",
         "term_plural": "",
         "reference": "",
@@ -1356,7 +1365,7 @@
     },
     {
         "term": "recent_capture",
-        "definition": "letzter Capture",
+        "definition": "Ned\u00e1vn\u00e1 zachycen\u00ed",
         "context": "\"user_qrew_checker\"",
         "term_plural": "",
         "reference": "",
@@ -1364,7 +1373,7 @@
     },
     {
         "term": "recent_deploy",
-        "definition": "letzter Deploy",
+        "definition": "Ned\u00e1vn\u00e9 publikace",
         "context": "\"user_qrew_checker\"",
         "term_plural": "",
         "reference": "",
@@ -1372,7 +1381,7 @@
     },
     {
         "term": "physical_captures",
-        "definition": "Physische Captures",
+        "definition": "Fyzick\u00fdch zachycen\u00ed",
         "context": "\"user_qrew_checker\"",
         "term_plural": "",
         "reference": "",
@@ -1380,7 +1389,7 @@
     },
     {
         "term": "physical_deploys",
-        "definition": "Physische Deploys",
+        "definition": "Fyzick\u00fdch zalo\u017een\u00ed",
         "context": "\"user_qrew_checker\"",
         "term_plural": "",
         "reference": "",
@@ -1388,7 +1397,7 @@
     },
     {
         "term": "total_points",
-        "definition": "Gesamtpunkte",
+        "definition": "Celkov\u00fd po\u010det bod\u016f",
         "context": "\"user_qrew_checker\"",
         "term_plural": "",
         "reference": "",
@@ -1396,7 +1405,7 @@
     },
     {
         "term": "remaining",
-        "definition": "{remaining} \u00fcbrig von {total}",
+        "definition": "{remaining} zb\u00fdv\u00e1 z {total}",
         "context": "\"user_universal_capper\"",
         "term_plural": "",
         "reference": "",
@@ -1404,7 +1413,7 @@
     },
     {
         "term": "owned_by",
-        "definition": "von {username}",
+        "definition": "od {username}",
         "context": "\"user_universal_capper\"",
         "term_plural": "",
         "reference": "",
@@ -1412,7 +1421,7 @@
     },
     {
         "term": "deploy",
-        "definition": "verteilt am {date}",
+        "definition": "Zalo\u017eeno {date}",
         "context": "\"user_universal_capper\"",
         "term_plural": "",
         "reference": "",
@@ -1420,7 +1429,7 @@
     },
     {
         "term": "next",
-        "definition": "N\u00e4chster",
+        "definition": "Dal\u0161\u00ed",
         "context": "\"user_universal_capper\"",
         "term_plural": "",
         "reference": "",
@@ -1428,7 +1437,7 @@
     },
     {
         "term": "report",
-        "definition": "Als defekt markieren",
+        "definition": "Ozn\u00e1mit jako rozb\u00edt\u00e9",
         "context": "\"user_universal_capper\"",
         "term_plural": "",
         "reference": "",
@@ -1436,7 +1445,7 @@
     },
     {
         "term": "submit",
-        "definition": "Reiche deinen Universal ein",
+        "definition": "P\u0159iejte sv\u016fj Univerz\u00e1l",
         "context": "\"user_universal_capper\"",
         "term_plural": "",
         "reference": "",
@@ -1444,7 +1453,7 @@
     },
     {
         "term": "submit_code",
-        "definition": "Munzee Print Code",
+        "definition": "K\u00f3d munzee k vyti\u0161t\u011bn\u00ed",
         "context": "\"user_universal_capper\"",
         "term_plural": "",
         "reference": "",
@@ -1452,7 +1461,7 @@
     },
     {
         "term": "submit_code_hint",
-        "definition": "Dies ist der \"QR-Code-Code\" auf der \"Print\"-Seite deines Munzees.",
+        "definition": "Toto je \"Barcode Value\" na str\u00e1nce kde lze tisknout munzee",
         "context": "\"user_universal_capper\"",
         "term_plural": "",
         "reference": "",
@@ -1460,7 +1469,7 @@
     },
     {
         "term": "submit_submit",
-        "definition": "Einreichen",
+        "definition": "Odeslat",
         "context": "\"user_universal_capper\"",
         "term_plural": "",
         "reference": "",
@@ -1468,7 +1477,7 @@
     },
     {
         "term": "submit_error",
-        "definition": "Da lief etwas schief. Bitte schau nochmal, dass der Print Code korrekt ist und dass der Munzee auch verteilt ist.",
+        "definition": "N\u011bco se rozbitlo ... ujist\u011bte se, \u017ee k\u00f3d je spr\u00e1vn\u00fd a \u017ee munzee je publikovan\u00e9.",
         "context": "\"user_universal_capper\"",
         "term_plural": "",
         "reference": "",
@@ -1476,7 +1485,7 @@
     },
     {
         "term": "submit_try_again",
-        "definition": "Erneut versuchen",
+        "definition": "Zkusit znovu",
         "context": "\"user_universal_capper\"",
         "term_plural": "",
         "reference": "",
@@ -1484,7 +1493,7 @@
     },
     {
         "term": "submit_submitted",
-        "definition": "Munzee eingereicht",
+        "definition": "Munzee p\u0159id\u00e1no",
         "context": "\"user_universal_capper\"",
         "term_plural": "",
         "reference": "",
@@ -1492,7 +1501,7 @@
     },
     {
         "term": "submit_close",
-        "definition": "Schlie\u00dfen",
+        "definition": "Zav\u0159\u00edt",
         "context": "\"user_universal_capper\"",
         "term_plural": "",
         "reference": "",
@@ -1500,7 +1509,7 @@
     },
     {
         "term": "report_invalid_secret_code",
-        "definition": "Ung\u00fcltiger Geheimcode",
+        "definition": "\u0160patn\u00fd tajn\u00fd k\u00f3d",
         "context": "\"user_universal_capper\"",
         "term_plural": "",
         "reference": "",
@@ -1508,7 +1517,7 @@
     },
     {
         "term": "report_not_deployed",
-        "definition": "Munzee nicht verteilt",
+        "definition": "Munzee nen\u00ed publikovan\u00e9",
         "context": "\"user_universal_capper\"",
         "term_plural": "",
         "reference": "",
@@ -1516,7 +1525,7 @@
     },
     {
         "term": "report_other",
-        "definition": "Andere",
+        "definition": "Jin\u00fd",
         "context": "\"user_universal_capper\"",
         "term_plural": "",
         "reference": "",
@@ -1524,7 +1533,7 @@
     },
     {
         "term": "report_note",
-        "definition": "Hinweis",
+        "definition": "Pozn\u00e1mka",
         "context": "\"user_universal_capper\"",
         "term_plural": "",
         "reference": "",
@@ -1532,7 +1541,7 @@
     },
     {
         "term": "report_report",
-        "definition": "Bericht",
+        "definition": "Ozn\u00e1mit",
         "context": "\"user_universal_capper\"",
         "term_plural": "",
         "reference": "",
@@ -1540,7 +1549,7 @@
     },
     {
         "term": "report_sent",
-        "definition": "Bericht gesendet",
+        "definition": "Ozn\u00e1men\u00ed posl\u00e1no",
         "context": "\"user_universal_capper\"",
         "term_plural": "",
         "reference": "",
@@ -1548,7 +1557,7 @@
     },
     {
         "term": "report_close",
-        "definition": "Schlie\u00dfen",
+        "definition": "Zav\u0159\u00edt",
         "context": "\"user_universal_capper\"",
         "term_plural": "",
         "reference": "",
@@ -1556,7 +1565,7 @@
     },
     {
         "term": "empty",
-        "definition": "Wir haben leider keine weiteren Universals mehr, die du erfassen kannst!",
+        "definition": "Do\u0161ly n\u00e1m Univerz\u00e1lky, kter\u00e9 byste mohli zachytit.",
         "context": "\"user_universal_capper\"",
         "term_plural": "",
         "reference": "",
@@ -1564,7 +1573,7 @@
     },
     {
         "term": "settings_shadow",
-        "definition": "Show Shadow Members",
+        "definition": "Zobrazit st\u00ednov\u00e9 hr\u00e1\u010de",
         "context": "\"clan\"",
         "term_plural": "",
         "reference": "",
@@ -1572,7 +1581,7 @@
     },
     {
         "term": "settings_subtract",
-        "definition": "Ansicht \u00e4ndern",
+        "definition": "Rozd\u00edlov\u00fd pohled",
         "context": "\"clan\"",
         "term_plural": "",
         "reference": "",
@@ -1580,7 +1589,7 @@
     },
     {
         "term": "settings_share",
-        "definition": "Anforderungen geteilt pro Mitglied",
+        "definition": "Po\u017eadavky na spole\u010dn\u00fd pod\u00edl",
         "context": "\"clan\"",
         "term_plural": "",
         "reference": "",
@@ -1588,7 +1597,7 @@
     },
     {
         "term": "settings_goal",
-        "definition": "Ziel Level",
+        "definition": "\u00darovn\u011b c\u00edl\u016f",
         "context": "\"clan\"",
         "term_plural": "",
         "reference": "",
@@ -1596,7 +1605,7 @@
     },
     {
         "term": "settings_done",
-        "definition": "Erledigt",
+        "definition": "Hotovo",
         "context": "\"clan\"",
         "term_plural": "",
         "reference": "",
@@ -1604,7 +1613,7 @@
     },
     {
         "term": "theme",
-        "definition": "Thema",
+        "definition": "T\u00e9ma",
         "context": "\"settings_personalisation\"",
         "term_plural": "",
         "reference": "",
@@ -1612,7 +1621,7 @@
     },
     {
         "term": "clan_reverse",
-        "definition": "Spalten\/Zeilen umkehren",
+        "definition": "Vym\u011bnit sloupce\/\u0159\u00e1dky",
         "context": "\"settings_personalisation\"",
         "term_plural": "",
         "reference": "",
@@ -1620,7 +1629,7 @@
     },
     {
         "term": "clan_single_line",
-        "definition": "einzeilige Zellen",
+        "definition": "Jedno\u0159\u00e1dkov\u00e9 bu\u0148ky",
         "context": "\"settings_personalisation\"",
         "term_plural": "",
         "reference": "",
@@ -1628,7 +1637,7 @@
     },
     {
         "term": "clan_full_background",
-        "definition": "vollfarbiger Hintergrund",
+        "definition": "Pln\u00e1 barva pozad\u00ed",
         "context": "\"settings_personalisation\"",
         "term_plural": "",
         "reference": "",
@@ -1636,7 +1645,7 @@
     },
     {
         "term": "clan_style",
-        "definition": "Stil",
+        "definition": "Styl",
         "context": "\"settings_personalisation\"",
         "term_plural": "",
         "reference": "",
@@ -1644,7 +1653,7 @@
     },
     {
         "term": "clan_style_0",
-        "definition": "Maximieren",
+        "definition": "Velk\u00fd",
         "context": "\"settings_personalisation\"",
         "term_plural": "",
         "reference": "",
@@ -1652,7 +1661,7 @@
     },
     {
         "term": "clan_style_1",
-        "definition": "Standard",
+        "definition": "Pohodln\u00fd",
         "context": "\"settings_personalisation\"",
         "term_plural": "",
         "reference": "",
@@ -1660,7 +1669,7 @@
     },
     {
         "term": "clan_style_2",
-        "definition": "Kompakt",
+        "definition": "Kompatn\u00ed",
         "context": "\"settings_personalisation\"",
         "term_plural": "",
         "reference": "",
@@ -1668,7 +1677,7 @@
     },
     {
         "term": "clan_colours",
-        "definition": "Farben",
+        "definition": "Barvy",
         "context": "\"settings_personalisation\"",
         "term_plural": "",
         "reference": "",
@@ -1676,7 +1685,7 @@
     },
     {
         "term": "clan_preview",
-        "definition": "Vorschau",
+        "definition": "N\u00e1hled",
         "context": "\"settings_personalisation\"",
         "term_plural": "",
         "reference": "",
@@ -1684,7 +1693,7 @@
     },
     {
         "term": "language",
-        "definition": "Sprache",
+        "definition": "Jazyk",
         "context": "\"settings_personalisation\"",
         "term_plural": "",
         "reference": "",
@@ -1692,7 +1701,7 @@
     },
     {
         "term": "users",
-        "definition": "Nutzer",
+        "definition": "U\u017eivatel\u00e9",
         "context": "\"settings_bookmarks\"",
         "term_plural": "",
         "reference": "",
@@ -1700,7 +1709,7 @@
     },
     {
         "term": "clans",
-        "definition": "Clans",
+        "definition": "Klany",
         "context": "\"settings_bookmarks\"",
         "term_plural": "",
         "reference": "",
@@ -1708,7 +1717,7 @@
     },
     {
         "term": "add_user",
-        "definition": "Nutzer hinzuf\u00fcgen",
+        "definition": "P\u0159idat u\u017eivatele",
         "context": "\"settings_bookmarks\"",
         "term_plural": "",
         "reference": "",
@@ -1716,7 +1725,7 @@
     },
     {
         "term": "add_clan",
-        "definition": "Clan hinzuf\u00fcgen",
+        "definition": "P\u0159idat klan",
         "context": "\"settings_bookmarks\"",
         "term_plural": "",
         "reference": "",
@@ -1724,7 +1733,7 @@
     },
     {
         "term": "expires",
-        "definition": "verf\u00e4llt um {time}",
+        "definition": "Vypr\u0161\u00ed {time}",
         "context": "\"user_bouncers\"",
         "term_plural": "",
         "reference": "",
@@ -1732,7 +1741,7 @@
     },
     {
         "term": "by",
-        "definition": "von {username}",
+        "definition": "od {username}",
         "context": "\"user_bouncers\"",
         "term_plural": "",
         "reference": "",
@@ -1740,7 +1749,7 @@
     },
     {
         "term": "lands_on",
-        "definition": "Landet auf",
+        "definition": "P\u0159ist\u00e1v\u00e1 na",
         "context": "\"type_details\"",
         "term_plural": "",
         "reference": "",
@@ -1748,7 +1757,7 @@
     },
     {
         "term": "can_host",
-        "definition": "Kann beherbergen",
+        "definition": "M\u016f\u017ee hostovat",
         "context": "\"type_details\"",
         "term_plural": "",
         "reference": "",
@@ -1756,7 +1765,7 @@
     },
     {
         "term": "missing",
-        "definition": "CuppaZee hat noch keinen POI Planer. Solange bis ich hier einen integriert habe kannst du aber den tollen POI Planer von nzseries1 nutzen.",
+        "definition": "CuppaZee zat\u00edm nem\u00e1 pl\u00e1nov\u00e1n\u00ed POI. B\u011bhem \u010dek\u00e1n\u00ed m\u016f\u017eete vyzkou\u0161et pl\u00e1nov\u00e1n\u00ed POI od nzseries1!",
         "context": "\"poi_planner\"",
         "term_plural": "",
         "reference": "",
@@ -1764,7 +1773,7 @@
     },
     {
         "term": "nzseries1",
-        "definition": "nzseries1's POI Planer",
+        "definition": "Pl\u00e1nov\u00e1n\u00ed POI od nzseries1",
         "context": "\"poi_planner\"",
         "term_plural": "",
         "reference": "",
@@ -1772,7 +1781,7 @@
     },
     {
         "term": "type",
-        "definition": "Evolution-Typ",
+        "definition": "Typy evoluc\u00ed",
         "context": "\"evo_planner\"",
         "term_plural": "",
         "reference": "",
@@ -1780,7 +1789,7 @@
     },
     {
         "term": "type_farm",
-        "definition": "3 Stufen (z. B. Farm bzw. Education-Set)",
+        "definition": "3 f\u00e1ze (nap\u0159. farma, vzd\u011bl\u00e1n\u00ed)",
         "context": "\"evo_planner\"",
         "term_plural": "",
         "reference": "",
@@ -1788,7 +1797,7 @@
     },
     {
         "term": "type_flower",
-        "definition": "5 Stufen (z.B. Nelken oder Rosen)",
+        "definition": "5 f\u00e1z\u00ed (nap\u0159. karafi\u00e1t, r\u016f\u017ee)",
         "context": "\"evo_planner\"",
         "term_plural": "",
         "reference": "",
@@ -1796,7 +1805,7 @@
     },
     {
         "term": "type_butterfly",
-        "definition": "5 Stufen (z.B. Schmetterlinge oder Schildkr\u00f6ten)",
+        "definition": "5 f\u00e1z\u00ed (nap\u0159. mot\u00fdl, \u017eelva)",
         "context": "\"evo_planner\"",
         "term_plural": "",
         "reference": "",
@@ -1804,7 +1813,7 @@
     },
     {
         "term": "type_bee",
-        "definition": "5 Stufen (z. B. Biene)",
+        "definition": "5 f\u00e1z\u00ed (nap\u0159. v\u010dela)",
         "context": "\"evo_planner\"",
         "term_plural": "",
         "reference": "",
@@ -1812,7 +1821,7 @@
     },
     {
         "term": "stage",
-        "definition": "Evolution Stufen",
+        "definition": "F\u00e1ze evoluce",
         "context": "\"evo_planner\"",
         "term_plural": "",
         "reference": "",
@@ -1820,7 +1829,7 @@
     },
     {
         "term": "stage_deploy",
-        "definition": "Verteilt auf",
+        "definition": "Publikovat dne",
         "context": "\"evo_planner\"",
         "term_plural": "",
         "reference": "",
@@ -1828,7 +1837,7 @@
     },
     {
         "term": "stage_evolve",
-        "definition": "Entwickelt sich zu Stufe {stage} am",
+        "definition": "Vyvine se do f\u00e1ze {stage} dne",
         "context": "\"evo_planner\"",
         "term_plural": "",
         "reference": "",
@@ -1836,7 +1845,7 @@
     },
     {
         "term": "description_deploy",
-        "definition": "Verteilt | Stufe 1",
+        "definition": "Publikace | F\u00e1ze 1",
         "context": "\"evo_planner\"",
         "term_plural": "",
         "reference": "",
@@ -1844,7 +1853,7 @@
     },
     {
         "term": "description_stage",
-        "definition": "Stufe {stage}",
+        "definition": "F\u00e1ze {stage}",
         "context": "\"evo_planner\"",
         "term_plural": "",
         "reference": "",
@@ -1852,7 +1861,7 @@
     },
     {
         "term": "patreon",
-        "definition": "Werde ein Patreon",
+        "definition": "Sta\u0148te se Patronem",
         "context": "\"donate\"",
         "term_plural": "",
         "reference": "",
@@ -1860,7 +1869,7 @@
     },
     {
         "term": "kofi",
-        "definition": "Kauf mir einen Kaffee",
+        "definition": "Kupte mi kafe",
         "context": "\"donate\"",
         "term_plural": "",
         "reference": "",
@@ -1868,7 +1877,7 @@
     },
     {
         "term": "paypal_title",
-        "definition": "Du kannst auch per Paypal spenden \u00fcber {email}",
+        "definition": "Darovat m\u016f\u017eete tak\u00e9 p\u0159es PayPal na email {email}",
         "context": "\"donate\"",
         "term_plural": "",
         "reference": "",
@@ -1876,7 +1885,7 @@
     },
     {
         "term": "paypal_description",
-        "definition": "Bitte pr\u00fcfe, dass die E-Mail-Adresse korrekt hinterlegt ist, denn Cuppazee nutzt \".app\", nicht \".com\".",
+        "definition": "Ujist\u011bte se, \u017ee emailov\u00e1 adresa je napsan\u00e1 spr\u00e1vn\u011b. CuppaZee pou\u017e\u00edv\u00e1 .app a ne .com.",
         "context": "\"donate\"",
         "term_plural": "",
         "reference": "",
@@ -1884,7 +1893,7 @@
     },
     {
         "term": "direction_n",
-        "definition": "n\u00f6rdlich",
+        "definition": "S",
         "context": "\"common\"",
         "term_plural": "",
         "reference": "",
@@ -1892,7 +1901,7 @@
     },
     {
         "term": "direction_ne",
-        "definition": "nord\u00f6stlich",
+        "definition": "SV",
         "context": "\"common\"",
         "term_plural": "",
         "reference": "",
@@ -1900,7 +1909,7 @@
     },
     {
         "term": "direction_e",
-        "definition": "\u00f6stlich",
+        "definition": "V",
         "context": "\"common\"",
         "term_plural": "",
         "reference": "",
@@ -1908,7 +1917,7 @@
     },
     {
         "term": "direction_se",
-        "definition": "s\u00fcd\u00f6stlich",
+        "definition": "JV",
         "context": "\"common\"",
         "term_plural": "",
         "reference": "",
@@ -1916,7 +1925,7 @@
     },
     {
         "term": "direction_s",
-        "definition": "s\u00fcdlich",
+        "definition": "J",
         "context": "\"common\"",
         "term_plural": "",
         "reference": "",
@@ -1924,7 +1933,7 @@
     },
     {
         "term": "direction_sw",
-        "definition": "s\u00fcdwestlich",
+        "definition": "JZ",
         "context": "\"common\"",
         "term_plural": "",
         "reference": "",
@@ -1932,7 +1941,7 @@
     },
     {
         "term": "direction_w",
-        "definition": "westlich",
+        "definition": "Z",
         "context": "\"common\"",
         "term_plural": "",
         "reference": "",
@@ -1940,7 +1949,7 @@
     },
     {
         "term": "direction_nw",
-        "definition": "nordwestlich",
+        "definition": "SZ",
         "context": "\"common\"",
         "term_plural": "",
         "reference": "",
@@ -1948,7 +1957,7 @@
     },
     {
         "term": "bouncer_title",
-        "definition": "{name} von {username}",
+        "definition": "{name} od {username}",
         "context": "\"notifications\"",
         "term_plural": "",
         "reference": "",
@@ -1956,7 +1965,7 @@
     },
     {
         "term": "bouncer_title_with_multiple",
-        "definition": "{name} von {username} [{amount}\/{total}]",
+        "definition": "{name} od {username} [{amount}\/{total}]",
         "context": "\"notifications\"",
         "term_plural": "",
         "reference": "",
@@ -1964,7 +1973,7 @@
     },
     {
         "term": "bouncer_description_location",
-        "definition": "Auf {name} von {username}",
+        "definition": "Na {name} od {username}",
         "context": "\"notifications\"",
         "term_plural": "",
         "reference": "",
@@ -1972,7 +1981,7 @@
     },
     {
         "term": "bouncer_description_distance",
-        "definition": "{distance} {direction} von {name}",
+        "definition": "{distance} {direction} od {name}",
         "context": "\"notifications\"",
         "term_plural": "",
         "reference": "",
@@ -1980,7 +1989,7 @@
     },
     {
         "term": "munzee_blog",
-        "definition": "Munzeeblog-Eintrag",
+        "definition": "Zpr\u00e1va z Munzee Blogu",
         "context": "\"notifications\"",
         "term_plural": "",
         "reference": "",
@@ -1988,7 +1997,7 @@
     },
     {
         "term": "filter_edit",
-        "definition": "Filter bearbeiten",
+        "definition": "Zm\u011bnit filtry",
         "context": "\"user_activity\"",
         "term_plural": "",
         "reference": "",
@@ -1996,7 +2005,7 @@
     },
     {
         "term": "spyderbot",
-        "definition": "Spyderbot eingesammelt!",
+        "definition": "Z\u00edsk\u00e1n Spyderbot!",
         "context": "\"user_zeeops\"",
         "term_plural": "",
         "reference": "",
@@ -2004,7 +2013,7 @@
     },
     {
         "term": "check",
-        "definition": "Pr\u00fcfe, ob {username} am {date} den {state} QRew\/ZeeQRew-Status erh\u00e4lt",
+        "definition": "Zkontrolovat, jestli {username} bude {state} QRew\/ZeeQRew podm\u00ednky dne {date}",
         "context": "\"user_qrew_checker\"",
         "term_plural": "",
         "reference": "",
@@ -2012,7 +2021,7 @@
     },
     {
         "term": "state_keep",
-        "definition": "behalte",
+        "definition": "ponech\u00e1 si",
         "context": "\"user_qrew_checker\"",
         "term_plural": "",
         "reference": "",
@@ -2020,7 +2029,7 @@
     },
     {
         "term": "state_keep_gain",
-        "definition": "behalte\/erziele",
+        "definition": "ponech\u00e1 si\/z\u00edsk\u00e1",
         "context": "\"user_qrew_checker\"",
         "term_plural": "",
         "reference": "",
@@ -2028,7 +2037,7 @@
     },
     {
         "term": "state_gain",
-        "definition": "erziele",
+        "definition": "z\u00edsk\u00e1",
         "context": "\"user_qrew_checker\"",
         "term_plural": "",
         "reference": "",
@@ -2036,7 +2045,7 @@
     },
     {
         "term": "recent_no_captures",
-        "definition": "Nicht erfasst seit {date}",
+        "definition": "\u017d\u00e1dn\u00e9 zachycen\u00ed po {date}",
         "context": "\"user_qrew_checker\"",
         "term_plural": "",
         "reference": "",
@@ -2044,7 +2053,7 @@
     },
     {
         "term": "recent_no_deploy",
-        "definition": "Keine Deploys seit {date}",
+        "definition": "\u017d\u00e1dn\u00e9 zalo\u017een\u00e9 po {date}",
         "context": "\"user_qrew_checker\"",
         "term_plural": "",
         "reference": "",
@@ -2052,7 +2061,7 @@
     },
     {
         "term": "bouncers_override_title",
-        "definition": "Kategorien und Typen \u00fcberschreiben",
+        "definition": "Kategorie a typy speci\u00e1ln\u00edch",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -2060,7 +2069,7 @@
     },
     {
         "term": "bouncers_override_description",
-        "definition": "Wenn du f\u00fcr bestimmte Typen einen anderen Abstand w\u00fcnschst, kannst du diese hier hinzuf\u00fcgen.",
+        "definition": "Pokud chcete r\u016fzn\u00e9 vzd\u00e1lenost\u00ed pro dan\u00e9 typy, m\u016f\u017eete je p\u0159idat zde.",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -2068,7 +2077,7 @@
     },
     {
         "term": "locations_live_blocked",
-        "definition": "Du musst CuppaZee erlauben, immer auf deine Standort zuzugreifen.",
+        "definition": "Mus\u00edte povolit CuppaZee p\u0159\u00edstup k va\u0161\u00ed poloze.",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -2076,7 +2085,7 @@
     },
     {
         "term": "locations_live_confirm_title",
-        "definition": "Live-Standort nutzen?",
+        "definition": "Pou\u017e\u00edt \u017eiv\u00e9 sledov\u00e1n\u00ed polohy?",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -2084,7 +2093,7 @@
     },
     {
         "term": "locations_live_confirm_description_1",
-        "definition": "Wenn der Live-Standort aktiviert ist, ruft CuppaZee gelegentlich deinen ungef\u00e4hren Standort im Hintergrund ab.",
+        "definition": "Se sledov\u00e1n\u00edm polohy, CuppaZee ob\u010das na pozad\u00ed z\u00edsk\u00e1 va\u0161i p\u0159ibli\u017enou pozici.",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -2092,7 +2101,7 @@
     },
     {
         "term": "locations_live_confirm_description_2",
-        "definition": "Dein Standort wird nur verwendet, um Benachrichtigungen f\u00fcr Bouncer an deinem aktuellen Standort zu senden.",
+        "definition": "Va\u0161e pozice budou po\u017eita pouze k pos\u00edl\u00e1n\u00ed notifikac\u00ed o speci\u00e1ln\u00edch munzee ve va\u0161em okol\u00ed.",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -2100,7 +2109,7 @@
     },
     {
         "term": "locations_live_cancel",
-        "definition": "Aufheben",
+        "definition": "Zru\u0161it",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -2108,7 +2117,7 @@
     },
     {
         "term": "locations_live_confirm",
-        "definition": "best\u00e4tigen",
+        "definition": "Potvrdit",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -2116,7 +2125,7 @@
     },
     {
         "term": "continuing_policy",
-        "definition": "Durch Nutzen dieser App stimmst du unseren Nutzungsbedingungen und den Datenschutzbestimmungen zu.",
+        "definition": "Pokra\u010dov\u00e1n\u00edm v pou\u017e\u00edv\u00e1n\u00ed t\u00e9to aplikace souhlas\u00edte s na\u0161imi pravidly slu\u017eby a ochranou soukrom\u00ed odkazovan\u00fdmi n\u00ed\u017ee.",
         "context": "\"welcome\"",
         "term_plural": "",
         "reference": "",
@@ -2124,7 +2133,7 @@
     },
     {
         "term": "terms",
-        "definition": "Nutzungsbedingungen",
+        "definition": "Pravidla pou\u017eit\u00ed slu\u017eby",
         "context": "\"welcome\"",
         "term_plural": "",
         "reference": "",
@@ -2132,7 +2141,7 @@
     },
     {
         "term": "privacy",
-        "definition": "Datenschutzbestimmungen",
+        "definition": "Ochrana soukrom\u00ed",
         "context": "\"welcome\"",
         "term_plural": "",
         "reference": "",
@@ -2140,7 +2149,7 @@
     },
     {
         "term": "owner",
-        "definition": "von {username}",
+        "definition": "od {username}",
         "context": "\"munzee_details\"",
         "term_plural": "",
         "reference": "",
@@ -2148,7 +2157,7 @@
     },
     {
         "term": "deployed",
-        "definition": "verteilt am {date}",
+        "definition": "Publikov\u00e1no {date}",
         "context": "\"munzee_details\"",
         "term_plural": "",
         "reference": "",
@@ -2156,7 +2165,7 @@
     },
     {
         "term": "open",
-        "definition": "\u00d6ffne Munzee.com",
+        "definition": "Otev\u0159\u00edt na munzee.com",
         "context": "\"munzee_details\"",
         "term_plural": "",
         "reference": "",
@@ -2164,7 +2173,7 @@
     },
     {
         "term": "bouncer_hosting",
-        "definition": "Beherbergt {name}",
+        "definition": "Hostuj\u00edc\u00ed {name}",
         "context": "\"munzee_details\"",
         "term_plural": "",
         "reference": "",
@@ -2172,7 +2181,7 @@
     },
     {
         "term": "bouncer_expires",
-        "definition": "Verschwindet um {time}",
+        "definition": "P\u0159esouv\u00e1 se v {time}",
         "context": "\"munzee_details\"",
         "term_plural": "",
         "reference": "",
@@ -2180,7 +2189,7 @@
     },
     {
         "term": "user_device_title",
-        "definition": "Sieht so aus, als w\u00e4re {username} an diesem Endger\u00e4t nicht eingeloggt.",
+        "definition": "Vypad\u00e1 to, \u017ee {username} se zat\u00edm nep\u0159ihl\u00e1sil na tomto za\u0159\u00edzen\u00ed.",
         "context": "\"error\"",
         "term_plural": "",
         "reference": "",
@@ -2188,7 +2197,7 @@
     },
     {
         "term": "user_device_description",
-        "definition": "Um diese Daten anzufordern, musst du dich anmelden.",
+        "definition": "Z\u00edsk\u00e1n\u00ed t\u00e9to informace vy\u017eaduje p\u0159ihl\u00e1\u0161en\u00ed.",
         "context": "\"error\"",
         "term_plural": "",
         "reference": "",
@@ -2196,7 +2205,7 @@
     },
     {
         "term": "user_device_add_account",
-        "definition": "Account hinzuf\u00fcgen",
+        "definition": "P\u0159idat \u00fa\u010det",
         "context": "\"error\"",
         "term_plural": "",
         "reference": "",
@@ -2204,7 +2213,7 @@
     },
     {
         "term": "user_expired_title",
-        "definition": "Sieht so aus, als m\u00fcsste sich {username} erneut einloggen.",
+        "definition": "Vypad\u00e1 to, \u017ee {username} se mus\u00ed znovu p\u0159ihl\u00e1sit.",
         "context": "\"error\"",
         "term_plural": "",
         "reference": "",
@@ -2212,7 +2221,7 @@
     },
     {
         "term": "user_expired_description",
-        "definition": "Deine Munzee API-Authentifizierung ist abgelaufen.",
+        "definition": "Va\u0161e p\u0159ihl\u00e1\u0161en\u00ed k Munzee API vypr\u0161elo.",
         "context": "\"error\"",
         "term_plural": "",
         "reference": "",
@@ -2220,7 +2229,7 @@
     },
     {
         "term": "user_expired_log_in",
-        "definition": "Erneut einloggen.",
+        "definition": "P\u0159ihla\u0161te se znovu",
         "context": "\"error\"",
         "term_plural": "",
         "reference": "",
@@ -2228,7 +2237,7 @@
     },
     {
         "term": "error_title",
-        "definition": "Ups, hier ist was schief gelaufen.",
+        "definition": "Vypad\u00e1 to, \u017ee se kafe rozlilo.",
         "context": "\"error\"",
         "term_plural": "",
         "reference": "",
@@ -2236,7 +2245,7 @@
     },
     {
         "term": "error_description",
-        "definition": "Beim Anfordern dieser Daten ist ein Fehler aufgetreten.",
+        "definition": "N\u011bco se pokazilo p\u0159i z\u00edsk\u00e1v\u00e1n\u00ed t\u011bchto dat.",
         "context": "\"error\"",
         "term_plural": "",
         "reference": "",
@@ -2244,7 +2253,7 @@
     },
     {
         "term": "error_report_sent_title",
-        "definition": "Bericht verschickt.",
+        "definition": "Ozn\u00e1men\u00ed odesl\u00e1no",
         "context": "\"error\"",
         "term_plural": "",
         "reference": "",
@@ -2252,7 +2261,7 @@
     },
     {
         "term": "error_report_sent_description",
-        "definition": "Details zu diesem Fehler wurden an CuppaZee gesendet. Wenn du weitere Informationen zu diesem Thema geben m\u00f6chtest, schreib mich bitte an.",
+        "definition": "Informace o t\u00e9to chyb\u011b byly odesl\u00e1ny CuppaZee. Pokud chcete dodat v\u00edce informac\u00ed o t\u00e9to chyb\u011b, kontakujte n\u00e1s pros\u00edm.",
         "context": "\"error\"",
         "term_plural": "",
         "reference": "",
@@ -2260,7 +2269,7 @@
     },
     {
         "term": "error_report",
-        "definition": "Bericht an CuppaZee",
+        "definition": "Ozn\u00e1mit CuppaZee",
         "context": "\"error\"",
         "term_plural": "",
         "reference": "",
@@ -2268,7 +2277,7 @@
     },
     {
         "term": "bouncers_distance_default_hint",
-        "definition": "Das ist der Abstand, der f\u00fcr alle Typen verwendet wird, f\u00fcr die du keine \u00dcberschreibung festgelegt hast.",
+        "definition": "Toto je vzd\u00e1lenost pouu\u017eit\u00e1 pro v\u0161echny ostatn\u00ed typy, pro kter\u00e9 jste nenastavili jinou.",
         "context": "\"settings_notifications\"",
         "term_plural": "",
         "reference": "",
@@ -2276,7 +2285,7 @@
     },
     {
         "term": "history_rover",
-        "definition": "Gefunden von einem Rover",
+        "definition": "Nalezen\u00fd roverem",
         "context": "\"user_inventory\"",
         "term_plural": "",
         "reference": "",

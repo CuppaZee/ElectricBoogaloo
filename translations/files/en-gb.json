@@ -14,6 +14,8 @@
     "user_bouncers": "Bouncers",
     "user_blast_checker": "Blast Checker",
     "user_qrew_checker": "QRew Checker",
+    "user_qrates": "QRates",
+    "user_cubimals": "Cubimals",
     "user_captures": "Captures",
     "user_universal_capper": "Universal Capper",
     "user_challenges": "Challenges",
@@ -34,6 +36,12 @@
     "tools_donate": "Donate",
     "tools_nearby": "Nearby Bouncers",
     "tools_poiplanner": "POI Planner",
+    "tools_bouncers_overview": "Bouncers Overview",
+    "tools_bouncing_soon": "Bouncing Soon",
+    "tools_testscan": "Test Scan",
+    "tools_universal": "Universal Capper",
+    "tools_destinationplanner": "Destination Planner",
+    "tools_blastplanner": "Blast Planner",
     "tools": "Tools"
   },
   "drawer": {
