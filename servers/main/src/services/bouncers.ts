@@ -151,7 +151,7 @@ export default async function () {
               description: body,
               latitude: Number(i.bouncer.latitude),
               longitude: Number(i.bouncer.longitude),
-              image: `https://icons.cuppazee.app/64/${("mythological_munzee" in i.bouncer
+              image: `https://images.cuppazee.app/types/64/${("mythological_munzee" in i.bouncer
                 ? i.bouncer.mythological_munzee.munzee_logo
                 : i.bouncer.logo
               ).slice(49, -4)}.png`,
