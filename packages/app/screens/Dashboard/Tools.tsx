@@ -69,7 +69,7 @@ export const ToolsPagesPlanners = [
   {
     icon: "bomb",
     nontranslatedtitle: "Blast Planner",
-    screen: "BlastPlanner",
+    screen: "Blast",
   },
   {
     icon: "dna",

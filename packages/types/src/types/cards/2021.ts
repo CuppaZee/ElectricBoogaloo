@@ -98,6 +98,46 @@ const c2021: {
     icon: "it's5o'clocksomewherecard",
     id: "null_it's5o'clocksomewherecard",
   },
+  {
+    name: "Wish I Was Here Card",
+    icon: "wishiwasherecard",
+    id: "null_wishiwasherecard",
+  },
+  {
+    name: "Life Is Good Card",
+    icon: "lifeisgoodcard",
+    id: "null_lifeisgoodcard",
+  },
+  {
+    name: "Stay Home 2021 Card",
+    icon: "stayhome2021card",
+    id: "null_stayhome2021card",
+  },
+  {
+    name: "Picture Perfect Card",
+    icon: "pictureperfectcard",
+    id: "null_pictureperfectcard",
+  },
+  {
+    name: "GeoLoggers Reseller Card",
+    icon: "geologgersresellergreetingcard",
+    id: "null_geologgersresellercard",
+  },
+  {
+    name: "Gold'n Coins Reseller Card",
+    icon: "gold'ncoinsresellergreetingcard",
+    id: "null_gold'ncoinsresellercard",
+  },
+  {
+    name: "NEGS Reseller Card",
+    icon: "negsresellergreetingcard",
+    id: "null_negsresellercard",
+  },
+  {
+    name: "SCGS Reseller Card",
+    icon: "scgsresellergreetingcard",
+    id: "null_scgsresellercard",
+  },
 ];
 
 export default c2021;

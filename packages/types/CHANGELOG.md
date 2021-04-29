@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.48 - 29/04/2021
+- Added Flat Disc Golf Basket
+## 0.0.47 - 29/04/2021
+- Added New Cards
+- Added Soccer Garden Gnome and Scatters
 ## 0.0.46 - 19/04/2021
 - Added Golden Four Leaf Clover
 ## 0.0.45 - 19/04/2021

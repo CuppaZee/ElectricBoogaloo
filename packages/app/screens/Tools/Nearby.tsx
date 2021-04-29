@@ -107,7 +107,7 @@ export default function NearbyScreen() {
                 data.data?.data.reduce(
                   (a, b) => ({
                     ...a,
-                    ["logo" in b ? b.logo : b.mythological_munzee.munzee_logo]: 1,
+                    [db.strip("logo" in b ? b.logo : b.mythological_munzee.munzee_logo)]: 1,
                   }),
                   {} as any
                 ) ?? {}
@@ -116,7 +116,6 @@ export default function NearbyScreen() {
             <Source
               id="bouncers"
               type="geojson"
-              key={data.data?.data?.length || 0}
               data={{
                 type: "FeatureCollection",
                 features:
@@ -133,7 +132,7 @@ export default function NearbyScreen() {
                   })) ?? [],
               }}>
               <Layer
-                id="bouncerCircles"
+                id="bouncers_symbols"
                 type="symbol"
                 paint={{}}
                 layout={{

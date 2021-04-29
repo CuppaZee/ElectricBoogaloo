@@ -77,6 +77,18 @@ const flats: {
       min: 19,
     },
   },
+  {
+    name: "Flat Disc Golf Basket",
+    icon: "flatdiscgolfbasket",
+    id: "null_flatdiscgolfbasket",
+    state: TypeState.Virtual,
+    points: {
+      deploy: 19,
+      type: PointsType.Split,
+      split: 90,
+      min: 19,
+    },
+  },
 ];
 
 export default flats;

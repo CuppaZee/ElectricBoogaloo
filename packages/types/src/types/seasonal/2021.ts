@@ -700,6 +700,19 @@ const s2021: SeasonalCategory[] = [
           "skyland",
         ],
       },
+      {
+        name: "Soccer Garden Gnome",
+        icon: "soccergardengnome",
+        id: "null_soccergardengnome",
+        duration: 6,
+        lands_on: [
+          type => type.has_tag(TypeTags.TypeVirtual),
+          "munzee",
+          "virtualonyx",
+          "treehouse",
+          "skyland",
+        ],
+      },
     ],
     types: [
       {
@@ -783,6 +796,17 @@ const s2021: SeasonalCategory[] = [
         name: "Gnome Headphones",
         icon: "gnomeheadphones",
         id: 2805,
+        state: TypeState.Virtual,
+        tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+        hidden: [TypeHidden.Inventory],
+        meta: {
+          scatter_duration: 2,
+        },
+      },
+      {
+        name: "Gnome Header Hat",
+        icon: "gnomeheaderhat",
+        id: 2806,
         state: TypeState.Virtual,
         tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
         hidden: [TypeHidden.Inventory],

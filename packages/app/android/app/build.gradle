@@ -137,7 +137,7 @@ android {
         applicationId 'uk.cuppazee.paper'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 18
+        versionCode 19
         versionName "2.1"
     }
     splits {
@@ -195,6 +195,7 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:3.14.9"
     implementation 'jp.wasabeef:picasso-transformations:2.4.0'
     implementation 'com.android.volley:volley:1.1.1'
+    implementation "com.mapbox.mapboxsdk:mapbox-android-telemetry:6.1.0"
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
       exclude group:'com.facebook.fbjni'
     }
