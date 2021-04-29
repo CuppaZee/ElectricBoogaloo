@@ -15,24 +15,31 @@ const cacheHeaders = {
 
 if (!existsSync(cacheDir)) mkdirSync(cacheDir);
 
-async function getImage(type: string) {
+async function getImage(category: "pins" | "new_badges" | "cubimals", type: string) {
+  try {
+    await promises.access(path.join(overrideDir, `${category}_${type}.png`));
+    return createReadStream(path.join(overrideDir, `${category}_${type}.png`));
+  } catch (e) {}
+
   const urls: string[] = [
+    category === "cubimals" &&
+      `https://munzee.global.ssl.fastly.net/images/${category}/${encodeURIComponent(
+        type.toLowerCase().replace(/\s/g, "")
+      )}_cubimal.png`,
+
     !type.match(/[A-Z\s]/) &&
-      `https://munzee.global.ssl.fastly.net/images/pins/${encodeURIComponent(type)}.png`,
-    `https://munzee.global.ssl.fastly.net/images/pins/${encodeURIComponent(
+      `https://munzee.global.ssl.fastly.net/images/${category}/${encodeURIComponent(type)}.png`,
+
+    `https://munzee.global.ssl.fastly.net/images/${category}/${encodeURIComponent(
       type.toLowerCase().replace(/\s/g, "")
     )}.png`,
-    `https://munzee.global.ssl.fastly.net/images/pins/${encodeURIComponent(
+
+    `https://munzee.global.ssl.fastly.net/images/${category}/${encodeURIComponent(
       type.toLowerCase().replace(/\s/g, "_")
     )}.png`,
   ]
     .filter(Boolean)
     .filter((v, i, a) => a.indexOf(v) === i) as string[];
-  
-  try {
-    await promises.access(path.join(overrideDir, type + ".png"));
-    return createReadStream(path.join(overrideDir, type + ".png"));
-  } catch (e) {}
 
   for (var url of urls) {
     const response = await fetch(url);
@@ -45,12 +52,22 @@ async function getImage(type: string) {
 
 type Format = "png" | "jpeg";
 
-fastify.get("/types/:size/:type", async function (request, reply) {
+fastify.get("/:category/:size/:type", async function (request, reply) {
   // Parse and Validate Parameters
   const params = request.params as {
     size: string;
     type: string;
+    category: string;
   };
+  const category = ({
+    types: "pins",
+    badges: "new_badges",
+    cubimals: "cubimals",
+  } as const)[params.category];
+  if (!category) {
+    reply.send(`Invalid Category: ${params.category}`);
+    return;
+  }
   const size = Number(params.size);
   if (size > 512 || size <= 0) {
     reply.send(`Invalid Size: ${size}. Size >0, <=512`);
@@ -64,7 +81,10 @@ fastify.get("/types/:size/:type", async function (request, reply) {
     return;
   }
 
-  const cacheFilePath = path.join(cacheDir, `${size.toString()}_${type.toLowerCase().replace(/[^a-z0-9]/g, "")}.${format}`);
+  const cacheFilePath = path.join(
+    cacheDir,
+    `${category}_${size.toString()}_${type.toLowerCase().replace(/[^a-z0-9]/g, "")}.${format}`
+  );
 
   try {
     // Already Cached
@@ -73,14 +93,14 @@ fastify.get("/types/:size/:type", async function (request, reply) {
     return;
   } catch (e) {}
 
-  const response = await getImage(type);
+  const response = await getImage(category, type);
 
   if (!response) {
     // No Image Found
     reply
       .headers(cacheHeaders)
       .type(`image/png`)
-      .send(createReadStream(path.join(overrideDir, "missing.png")));
+      .send(createReadStream(path.join(overrideDir, `missing_${category}.png`)));
     return;
   }
 
