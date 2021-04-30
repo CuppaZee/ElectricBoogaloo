@@ -965,6 +965,30 @@ const builds: Build[] = [
       },
     ],
   },
+  {
+    build: 57,
+    date: "2021-04-30",
+    features: [
+      {
+        title: "New Map System",
+        description:
+          "In V2.1, CuppaZee's map system has been rewritten, adding lots of new options.",
+      },
+      {
+        title: "More Languages",
+        description:
+          "V2.1 adds even more languages to CuppaZee, thanks to CuppaZee's awesome translators!",
+      },
+    ],
+    improvements: [
+      {
+        description: "Improved Dashboard Design",
+      },
+      {
+        description: "Lots of Performance Improvements",
+      },
+    ],
+  },
 ];
 
 export default builds;
