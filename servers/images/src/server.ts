@@ -17,8 +17,8 @@ if (!existsSync(cacheDir)) mkdirSync(cacheDir);
 
 async function getImage(category: "pins" | "new_badges" | "cubimals", type: string) {
   try {
-    await promises.access(path.join(overrideDir, `${category}_${type}.png`));
-    return createReadStream(path.join(overrideDir, `${category}_${type}.png`));
+    await promises.access(path.join(overrideDir, `${category}__${type}.png`));
+    return createReadStream(path.join(overrideDir, `${category}__${type}.png`));
   } catch (e) {}
 
   const urls: string[] = [
