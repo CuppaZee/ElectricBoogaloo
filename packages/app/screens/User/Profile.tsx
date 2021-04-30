@@ -124,7 +124,10 @@ export default function TabOneScreen() {
                     />
                     <Text category="s1">
                       {t("user_profile:level", { level: user.data.data.level })} -{" "}
-                      {t("user_profile:points", { n: user.data.data.points, count: user.data.data.points })}
+                      {t("user_profile:points", {
+                        n: user.data.data.points,
+                        count: user.data.data.points,
+                      })}
                     </Text>
                   </View>
                   <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -175,6 +178,54 @@ export default function TabOneScreen() {
                   }
                 />
               ))}
+              {!!user.data?.data?.clan ? (
+                <DrawerItem
+                  key="Clan"
+                  style={{ backgroundColor: "transparent" }}
+                  selected={false}
+                  title={() => (
+                    <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
+                      {user.data?.data?.clan?.name}
+                    </Text>
+                  )}
+                  accessoryLeft={() => (
+                    <Image
+                      source={{ uri: user.data?.data?.clan?.logo ?? "" }}
+                      style={{
+                        height: 32,
+                        width: 32,
+                        borderRadius: 16,
+                        marginVertical: -4,
+                        marginHorizontal: 2,
+                      }}
+                    />
+                  )}
+                  onPress={() =>
+                    nav.navigate("Clan", {
+                      screen: "Stats",
+                      params: { clanid: user.data?.data?.clan?.id },
+                    })
+                  }
+                />
+              ) : (
+                <DrawerItem
+                  key="Clan"
+                  style={{ backgroundColor: "transparent" }}
+                  selected={false}
+                  title={() => (
+                    <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
+                      {t(`pages:user_clan_progress`)}
+                    </Text>
+                  )}
+                  accessoryLeft={props => <Icon name="shield-half-full" {...props} />}
+                  onPress={() =>
+                    nav.navigate("User", {
+                      screen: "Clan",
+                      params: { username: route.params.username },
+                    })
+                  }
+                />
+              )}
             </Layout>
           </View>
 

@@ -233,10 +233,12 @@ export function AutoMap({
           value={mapStyle}
           onValueChange={(value: any) => setMapStyle(value)}
           options={[
-            { value: "monochrome", label: "Themed" },
+            theme.mapboxURL === "mapbox://styles/mapbox/streets-v11"
+              ? (null as any)
+              : { value: "monochrome", label: "Themed" },
             { value: "streets", label: "Classic" },
             { value: "satellite", label: "Satellite" },
-          ]}
+          ].filter(i=>i)}
         />
         {controls}
       </Layout>

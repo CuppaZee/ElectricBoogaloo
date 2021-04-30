@@ -205,13 +205,15 @@ export function AutoMap({
           )}
           accessoryRight={() => null as any}
           size="small"
-          value={mapStyle}
+          value={(mapStyle === "monochrome" && theme.mapboxURL === "mapbox://styles/mapbox/streets-v11") ? "classic" : mapStyle}
           onValueChange={(value: any) => setMapStyle(value)}
           options={[
-            { value: "monochrome", label: "Themed" },
+            theme.mapboxURL === "mapbox://styles/mapbox/streets-v11"
+              ? null as any
+              : { value: "monochrome", label: "Themed" },
             { value: "streets", label: "Classic" },
             { value: "satellite", label: "Satellite" },
-          ]}
+          ].filter(i => i)}
         />
         {controls}
       </Layout>

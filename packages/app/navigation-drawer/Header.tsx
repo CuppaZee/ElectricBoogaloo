@@ -38,46 +38,46 @@ export default function Header(props: StackHeaderProps) {
   ).split("|");
   return (
     // <View><EvaWrapper dark>
-      <Layout style={{ paddingTop: props.insets.top }}>
-        <TopNavigation
-          alignment="center"
-          title={titleData[0] ?? ""}
-          subtitle={titleData[1] ?? day.mhqNow().format("L LT [MHQ]")}
-          accessoryLeft={() => (
-            <>
-              {dimensions.width <= 1000 && (
-                <TopNavigationAction
-                  onPress={() => props.navigation.dispatch(DrawerActions.toggleDrawer())}
-                  icon={props => <Icon {...props} name="menu" />}
-                />
-              )}
-              {props.navigation.canGoBack() && (
-                <TopNavigationAction
-                  icon={props => <Icon {...props} name="arrow-left" />}
-                  onPress={() => props.navigation.goBack()}
-                />
-              )}
-            </>
-          )}
-          accessoryRight={() => (
-            <>
+    <Layout style={{ paddingTop: props.insets.top }}>
+      <TopNavigation
+        alignment="center"
+        title={titleData[0] ?? ""}
+        subtitle={titleData[1] ?? day.mhqNow().format("L LT [MHQ]")}
+        accessoryLeft={() => (
+          <>
+            {dimensions.width <= 1000 && (
               <TopNavigationAction
-                icon={props => <Icon {...props} name="home" />}
-                onPress={() =>
-                  props.navigation.reset({
-                    routes: [
-                      {
-                        name: "Root",
-                      },
-                    ],
-                  })
-                }
+                onPress={() => props.navigation.dispatch(DrawerActions.toggleDrawer())}
+                icon={props => <Icon {...props} name="menu" />}
               />
-              <LoadIcon />
-            </>
-          )}
-        />
-      </Layout>
+            )}
+            <TopNavigationAction
+              style={{ opacity: props.navigation.canGoBack() ? 1 : 0.4 }}
+              icon={props => <Icon {...props} name="arrow-left" />}
+              onPress={() => props.navigation.goBack()}
+              disabled={!props.navigation.canGoBack()}
+            />
+          </>
+        )}
+        accessoryRight={() => (
+          <>
+            <TopNavigationAction
+              icon={props => <Icon {...props} name="home" />}
+              onPress={() =>
+                props.navigation.reset({
+                  routes: [
+                    {
+                      name: "Root",
+                    },
+                  ],
+                })
+              }
+            />
+            <LoadIcon />
+          </>
+        )}
+      />
+    </Layout>
     // </EvaWrapper>
     // </View>
   );

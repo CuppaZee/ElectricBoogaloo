@@ -99,15 +99,35 @@ export const gray_light: Theme = generateTheme2("#F7F7F7", 0);
 
 // export const gray_light: Theme = generateTheme2("#F7F7F7", 1);
 
-export const green_dark: Theme = generateTheme2("#053021", 2);
+export const green_dark: Theme = generateTheme2(
+  "#053021",
+  2,
+  "mapbox://styles/sohcah/ckmhpjzea357h17mka0tjl024"
+);
 
-export const blue_dark: Theme = generateTheme2("#151A30", 2);
+export const blue_dark: Theme = generateTheme2(
+  "#151A30",
+  2,
+  "mapbox://styles/sohcah/ckmhpks8s90c317qlb7gmutgt"
+);
 
-export const teal_dark: Theme = generateTheme2("#003748", 2);
+export const teal_dark: Theme = generateTheme2(
+  "#003748",
+  2,
+  "mapbox://styles/sohcah/ckmhp35zs0jhp17ph3qmcjw9b"
+);
 
-export const purple_dark: Theme = generateTheme2("#3D003E", 2);
+export const purple_dark: Theme = generateTheme2(
+  "#3D003E",
+  2,
+  "mapbox://styles/sohcah/ckmhphnje2wie17mfzfjgryk5"
+);
 
-export const gray_dark: Theme = generateTheme2("#181818", 2);
+export const gray_dark: Theme = generateTheme2(
+  "#181818",
+  2,
+  "mapbox://styles/sohcah/ckmhpiun60jzp18qv0wa0icyz"
+);
 
 // export const green_dark: Theme = generateTheme(
 //   dark,
