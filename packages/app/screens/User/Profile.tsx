@@ -220,7 +220,7 @@ export default function TabOneScreen() {
                   accessoryLeft={props => <Icon name="shield-half-full" {...props} />}
                   onPress={() =>
                     nav.navigate("User", {
-                      screen: "Clan",
+                      screen: "ClanProgress",
                       params: { username: route.params.username },
                     })
                   }
