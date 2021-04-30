@@ -450,6 +450,36 @@ const myths: {
       scatterer_max: 3,
     },
   },
+  {
+    name: "Hades",
+    icon: "hades",
+    id: "null_hades",
+    type: "modern",
+    lands_on: [
+      "skyland",
+      "treehouse",
+      "munzee",
+      "firemystery",
+      "virtualtimberwolf",
+      "virtualsilver",
+      "virtualgray",
+      "virtualblack",
+      "virtualblueviolet",
+      "virtualblue",
+      "virtualcadetblue",
+      "virtualbluegreen",
+      "virtualpacificblue",
+      "virtualcerulean",
+      "virtualindigo",
+      "virtualcitrine"
+    ],
+    meta: {
+      scatterer_radius: 1000,
+      scatterer_types: ["null_bident", "null_firestarter"],
+      scatterer_min: 3,
+      scatterer_max: 3,
+    },
+  },
 ];
 
 export default myths;

@@ -125,8 +125,8 @@ const c2021: {
   },
   {
     name: "Gold'n Coins Reseller Card",
-    icon: "gold'ncoinsresellergreetingcard",
-    id: "null_gold'ncoinsresellercard",
+    icon: "goldncoinsresellergreetingcard",
+    id: "null_goldncoinsresellercard",
   },
   {
     name: "NEGS Reseller Card",

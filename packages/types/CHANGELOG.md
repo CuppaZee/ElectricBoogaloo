@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.50 - 30/04/2021
+- Added Hades Modern Myth
+- Added Bident and Firestarter Scatters
+## 0.0.49 - 30/04/2021
+- Fixed Icon for Gold'n Coins Reseller Card
 ## 0.0.48 - 29/04/2021
 - Added Flat Disc Golf Basket
 ## 0.0.47 - 29/04/2021

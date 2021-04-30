@@ -571,6 +571,26 @@ const scatters: {
       standalone: true,
     },
   },
+  {
+    name: "Bident",
+    icon: "bident",
+    id: "null_bident",
+    state: TypeState.Virtual,
+    scatter: {
+      duration: 2,
+      standalone: true,
+    },
+  },
+  {
+    name: "Firestarter",
+    icon: "firestarter",
+    id: "null_firestarter",
+    state: TypeState.Virtual,
+    scatter: {
+      duration: 2,
+      standalone: true,
+    },
+  },
 ];
 
 export default scatters;
