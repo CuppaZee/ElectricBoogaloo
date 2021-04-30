@@ -989,6 +989,20 @@ const builds: Build[] = [
       },
     ],
   },
+  {
+    build: 58,
+    date: "2021-04-30",
+    types: [
+      {
+        title: "Hades Modern Myth",
+        types: [
+          "hades",
+          "bident",
+          "firestarter",
+        ],
+      },
+    ],
+  },
 ];
 
 export default builds;
