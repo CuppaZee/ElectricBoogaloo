@@ -100,17 +100,17 @@ export default function UserClanScreen() {
                       width: 60,
                       borderLeftWidth: style.full_background ? 0 : 4,
                       borderColor:
-                        style.colours[
+                        (style.colours[
                           [...requirements.tasks.individual[requirement], Infinity].findIndex(
                             i => i > data.data.data[requirement]
                           ) - 1
-                        ],
+                        ] ?? "#aaaaaa"),
                       backgroundColor:
-                        style.colours[
+                        (style.colours[
                           [...requirements.tasks.individual[requirement], Infinity].findIndex(
                             i => i > data.data.data[requirement]
                           ) - 1
-                        ] + (style.full_background ? "" : "22"),
+                        ] ?? "#aaaaaa") + (style.full_background ? "" : "22"),
                       alignItems: "center",
                     }}>
                     <Text
@@ -118,12 +118,12 @@ export default function UserClanScreen() {
                         style.full_background
                           ? {
                               color: pickTextColor(
-                                style.colours[
+                                (style.colours[
                                   [
                                     ...requirements.tasks.individual[requirement],
                                     Infinity,
                                   ].findIndex(i => i > data.data.data[requirement]) - 1
-                                ]
+                                ] ?? "#aaaaaa")
                               ),
                             }
                           : undefined
