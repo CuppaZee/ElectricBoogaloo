@@ -29,7 +29,7 @@ var tasks: {
       con: StatzeePlayerDayCaptureOn[];
       arc: StatzeePlayerDayArchive[];
       no_reduce?: boolean;
-    }) => number | {[key: string]: void} | string;
+    }) => number | {[key: string]: void} | "?";
   }
 } = {
   1: {
@@ -384,7 +384,7 @@ export default function calculate(
     no_reduce,
   };
   const output: {
-    [task: string]: number | { [key: string]: void } | string;
+    [task: string]: number | { [key: string]: void } | "?";
   } = {};
   for (const day of data) {
     all.cap = all.cap.concat(day?.captures ?? []);
