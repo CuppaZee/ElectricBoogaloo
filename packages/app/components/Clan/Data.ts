@@ -419,7 +419,7 @@ export type ClanShadowData = {
   usernames: { [user_id: string]: string };
   data: {
     [task_id: string]: {
-      [user_id: string]: number;
+      [user_id: string]: number | "?";
     };
   };
   details: {
@@ -632,7 +632,8 @@ export function ClanStatsConverter(
         };
       }
       const user = data.users[user_id];
-      const value = task.data[user_id] ?? shadow?.data[task.task_id]?.[user_id];
+      const valuePreConvert = task.data[user_id] === undefined ? task.data[user_id] : shadow?.data[task.task_id]?.[user_id];
+      const value = Number(valuePreConvert ?? NaN);
 
       // Add to Clan Total
       if (requirementMeta[task.task_id]?.total === "min") {

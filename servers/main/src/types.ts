@@ -1,4 +1,4 @@
-import type { Response } from "firebase-functions"
+import type { Response } from "express"
 import { DeviceNotificationSettings } from "./util/notificationSettings";
 
 export type Route = {

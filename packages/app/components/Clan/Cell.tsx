@@ -243,7 +243,8 @@ export function DataCell(props: DataCellProps) {
   let level;
   if (
     props.user?.requirements[props.task_id]?.value === undefined ||
-    props.user?.requirements[props.task_id]?.value === null
+    props.user?.requirements[props.task_id]?.value === null || 
+    Number.isNaN(props.user?.requirements[props.task_id]?.value)
   ) {
     text = "🚫";
   } else if (opt?.subtract) {

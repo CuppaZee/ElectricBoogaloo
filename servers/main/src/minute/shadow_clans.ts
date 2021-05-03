@@ -31,6 +31,8 @@ const route: Route = {
               for(let task in shadowData.archive[user_id][date]) {
                 if(typeof shadowData.archive[user_id][date][task] === "number") {
                   shadowData.total[user_id][task] = (shadowData.total[user_id][task]||0) + shadowData.archive[user_id][date][task];
+                } else if(shadowData.archive[user_id][date][task] === "?") {
+                  shadowData.total[user_id][task] = "";
                 } else {
                   if(!shadowData.total[user_id][task]) shadowData.total[user_id][task] = {};
                   for(let key in shadowData.archive[user_id][date][task]) {
