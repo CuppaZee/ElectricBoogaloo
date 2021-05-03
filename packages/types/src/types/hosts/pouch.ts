@@ -54,6 +54,27 @@ const pouchhosts: {
     state: TypeState.Virtual,
     hosts: [2240, 2241, 2242],
   },
+  {
+    name: "Electric Pouch Creature Host",
+    icon: "electricpouchcreaturehost",
+    id: "null_electricpouchcreaturehost",
+    state: TypeState.Virtual,
+    hosts: [2407, 2408, 2409],
+  },
+  {
+    name: "Funfinity Host",
+    icon: "funfinityhost",
+    id: "null_funfinityhost",
+    state: TypeState.Physical,
+    hosts: [2369],
+  },
+  {
+    name: "Funfinity Virtual Host",
+    icon: "funfinityvirtualhost",
+    id: "null_funfinityvirtualhost",
+    state: TypeState.Virtual,
+    hosts: [2372],
+  },
 ];
 
 export default pouchhosts;

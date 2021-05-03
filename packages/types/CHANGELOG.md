@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.51 - 03/05/2021
+- Added Lock Socks Specials
+- Added Missing Hosts
+- Added Squashed Spyderbot
 ## 0.0.50 - 30/04/2021
 - Added Hades Modern Myth
 - Added Bident and Firestarter Scatters

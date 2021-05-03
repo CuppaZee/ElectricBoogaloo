@@ -3,6 +3,30 @@ import { TypeHidden, TypeState, TypeTags } from "../../munzee";
 
 const s2021: SeasonalCategory[] = [
   {
+    name: "Lost Socks",
+    id: "lostsocks2021",
+    starts: "2021-05-03T12:00:00-05:00",
+    ends: "2021-05-31T23:59:00-05:00",
+    specials: [
+      {name:"Left Ankle Sock",icon:"leftanklesock",id:"null_leftanklesock", lands_on: ["munzee","mystery","urbanfit",i=>(i.has_tag(TypeTags.TypeGaming) && i.state === TypeState.Physical),i=>(i.has_tag(TypeTags.TypeMysteryElemental) && i.state === TypeState.Physical)]},
+      {name:"Left Argyle Sock",icon:"leftargylesock",id:"null_leftargylesock", lands_on: ["munzee","mystery","urbanfit",i=>(i.has_tag(TypeTags.TypeGaming) && i.state === TypeState.Physical),i=>(i.has_tag(TypeTags.TypeMysteryElemental) && i.state === TypeState.Physical)]},
+      {name:"Left Hole-y Sock",icon:"lefthole-ysock",id:"null_lefthole-ysock", lands_on: ["munzee","mystery","urbanfit",i=>(i.has_tag(TypeTags.TypeGaming) && i.state === TypeState.Physical),i=>(i.has_tag(TypeTags.TypeMysteryElemental) && i.state === TypeState.Physical)]},
+      {name:"Left Honeycomb Sock",icon:"lefthoneycombsock",id:"null_lefthoneycombsock", lands_on: ["munzee","mystery","urbanfit",i=>(i.has_tag(TypeTags.TypeGaming) && i.state === TypeState.Physical),i=>(i.has_tag(TypeTags.TypeMysteryElemental) && i.state === TypeState.Physical)]},
+      {name:"Left Striped Sock",icon:"leftstripedsock",id:"null_leftstripedsock", lands_on: ["munzee","mystery","urbanfit",i=>(i.has_tag(TypeTags.TypeGaming) && i.state === TypeState.Physical),i=>(i.has_tag(TypeTags.TypeMysteryElemental) && i.state === TypeState.Physical)]},
+      {name:"Left Toe Sock",icon:"lefttoesock",id:"null_lefttoesock", lands_on: ["munzee","mystery","urbanfit",i=>(i.has_tag(TypeTags.TypeGaming) && i.state === TypeState.Physical),i=>(i.has_tag(TypeTags.TypeMysteryElemental) && i.state === TypeState.Physical)]},
+      {name:"Left Tube Sock",icon:"lefttubesock",id:"null_lefttubesock", lands_on: ["munzee","mystery","urbanfit",i=>(i.has_tag(TypeTags.TypeGaming) && i.state === TypeState.Physical),i=>(i.has_tag(TypeTags.TypeMysteryElemental) && i.state === TypeState.Physical)]},
+      {name:"Left Unicorn Sock",icon:"leftunicornsock",id:"null_leftunicornsock", lands_on: ["munzee","mystery","urbanfit",i=>(i.has_tag(TypeTags.TypeGaming) && i.state === TypeState.Physical),i=>(i.has_tag(TypeTags.TypeMysteryElemental) && i.state === TypeState.Physical)]},
+      {name:"Right Ankle Sock",icon:"rightanklesock",id:"null_rightanklesock", lands_on: [i=>i.has_tag(TypeTags.TypeVirtual),"poisports",i=>(i.has_tag(TypeTags.TypeMysteryElemental) && i.state === TypeState.Physical), "farmer", "farmerandwife", "family", "pottedplant", "garden", "field"]},
+      {name:"Right Argyle Sock",icon:"rightargylesock",id:"null_rightargylesock", lands_on: [i=>i.has_tag(TypeTags.TypeVirtual),"poisports",i=>(i.has_tag(TypeTags.TypeMysteryElemental) && i.state === TypeState.Physical), "farmer", "farmerandwife", "family", "pottedplant", "garden", "field"]},
+      {name:"Right Hole-y Sock",icon:"righthole-ysock",id:"null_righthole-ysock", lands_on: [i=>i.has_tag(TypeTags.TypeVirtual),"poisports",i=>(i.has_tag(TypeTags.TypeMysteryElemental) && i.state === TypeState.Physical), "farmer", "farmerandwife", "family", "pottedplant", "garden", "field"]},
+      {name:"Right Honeycomb Sock",icon:"righthoneycombsock",id:"null_righthoneycombsock", lands_on: [i=>i.has_tag(TypeTags.TypeVirtual),"poisports",i=>(i.has_tag(TypeTags.TypeMysteryElemental) && i.state === TypeState.Physical), "farmer", "farmerandwife", "family", "pottedplant", "garden", "field"]},
+      {name:"Right Striped Sock",icon:"rightstripedsock",id:"null_rightstripedsock", lands_on: [i=>i.has_tag(TypeTags.TypeVirtual),"poisports",i=>(i.has_tag(TypeTags.TypeMysteryElemental) && i.state === TypeState.Physical), "farmer", "farmerandwife", "family", "pottedplant", "garden", "field"]},
+      {name:"Right Toe Sock",icon:"righttoesock",id:"null_righttoesock", lands_on: [i=>i.has_tag(TypeTags.TypeVirtual),"poisports",i=>(i.has_tag(TypeTags.TypeMysteryElemental) && i.state === TypeState.Physical), "farmer", "farmerandwife", "family", "pottedplant", "garden", "field"]},
+      {name:"Right Tube Sock",icon:"righttubesock",id:"null_righttubesock", lands_on: [i=>i.has_tag(TypeTags.TypeVirtual),"poisports",i=>(i.has_tag(TypeTags.TypeMysteryElemental) && i.state === TypeState.Physical), "farmer", "farmerandwife", "family", "pottedplant", "garden", "field"]},
+      {name:"Right Unicorn Sock",icon:"rightunicornsock",id:"null_rightunicornsock", lands_on: [i=>i.has_tag(TypeTags.TypeVirtual),"poisports",i=>(i.has_tag(TypeTags.TypeMysteryElemental) && i.state === TypeState.Physical), "farmer", "farmerandwife", "family", "pottedplant", "garden", "field"]},
+    ],
+  },
+  {
     name: "Baby Animals",
     id: "babyanimals2021",
     starts: "2021-04-01T00:00:00-05:00",

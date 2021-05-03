@@ -995,11 +995,17 @@ const builds: Build[] = [
     types: [
       {
         title: "Hades Modern Myth",
-        types: [
-          "hades",
-          "bident",
-          "firestarter",
-        ],
+        types: ["hades", "bident", "firestarter"],
+      },
+    ],
+  },
+  {
+    build: 59,
+    date: "2021-05-03",
+    types: [
+      {
+        title: "Lost Socks",
+        types: db.types.filter(i=>i.category_raw === `seasonal_2021_lost-socks`).map(i=>i.icon),
       },
     ],
   },

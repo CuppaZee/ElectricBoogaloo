@@ -36,6 +36,20 @@ const tpobhosts: {
     state: TypeState.Virtual,
     hosts: [2110, 2111, 2112],
   },
+  {
+    name: "Temp Bouncer Virtual Host",
+    icon: "tempbouncervirtualhost",
+    id: "null_tempbouncervirtualhost",
+    state: TypeState.Virtual,
+    hosts: ["null_squashedspyderbot"],
+  },
+  {
+    name: "Temp Bouncer Host",
+    icon: "tempbouncerhost",
+    id: "null_tempbouncerhost",
+    state: TypeState.Physical,
+    hosts: [2589],
+  },
 ];
 
 export default tpobhosts;

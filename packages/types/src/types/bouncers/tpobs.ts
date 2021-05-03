@@ -1,4 +1,4 @@
-import { TypeID, TypeMeta, TypeTags } from "../../munzee";
+import { TypeHidden, TypeID, TypeMeta, TypeTags } from "../../munzee";
 
 const tpobs: {
   name: string;
@@ -9,6 +9,7 @@ const tpobs: {
   tags?: TypeTags[];
   lands_on: TypeID[];
   meta?: TypeMeta;
+  hidden?: TypeHidden[];
 }[] = [
   {
     name: "Trojan Unicorn",
@@ -21,6 +22,13 @@ const tpobs: {
     icon: "spyderbot",
     id: 2589,
     lands_on: [],
+  },
+  {
+    name: "Squashed Spyderbot",
+    icon: "squashedspyderbot",
+    id: "null_squashedspyderbot",
+    lands_on: [],
+    hidden: [TypeHidden.Bouncers],
   },
   {
     name: "L.A.S.E.R. Shark",

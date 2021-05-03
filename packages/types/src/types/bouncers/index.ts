@@ -198,7 +198,7 @@ for (const t of tpobs) {
       bouncer_lands_on: t.lands_on,
       ...(t.meta ?? {}),
     },
-    hidden: [TypeHidden.Inventory],
+    hidden: [TypeHidden.Inventory, ...(t.hidden ?? [])],
   });
 }
 
