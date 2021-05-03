@@ -29,7 +29,7 @@ const route: Route = {
         } = {};
         var data: {
           [task_id: string]: {
-            [user_id: string]: string;
+            [user_id: string]: number | "?";
           };
         } = {};
         for(let member of d._members) {
