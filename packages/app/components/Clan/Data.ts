@@ -632,8 +632,8 @@ export function ClanStatsConverter(
         };
       }
       const user = data.users[user_id];
-      const valuePreConvert = task.data[user_id] === undefined ? task.data[user_id] : shadow?.data[task.task_id]?.[user_id];
-      const value = Number(valuePreConvert ?? NaN);
+      const valuePreConvert = task.data[user_id] !== undefined ? task.data[user_id] : shadow?.data[task.task_id]?.[user_id];
+      const value = (valuePreConvert === undefined || valuePreConvert === null) ? valuePreConvert : Number(valuePreConvert);
 
       // Add to Clan Total
       if (requirementMeta[task.task_id]?.total === "min") {
@@ -654,7 +654,7 @@ export function ClanStatsConverter(
       // Calculate Level
       if (requirements.tasks.individual[task.task_id]) {
         for (let level = 1; level <= 5; level++) {
-          if ((requirements.tasks.individual[task.task_id][level] || 0) <= value) {
+          if ((requirements.tasks.individual[task.task_id][level] || 0) <= (value ?? Infinity)) {
             user.requirements[task.task_id].level = level;
           }
         }
