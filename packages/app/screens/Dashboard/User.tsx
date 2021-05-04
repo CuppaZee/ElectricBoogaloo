@@ -132,7 +132,7 @@ export default React.memo(function UserDashCard({
                 accessoryLeft={props => <Icon name="shield-half-full" {...props} />}
                 onPress={() =>
                   nav.navigate("User", {
-                    screen: "Clan",
+                    screen: "ClanProgress",
                     params: { username: item.username },
                   })
                 }
