@@ -1,7 +1,6 @@
 import {
   DestinationType,
   PointsInterface,
-  PointsType,
   TypeHidden,
   TypeID,
   TypeState,
@@ -16,7 +15,7 @@ const destinations: {
   type: DestinationType;
   size?: number;
   star_level?: number;
-  room_of?: number;
+  room_of?: string | number;
   temporary?: boolean;
 
   alt_icons?: string[];
@@ -59,20 +58,22 @@ const destinations: {
     state: TypeState.Physical,
   },
   {
-    name: "Virtual Resort",
-    icon: "virtual_resort",
+    name: "3 Star Virtual Resort",
+    icon: "3starresort",
     id: 470,
     type: DestinationType.Rooms,
     size: 15,
     state: TypeState.Virtual,
+    alt_icons: ["virtual_resort"]
   },
   {
-    name: "Virtual Resort Room",
-    icon: "virtual_resort_room",
+    name: "3 Star Virtual Resort Room",
+    icon: "3starresortroom",
     id: 471,
     room_of: 470,
     type: DestinationType.Room,
     state: TypeState.Virtual,
+    alt_icons: ["virtual_resort_room"]
   },
   {
     name: "Time Share",
@@ -160,6 +161,38 @@ const destinations: {
     id: 2426,
     type: DestinationType.Bouncer,
     size: 6,
+    state: TypeState.Virtual,
+  },
+  {
+    name: "4 Star Virtual Resort",
+    icon: "4starresort",
+    id: "null_4starresort",
+    type: DestinationType.Rooms,
+    size: 20,
+    state: TypeState.Virtual,
+  },
+  {
+    name: "5 Star Virtual Resort",
+    icon: "5starresort",
+    id: "null_5starresort",
+    type: DestinationType.Rooms,
+    size: 25,
+    state: TypeState.Virtual,
+  },
+  {
+    name: "4 Star Virtual Resort Room",
+    icon: "4starresortroom",
+    id: "null_4starresortroom",
+    room_of: "null_4starresort",
+    type: DestinationType.Room,
+    state: TypeState.Virtual,
+  },
+  {
+    name: "5 Star Virtual Resort Room",
+    icon: "5starresortroom",
+    id: "null_5starresortroom",
+    room_of: "null_5starresort",
+    type: DestinationType.Room,
     state: TypeState.Virtual,
   },
 ];

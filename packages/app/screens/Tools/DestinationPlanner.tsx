@@ -201,6 +201,7 @@ export default function BouncersMapScreen() {
     icon: db
       .strip(i.original_pin_image ?? "")
       .replace(/[0-9]starmotel/, "motel")
+      .replace(/[0-9]starresort/, "virtualresort")
       .replace(/skyland[0-9]/, "skyland")
       .replace(/treehouse[0-9]/, "treehouse"),
   }));

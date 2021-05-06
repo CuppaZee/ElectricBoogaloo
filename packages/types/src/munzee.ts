@@ -166,7 +166,7 @@ export interface TypeMeta {
   destination_type?: DestinationType;
   destination_size?: number;
   destination_star_level?: number;
-  destination_room_of?: number;
+  destination_room_of?: string | number;
   destination_temporary?: boolean;
 
   bouncer_duration?: number;

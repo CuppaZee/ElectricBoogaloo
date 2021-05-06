@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.0.52 - 06/05/2021
+- Added Tiered Virtual Resorts
 ## 0.0.51 - 03/05/2021
 - Added Lock Socks Specials
 - Added Missing Hosts
