@@ -98,7 +98,6 @@ fastify.get("/:category/:size/:type", async function (request, reply) {
   if (!response) {
     // No Image Found
     reply
-      .headers(cacheHeaders)
       .type(`image/png`)
       .send(createReadStream(path.join(overrideDir, `missing_${category}.png`)));
     return;
