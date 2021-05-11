@@ -9,7 +9,7 @@ import { loadOptions } from "@babel/core";
 const getMunzeeData = async <Path extends keyof Endpoints>(
   endpoint: FetchRequest<Path>["endpoint"],
   params: FetchRequest<Path>["params"],
-  token: string
+  token: string,
 ): Promise<FetchResponse<Path> | null> => {
   var body = new FormData();
   body.append("data", JSON.stringify(params));
@@ -51,7 +51,7 @@ export default function useMunzeeRequest<Path extends keyof Endpoints>(
     FetchResponse<Path, Endpoints[Path]> | null,
     unknown,
     FetchResponse<Path, Endpoints[Path]> | null
-  >
+  >,
 ) {
   const isFocused = bypassIsFocused ?? useIsFocused();
   const token = useToken(user_id);

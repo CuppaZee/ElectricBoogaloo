@@ -29,6 +29,8 @@ import { MapBoundingboxV4 } from "./map/v4";
 import { AssetsNews } from "./assets/news";
 import { Endpoint } from "./common";
 import { UserSpecials } from "./user/specials";
+import { UserCubimals } from "./user/cubimals";
+import { QRates } from "./user/qrates";
 
 export type Endpoints = {
   "assets/news": AssetsNews;
@@ -68,6 +70,8 @@ export type Endpoints = {
   "user/specials": UserSpecials;
   "user/undeploys": UserUndeploys;
   "user/undeploys/count": UserUndeploysCount;
+  "user/cubimals": UserCubimals;
+  "qrates": QRates;
 };
 
 export interface FetchRequest<

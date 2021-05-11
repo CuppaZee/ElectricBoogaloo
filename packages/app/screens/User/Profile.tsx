@@ -34,11 +34,16 @@ export const UserPagesNow = [
     title: "user_qrew_checker",
     screen: "QRew",
   },
-  // {
-  //   icon: "star-box",
-  //   title: "user_qrates",
-  //   screen: "QRates",
-  // },
+  {
+    icon: "star-box",
+    title: "user_qrates",
+    screen: "QRates",
+  },
+  {
+    icon: "cube",
+    title: "user_cubimals",
+    screen: "Cubimals",
+  },
 ] as const;
 
 export default function TabOneScreen() {

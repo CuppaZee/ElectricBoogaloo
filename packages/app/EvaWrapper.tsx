@@ -11,7 +11,6 @@ export default function EvaWrapper({ children, dark }: PropsWithChildren<{dark?:
     themeValue !== "generate" && themeValue in themes
       ? (themes as any)[themeValue.replace(dark ? /_lighter$/ : "_dark", "_dark")]
       : themes.generate(themeValue);
-  console.log(theme.styleNum);
   return (
     <ApplicationProvider
       {...eva}

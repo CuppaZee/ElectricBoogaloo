@@ -18,6 +18,8 @@ const UserCapturesScreen = lazy(() => import("../screens/User/Captures"));
 const UserBouncersScreen = lazy(() => import("../screens/User/Bouncers"));
 const UserClanScreen = lazy(() => import("../screens/User/Clan"));
 const UserQRewScreen = lazy(() => import("../screens/User/QRew"));
+const UserCubimalsScreen = lazy(() => import("../screens/User/Cubimals"));
+const UserQRatesScreen = lazy(() => import("../screens/User/QRates"));
 
 export type SettingsNavigatorProp<T extends keyof UserStackParamList> = CompositeNavigationProp<
   DrawerNavigationProp<MainDrawerParamList, "User">,
@@ -61,6 +63,8 @@ export default function UserNavigator() {
       />
       <UserStack.Screen name="ClanProgress" component={UserClanScreen} />
       <UserStack.Screen name="QRew" component={UserQRewScreen} />
+      <UserStack.Screen name="Cubimals" component={UserCubimalsScreen} />
+      <UserStack.Screen name="QRates" component={UserQRatesScreen} />
     </UserStack.Navigator>
   );
 }

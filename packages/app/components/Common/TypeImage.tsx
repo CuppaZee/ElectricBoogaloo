@@ -5,29 +5,29 @@ import { Image, ImageProps, ImageStyle, Text, View } from "react-native";
 const useNewIconsServer = true;
 
 type TypeImageProps = Omit<ImageProps, "style" | "source"> & {
+  category?: "types" | "cubimals";
   style: Omit<ImageStyle, "height" | "width"> & { size: number };
   icon: string;
   iconSize?: number;
 };
 
-export function getRemoteTypeImage(input: string | Type, iconSize = 64) {
-  // if (icon === "missing") return `https://${useNewIconsServer ? "images.cuppazee.app/types" : "icons.cuppazee.app"}/missing.png`;
+export function getRemoteTypeImage(input: string | Type, iconSize = 64, category = "types") {
   const type = typeof input === "string" ? db.getType(input) : input;
   const icon = typeof input === "string" ? input : type?.icon ?? "";
   return type
-    ? `https://${useNewIconsServer ? "images" : "icons"}.cuppazee.app/${useNewIconsServer ? "types/" : ""}${iconSize ?? 64}/${type.strippedIcon}.png`
-    : `https://${useNewIconsServer ? "images" : "icons"}.cuppazee.app/${useNewIconsServer ? "types/" : ""}${iconSize ?? 64}/${
+    ? `https://images.cuppazee.app/${category}/${iconSize ?? 64}/${type.strippedIcon}.png`
+    : `https://images.cuppazee.app/${category}/${iconSize ?? 64}/${
         icon.startsWith("https://munzee.global") ? icon.slice(49, -4) : icon
       }.png`;
 }
 
-export function getTypeImage(icon: string | Type, iconSize = 64) {
-  return { uri: getRemoteTypeImage(icon, iconSize) };
+export function getTypeImage(icon: string | Type, iconSize = 64, category = "types") {
+  return { uri: getRemoteTypeImage(icon, iconSize, category) };
 }
 
-export default function TypeImage({ icon, iconSize, style: { size, ...style }, ...rest }: TypeImageProps) {
+export default function TypeImage({ icon, iconSize, style: { size, ...style }, category, ...rest }: TypeImageProps) {
   const type = db.getType(icon);
-  const source = getTypeImage(type || icon, iconSize);
+  const source = getTypeImage(type || icon, iconSize, category);
   let hostIcon;
   if ((type?.meta?.host_types?.length ?? 0) > 0) {
     const host = type?.meta?.host_types?.[0];

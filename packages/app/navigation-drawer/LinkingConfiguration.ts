@@ -35,6 +35,8 @@ export default function getConfig(notification?: NotificationResponse): LinkingO
                   Bouncers: ":username/bouncers",
                   ClanProgress: ":username/clan",
                   QRew: ":username/qrew",
+                  Cubimals: ":username/cubimals",
+                  QRates: ":username/qrates",
                 }).map(i => [
                   i[0],
                   {

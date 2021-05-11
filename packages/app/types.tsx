@@ -9,7 +9,7 @@ type MainDrawerParams<Params> = {
 
 export type MainDrawerParamList = {
   Dashboard: MainDrawerParams<DashStackParamList>;
-  User: MainDrawerParams<UserStackParamList> & {username: string};
+  User: MainDrawerParams<UserStackParamList> & { username: string };
   Clan: MainDrawerParams<ClanStackParamList>;
   Tools: MainDrawerParams<ToolsStackParamList>;
   Settings: MainDrawerParams<SettingsStackParamList>;
@@ -27,6 +27,8 @@ export type UserStackParamList = {
   Bouncers: { username: string };
   ClanProgress: { username: string };
   QRew: { username: string };
+  Cubimals: { username: string };
+  QRates: { username: string };
 };
 
 export type DashStackParamList = {
