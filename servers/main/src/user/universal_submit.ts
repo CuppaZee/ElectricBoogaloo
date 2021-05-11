@@ -17,23 +17,25 @@ const route: Route = {
         var munzee = await request('munzee', { url: `/m/${codeData[1]}/${codeData[2]}` }, access_token);
         console.log(codeData, types, munzee?.data?.pin_icon);
         var type = types.find(i => db.strip(i.icon) === db.strip(munzee?.data?.pin_icon || ""));
-        if(!type) {
+        if (!type) {
           return {
             status: "error",
             data: "We don't yet support this type of Munzee."
           }
         }
-        if(!munzee?.data?.deployed_at) {
+        if (!munzee?.data?.deployed_at) {
           return {
             status: "error",
             data: "You must deploy the Munzee before submitting."
           }
         }
-        await mongo.collection("universals").insertOne({
-          code: `${codeData[1]}/${codeData[2]}/${codeData[3].toUpperCase()}`,
-          munzee_id: munzee?.data?.munzee_id,
-          type: type?.id,
-        });
+        await mongo.collection("universals").updateOne({ munzee_id: munzee?.data?.munzee_id?.toString?.() }, {
+          $set: {
+            code: `${codeData[1]}/${codeData[2]}/${codeData[3].toUpperCase()}`,
+            munzee_id: munzee?.data?.munzee_id?.toString?.(),
+            type: type?.id,
+          }
+        }, {upsert: true});
         return {
           status: "success",
           data: true
