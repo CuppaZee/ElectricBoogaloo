@@ -19,6 +19,7 @@ This library provides TypeScript typings for the Munzee API.
 - `user/archived`
 - `user/credits`
 - `user/credits/history`
+- `user/cubimals`
 - `user/boosters/active`
 - `user/boosters/credits`
 - `statzee/player/captures`
@@ -26,6 +27,7 @@ This library provides TypeScript typings for the Munzee API.
 - `statzee/player/deploys`
 - `statzee/player/deploys/types`
 - `statzee/player/day`
+- `qrates`
 
 ### Munzee
 - `munzee`

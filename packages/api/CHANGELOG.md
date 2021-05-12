@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.0.12 - 12/05/2021
+- Added `/user/cubimals` endpoint definitions
+- Added `/qrates` endpoint definitions
 ## 0.0.10/.11 - 17/02/2021
 - Added `/user/specials` endpoint definitions
 ## 0.0.9 - 28/01/2021
