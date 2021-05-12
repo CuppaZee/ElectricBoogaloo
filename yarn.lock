@@ -1763,6 +1763,11 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@cuppazee/api@^0.0.11":
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/@cuppazee/api/-/api-0.0.11.tgz#347745cbc4bf79994c49156fdad66caa2869e496"
+  integrity sha512-LXdnSJPfp2hO/Hy+O4IN/G6C+v/+EMVSpksQOePMoYIQpTRpO/GWH/VAVk7E7id8GSAqeuQ3bKujtrUO7dYHTA==
+
 "@cuppazee/api@^0.0.9":
   version "0.0.9"
   resolved "https://registry.yarnpkg.com/@cuppazee/api/-/api-0.0.9.tgz#2e41ebd69ebd8ac80fe2bf565e40b96f33ab608d"

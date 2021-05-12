@@ -89,6 +89,10 @@ const credits: {
     name: "Weapon Shards",
     category: "weapon_clan",
   },
+  {
+    icon: "rover_treat",
+    name: "Rover Treat",
+  },
 ];
 
 export default credits;

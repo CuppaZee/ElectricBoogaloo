@@ -203,6 +203,13 @@ const zodiacs: {
     state: TypeState.Virtual,
     zodiac: "egyptian",
   },
+  {
+    name: "Horus",
+    icon: "horus",
+    id: 2755,
+    state: TypeState.Virtual,
+    zodiac: "egyptian",
+  },
 ];
 
 export default zodiacs;

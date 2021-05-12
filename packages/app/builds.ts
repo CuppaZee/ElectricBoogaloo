@@ -1037,8 +1037,7 @@ const builds: Build[] = [
       },
       {
         title: "QRates!",
-        description:
-          "You can now view your QRates progress directly on CuppaZee!",
+        description: "You can now view your QRates progress directly on CuppaZee!",
       },
     ],
   },
@@ -1047,8 +1046,21 @@ const builds: Build[] = [
     date: "2021-05-12",
     improvements: [
       {
-        description:
-          "Improved display of Claimed QRates Requirement",
+        description: "Improved display of Claimed QRates Requirement",
+      },
+    ],
+  },
+  {
+    build: 63,
+    date: "2021-05-12",
+    types: [
+      {
+        title: "Rover Treat",
+        types: ["rover_treat"],
+      },
+      {
+        title: "Horus",
+        types: ["horus"],
       },
     ],
   },

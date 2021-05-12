@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.0.53 - 12/05/2021
+- Added Rover Treat
+- Added Horus
 ## 0.0.52 - 06/05/2021
 - Added Tiered Virtual Resorts
 ## 0.0.51 - 03/05/2021
