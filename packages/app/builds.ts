@@ -1042,6 +1042,16 @@ const builds: Build[] = [
       },
     ],
   },
+  {
+    build: 62,
+    date: "2021-05-12",
+    improvements: [
+      {
+        description:
+          "Improved display of Claimed QRates Requirement",
+      },
+    ],
+  },
 ];
 
 export default builds;

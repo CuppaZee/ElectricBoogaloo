@@ -67,77 +67,78 @@ export default function UserClanScreen() {
       </Layout>
     );
   }
+
+  function calculateRequirement(requirement: number) {
+    if (!requirements || !data.data) return;
+    return (
+      [...requirements.tasks.individual[requirement] ?? [], Infinity].findIndex(
+        i => i > data.data.data[requirement]
+      ) - 1
+    );
+  }
+  const levels: { [key: number]: number | undefined } = {};
+  for (const requirement of requirements.all) {
+    levels[requirement] = calculateRequirement(requirement);
+  }
   return (
     <Layout onLayout={onLayout} style={{ flex: 1 }}>
       <ScrollView style={{ flex: 1 }} contentContainerStyle={{ alignItems: "center" }}>
         <View style={{ width: 800, maxWidth: "100%", flexDirection: "row", flexWrap: "wrap" }}>
-          {requirements.all.map(requirement => (
-            <View style={{ width: 300, flexGrow: 1, maxWidth: "100%", padding: 4 }}>
-              <Layout
-                level="3"
-                style={{ flexDirection: "row", alignItems: "center", borderRadius: 8 }}>
-                <Image
-                  style={{ width: 32, height: 32, margin: 8 }}
-                  source={{
-                    uri: `${baseURL}/requirements/${requirement}.png`,
-                  }}
-                />
-                <View style={{ paddingVertical: 8, flex: 1 }}>
-                  <Text category="h6">
-                    {requirementMeta[requirement]?.top} {requirementMeta[requirement]?.bottom}
-                  </Text>
-                  <Text category="s1">{data.data.data[requirement].toLocaleString()}</Text>
-                </View>
-                {!!requirements.tasks.individual[requirement] && (
-                  <Layout
-                    level="4"
-                    style={{
-                      padding: 8,
-                      borderBottomRightRadius: 8,
-                      borderTopRightRadius: 8,
-                      alignSelf: "stretch",
-                      justifyContent: "center",
-                      width: 60,
-                      borderLeftWidth: style.full_background ? 0 : 4,
-                      borderColor:
-                        (style.colours[
-                          [...requirements.tasks.individual[requirement], Infinity].findIndex(
-                            i => i > data.data.data[requirement]
-                          ) - 1
-                        ] ?? "#aaaaaa"),
-                      backgroundColor:
-                        (style.colours[
-                          [...requirements.tasks.individual[requirement], Infinity].findIndex(
-                            i => i > data.data.data[requirement]
-                          ) - 1
-                        ] ?? "#aaaaaa") + (style.full_background ? "" : "22"),
-                      alignItems: "center",
-                    }}>
-                    <Text
-                      style={
-                        style.full_background
-                          ? {
+          {requirements.all.map(requirement => {
+            const l = levels[requirement] || -1;
+            return (
+              <View style={{ width: 300, flexGrow: 1, maxWidth: "100%", padding: 4 }}>
+                <Layout
+                  level="3"
+                  style={{ flexDirection: "row", alignItems: "center", borderRadius: 8 }}>
+                  <Image
+                    style={{ width: 32, height: 32, margin: 8 }}
+                    source={{
+                      uri: `${baseURL}/requirements/${requirement}.png`,
+                    }}
+                  />
+                  <View style={{ paddingVertical: 8, flex: 1 }}>
+                    <Text category="h6">
+                      {requirementMeta[requirement]?.top} {requirementMeta[requirement]?.bottom}
+                    </Text>
+                    <Text category="s1">{data.data.data[requirement].toLocaleString()}</Text>
+                  </View>
+                  {!!requirements.tasks.individual[requirement] && (
+                    <Layout
+                      level="4"
+                      style={{
+                        padding: 8,
+                        borderBottomRightRadius: 8,
+                        borderTopRightRadius: 8,
+                        alignSelf: "stretch",
+                        justifyContent: "center",
+                        width: 60,
+                        borderLeftWidth: style.full_background ? 0 : 4,
+                        borderColor: style.colours[l] ?? "#aaaaaa",
+                        backgroundColor:
+                          (style.colours[l] ?? "#aaaaaa") +
+                          (style.full_background ? "" : "22"),
+                        alignItems: "center",
+                      }}>
+                      <Text
+                        style={
+                          style.full_background
+                            ? {
                               color: pickTextColor(
-                                (style.colours[
-                                  [
-                                    ...requirements.tasks.individual[requirement],
-                                    Infinity,
-                                  ].findIndex(i => i > data.data.data[requirement]) - 1
-                                ] ?? "#aaaaaa")
+                                style.colours[l] ?? "#aaaaaa"
                               ),
                             }
-                          : undefined
-                      }
-                      category="h4">
-                      {[...requirements.tasks.individual[requirement], Infinity].findIndex(
-                        i => i > data.data.data[requirement]
-                      ) - 1}
-                    </Text>
-                  </Layout>
-                )}
-              </Layout>
-            </View>
-          ))}
+                            : undefined
+                        }
+                        category="h4">
+                        {l === -2 ? "?" : l}
+                      </Text>
+                    </Layout>
+                  )}
+                </Layout>
+              </View>
+            )
+          })}
         </View>
         <View style={{ alignSelf: "stretch", padding: 4 }}>
           <Requirements clan_id={1349} game_id={game_id} />
