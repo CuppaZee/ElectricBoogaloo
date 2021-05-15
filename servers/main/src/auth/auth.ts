@@ -83,7 +83,7 @@ const route: Route = {
           }
 
           res.redirect(
-            `${state_data.redirect}?teaken=${encodeURIComponent(
+            `${state_data.redirect}?teaken=${encodeURIComponent(teaken)}&code=${encodeURIComponent(
               teaken
             )}&username=${username}&user_id=${user_id}&state=${encodeURIComponent(state)}`
           );
