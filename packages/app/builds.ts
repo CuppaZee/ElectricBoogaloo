@@ -1064,6 +1064,20 @@ const builds: Build[] = [
       },
     ],
   },
+  {
+    build: 64,
+    date: "2021-05-18",
+    types: [
+      {
+        title: "New POIs",
+        types: ["poipet","poientertainment"],
+      },
+      {
+        title: "Arctic L.A.S.E.R. Shark",
+        types: ["arcticlasershark"],
+      },
+    ],
+  },
 ];
 
 export default builds;
