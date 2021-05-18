@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.54 - 18/05/2021
+- Added POI Pet and Entertainment
+- Added Arctic L.A.S.E.R. Shark
+- Fied Details for Temporary Bouncer Host Types
 ## 0.0.53 - 12/05/2021
 - Added Rover Treat
 - Added Horus

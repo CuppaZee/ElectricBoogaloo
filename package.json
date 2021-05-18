@@ -25,7 +25,7 @@
     "postinstall": "yarn licenses list --json -s | node tail > packages/app/assets/dependencies.json && node copy ./packages/types ./packages/app/node_modules/@cuppazee/types",
     "deploy-server": "firebase deploy --only functions",
     "publish-types": "yarn workspace @cuppazee/types build && yarn workspace @cuppazee/types publish && yarn workspace @cuppazee/app add @cuppazee/types && yarn workspace @cuppazee/server add @cuppazee/types && yarn install",
-    "install-types": "yarn workspace @cuppazee/app add @cuppazee/types && yarn workspace @cuppazee/functions add @cuppazee/types && yarn install && cd packages/functions && npm install && cd ../.."
+    "install-types": "yarn workspace @cuppazee/app add @cuppazee/types && yarn workspace @cuppazee/server add @cuppazee/types && yarn install"
   },
   "devDependencies": {
     "fs-extra": "^9.1.0",

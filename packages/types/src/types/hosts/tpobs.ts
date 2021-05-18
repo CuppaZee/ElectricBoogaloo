@@ -41,14 +41,14 @@ const tpobhosts: {
     icon: "tempbouncervirtualhost",
     id: "null_tempbouncervirtualhost",
     state: TypeState.Virtual,
-    hosts: ["null_squashedspyderbot"],
+    hosts: [2589],
   },
   {
     name: "Temp Bouncer Host",
     icon: "tempbouncerhost",
     id: "null_tempbouncerhost",
     state: TypeState.Physical,
-    hosts: [2589],
+    hosts: ["null_squashedspyderbot"],
   },
 ];
 
