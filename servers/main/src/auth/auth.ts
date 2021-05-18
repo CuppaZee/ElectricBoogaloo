@@ -82,11 +82,17 @@ const route: Route = {
             })
           }
 
-          res.redirect(
-            `${state_data.redirect}?teaken=${encodeURIComponent(teaken)}&code=${encodeURIComponent(
-              teaken
-            )}&username=${username}&user_id=${user_id}&state=${encodeURIComponent(state)}`
-          );
+          if (state_data.ionic) {
+            res.redirect(
+              `${state_data.redirect}?access_token=${encodeURIComponent(`${teaken}/${username}/${user_id}`)}&state=${state_data.ionic}`
+            );
+          } else {
+            res.redirect(
+              `${state_data.redirect}?teaken=${encodeURIComponent(teaken)}&code=${encodeURIComponent(
+                teaken
+              )}&username=${username}&user_id=${user_id}&state=${encodeURIComponent(state)}`
+            );
+          }
 
           const platform =
             {

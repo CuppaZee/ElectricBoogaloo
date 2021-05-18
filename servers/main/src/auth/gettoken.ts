@@ -35,8 +35,11 @@ const route: Route = {
     {
       version: 2,
       async function({
-        params: { teaken: teake, user_id, time }
+        params: { teaken: teake, user_id, time, ...rest }
       }: any) {
+        if (rest.access_token) {
+          return { status: "success", data: rest };
+        }
         let teaken: string | boolean = teake;
         if (typeof teaken !== "string") {
           return {
