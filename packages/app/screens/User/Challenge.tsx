@@ -10,7 +10,7 @@ import { ActivityConverter } from "../../components/Activity/Data";
 import ChallengesConverter from "../../components/Challenges/Data";
 import useActivity from "../../hooks/useActivity";
 import Loading from "../../components/Loading";
-import { ScrollView, View } from "react-native";
+import { PixelRatio, ScrollView, View } from "react-native";
 import TypeImage from "../../components/Common/TypeImage";
 import { useTranslation } from "react-i18next";
 import Icon from "../../components/Common/Icon";
@@ -50,45 +50,54 @@ export default function UserChallengesScreen() {
   const challenge = d.find(i => i.id === route.params.challenge);
   if (!challenge) return null;
 
-  if(challenge.size === "small") return (
-    <Layout onLayout={onLayout} style={{ flex: 1 }}>
-      <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexDirection: "row", alignItems: "flex-start", flexWrap: "wrap"}}>
-        {challenge.categories
-          .slice()
-          .sort((a, b) => b.completion.length - a.completion.length)
-          .map(c => (
-            <View style={{ width: 80, maxWidth: "100%", flexGrow: 1, padding: 4 }}>
-              <Layout
-                level={c.completion.length > 0 ? "3" : "2"}
-                style={{ alignItems: "center", borderRadius: 8 }}>
-                <TypeImage style={{ size: 32, margin: 8 }} icon={c.icon} />
-                <Text numberOfLines={1} style={{ textAlign: "center" }} category="c1">{c.name.includes(":") ? t(c.name as any) : c.name}</Text>
+  if (challenge.size === "small")
+    return (
+      <Layout onLayout={onLayout} style={{ flex: 1 }}>
+        <ScrollView
+          style={{ flex: 1 }}
+          contentContainerStyle={{
+            flexDirection: "row",
+            alignItems: "flex-start",
+            flexWrap: "wrap",
+          }}>
+          {challenge.categories
+            .slice()
+            .sort((a, b) => b.completion.length - a.completion.length)
+            .map(c => (
+              <View style={{ width: 80, maxWidth: "100%", flexGrow: 1, padding: 4 }}>
                 <Layout
-                  level={c.completion.length > 0 ? "4" : "2"}
-                  style={{
-                    padding: 8,
-                    borderBottomRightRadius: 8,
-                    borderBottomLeftRadius: 8,
-                    alignSelf: "stretch",
-                    justifyContent: "center",
-                    height: 32,
-                    alignItems: "center",
-                  }}>
-                  <Text category="h4">
-                    {c.completion.length || (
+                  level={c.completion.length > 0 ? "3" : "2"}
+                  style={{ alignItems: "center", borderRadius: 8 }}>
+                  <TypeImage style={{ size: 32, margin: 8 }} icon={c.icon} />
+                  <Text numberOfLines={1} style={{ textAlign: "center" }} category="c1">
+                    {c.name.includes(":") ? t(c.name as any) : c.name}
+                  </Text>
+                  <Layout
+                    level={c.completion.length > 0 ? "4" : "2"}
+                    style={{
+                      padding: 2,
+                      borderBottomRightRadius: 8,
+                      borderBottomLeftRadius: 8,
+                      alignSelf: "stretch",
+                      justifyContent: "center",
+                      height: 32 * PixelRatio.getFontScale() + 2,
+                      alignItems: "center",
+                    }}>
+                    {c.completion.length ? (
+                      <Text category="h4">{c.completion.length}</Text>
+                    ) : (
                       <Icon
                         style={{ height: 24, width: 24, color: theme["text-basic-color"] }}
                         name="close"
                       />
                     )}
-                  </Text>
+                  </Layout>
                 </Layout>
-              </Layout>
-            </View>
-          ))}
-      </ScrollView>
-    </Layout>
-  );
+              </View>
+            ))}
+        </ScrollView>
+      </Layout>
+    );
 
   return (
     <Layout onLayout={onLayout} style={{ flex: 1 }}>
