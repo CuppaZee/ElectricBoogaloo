@@ -1,7 +1,6 @@
 import { DrawerContentComponentProps, DrawerContentOptions } from "@react-navigation/drawer";
 import { getPathFromState, useNavigationState } from "@react-navigation/native";
 import {
-  ApplicationProvider,
   DrawerGroup as UIKittenDrawerGroup,
   DrawerGroupProps,
   DrawerItem as UIKittenDrawerItem,
@@ -17,7 +16,6 @@ import Tip from "../components/Common/Tip";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../components/Common/Icon";
 import useSetting, { DrawerAtom, ReadyAtom } from "../hooks/useSetting";
-import EvaWrapper from "../EvaWrapper";
 
 const DrawerItem = React.memo(
   function ({ title, style, ...props }: DrawerItemProps) {

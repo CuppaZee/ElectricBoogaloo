@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.0.55 - 18/05/2021
+- Added Baby Panda tPOBs
 ## 0.0.54 - 18/05/2021
 - Added POI Pet and Entertainment
 - Added Arctic L.A.S.E.R. Shark

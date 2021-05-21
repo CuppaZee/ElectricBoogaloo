@@ -1089,6 +1089,16 @@ const builds: Build[] = [
       },
     ],
   },
+  {
+    build: 66,
+    date: "2021-05-21",
+    types: [
+      {
+        title: "Baby Pandas",
+        types: ["babypanda", "albinobabypanda"],
+      },
+    ],
+  },
 ];
 
 export default builds;
