@@ -84,7 +84,7 @@ export default React.memo(function UserDashCard({
                 selected={false}
                 title={() => (
                   <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
-                    {t(`pages:${i.title}` as const)}
+                    {"title" in i ? t(`pages:${i.title}` as const) : i.nontranslatedtitle}
                   </Text>
                 )}
                 accessoryLeft={props => <Icon name={i.icon} {...props} />}
@@ -109,7 +109,13 @@ export default React.memo(function UserDashCard({
                 accessoryLeft={() => (
                   <Image
                     source={{ uri: user.data?.data?.clan?.logo ?? "" }}
-                    style={{ height: 32, width: 32, borderRadius: 16, marginVertical: -4, marginHorizontal: 2 }}
+                    style={{
+                      height: 32,
+                      width: 32,
+                      borderRadius: 16,
+                      marginVertical: -4,
+                      marginHorizontal: 2,
+                    }}
                   />
                 )}
                 onPress={() =>

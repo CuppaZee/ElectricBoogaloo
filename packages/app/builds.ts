@@ -1070,11 +1070,22 @@ const builds: Build[] = [
     types: [
       {
         title: "New POIs",
-        types: ["poipet","poientertainment"],
+        types: ["poipet", "poientertainment"],
       },
       {
         title: "Arctic L.A.S.E.R. Shark",
         types: ["arcticlasershark"],
+      },
+    ],
+  },
+  {
+    build: 65,
+    date: "2021-05-21",
+    features: [
+      {
+        title: "Expiring Rooms!",
+        description:
+          "You can now view your expiring Timeshare and Vacation Condo Rooms on CuppaZee!",
       },
     ],
   },

@@ -44,6 +44,11 @@ export const UserPagesNow = [
     title: "user_cubimals",
     screen: "Cubimals",
   },
+  {
+    icon: "door-open",
+    nontranslatedtitle: "Expiring Rooms",
+    screen: "Rooms",
+  },
 ] as const;
 
 export default function TabOneScreen() {
@@ -171,7 +176,7 @@ export default function TabOneScreen() {
                   selected={false}
                   title={() => (
                     <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
-                      {t(`pages:${i.title}` as const)}
+                      {"title" in i ? t(`pages:${i.title}` as const) : i.nontranslatedtitle}
                     </Text>
                   )}
                   accessoryLeft={props => <Icon name={i.icon} {...props} />}
