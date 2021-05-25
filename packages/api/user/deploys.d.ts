@@ -8,7 +8,7 @@ export interface UserDeploys extends Endpoint {
       page?: number;
       type_id?: number;
     };
-  }
+  };
   response: Response<{
     has_more: 0 | 1;
     munzees: {
@@ -33,5 +33,27 @@ export interface UserDeploys extends Endpoint {
       virtual: number;
       pin_icon: string;
     }[];
-  }>
+  }>;
+}
+export interface UserDeploysMap extends Endpoint {
+  request: {
+    endpoint: "user/deploys/map";
+    params: {
+      user_id: number;
+      page?: number;
+      type_id?: number;
+    };
+  };
+  response: Response<
+    {
+      deployed_at: string;
+      id: string;
+      la: string;
+      lo: string;
+      n: string;
+      reset_at: string | null;
+      i: string;
+      u: string;
+    }[]
+  >;
 }

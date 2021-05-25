@@ -1,6 +1,6 @@
 import { OpsZeeopsStatus, OpsZeeopsTutorialsStatus } from "./ops/zeeops";
 import { User } from "./user/main";
-import { UserDeploys } from "./user/deploys";
+import { UserDeploys, UserDeploysMap } from "./user/deploys";
 import { UserUndeploys, UserUndeploysCount } from "./user/undeploys";
 import { UserArchived } from "./user/archived";
 import { UserCapturesSpecial, UserCaptures } from "./user/captures";
@@ -66,6 +66,7 @@ export type Endpoints = {
   "user/credits": UserCredits;
   "user/credits/history": UserCreditsHistory;
   "user/deploys": UserDeploys;
+  "user/deploys/map": UserDeploysMap;
   "user/find": UserFind;
   "user/specials": UserSpecials;
   "user/undeploys": UserUndeploys;
