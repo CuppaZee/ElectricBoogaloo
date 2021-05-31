@@ -66,7 +66,9 @@ export default function UserBouncersScreen() {
                   ] as const
                 ).map(i => (
                   <View style={{ margin: 4, borderRadius: 4, padding: 4, backgroundColor: i[0] }}>
-                    <Text category="s1" style={{ textAlign: "center", color: i[2] || "black" }}>{i[1]} Days Left</Text>
+                    <Text category="s1" style={{ textAlign: "center", color: i[2] || "black" }}>
+                      {i[1]} Days Left
+                    </Text>
                   </View>
                 ))}
               </>
@@ -130,6 +132,11 @@ export default function UserBouncersScreen() {
             </Source>
           </AutoMap>
         </Layout>
+        {data.data.data.rooms.length ? (
+          <Text category="h4">You have rented {data.data.data.rooms.length} rooms</Text>
+        ) : (
+          <Text category="h4">You haven't rented any Timeshare or Vacation Condo Rooms</Text>
+        )}
         <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
           {data.data.data.rooms.map(i => (
             <Pressable
