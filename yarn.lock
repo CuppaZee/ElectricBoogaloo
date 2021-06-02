@@ -1778,6 +1778,11 @@
   resolved "https://registry.yarnpkg.com/@cuppazee/types/-/types-0.0.44.tgz#bf6bcb0044f2c0ce812c32807fece4b46d804f51"
   integrity sha512-NdwnrvhABpOqVbRMUywdLlqNKRPQtdX7TneGY3daEGqBdfKU8EDiztN9AbLSn76ulaakSc3O9lWWJnX4ycKtFA==
 
+"@cuppazee/types@^0.0.55":
+  version "0.0.55"
+  resolved "https://registry.yarnpkg.com/@cuppazee/types/-/types-0.0.55.tgz#dd5835fd0855ec56ea79591c336f8cf4cbf405ac"
+  integrity sha512-NBG3lImLPsZaOJ5IhrKxcZsom6rqc6HehhOIgsfr+dwYiUh9c8CFFLKO04HXmC/TdwuwCWMaAabmWolOMs2eyA==
+
 "@egjs/hammerjs@^2.0.17":
   version "2.0.17"
   resolved "https://registry.yarnpkg.com/@egjs/hammerjs/-/hammerjs-2.0.17.tgz#5dc02af75a6a06e4c2db0202cae38c9263895124"

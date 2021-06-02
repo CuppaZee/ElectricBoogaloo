@@ -2,7 +2,7 @@ import sentryConf from "./sentry.config.json";
 
 module.exports = {
   expo: {
-    name: "CuppaZee",
+    name: "CuppaZee Max",
     owner: "sohcah",
     slug: "PaperZee",
     privacy: "public",
@@ -37,13 +37,13 @@ module.exports = {
       requireFullScreen: false,
       supportsTablet: true,
       infoPlist: {
-        NSCameraUsageDescription: "CuppaZee uses the camera to scan Munzees.",
-        NSLocationWhenInUseUsageDescription: "CuppaZee uses your location when in use for maps.",
+        NSCameraUsageDescription: "CuppaZee Max uses the camera to scan Munzees.",
+        NSLocationWhenInUseUsageDescription: "CuppaZee Max uses your location when in use for maps.",
         NSLocationAlwaysAndWhenInUseUsageDescription:
-          "CuppaZee uses your location when in use for maps, and in the background for notifications.",
+          "CuppaZee Max uses your location when in use for maps, and in the background for notifications.",
         NSLocationAlwaysUsageDescription:
-          "CuppaZee uses your location when in use for maps, and in the background for notifications.",
-        NSPhotoLibraryUsageDescription: "CuppaZee uses your photo library to save screenshots.",
+          "CuppaZee Max uses your location when in use for maps, and in the background for notifications.",
+        NSPhotoLibraryUsageDescription: "CuppaZee Max uses your photo library to save screenshots.",
       },
       config: {
         googleMapsApiKey: "AIzaSyAT1J1Z5S02Avk9p4IqUKPtEYOV7gI8-PA",

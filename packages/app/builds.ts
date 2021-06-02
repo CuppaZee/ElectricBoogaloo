@@ -1099,6 +1099,32 @@ const builds: Build[] = [
       },
     ],
   },
+  {
+    build: 67,
+    date: "2021-05-21",
+    types: [
+      {
+        title: "Skateboarding Garden Gnome",
+        types: ["skateboardinggardengnome", "gnomeheelfliphat"],
+      },
+      {
+        title: "Seth Egyptian Zodiac",
+        types: ["seth"],
+      },
+      {
+        title: "World Bicycle Day 2021",
+        types: ["championchopper", "unicornunicycle", "toytrike", "bicentennialbicycle"],
+      },
+    ],
+    improvements: [
+      {
+        description: "Added label to Expiring Rooms page with total amount of rooms",
+      },
+      {
+        description: "Improved loading speeds",
+      },
+    ],
+  },
 ];
 
 export default builds;
