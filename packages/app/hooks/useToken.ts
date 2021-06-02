@@ -63,7 +63,7 @@ export default function useToken(user_id?: number) {
     teakens.data[user_id ?? Object.keys(teakens.data)[0]]?.teaken ??
     teakens.data["*"]?.teaken;
   const data = useQuery(
-    ["token", teaken, user_id],
+    ["token", teaken, Number(user_id ?? Object.keys(teakens.data)[0])],
     () => getToken(teaken, Number(user_id ?? Object.keys(teakens.data)[0])),
     {
       enabled: teaken !== undefined,

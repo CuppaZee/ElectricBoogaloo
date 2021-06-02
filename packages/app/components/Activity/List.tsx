@@ -51,8 +51,8 @@ export default function UserActivityList({
             maxWidth: "100%",
           }}>
           <Datepicker
-            date={new Date(dayjs.mhqParse(route.params.date).valueOf() ?? dayjs.mhqNow().valueOf())}
-            onSelect={nextDate => nav.setParams({ date: dayjs(nextDate).format("YYYY-MM-DD") })}
+            date={new Date(route.params.date ? dayjs.mhqParse(route.params.date).valueOf() : dayjs.mhqNow().valueOf())}
+            onSelect={nextDate => nav.setParams({ date: dayjs(nextDate.valueOf()).format("YYYY-MM-DD") })}
             accessoryRight={props => <Icon {...props} name="calendar" />}
             dateService={getDateService()}
           />

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.56 - 02/06/2021
+- Added Skateboarding Garden Gnome and Scatter
+- Added Seth Egyptian Zodiac
+- Added World Bicycle Day 2021 Specials
 ## 0.0.55 - 18/05/2021
 - Added Baby Panda tPOBs
 ## 0.0.54 - 18/05/2021

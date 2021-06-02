@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@cuppazee/api": "^0.0.11",
-    "@cuppazee/types": "^0.0.55",
+    "@cuppazee/types": "^0.0.56",
     "@eva-design/eva": "^2.0.0",
     "@expo-google-fonts/roboto": "^0.1.0",
     "@expo/vector-icons": "^12.0.0",

@@ -3,6 +3,48 @@ import { TypeHidden, TypeState, TypeTags } from "../../munzee";
 
 const s2021: SeasonalCategory[] = [
   {
+    name: "World Bicycle Day 2021",
+    id: "worldbicycleday2021",
+    starts: "2021-06-02T12:00:00-05:00",
+    ends: "2021-06-17T23:59:00-05:00",
+    pobs: [
+      {
+        name: "Champion Chopper",
+        icon: "championchopper",
+        id: "null_championchopper",
+        lands_on: ["munzee", "shamrock", "firemystery", "pinkdiamond", "tractor"],
+      },
+      {
+        name: "Unicorn Unicycle",
+        icon: "unicornunicycle",
+        id: "null_unicornunicycle",
+        lands_on: ["munzee", "shamrock", "firemystery", "pinkdiamond", "tractor"],
+      },
+      {
+        name: "Toy Trike",
+        icon: "toytrike",
+        id: "null_toytrike",
+        lands_on: [
+          i => i.has_tag(TypeTags.TypeVirtual),
+          "flatlou",
+          "poitransportation",
+          i => i.meta.evolution_base === "firstwheel",
+        ],
+      },
+      {
+        name: "Bicentennial Bicycle",
+        icon: "bicentennialbicycle",
+        id: "null_bicentennialbicycle",
+        lands_on: [
+          i => i.has_tag(TypeTags.TypeVirtual),
+          "flatlou",
+          "poitransportation",
+          i => i.meta.evolution_base === "firstwheel",
+        ],
+      },
+    ],
+  },
+  {
     name: "Baby Panda",
     id: "babypanda2021",
     starts: "2021-05-21T12:00:00-05:00",
@@ -965,6 +1007,19 @@ const s2021: SeasonalCategory[] = [
           "skyland",
         ],
       },
+      {
+        name: "Skateboarding Garden Gnome",
+        icon: "skateboardinggardengnome",
+        id: "null_skateboardinggardengnome",
+        duration: 6,
+        lands_on: [
+          type => type.has_tag(TypeTags.TypeVirtual),
+          "munzee",
+          "poiplaypark",
+          "treehouse",
+          "skyland",
+        ],
+      },
     ],
     types: [
       {
@@ -1059,6 +1114,17 @@ const s2021: SeasonalCategory[] = [
         name: "Gnome Header Hat",
         icon: "gnomeheaderhat",
         id: 2806,
+        state: TypeState.Virtual,
+        tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+        hidden: [TypeHidden.Inventory],
+        meta: {
+          scatter_duration: 2,
+        },
+      },
+      {
+        name: "Gnome Heelflip Hat",
+        icon: "gnomeheelfliphat",
+        id: 2807,
         state: TypeState.Virtual,
         tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
         hidden: [TypeHidden.Inventory],

@@ -1773,6 +1773,11 @@
   resolved "https://registry.yarnpkg.com/@cuppazee/types/-/types-0.0.44.tgz#bf6bcb0044f2c0ce812c32807fece4b46d804f51"
   integrity sha512-NdwnrvhABpOqVbRMUywdLlqNKRPQtdX7TneGY3daEGqBdfKU8EDiztN9AbLSn76ulaakSc3O9lWWJnX4ycKtFA==
 
+"@cuppazee/types@^0.0.55":
+  version "0.0.55"
+  resolved "https://registry.yarnpkg.com/@cuppazee/types/-/types-0.0.55.tgz#dd5835fd0855ec56ea79591c336f8cf4cbf405ac"
+  integrity sha512-NBG3lImLPsZaOJ5IhrKxcZsom6rqc6HehhOIgsfr+dwYiUh9c8CFFLKO04HXmC/TdwuwCWMaAabmWolOMs2eyA==
+
 "@egjs/hammerjs@^2.0.17":
   version "2.0.17"
   resolved "https://registry.yarnpkg.com/@egjs/hammerjs/-/hammerjs-2.0.17.tgz#5dc02af75a6a06e4c2db0202cae38c9263895124"
@@ -7327,6 +7332,11 @@ date-and-time@^0.13.0:
   version "0.13.1"
   resolved "https://registry.yarnpkg.com/date-and-time/-/date-and-time-0.13.1.tgz#d12ba07ac840d5b112dc4c83f8a03e8a51f78dd6"
   integrity sha512-/Uge9DJAT+s+oAcDxtBhyR8+sKjUnZbYmyhbmWjTHNtX7B7oWD8YyYdeXcBRbwSj6hVvj+IQegJam7m7czhbFw==
+
+dayjs@^1.10.5:
+  version "1.10.5"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.10.5.tgz#5600df4548fc2453b3f163ebb2abbe965ccfb986"
+  integrity sha512-BUFis41ikLz+65iH6LHQCDm4YPMj5r1YFLdupPIyM4SGcXMmtiLQ7U37i+hGS8urIuqe7I/ou3IS1jVc4nbN4g==
 
 dayjs@^1.8.15, dayjs@^1.9.7:
   version "1.10.4"

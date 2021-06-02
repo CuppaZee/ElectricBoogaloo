@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>CuppaZee</string>
+	<string>CuppaZee Max</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -50,15 +50,15 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>CuppaZee uses the camera to scan Munzees.</string>
+	<string>CuppaZee Max uses the camera to scan Munzees.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>CuppaZee uses your location when in use for maps, and in the background for notifications.</string>
+	<string>CuppaZee Max uses your location when in use for maps, and in the background for notifications.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>CuppaZee uses your location when in use for maps, and in the background for notifications.</string>
+	<string>CuppaZee Max uses your location when in use for maps, and in the background for notifications.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>CuppaZee uses your location when in use for maps.</string>
+	<string>CuppaZee Max uses your location when in use for maps.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>CuppaZee uses your photo library to save screenshots.</string>
+	<string>CuppaZee Max uses your photo library to save screenshots.</string>
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>ConfigurationIntent</string>
