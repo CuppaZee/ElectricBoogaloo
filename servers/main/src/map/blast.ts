@@ -142,7 +142,6 @@ const route: Route = {
         if (amount === 50000) {
           // @ts-expect-error
           const global = await request("statzee/global/types", {}, token.access_token);
-          // @ts-expect-error
           const captures = await request("user/specials", { user_id }, token.access_token);
 
           const filtered = (global?.data as any[]).filter(

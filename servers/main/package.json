@@ -45,6 +45,7 @@
         "string64": "^3.0.1"
     },
     "devDependencies": {
+        "@cuppazee/api": "^0.0.13",
         "@types/cors": "^2.8.8",
         "@types/mongodb": "^3.6.12",
         "@types/node-fetch": "^2.5.7",
