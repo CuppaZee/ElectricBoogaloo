@@ -1,21 +1,52 @@
 import { ClanV2 } from "@cuppazee/api/clan/main";
 import { ClanV2Requirements } from "@cuppazee/api/clan/requirements";
 import { Type, TypeState, TypeTags } from "@cuppazee/types";
-import dayjs from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
+import utc from "dayjs/plugin/utc";
+import { dayjsMHQPlugin } from "./dayjsmhq";
+dayjs.extend(utc);
+dayjs.extend(dayjsMHQPlugin);
 
-export function monthToGameID(year?: number, month?: number) {
-  let now = dayjs.mhqNow();
-  let y = year !== undefined ? year : now.year();
-  let m = month !== undefined ? month : now.month();
-  return y * 12 + m - 24158;
-}
+export class GameID {
+  private _gameID: number;
+  private _dayjs: Dayjs;
 
-export function gameIDToMonth(gameID: number) {
-  let t = gameID + 24158;
-  return {
-    m: t % 12,
-    y: Math.floor(t / 12),
-  };
+  constructor(game_id: number);
+  constructor(date: Dayjs);
+  constructor(year: number, month: number);
+  constructor();
+  constructor(a?: number | Dayjs, b?: number) {
+    if (typeof a === "number" && typeof b === "undefined") {
+      this._gameID = a;
+    } else if (typeof a === "number" && typeof b === "number") {
+      this._gameID = a * 12 + b - 24158;
+    } else if (typeof a === "object") {
+      this._gameID = a.get("year") * 12 + a.get("month") - 24158;
+    } else if (!a && !b) {
+      this._gameID = dayjs.mhqNow().get("year") * 12 + dayjs.mhqNow().get("month") - 24158;
+    } else {
+      throw "Invalid input";
+    }
+    this._dayjs = dayjs(
+      new Date(Math.floor((this._gameID + 24158) / 12), (this._gameID + 24158) % 12)
+    );
+  }
+
+  get month() {
+    return this._dayjs.month();
+  }
+
+  get year() {
+    return this._dayjs.year();
+  }
+
+  get game_id() {
+    return this._gameID;
+  }
+
+  get date() {
+    return this._dayjs.toDate();
+  }
 }
 
 export const requirementMeta: {
@@ -23,8 +54,6 @@ export const requirementMeta: {
     task_id: number;
     top: string;
     bottom: string;
-    icon: string;
-    icons?: string[];
     total?: "min";
     meta: {
       activity: ("capture" | "deploy" | "capon")[];
@@ -40,7 +69,6 @@ export const requirementMeta: {
     task_id: 1,
     top: "Days of",
     bottom: "Activity",
-    icon: "https://i.ibb.co/K5ZmXqc/Total-1.png",
     total: "min",
     meta: {
       activity: ["capture", "deploy"],
@@ -52,7 +80,6 @@ export const requirementMeta: {
     task_id: 2,
     top: "Total",
     bottom: "Captures",
-    icon: "captured",
     meta: {
       activity: ["capture"],
     },
@@ -61,7 +88,6 @@ export const requirementMeta: {
     task_id: 3,
     top: "Total",
     bottom: "Points",
-    icon: "https://i.ibb.co/K5ZmXqc/Total-1.png",
     meta: {
       activity: ["capture", "deploy", "capon"],
       points: true,
@@ -72,7 +98,6 @@ export const requirementMeta: {
     task_id: 6,
     top: "Total",
     bottom: "Deploys",
-    icon: "https://munzee.global.ssl.fastly.net/images/pins/owned.png",
     meta: {
       activity: ["deploy"],
       points: true,
@@ -83,11 +108,6 @@ export const requirementMeta: {
     task_id: 7,
     top: "Dest.",
     bottom: "Points",
-    icon: "https://munzee.global.ssl.fastly.net/images/pins/hotel.png",
-    icons: [
-      "https://munzee.global.ssl.fastly.net/images/pins/1starmotel.png",
-      "https://munzee.global.ssl.fastly.net/images/pins/virtualresort.png",
-    ],
     meta: {
       activity: ["capture", "deploy", "capon"],
       points: true,
@@ -99,11 +119,6 @@ export const requirementMeta: {
     task_id: 9,
     top: "Greenie",
     bottom: "Captures",
-    icon: "https://munzee.global.ssl.fastly.net/images/pins/munzee.png",
-    icons: [
-      "https://munzee.global.ssl.fastly.net/images/pins/munzee.png",
-      "https://munzee.global.ssl.fastly.net/images/pins/munzee.png",
-    ],
     meta: {
       activity: ["capture"],
       types: i => i.icon === "munzee",
@@ -113,7 +128,6 @@ export const requirementMeta: {
     task_id: 10,
     top: "Deploy",
     bottom: "Points",
-    icon: "https://munzee.global.ssl.fastly.net/images/pins/owned.png",
     meta: {
       activity: ["deploy"],
       points: true,
@@ -124,11 +138,6 @@ export const requirementMeta: {
     task_id: 12,
     top: "Evo",
     bottom: "Points",
-    icon: "https://munzee.global.ssl.fastly.net/images/pins/evolution.png",
-    icons: [
-      "https://munzee.global.ssl.fastly.net/images/pins/evolution.png",
-      "https://munzee.global.ssl.fastly.net/images/pins/evolution_filter_physical.png",
-    ],
     meta: {
       activity: ["capture", "deploy", "capon"],
       points: true,
@@ -139,7 +148,6 @@ export const requirementMeta: {
     task_id: 13,
     top: "Places",
     bottom: "Captures",
-    icon: "https://munzee.global.ssl.fastly.net/images/pins/poi_filter.png",
     meta: {
       activity: ["capture"],
       types: i => i.has_tag(TypeTags.TypePOI),
@@ -149,11 +157,6 @@ export const requirementMeta: {
     task_id: 14,
     top: "Jewel",
     bottom: "Activity",
-    icon: "https://munzee.global.ssl.fastly.net/images/pins/aquamarine.png",
-    icons: [
-      "https://munzee.global.ssl.fastly.net/images/pins/diamond.png",
-      "https://munzee.global.ssl.fastly.net/images/pins/virtualonyx.png",
-    ],
     meta: {
       activity: ["capture", "deploy"],
       types: i => i.has_tag(TypeTags.TypeJewel),
@@ -163,11 +166,6 @@ export const requirementMeta: {
     task_id: 17,
     top: "Evo",
     bottom: "Activity",
-    icon: "https://munzee.global.ssl.fastly.net/images/pins/evolution.png",
-    icons: [
-      "https://munzee.global.ssl.fastly.net/images/pins/evolution.png",
-      "https://munzee.global.ssl.fastly.net/images/pins/evolution_filter_physical.png",
-    ],
     meta: {
       activity: ["capture", "deploy"],
       types: i => i.has_tag(TypeTags.Evolution),
@@ -177,11 +175,6 @@ export const requirementMeta: {
     task_id: 19,
     top: "Jewel",
     bottom: "Points",
-    icon: "https://munzee.global.ssl.fastly.net/images/pins/diamond.png",
-    icons: [
-      "https://munzee.global.ssl.fastly.net/images/pins/aquamarine.png",
-      "https://munzee.global.ssl.fastly.net/images/pins/virtual_citrine.png",
-    ],
     meta: {
       activity: ["capture", "deploy", "capon"],
       points: true,
@@ -192,11 +185,6 @@ export const requirementMeta: {
     task_id: 20,
     top: "Weapon",
     bottom: "Deploys",
-    icon: "https://munzee.global.ssl.fastly.net/images/pins/mace.png",
-    icons: [
-      "https://munzee.global.ssl.fastly.net/images/pins/mace.png",
-      "https://munzee.global.ssl.fastly.net/images/pins/catapult.png",
-    ],
     meta: {
       activity: ["deploy"],
       types: i => i.has_tag(TypeTags.TypeWeaponClan),
@@ -206,11 +194,6 @@ export const requirementMeta: {
     task_id: 22,
     top: "Urban Fit",
     bottom: "Activity",
-    icon: "https://munzee.global.ssl.fastly.net/images/pins/urbanfit.png",
-    icons: [
-      "https://munzee.global.ssl.fastly.net/images/pins/urbanfit.png",
-      "https://munzee.global.ssl.fastly.net/images/pins/urbanfit.png",
-    ],
     meta: {
       activity: ["capture", "deploy"],
       types: i => i.icon === "urbanfit",
@@ -220,11 +203,6 @@ export const requirementMeta: {
     task_id: 23,
     top: "Weapon",
     bottom: "Points",
-    icon: "https://munzee.global.ssl.fastly.net/images/pins/mace.png",
-    icons: [
-      "https://munzee.global.ssl.fastly.net/images/pins/mace.png",
-      "https://munzee.global.ssl.fastly.net/images/pins/catapult.png",
-    ],
     meta: {
       activity: ["capture", "deploy", "capon"],
       points: true,
@@ -235,13 +213,6 @@ export const requirementMeta: {
     task_id: 24,
     top: "Bouncer",
     bottom: "Captures",
-    icon: "https://munzee.global.ssl.fastly.net/images/pins/expiring_specials_filter.png",
-    icons: [
-      "https://munzee.global.ssl.fastly.net/images/pins/expiring_specials_filter.png",
-      "https://munzee.global.ssl.fastly.net/images/pins/theunicorn.png",
-      "https://munzee.global.ssl.fastly.net/images/pins/nomad.png",
-      "https://munzee.global.ssl.fastly.net/images/pins/muru.png",
-    ],
     meta: {
       activity: ["capture"],
       types: i => i.state === TypeState.Bouncer,
@@ -251,11 +222,6 @@ export const requirementMeta: {
     task_id: 25,
     top: "Mystery",
     bottom: "Activity",
-    icon: "https://munzee.global.ssl.fastly.net/images/pins/mystery.png",
-    icons: [
-      "https://munzee.global.ssl.fastly.net/images/pins/mystery.png",
-      "https://munzee.global.ssl.fastly.net/images/pins/airmystery.png",
-    ],
     meta: {
       activity: ["capture", "deploy"],
       types: i => i.has_tag(TypeTags.TypeMystery),
@@ -265,11 +231,6 @@ export const requirementMeta: {
     task_id: 26,
     top: "Weapon",
     bottom: "Activity",
-    icon: "https://munzee.global.ssl.fastly.net/images/pins/mace.png",
-    icons: [
-      "https://munzee.global.ssl.fastly.net/images/pins/mace.png",
-      "https://munzee.global.ssl.fastly.net/images/pins/crossbow.png",
-    ],
     meta: {
       activity: ["capture", "deploy"],
       types: i => i.has_tag(TypeTags.TypeWeaponClan),
@@ -279,11 +240,6 @@ export const requirementMeta: {
     task_id: 27,
     top: "Zodiac",
     bottom: "Activity",
-    icon: "https://munzee.global.ssl.fastly.net/images/pins/zodiac.png",
-    icons: [
-      "https://munzee.global.ssl.fastly.net/images/pins/zodiac.png",
-      "https://munzee.global.ssl.fastly.net/images/pins/scorpio.png",
-    ],
     meta: {
       activity: ["capture", "deploy"],
       types: i => i.has_tag(TypeTags.TypeZodiac),
@@ -293,11 +249,6 @@ export const requirementMeta: {
     task_id: 28,
     top: "Flat",
     bottom: "Points",
-    icon: "https://munzee.global.ssl.fastly.net/images/pins/flatrob.png",
-    icons: [
-      "https://munzee.global.ssl.fastly.net/images/pins/flatrob.png",
-      "https://munzee.global.ssl.fastly.net/images/pins/flatlou.png",
-    ],
     meta: {
       activity: ["capture", "deploy", "capon"],
       points: true,
@@ -308,11 +259,6 @@ export const requirementMeta: {
     task_id: 29,
     top: "Elemental",
     bottom: "Points",
-    icon: "https://munzee.global.ssl.fastly.net/images/pins/earthmystery.png",
-    icons: [
-      "https://munzee.global.ssl.fastly.net/images/pins/icemystery.png",
-      "https://munzee.global.ssl.fastly.net/images/pins/earthmystery.png",
-    ],
     meta: {
       activity: ["capture", "deploy", "capon"],
       points: true,
@@ -326,7 +272,6 @@ export const requirementMeta: {
     task_id: 30,
     top: "Reseller",
     bottom: "Activity",
-    icon: "https://munzee.global.ssl.fastly.net/images/pins/reseller.png",
     meta: {
       activity: ["capture", "deploy"],
       types: i => i.has_tag(TypeTags.TypeReseller),
@@ -336,12 +281,6 @@ export const requirementMeta: {
     task_id: 31,
     top: "Gaming",
     bottom: "Points",
-    icon: "https://munzee.global.ssl.fastly.net/images/pins/joystickvirtual.png",
-    icons: [
-      "https://munzee.global.ssl.fastly.net/images/pins/joystickvirtual.png",
-      "https://munzee.global.ssl.fastly.net/images/pins/prizewheel.png",
-      "https://munzee.global.ssl.fastly.net/images/pins/urbanfit.png",
-    ],
     meta: {
       activity: ["capture", "deploy", "capon"],
       points: true,
@@ -352,12 +291,6 @@ export const requirementMeta: {
     task_id: 32,
     top: "Gaming",
     bottom: "Activity",
-    icon: "https://munzee.global.ssl.fastly.net/images/pins/joystickvirtual.png",
-    icons: [
-      "https://munzee.global.ssl.fastly.net/images/pins/joystickvirtual.png",
-      "https://munzee.global.ssl.fastly.net/images/pins/prizewheel.png",
-      "https://munzee.global.ssl.fastly.net/images/pins/urbanfit.png",
-    ],
     meta: {
       activity: ["capture", "deploy"],
       types: i => i.has_tag(TypeTags.TypeGaming),
@@ -367,11 +300,6 @@ export const requirementMeta: {
     task_id: 33,
     top: "Renovate",
     bottom: "Destination",
-    icon: "https://munzee.global.ssl.fastly.net/images/pins/destination.png",
-    icons: [
-      "https://munzee.global.ssl.fastly.net/images/pins/destination.png",
-      "https://munzee.global.ssl.fastly.net/images/pins/2starmotel.png",
-    ],
     meta: {
       activity: ["capture"],
       types: i => i.icon === "renovation",
@@ -381,7 +309,6 @@ export const requirementMeta: {
     task_id: 34,
     top: "Mystery",
     bottom: "Points",
-    icon: "https://i.ibb.co/YdRQ3Sf/Split-Mystery.png",
     meta: {
       activity: ["capture", "deploy", "capon"],
       points: true,
@@ -392,7 +319,6 @@ export const requirementMeta: {
     task_id: 35,
     top: "QRewZee",
     bottom: "Captures",
-    icon: "https://munzee.global.ssl.fastly.net/images/pins/qrewzee.png",
     meta: {
       activity: ["capture"],
       types: i => i.icon === "qrewzee",
@@ -402,7 +328,6 @@ export const requirementMeta: {
     task_id: 36,
     top: "Card",
     bottom: "Points",
-    icon: "https://munzee.global.ssl.fastly.net/images/pins/envelope.png",
     meta: {
       activity: ["capture", "deploy", "capon"],
       points: true,
@@ -411,7 +336,7 @@ export const requirementMeta: {
   },
 };
 
-export type ClanShadowData = {
+export interface ClanShadowData {
   members: number[];
   usernames: { [user_id: string]: string };
   data: {
@@ -426,7 +351,7 @@ export type ClanShadowData = {
   };
 };
 
-export type ClanRewardsData = {
+export interface ClanRewardsData {
   battle: {
     game_id: number;
     start: number;
@@ -448,7 +373,7 @@ export type ClanRewardsData = {
   order: number[];
 };
 
-export type ClanStatsFormattedUser = {
+export interface ClanStatsUser {
   username: string | null;
   user_id: number;
   admin: boolean;
@@ -462,8 +387,8 @@ export type ClanStatsFormattedUser = {
   level: number;
 };
 
-export type ClanStatsFormattedData = {
-  users: { [user_id: string]: ClanStatsFormattedUser };
+export interface ClanStatsData {
+  users: { [user_id: string]: ClanStatsUser };
   requirements: {
     [task_id: string]: {
       value: number;
@@ -473,7 +398,7 @@ export type ClanStatsFormattedData = {
   level: number;
 };
 
-export type ClanStatsFormattedRequirements = {
+export interface ClanRequirements {
   tasks: {
     individual: {
       [task_id: string]: number[];
@@ -488,18 +413,11 @@ export type ClanStatsFormattedRequirements = {
   isAprilFools: boolean;
 };
 
-export function ClanRequirementsConverter(requirements?: ClanV2Requirements["response"]["data"]) {
+export function generateClanRequirements(requirements?: ClanV2Requirements["response"]["data"]) {
   let isAprilFools = false;
   if (!requirements || requirements.data.levels instanceof Array) return null;
-  // if (
-  //   requirements.battle.game_id === 97 &&
-  //   requirements.data.levels["1"].individual.some(i => i.name.includes("MOB"))
-  // ) {
-  //   requirements = JSON.parse(JSON.stringify(April2021Requirements)).data;
-  //   isAprilFools = true;
-  // }
   if (!requirements || requirements.data.levels instanceof Array) return null;
-  const data: ClanStatsFormattedRequirements = {
+  const data: ClanRequirements = {
     tasks: {
       individual: {},
       group: {},
@@ -522,7 +440,6 @@ export function ClanRequirementsConverter(requirements?: ClanV2Requirements["res
           task_id: indiv.task_id,
           top: indiv.name.split(" ")[0],
           bottom: indiv.name.split(" ").slice(1).join(" "),
-          icon: indiv.logo,
           meta: {
             activity: [],
           },
@@ -538,7 +455,6 @@ export function ClanRequirementsConverter(requirements?: ClanV2Requirements["res
           task_id: group.task_id,
           top: group.name.split(" ")[0],
           bottom: group.name.split(" ").slice(1).join(" "),
-          icon: group.logo,
           meta: {
             activity: [],
           },
@@ -571,15 +487,15 @@ export function ClanRequirementsConverter(requirements?: ClanV2Requirements["res
   return data;
 }
 
-export function ClanStatsConverter(
+export function generateClanStats(
   clan?: ClanV2["response"]["data"],
   stats?: ClanV2Requirements["response"]["data"],
-  requirements?: ClanStatsFormattedRequirements,
+  requirements?: ClanRequirements,
   actual_clan_id?: number,
   shadow?: ClanShadowData
 ) {
   if (!clan || !requirements || !stats || stats.data.levels instanceof Array) return null;
-  const data: ClanStatsFormattedData = {
+  const data: ClanStatsData = {
     users: {},
     requirements: {},
     level: 5,

@@ -240,14 +240,18 @@ export function generateInventoryData(inputData: UserInventoryInputData, options
     ? [
         {
           state: "physical",
-          types: data.types.filter(i => i.type?.state === TypeState.Physical),
+          types: data.types.filter(
+            i => i.type?.state === TypeState.Physical && (!options?.hideZeroes || i.amount > 0)
+          ),
           total: data.types
             .filter(i => i.type?.state === TypeState.Physical)
             .reduce((a, b) => a + b.amount, 0),
         },
         {
           state: "virtual",
-          types: data.types.filter(i => i.type?.state === TypeState.Virtual),
+          types: data.types.filter(
+            i => i.type?.state === TypeState.Virtual && (!options?.hideZeroes || i.amount > 0)
+          ),
           total: data.types
             .filter(i => i.type?.state === TypeState.Virtual)
             .reduce((a, b) => a + b.amount, 0),
@@ -255,7 +259,10 @@ export function generateInventoryData(inputData: UserInventoryInputData, options
         {
           state: "credit",
           types: data.types.filter(
-            i => i.type?.state !== TypeState.Physical && i.type?.state !== TypeState.Virtual
+            i =>
+              i.type?.state !== TypeState.Physical &&
+              i.type?.state !== TypeState.Virtual &&
+              (!options?.hideZeroes || i.amount > 0)
           ),
           total: data.types
             .filter(
@@ -267,7 +274,9 @@ export function generateInventoryData(inputData: UserInventoryInputData, options
     : data.categories
         .map(c => ({
           category: c,
-          types: data.types.filter(i => getCategory(i) === c && (!options?.hideZeroes || i.amount > 0)),
+          types: data.types.filter(
+            i => getCategory(i) === c && (!options?.hideZeroes || i.amount > 0)
+          ),
           total: data.types.filter(i => getCategory(i) === c).reduce((a, b) => a + b.amount, 0),
         }))
         .filter(i => i.total > 0)

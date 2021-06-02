@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.0.11 - 02/06/2021
+- Fixed `hideZeroes` when used alongside `groupByState` in Inventory Generation
+## 0.0.10 - 02/06/2021
+- Rename "Renovate Motel" to "Renovate Destination"
+## 0.0.9 - 01/06/2021
+- Fixed GameID Class Constructor
+## 0.0.8 - 31/05/2021
+- Added Clan Stats Generation
 ## 0.0.7 - 31/05/2021
 - Added QRate History Title
 - Fixed Premium History Title
