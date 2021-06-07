@@ -51,8 +51,8 @@ const route: Route = {
         }
         var user = await request("user", { username }, token.access_token);
         var data = await request(
-          // @ts-ignore
           "user/specials",
+          // @ts-ignore
           { user_id: user?.data?.user_id },
           token.access_token
         );

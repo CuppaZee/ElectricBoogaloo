@@ -1,4 +1,3 @@
-import { UserArchivedMunzee } from "@cuppazee/api/user/archived";
 import { Route } from "../types";
 import { retrieve, request } from "../util";
 import typesDB from "@cuppazee/types";
@@ -25,7 +24,7 @@ const route: Route = {
         try {
           var [captures, deploys, capture_dates, deploy_dates] = await Promise.all([
             request("statzee/player/captures/types", { username }, token.access_token),
-            request("statzee/player/deploys/types", { username }, token.access_token),
+            request("user/deploys/map", { user_id }, token.access_token),
             request("statzee/player/captures", { username }, token.access_token),
             request("statzee/player/deploys", { username }, token.access_token),
           ] as const);
@@ -35,20 +34,20 @@ const route: Route = {
             error_message: "munzee_api_5xx",
           };
         }
-        var archived: UserArchivedMunzee[] = [];
-        for (var page = 0; page < 20; page++) {
-          let und = (await request("user/archived", { page }, token.access_token))?.data;
-          if (!und?.has_more) {
-            page = 100;
-          }
-          archived = archived.concat(und ? und.munzees : []);
-        }
-        const formattedArchived = archived
-          .map(i => i.capture_type_id)
-          .reduce((obj, item) => {
-            obj[item] = (obj[item] || 0) + 1;
-            return obj;
-          }, {} as { [key: string]: number });
+        // var archived: UserArchivedMunzee[] = [];
+        // for (var page = 0; page < 20; page++) {
+        //   let und = (await request("user/archived", { page }, token.access_token))?.data;
+        //   if (!und?.has_more) {
+        //     page = 100;
+        //   }
+        //   archived = archived.concat(und ? und.munzees : []);
+        // }
+        // const formattedArchived = archived
+        //   .map(i => i.capture_type_id)
+        //   .reduce((obj, item) => {
+        //     obj[item] = (obj[item] || 0) + 1;
+        //     return obj;
+        //   }, {} as { [key: string]: number });
         var cap = captures?.data?.types?.map(i => {
           var g = typesDB.getType(i.name);
           return {
@@ -59,16 +58,31 @@ const route: Route = {
             amount: Number(i.captures),
           };
         });
-        var dep = deploys?.data?.types.map(i => {
-          var g = typesDB.getType(i.name);
-          return {
-            type: Number(i.capture_type_id),
+        const dep = Object.values(deploys?.data?.reduce((a, b) => {
+          if (a[b.i]) {
+            a[b.i].amount++;
+            return a;
+          }
+          var g = typesDB.getType(b.i);
+          a[b.i] = {
+            type: g?.id,
             state: g?.meta.destination_type === DestinationType.Room ? "room" : convertState(g?.state),
-            name: i.name,
-            icon: g?.icon,
-            amount: Number(i.munzees) - (formattedArchived[i.capture_type_id] || 0),
-          };
-        });
+            name: g?.name ?? typesDB.strip(b.i),
+            icon: b.i,
+            amount: 1,
+          }
+          return a;
+        }, {} as { [key: string]: any }) ?? {});
+        // var dep = deploys?.data?.types.map(i => {
+        //   var g = typesDB.getType(i.name);
+        //   return {
+        //     type: Number(i.capture_type_id),
+        //     state: g?.meta.destination_type === DestinationType.Room ? "room" : convertState(g?.state),
+        //     name: i.name,
+        //     icon: g?.icon,
+        //     amount: Number(i.munzees) - (formattedArchived[i.capture_type_id] || 0),
+        //   };
+        // });
         var recent_cap = Object.entries(capture_dates?.data ?? {}).sort(
           (a, b) => new Date(b[0]).valueOf() - new Date(a[0]).valueOf()
         )[0]?.[0];
@@ -96,6 +110,7 @@ const route: Route = {
             recent_depl: recent_dep,
             next_check: next_check.format(),
             earliest: earliest.format(),
+            new: true,
           },
         };
       },

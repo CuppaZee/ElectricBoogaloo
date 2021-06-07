@@ -54,8 +54,8 @@ export default async function (
       const ne = await n.json();
       await mongo
         .collection("auth")
-        .updateOne({ application, user_id }, { $set: { token: { ...token, ...ne.data.token } } });
-      return ne.data.token;
+        .updateOne({ application, user_id }, { $set: { token: { ...token, ...ne.data?.token } } });
+      return ne.data?.token;
     } else {
       return null;
     }
