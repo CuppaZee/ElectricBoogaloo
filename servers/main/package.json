@@ -12,7 +12,7 @@
     },
     "main": "lib/index.js",
     "dependencies": {
-        "@cuppazee/api": "^0.0.9",
+        "@cuppazee/api": "^0.0.13",
         "@cuppazee/types": "^0.0.56",
         "@types/cheerio": "^0.22.23",
         "@types/express": "^4.17.11",

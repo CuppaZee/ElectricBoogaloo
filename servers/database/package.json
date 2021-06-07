@@ -1,6 +1,6 @@
 {
   "name": "@cuppazee/database-server",
-  "version": "0.0.22",
+  "version": "0.0.1",
   "main": "lib",
   "license": "MPL-2.0",
   "keywords": [
@@ -16,15 +16,17 @@
     "lint": "tslint --project tsconfig.json",
     "prebuild": "node prebuild",
     "build": "tsc",
-    "docker-build": "tsc && docker build . -t czdb",
+    "docker-build": "tsc && docker build . -t cuppazee-database-alpine",
     "dev": "cross-env NODE_ENV=development tsc-watch --onSuccess \"node --enable-source-maps ./lib/server.js\""
   },
   "dependencies": {
+    "@cuppazee/db": "^0.0.1",
     "@msgpack/msgpack": "^2.7.0",
     "@types/mongodb": "^3.6.17",
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
     "fastify": "^3.14.2",
+    "fastify-cors": "^6.0.1",
     "fastify-static": "^4.0.1",
     "lzwcompress": "^1.1.0",
     "mongodb": "^3.6.9",

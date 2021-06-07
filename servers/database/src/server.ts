@@ -1,25 +1,45 @@
 import { encode } from "@msgpack/msgpack";
 import Fastify from "fastify";
+import FastifyCors from "fastify-cors";
 // @ts-expect-error
 import lzwCompress from "lzwcompress";
 import types from "./types";
 const fastify = Fastify({ logger: true });
+fastify.register(FastifyCors, { 
+  origin: true,
+})
 
-const db = { ...types };
+const db = { ...types, version: Math.floor(Math.random() * 100000) };
 
-fastify.get("/types/json", async function (request, reply) {
-  return reply.send({...types});
+fastify.get("/json/:version", async function (request, reply) {
+  if (Number((request.params as any)?.version) === db.version) {
+    reply.send();
+    return;
+  }
+  reply.send({...types});
 });
 
-fastify.get("/types/lzw", async function (request, reply) {
+fastify.get("/lzw/:version", async function (request, reply) {
+  if (Number((request.params as any)?.version) === db.version) {
+    reply.send();
+    return;
+  }
   return reply.send(lzwCompress.pack(db));
 });
 
-fastify.get("/types/msgpack", async function (request, reply) {
+fastify.get("/msgpack/:version", async function (request, reply) {
+  if (Number((request.params as any)?.version) === db.version) {
+    reply.send();
+    return;
+  }
   return reply.send(Buffer.from(encode(JSON.parse(JSON.stringify(db)))));
 });
 
-fastify.get("/types/lzwmsgpack", async function (request, reply) {
+fastify.get("/lzwmsgpack/:version", async function (request, reply) {
+  if (Number((request.params as any)?.version) === db.version) {
+    reply.send();
+    return;
+  }
   return reply.send(Buffer.from(encode(JSON.parse(lzwCompress.pack(db)))));
 });
 

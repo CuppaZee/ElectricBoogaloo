@@ -183,7 +183,7 @@ var tasks: {
     ],
     function: ({ cap, dep, con }) =>
       [...cap, ...dep, ...con]
-        .filter(i => g(i)?.has_tag(TypeTags.TypeWeaponClan))
+        .filter(i => g(i)?.has_tag(TypeTags.TypeWeaponClan) || g(i)?.icon === "trojanunicorn")
         .reduce(points, 0),
   },
   24: {
@@ -221,7 +221,7 @@ var tasks: {
       "https://munzee.global.ssl.fastly.net/images/pins/crossbow.png",
     ],
     function: ({ cap, dep }) =>
-      [...cap, ...dep].filter(i => g(i)?.has_tag(TypeTags.TypeWeaponClan)).length,
+      [...cap, ...dep].filter(i => g(i)?.has_tag(TypeTags.TypeWeaponClan) || g(i)?.icon === "trojanunicorn").length,
   },
   27: {
     task_id: 27,
