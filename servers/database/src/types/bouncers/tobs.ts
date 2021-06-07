@@ -1,0 +1,171 @@
+import { TypeQuery, TypeMeta, TypeTags } from "@cuppazee/db";
+
+const tobs: {
+  name: string;
+  icons: string[];
+  id: string;
+  munzee_id?: number;
+  tags?: TypeTags[];
+  lands_on: TypeQuery[];
+  meta?: TypeMeta;
+}[] = [
+  {
+    name: "Rainbow Unicorn",
+    icons: ["rainbowunicorn"],
+    id: "rainbowunicorn",
+    munzee_id: 1118,
+    tags: [TypeTags.BouncerMyth, TypeTags.BouncerMythAlterna, TypeTags.BouncerMythOriginal],
+    lands_on: ["munzee", "shamrock"],
+  },
+  {
+    name: "Gnome Leprechaun",
+    icons: ["gnomeleprechaun"],
+    id: "gnomeleprechaun",
+    munzee_id: 1151,
+    tags: [TypeTags.BouncerMyth, TypeTags.BouncerMythAlterna, TypeTags.BouncerMythOriginal],
+    lands_on: ["munzee", "shamrock", "earthmystery"],
+  },
+  {
+    name: "Ice Dragon",
+    icons: ["icedragon"],
+    id: "icedragon",
+    munzee_id: 1164,
+    tags: [TypeTags.BouncerMyth, TypeTags.BouncerMythAlterna, TypeTags.BouncerMythOriginal],
+    lands_on: ["munzee", "firemystery", "icemystery"],
+  },
+  {
+    name: "Sasquatch Yeti",
+    icons: ["sasquatchyeti"],
+    id: "sasquatchyeti",
+    munzee_id: 1210,
+    tags: [TypeTags.BouncerMyth, TypeTags.BouncerMythAlterna, TypeTags.BouncerMythOriginal],
+    lands_on: ["munzee", "icemystery", "earthmystery"],
+  },
+  {
+    name: "Fire Pegasus",
+    icons: ["firepegasus"],
+    id: "firepegasus",
+    munzee_id: 1229,
+    tags: [TypeTags.BouncerMyth, TypeTags.BouncerMythAlterna, TypeTags.BouncerMythClassical],
+    lands_on: [":virtual", "airmystery", "firemystery"],
+  },
+  {
+    name: "Cherub",
+    icons: ["cherub"],
+    id: "cherub",
+    munzee_id: 1237,
+    tags: [TypeTags.BouncerMyth, TypeTags.BouncerMythAlterna, TypeTags.BouncerMythClassical],
+    lands_on: [":virtual", "airmystery", "earthmystery"],
+  },
+  {
+    name: "Ogre",
+    icons: ["ogre"],
+    id: "ogre",
+    munzee_id: 1268,
+    tags: [TypeTags.BouncerMyth, TypeTags.BouncerMythAlterna, TypeTags.BouncerMythClassical],
+    lands_on: ["munzee", ":jewel", "mace", "longsword", "battleaxe", "thehammer", "crossbow"],
+  },
+  {
+    name: "Chimera",
+    icons: ["chimera"],
+    id: "chimera",
+    munzee_id: 1329,
+    tags: [TypeTags.BouncerMyth, TypeTags.BouncerMythAlterna, TypeTags.BouncerMythClassical],
+    lands_on: [
+      "munzee",
+      ":virtual",
+      "shamrock",
+      type => type.has_tag(TypeTags.TypeMysteryElemental),
+      ":jewel",
+      ":clan",
+    ],
+  },
+  {
+    name: "Siren",
+    icons: ["siren"],
+    id: "siren",
+    munzee_id: 1485,
+    tags: [TypeTags.BouncerMyth, TypeTags.BouncerMythAlterna, TypeTags.BouncerMythMirror],
+    lands_on: ["munzee", "watermystery", "icemystery"],
+  },
+  {
+    name: "Fairy Godmother",
+    icons: ["fairygodmother"],
+    id: "fairygodmother",
+    munzee_id: 1630,
+    tags: [TypeTags.BouncerMyth, TypeTags.BouncerMythAlterna, TypeTags.BouncerMythMirror],
+    lands_on: ["munzee", "mystery", ":virtual", "airmystery", ":jewel"],
+  },
+  {
+    name: "Hadavale",
+    icons: ["hadavale"],
+    id: "hadavale",
+    munzee_id: 1745,
+    tags: [TypeTags.BouncerPC, TypeTags.BouncerPCEscaped],
+    lands_on: [
+      "icemystery",
+      "premium",
+      "shamrock",
+      "mystery",
+      ":reseller",
+      type => type.meta.evolution_stage === 1,
+      "airmystery",
+    ],
+  },
+  {
+    name: "Gorgon",
+    icons: ["gorgon"],
+    id: "gorgon",
+    munzee_id: 1929,
+    tags: [TypeTags.BouncerMyth, TypeTags.BouncerMythAlterna, TypeTags.BouncerMythMirror],
+    lands_on: [
+      "munzee",
+      "premium",
+      "shamrock",
+      type => type.has_tag(TypeTags.TypeZodiacWestern),
+      ":jewel",
+      "virtual_gold",
+      "virtual_yellow",
+      "virtual_goldenrod",
+      "virtual_dandelion",
+    ],
+  },
+  {
+    name: "Mother Earth",
+    icons: ["motherearth"],
+    id: "motherearth",
+    munzee_id: 2337,
+    tags: [TypeTags.BouncerMyth, TypeTags.BouncerMythAlterna, TypeTags.BouncerMythMirror],
+    lands_on: [
+      "munzee",
+      "shamrock",
+      type => type.has_tag(TypeTags.TypeMysteryElemental),
+      type => type.has_tag(TypeTags.VirtualColourBrown),
+      type => type.has_tag(TypeTags.VirtualColourGreen),
+    ],
+  },
+  {
+    name: "Vikerkaar",
+    icons: ["vikerkaar"],
+    id: "vikerkaar",
+    munzee_id: 2716,
+    tags: [TypeTags.BouncerPC, TypeTags.BouncerPCEscaped],
+    lands_on: [
+      "earthmystery",
+      "firemystery",
+      "airmystery",
+      "diamond",
+      "ruby",
+      "aquamarine",
+      "topaz",
+      "pinkdiamond",
+      "virtual_sapphire",
+      "virtual_citrine",
+      "virtual_onyx",
+      "virtual_amethyst",
+      "virtual_emerald",
+    ],
+  },
+];
+
+export default tobs;

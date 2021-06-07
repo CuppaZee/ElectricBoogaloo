@@ -1,0 +1,182 @@
+import { SeasonalCategory } from ".";
+
+const s2015: SeasonalCategory[] = [
+  {
+    name: "Halloween 2015",
+    id: "halloween20152015",
+    starts: "2015-00-00T00:00:00-05:00",
+    ends: "2015-00-00T00:00:00-05:00",
+    specials: [
+      {
+        name: "Frankenstein Body",
+        icons: ["frankensteinbody"],
+        id: "frankensteinbody",
+        munzee_id: 357,
+        duration: 12,
+        lands_on: ["munzee"],
+      },
+      {
+        name: "Frankenstein Arm",
+        icons: ["frankensteinarm"],
+        id: "frankensteinarm",
+        munzee_id: 355,
+        duration: 12,
+        lands_on: ["munzee"],
+      },
+      {
+        name: "Frankenstein Head",
+        icons: ["frankensteinhead"],
+        id: "frankensteinhead",
+        munzee_id: 358,
+        duration: 12,
+        lands_on: ["munzee"],
+      },
+      {
+        name: "Frankenstein Leg",
+        icons: ["frankensteinleg"],
+        id: "frankensteinleg",
+        munzee_id: 356,
+        duration: 12,
+        lands_on: ["munzee"],
+      },
+      {
+        name: "Creepy Bag",
+        icons: ["creepybag"],
+        id: "creepybag",
+        munzee_id: 354,
+        duration: 12,
+        lands_on: ["munzee"],
+      },
+    ],
+  },
+  {
+    name: "Back to the Future Day [2015]",
+    id: "backto the future day [2015]2015",
+    starts: "2015-00-00T00:00:00-05:00",
+    ends: "2015-00-00T00:00:00-05:00",
+    specials: [
+      {
+        name: "Back to the Future Day",
+        icons: ["backtothefutureday"],
+        id: "backtothefutureday",
+        munzee_id: 346,
+        duration: 12,
+        lands_on: ["munzee"],
+      },
+    ],
+  },
+  {
+    name: "4th Birthday [2015]",
+    id: "4thbirthday [2015]2015",
+    starts: "2015-00-00T00:00:00-05:00",
+    ends: "2015-00-00T00:00:00-05:00",
+    specials: [
+      {
+        name: "4th Birthday",
+        icons: ["4thbirthday"],
+        id: "4thbirthday",
+        munzee_id: 265,
+        duration: 12,
+        lands_on: ["munzee"],
+      },
+      {
+        name: "4th Birthday Cake Strawberry",
+        icons: ["4thbirthdaycakestrawberry"],
+        id: "4thbirthdaycakestrawberry",
+        munzee_id: 268,
+        duration: 12,
+        lands_on: ["munzee"],
+      },
+      {
+        name: "4th Birthday Cake Vanilla",
+        icons: ["4thbirthdaycakevanilla"],
+        id: "4thbirthdaycakevanilla",
+        munzee_id: 269,
+        duration: 12,
+        lands_on: ["munzee"],
+      },
+      {
+        name: "4th Birthday Cake Turtle",
+        icons: ["4thbirthdaycaketurtle"],
+        id: "4thbirthdaycaketurtle",
+        munzee_id: 266,
+        duration: 12,
+        lands_on: ["munzee"],
+      },
+      {
+        name: "4th Birthday Cake Chocolate",
+        icons: ["4thbirthdaycakechocolate"],
+        id: "4thbirthdaycakechocolate",
+        munzee_id: 267,
+        duration: 12,
+        lands_on: ["munzee"],
+      },
+    ],
+  },
+  {
+    name: "May Flowers [2015]",
+    id: "mayflowers [2015]2015",
+    starts: "2015-00-00T00:00:00-05:00",
+    ends: "2015-00-00T00:00:00-05:00",
+    specials: [
+      {
+        name: "May Flowers",
+        icons: ["mayflowers"],
+        id: "mayflowers",
+        munzee_id: 234,
+        duration: 12,
+        lands_on: ["munzee"],
+      },
+    ],
+  },
+  {
+    name: "April Fool's Day 2015",
+    id: "aprilfool's day 20152015",
+    starts: "2015-00-00T00:00:00-05:00",
+    ends: "2015-00-00T00:00:00-05:00",
+    specials: [
+      {
+        name: "Sillyman",
+        icons: ["sillyman"],
+        id: "sillyman",
+        munzee_id: 220,
+        duration: 12,
+        lands_on: ["munzee"],
+      },
+    ],
+  },
+  {
+    name: "Texas Independence Day [2015]",
+    id: "texasindependence day [2015]2015",
+    starts: "2015-00-00T00:00:00-05:00",
+    ends: "2015-00-00T00:00:00-05:00",
+    specials: [
+      {
+        name: "Texas Independence",
+        icons: ["texasindependence"],
+        id: "texasindependence",
+        munzee_id: 206,
+        duration: 12,
+        lands_on: ["munzee"],
+      },
+    ],
+  },
+  {
+    name: "EventZee Specials [2015]",
+    id: "eventzeespecials [2015]2015",
+    starts: "2015-00-00T00:00:00-05:00",
+    ends: "2015-00-00T00:00:00-05:00",
+    specials: [
+      {
+        name: "EventZee",
+        icons: ["eventzee"],
+        id: "eventzee",
+        munzee_id: 202,
+        duration: 12,
+        lands_on: ["munzee"],
+      },
+    ],
+  },
+];
+
+export default s2015;
