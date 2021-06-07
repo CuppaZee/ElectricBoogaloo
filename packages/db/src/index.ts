@@ -1,5 +1,8 @@
 import { Type, TypeHidden, TypeInterface, TypeState, TypeTags } from "./types";
 import { Category, CategoryInterface } from "./category";
+import { decode } from "@msgpack/msgpack";
+// @ts-expect-error
+import lzwCompress from "lzwcompress";
 
 export type EventInterface =
   | [string, string, number]
@@ -92,4 +95,23 @@ export class CuppaZeeDB {
   get categories() {
     return Array.from(this._categories.values());
   }
+}
+
+export interface Data {
+  types: TypeInterface[];
+  events: EventInterface[];
+  categories: CategoryInterface[];
+  version: number;
+}
+
+export function loadFromCache(cache: Data) {
+  return new CuppaZeeDB(cache.types, cache.events, cache.categories);
+}
+
+export function loadFromArrayBuffer(buffer: ArrayBufferLike) {
+  const data: Data = lzwCompress.unpack(JSON.stringify(decode(buffer)));
+  return {
+    db: new CuppaZeeDB(data.types, data.events, data.categories),
+    cache: data,
+  };
 }

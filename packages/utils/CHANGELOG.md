@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.0.12 - 07/06/2021
+- Migrated from @cuppazee/types to @cuppazee/db
 ## 0.0.11 - 02/06/2021
 - Fixed `hideZeroes` when used alongside `groupByState` in Inventory Generation
 ## 0.0.10 - 02/06/2021

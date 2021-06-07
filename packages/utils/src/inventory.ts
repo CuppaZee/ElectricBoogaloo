@@ -1,4 +1,4 @@
-import db, { Type, TypeCategory, TypeHidden, TypeState } from "@cuppazee/types";
+import { Type, Category, TypeHidden, TypeState, CuppaZeeDB } from "@cuppazee/db";
 import { UserCredits, UserCreditsHistory } from "@cuppazee/api/user/credits";
 import { UserBoostersCredits } from "@cuppazee/api/user/boosters";
 import dayjs, { Dayjs } from "dayjs";
@@ -45,18 +45,18 @@ export interface UserInventoryData {
       state: "physical" | "virtual" | "credit";
     }
     | {
-      category: TypeCategory;
+      category: Category;
     }
   ) & {
     types?: UserInventoryItem[];
     total?: number;
   })[];
   types: UserInventoryItem[];
-  categories: TypeCategory[];
+  categories: Category[];
   history: UserInventoryHistoryEntry[];
 };
 
-export function getCategory(i: UserInventoryItem) {
+export function getCategory(db: CuppaZeeDB, i: UserInventoryItem) {
   const cat = i.type?.category;
   if (i.type?.icon === "destination") return db.getCategory("destination");
   if (i.icon?.includes("jewel_shards")) return db.getCategory("jewel");
@@ -107,7 +107,11 @@ function processLogText(text: string) {
   return { icon, title, description: description ?? (title === text ? undefined : text) };
 }
 
-export function generateInventoryData(inputData: UserInventoryInputData, options?: UserInventoryOptions) {
+export function generateInventoryData(
+  db: CuppaZeeDB,
+  inputData: UserInventoryInputData,
+  options?: UserInventoryOptions
+) {
   const data: UserInventoryData = {
     history: [],
     types: [],
@@ -178,7 +182,7 @@ export function generateInventoryData(inputData: UserInventoryInputData, options
   }
 
   for (const credit of data.types) {
-    const category = getCategory(credit);
+    const category = getCategory(db, credit);
     if (category && !data.categories.includes(category)) data.categories.push(category);
   }
 
@@ -275,9 +279,9 @@ export function generateInventoryData(inputData: UserInventoryInputData, options
         .map(c => ({
           category: c,
           types: data.types.filter(
-            i => getCategory(i) === c && (!options?.hideZeroes || i.amount > 0)
+            i => getCategory(db, i) === c && (!options?.hideZeroes || i.amount > 0)
           ),
-          total: data.types.filter(i => getCategory(i) === c).reduce((a, b) => a + b.amount, 0),
+          total: data.types.filter(i => getCategory(db, i) === c).reduce((a, b) => a + b.amount, 0),
         }))
         .filter(i => i.total > 0)
         .sort((a, b) => b.total - a.total);

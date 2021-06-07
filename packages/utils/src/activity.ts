@@ -1,5 +1,5 @@
 import { StatzeePlayerDay } from "@cuppazee/api/statzee/player/day";
-import db, { DestinationType, Type, TypeCategory, TypeState, TypeTags } from "@cuppazee/types";
+import { CuppaZeeDB, Type, Category, TypeState, TypeTags } from "@cuppazee/db";
 
 export enum UserActivityType {
   Capture = "capture",
@@ -36,7 +36,7 @@ export interface UserActivityOverviewType {
 }
 
 export interface UserActivityData {
-  categories: TypeCategory[];
+  categories: Category[];
   list: UserActivityItem[];
   points: number;
   overview: {
@@ -47,10 +47,11 @@ export interface UserActivityData {
 export interface UserActivityFilters {
   activity: Set<UserActivityType>;
   state: Set<TypeState>;
-  category: Set<TypeCategory>;
+  category: Set<Category>;
 }
 
 export function generateUserActivityData(
+  db: CuppaZeeDB,
   data: StatzeePlayerDay["response"]["data"],
   filters: UserActivityFilters,
   username?: string,
@@ -65,8 +66,8 @@ export function generateUserActivityData(
     i =>
       db.getType(i.pin)?.has_tag(TypeTags.BouncerHost) ||
       i.pin.match(/\/([^\/\.]+?)_?(?:virtual|physical)?_?host\./) ||
-      db.getType(i.pin)?.meta.destination_type === DestinationType.Bouncer ||
-      db.getType(i.pin)?.meta.destination_type === DestinationType.Rooms
+      db.getType(i.pin)?.has_tag(TypeTags.DestinationBouncer) ||
+      db.getType(i.pin)?.has_tag(TypeTags.DestinationRooms)
   )) {
     activityList.push({
       type: UserActivityType.Capture,
@@ -90,8 +91,8 @@ export function generateUserActivityData(
       !(
         db.getType(i.pin)?.has_tag(TypeTags.BouncerHost) ||
         i.pin.match(/\/([^\/\.]+?)_?(?:virtual|physical)?_?host\./) ||
-        db.getType(i.pin)?.meta.destination_type === DestinationType.Bouncer ||
-        db.getType(i.pin)?.meta.destination_type === DestinationType.Rooms
+        db.getType(i.pin)?.has_tag(TypeTags.DestinationBouncer) ||
+        db.getType(i.pin)?.has_tag(TypeTags.DestinationRooms)
       )
   )) {
     const bouncerHost = activityList.findIndex(
@@ -209,7 +210,7 @@ export function generateUserActivityData(
           const c = b.munzee_type?.category;
           if (c) a.add(c);
           return a;
-        }, new Set<TypeCategory>())
+        }, new Set<Category>())
     ),
 
     points: ([] as UserActivityItem[])

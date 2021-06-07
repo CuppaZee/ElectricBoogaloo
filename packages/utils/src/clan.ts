@@ -1,6 +1,6 @@
 import { ClanV2 } from "@cuppazee/api/clan/main";
 import { ClanV2Requirements } from "@cuppazee/api/clan/requirements";
-import { Type, TypeState, TypeTags } from "@cuppazee/types";
+import { Type, TypeState, TypeTags } from "@cuppazee/db";
 import dayjs, { Dayjs } from "dayjs";
 import utc from "dayjs/plugin/utc";
 import { dayjsMHQPlugin } from "./dayjsmhq";
@@ -187,7 +187,7 @@ export const requirementMeta: {
     bottom: "Deploys",
     meta: {
       activity: ["deploy"],
-      types: i => i.has_tag(TypeTags.TypeWeaponClan),
+      types: i => i.has_tag(TypeTags.TypeWeaponClan) || i.id === "trojanunicorn",
     },
   },
   22: {
@@ -206,7 +206,7 @@ export const requirementMeta: {
     meta: {
       activity: ["capture", "deploy", "capon"],
       points: true,
-      types: i => i.has_tag(TypeTags.TypeWeaponClan),
+      types: i => i.has_tag(TypeTags.TypeWeaponClan) || i.id === "trojanunicorn",
     },
   },
   24: {
@@ -233,7 +233,7 @@ export const requirementMeta: {
     bottom: "Activity",
     meta: {
       activity: ["capture", "deploy"],
-      types: i => i.has_tag(TypeTags.TypeWeaponClan),
+      types: i => i.has_tag(TypeTags.TypeWeaponClan) || i.id === "trojanunicorn",
     },
   },
   27: {
