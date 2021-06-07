@@ -100,11 +100,12 @@ const route: Route = {
               ios: "🍎",
               web: "🌐",
             }[state_data.platform as "android" | "ios" | "web"] || `[${state_data.platform}] `;
+          const app = state_data.ionic ? "🔵" : "🟢";
           let discordmessage = ``;
           if (doc_data) {
-            discordmessage = `${platform}🔁 ${username} | ${user_count} Users [#${user_number}]`;
+            discordmessage = `${app}${platform}🔁 ${username} | ${user_count} Users [#${user_number}]`;
           } else {
-            discordmessage = `${platform}🆕 ${username} | User #${user_number}`;
+            discordmessage = `${app}${platform}🆕 ${username} | User #${user_number}`;
           }
           await fetch(config.discord.authorization, {
             method: "POST",
