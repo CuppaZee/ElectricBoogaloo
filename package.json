@@ -22,7 +22,7 @@
     "deploy-app": "yarn workspace @cuppazee/app deploy-app && yarn workspace @cuppazee/app build-web && firebase deploy --only hosting:app",
     "deploy-all": "yarn workspace @cuppazee/app build-web && firebase deploy --only hosting && yarn workspace @cuppazee/app deploy-app && firebase deploy --only functions",
     "start": "run-p server web",
-    "postinstall": "yarn licenses list --json -s | node tail > packages/app/assets/dependencies.json && node copy ./packages/types ./packages/app/node_modules/@cuppazee/types",
+    "postinstall": "yarn licenses list --json -s | node tail > packages/app/assets/dependencies.json && node copy ./packages/db ./packages/app/node_modules/@cuppazee/db && node copy ./packages/utils ./packages/app/node_modules/@cuppazee/utils",
     "deploy-server": "firebase deploy --only functions",
     "publish-types": "yarn workspace @cuppazee/types build && yarn workspace @cuppazee/types publish && yarn workspace @cuppazee/app add @cuppazee/types && yarn workspace @cuppazee/server add @cuppazee/types && yarn install",
     "install-types": "yarn workspace @cuppazee/app add @cuppazee/types && yarn workspace @cuppazee/server add @cuppazee/types && yarn install"

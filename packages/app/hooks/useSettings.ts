@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { atom, useAtom } from "jotai";
 import * as themes from "../themes";
 import builds from "../builds";
-import { CuppaZeeDB } from "@cuppazee/db/lib";
+import { CuppaZeeDB } from "@cuppazee/db";
 
 export type Settings = {
   version: number;

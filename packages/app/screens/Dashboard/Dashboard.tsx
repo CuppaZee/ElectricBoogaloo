@@ -1,4 +1,4 @@
-import { CuppaZeeDB } from "@cuppazee/db/lib";
+import { CuppaZeeDB } from "@cuppazee/db";
 import { useNavigation } from "@react-navigation/core";
 import { BottomNavigation, BottomNavigationTab, Button, Layout, Text, useTheme } from "@ui-kitten/components";
 import * as React from "react";

@@ -2,7 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect } from "react";
 import { atom as jotaiAtom, useAtom, WritableAtom } from "jotai";
 import builds from "../builds";
-import { CuppaZeeDB } from "@cuppazee/db/lib";
+import { CuppaZeeDB } from "@cuppazee/db";
 
 export function atom<T>(initial: T) {
   return jotaiAtom<T>(initial);
