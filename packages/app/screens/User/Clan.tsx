@@ -7,24 +7,20 @@ import { UserStackParamList } from "../../types";
 import useTitle from "../../hooks/useTitle";
 import Loading from "../../components/Loading";
 import { Image, ScrollView, View } from "react-native";
-import {
-  ClanRequirementsConverter,
-  monthToGameID,
-  requirementMeta,
-} from "../../components/Clan/Data";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
 import Requirements from "../../components/Clan/Requirements";
 import { pickTextColor } from "../../components/Clan/Cell";
 import useSetting, { ClanPersonalisationAtom } from "../../hooks/useSetting";
 import { useTranslation } from "react-i18next";
 import baseURL from "../../baseURL";
+import { requirementMeta, generateClanRequirements, GameID } from "@cuppazee/utils/lib";
 
 export default function UserClanScreen() {
   const { t } = useTranslation();
   const [size, onLayout] = useComponentSize();
   const route = useRoute<RouteProp<UserStackParamList, "ClanProgress">>();
   const [style] = useSetting(ClanPersonalisationAtom);
-  const game_id = monthToGameID();
+  const game_id = new GameID().game_id;
   const nav = useNavigation();
   useTitle(`☕ ${route.params.username} - ${t("pages:user_clan_progress")}`);
   const user = useMunzeeRequest(
@@ -45,7 +41,7 @@ export default function UserClanScreen() {
   });
 
   const requirements = React.useMemo(
-    () => ClanRequirementsConverter(requirements_data.data?.data),
+    () => generateClanRequirements(requirements_data.data?.data),
     [requirements_data.dataUpdatedAt]
   );
   

@@ -2,16 +2,17 @@ import { Layout, ListItem, Text } from "@ui-kitten/components";
 import * as React from "react";
 import { Pressable, ScrollView, View } from "react-native";
 import useTitle from "../../../hooks/useTitle";
-import types from "@cuppazee/types";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { ToolsStackParamList } from "../../../types";
 import TypeImage from "../../../components/Common/TypeImage";
 import { ToolsNavigatorProp } from "../../../navigation-drawer/ToolsNavigator";
+import useDB from "../../../hooks/useDB";
 
 export default function SearchScreen() {
+  const db = useDB();
   const route = useRoute<RouteProp<ToolsStackParamList, "TypeCategory">>();
   const category =
-    types.getCategory(route.params.category) ?? types.getCategory("root") ?? types.categories[0];
+    db.getCategory(route.params.category) ?? db.getCategory("root") ?? db.categories[0];
   useTitle(`☕ ${category?.name || ""}`);
   const nav = useNavigation<ToolsNavigatorProp<"TypeCategory">>();
 

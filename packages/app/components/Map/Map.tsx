@@ -415,7 +415,7 @@ export function Icons(props: IconsProps) {
       images={props.icons.reduce(
         (a, b) => ({
           ...a,
-          [b]: { uri: `https://icons.cuppazee.app/64/${b}.png` },
+          [b]: { uri: `https://images.cuppazee.app/types/64/${b}.png` },
         }),
         {}
       )}

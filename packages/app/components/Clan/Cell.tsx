@@ -10,13 +10,13 @@ import {
   View,
 } from "react-native";
 import {
-  ClanStatsFormattedUser,
-  ClanStatsFormattedData,
+  ClanStatsUser,
+  ClanStatsData,
   requirementMeta,
   ClanShadowData,
-  ClanStatsFormattedRequirements,
+  ClanRequirements,
   ClanRewardsData,
-} from "./Data";
+} from "@cuppazee/utils";
 import { ClanV2 } from "@cuppazee/api/clan/main";
 import { Dayjs } from "dayjs";
 import { useTranslation } from "react-i18next";
@@ -226,10 +226,10 @@ export const CommonCell = React.memo(function (props: CommonCellProps) {
 });
 
 export interface DataCellProps {
-  user: ClanStatsFormattedUser | ClanStatsFormattedData | null;
+  user: ClanStatsUser | ClanStatsData | null;
   task_id: number;
   clan_id: number;
-  requirements: ClanStatsFormattedRequirements;
+  requirements: ClanRequirements;
 }
 
 export function DataCell(props: DataCellProps) {
@@ -310,7 +310,7 @@ export function DataCell(props: DataCellProps) {
 }
 
 export interface RequirementDataCellProps {
-  requirements?: ClanStatsFormattedRequirements;
+  requirements?: ClanRequirements;
   level: number;
   task: number;
   type: "individual" | "group" | "share";
@@ -366,7 +366,7 @@ export function RequirementDataCell(props: RequirementDataCellProps) {
 }
 
 export type UserCellProps = {
-  user: ClanStatsFormattedUser | ClanStatsFormattedData;
+  user: ClanStatsUser | ClanStatsData;
   stack?: boolean;
 };
 
@@ -495,7 +495,7 @@ export function RewardTitleCell(props: RewardTitleCellProps) {
 export type RequirementCellProps = {
   task_id: number;
   stack?: boolean;
-  requirements: ClanStatsFormattedRequirements;
+  requirements: ClanRequirements;
   onPress?: () => void;
   sortBy?: number;
 };

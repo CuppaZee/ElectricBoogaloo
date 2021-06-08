@@ -3,18 +3,13 @@ import dayjs from "dayjs";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Image, PixelRatio, StyleSheet, View, Pressable } from "react-native";
-import {
-  ClanRequirementsConverter,
-  ClanRewardsData,
-  gameIDToMonth,
-  requirementMeta,
-} from "./Data";
 import useComponentSize from "../../hooks/useComponentSize";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import TypeImage from "../Common/TypeImage";
 import Loading from "../Loading";
 import Icon from "../Common/Icon";
+import { ClanRewardsData, GameID, generateClanRequirements, requirementMeta } from "@cuppazee/utils/lib";
 
 export interface ClanRequirementsListProps {
   game_id: number;
@@ -43,7 +38,7 @@ export default React.memo(
     });
 
     const requirements = React.useMemo(
-      () => ClanRequirementsConverter(requirements_data.data?.data),
+      () => generateClanRequirements(requirements_data.data?.data),
       [requirements_data.dataUpdatedAt]
     );
 
@@ -84,9 +79,7 @@ export default React.memo(
           <View>
             <Text category="h6">{t("clan:clan_requirements")}</Text>
             <Pressable onPress={() => {console.log(JSON.stringify(requirements.all))}}><Text category="s1">
-              {dayjs()
-                .set("month", gameIDToMonth(game_id).m)
-                .set("year", gameIDToMonth(game_id).y)
+              {dayjs(new GameID(game_id).date)
                 .format("MMMM YYYY")}
             </Text></Pressable>
           </View>

@@ -16,7 +16,7 @@ import Constants from "expo-constants";
 import * as Notifications from "expo-notifications";
 import * as Location from "expo-location";
 import * as Application from "expo-application";
-import db, { TypeTags } from "@cuppazee/types";
+import { TypeTags } from "@cuppazee/db";
 import TypeImage from "../../components/Common/TypeImage";
 import MapView from "../../components/Maps/MapView";
 import useSearch from "../../hooks/useSearch";
@@ -30,6 +30,7 @@ import useSetting, { LiveLocationErrorAtom } from "../../hooks/useSetting";
 import Loading from "../../components/Loading";
 import { LocationPickerMap } from "../../components/Map/Map";
 import baseURL from "../../baseURL";
+import useDB from "../../hooks/useDB";
 
 interface LocationPickerModalProps {
   location: DeviceNotificationStaticLocation;
@@ -167,52 +168,56 @@ interface OverrideSearchModalProps {
   close: (data: { tag: string; radius: string } | { icon: string; radius: string }) => void;
 }
 
-const Tags = Object.keys(TypeTags)
-  .filter(i => (i.startsWith("Bouncer") && !i.startsWith("BouncerHost")) || i.startsWith("Scatter"))
-  .map(i => ({
-    i,
-    l: i
-      .replace(/^Bouncer/, "")
-      .replace(/PCS([0-2])/, "PC Season $1")
-      .replace("PC", "Pouch Creature")
-      .replace("Seasonal", "SeasonalSpecials")
-      .replace(/Stage([0-3])/, "Stage $1")
-      .replace(/SeasonalSpecials([0-9]+)/, "$1 Seasonal Specials")
-      .replace("SeasonalSpecials", "AllSeasonalSpecials")
-      .replace(/([A-Za-z])([A-Z0-9])([a-z0-9])/g, "$1 $2$3")
-      .replace(/Pouch Creature (.+)/, "$1 Pouch Creatures")
-      .replace(/Pouch Creature$/, "Pouch Creatures")
-      .replace(/Myth (.+)/, "$1 Myths")
-      .replace(/Myth$/, "Myths")
-      .replace(/Retired$/, "All Retired")
-      .replace(/Flat$/, "Fancy Flats")
-      .replace(/Flat Phantom$/, "Phantom Flats")
-      .replace(/Scatter$/, "Scatters")
-      .replace(/Scatter Standalone$/, "Standalone Scatters")
-      .replace(/Nomad$/, "Nomads")
-      .replace(/TPOB$/, "tPOBs"),
-    t: "tag",
-    p: db.types.filter(t => t.has_tag(TypeTags[i as keyof typeof TypeTags])).length,
-  }))
-  .filter(i => db.types.find(t => t.has_tag(TypeTags[i.i as keyof typeof TypeTags])))
-  .filter(i => i.l);
-
-const Types = db.types
-  .filter(i => i.has_tag(TypeTags.Bouncer) || i.has_tag(TypeTags.Scatter))
-  .map(i => ({
-    i: i.icon,
-    l: i.name,
-    t: "icon",
-    p: 0,
-  }));
-
-const OverrideSearch = new fuse([...Tags, ...Types], {
-  keys: ["i", "l"],
-});
-
 function OverrideSearchModal({ close }: OverrideSearchModalProps) {
   const { t } = useTranslation();
   const [value, search, onValue] = useSearch(500);
+  const db = useDB();
+  const [OverrideSearch, Tags] = React.useMemo(() => {
+    const Tags = Object.keys(TypeTags)
+      .filter(
+        i => (i.startsWith("Bouncer") && !i.startsWith("BouncerHost")) || i.startsWith("Scatter")
+      )
+      .map(i => ({
+        i,
+        l: i
+          .replace(/^Bouncer/, "")
+          .replace(/PCS([0-2])/, "PC Season $1")
+          .replace("PC", "Pouch Creature")
+          .replace("Seasonal", "SeasonalSpecials")
+          .replace(/Stage([0-3])/, "Stage $1")
+          .replace(/SeasonalSpecials([0-9]+)/, "$1 Seasonal Specials")
+          .replace("SeasonalSpecials", "AllSeasonalSpecials")
+          .replace(/([A-Za-z])([A-Z0-9])([a-z0-9])/g, "$1 $2$3")
+          .replace(/Pouch Creature (.+)/, "$1 Pouch Creatures")
+          .replace(/Pouch Creature$/, "Pouch Creatures")
+          .replace(/Myth (.+)/, "$1 Myths")
+          .replace(/Myth$/, "Myths")
+          .replace(/Retired$/, "All Retired")
+          .replace(/Flat$/, "Fancy Flats")
+          .replace(/Flat Phantom$/, "Phantom Flats")
+          .replace(/Scatter$/, "Scatters")
+          .replace(/Scatter Standalone$/, "Standalone Scatters")
+          .replace(/Nomad$/, "Nomads")
+          .replace(/TPOB$/, "tPOBs"),
+        t: "tag",
+        p: db.types.filter(t => t.has_tag(TypeTags[i as keyof typeof TypeTags])).length,
+      }))
+      .filter(i => db.types.find(t => t.has_tag(TypeTags[i.i as keyof typeof TypeTags])))
+      .filter(i => i.l);
+
+    const Types = db.types
+      .filter(i => i.has_tag(TypeTags.Bouncer) || i.has_tag(TypeTags.Scatter))
+      .map(i => ({
+        i: i.icon,
+        l: i.name,
+        t: "icon",
+        p: 0,
+      }));
+
+    return [new fuse([...Tags, ...Types], {
+      keys: ["i", "l"],
+    }), Tags] as const;
+  }, [db]);
   const results = search.length > 0 ? OverrideSearch.search(search).map(i => i.item) : Tags;
   return (
     <Layout level="4" style={{ borderRadius: 8, padding: 4 }}>
@@ -340,6 +345,51 @@ export type DeviceNotificationSettings = {
 
 export default function NotificationScreen() {
   const { t } = useTranslation();
+  const db = useDB();
+  const [Types, Tags] = React.useMemo(() => {
+    const Tags = Object.keys(TypeTags)
+      .filter(
+        i => (i.startsWith("Bouncer") && !i.startsWith("BouncerHost")) || i.startsWith("Scatter")
+      )
+      .map(i => ({
+        i,
+        l: i
+          .replace(/^Bouncer/, "")
+          .replace(/PCS([0-2])/, "PC Season $1")
+          .replace("PC", "Pouch Creature")
+          .replace("Seasonal", "SeasonalSpecials")
+          .replace(/Stage([0-3])/, "Stage $1")
+          .replace(/SeasonalSpecials([0-9]+)/, "$1 Seasonal Specials")
+          .replace("SeasonalSpecials", "AllSeasonalSpecials")
+          .replace(/([A-Za-z])([A-Z0-9])([a-z0-9])/g, "$1 $2$3")
+          .replace(/Pouch Creature (.+)/, "$1 Pouch Creatures")
+          .replace(/Pouch Creature$/, "Pouch Creatures")
+          .replace(/Myth (.+)/, "$1 Myths")
+          .replace(/Myth$/, "Myths")
+          .replace(/Retired$/, "All Retired")
+          .replace(/Flat$/, "Fancy Flats")
+          .replace(/Flat Phantom$/, "Phantom Flats")
+          .replace(/Scatter$/, "Scatters")
+          .replace(/Scatter Standalone$/, "Standalone Scatters")
+          .replace(/Nomad$/, "Nomads")
+          .replace(/TPOB$/, "tPOBs"),
+        t: "tag",
+        p: db.types.filter(t => t.has_tag(TypeTags[i as keyof typeof TypeTags])).length,
+      }))
+      .filter(i => db.types.find(t => t.has_tag(TypeTags[i.i as keyof typeof TypeTags])))
+      .filter(i => i.l);
+
+    const Types = db.types
+      .filter(i => i.has_tag(TypeTags.Bouncer) || i.has_tag(TypeTags.Scatter))
+      .map(i => ({
+        i: i.icon,
+        l: i.name,
+        t: "icon",
+        p: 0,
+      }));
+
+    return [Types, Tags] as const;
+  }, [db]);
   useTitle(`☕ ${t("pages:settings")} - ${t("pages:settings_notifications")}`);
   const [settings, setSettings] = React.useState<DeviceNotificationSettings>();
   const [token, setToken] = React.useState<string>();

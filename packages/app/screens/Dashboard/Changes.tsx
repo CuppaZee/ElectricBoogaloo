@@ -5,10 +5,11 @@ import { StyleSheet, ScrollView, View, Image } from "react-native";
 import builds, { Build } from "../../builds";
 import TypeImage from "../../components/Common/TypeImage";
 import { DashCardProps } from "./Dashboard";
-import db from "@cuppazee/types";
 import useSetting, { BuildAtom } from "../../hooks/useSetting";
+import useDB from "../../hooks/useDB";
 
 function BuildCard(build: Build) {
+  const db = useDB();
   return (
     <Layout level="4" style={{ margin: 4, padding: 4, borderRadius: 8 }}>
       <Text category="h4" style={{ textAlign: "center" }}>
@@ -128,6 +129,8 @@ function BuildCard(build: Build) {
 
 export default React.memo(function ChangesDashCard(props: DashCardProps<unknown>) {
   const [build, setBuild, loaded] = useSetting(BuildAtom);
+  const db = useDB();
+  const buildsList = React.useMemo(() => builds(db), [db]);
   return (
     <Layout level="3" style={[styles.card, { flex: 1 }]}>
       <ScrollView onLayout={props.onOuterLayout} style={{ flex: 1 }}>
@@ -135,16 +138,13 @@ export default React.memo(function ChangesDashCard(props: DashCardProps<unknown>
           <Text style={{ marginLeft: 4, textAlign: "center" }} category="h5">
             Changes
           </Text>
-          {!!loaded && builds
-            .filter(i => i.build > build)
-            .map(i => (
-              <BuildCard key={i.build} {...i} />
-            ))}
+          {!!loaded &&
+            buildsList.filter(i => i.build > build).map(i => <BuildCard key={i.build} {...i} />)}
         </View>
       </ScrollView>
       <Button
         appearance="outline"
-        onPress={() => setBuild(builds[builds.length - 1].build)}
+        onPress={() => setBuild(buildsList[builds.length - 1].build)}
         style={{ margin: 8 }}>
         Dismiss
       </Button>

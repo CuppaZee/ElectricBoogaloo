@@ -12,22 +12,20 @@ import {
 import dayjs from "dayjs";
 import * as React from "react";
 import { FlatList } from "react-native";
-import {
-  UserActivityConverterOutput,
-} from "./Data";
 import UserActivityListItem from "./ListItem";
 import UserActivityOverview from "./Overview";
 import { UserStackParamList } from "../../types";
 import getDateService from "../Common/getDateService";
 import { useTranslation } from "react-i18next";
 import Icon from "../Common/Icon";
+import { UserActivityData } from "@cuppazee/utils/lib";
 
 export default function UserActivityList({
   d,
   user_id,
   toggleFilterModal,
 }: {
-  d: UserActivityConverterOutput;
+  d: UserActivityData;
   user_id: number;
   toggleFilterModal?: () => void;
 }) {

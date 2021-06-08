@@ -1768,10 +1768,10 @@
   resolved "https://registry.yarnpkg.com/@cuppazee/api/-/api-0.0.11.tgz#347745cbc4bf79994c49156fdad66caa2869e496"
   integrity sha512-LXdnSJPfp2hO/Hy+O4IN/G6C+v/+EMVSpksQOePMoYIQpTRpO/GWH/VAVk7E7id8GSAqeuQ3bKujtrUO7dYHTA==
 
-"@cuppazee/api@^0.0.9":
-  version "0.0.9"
-  resolved "https://registry.yarnpkg.com/@cuppazee/api/-/api-0.0.9.tgz#2e41ebd69ebd8ac80fe2bf565e40b96f33ab608d"
-  integrity sha512-cwk1iRY6owgZhojStztlzfuDvw/fGePRijNS4puK7E71+S7xEI1Mvahpv3k92ZiNl9NlvToSFGPfRbHx7icuHQ==
+"@cuppazee/db@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@cuppazee/db/-/db-0.0.1.tgz#b47f5df63d60e60f074b1a163baee68b2c556869"
+  integrity sha512-jrO+O5KGrU8nHACAFoUtfCp3aiSq2L7Qp+bgI594kHDU3D4Lg63X6mOVQg3s5w6eTpaqFGIo307ZcupO7nHxbg==
 
 "@cuppazee/types@^0.0.44":
   version "0.0.44"

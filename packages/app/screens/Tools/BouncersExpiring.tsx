@@ -1,21 +1,16 @@
-import { Input, Layout, ListItem, Text } from "@ui-kitten/components";
+import { Input, Layout, ListItem } from "@ui-kitten/components";
 import * as React from "react";
-import { FlatList, Image, View } from "react-native";
+import { FlatList } from "react-native";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
-import useMunzeeRequest from "../../hooks/useMunzeeRequest";
-import useSearch from "../../hooks/useSearch";
 import useTitle from "../../hooks/useTitle";
-import Fuse from "fuse.js";
-import types from "@cuppazee/types";
 import TypeImage from "../../components/Common/TypeImage";
 import { useNavigation } from "@react-navigation/native";
-import Tip from "../../components/Common/Tip";
 import { useTranslation } from "react-i18next";
-import dayjs from "dayjs";
-import Icon from "../../components/Common/Icon";
+import useDB from "../../hooks/useDB";
 
-export default function SearchScreen() {
+export default function BouncersExpiringScreen() {
   const { t } = useTranslation();
+  const db = useDB();
   useTitle(`☕ Bouncing Soon`);
   const bouncers = useCuppaZeeRequest("bouncers/expiring", {}, true, undefined, undefined, {
     refetchInterval: 300000,
@@ -70,7 +65,7 @@ export default function SearchScreen() {
           ({ item, index }) => (
             <ListItem
               accessoryLeft={() => <TypeImage style={{ size: 32 }} icon={item[1]} />}
-              title={item[5] ? `${item[5]} by ${item[6]}` : types.getType(item[1])?.name ?? item[1]}
+              title={item[5] ? `${item[5]} by ${item[6]}` : db.getType(item[1])?.name ?? item[1]}
               description={`${Math.floor((item[2] - now / 1000) / 60)}:${(
                 Math.floor(item[2] - now / 1000) % 60
               )

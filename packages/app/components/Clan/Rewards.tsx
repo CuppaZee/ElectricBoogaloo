@@ -9,14 +9,11 @@ import {
   RewardDataCell,
   RewardTitleCell,
 } from "./Cell";
-import {
-  ClanRewardsData,
-  gameIDToMonth,
-} from "../../components/Clan/Data";
 import useComponentSize from "../../hooks/useComponentSize";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
 import useSetting, { ClanPersonalisationAtom } from "../../hooks/useSetting";
 import Icon from "../Common/Icon";
+import { ClanRewardsData, GameID } from "@cuppazee/utils/lib";
 
 const levels: { level: number; type: "group" | "individual" }[] = [
   { level: 1, type: "individual" },
@@ -116,9 +113,7 @@ export default React.memo(
           <View>
             <Text category="h6">{t("clan:clan_rewards")}</Text>
             <Text category="s1">
-              {dayjs()
-                .set("month", gameIDToMonth(game_id).m)
-                .set("year", gameIDToMonth(game_id).y)
+              {dayjs(new GameID(game_id).date)
                 .format("MMMM YYYY")}
             </Text>
           </View>
@@ -147,9 +142,7 @@ export default React.memo(
                 <RewardTitleCell
                   key="header"
                   game_id={game_id}
-                  date={dayjs()
-                    .set("month", gameIDToMonth(game_id).m)
-                    .set("year", gameIDToMonth(game_id).y)}
+                  date={dayjs(new GameID(game_id).date)}
                 />
               </View>
               {rewards_rows.map(row =>

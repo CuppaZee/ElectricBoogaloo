@@ -1,4 +1,4 @@
-import db, { TypeHidden, TypeTags, TypeState } from "@cuppazee/types";
+import { TypeHidden, TypeTags, TypeState } from "@cuppazee/db";
 import { useNavigation } from "@react-navigation/native";
 import { Layout, Text, Button } from "@ui-kitten/components";
 import * as React from "react";
@@ -9,6 +9,7 @@ import { BouncerIcon } from "../../components/Bouncers/Icon";
 import Icon from "../../components/Common/Icon";
 import Loading from "../../components/Loading";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
+import useDB from "../../hooks/useDB";
 import useTitle from "../../hooks/useTitle";
 
 export default function BouncersScreen() {
@@ -16,7 +17,8 @@ export default function BouncersScreen() {
   useTitle(`☕ ${t("pages:tools_bouncers")}`);
   const nav = useNavigation();
   const data = useCuppaZeeRequest("bouncers/overview", {});
-  const d = React.useMemo(() => data.data ? BouncerOverviewConverter(data.data.data) : null, [data.dataUpdatedAt]);
+  const db = useDB();
+  const d = React.useMemo(() => data.data ? BouncerOverviewConverter(db, data.data.data) : null, [data.dataUpdatedAt]);
   
 
   if (!data.isFetched || !d) {

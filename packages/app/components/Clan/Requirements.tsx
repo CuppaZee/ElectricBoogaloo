@@ -1,13 +1,9 @@
-import { Layout, Spinner, Text, useTheme } from "@ui-kitten/components";
+import { Layout, Text, useTheme } from "@ui-kitten/components";
 import dayjs from "dayjs";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { PixelRatio, StyleSheet, useWindowDimensions, View } from "react-native";
 import { LevelCell, RequirementCell, RequirementDataCell, RequirementTitleCell } from "./Cell";
-import {
-  ClanRequirementsConverter,
-  gameIDToMonth,
-} from "../../components/Clan/Data";
 import useComponentSize from "../../hooks/useComponentSize";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import SyncScrollView, { SyncScrollViewController } from "./SyncScrollView";
@@ -15,6 +11,7 @@ import Loading from "../Loading";
 import { useQueryClient } from "react-query";
 import useSetting, { ClanPersonalisationAtom } from "../../hooks/useSetting";
 import Icon from "../Common/Icon";
+import { GameID, generateClanRequirements } from "@cuppazee/utils/lib";
 
 const levels: { level: number; type: "group" | "individual" }[] = [
   { level: 1, type: "individual" },
@@ -109,7 +106,7 @@ export default React.memo(
     });
 
     const requirements = React.useMemo(
-      () => ClanRequirementsConverter(requirements_data.data?.data),
+      () => generateClanRequirements(requirements_data.data?.data),
       [requirements_data.dataUpdatedAt]
     );
 
@@ -166,9 +163,7 @@ export default React.memo(
           <View>
             <Text category="h6">{t("clan:clan_requirements")}</Text>
             <Text category="s1">
-              {dayjs()
-                .set("month", gameIDToMonth(game_id).m)
-                .set("year", gameIDToMonth(game_id).y)
+              {dayjs(new GameID(game_id).date)
                 .format("MMMM YYYY")}
             </Text>
           </View>
@@ -199,9 +194,7 @@ export default React.memo(
                 <RequirementTitleCell
                   key="header"
                   game_id={game_id}
-                  date={dayjs()
-                    .set("month", gameIDToMonth(game_id).m)
-                    .set("year", gameIDToMonth(game_id).y)}
+                  date={dayjs(new GameID(game_id).date)}
                 />
               </View>
               {requirements_rows.map(row =>

@@ -2,22 +2,20 @@ import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { DrawerItem, Layout, Text, useTheme } from "@ui-kitten/components";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
-import { ScrollView, View, Image, Linking } from "react-native";
-import UserActivityOverview from "../../components/Activity/Overview";
+import { ScrollView, View, Linking } from "react-native";
 import Loading from "../../components/Loading";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import useTitle from "../../hooks/useTitle";
-import { ToolsStackParamList, UserStackParamList } from "../../types";
-import db from "@cuppazee/types";
+import { ToolsStackParamList } from "../../types";
 import TypeImage from "../../components/Common/TypeImage";
-import MapView from "../../components/Maps/MapView";
 import dayjs from "dayjs";
 import Icon from "../../components/Common/Icon";
 import { AutoMap, Icons, Layer, Source } from "../../components/Map/Map";
+import useDB from "../../hooks/useDB";
 
 export default function MunzeeScreen() {
   const { t } = useTranslation();
-  const theme = useTheme();
+  const db = useDB();
   const nav = useNavigation();
   const route = useRoute<RouteProp<ToolsStackParamList, "Munzee">>();
 

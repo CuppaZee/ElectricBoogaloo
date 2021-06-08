@@ -11,10 +11,11 @@ import { UserDeploys } from "@cuppazee/api/user/deploys";
 import TypeImage from "../../components/Common/TypeImage";
 import Loading from "../../components/Loading";
 import { AutoMap, Icons, Layer, Source } from "../../components/Map/Map";
-import db from "@cuppazee/types/lib";
 import dayjs from "dayjs";
+import useDB from "../../hooks/useDB";
 
 export default function UserBouncersScreen() {
+  const db = useDB();
   const nav = useNavigation();
   const [size, onLayout] = useComponentSize();
   const route = useRoute<RouteProp<UserStackParamList, "Rooms">>();

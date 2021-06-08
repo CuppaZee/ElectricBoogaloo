@@ -2,6 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect } from "react";
 import { atom as jotaiAtom, useAtom, WritableAtom } from "jotai";
 import builds from "../builds";
+import { CuppaZeeDB } from "@cuppazee/db/lib";
 
 export function atom<T>(initial: T) {
   return jotaiAtom<T>(initial);
@@ -14,7 +15,7 @@ export interface Setting<T> {
 }
 
 export const BuildAtom = atom<Setting<number>>({
-  data: builds[builds.length - 1].build - 1,
+  data: builds(new CuppaZeeDB([], [], []))[builds.length - 1].build - 1,
   loaded: false,
   key: "@cuppazee/build",
 });

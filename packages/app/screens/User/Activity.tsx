@@ -2,7 +2,6 @@ import { RouteProp, useRoute } from "@react-navigation/native";
 import { Layout, Modal, Text } from "@ui-kitten/components";
 import dayjs from "dayjs";
 import * as React from "react";
-import { ActivityConverter, UserActivityFilters } from "../../components/Activity/Data";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import useComponentSize from "../../hooks/useComponentSize";
 import { UserStackParamList } from "../../types";
@@ -13,6 +12,8 @@ import useActivity from "../../hooks/useActivity";
 import Loading from "../../components/Loading";
 import { useTranslation } from "react-i18next";
 import useModalSafeArea from "../../hooks/useModalSafeArea";
+import { generateUserActivityData, UserActivityFilters } from "@cuppazee/utils";
+import useDB from "../../hooks/useDB";
 
 export default function UserActivityScreen() {
   const { t } = useTranslation();
@@ -34,11 +35,12 @@ export default function UserActivityScreen() {
     { username: route.params?.username },
     route.params?.username !== undefined
   );
+  const db = useDB();
   const data = useActivity(user.data?.data?.user_id, route.params?.date);
   const d = React.useMemo(
     () =>
       data.data?.data
-        ? ActivityConverter(data.data?.data, filters, { username: user.data?.data?.username })
+        ? generateUserActivityData(db, data.data?.data, filters, user.data?.data?.username)
         : null,
     [data.dataUpdatedAt, filters]
   );

@@ -1,6 +1,6 @@
-import { Button, Layout, Modal, Spinner, Text, useTheme } from "@ui-kitten/components";
+import { Button, Layout, Modal, Text, useTheme } from "@ui-kitten/components";
 import React from "react";
-import { Image, PixelRatio, StyleSheet, View } from "react-native";
+import { Image, PixelRatio, View } from "react-native";
 import {
   DataCell,
   LevelCell,
@@ -9,13 +9,6 @@ import {
   TitleCell,
   UserCell,
 } from "./Cell";
-import {
-  ClanStatsConverter,
-  ClanStatsFormattedUser,
-  ClanStatsFormattedData,
-  ClanRequirementsConverter,
-  ClanShadowData,
-} from "../../components/Clan/Data";
 import useComponentSize from "../../hooks/useComponentSize";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
@@ -25,6 +18,7 @@ import SyncScrollView, { SyncScrollViewController } from "./SyncScrollView";
 import Loading from "../Loading";
 import useSetting, { ClanPersonalisationAtom, ClansAtom } from "../../hooks/useSetting";
 import Icon from "../Common/Icon";
+import { ClanShadowData, ClanStatsData, ClanStatsUser, generateClanRequirements, generateClanStats } from "@cuppazee/utils/lib";
 export interface ClanStatsTableProps {
   game_id: number;
   clan_id: number;
@@ -79,12 +73,12 @@ export default React.memo(
     );
 
     const requirements = React.useMemo(
-      () => ClanRequirementsConverter(requirements_data.data?.data),
+      () => generateClanRequirements(requirements_data.data?.data),
       [requirements_data.dataUpdatedAt]
     );
     const stats = React.useMemo(
       () =>
-        ClanStatsConverter(
+        generateClanStats(
           clan_data.data?.data,
           requirements_data.data?.data,
           requirements || undefined,
@@ -122,7 +116,7 @@ export default React.memo(
       );
     }
 
-    function sort(a: ClanStatsFormattedUser, b: ClanStatsFormattedUser) {
+    function sort(a: ClanStatsUser, b: ClanStatsUser) {
       if (sortBy < 0)
         return (a.requirements[-sortBy]?.value ?? -1) - (b.requirements[-sortBy]?.value ?? -1);
       return (b.requirements[sortBy]?.value ?? -1) - (a.requirements[sortBy]?.value ?? -1);
@@ -147,14 +141,14 @@ export default React.memo(
     ];
     const main_rows = (reverse ? requirements.all : main_users) as (
       | number
-      | ClanStatsFormattedUser
-      | ClanStatsFormattedData
+      | ClanStatsUser
+      | ClanStatsData
       | { type: "group" | "individual" | "share"; level: number }
     )[];
     const main_columns = (reverse ? main_users : requirements.all) as (
       | number
-      | ClanStatsFormattedUser
-      | ClanStatsFormattedData
+      | ClanStatsUser
+      | ClanStatsData
       | { type: "group" | "individual" | "share"; level: number }
     )[];
     return (

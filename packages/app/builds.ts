@@ -1,4 +1,4 @@
-import db, { Type, TypeState, TypeTags } from "@cuppazee/types";
+import { CuppaZeeDB, Type, TypeState, TypeTags } from "@cuppazee/db";
 
 export interface Types {
   title?: string;
@@ -36,7 +36,7 @@ export interface Build {
   features?: Feature[];
 }
 
-const builds: Build[] = [
+const builds: (db: CuppaZeeDB) => Build[] = db => [
   {
     build: 1,
     date: "2021-02-18",
@@ -1122,6 +1122,22 @@ const builds: Build[] = [
       },
       {
         description: "Improved loading speeds",
+      },
+    ],
+  },
+  {
+    build: 68,
+    date: "2021-06-07",
+    features: [
+      {
+        title: "Massive Behind-the-Scenes Work!",
+        description:
+          "I've spent a load of time reworking how CuppaZee's Munzee Types information is retrieved, along with how Activity, Inventory and Clan Stats are calculated, in order to allow for more code sharing between CuppaZee Express and CuppaZee Max, and to allow me to more quickly add information on new Munzee Types. All of these new changes have now been released, so please let me know if you spot any issues!",
+      },
+      {
+        title: "Changelog Changes",
+        description:
+          "Please be aware that due to these changes, new Munzee Types will no longer be included in OTA update changelogs, as they are now added without full OTA updates.",
       },
     ],
   },

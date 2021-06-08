@@ -7,7 +7,6 @@ import useComponentSize from "../../hooks/useComponentSize";
 import { UserStackParamList } from "../../types";
 import useTitle from "../../hooks/useTitle";
 import { Pressable, ScrollView, View } from "react-native";
-import MapView from "../../components/Maps/MapView";
 import { UserDeploys } from "@cuppazee/api/user/deploys";
 import { MunzeeSpecialBouncer } from "@cuppazee/api/munzee/specials";
 import TypeImage from "../../components/Common/TypeImage";
@@ -15,7 +14,7 @@ import useDay from "../../hooks/useDay";
 import Loading from "../../components/Loading";
 import { useTranslation } from "react-i18next";
 import { AutoMap, Icons, Layer, Source } from "../../components/Map/Map";
-import db from "@cuppazee/types/lib";
+import useDB from "../../hooks/useDB";
 
 type Bouncer = NonNullable<UserDeploys["response"]["data"]>["munzees"][0] & {
   bouncer?: MunzeeSpecialBouncer & { hash: string };
@@ -32,6 +31,7 @@ type Bouncer = NonNullable<UserDeploys["response"]["data"]>["munzees"][0] & {
 };
 
 export default function UserBouncersScreen() {
+  const db = useDB();
   const { t } = useTranslation();
   const nav = useNavigation();
   const day = useDay();

@@ -1,22 +1,20 @@
-import { Layout, Spinner, Text, useTheme } from "@ui-kitten/components";
+import { Layout, Text, useTheme } from "@ui-kitten/components";
 import * as React from "react";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
 import useComponentSize from "../../hooks/useComponentSize";
 import useTitle from "../../hooks/useTitle";
 import { Platform, Pressable, ScrollView, View } from "react-native";
-import MapView from "../../components/Maps/MapView";
 import { MunzeeSpecial, MunzeeSpecialBouncer } from "@cuppazee/api/munzee/specials";
 import TypeImage from "../../components/Common/TypeImage";
 import * as Location from "expo-location";
 import * as Notifications from "expo-notifications";
-import types from "@cuppazee/types";
 import Loading from "../../components/Loading";
 import dayjs from "dayjs";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import Icon from "../../components/Common/Icon";
 import { AutoMap, Icons, Layer, Source } from "../../components/Map/Map";
-import db from "@cuppazee/types";
+import useDB from "../../hooks/useDB";
 
 type Bouncer = (MunzeeSpecialBouncer | MunzeeSpecial) & {
   hash: string;
@@ -47,6 +45,7 @@ export default function NearbyScreen() {
   const [size, onLayout] = useComponentSize();
   const theme = useTheme();
   const [settings, setSettings] = React.useState<NearbySettings>();
+  const db = useDB();
   useTitle(`☕ ${t("pages:tools_nearby")}`);
   const data = useCuppaZeeRequest<{ data: Bouncer[] }>(
     "bouncers/nearby",
@@ -184,7 +183,7 @@ export default function NearbyScreen() {
                     <Text category="h6">
                       {"mythological_munzee" in i
                         ? i.mythological_munzee.friendly_name
-                        : types.getType(i.logo)?.name ?? i.logo.slice(49, -4)}
+                        : db.getType(i.logo)?.name ?? i.logo.slice(49, -4)}
                       {"mythological_munzee" in i ? (
                         <Text category="s1">
                           {" "}

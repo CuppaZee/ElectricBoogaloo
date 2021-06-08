@@ -1,10 +1,10 @@
-import db from "@cuppazee/types";
+import { CuppaZeeDB } from "@cuppazee/db";
 
 export type BouncerOverviewData = {
   [key: string]: number;
 }
 
-export default function BouncerOverviewConverter(data: BouncerOverviewData) {
+export default function BouncerOverviewConverter(db: CuppaZeeDB, data: BouncerOverviewData) {
   const uncategoriesTypes = new Set<string>();
   const output: {[key: string]: number} = {};
   for (const entry of Object.entries(data)) {

@@ -8,10 +8,10 @@ import Loading from "../../components/Loading";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import useTitle from "../../hooks/useTitle";
 import { UserStackParamList } from "../../types";
-import db from "@cuppazee/types";
 import TypeImage from "../../components/Common/TypeImage";
 import dayjs from "dayjs";
 import Icon from "../../components/Common/Icon";
+import useDB from "../../hooks/useDB";
 
 export const UserPagesNow = [
   {
@@ -52,6 +52,7 @@ export const UserPagesNow = [
 ] as const;
 
 export default function TabOneScreen() {
+  const db = useDB();
   const { t } = useTranslation();
   const theme = useTheme();
   const nav = useNavigation();

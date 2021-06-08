@@ -1,10 +1,10 @@
 import { Layout, Popover, Text } from "@ui-kitten/components";
 import React from "react";
 import { Pressable, StyleSheet, View } from "react-native";
-import db from "@cuppazee/types";
 import TypeImage from "../Common/TypeImage";
-import { BlastPointsData } from "../../screens/User/Blast";
+import { BlastPointsData } from "../../screens/Tools/Blast";
 import { useTranslation } from "react-i18next";
+import useDB from "../../hooks/useDB";
 
 export type BlastIconProps = {
   icon: string;
@@ -13,6 +13,7 @@ export type BlastIconProps = {
 }
 
 export function BlastIcon({ icon, points, total }: BlastIconProps) {
+  const db = useDB();
   const { t } = useTranslation();
   const [visible, setVisible] = React.useState(false);
   return (
