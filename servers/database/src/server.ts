@@ -9,7 +9,7 @@ fastify.register(FastifyCors, {
   origin: true,
 })
 
-const db = { ...types, version: Math.floor(Math.random() * 100000) };
+const db = { ...types, version: Math.floor(Math.random() * 100000) + 1 };
 
 fastify.get("/json/:version", async function (request, reply) {
   if (Number((request.params as any)?.version) === db.version) {
