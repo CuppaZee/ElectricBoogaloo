@@ -15,7 +15,7 @@ export interface Setting<T> {
 }
 
 export const BuildAtom = atom<Setting<number>>({
-  data: builds(new CuppaZeeDB([], [], []))[builds.length - 1].build - 1,
+  data: builds(new CuppaZeeDB([], [], []))[builds(new CuppaZeeDB([], [], [])).length - 1].build - 1,
   loaded: false,
   key: "@cuppazee/build",
 });

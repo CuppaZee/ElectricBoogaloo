@@ -144,7 +144,7 @@ export default React.memo(function ChangesDashCard(props: DashCardProps<unknown>
       </ScrollView>
       <Button
         appearance="outline"
-        onPress={() => setBuild(buildsList[builds.length - 1].build)}
+        onPress={() => setBuild(buildsList[buildsList.length - 1].build)}
         style={{ margin: 8 }}>
         Dismiss
       </Button>

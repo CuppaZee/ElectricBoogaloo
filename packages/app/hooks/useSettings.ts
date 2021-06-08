@@ -34,7 +34,7 @@ export type Settings = {
 
 export const defaultSettings: Settings = {
   version: 1,
-  build: builds(new CuppaZeeDB([], [], []))[builds.length - 1].build,
+  build: builds(new CuppaZeeDB([], [], []))[builds(new CuppaZeeDB([], [], [])).length - 1].build,
   theme: "green_light",
   ready: false,
   maps: "google",
