@@ -252,7 +252,7 @@ export default React.memo(
                         : "borderBottomWidth"]: 2,
                       borderColor,
                     }}>
-                    <LevelCell level={row.level} type={row.type} />
+                    <LevelCell clan_id={actual_clan_id} level={row.level} type={row.type} />
                   </View>
                 ) : (
                   <UserCell key={"user_id" in row ? row.user_id : "Clan Total"} user={row} />
@@ -317,6 +317,7 @@ export default React.memo(
                         borderColor,
                       }}>
                       <LevelCell
+                        clan_id={actual_clan_id}
                         key={`${column.level}_${column.type}`}
                         level={column.level}
                         type={column.type}

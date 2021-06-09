@@ -1141,6 +1141,16 @@ const builds: (db: CuppaZeeDB) => Build[] = db => [
       },
     ],
   },
+  {
+    build: 69,
+    date: "2021-06-09",
+    improvements: [
+      {
+        description:
+          "Re-introduced the Quick Level Switcher on Clan Stats from CuppaZee App V1",
+      },
+    ],
+  },
 ];
 
 export default builds;

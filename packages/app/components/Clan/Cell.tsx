@@ -1,5 +1,5 @@
-import { Layout, Text, useTheme } from "@ui-kitten/components";
-import React, { PropsWithChildren } from "react";
+import { Layout, ListItem, Popover, Text, useTheme } from "@ui-kitten/components";
+import React, { PropsWithChildren, useState } from "react";
 import {
   Image,
   ImageSourcePropType,
@@ -412,28 +412,73 @@ export type LevelCellProps = {
   level: number;
   type: "individual" | "group" | "share";
   stack?: boolean;
+  clan_id?: number;
 };
 
 export function LevelCell(props: LevelCellProps) {
   const { t } = useTranslation();
   const [style] = useSetting(ClanPersonalisationAtom);
+  const [options, setOptions] = useSetting(ClansAtom);
+  const [open, setOpen] = useState(false);
+  if (!props.clan_id) {
+    return (
+      <CommonCell
+        onPress={() => setOpen(i => !i)}
+        type={props.stack ? "header_stack" : "header"}
+        color={props.level}
+        icon={props.type === "individual" ? "account-check" : "shield-check"}
+        title={t(
+          style.single_line && !props.stack
+            ? props.type === "individual"
+              ? "clan:individual_level"
+              : props.type === "share"
+              ? "clan:share_level"
+              : "clan:group_level"
+            : "clan:level",
+          { level: props.level }
+        )}
+        subtitle={t(`clan:${props.type}` as const)}
+      />
+    );
+  }
   return (
-    <CommonCell
-      type={props.stack ? "header_stack" : "header"}
-      color={props.level}
-      icon={props.type === "individual" ? "account-check" : "shield-check"}
-      title={t(
-        style.single_line && !props.stack
-          ? props.type === "individual"
-            ? "clan:individual_level"
-            : props.type === "share"
-            ? "clan:share_level"
-            : "clan:group_level"
-          : "clan:level",
-        { level: props.level }
-      )}
-      subtitle={t(`clan:${props.type}` as const)}
-    />
+    <Popover
+      fullWidth
+      visible={open}
+      onBackdropPress={() => setOpen(false)}
+      anchor={() => (
+        <View>
+          <CommonCell
+            onPress={() => setOpen(i => !i)}
+            type={props.stack ? "header_stack" : "header"}
+            color={props.level}
+            icon={props.type === "individual" ? "account-check" : "shield-check"}
+            title={t(
+              style.single_line && !props.stack
+                ? props.type === "individual"
+                  ? "clan:individual_level"
+                  : props.type === "share"
+                  ? "clan:share_level"
+                  : "clan:group_level"
+                : "clan:level",
+              { level: props.level }
+            )}
+            subtitle={t(`clan:${props.type}` as const)}
+          />
+        </View>
+      )}>
+      <Layout>
+        {open && [1, 2, 3, 4, 5].map(i => <ListItem title={t("clan:level", { level: i })} onPress={() => {
+          setOptions({
+            ...options,
+            [props.clan_id || 0]: {
+              ...options[props.clan_id || 0],
+              level: i,
+            }
+          })
+        }} />)}
+      </Layout>
+    </Popover>
   );
 }
 
