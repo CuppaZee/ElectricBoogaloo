@@ -13,7 +13,7 @@ const route: Route = {
       async function({ params: { username, user_id, from } }) {
         function convertState(state?: TypeState) {
           if (!from || !from.includes("_1.2_")) {
-            return state;
+            return state !== undefined ? state + 1 : state;
           }
           if (state === TypeState.Physical) {
             return "physical"

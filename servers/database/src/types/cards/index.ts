@@ -20,6 +20,7 @@ import y2020 from "./2020";
 import y2020hccc from "./2020hccc";
 import y2021 from "./2021";
 import y2021vccc from "./2021vccc";
+import y2021bccc from "./2021bccc";
 import open from "./open";
 const years = {
   open: {
@@ -46,6 +47,11 @@ const years = {
     name: "2021 VCCC Cards",
     types: y2021vccc,
     tag: TypeTags.Card2021VCCC,
+  },
+  "2021bccc": {
+    name: "2021 Birthday Mailbox Cards",
+    types: y2021bccc,
+    tag: TypeTags.Card2021BCCC,
   },
 };
 for (const year of Object.keys(years) as (keyof typeof years)[]) {

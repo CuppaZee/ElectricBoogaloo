@@ -20,7 +20,7 @@
     "dev": "cross-env NODE_ENV=development tsc-watch --onSuccess \"node --enable-source-maps ./lib/server.js\""
   },
   "dependencies": {
-    "@cuppazee/db": "^0.0.1",
+    "@cuppazee/db": "^0.0.3",
     "@msgpack/msgpack": "^2.7.0",
     "@types/mongodb": "^3.6.17",
     "cors": "^2.8.5",
