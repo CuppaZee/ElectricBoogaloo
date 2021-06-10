@@ -139,6 +139,7 @@ export enum TypeTags {
   Card2020HCCC = 0x5d,
   Card2021 = 0x5e,
   Card2021VCCC = 0x5f,
+  Card2021BCCC = 0x77,
 
   // Evolution
   Evolution = 0x60,
@@ -175,7 +176,7 @@ export enum TypeTags {
   FunctionSwap = 0x71,
   FunctionBlast = 0x72,
 }
-// Latest: DestinationTemporary = 0x76
+// Latest: Card2021BCCC = 0x77,
 
 export type TypeQuery = string | number | ((type: Type) => boolean);
 
