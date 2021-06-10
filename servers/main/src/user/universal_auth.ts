@@ -6,7 +6,7 @@ import { Route } from "../types";
 import mongo from "../util/mongo";
 
 const route: Route = {
-  path: "auth/auth",
+  path: "universal/auth",
   latest: 1,
   versions: [
     {
