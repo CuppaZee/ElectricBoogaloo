@@ -1,6 +1,6 @@
 {
   "name": "@cuppazee/utils",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "main": "lib",
   "license": "MPL-2.0",
   "keywords": [
@@ -20,7 +20,7 @@
     "typescript": "^4.1.3"
   },
   "dependencies": {
-    "@cuppazee/db": "^0.0.3",
+    "@cuppazee/db": "^0.0.4",
     "dayjs": "^1.10.5"
   }
 }
