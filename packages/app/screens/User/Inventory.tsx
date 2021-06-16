@@ -1,7 +1,7 @@
 import { RouteProp, useRoute } from "@react-navigation/native";
-import { Text, Layout, CheckBox } from "@ui-kitten/components";
+import { Text, Layout, CheckBox, Button } from "@ui-kitten/components";
 import * as React from "react";
-import { StyleSheet, ScrollView, View } from "react-native";
+import { StyleSheet, ScrollView, View, Platform } from "react-native";
 import { InventoryIcon } from "../../components/Inventory/Icon";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
@@ -12,6 +12,8 @@ import Loading from "../../components/Loading";
 import { generateInventoryData, UserInventoryInputData } from "@cuppazee/utils";
 import useDB from "../../hooks/useDB";
 import dayjs from "dayjs";
+import { openBrowserAsync } from "expo-web-browser";
+import { openURL } from "expo-linking";
 
 export default function UserInventoryScreen() {
   const [includeZeroes, setIncludeZeroes] = React.useState(false);
@@ -124,6 +126,36 @@ export default function UserInventoryScreen() {
                   : c.state.slice(0, 1).toUpperCase() + c.state.slice(1) + "s"}{" "}
                 ({c.total || "0"})
               </Text>
+              {"category" in c && c.category.accessories && (
+                <View
+                  style={{
+                    width: "100%",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    flexWrap: "wrap",
+                  }}>
+                  {c.category.accessories.filter(i=>Platform.OS !== "web" || i.link.startsWith("http")).map(i => (
+                    <Button
+                      size="small"
+                      style={{
+                        margin: 4,
+                        ...(["primary", "success", "danger", "warning"].includes(i.color)
+                          ? {}
+                          : { backgroundColor: i.color }),
+                      }}
+                      status={
+                        ["primary", "success", "danger", "warning"].includes(i.color)
+                          ? i.color
+                          : undefined
+                      }
+                      onPress={() => {
+                        openURL(i.link.startsWith("~") ? i.link.slice(1) : i.link);
+                      }}>
+                      {i.label}
+                    </Button>
+                  ))}
+                </View>
+              )}
               <View
                 style={{
                   flexDirection: "row",
