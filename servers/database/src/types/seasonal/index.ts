@@ -14,7 +14,7 @@ export const categories: CategoryInterface[] = [
   {
     name: "Seasonal Specials",
     id: "seasonal",
-    icon: "",
+    icon: "expiring_specials_filter",
     parents: ["root", "bouncers"],
   },
 ];

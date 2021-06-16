@@ -15,7 +15,7 @@ export const categories: CategoryInterface[] = [
     name: "Evolutions",
     id: "evolution",
     icon: "evolution",
-    parents: ["normal"],
+    parents: ["root"],
   },
 ];
 

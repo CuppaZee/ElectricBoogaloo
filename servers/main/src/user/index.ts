@@ -10,6 +10,7 @@ import universal from './universal'
 import universal_auth from './universal_auth'
 import universal_report from './universal_report'
 import universal_submit from './universal_submit'
+import cuppazee from './cuppazee'
 export default [
   activity,
   bouncers,
@@ -23,4 +24,5 @@ export default [
   universal_report,
   universal_submit,
   universal,
+  cuppazee,
 ];

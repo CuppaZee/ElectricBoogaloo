@@ -1,4 +1,4 @@
-import { TypeInterface, CategoryInterface, TypeTags, TypeHidden, TypeState } from '@cuppazee/db';
+import { TypeInterface, CategoryInterface, TypeTags, TypeHidden, TypeState, CategoryAccessoryType } from '@cuppazee/db';
 
 const types: TypeInterface[] = [];
 const categories: CategoryInterface[] = [
@@ -11,8 +11,30 @@ const categories: CategoryInterface[] = [
   {
     name: "Credits",
     id: "credit",
+    icon: "virtualdeploybooster",
+    parents: [],
+  },
+  {
+    name: "Redeemables",
+    id: "redeemable",
     icon: "zeds",
     parents: [],
+    accessories: [
+      {
+        type: CategoryAccessoryType.Button,
+        link: "~https://munzee.page.link/store",
+        label: "ZEDS Store",
+        translation_key: "zeds_store",
+        color: "primary"
+      },
+      {
+        type: CategoryAccessoryType.Button,
+        link: "https://www.munzee.com/redeem",
+        label: "Redeem Page",
+        translation_key: "redeem_store",
+        color: "primary"
+      }
+    ]
   },
   {
     name: "Other",
@@ -37,7 +59,7 @@ for(const t of credits) {
     icons: t.icons,
     id: `credit_${t.icons[0]}`,
     state: TypeState.Locationless,
-    category: "credit",
+    category: t.category ?? "credit",
     tags: [
       TypeTags.Credit,
     ],

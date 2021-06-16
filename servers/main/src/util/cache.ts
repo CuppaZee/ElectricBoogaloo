@@ -39,12 +39,12 @@ export async function getBouncers(force?: boolean) {
   if (force || cache.bouncers_updated < Date.now() - 300000) {
     const token = await retrieve({ user_id: 455935, teaken: false }, 60, "universal");
     const data = await Promise.all([
-      request("munzee/specials", {}, token.access_token),
-      request("munzee/specials/mythological", {}, token.access_token),
-      request("munzee/specials/pouchcreatures", {}, token.access_token),
-      request("munzee/specials/flat", {}, token.access_token),
-      request("munzee/specials/bouncers", {}, token.access_token),
-      request("munzee/specials/retired", {}, token.access_token),
+      request("munzee/specials", {}, token.access_token).catch(() => null),
+      request("munzee/specials/mythological", {}, token.access_token).catch(() => null),
+      request("munzee/specials/pouchcreatures", {}, token.access_token).catch(() => null),
+      request("munzee/specials/flat", {}, token.access_token).catch(() => null),
+      request("munzee/specials/bouncers", {}, token.access_token).catch(() => null),
+      request("munzee/specials/retired", {}, token.access_token).catch(() => null),
     ]);
     let body: ((MunzeeSpecial | MunzeeSpecialBouncer) & {
       hash: string;

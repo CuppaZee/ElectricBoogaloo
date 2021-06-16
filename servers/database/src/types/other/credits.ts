@@ -49,6 +49,7 @@ const credits: {
   {
     icons: ["zeds"],
     name: "ZEDS",
+    category: "redeemable",
   },
   {
     icons: ["zodiac"],
@@ -79,12 +80,17 @@ const credits: {
   {
     icons: ["jewel_shards"],
     name: "Jewel Shards",
-    category: "jewel",
+    category: "redeemable",
   },
   {
     icons: ["weapon_shards"],
     name: "Weapon Shards",
-    category: "weapon_clan",
+    category: "redeemable",
+  },
+  {
+    icons: ["cog"],
+    name: "Cog",
+    category: "redeemable",
   },
   {
     icons: ["rover_treat"],

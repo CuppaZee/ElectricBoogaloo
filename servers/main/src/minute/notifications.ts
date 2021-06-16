@@ -16,10 +16,12 @@ const route: Route = {
           .find({ sent_at: { $lte: Date.now() - 1800000 } })
           .toArray();
         let receiptIds = [];
+        let tickets = new Map<string, any>();
         for (let notificationBatch of notificationData) {
           for (let ticket of notificationBatch.tickets) {
             if (ticket.id) {
               receiptIds.push(ticket.id);
+              tickets.set(ticket.id, ticket);
             }
           }
           // notificationBatch.ref.delete();
@@ -31,17 +33,17 @@ const route: Route = {
           try {
             let receipts = await expo.getPushNotificationReceiptsAsync(chunk);
             allReceipts = allReceipts.concat(Object.values(receipts));
-            console.log(receipts);
             for (let receiptId in receipts) {
               let { status, details, ...rest } = receipts[receiptId];
               if (status === "ok") {
                 continue;
               } else if (status === "error") {
                 console.error(
-                  `There was an error sending a notification: ${
+                  `There was an error sending a notification (#${receiptId}, ${tickets.get(receiptId)?.token}): ${
                     "message" in rest ? rest.message : ""
                   }`
                 );
+                
                 if (details && "error" in details) {
                   // The error codes are listed in the Expo documentation:
                   // https://docs.expo.io/versions/latest/guides/push-notifications/#individual-errors

@@ -50,7 +50,13 @@ async function getImage(category: "pins" | "new_badges" | "cubimals", type: stri
   return null;
 }
 
-type Format = "png" | "jpeg";
+function lightStrip(t: string): string {
+  if (t.startsWith("https://munzee.global.ssl.fastly.net/images/pins/")) return t.slice(49, -4);
+  if (t.startsWith("https://munzee.global.ssl.fastly.net/images/v4pins/")) return t.slice(51, -4);
+  return t;
+}
+
+type Format = "png" | "jpeg" | "webp" | "avif";
 
 fastify.get("/:category/:size/:type", async function (request, reply) {
   // Parse and Validate Parameters
@@ -74,12 +80,14 @@ fastify.get("/:category/:size/:type", async function (request, reply) {
     return;
   }
   let type = params.type.split(".").slice(0, -1).join(".");
-  type = types.getType(type)?.icon ?? type;
-  const format = params.type.split(".").slice(-1)[0] as Format;
-  if (format !== "jpeg" && format !== "png") {
-    reply.send(`Invalid Format: ${format}. Must be jpeg or png.`);
+  type = types.getType(type)?.icon ?? lightStrip(type);
+  let formatStr = params.type.split(".").slice(-1)[0];
+  if (formatStr === "jpg") formatStr = "jpeg";
+  if (formatStr !== "jpeg" && formatStr !== "png" && formatStr !== "webp" && formatStr !== "avif") {
+    reply.send(`Invalid Format: ${formatStr}. Must be webp, avif, jpeg or png.`);
     return;
   }
+  const format = formatStr as Format;
 
   const cacheFilePath = path.join(
     cacheDir,
@@ -98,8 +106,8 @@ fastify.get("/:category/:size/:type", async function (request, reply) {
   if (!response) {
     // No Image Found
     reply
-      .type(`image/png`)
-      .send(createReadStream(path.join(overrideDir, `missing_${category}.png`)));
+      .type(`image/${format}`)
+      .send(createReadStream(path.join(overrideDir, `missing_${category}.${format}`)));
     return;
   }
 
