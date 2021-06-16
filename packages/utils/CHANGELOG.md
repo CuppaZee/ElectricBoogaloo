@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.16 - 16/06/2021
+- Updated @cuppazee/db
+## 0.0.15 - 16/06/2021
+- Updated @cuppazee/db
 ## 0.0.14 - 16/06/2021
 - Updated @cuppazee/db
 ## 0.0.13 - 16/06/2021

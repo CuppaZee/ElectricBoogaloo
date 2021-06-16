@@ -1,5 +1,19 @@
 import { CuppaZeeDB } from ".";
 
+export enum CategoryAccessoryType {
+  Button = 0x01,
+}
+
+export interface CategoryButton {
+  type: CategoryAccessoryType.Button;
+  label: string;
+  translation_key?: string;
+  link: string;
+  color: string;
+}
+
+export type CategoryAccessory = CategoryButton;
+
 export interface CategoryInterface {
   name: string;
   id: string;
@@ -10,6 +24,7 @@ export interface CategoryInterface {
     start?: number;
     end?: number;
   };
+  accessories?: CategoryAccessory[];
 }
 
 export class Category {
@@ -35,6 +50,10 @@ export class Category {
 
   get icon() {
     return this.i.icon;
+  }
+
+  get accessories() {
+    return this.i.accessories;
   }
 
   get parents() {
