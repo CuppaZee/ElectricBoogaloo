@@ -1146,8 +1146,16 @@ const builds: (db: CuppaZeeDB) => Build[] = db => [
     date: "2021-06-09",
     improvements: [
       {
-        description:
-          "Re-introduced the Quick Level Switcher on Clan Stats from CuppaZee App V1",
+        description: "Re-introduced the Quick Level Switcher on Clan Stats from CuppaZee App V1",
+      },
+    ],
+  },
+  {
+    build: 70,
+    date: "2021-06-16",
+    fixes: [
+      {
+        description: "Fixed settings toggles on the Player Inventory page",
       },
     ],
   },

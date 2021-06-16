@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.14 - 16/06/2021
+- Updated @cuppazee/db
+## 0.0.13 - 16/06/2021
+- Removed `jewel_shards` override on the Inventory
+- Setting `hideZeroes` to `false` now prevents empty categories from being removed
 ## 0.0.12 - 07/06/2021
 - Migrated from @cuppazee/types to @cuppazee/db
 ## 0.0.11 - 02/06/2021

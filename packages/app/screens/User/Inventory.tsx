@@ -32,7 +32,7 @@ export default function UserInventoryScreen() {
       data.data?.data
         ? generateInventoryData(db, data.data.data, { hideZeroes: !includeZeroes, groupByState })
         : null,
-    [data.dataUpdatedAt]
+    [data.dataUpdatedAt, includeZeroes, groupByState]
   );
 
   // const categories:

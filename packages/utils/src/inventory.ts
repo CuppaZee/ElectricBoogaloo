@@ -59,7 +59,6 @@ export interface UserInventoryData {
 export function getCategory(db: CuppaZeeDB, i: UserInventoryItem) {
   const cat = i.type?.category;
   if (i.type?.icon === "destination") return db.getCategory("destination");
-  if (i.icon?.includes("jewel_shards")) return db.getCategory("jewel");
   if (i.type?.icon.includes("zodiac")) return db.getCategory("misc");
   if (!cat) return db.getCategory("other");
   if (cat.id === "virtual") return db.getCategory("misc");
@@ -283,7 +282,7 @@ export function generateInventoryData(
           ),
           total: data.types.filter(i => getCategory(db, i) === c).reduce((a, b) => a + b.amount, 0),
         }))
-        .filter(i => i.total > 0)
+        .filter(i => i.types.length !== 0 && (!options?.hideZeroes || i.total > 0))
         .sort((a, b) => b.total - a.total);
 
   return data;

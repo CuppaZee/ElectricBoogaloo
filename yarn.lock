@@ -1768,10 +1768,10 @@
   resolved "https://registry.yarnpkg.com/@cuppazee/api/-/api-0.0.11.tgz#347745cbc4bf79994c49156fdad66caa2869e496"
   integrity sha512-LXdnSJPfp2hO/Hy+O4IN/G6C+v/+EMVSpksQOePMoYIQpTRpO/GWH/VAVk7E7id8GSAqeuQ3bKujtrUO7dYHTA==
 
-"@cuppazee/db@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@cuppazee/db/-/db-0.0.3.tgz#18ffc3f5c5d4b6f2aa6e2f7cecbef1c8afb927cb"
-  integrity sha512-M6+r0GSaQA01GS3uZDewb+rzKaEf0dFmf5pRK5JMRZTRO1CWYEAzuNNjHxz1H7vhKSfhYR36B++J0aI3D5gypA==
+"@cuppazee/db@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@cuppazee/db/-/db-0.0.2.tgz#ffd81ccf11cb414e3d9d955909714ce846dc33f3"
+  integrity sha512-XZ6xIYG+utdO7eoRD0wk8p6KO+ApfEKKDhkMTh+Ceb160cHBH/HsotAoI2s75LVbb4W3WcSiSbOFWsL7HJYWnA==
   dependencies:
     "@msgpack/msgpack" "^2.7.0"
     lzwcompress "^1.1.0"
