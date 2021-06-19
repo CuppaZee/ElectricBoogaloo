@@ -1776,14 +1776,6 @@
     "@msgpack/msgpack" "^2.7.0"
     lzwcompress "^1.1.0"
 
-"@cuppazee/db@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@cuppazee/db/-/db-0.0.3.tgz#18ffc3f5c5d4b6f2aa6e2f7cecbef1c8afb927cb"
-  integrity sha512-M6+r0GSaQA01GS3uZDewb+rzKaEf0dFmf5pRK5JMRZTRO1CWYEAzuNNjHxz1H7vhKSfhYR36B++J0aI3D5gypA==
-  dependencies:
-    "@msgpack/msgpack" "^2.7.0"
-    lzwcompress "^1.1.0"
-
 "@cuppazee/types@^0.0.44":
   version "0.0.44"
   resolved "https://registry.yarnpkg.com/@cuppazee/types/-/types-0.0.44.tgz#bf6bcb0044f2c0ce812c32807fece4b46d804f51"
