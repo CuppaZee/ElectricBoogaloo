@@ -71,8 +71,8 @@ export function generateUserActivityData(
   )) {
     activityList.push({
       type: UserActivityType.Capture,
-      creator: username,
-      capper: capture.username,
+      creator: capture.username,
+      capper: username,
       code: capture.code,
       name: capture.friendly_name,
       icon: capture.pin,

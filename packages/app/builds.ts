@@ -1159,6 +1159,16 @@ const builds: (db: CuppaZeeDB) => Build[] = db => [
       },
     ],
   },
+  {
+    build: 71,
+    date: "2021-06-19",
+    fixes: [
+      {
+        description: "Fixed the Munzee creator being wrong on Bouncer Host captures on User Activity",
+        thanks: "lynnslilypad"
+      },
+    ],
+  },
 ];
 
 export default builds;
