@@ -1,4 +1,4 @@
-import { loadFromCache, loadFromArrayBuffer, CuppaZeeDB } from "@cuppazee/db";
+import { loadFromCache, loadFromArrayBuffer, loadFromLzwJson, CuppaZeeDB } from "@cuppazee/db";
 import { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -15,12 +15,24 @@ const dbCache: { value: CuppaZeeDB; onLoad: Set<() => void> } = {
     cacheVersion = data.version;
     dbCache.value = loadFromCache(data);
   }
-  const response = await fetch(`https://db.cuppazee.app/lzwmsgpack/${cacheVersion}`);
-  const data = await response.arrayBuffer();
-  if (data.byteLength > 0) {
-    const { db, cache } = loadFromArrayBuffer(data);
-    dbCache.value = db;
-    await AsyncStorage.setItem("@czexpress/dbcache", JSON.stringify(cache));
+  try {
+    const response = await fetch(`https://db.cuppazee.app/lzwmsgpack/${cacheVersion}`);
+    if (!response.ok) throw "e";
+    const data = await response.arrayBuffer();
+    if (data.byteLength > 0) {
+      const { db, cache } = loadFromArrayBuffer(data);
+      dbCache.value = db;
+      await AsyncStorage.setItem("@czexpress/dbcache", JSON.stringify(cache));
+    }
+  } catch (e) {
+    const response = await fetch(`https://db.cuppazee.app/lzw/${cacheVersion}`);
+    if (!response.ok) throw "e";
+    const data = await response.text();
+    if (data.length > 0) {
+      const { db, cache } = loadFromLzwJson(data);
+      dbCache.value = db;
+      await AsyncStorage.setItem("@czexpress/dbcache", JSON.stringify(cache));
+    }
   }
 })();
 
