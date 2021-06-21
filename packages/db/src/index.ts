@@ -115,3 +115,11 @@ export function loadFromArrayBuffer(buffer: ArrayBufferLike) {
     cache: data,
   };
 }
+
+export function loadFromLzwJson(lzwJson: string) {
+  const data: Data = lzwCompress.unpack(lzwJson);
+  return {
+    db: new CuppaZeeDB(data.types, data.events, data.categories),
+    cache: data,
+  };
+}

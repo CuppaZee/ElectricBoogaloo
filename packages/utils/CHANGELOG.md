@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.0.18 - 21/06/2021
+- Updated @cuppazee/db
 ## 0.0.17 - 19/06/2021
 - Fixed Creator and Capper properties on Bouncer Host Captures on Activity
 ## 0.0.16 - 16/06/2021

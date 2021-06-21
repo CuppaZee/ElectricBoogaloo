@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.0.6 - 21/06/2021
+- Added loadFromLzwJson method
 ## 0.0.5 - 16/06/2021
 - Fixed Category Buttons
 ## 0.0.4 - 16/06/2021
