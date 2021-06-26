@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.0.7 - 26/06/2021
+- Added Clan Requirements Data
 ## 0.0.6 - 21/06/2021
 - Added loadFromLzwJson method
 ## 0.0.5 - 16/06/2021

@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.0.19 - 26/06/2021
+- Updated @cuppazee/db
+- Added New Clan Requirements Database System
 ## 0.0.18 - 21/06/2021
 - Updated @cuppazee/db
 ## 0.0.17 - 19/06/2021

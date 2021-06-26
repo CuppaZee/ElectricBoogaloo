@@ -3,6 +3,7 @@ import { Category, CategoryInterface } from "./category";
 import { decode } from "@msgpack/msgpack";
 // @ts-expect-error
 import lzwCompress from "lzwcompress";
+import { ClanRequirementInterface } from "./requirements";
 
 export type EventInterface =
   | [string, string, number]
@@ -14,11 +15,17 @@ export * from "./category";
 export * from "./types";
 
 export class CuppaZeeDB {
+  private _requirements: Map<number, ClanRequirementInterface>;
   private _types: Map<string, Type>;
   private _icons: Map<string, string>;
   private _categories: Map<string, Category>;
 
-  constructor(types: TypeInterface[], events: EventInterface[], categories: CategoryInterface[]) {
+  constructor(
+    types: TypeInterface[],
+    events: EventInterface[],
+    categories: CategoryInterface[],
+    requirements: ClanRequirementInterface[] = []
+  ) {
     let lastId = 0;
     for (const index in events) {
       const event = events[index];
@@ -30,7 +37,10 @@ export class CuppaZeeDB {
       } else {
         name = event[0];
         icon =
-          event.slice(1).find(i => typeof i === "string")?.toString() ?? event[0].toLowerCase().replace(/\s/g, "");
+          event
+            .slice(1)
+            .find(i => typeof i === "string")
+            ?.toString() ?? event[0].toLowerCase().replace(/\s/g, "");
         id = Number(event.find(i => typeof i === "number") ?? lastId + 1);
       }
       types.push({
@@ -60,6 +70,27 @@ export class CuppaZeeDB {
       const category = new Category(category_data, this);
       this._categories.set(category.id, category);
     }
+    this._requirements = new Map();
+    for (const requirement of requirements) {
+      this._requirements.set(requirement.task_id, requirement);
+    }
+  }
+
+  getClanRequirement(task_id: number): ClanRequirementInterface {
+    return this._requirements.get(task_id) ?? {
+      task_id,
+      top: "???",
+      bottom: "???"
+    };
+  }
+
+  addMockRequirement(task_id: number, name: string) {
+    if (this._requirements.has(task_id)) return;
+    this._requirements.set(task_id, {
+      task_id: task_id,
+      top: name.split(" ")[0],
+      bottom: name.split(" ").slice(1).join(" "),
+    });
   }
 
   getCategory(id: string) {
@@ -98,6 +129,7 @@ export class CuppaZeeDB {
 }
 
 export interface Data {
+  requirements?: ClanRequirementInterface[];
   types: TypeInterface[];
   events: EventInterface[];
   categories: CategoryInterface[];
@@ -105,13 +137,13 @@ export interface Data {
 }
 
 export function loadFromCache(cache: Data) {
-  return new CuppaZeeDB(cache.types, cache.events, cache.categories);
+  return new CuppaZeeDB(cache.types, cache.events, cache.categories, cache.requirements);
 }
 
 export function loadFromArrayBuffer(buffer: ArrayBufferLike) {
   const data: Data = lzwCompress.unpack(JSON.stringify(decode(buffer)));
   return {
-    db: new CuppaZeeDB(data.types, data.events, data.categories),
+    db: new CuppaZeeDB(data.types, data.events, data.categories, data.requirements),
     cache: data,
   };
 }
@@ -119,7 +151,7 @@ export function loadFromArrayBuffer(buffer: ArrayBufferLike) {
 export function loadFromLzwJson(lzwJson: string) {
   const data: Data = lzwCompress.unpack(lzwJson);
   return {
-    db: new CuppaZeeDB(data.types, data.events, data.categories),
+    db: new CuppaZeeDB(data.types, data.events, data.categories, data.requirements),
     cache: data,
   };
 }

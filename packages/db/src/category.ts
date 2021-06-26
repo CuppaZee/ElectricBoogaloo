@@ -24,6 +24,7 @@ export interface CategoryInterface {
     start?: number;
     end?: number;
   };
+  // section?: boolean;
   accessories?: CategoryAccessory[];
 }
 
@@ -56,6 +57,10 @@ export class Category {
     return this.i.accessories;
   }
 
+  // get section() {
+  //   return !!this.i.section;
+  // }
+
   get parents() {
     return this.i.parents.map(i => this.d.getCategory(i));
   }
@@ -77,6 +82,14 @@ export class Category {
   get types() {
     return this.d.getChildTypes(this);
   }
+
+  // get childSections(): Category[] {
+  //   return [...this.d.getChildren(this).filter(i => i.section), this];
+  // }
+
+  // get childCategories() {
+  //   return this.d.getChildren(this).filter(i => !i.section);
+  // }
 
   get children() {
     return this.d.getChildren(this);
