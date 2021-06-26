@@ -83,7 +83,13 @@ export const categories: CategoryInterface[] = [
   {
     name: "tPOB Bouncers",
     id: "bouncer_tpob",
-    icon: "spyderbot",
+    icon: "trojanunicorn",
+    parents: ["bouncer"],
+  },
+  {
+    name: "MechZ Bouncers",
+    id: "bouncer_mechz",
+    icon: "lasershark",
     parents: ["bouncer"],
   },
 ];
@@ -187,6 +193,24 @@ for (const t of tpobs) {
     id: t.id,
     state: TypeState.Bouncer,
     category: `bouncer_tpob`,
+    tags: [TypeTags.Bouncer, TypeTags.BouncerTPOB, ...(t.tags ?? [])],
+    meta: {
+      bouncer_duration: t.duration || 12,
+      bouncer_lands_on: t.lands_on,
+      ...(t.meta ?? {}),
+    },
+    hidden: [TypeHidden.Inventory, ...(t.hidden ?? [])],
+  });
+}
+
+import mechz from "./mechz";
+for (const t of mechz) {
+  types.push({
+    name: t.name,
+    icons: t.icons,
+    id: t.id,
+    state: TypeState.Bouncer,
+    category: `bouncer_mechz`,
     tags: [TypeTags.Bouncer, TypeTags.BouncerTPOB, ...(t.tags ?? [])],
     meta: {
       bouncer_duration: t.duration || 12,

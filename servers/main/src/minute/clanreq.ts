@@ -20,8 +20,8 @@ const route: Route = {
         }
         await sendEmail({
           to: config.emails.clanreq.email,
-          subject: "https://server.cuppazee.app/clan/Jun21.png",
-          text: `June 2021 Clan Requirements are out now on CuppaZee at https://cuppazee.app/clan/requirements/06/2021 and in the Munzee App. You can also get to them by selecting Clan Requirements from the Dashboard or sidebar and switching the month to June 2021. Coming soon to the Munzee Blog.`
+          subject: "https://server.cuppazee.app/clan/Jul21.png",
+          text: `July 2021 Clan Requirements are out now on CuppaZee Max at https://max.cuppazee.app/clan/requirements/07/2021 and in the Munzee App. You can also get to them by selecting Clan Requirements from the Dashboard or sidebar and switching the month to July 2021. Coming soon to the Munzee Blog.`
         })
         return {
           status: "success",

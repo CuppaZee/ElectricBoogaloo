@@ -1,40 +1,68 @@
-// import { logger } from "firebase-functions";
 import fetch from "node-fetch";
 import { URLSearchParams } from "url";
 import _config from "../config";
-// import db from "./db";
 import mongo from "./mongo";
 
-// const auth_default = new Promise<Map<string, any>>((resolve, reject) => {
-//   const d = new Map();
-//   let resolved = false;
-//   db.collection("auth").onSnapshot(querySnapshot => {
-//     querySnapshot.docChanges().forEach(change => {
-//       if (change.type === "added" || change.type === "modified") {
-//         d.set(change.doc.id, change.doc.data());
-//       }
-//       if (change.type === "removed") {
-//         d.delete(change.doc.id);
-//       }
-//     });
-//     if (!resolved) {
-//       resolved = true;
-//       resolve(d);
-//     }
-//   });
-// });
+export enum AuthApplication {
+  Main = "main",
+  Team = "team",
+  Universal = "universal",
+}
+
+export interface AuthToken {
+  access_token: string;
+  token_type: string;
+  refresh_token: string;
+  expires_in: number;
+  expires: number;
+}
+
+export interface AuthData {
+  application: AuthApplication;
+  user_id: number | string;
+  teakens: string[];
+  token: AuthToken;
+  user_number: number;
+  username: string;
+}
+
+export interface ValidTeakenResponse {
+  valid: true;
+  data: AuthData;
+}
+
+export interface InvalidTeakenResponse {
+  valid: false;
+  data: null;
+}
+
+export async function validateTeaken(user_id: number, teaken: string | false, application: AuthApplication): Promise<ValidTeakenResponse | InvalidTeakenResponse> {
+  const data = await mongo
+    .collection<AuthData>("auth")
+    .findOne({ application, user_id: Number(user_id) });
+  if (data && (teaken === false || data.teakens.includes(teaken))) {
+    return {
+      valid: true,
+      data,
+    }
+  }
+  return {
+    valid: false,
+    data: null
+  }
+}
 
 export default async function (
-  { user_id, teaken }: { user_id: number | string; teaken: string | boolean },
+  { user_id, teaken }: { user_id: number | string; teaken: string | false },
   time: number,
-  application: "main" | "team" | "universal" = "main"
+  application: AuthApplication = AuthApplication.Main
 ) {
   try {
     const config = application in _config ? (_config as any)[application] : _config;
-    const data = await mongo
-      .collection("auth")
-      .findOne({ application, user_id: Number(user_id) });
-    if (!data) return null;
+    const { data } = await validateTeaken(Number(user_id), teaken, application);
+    if (!data) {
+      return null;
+    }
     if (teaken === false || data.teakens.includes(teaken)) {
       const token = data.token;
       if (time && token.expires * 1000 > Date.now() + time * 1000) {
