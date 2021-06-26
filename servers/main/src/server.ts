@@ -22,6 +22,7 @@ import notifications_routes from "./notifications";
 import tools_routes from "./tools";
 import user_routes from "./user";
 import widget_routes from "./widget";
+import { EndpointsDown } from "./util/endpointStatus";
 
 var routes: Route[] = [
   ...auth_routes,
@@ -67,6 +68,7 @@ async function apiResponder(req: express.Request, res: express.Response) {
           id: "route_not_found",
           code: 404,
         },
+        endpointsDown: Array.from(EndpointsDown),
         route: routeDetails,
         executed_in: executed_in(),
       });
@@ -81,6 +83,7 @@ async function apiResponder(req: express.Request, res: express.Response) {
           id: "version_not_found",
           code: 404,
         },
+        endpointsDown: Array.from(EndpointsDown),
         route: routeDetails,
         executed_in: executed_in(),
       });
@@ -94,6 +97,7 @@ async function apiResponder(req: express.Request, res: express.Response) {
           id: "function_not_found",
           code: 500,
         },
+        endpointsDown: Array.from(EndpointsDown),
         route: routeDetails,
         executed_in: executed_in(),
       });
@@ -144,6 +148,7 @@ async function apiResponder(req: express.Request, res: express.Response) {
           id: "unexpected_error",
           code: 500,
         },
+        endpointsDown: Array.from(EndpointsDown),
         route: routeDetails,
         executed_in: executed_in(),
       });
@@ -156,6 +161,7 @@ async function apiResponder(req: express.Request, res: express.Response) {
         id: "unexpected_error",
         code: 500,
       },
+      endpointsDown: Array.from(EndpointsDown),
       route: null,
       executed_in: executed_in(),
     });

@@ -1,6 +1,7 @@
 import { request, retrieve } from '../util';
 import POLYfromEntries from 'object.fromentries';
 import { Route } from '../types';
+import { AuthApplication } from '../util/retrieve';
 
 const cache: {
   [game_id: string]: {
@@ -24,7 +25,7 @@ const route: Route = {
             data: cache[game_id].data,
           };
         }
-        var token = await retrieve({ user_id: 455935, teaken: false }, 60, "universal");
+        var token = await retrieve({ user_id: 455935, teaken: false }, 60, AuthApplication.Universal);
         var rewards = (await request(`clan/v2/challenges/{game_id}`, { game_id }, token.access_token))?.data;
         if (!rewards) {
           return {

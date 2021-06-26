@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CuppaZee Max Migration</title>
+</head>
+<body>
+    <h1>Migrating Data...</h1>
+    <script>
+        // const migrationData = Object.assign({}, localStorage);
+        // delete migrationData["@czexpress/dbcache"]
+        // location.href = "https://max.cuppazee.app/migration.html?x=" + encodeURIComponent(JSON.stringify(migrationData))
+        Object.assign(localStorage, JSON.parse(decodeURIComponent(location.search.slice(3))))
+        location.href = "/"
+    </script>
+</body>
+</html>

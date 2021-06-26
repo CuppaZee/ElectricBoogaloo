@@ -6,8 +6,8 @@
     "outDir": "lib",
     "sourceMap": true,
     "strict": true,
-    "lib": ["es2018"],
-    "target": "es2018",
+    "lib": ["es2019"],
+    "target": "es2019",
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "skipLibCheck": true

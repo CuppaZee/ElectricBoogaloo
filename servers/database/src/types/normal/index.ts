@@ -66,7 +66,37 @@ export const categories: CategoryInterface[] = [
     name: "Scatters",
     id: "scatter",
     icon: "scattered",
-    parents: ["normal"],
+    parents: ["root"],
+  },
+  {
+    name: "Misc Scatters",
+    id: "scatter_misc",
+    icon: "scattered",
+    parents: ["scatter"],
+  },
+  {
+    name: "Elemental Scatters",
+    id: "scatter_elemental",
+    icon: "frozengreenie",
+    parents: ["scatter"],
+  },
+  {
+    name: "Gaming Scatters",
+    id: "scatter_gaming",
+    icon: "fly",
+    parents: ["scatter"],
+  },
+  {
+    name: "Bouncer Scatters",
+    id: "scatter_bouncer",
+    icon: "flamingarrow",
+    parents: ["scatter"],
+  },
+  {
+    name: "ZeeCret Scatters",
+    id: "scatter_zeecret",
+    icon: "lasertrail1",
+    parents: ["scatter"],
   },
   {
     name: "Tourism",
@@ -235,7 +265,7 @@ for (const t of scatters) {
     icons: t.icons,
     id: t.id,
     state: t.state ?? TypeState.Virtual,
-    category: "scatter",
+    category: "scatter_" + (t.category ?? "misc"),
     meta: {
       scatter_duration: t.scatter.duration,
       ...t.meta ?? {}

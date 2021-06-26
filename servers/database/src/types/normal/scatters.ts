@@ -21,6 +21,7 @@ const scatters: {
   hidden?: TypeHidden[];
   meta?: TypeMeta;
   points?: TypePoints;
+  category?: string;
 }[] = [
   {
     name: "Scattered",
@@ -45,6 +46,7 @@ const scatters: {
       lands_on: ["munzee"],
     },
     tags: [TypeTags.TypeMysteryElemental],
+    category: "elemental",
   },
   {
     name: "Frozen Greenie",
@@ -57,6 +59,7 @@ const scatters: {
       lands_on: ["munzee"],
     },
     tags: [TypeTags.TypeMysteryElemental],
+    category: "elemental",
   },
   {
     name: "Water Droplet",
@@ -69,6 +72,7 @@ const scatters: {
       lands_on: ["munzee"],
     },
     tags: [TypeTags.TypeMysteryElemental],
+    category: "elemental",
   },
   {
     name: "Feather",
@@ -87,6 +91,7 @@ const scatters: {
       scatterer_max: 3,
       scatterer_radius: undefined,
     },
+    category: "elemental",
   },
   {
     name: "Golden Feather",
@@ -99,6 +104,7 @@ const scatters: {
       duration: 2,
     },
     tags: [TypeTags.TypeMysteryElemental],
+    category: "elemental",
   },
   {
     name: "Dossier",
@@ -110,6 +116,7 @@ const scatters: {
       duration: 2,
       lands_on: ["munzee"],
     },
+    category: "zeecret",
   },
   {
     name: "Boulder",
@@ -132,6 +139,7 @@ const scatters: {
       duration: 2,
       standalone: true,
     },
+    category: "zeecret",
   },
   {
     name: "1st Roll",
@@ -144,6 +152,7 @@ const scatters: {
       lands_on: ["munzee"],
     },
     tags: [TypeTags.TypeGaming],
+    category: "gaming",
   },
   {
     name: "2nd Roll",
@@ -156,6 +165,7 @@ const scatters: {
       lands_on: ["munzee"],
     },
     tags: [TypeTags.TypeGaming],
+    category: "gaming",
   },
   {
     name: "Runzee Rob",
@@ -168,6 +178,7 @@ const scatters: {
       lands_on: ["munzee"],
     },
     tags: [TypeTags.TypeGaming],
+    category: "gaming",
   },
   {
     name: "Gold Coin",
@@ -180,6 +191,7 @@ const scatters: {
       standalone: true,
     },
     tags: [TypeTags.TypeGaming],
+    category: "gaming",
   },
   {
     name: "Leap Frog",
@@ -192,6 +204,7 @@ const scatters: {
       lands_on: ["munzee"],
     },
     tags: [TypeTags.TypeGaming],
+    category: "gaming",
   },
   {
     name: "Fly",
@@ -204,6 +217,7 @@ const scatters: {
       standalone: true,
     },
     tags: [TypeTags.TypeGaming],
+    category: "gaming",
   },
   {
     name: "Munch-Man",
@@ -216,6 +230,7 @@ const scatters: {
       lands_on: ["munzee"],
     },
     tags: [TypeTags.TypeGaming],
+    category: "gaming",
   },
   {
     name: "Ghostzee",
@@ -228,6 +243,7 @@ const scatters: {
       standalone: true,
     },
     tags: [TypeTags.TypeGaming],
+    category: "gaming",
   },
   {
     name: "Bowling - 1st Roll",
@@ -240,6 +256,7 @@ const scatters: {
       standalone: true,
     },
     tags: [TypeTags.TypeGaming],
+    category: "gaming",
   },
   {
     name: "Bowling - 2nd Roll",
@@ -252,6 +269,7 @@ const scatters: {
       standalone: true,
     },
     tags: [TypeTags.TypeGaming],
+    category: "gaming",
   },
   {
     name: "Tree",
@@ -264,6 +282,7 @@ const scatters: {
       lands_on: ["munzee"],
     },
     tags: [TypeTags.TypeMysteryElemental],
+    category: "elemental",
   },
   {
     name: "Red Apple",
@@ -276,6 +295,7 @@ const scatters: {
       standalone: true,
     },
     tags: [TypeTags.TypeMysteryElemental],
+    category: "elemental",
   },
   {
     name: "Cherry Blossom",
@@ -288,6 +308,7 @@ const scatters: {
       standalone: true,
     },
     tags: [TypeTags.TypeMysteryElemental],
+    category: "elemental",
   },
   {
     name: "Charge",
@@ -300,6 +321,7 @@ const scatters: {
       lands_on: [":virtual"],
     },
     tags: [TypeTags.TypeMysteryElemental],
+    category: "elemental",
   },
   {
     name: "Flaming Arrow",
@@ -312,6 +334,7 @@ const scatters: {
       standalone: true,
     },
     tags: [TypeTags.TypeWeaponClan],
+    category: "bouncer",
   },
   {
     name: "Trident",
@@ -323,6 +346,7 @@ const scatters: {
       duration: 2,
       standalone: true,
     },
+    category: "bouncer",
   },
   {
     name: "Lifebuoy",
@@ -334,6 +358,7 @@ const scatters: {
       duration: 2,
       standalone: true,
     },
+    category: "bouncer",
   },
   {
     name: "Peach",
@@ -346,6 +371,7 @@ const scatters: {
       standalone: true,
     },
     tags: [TypeTags.TypeMysteryElemental],
+    category: "elemental",
   },
   {
     name: "Pear",
@@ -358,6 +384,7 @@ const scatters: {
       standalone: true,
     },
     tags: [TypeTags.TypeMysteryElemental],
+    category: "elemental",
   },
   {
     name: "Glasses",
@@ -369,6 +396,7 @@ const scatters: {
       duration: 2,
       standalone: true,
     },
+    category: "bouncer",
   },
   {
     name: "Shell-Phone",
@@ -380,6 +408,7 @@ const scatters: {
       duration: 2,
       standalone: true,
     },
+    category: "bouncer",
   },
   {
     name: "Pecan",
@@ -392,6 +421,7 @@ const scatters: {
       standalone: true,
     },
     tags: [TypeTags.TypeMysteryElemental],
+    category: "elemental",
   },
   {
     name: "Acorn",
@@ -404,6 +434,7 @@ const scatters: {
       standalone: true,
     },
     tags: [TypeTags.TypeMysteryElemental],
+    category: "elemental",
   },
   {
     name: "Laser Trail 1",
@@ -415,6 +446,7 @@ const scatters: {
       duration: 2,
       standalone: true,
     },
+    category: "zeecret",
   },
   {
     name: "Laser Trail 2",
@@ -426,6 +458,7 @@ const scatters: {
       duration: 2,
       standalone: true,
     },
+    category: "zeecret",
   },
   {
     name: "Laser Trail 3",
@@ -437,6 +470,7 @@ const scatters: {
       duration: 2,
       standalone: true,
     },
+    category: "zeecret",
   },
   {
     name: "Ankh Artifact",
@@ -480,6 +514,7 @@ const scatters: {
       duration: 2,
       standalone: true,
     },
+    category: "zeecret",
   },
   {
     name: "Liaison Agent",
@@ -490,6 +525,7 @@ const scatters: {
       duration: 2,
       standalone: true,
     },
+    category: "zeecret",
   },
   {
     name: "Dead Branch",
@@ -501,6 +537,7 @@ const scatters: {
       standalone: true,
     },
     tags: [TypeTags.TypeMysteryElemental],
+    category: "elemental",
   },
   {
     name: "Cardinal Feather",
@@ -513,6 +550,7 @@ const scatters: {
       standalone: true,
     },
     tags: [TypeTags.TypeMysteryElemental],
+    category: "elemental",
   },
   {
     name: "SCGS Reseller Package",
@@ -570,7 +608,7 @@ const scatters: {
   },
   {
     name: "Golden Four Leaf Clover",
-    icons: ["goldenfourleafclover"],
+    icons: ["goldenfourleafclover", "goldenclover"],
     id: "goldenfourleafclover",
     state: TypeState.Virtual,
     scatter: {
@@ -617,6 +655,7 @@ const scatters: {
       duration: 2,
       standalone: true,
     },
+    category: "bouncer",
   },
   {
     name: "Firestarter",
@@ -627,6 +666,7 @@ const scatters: {
       duration: 2,
       standalone: true,
     },
+    category: "bouncer",
   },
 ];
 

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CuppaZee Max Migration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</head>
+
+<body class="d-flex flex-column align-items-center justify-content-center text-center overflow-auto" style="min-height: 100vh;">
+    <h1>CuppaZee Max is moving to <code>max.cuppazee.app</code></h1>
+    <h3>You may need to change your bookmarks</h3>
+    <button id="move" class="btn btn-primary" onclick="migrate()">
+        Move your data to max.cuppazee.app
+    </button>
+    <button id="cont" class="btn btn-primary" onclick="cont()">
+        Continue to max.cuppazee.app
+    </button>
+    <script>
+        if (localStorage.migrated === "yes") {
+            document.getElementById("move").style.display = "none";
+        } else {
+            document.getElementById("cont").style.display = "none";
+        }
+        function cont() {
+            location.href = "https://max.cuppazee.app" + location.pathname
+        }
+        function migrate() {
+            const migrationData = Object.assign({}, localStorage);
+            delete migrationData["@czexpress/dbcache"]
+            localStorage.migrated = "yes"
+            location.href = "https://max.cuppazee.app/migration.html?x=" + encodeURIComponent(JSON.stringify(migrationData))
+        }
+    </script>
+</body>
+
+</html>

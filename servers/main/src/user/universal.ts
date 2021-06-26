@@ -1,6 +1,7 @@
 import { Route } from "../types";
 import { request, retrieve } from "../util";
 import mongo from "../util/mongo";
+import { AuthApplication } from "../util/retrieve";
 import types from "./universal_types.json";
 
 function shuffle(a: any) {
@@ -24,7 +25,7 @@ const route: Route = {
     {
       version: 5,
       async function({ params: { username, access_token, filter } }: any) {
-        var token = await retrieve({ user_id: 455935, teaken: false }, 60, "universal");
+        var token = await retrieve({ user_id: 455935, teaken: false }, 60, AuthApplication.Universal);
         var data = (await mongo.collection("universals").find({}).toArray() as UniversalEntry[])
           .filter(i => i.code.split("/")[0] !== username)
           .filter(i => !filter || filter.split(",").includes(i.type?.toString() || "0"));

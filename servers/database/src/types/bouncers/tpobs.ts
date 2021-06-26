@@ -18,51 +18,6 @@ const tpobs: {
     munzee_id: 2502,
     lands_on: ["mace", "longsword", "battleaxe", "thehammer", "crossbow", "catapult"],
   },
-  {
-    name: "Spyderbot",
-    icons: ["spyderbot"],
-    id: "spyderbot",
-    munzee_id: 2589,
-    lands_on: [],
-  },
-  {
-    name: "Squashed Spyderbot",
-    icons: ["squashedspyderbot"],
-    id: "squashedspyderbot",
-    lands_on: [],
-    hidden: [TypeHidden.Bouncers],
-  },
-  {
-    name: "L.A.S.E.R. Shark",
-    icons: ["lasershark"],
-    id: "lasershark",
-    munzee_id: 2875,
-    lands_on: [
-      type => type.has_tag(TypeTags.TypeMysteryElemental),
-      type => type.has_tag(TypeTags.TypeWeaponZeeops),
-    ],
-  },
-  {
-    name: "Golden L.A.S.E.R. Shark",
-    icons: ["goldenlasershark"],
-    id: "goldenlasershark",
-    lands_on: [
-      type => type.has_tag(TypeTags.TypeMysteryElemental),
-      type => type.has_tag(TypeTags.TypeWeaponZeeops),
-      "premium",
-    ],
-  },
-  {
-    name: "Arctic L.A.S.E.R. Shark",
-    icons: ["arcticlasershark"],
-    id: "arcticlasershark",
-    lands_on: [
-      type => type.has_tag(TypeTags.TypeMysteryElemental),
-      type => type.has_tag(TypeTags.TypeWeaponZeeops),
-      "joystick",
-      "joystick_virtual",
-    ],
-  },
 ];
 
 

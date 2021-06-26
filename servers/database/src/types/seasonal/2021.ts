@@ -6,7 +6,7 @@ const s2021: SeasonalCategory[] = [
     name: "World Bicycle Day 2021",
     id: "worldbicycleday2021",
     starts: "2021-06-02T12:00:00-05:00",
-    ends: "2021-06-17T23:59:00-05:00",
+    ends: "2021-06-30T23:59:00-05:00",
     pobs: [
       {
         name: "Champion Chopper",
@@ -42,7 +42,110 @@ const s2021: SeasonalCategory[] = [
           i => i.meta.evolution_base === "firstwheel",
         ],
       },
+      {
+        name: "Tandem Twins",
+        icons: ["tandemtwins"],
+        id: "tandemtwins",
+        lands_on: [
+          i => i.has_tag(TypeTags.TypeVirtual),
+          "flatlou",
+          "poitransportation",
+          i => i.meta.evolution_base === "firstwheel",
+        ],
+      },
     ],
+    types: [
+      {
+        name: "Starting Line",
+        icons: ["startingline"],
+        id: "startingline",
+        state: TypeState.Virtual,
+        tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+        hidden: [TypeHidden.Inventory],
+        meta: {
+          scatter_duration: 2,
+        },
+      },
+      {
+        name: "Midway",
+        icons: ["Midway"],
+        id: "midway",
+        state: TypeState.Virtual,
+        tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+        hidden: [TypeHidden.Inventory],
+        meta: {
+          scatter_duration: 2,
+        },
+      },
+      ...["1st", "2nd", "3rd"].map(i => [
+        {
+          name: i + " Place Bicentennial Bicycle",
+          icons: [i+"placebicentennialbicycle"],
+          id: i+"placebicentennialbicycle",
+          state: TypeState.Virtual,
+          tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+          hidden: [TypeHidden.Inventory],
+          meta: {
+            scatter_duration: 2,
+          },
+        },
+        {
+          name: i + " Place Toy Trike",
+          icons: [i+"placetoytrike"],
+          id: i+"placetoytrike",
+          state: TypeState.Virtual,
+          tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+          hidden: [TypeHidden.Inventory],
+          meta: {
+            scatter_duration: 2,
+          },
+        },
+        {
+          name: i + " Place Champion Chopper",
+          icons: [i+"placechampionchopper"],
+          id: i+"placechampionchopper",
+          state: TypeState.Virtual,
+          tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+          hidden: [TypeHidden.Inventory],
+          meta: {
+            scatter_duration: 2,
+          },
+        },
+        {
+          name: i + " Place Unicorn Unicycle",
+          icons: [i+"placeunicornunicycle"],
+          id: i+"placeunicornunicycle",
+          state: TypeState.Virtual,
+          tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+          hidden: [TypeHidden.Inventory],
+          meta: {
+            scatter_duration: 2,
+          },
+        },
+        {
+          name: i + " Place Tandem Twins",
+          icons: [i+"placetandemtwins"],
+          id: i+"placetandemtwins",
+          state: TypeState.Virtual,
+          tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+          hidden: [TypeHidden.Inventory],
+          meta: {
+            scatter_duration: 2,
+          },
+        },
+        {
+          name: i + " Place Flat Lou",
+          icons: [i+"placeflatlou"],
+          id: i+"placelfatlou",
+          state: TypeState.Virtual,
+          tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+          hidden: [TypeHidden.Inventory],
+          meta: {
+            scatter_duration: 2,
+          },
+        },
+      ]).flat()
+    ]
   },
   {
     name: "Baby Panda",
