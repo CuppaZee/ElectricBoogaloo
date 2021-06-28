@@ -15,22 +15,16 @@ import useSetting, { ClanPersonalisationAtom } from "../../hooks/useSetting";
 import Icon from "../Common/Icon";
 import { ClanRewardsData, GameID } from "@cuppazee/utils/lib";
 
-const levels: { level: number; type: "group" | "individual" }[] = [
-  { level: 1, type: "individual" },
-  // { level: 1, type: "group" },
-
-  { level: 2, type: "individual" },
-  // { level: 2, type: "group" },
-
-  { level: 3, type: "individual" },
-  // { level: 3, type: "group" },
-
-  { level: 4, type: "individual" },
-  // { level: 4, type: "group" },
-
-  { level: 5, type: "individual" },
-  // { level: 5, type: "group" },
-];
+const generateLevels = (n: number) =>
+  new Array(n)
+    .fill(0)
+    .map(
+      (_, i) =>
+        [
+          { level: i + 1, type: "individual" as const },
+        ] as { level: number; type: "group" | "individual" }[]
+    )
+    .flat();
 
 export interface ClanRewardsTableProps {
   game_id: number;
@@ -72,6 +66,10 @@ export default React.memo(
         </Layout>
       );
     }
+    
+    const levelCount = rewards_data.data?.data?.levels.length ?? 0;
+    const levels = new Array(levelCount).fill(0).map((_, n) => n + 1);
+    const sidebarLevels = generateLevels(levelCount);
 
     const headerStack = compact !== 0;
     const showSidebar = compact !== 0;
@@ -81,11 +79,11 @@ export default React.memo(
       : 400;
     const minTableWidth = rewards.order.length * columnWidth + sidebarWidth;
 
-    const rewards_rows = (reverse ? rewards.order : levels) as (
+    const rewards_rows = (reverse ? rewards.order : sidebarLevels) as (
       | number
       | { type: "group" | "individual"; level: number }
     )[];
-    const rewards_columns = (reverse ? levels : rewards.order) as (
+    const rewards_columns = (reverse ? sidebarLevels : rewards.order) as (
       | number
       | { type: "group" | "individual"; level: number }
     )[];
@@ -112,16 +110,14 @@ export default React.memo(
           />
           <View>
             <Text category="h6">{t("clan:clan_rewards")}</Text>
-            <Text category="s1">
-              {dayjs(new GameID(game_id).date)
-                .format("MMMM YYYY")}
-            </Text>
+            <Text category="s1">{dayjs(new GameID(game_id).date).format("MMMM YYYY")}</Text>
           </View>
         </Layout>
-        {!Object.values(rewards.levels[0]).some(i=>i !== 1) && (
+        {!Object.values(rewards.levels[0]).some(i => i !== 1) && (
           <Text style={{ padding: 4 }}>
-            Please be aware that the Munzee API is still returning April Fools rewards. I have
-            not manually typed inthe actual rewards, so this is still displaying the April Fools rewards.
+            Please be aware that the Munzee API is still returning April Fools rewards. I have not
+            manually typed inthe actual rewards, so this is still displaying the April Fools
+            rewards.
           </Text>
         )}
         <View style={{ flexDirection: "row" }}>
@@ -149,14 +145,19 @@ export default React.memo(
                 typeof row == "number" ? (
                   <RewardCell key={row} reward_id={row} rewards={rewards} />
                 ) : (
-                  <LevelCell key={`${row.level}_${row.type}`} level={row.level} type={row.type} />
+                  <LevelCell
+                    levels={levels}
+                    key={`${row.level}_${row.type}`}
+                    level={row.level}
+                    type={row.type}
+                  />
                 )
               )}
             </View>
           )}
           <ScrollView
             style={{
-              flex: (reverse ? levels : rewards.order).length,
+              flex: (reverse ? sidebarLevels : rewards.order).length,
             }}
             contentContainerStyle={{ flexGrow: 1 }}
             horizontal={true}
@@ -185,6 +186,7 @@ export default React.memo(
                     />
                   ) : (
                     <LevelCell
+                      levels={levels}
                       key="header"
                       level={column.level}
                       type={column.type}

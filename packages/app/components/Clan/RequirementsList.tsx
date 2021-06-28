@@ -9,7 +9,8 @@ import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import TypeImage from "../Common/TypeImage";
 import Loading from "../Loading";
 import Icon from "../Common/Icon";
-import { ClanRewardsData, GameID, generateClanRequirements, requirementMeta } from "@cuppazee/utils/lib";
+import { ClanRewardsData, GameID, generateClanRequirements } from "@cuppazee/utils/lib";
+import useDB from "../../hooks/useDB";
 
 export interface ClanRequirementsListProps {
   game_id: number;
@@ -26,6 +27,8 @@ export default React.memo(
     const fontScale = PixelRatio.getFontScale();
     const theme = useTheme();
 
+    const db = useDB();
+
     const clan_id = actual_clan_id >= 0 ? actual_clan_id : 2041;
 
     const requirements_data = useMunzeeRequest("clan/v2/requirements", {
@@ -38,11 +41,15 @@ export default React.memo(
     });
 
     const requirements = React.useMemo(
-      () => generateClanRequirements(requirements_data.data?.data),
-      [requirements_data.dataUpdatedAt]
+      () => generateClanRequirements(db, requirements_data.data?.data),
+      [requirements_data.dataUpdatedAt, db]
     );
 
+    const levelCount = Object.keys(requirements_data.data?.data?.data.levels ?? {}).length;
+    const levels = new Array(levelCount).fill(0).map((_, n) => n + 1);
+
     const rewards = rewards_data.data?.data;
+    // const rewardlevels = new Array(levelCount).fill(0).map((_, n) => n + 1);
 
     if (requirements_data.data?.data?.data.levels.length === 0) {
       return null;
@@ -78,10 +85,12 @@ export default React.memo(
           />
           <View>
             <Text category="h6">{t("clan:clan_requirements")}</Text>
-            <Pressable onPress={() => {console.log(JSON.stringify(requirements.all))}}><Text category="s1">
-              {dayjs(new GameID(game_id).date)
-                .format("MMMM YYYY")}
-            </Text></Pressable>
+            <Pressable
+              onPress={() => {
+                console.log(JSON.stringify(requirements.all));
+              }}>
+              <Text category="s1">{dayjs(new GameID(game_id).date).format("MMMM YYYY")}</Text>
+            </Pressable>
           </View>
         </Layout>
         {requirements.isAprilFools && (
@@ -92,7 +101,7 @@ export default React.memo(
             using the accurate data provided by Munzee automatically.
           </Text>
         )}
-        {[1, 2, 3, 4, 5].map(level => (
+        {levels.map(level => (
           <View style={{ paddingBottom: 16 }}>
             <Text style={{ margin: 4 }} category="h6">
               {t("clan:level", { level })}
@@ -112,7 +121,7 @@ export default React.memo(
                     <Text category="s1">
                       {requirements.tasks.individual[i][level]?.toLocaleString()}
                     </Text>{" "}
-                    {requirementMeta[i]?.top} {requirementMeta[i]?.bottom}
+                    {db.getClanRequirement(i).top} {db.getClanRequirement(i).bottom}
                   </Text>
                 </View>
               ))}
@@ -132,7 +141,7 @@ export default React.memo(
                     <Text category="s1">
                       {requirements.tasks.group[i][level]?.toLocaleString()}
                     </Text>{" "}
-                    {requirementMeta[i]?.top} {requirementMeta[i]?.bottom}
+                    {db.getClanRequirement(i).top} {db.getClanRequirement(i).bottom}
                   </Text>
                 </View>
               ))}
@@ -141,7 +150,7 @@ export default React.memo(
               {t("clan:rewards")}
             </Text>
             {rewards.order
-              .filter(i => rewards.levels[level - 1][i])
+              .filter(i => rewards.levels[level - 1]?.[i])
               .map(i => (
                 <View style={{ padding: 4, flexDirection: "row" }}>
                   <TypeImage icon={rewards.rewards[i]?.logo} style={{ size: 24, marginRight: 8 }} />

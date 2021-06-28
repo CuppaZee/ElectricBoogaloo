@@ -12,7 +12,6 @@ import {
 import {
   ClanStatsUser,
   ClanStatsData,
-  requirementMeta,
   ClanShadowData,
   ClanRequirements,
   ClanRewardsData,
@@ -24,6 +23,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useUserBookmarks } from "../../hooks/useBookmarks";
 import useSetting, { ClanPersonalisationAtom, ClansAtom } from "../../hooks/useSetting";
 import Icon, { IconName } from "../Common/Icon";
+import useDB from "../../hooks/useDB";
 
 export function pickTextColor(
   bgColor: string,
@@ -230,6 +230,7 @@ export interface DataCellProps {
   task_id: number;
   clan_id: number;
   requirements: ClanRequirements;
+  levelCount: number;
 }
 
 export function DataCell(props: DataCellProps) {
@@ -237,8 +238,10 @@ export function DataCell(props: DataCellProps) {
   const [options] = useSetting(ClansAtom);
   const [style] = useSetting(ClanPersonalisationAtom);
   const { t } = useTranslation();
+  const db = useDB();
 
-  const opt = options[props.clan_id];
+  const { level: gLevel, ...opt } = options[props.clan_id];
+  const goalLevel = Math.min(Math.max(gLevel, 0), props.levelCount);
   let text;
   let level;
   if (
@@ -251,12 +254,12 @@ export function DataCell(props: DataCellProps) {
     text = Math.max(
       0,
       (props.requirements.tasks["username" in props.user ? "individual" : "group"][props.task_id]?.[
-        opt.level
+        goalLevel
       ] ?? 0) - (props.user.requirements[props.task_id].value ?? 0)
     ).toLocaleString();
     level =
-      (props.user?.requirements[props.task_id]?.level ?? 0) >= opt.level
-        ? opt.level
+      (props.user?.requirements[props.task_id]?.level ?? 0) >= goalLevel
+        ? goalLevel
         : props.user?.requirements[props.task_id]?.level === -1
         ? -1
         : 0;
@@ -285,13 +288,17 @@ export function DataCell(props: DataCellProps) {
         }
         title={
           style.reverse
-            ? `${requirementMeta[props.task_id]?.top} ${requirementMeta[props.task_id]?.bottom}`
+            ? `${db.getClanRequirement(props.task_id).top} ${
+                db.getClanRequirement(props.task_id).bottom
+              }`
             : props.user && "username" in props.user
             ? props.user.username ?? ""
             : t("clan:group_total")
         }
         titleBold={users.some(i =>
-          props.user && "user_id" in props.user ? i.user_id === props.user?.user_id.toString() : false
+          props.user && "user_id" in props.user
+            ? i.user_id === props.user?.user_id.toString()
+            : false
         )}
         subtitle={text}
       />
@@ -320,6 +327,7 @@ export interface RequirementDataCellProps {
 export function RequirementDataCell(props: RequirementDataCellProps) {
   const [style] = useSetting(ClanPersonalisationAtom);
   const { t } = useTranslation();
+  const db = useDB();
 
   const count =
     props.type === "share"
@@ -354,7 +362,7 @@ export function RequirementDataCell(props: RequirementDataCellProps) {
         }
         title={
           style.reverse
-            ? `${requirementMeta[props.task]?.top} ${requirementMeta[props.task]?.bottom}`
+            ? `${db.getClanRequirement(props.task).top} ${db.getClanRequirement(props.task).bottom}`
             : t(`clan:${props.type}_level` as const, { level: props.level })
         }
         subtitle={count?.toString() ?? "-"}
@@ -413,6 +421,7 @@ export type LevelCellProps = {
   type: "individual" | "group" | "share";
   stack?: boolean;
   clan_id?: number;
+  levels: number[];
 };
 
 export function LevelCell(props: LevelCellProps) {
@@ -468,7 +477,7 @@ export function LevelCell(props: LevelCellProps) {
         </View>
       )}>
       <Layout>
-        {open && [1, 2, 3, 4, 5].map(i => <ListItem title={t("clan:level", { level: i })} onPress={() => {
+        {open && props.levels.map(i => <ListItem title={t("clan:level", { level: i })} onPress={() => {
           setOptions({
             ...options,
             [props.clan_id || 0]: {
@@ -549,13 +558,14 @@ export function RequirementCell(props: RequirementCellProps) {
   const [style] = useSetting(ClanPersonalisationAtom);
   const g = props.requirements.group.includes(props.task_id);
   const i = props.requirements.individual.includes(props.task_id);
+  const db = useDB()
   return (
     <CommonCell
       onPress={props.onPress}
       type={props.stack ? "header_stack" : "header"}
       color={g ? (i ? 12 : 13) : 11}
       image={{ uri: `https://server.cuppazee.app/requirements/${props.task_id}.png` }}
-      title={requirementMeta[props.task_id]?.top}
+      title={db.getClanRequirement(props.task_id).top}
       titleIcon={
         props.sortBy && Math.abs(props.sortBy) === props.task_id
           ? props.sortBy > 0
@@ -563,7 +573,7 @@ export function RequirementCell(props: RequirementCellProps) {
             : (`chevron-${style.reverse ? "left" : "up"}` as const)
           : undefined
       }
-      subtitle={requirementMeta[props.task_id]?.bottom}
+      subtitle={db.getClanRequirement(props.task_id).bottom}
     />
   );
 }

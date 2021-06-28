@@ -1,4 +1,3 @@
-import { requirementMeta } from "@cuppazee/utils/lib";
 import { Button, CheckBox, Layout, Modal, Radio, RadioGroup, Text } from "@ui-kitten/components";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
@@ -7,6 +6,7 @@ import { CommonCell, pickTextColor } from "../../components/Clan/Cell";
 import ColourPicker from "../../components/Common/ColourPicker";
 import Icon from "../../components/Common/Icon";
 import Select from "../../components/Common/Select";
+import useDB from "../../hooks/useDB";
 import useModalSafeArea from "../../hooks/useModalSafeArea";
 import useSetting, { ClanPersonalisationAtom, ThemeAtom } from "../../hooks/useSetting";
 import useTitle from "../../hooks/useTitle";
@@ -84,6 +84,8 @@ function MockData({ settings, n }: { settings: ClanStyle; n: number }) {
 
   const m = mockData[n];
 
+  const db = useDB();
+
   if (settings.style === 0) {
     return (
       <CommonCell
@@ -102,7 +104,7 @@ function MockData({ settings, n }: { settings: ClanStyle; n: number }) {
         }
         title={
           settings.reverse
-            ? `${requirementMeta[m[0]]?.top} ${requirementMeta[m[0]]?.bottom}`
+            ? `${db.getClanRequirement(m[0]).top} ${db.getClanRequirement(m[0]).bottom}`
             : m[2]
             ? m[1]
             : t("clan:group_total")
@@ -123,14 +125,15 @@ function MockData({ settings, n }: { settings: ClanStyle; n: number }) {
 }
 
 function MockRequirement({ settings, n }: { settings: ClanStyle; n: number }) {
+  const db = useDB();
   return (
     <CommonCell
       clanStyle={settings}
       type={settings.reverse ? "header" : "header_stack"}
       color={n === 1 ? 11 : n === 31 ? 12 : 13}
       image={{ uri: `https://server.cuppazee.app/requirements/${n}.png` }}
-      title={requirementMeta[n]?.top}
-      subtitle={requirementMeta[n]?.bottom}
+      title={db.getClanRequirement(n).top}
+      subtitle={db.getClanRequirement(n).bottom}
     />
   );
 }
@@ -202,7 +205,7 @@ function MockTable({ settings }: { settings: ClanStyle }) {
   );
 }
 
-const clan_colours = ["0", "1", "2", "3", "4", "5", null, null, null, null, null, "I", "B", "G"];
+const clan_colours = ["0", "1", "2", "3", "4", "5", "6", null, null, null, null, "I", "B", "G"];
 
 function ClanPersonalisation({
   clanSettings,

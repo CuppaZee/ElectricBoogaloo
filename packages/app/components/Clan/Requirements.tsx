@@ -12,23 +12,16 @@ import { useQueryClient } from "react-query";
 import useSetting, { ClanPersonalisationAtom } from "../../hooks/useSetting";
 import Icon from "../Common/Icon";
 import { GameID, generateClanRequirements } from "@cuppazee/utils/lib";
+import useDB from "../../hooks/useDB";
 
-const levels: { level: number; type: "group" | "individual" }[] = [
-  { level: 1, type: "individual" },
-  { level: 1, type: "group" },
-
-  { level: 2, type: "individual" },
-  { level: 2, type: "group" },
-
-  { level: 3, type: "individual" },
-  { level: 3, type: "group" },
-
-  { level: 4, type: "individual" },
-  { level: 4, type: "group" },
-
-  { level: 5, type: "individual" },
-  { level: 5, type: "group" },
-];
+const generateLevels = (n: number) =>
+  new Array(n).fill(0).map(
+    (_, i) =>
+      [
+        { level: i + 1, type: "individual" as const },
+        { level: i + 1, type: "group" as const },
+      ] as { level: number; type: "group" | "individual" }[]
+  ).flat();
 
 export interface ClanRequirementsTableProps {
   game_id: number;
@@ -92,6 +85,8 @@ export default React.memo(
     const reverse = style.reverse;
     const compact = style.style;
 
+    const db = useDB();
+
     const theme = useTheme();
     const borderColor =
       (theme.style === "dark" ? theme["color-basic-400"] : theme["color-basic-800"])
@@ -106,9 +101,13 @@ export default React.memo(
     });
 
     const requirements = React.useMemo(
-      () => generateClanRequirements(requirements_data.data?.data),
-      [requirements_data.dataUpdatedAt]
+      () => generateClanRequirements(db, requirements_data.data?.data),
+      [requirements_data.dataUpdatedAt, db]
     );
+    
+    const levelCount = Object.keys(requirements_data.data?.data?.data.levels ?? []).length;
+    const sidebarLevels = generateLevels(levelCount);
+    const levels = new Array(levelCount).fill(0).map((_, n) => n + 1);
 
     if (requirements_data.data?.data?.data.levels.length === 0) {
       const time = requirements_data.data.data.battle.reveal_at * 1000;
@@ -131,11 +130,11 @@ export default React.memo(
       : 400;
     const minTableWidth = requirements.all.length * columnWidth + sidebarWidth;
 
-    const requirements_rows = (reverse ? requirements.all : levels) as (
+    const requirements_rows = (reverse ? requirements.all : sidebarLevels) as (
       | number
       | { type: "group" | "individual"; level: number }
     )[];
-    const requirements_columns = (reverse ? levels : requirements.all) as (
+    const requirements_columns = (reverse ? sidebarLevels : requirements.all) as (
       | number
       | { type: "group" | "individual"; level: number }
     )[];
@@ -162,10 +161,7 @@ export default React.memo(
           />
           <View>
             <Text category="h6">{t("clan:clan_requirements")}</Text>
-            <Text category="s1">
-              {dayjs(new GameID(game_id).date)
-                .format("MMMM YYYY")}
-            </Text>
+            <Text category="s1">{dayjs(new GameID(game_id).date).format("MMMM YYYY")}</Text>
           </View>
         </Layout>
         {requirements.isAprilFools && (
@@ -201,7 +197,12 @@ export default React.memo(
                 typeof row == "number" ? (
                   <RequirementCell key={row} task_id={row} requirements={requirements} />
                 ) : (
-                  <LevelCell key={`${row.level}_${row.type}`} level={row.level} type={row.type} />
+                  <LevelCell
+                    levels={levels}
+                    key={`${row.level}_${row.type}`}
+                    level={row.level}
+                    type={row.type}
+                  />
                 )
               )}
             </View>
@@ -209,7 +210,7 @@ export default React.memo(
           <SyncScrollView
             controller={scrollViewController}
             style={{
-              flex: (reverse ? levels : requirements.all).length,
+              flex: (reverse ? sidebarLevels : requirements.all).length,
             }}
             contentContainerStyle={{ flexGrow: 1 }}
             horizontal={true}
@@ -238,6 +239,7 @@ export default React.memo(
                     />
                   ) : (
                     <LevelCell
+                      levels={levels}
                       key="header"
                       level={column.level}
                       type={column.type}

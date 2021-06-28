@@ -13,7 +13,8 @@ import { pickTextColor } from "../../components/Clan/Cell";
 import useSetting, { ClanPersonalisationAtom } from "../../hooks/useSetting";
 import { useTranslation } from "react-i18next";
 import baseURL from "../../baseURL";
-import { requirementMeta, generateClanRequirements, GameID } from "@cuppazee/utils/lib";
+import { generateClanRequirements, GameID } from "@cuppazee/utils/lib";
+import useDB from "../../hooks/useDB";
 
 export default function UserClanScreen() {
   const { t } = useTranslation();
@@ -40,9 +41,11 @@ export default function UserClanScreen() {
     game_id,
   });
 
+  const db = useDB();
+
   const requirements = React.useMemo(
-    () => generateClanRequirements(requirements_data.data?.data),
-    [requirements_data.dataUpdatedAt]
+    () => generateClanRequirements(db, requirements_data.data?.data),
+    [requirements_data.dataUpdatedAt, db]
   );
   
   const isFocused = useIsFocused();
@@ -95,7 +98,7 @@ export default function UserClanScreen() {
                   />
                   <View style={{ paddingVertical: 8, flex: 1 }}>
                     <Text category="h6">
-                      {requirementMeta[requirement]?.top} {requirementMeta[requirement]?.bottom}
+                      {db.getClanRequirement(requirement).top} {db.getClanRequirement(requirement).bottom}
                     </Text>
                     <Text category="s1">{data.data.data[requirement].toLocaleString()}</Text>
                   </View>
@@ -112,18 +115,15 @@ export default function UserClanScreen() {
                         borderLeftWidth: style.full_background ? 0 : 4,
                         borderColor: style.colours[l] ?? "#aaaaaa",
                         backgroundColor:
-                          (style.colours[l] ?? "#aaaaaa") +
-                          (style.full_background ? "" : "22"),
+                          (style.colours[l] ?? "#aaaaaa") + (style.full_background ? "" : "22"),
                         alignItems: "center",
                       }}>
                       <Text
                         style={
                           style.full_background
                             ? {
-                              color: pickTextColor(
-                                style.colours[l] ?? "#aaaaaa"
-                              ),
-                            }
+                                color: pickTextColor(style.colours[l] ?? "#aaaaaa"),
+                              }
                             : undefined
                         }
                         category="h4">
@@ -133,7 +133,7 @@ export default function UserClanScreen() {
                   )}
                 </Layout>
               </View>
-            )
+            );
           })}
         </View>
         <View style={{ alignSelf: "stretch", padding: 4 }}>
