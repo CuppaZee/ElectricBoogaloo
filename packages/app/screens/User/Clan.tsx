@@ -70,7 +70,7 @@ export default function UserClanScreen() {
   function calculateRequirement(requirement: number) {
     if (!requirements || !data.data) return;
     return (
-      [...requirements.tasks.individual[requirement] ?? [], Infinity].findIndex(
+      [-1, ...(requirements.tasks.individual[requirement] ?? []).slice(1), Infinity].findIndex(
         i => i > data.data.data[requirement]
       ) - 1
     );
@@ -84,7 +84,7 @@ export default function UserClanScreen() {
       <ScrollView style={{ flex: 1 }} contentContainerStyle={{ alignItems: "center" }}>
         <View style={{ width: 800, maxWidth: "100%", flexDirection: "row", flexWrap: "wrap" }}>
           {requirements.all.map(requirement => {
-            const l = levels[requirement] || -1;
+            const l = levels[requirement] ?? -1;
             return (
               <View style={{ width: 300, flexGrow: 1, maxWidth: "100%", padding: 4 }}>
                 <Layout
@@ -100,7 +100,7 @@ export default function UserClanScreen() {
                     <Text category="h6">
                       {db.getClanRequirement(requirement).top} {db.getClanRequirement(requirement).bottom}
                     </Text>
-                    <Text category="s1">{data.data.data[requirement].toLocaleString()}</Text>
+                    <Text category="s1">{data.data.data[requirement]?.toLocaleString()}</Text>
                   </View>
                   {!!requirements.tasks.individual[requirement] && (
                     <Layout
