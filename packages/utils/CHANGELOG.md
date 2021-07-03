@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.0.20/.21 - 03/07/2021
+- Added Dynamic Level Support
 ## 0.0.19 - 26/06/2021
 - Updated @cuppazee/db
 - Added New Clan Requirements Database System

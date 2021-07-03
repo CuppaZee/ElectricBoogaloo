@@ -193,10 +193,11 @@ export function generateClanStats(
   shadow?: ClanShadowData
 ) {
   if (!clan || !requirements || !stats || stats.data.levels instanceof Array) return null;
+  const levelCount = Math.max(...Object.keys(stats.data.levels).map(i => Number(i)));
   const data: ClanStatsData = {
     users: {},
     requirements: {},
-    level: 5,
+    level: levelCount,
   };
 
   if (shadow && stats.battle.end * 1000 > Date.now()) {
@@ -207,7 +208,7 @@ export function generateClanStats(
         admin: false,
         shadow: true,
         requirements: {},
-        level: 5,
+        level: levelCount,
       };
     }
   }
@@ -220,15 +221,15 @@ export function generateClanStats(
         admin: user.is_admin === "1",
         shadow: false,
         requirements: {},
-        level: 5,
+        level: levelCount,
       };
     }
   }
   const allTasks = [
-    ...(stats?.data.levels["5"]?.individual || []),
-    ...(stats?.data.levels["5"]?.group || []),
+    ...(stats?.data.levels[levelCount]?.individual || []),
+    ...(stats?.data.levels[levelCount]?.group || []),
   ];
-  for (const level of ["4", "3", "2", "1"]) {
+  for (let level = levelCount - 1; level > 0;level--) {
     for (const task of [
       ...(stats?.data.levels[level]?.individual || []),
       ...(stats?.data.levels[level]?.group || []),
@@ -290,7 +291,7 @@ export function generateClanStats(
 
       // Calculate Level
       if (requirements.tasks.individual[task.task_id]) {
-        for (let level = 1; level <= 5; level++) {
+        for (let level = 1; level <= levelCount; level++) {
           if ((requirements.tasks.individual[task.task_id][level] || 0) <= (value ?? Infinity)) {
             user.requirements[task.task_id].level = level;
           }
@@ -302,7 +303,7 @@ export function generateClanStats(
     }
     // Calculate Clan Total Level
     if (requirements.tasks.group[task.task_id]) {
-      for (let level = 1; level <= 5; level++) {
+      for (let level = 1; level <= levelCount; level++) {
         if (
           (requirements.tasks.group[task.task_id][level] || 0) <=
           data.requirements[task.task_id].value
