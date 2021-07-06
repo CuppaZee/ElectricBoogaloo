@@ -1164,8 +1164,19 @@ const builds: (db: CuppaZeeDB) => Build[] = db => [
     date: "2021-06-19",
     fixes: [
       {
-        description: "Fixed the Munzee creator being wrong on Bouncer Host captures on User Activity",
-        thanks: "lynnslilypad"
+        description:
+          "Fixed the Munzee creator being wrong on Bouncer Host captures on User Activity",
+        thanks: "lynnslilypad",
+      },
+    ],
+  },
+  {
+    build: 72,
+    date: "2021-07-06",
+    improvements: [
+      {
+        description:
+          "Added a notice on bouncer pages which shows when API Endpoints are down",
       },
     ],
   },
