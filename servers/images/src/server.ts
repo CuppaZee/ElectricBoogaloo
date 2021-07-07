@@ -4,7 +4,31 @@ import path from "path";
 import sharp from "sharp";
 import fetch from "node-fetch";
 import { createReadStream, createWriteStream, promises, existsSync, mkdirSync } from "fs";
-import types from "@cuppazee/types";
+import { CuppaZeeDB, loadFromArrayBuffer, loadFromLzwJson } from "@cuppazee/db";
+
+const czdb = {
+  value: new CuppaZeeDB([],[],[])
+}
+
+async function loadDB() {
+  try {
+    const response = await fetch(`https://db.cuppazee.app/lzwmsgpack/`);
+    if (!response.ok) throw "e";
+    const data = await response.arrayBuffer();
+    if (data.byteLength > 0) {
+      const { db } = loadFromArrayBuffer(data);
+      czdb.value = db;
+    }
+  } catch (e) {
+    const response = await fetch(`https://db.cuppazee.app/lzw/`);
+    if (!response.ok) throw "e";
+    const data = await response.text();
+    if (data.length > 0) {
+      const { db } = loadFromLzwJson(data);
+      czdb.value = db;
+    }
+  }
+}
 
 const overrideDir = path.join(__dirname, "../override");
 const cacheDir = path.join(__dirname, "../cache");
@@ -58,6 +82,11 @@ function lightStrip(t: string): string {
 
 type Format = "png" | "jpeg" | "webp" | "avif";
 
+fastify.get("/dbr", async function (request, reply) {
+  await loadDB();
+  reply.send("🎉");
+})
+
 fastify.get("/:category/:size/:type", async function (request, reply) {
   // Parse and Validate Parameters
   const params = request.params as {
@@ -79,8 +108,8 @@ fastify.get("/:category/:size/:type", async function (request, reply) {
     reply.send(`Invalid Size: ${size}. Size >0, <=512`);
     return;
   }
-  let type = params.type.split(".").slice(0, -1).join(".");
-  type = types.getType(type)?.icon ?? lightStrip(type);
+  let type = decodeURIComponent(params.type.split(".").slice(0, -1).join("."));
+  type = czdb.value.getType(type)?.icon ?? lightStrip(type);
   let formatStr = params.type.split(".").slice(-1)[0];
   if (formatStr === "jpg") formatStr = "jpeg";
   if (formatStr !== "jpeg" && formatStr !== "png" && formatStr !== "webp" && formatStr !== "avif") {

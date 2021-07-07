@@ -668,6 +668,36 @@ const scatters: {
     },
     category: "bouncer",
   },
+  {
+    name: "Canopic Jar Artifact",
+    icons: ["canopicjarartifact"],
+    id: "canopicjarartifact",
+    state: TypeState.Virtual,
+    scatter: {
+      duration: 2,
+      standalone: true,
+    },
+  },
+  {
+    name: "Sesen Artifact",
+    icons: ["sesenartifact"],
+    id: "sesenartifact",
+    state: TypeState.Virtual,
+    scatter: {
+      duration: 2,
+      standalone: true,
+    },
+  },
+  {
+    name: "Was Scepter Artifact",
+    icons: ["wasscepterartifact"],
+    id: "wasscepterartifact",
+    state: TypeState.Virtual,
+    scatter: {
+      duration: 2,
+      standalone: true,
+    },
+  },
 ];
 
 export default scatters;

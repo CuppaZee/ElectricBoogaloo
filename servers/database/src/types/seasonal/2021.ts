@@ -3,6 +3,36 @@ import { TypeHidden, TypeState, TypeTags } from "@cuppazee/db";
 
 const s2021: SeasonalCategory[] = [
   {
+    name: "Munzee 10th Birthday",
+    id: "10thbirthday",
+    starts: "2021-07-01T00:00:00-05:00",
+    ends: "2021-07-31T23:59:00-05:00",
+    specials: [
+      {
+        name: "chocolatepegasus",
+        icons: ["chocolatepegasus"],
+        id: "chocolatepegasus",
+        state: TypeState.Virtual,
+        tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+        hidden: [TypeHidden.Inventory],
+        meta: {
+          scatter_duration: 2,
+        },
+      },
+      {
+        name: "Golden Chocolate Pegasus",
+        icons: ["goldenchocolatepegasus"],
+        id: "goldenchocolatepegasus",
+        state: TypeState.Virtual,
+        tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+        hidden: [TypeHidden.Inventory, TypeHidden.Bouncers],
+        meta: {
+          scatter_duration: 2,
+        },
+      },
+    ]
+  },
+  {
     name: "World Bicycle Day 2021",
     id: "worldbicycleday2021",
     starts: "2021-06-02T12:00:00-05:00",
@@ -1147,6 +1177,34 @@ const s2021: SeasonalCategory[] = [
           "skyland",
         ],
       },
+      {
+        name: "Baseball Garden Gnome",
+        icons: ["baseballgardengnome"],
+        id: "baseballgardengnome",
+        duration: 6,
+        lands_on: [
+          type => type.has_tag(TypeTags.TypeVirtual),
+          "munzee",
+          "poisports",
+          "treehouse",
+          "skyland",
+        ],
+      },
+      {
+        name: "Award Show Garden Gnome",
+        icons: ["awardshowgardengnome"],
+        id: "awardshowgardengnome",
+        duration: 6,
+        lands_on: [
+          type => type.has_tag(TypeTags.TypeVirtual),
+          "munzee",
+          "premium",
+          "poientertainment",
+          "poidrinkdepot",
+          "treehouse",
+          "skyland",
+        ],
+      },
     ],
     types: [
       {
@@ -1258,6 +1316,29 @@ const s2021: SeasonalCategory[] = [
         icons: ["gnomeheelfliphat"],
         id: "gnomeheelfliphat",
         munzee_id: 2807,
+        state: TypeState.Virtual,
+        tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+        hidden: [TypeHidden.Inventory],
+        meta: {
+          scatter_duration: 2,
+        },
+      },
+      {
+        name: "Gnome Catcher's Cap",
+        icons: ["gnomecatcher'scap"],
+        id: "gnomecatcher'scap",
+        munzee_id: 2808,
+        state: TypeState.Virtual,
+        tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+        hidden: [TypeHidden.Inventory],
+        meta: {
+          scatter_duration: 2,
+        },
+      },
+      {
+        name: "10th Munzee Birthday Hat",
+        icons: ["10thmunzeebirthdayhat"],
+        id: "10thmunzeebirthdayhat",
         state: TypeState.Virtual,
         tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
         hidden: [TypeHidden.Inventory],

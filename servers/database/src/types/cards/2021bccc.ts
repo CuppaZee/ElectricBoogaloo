@@ -19,6 +19,48 @@ const c2021bccc: {
     id: "10thbirthdaymailbox",
     munzee_id: 2651,
   },
+  {
+    name: "Awards Show Invitation Card",
+    icons: ["awardsshowinvitationcard"],
+    id: "awardsshowinvitationcard",
+    // munzee_id: 0,
+  },
+  {
+    name: "Tin Foil Hat Card",
+    icons: ["tinfoilhatcard"],
+    id: "tinfoilhatcard",
+    // munzee_id: 0,
+  },
+  {
+    name: "Swag Bag Card",
+    icons: ["swagbagcard"],
+    id: "swagbagcard",
+    // munzee_id: 0,
+  },
+  {
+    name: "Commemorative Napkin Card",
+    icons: ["commemorativenapkincard"],
+    id: "commemorativenapkincard",
+    // munzee_id: 0,
+  },
+  {
+    name: "Sweet Ride Card",
+    icons: ["sweetridecard"],
+    id: "sweetridecard",
+    // munzee_id: 0,
+  },
+  {
+    name: "Green Carpet Card",
+    icons: ["greencarpetcard"],
+    id: "greencarpetcard",
+    // munzee_id: 0,
+  },
+  {
+    name: "Pegasus Piñata Card",
+    icons: ["pegasuspinatacard", "pegasuspiñatacard"],
+    id: "pegasuspinatacard",
+    // munzee_id: 0,
+  },
   // {
   //   name: " Card",
   //   icons: ["card"],
