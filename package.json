@@ -9,7 +9,8 @@
   "workspaces": {
     "packages": [
       "packages/*",
-      "servers/*"
+      "servers/*",
+      "tasks/*"
     ],
     "nohoist": [
       "**"
