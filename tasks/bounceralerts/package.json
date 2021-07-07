@@ -1,0 +1,35 @@
+{
+  "name": "@cuppazee/bounceralerts-task",
+  "version": "0.0.1",
+  "main": "lib",
+  "license": "MPL-2.0",
+  "keywords": [
+    "munzee",
+    "cuppazee"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CuppaZee/ElectricBoogaloo.git"
+  },
+  "author": "CuppaZee",
+  "scripts": {
+    "lint": "tslint --project tsconfig.json",
+    "build": "tsc",
+    "docker-build": "tsc && docker build . -t cuppazee-bounceralerts-alpine",
+    "dev": "cross-env NODE_ENV=development tsc-watch --onSuccess \"node --enable-source-maps ./lib/run.js\""
+  },
+  "dependencies": {
+    "@types/mongodb": "^3.6.17",
+    "@types/node-fetch": "^2.5.11",
+    "cross-env": "^7.0.3",
+    "expo-server-sdk": "^3.6.0",
+    "mongodb": "^3.6.9",
+    "node-fetch": "^2.6.1",
+    "spherical-geometry-js": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.41",
+    "tsc-watch": "^4.2.9",
+    "typescript": "^4.2.4"
+  }
+}
