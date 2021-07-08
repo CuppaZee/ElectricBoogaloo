@@ -1,4 +1,5 @@
-import types, { TypeTags } from "@cuppazee/types";
+import { TypeTags } from "@cuppazee/db";
+import czdb from "../util/czdb";
 import { computeDistanceBetween, computeHeading } from "spherical-geometry-js";
 import notification from "../util/notification";
 import { getBouncers } from "../util/cache";
@@ -36,7 +37,7 @@ export default async function () {
       .filter(i => !sent[i.endpoint].has(i.hash))
       .map(i => ({
         ...i,
-        type: types.getType(
+        type: czdb.value.getType(
           "mythological_munzee" in i ? i.mythological_munzee.munzee_logo : i.logo
         ),
       }));

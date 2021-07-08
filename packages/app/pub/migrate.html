@@ -15,18 +15,30 @@
 
 <body class="d-flex flex-column align-items-center justify-content-center text-center overflow-auto" style="min-height: 100vh;">
     <h1>CuppaZee Max is moving to <code>max.cuppazee.app</code></h1>
-    <h3>You may need to change your bookmarks</h3>
-    <button id="move" class="btn btn-primary" onclick="migrate()">
-        Move your data to max.cuppazee.app
-    </button>
-    <button id="cont" class="btn btn-primary" onclick="cont()">
+    <h2 id="status"></h2>
+    <h5 id="bookmarks">Note: You may need to change your bookmarks</h5>
+    <button id="cont" class="btn btn-lg btn-success mt-2" onclick="cont()">
         Continue to max.cuppazee.app
     </button>
+    <button id="move" class="btn btn-lg btn-success mt-2" onclick="migrate()">
+        Move your data to max.cuppazee.app
+    </button>
     <script>
-        if (localStorage.migrated === "yes") {
-            document.getElementById("move").style.display = "none";
+        if (localStorage.migrated === "2") {
+            document.getElementById("status").innerText = "Your data has been moved already";
+            document.getElementById("status").classList.add("text-success");
+            document.getElementById("move").classList.remove("btn-primary");
+            document.getElementById("move").classList.add("btn-warning");
+            document.getElementById("move").classList.remove("btn-lg");
+            document.getElementById("move").innerText = "Move your data to max.cuppazee.app again (not recommended)"
         } else {
-            document.getElementById("cont").style.display = "none";
+            document.getElementById("bookmarks").style.display = "none";
+            document.getElementById("status").innerText = "Your data hasn't been moved yet";
+            document.getElementById("cont").classList.remove("btn-primary");
+            document.getElementById("cont").classList.add("btn-warning");
+            document.getElementById("cont").classList.add("btn-sm");
+            document.getElementById("cont").classList.remove("btn-lg");
+            document.getElementById("cont").innerText = "Continue to max.cuppazee.app without moving data (not recommended)"
         }
         function cont() {
             location.href = "https://max.cuppazee.app" + location.pathname
@@ -34,8 +46,8 @@
         function migrate() {
             const migrationData = Object.assign({}, localStorage);
             delete migrationData["@czexpress/dbcache"]
-            localStorage.migrated = "yes"
-            location.href = "https://max.cuppazee.app/migration.html?x=" + encodeURIComponent(JSON.stringify(migrationData))
+            localStorage.migrated = "2"
+            location.href = "https://max.cuppazee.app/migration.html?t=" + Date.now() + "#" + encodeURIComponent(JSON.stringify(migrationData))
         }
     </script>
 </body>

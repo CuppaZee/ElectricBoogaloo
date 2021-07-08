@@ -1,7 +1,7 @@
 import { Route } from "../types";
 import { retrieve, request } from "../util";
-import typesDB from "@cuppazee/types";
-import { DestinationType, TypeState } from "@cuppazee/types/lib/munzee";
+import czdb from "../util/czdb";
+import { TypeTags, TypeState } from "@cuppazee/db";
 import day from "../util/day";
 
 const route: Route = {
@@ -13,7 +13,7 @@ const route: Route = {
       async function({ params: { username, user_id, from } }) {
         function convertState(state?: TypeState) {
           if (!from || !from.includes("_1.2_")) {
-            return state !== undefined ? state + 1 : state;
+            return state;
           }
           if (state === TypeState.Physical) {
             return "physical"
@@ -49,10 +49,10 @@ const route: Route = {
         //     return obj;
         //   }, {} as { [key: string]: number });
         var cap = captures?.data?.types?.map(i => {
-          var g = typesDB.getType(i.name);
+          var g = czdb.value.getType(i.name);
           return {
             type: Number(i.capture_type_id),
-            state: g?.meta.destination_type === DestinationType.Room ? "room" : convertState(g?.state),
+            state: g?.has_tag(TypeTags.DestinationRoom) ? "room" : convertState(g?.state),
             name: i.name,
             icon: g?.icon,
             amount: Number(i.captures),
@@ -63,11 +63,11 @@ const route: Route = {
             a[b.i].amount++;
             return a;
           }
-          var g = typesDB.getType(b.i);
+          var g = czdb.value.getType(b.i);
           a[b.i] = {
             type: g?.id,
-            state: g?.meta.destination_type === DestinationType.Room ? "room" : convertState(g?.state),
-            name: g?.name ?? typesDB.strip(b.i),
+            state: g?.has_tag(TypeTags.DestinationRoom) ? "room" : convertState(g?.state),
+            name: g?.name ?? czdb.value.strip(b.i),
             icon: b.i,
             amount: 1,
           }

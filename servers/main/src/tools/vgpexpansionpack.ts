@@ -1,5 +1,6 @@
 import { Route } from "../types";
-import db, { TypeState, TypeTags } from "@cuppazee/types";
+import { TypeState, TypeTags } from "@cuppazee/db";
+import czdb from "../util/czdb";
 
 const route: Route = {
   path: "vgpexpansionpack",
@@ -9,8 +10,8 @@ const route: Route = {
       version: 1,
       async function({ params: { list } }) {
         const excludes = new Set(["laserpen", "virtualemerald", "trail", "eventtrail"]);
-        const existing: Set<string> = new Set(list.split(",").map((i: string) => db.strip(i)));
-        const types = db.types
+        const existing: Set<string> = new Set(list.split(",").map((i: string) => czdb.value.strip(i)));
+        const types = czdb.value.types
           .filter(i => !existing.has(i.strippedIcon))
           .filter(i => i.state === TypeState.Virtual)
           .filter(i => !i.has_tag(TypeTags.Scatter))

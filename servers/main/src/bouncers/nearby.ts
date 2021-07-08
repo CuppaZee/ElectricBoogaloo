@@ -2,7 +2,9 @@ import { computeDistanceBetween, computeHeading } from "spherical-geometry-js";
 import { Route } from "../types";
 import { getBouncers } from "../util/cache";
 // import notificationSettings from "../util/notificationSettings";
-import types, { TypeTags } from "@cuppazee/types";
+import { TypeTags } from "@cuppazee/db";
+import czdb from "../util/czdb";
+import notificationSettings from "../util/notificationSettings";
 
 const route: Route = {
   path: "bouncers/nearby",
@@ -10,8 +12,8 @@ const route: Route = {
   versions: [
     {
       version: 1,
-      async function({ params: { token, longitude, latitude, dv } }) {
-        const devices: any[] = dv ?? [];
+      async function({ params: { token, longitude, latitude } }) {
+        const devices = await notificationSettings();
         // const devices = await notificationSettings();
         const device = devices.find(i => i.token === token)?.bouncers ?? {
           default: "10",
@@ -23,7 +25,7 @@ const route: Route = {
         const all_bouncers = await getBouncers();
         const bouncers = Object.values(all_bouncers).map(i => ({
           ...i,
-          type: types.getType(
+          type: czdb.value.getType(
             "mythological_munzee" in i ? i.mythological_munzee.munzee_logo : i.logo
           ),
           distance: computeDistanceBetween(

@@ -8,5 +8,10 @@
     "icon": "https://munzee.global.ssl.fastly.net/images/pins/social.png",
     "id": "1",
     "name": "Social"
+  },
+  {
+    "icon": "https://munzee.global.ssl.fastly.net/images/pins/universal_10th_birthday.png",
+    "id": "2",
+    "name": "10th Birthday Universal"
   }
 ]

@@ -108,6 +108,12 @@ const mechz: {
       "treehouse",
     ],
   },
+  {
+    name: "MechaniC4K3",
+    icons: ["mechanic4k3"],
+    id: "mechanic4k3",
+    lands_on: [],
+  },
 ];
 
 

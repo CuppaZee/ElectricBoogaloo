@@ -12,7 +12,10 @@
         // const migrationData = Object.assign({}, localStorage);
         // delete migrationData["@czexpress/dbcache"]
         // location.href = "https://max.cuppazee.app/migration.html?x=" + encodeURIComponent(JSON.stringify(migrationData))
-        Object.assign(localStorage, JSON.parse(decodeURIComponent(location.search.slice(3))))
+        const d = JSON.parse(decodeURIComponent(location.hash ? location.hash.slice(1) : location.search.slice(3)));
+        for(const key in d) {
+            localStorage[key] = d[key];
+        }
         location.href = "/"
     </script>
 </body>

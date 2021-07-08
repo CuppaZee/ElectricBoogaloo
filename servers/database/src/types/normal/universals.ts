@@ -21,6 +21,11 @@ const universals: {
       interval: 5,
     },
   },
+  {
+    name: "10th Birthday Universal",
+    icons: ["universal_10th_birthday", "10thbirthdayuniversal"],
+    id: "10thbirthdayuniversal",
+  },
 ];
 
 export default universals;

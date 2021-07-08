@@ -3,13 +3,15 @@ import Fastify from "fastify";
 import FastifyCors from "fastify-cors";
 // @ts-expect-error
 import lzwCompress from "lzwcompress";
+import requirements from "./requirements";
+import translations from "./translations";
 import types from "./types";
 const fastify = Fastify({ logger: true });
 fastify.register(FastifyCors, { 
   origin: true,
 })
 
-const db = { ...types, version: Math.floor(Math.random() * 100000) + 1 };
+const db = { ...types, requirements, version: Math.floor(Math.random() * 100000) + 1 };
 
 fastify.get("/json/:version", async function (request, reply) {
   if (Number((request.params as any)?.version) === db.version) {
@@ -42,6 +44,14 @@ fastify.get("/lzwmsgpack/:version", async function (request, reply) {
   }
   return reply.send(Buffer.from(encode(JSON.parse(lzwCompress.pack(db)))));
 });
+
+fastify.get("/translations/:lang", async function (request, reply) {
+  const lang = (request.params as any).lang;
+  const t = translations[lang];
+  console.log(lang, t);
+  reply.send(t?.main);
+  return;
+})
 
 const start = async () => {
   try {

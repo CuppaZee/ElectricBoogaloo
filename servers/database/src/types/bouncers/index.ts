@@ -157,7 +157,12 @@ for (const t of myths) {
     id: t.id,
     state: TypeState.Bouncer,
     category: `bouncer_myth_${t.type}`,
-    tags: [TypeTags.Bouncer, TypeTags.BouncerMyth, ...(t.tags ?? [])],
+    tags: [TypeTags.Bouncer, TypeTags.BouncerMyth, TypeTags[`BouncerMyth${({
+      mirror: "Mirror",
+      original: "Original",
+      classical: "Classical",
+      modern: "Modern"
+    } as const)[t.type]}` as const], ...(t.tags ?? [])],
     meta: {
       bouncer_duration: 12,
       bouncer_lands_on: t.lands_on,

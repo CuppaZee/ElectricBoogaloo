@@ -248,6 +248,14 @@ const zodiacs: {
     state: TypeState.Virtual,
     zodiac: "egyptian",
   },
+  {
+    name: "Anubis",
+    icons: ["anubis"],
+    id: "anubis",
+    munzee_id: 2757,
+    state: TypeState.Virtual,
+    zodiac: "egyptian",
+  },
 ];
 
 export default zodiacs;
