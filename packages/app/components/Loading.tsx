@@ -87,6 +87,35 @@ export default function Loading({
       </Layout>
     );
   }
+
+  if (
+    data?.some(i => i.tokenStatus?.status === "failed")
+  ) {
+    return (
+      <Layout
+        level={level}
+        onLayout={onLayout}
+        style={[
+          { flex: 1, justifyContent: "center", alignItems: "center" },
+          !level && { backgroundColor: "transparent" },
+        ]}>
+        <Image
+          source={
+            theme.style === "dark"
+              ? require("../assets/images/error.png")
+              : require("../assets/images/error-light.png")
+          }
+          resizeMode="contain"
+          style={{
+            width: Math.min(300, size?.width || 0),
+            height: Math.min(100, size?.height || 0),
+          }}
+        />
+        <Text style={{ textAlign: "center" }} category="h4">Unable to connect to CuppaZee's server.</Text>
+        <Text style={{ textAlign: "center" }} category="s1">Check your internet connection and try again. If you've got a stable internet connection, then CuppaZee's server might be down.</Text>
+      </Layout>
+    );
+  }
   if (data?.some(i => i.tokenStatus?.status === "expired") || data?.some(i => {
     if (i.error && typeof i.error === "object") {
       if ("status" in i.error) {

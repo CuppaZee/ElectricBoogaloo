@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { createContext, useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { useQuery } from "react-query";
 import { atom, useAtom } from "jotai";
 import baseURL from "../baseURL";
@@ -10,10 +10,6 @@ const getToken = async (teaken: string, user_id: number) => {
       teaken
     )}&user_id=${encodeURIComponent(user_id)}`
   );
-  if (!response.ok) {
-    throw new Error("Expired");
-  }
-  // TODO: FROM value
   return await response.json();
 };
 
@@ -70,7 +66,7 @@ export default function useToken(user_id?: number) {
     }
   );
   return {
-    status: (teakens.loaded && teaken) ? (data.isSuccess ? "valid" : (data.isLoading ? "loading" : "expired")) : (teakens.loaded ? "missing" : "loading"),
+    status: (teakens.loaded && teaken) ? (data.data?.executed_in ? (data.data?.data?.access_token ? "valid" : "expired") : (data.isLoading ? "loading" : "failed")) : (teakens.loaded ? "missing" : "loading"),
     user_id: user_id ?? Object.keys(teakens.data)[0],
     token: data.data?.data,
   };
