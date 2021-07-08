@@ -87,7 +87,16 @@ export default function Loading({
       </Layout>
     );
   }
-  if (data?.some(i => i.tokenStatus?.status === "expired")) {
+  if (data?.some(i => i.tokenStatus?.status === "expired") || data?.some(i => {
+    if (i.error && typeof i.error === "object") {
+      if ("status" in i.error) {
+        if ((i.error as any).status === 401 || (i.error as any).status === "401") {
+          return true;
+        }
+      }
+    }
+    return false;
+  })) {
     return (
       <Layout
         level={level}
