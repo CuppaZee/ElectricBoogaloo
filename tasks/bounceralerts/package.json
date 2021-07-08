@@ -19,6 +19,7 @@
     "dev": "cross-env NODE_ENV=development tsc-watch --onSuccess \"node --enable-source-maps ./lib/run.js\""
   },
   "dependencies": {
+    "@cuppazee/db": "^0.0.7",
     "@types/mongodb": "^3.6.17",
     "@types/node-fetch": "^2.5.11",
     "cross-env": "^7.0.3",

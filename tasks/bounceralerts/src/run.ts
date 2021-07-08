@@ -123,7 +123,7 @@ async function getBouncers(): Promise<((MunzeeSpecial | MunzeeSpecialBouncer) & 
     hash: string;
     endpoint: "regular" | "mythological" | "pouchcreatures" | "flat" | "bouncers" | "retired";
   })[]> {
-  const response = await fetch("https://server.cuppazee.app/bouncers/all");
+  const response = await fetch(config.bouncersalertsurl ?? "https://server.cuppazee.app/bouncers/all");
   const data = await response.json();
   console.log('Got Bouncers:', data.data.length);
   return data.data;
@@ -197,6 +197,7 @@ async function getLease() {
   const devices = await notificationData({
     "bouncers.enabled": true,
   });
+  console.log("Got Devices:", devices.length);
   try {
     // Calculate Notifications to Send
     const sent = {
@@ -207,6 +208,7 @@ async function getLease() {
       bouncers: new Set(list.bouncers?.match(/.{8}/g)),
       retired: new Set(list.retired?.match(/.{8}/g)),
     };
+    console.log("Getting Bouncers...");
     const all_bouncers = await getBouncers();
     var bouncers = all_bouncers
       .filter(i => !sent[i.endpoint].has(i.hash))
@@ -380,7 +382,6 @@ async function getLease() {
 
     return;
   } catch (e) {
-    console.error(e);
-    return;
+    throw e;
   }
-})();
+})().then(() => process.exit()).catch(() => process.exit(1));
