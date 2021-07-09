@@ -3,13 +3,118 @@ import { TypeHidden, TypeState, TypeTags } from "@cuppazee/db";
 
 const s2021: SeasonalCategory[] = [
   {
+    name: "Go Fishing",
+    id: "gofishing2021",
+    starts: "2021-07-09T12:00:00-05:00",
+    ends: "2021-08-08T23:59:00-05:00",
+    specials: [
+      {
+        name: "Freshwater Fishing Pole",
+        icons: ["freshwaterfishingpole"],
+        id: "freshwaterfishingpole",
+        lands_on: [
+          "munzee",
+          "mystery",
+          "watermystery",
+          "aquamarine",
+          "aquarius",
+          "pisces",
+          "seaweed",
+          "shark",
+          "fish",
+        ],
+      },
+      {
+        name: "Saltwater Fishing Pole",
+        icons: ["saltwaterfishingpole"],
+        id: "saltwaterfishingpole",
+        lands_on: [
+          i => i.has_tag(TypeTags.VirtualColourBlue),
+          "virtualsapphire",
+          "submarine",
+          "canoe",
+          "motorboat",
+          "poibeach",
+        ],
+      },
+    ],
+    types: [
+      {
+        name: "Red Fishing Bobber",
+        icons: ["redfishingbobber"],
+        id: "redfishingbobber",
+        state: TypeState.Virtual,
+        tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+        hidden: [TypeHidden.Inventory, TypeHidden.Capture],
+        meta: {
+          scatter_duration: 2,
+        },
+      },
+      {
+        name: "Green Fishing Bobber",
+        icons: ["greenfishingbobber"],
+        id: "greenfishingbobber",
+        state: TypeState.Virtual,
+        tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+        hidden: [TypeHidden.Inventory, TypeHidden.Capture],
+        meta: {
+          scatter_duration: 2,
+        },
+      },
+      {
+        name: "Smelt",
+        icons: ["smelt"],
+        id: "smelt",
+        state: TypeState.Virtual,
+        tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+        hidden: [TypeHidden.Inventory, TypeHidden.Bouncers],
+        meta: {
+          scatter_duration: 2,
+        },
+      },
+      {
+        name: "Rainbow Trout",
+        icons: ["rainbowtrout"],
+        id: "rainbowtrout",
+        state: TypeState.Virtual,
+        tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+        hidden: [TypeHidden.Inventory, TypeHidden.Bouncers],
+        meta: {
+          scatter_duration: 2,
+        },
+      },
+      {
+        name: "King Mackerel",
+        icons: ["kingmackerel"],
+        id: "kingmackerel",
+        state: TypeState.Virtual,
+        tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+        hidden: [TypeHidden.Inventory, TypeHidden.Bouncers],
+        meta: {
+          scatter_duration: 2,
+        },
+      },
+      {
+        name: "Bonefish",
+        icons: ["bonefish"],
+        id: "bonefish",
+        state: TypeState.Virtual,
+        tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+        hidden: [TypeHidden.Inventory, TypeHidden.Bouncers],
+        meta: {
+          scatter_duration: 2,
+        },
+      },
+    ],
+  },
+  {
     name: "Munzee 10th Birthday",
     id: "10thbirthday",
     starts: "2021-07-01T00:00:00-05:00",
     ends: "2021-07-31T23:59:00-05:00",
     specials: [
       {
-        name: "chocolatepegasus",
+        name: "Chocolate Pegasus",
         icons: ["chocolatepegasus"],
         id: "chocolatepegasus",
         state: TypeState.Virtual,
@@ -30,7 +135,7 @@ const s2021: SeasonalCategory[] = [
           scatter_duration: 2,
         },
       },
-    ]
+    ],
   },
   {
     name: "World Bicycle Day 2021",
@@ -107,75 +212,77 @@ const s2021: SeasonalCategory[] = [
           scatter_duration: 2,
         },
       },
-      ...["1st", "2nd", "3rd"].map(i => [
-        {
-          name: i + " Place Bicentennial Bicycle",
-          icons: [i+"placebicentennialbicycle"],
-          id: i+"placebicentennialbicycle",
-          state: TypeState.Virtual,
-          tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
-          hidden: [TypeHidden.Inventory],
-          meta: {
-            scatter_duration: 2,
+      ...["1st", "2nd", "3rd"]
+        .map(i => [
+          {
+            name: i + " Place Bicentennial Bicycle",
+            icons: [i + "placebicentennialbicycle"],
+            id: i + "placebicentennialbicycle",
+            state: TypeState.Virtual,
+            tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+            hidden: [TypeHidden.Inventory],
+            meta: {
+              scatter_duration: 2,
+            },
           },
-        },
-        {
-          name: i + " Place Toy Trike",
-          icons: [i+"placetoytrike"],
-          id: i+"placetoytrike",
-          state: TypeState.Virtual,
-          tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
-          hidden: [TypeHidden.Inventory],
-          meta: {
-            scatter_duration: 2,
+          {
+            name: i + " Place Toy Trike",
+            icons: [i + "placetoytrike"],
+            id: i + "placetoytrike",
+            state: TypeState.Virtual,
+            tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+            hidden: [TypeHidden.Inventory],
+            meta: {
+              scatter_duration: 2,
+            },
           },
-        },
-        {
-          name: i + " Place Champion Chopper",
-          icons: [i+"placechampionchopper"],
-          id: i+"placechampionchopper",
-          state: TypeState.Virtual,
-          tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
-          hidden: [TypeHidden.Inventory],
-          meta: {
-            scatter_duration: 2,
+          {
+            name: i + " Place Champion Chopper",
+            icons: [i + "placechampionchopper"],
+            id: i + "placechampionchopper",
+            state: TypeState.Virtual,
+            tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+            hidden: [TypeHidden.Inventory],
+            meta: {
+              scatter_duration: 2,
+            },
           },
-        },
-        {
-          name: i + " Place Unicorn Unicycle",
-          icons: [i+"placeunicornunicycle"],
-          id: i+"placeunicornunicycle",
-          state: TypeState.Virtual,
-          tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
-          hidden: [TypeHidden.Inventory],
-          meta: {
-            scatter_duration: 2,
+          {
+            name: i + " Place Unicorn Unicycle",
+            icons: [i + "placeunicornunicycle"],
+            id: i + "placeunicornunicycle",
+            state: TypeState.Virtual,
+            tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+            hidden: [TypeHidden.Inventory],
+            meta: {
+              scatter_duration: 2,
+            },
           },
-        },
-        {
-          name: i + " Place Tandem Twins",
-          icons: [i+"placetandemtwins"],
-          id: i+"placetandemtwins",
-          state: TypeState.Virtual,
-          tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
-          hidden: [TypeHidden.Inventory],
-          meta: {
-            scatter_duration: 2,
+          {
+            name: i + " Place Tandem Twins",
+            icons: [i + "placetandemtwins"],
+            id: i + "placetandemtwins",
+            state: TypeState.Virtual,
+            tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+            hidden: [TypeHidden.Inventory],
+            meta: {
+              scatter_duration: 2,
+            },
           },
-        },
-        {
-          name: i + " Place Flat Lou",
-          icons: [i+"placeflatlou"],
-          id: i+"placelfatlou",
-          state: TypeState.Virtual,
-          tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
-          hidden: [TypeHidden.Inventory],
-          meta: {
-            scatter_duration: 2,
+          {
+            name: i + " Place Flat Lou",
+            icons: [i + "placeflatlou"],
+            id: i + "placelfatlou",
+            state: TypeState.Virtual,
+            tags: [TypeTags.ScatterStandalone, TypeTags.Scatter],
+            hidden: [TypeHidden.Inventory],
+            meta: {
+              scatter_duration: 2,
+            },
           },
-        },
-      ]).flat()
-    ]
+        ])
+        .flat(),
+    ],
   },
   {
     name: "Baby Panda",

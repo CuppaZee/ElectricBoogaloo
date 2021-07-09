@@ -54,12 +54,12 @@ for (let lang in langs) {
 }
 
 function convert(n: any, s: any) {
-  console.log(n, s);
+  // console.log(n, s);
   const obj: any = {};
 
   for (let item of n) {
     const v = `${item.context.replace(/"/g, "")}:${item.term}`;
-    console.log(v, item.definition);
+    // console.log(v, item.definition);
     if (typeof item.definition === "string") {
       obj[v] = s
         ? s(item.definition.replace(/{[^}]+}/g, (a: string) => `{{${a.slice(1, -1)}}}`))

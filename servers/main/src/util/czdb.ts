@@ -5,7 +5,8 @@ const dbCache: { value: CuppaZeeDB } = {
   value: new CuppaZeeDB([], [], []),
 };
 
-(async function () {
+export async function loadAgain() {
+  console.log('DBLOADING')
   try {
     const response = await fetch(`https://db.cuppazee.app/lzwmsgpack/`);
     if (!response.ok) throw "e";
@@ -23,6 +24,16 @@ const dbCache: { value: CuppaZeeDB } = {
       dbCache.value = db;
     }
   }
-})();
+  console.log("DBLOAD:", dbCache.value.categories.length);
+  if (!dbCache.value.categories.length) {
+    await loadAgain();
+  }
+};
+
+loadAgain();
+
+setInterval(() => {
+  loadAgain()
+}, 300000);
 
 export default dbCache;

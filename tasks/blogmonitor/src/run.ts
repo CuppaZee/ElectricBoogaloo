@@ -163,23 +163,28 @@ async function sendNotifications(
       data.munzee_blog = feed.items[0].guid;
       update.munzee_blog = feed.items[0].guid;
 
+      const promises: Promise<unknown>[] = [];
+
       console.log("New Munzee Blog", feed.items[0].guid);
-      let img = cheerio.load(feed.items[0]["content:encoded"] || "")("img")[0];
+      let img = cheerio.load(feed.items[0]["content:encoded"] || "")?.("img")?.[0];
       if (!data.dev) {
-        sendNotifications(feed.items[0], notificationData()).catch(() =>
+        console.log("Sending messages");
+        promises.push(sendNotifications(feed.items[0], notificationData()).catch(() =>
           console.log("Sending Notifications Failed")
-        );
+        ));
         if (!feed.items[0].title?.match(/clan/i) || !feed.items[0].title?.match(/requirement/i)) {
           for (var email of config.emails.munzeeblog) {
-            sendEmail({
+            promises.push(sendEmail({
               to: email,
               subject: feed.items[0].title,
               text: feed.items[0].link + "#content",
-            }).catch(() => console.log("Error Sending Email"));
+            }).catch(() => console.log("Error Sending Email")));
           }
         }
+      } else {
+        console.log("In Dev Mode, not running");
       }
-      await fetch(config.discord.blog, {
+      promises.push(fetch(config.discord.blog, {
         method: "POST",
         body: new URLSearchParams({
           payload_json: JSON.stringify({
@@ -199,7 +204,8 @@ async function sendNotifications(
             content: feed.items[0].title,
           }),
         }),
-      });
+      }));
+      await Promise.all(promises);
     } else {
       console.log("Same Munzee Blog", feed.items[0].guid);
     }

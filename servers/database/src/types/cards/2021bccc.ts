@@ -61,6 +61,18 @@ const c2021bccc: {
     id: "pegasuspinatacard",
     // munzee_id: 0,
   },
+  {
+    name: "Raffle Ticket Card",
+    icons: ["raffleticketcard"],
+    id: "raffleticketcard",
+    // munzee_id: 0,
+  },
+  {
+    name: "Wrong Winner Card",
+    icons: ["wrongwinnercard"],
+    id: "wrongwinnercard",
+    // munzee_id: 0,
+  },
   // {
   //   name: " Card",
   //   icons: ["card"],
