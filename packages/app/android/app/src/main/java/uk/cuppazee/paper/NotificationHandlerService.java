@@ -100,9 +100,11 @@ public class NotificationHandlerService extends FirebaseMessagingService {
                     double lng = data.getDouble("longitude");
                     Geocoder myLocation = new Geocoder(this, Locale.getDefault());
                     List<Address> myList = myLocation.getFromLocation(lat, lng, 1);
-                    Address item = myList.get(0);
-                    if (item != null) {
-                        address = item.getAddressLine(0);
+                    if (myList.size() > 0) {
+                        Address item = myList.get(0);
+                        if (item != null) {
+                            address = item.getAddressLine(0);
+                        }
                     }
                 }
             } catch (IOException e) {

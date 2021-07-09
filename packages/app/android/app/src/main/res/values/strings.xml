@@ -8,4 +8,6 @@
     <string name="activity_widget_confirm">Confirm Username</string>
     <string name="activity_widget_loading">...</string>
     <string name="news_widget_loading">...</string>
+    <string name="activity_widget_label">User Activity</string>
+    <string name="news_widget_label">Munzee News</string>
 </resources>
