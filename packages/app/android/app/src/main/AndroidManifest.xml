@@ -32,7 +32,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/AppTheme">
-        <receiver android:name=".ActivityWidget">
+        <receiver android:name=".ActivityWidget" android:label="@string/activity_widget_label">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -41,7 +41,7 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/activity_widget_info" />
         </receiver>
-        <receiver android:name=".NewsWidget">
+        <receiver android:name=".NewsWidget" android:label="@string/news_widget_label">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
