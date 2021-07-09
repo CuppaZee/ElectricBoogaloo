@@ -8,11 +8,13 @@ import useSetting, { ClansAtom } from '../../hooks/useSetting';
 export interface ClanSettingsModalProps {
   clan_id: number;
   close: () => void;
+  levels: number[];
 }
 
-export default function ClanSettingsModal({ clan_id, close }: ClanSettingsModalProps) {
+export default function ClanSettingsModal({ clan_id, close, levels }: ClanSettingsModalProps) {
   const [options, setOptions] = useSetting(ClansAtom);
   const { t } = useTranslation();
+  const goalLevel = Math.min(Math.max(options[clan_id].level, 0), levels.length);
   return (
     <Layout level="4" style={{ borderRadius: 8, padding: 4 }}>
       <UpdateWrapper>
@@ -59,12 +61,12 @@ export default function ClanSettingsModal({ clan_id, close }: ClanSettingsModalP
           <Select
             style={{ margin: 4 }}
             label={t("clan:settings_goal")}
-            value={options[clan_id].level.toString()}
+            value={goalLevel.toString()}
             onValueChange={value => {
               options[clan_id].level = Number(value);
               update();
             }}
-            options={[1, 2, 3, 4, 5].map(i => ({
+            options={levels.map(i => ({
               label: t("clan:level", { level: i }),
               value: i.toString(),
             }))}

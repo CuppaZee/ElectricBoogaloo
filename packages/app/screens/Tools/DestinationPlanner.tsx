@@ -1,11 +1,8 @@
 import { MapBoundingboxV4 } from "@cuppazee/api/map/v4";
-import db from "@cuppazee/types";
-import { useNavigation } from "@react-navigation/native";
 import { Button, Layout, Text } from "@ui-kitten/components";
 import * as React from "react";
 import { Pressable, View } from "react-native";
 import TypeImage from "../../components/Common/TypeImage";
-import MapView from "../../components/Maps/MapView";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import useTitle from "../../hooks/useTitle";
 import Clipboard from "expo-clipboard";
@@ -16,6 +13,7 @@ import circle from "@turf/circle";
 import { point } from "@turf/helpers";
 import { getCoord } from "@turf/invariant";
 import destination from "@turf/destination";
+import useDB from "../../hooks/useDB";
 
 export function getExpandedBounds(bounds: number[][], expansion: number) {
   const topLeft = getCoord(
@@ -53,7 +51,7 @@ export function getExpandedBounds(bounds: number[][], expansion: number) {
 }
 
 export default function BouncersMapScreen() {
-  const nav = useNavigation();
+  const db = useDB();
   const [selected, setSelected] = React.useState<string>();
   const [markers, setMarkers] = React.useState<{ lat: number; lng: number; type: string }[]>([]);
   const [selectedMarker, setSelectedMarker] = React.useState<number>();

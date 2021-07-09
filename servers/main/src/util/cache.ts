@@ -1,8 +1,9 @@
 import { MunzeeSpecial, MunzeeSpecialBouncer } from "@cuppazee/api/munzee/specials";
 import request from "./request";
-import retrieve from "./retrieve";
+import retrieve, { AuthApplication } from "./retrieve";
 
 import pr from "power-radix";
+import { Endpoints, EndpointsDown } from "./endpointStatus";
 const b64e = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".split("");
 
 function generateBouncerHash(id: number, timestamp: number) {
@@ -15,15 +16,19 @@ function generateBouncerHash(id: number, timestamp: number) {
     .slice(0, 3)}`;
 }
 
-const cache: {
+export const cache: {
   bouncers: ((MunzeeSpecial | MunzeeSpecialBouncer) & {
     hash: string;
     endpoint: "regular" | "mythological" | "pouchcreatures" | "flat" | "bouncers" | "retired";
   })[];
   bouncers_updated: number;
+  loading: Promise<unknown> | null;
+  loading_at: number;
 } = {
   bouncers: [],
   bouncers_updated: 0,
+  loading: null,
+  loading_at: 0
 };
 
 export const bouncerEndpointTypes = [
@@ -35,37 +40,89 @@ export const bouncerEndpointTypes = [
   "retired",
 ] as const;
 
+async function actuallyGetBouncers() {
+  const token = await retrieve({ user_id: 455935, teaken: false }, 60, AuthApplication.Universal);
+  const data = await Promise.all([
+    request("munzee/specials", {}, token.access_token).then(i => {
+      EndpointsDown.delete(Endpoints.MunzeeSpecials)
+      return i;
+    }).catch(() => {
+      EndpointsDown.add(Endpoints.MunzeeSpecials)
+      return null;
+    }),
+    request("munzee/specials/mythological", {}, token.access_token).then(i => {
+      EndpointsDown.delete(Endpoints.MunzeeSpecialsMythological)
+      return i;
+    }).catch(() => {
+      EndpointsDown.add(Endpoints.MunzeeSpecialsMythological)
+      return null;
+    }),
+    request("munzee/specials/pouchcreatures", {}, token.access_token).then(i => {
+      EndpointsDown.delete(Endpoints.MunzeeSpecialsPouchcreatures)
+      return i;
+    }).catch(() => {
+      EndpointsDown.add(Endpoints.MunzeeSpecialsPouchcreatures)
+      return null;
+    }),
+    request("munzee/specials/flat", {}, token.access_token).then(i => {
+      EndpointsDown.delete(Endpoints.MunzeeSpecialsFlat)
+      return i;
+    }).catch(() => {
+      EndpointsDown.add(Endpoints.MunzeeSpecialsFlat)
+      return null;
+    }),
+    request("munzee/specials/bouncers", {}, token.access_token).then(i => {
+      EndpointsDown.delete(Endpoints.MunzeeSpecialsBouncers)
+      return i;
+    }).catch(e => {
+      console.log("Bouncer Down >", e);
+      EndpointsDown.add(Endpoints.MunzeeSpecialsBouncers)
+      return null;
+    }),
+    request("munzee/specials/retired", {}, token.access_token).then(i => {
+      EndpointsDown.delete(Endpoints.MunzeeSpecialsRetired)
+      return i;
+    }).catch(() => {
+      EndpointsDown.add(Endpoints.MunzeeSpecialsRetired)
+      return null;
+    }),
+  ]);
+  let body: ((MunzeeSpecial | MunzeeSpecialBouncer) & {
+    hash: string;
+    endpoint: "regular" | "mythological" | "pouchcreatures" | "flat" | "bouncers" | "retired";
+  })[] = [];
+  let n = 0;
+  for (let endpointData of data) {
+    body = body.concat(
+      ((endpointData?.data ?? []) as (MunzeeSpecial | MunzeeSpecialBouncer)[]).map(i => ({
+        ...i,
+        hash: generateBouncerHash(
+          Number("mythological_munzee" in i ? i.mythological_munzee.munzee_id : i.munzee_id),
+          i.special_good_until
+        ),
+        endpoint: bouncerEndpointTypes[n],
+      }))
+    );
+    n++;
+  }
+  cache.bouncers = body;
+  cache.bouncers_updated = Date.now();
+}
+
 export async function getBouncers(force?: boolean) {
+  console.log("loading bouncers")
   if (force || cache.bouncers_updated < Date.now() - 300000) {
-    const token = await retrieve({ user_id: 455935, teaken: false }, 60, "universal");
-    const data = await Promise.all([
-      request("munzee/specials", {}, token.access_token),
-      request("munzee/specials/mythological", {}, token.access_token),
-      request("munzee/specials/pouchcreatures", {}, token.access_token),
-      request("munzee/specials/flat", {}, token.access_token),
-      request("munzee/specials/bouncers", {}, token.access_token),
-      request("munzee/specials/retired", {}, token.access_token),
-    ]);
-    let body: ((MunzeeSpecial | MunzeeSpecialBouncer) & {
-      hash: string;
-      endpoint: "regular" | "mythological" | "pouchcreatures" | "flat" | "bouncers" | "retired";
-    })[] = [];
-    let n = 0;
-    for (let endpointData of data) {
-      body = body.concat(
-        ((endpointData?.data ?? []) as (MunzeeSpecial | MunzeeSpecialBouncer)[]).map(i => ({
-          ...i,
-          hash: generateBouncerHash(
-            Number("mythological_munzee" in i ? i.mythological_munzee.munzee_id : i.munzee_id),
-            i.special_good_until
-          ),
-          endpoint: bouncerEndpointTypes[n],
-        }))
-      );
-      n++;
+    if (cache.loading && cache.loading_at > Date.now() - 90000) {
+      console.log("Awaiting existing load");
+      await cache.loading;
+    } else {
+      console.log("Awaiting new load");
+      cache.loading = Promise.race<unknown>([actuallyGetBouncers(), new Promise(r => { setTimeout(r, 90000) })]);
+      cache.loading_at = Date.now()
+      await cache.loading;
     }
-    cache.bouncers = body;
-    cache.bouncers_updated = Date.now();
+  } else {
+    console.log("Not awaiting")
   }
   return cache.bouncers;
 }

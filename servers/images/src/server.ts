@@ -4,7 +4,31 @@ import path from "path";
 import sharp from "sharp";
 import fetch from "node-fetch";
 import { createReadStream, createWriteStream, promises, existsSync, mkdirSync } from "fs";
-import types from "@cuppazee/types";
+import { CuppaZeeDB, loadFromArrayBuffer, loadFromLzwJson } from "@cuppazee/db";
+
+const czdb = {
+  value: new CuppaZeeDB([],[],[])
+}
+
+async function loadDB() {
+  try {
+    const response = await fetch(`https://db.cuppazee.app/lzwmsgpack/`);
+    if (!response.ok) throw "e";
+    const data = await response.arrayBuffer();
+    if (data.byteLength > 0) {
+      const { db } = loadFromArrayBuffer(data);
+      czdb.value = db;
+    }
+  } catch (e) {
+    const response = await fetch(`https://db.cuppazee.app/lzw/`);
+    if (!response.ok) throw "e";
+    const data = await response.text();
+    if (data.length > 0) {
+      const { db } = loadFromLzwJson(data);
+      czdb.value = db;
+    }
+  }
+}
 
 const overrideDir = path.join(__dirname, "../override");
 const cacheDir = path.join(__dirname, "../cache");
@@ -50,7 +74,18 @@ async function getImage(category: "pins" | "new_badges" | "cubimals", type: stri
   return null;
 }
 
-type Format = "png" | "jpeg";
+function lightStrip(t: string): string {
+  if (t.startsWith("https://munzee.global.ssl.fastly.net/images/pins/")) return t.slice(49, -4);
+  if (t.startsWith("https://munzee.global.ssl.fastly.net/images/v4pins/")) return t.slice(51, -4);
+  return t;
+}
+
+type Format = "png" | "jpeg" | "webp" | "avif";
+
+fastify.get("/dbr", async function (request, reply) {
+  await loadDB();
+  reply.send("🎉");
+})
 
 fastify.get("/:category/:size/:type", async function (request, reply) {
   // Parse and Validate Parameters
@@ -73,13 +108,15 @@ fastify.get("/:category/:size/:type", async function (request, reply) {
     reply.send(`Invalid Size: ${size}. Size >0, <=512`);
     return;
   }
-  let type = params.type.split(".").slice(0, -1).join(".");
-  type = types.getType(type)?.icon ?? type;
-  const format = params.type.split(".").slice(-1)[0] as Format;
-  if (format !== "jpeg" && format !== "png") {
-    reply.send(`Invalid Format: ${format}. Must be jpeg or png.`);
+  let type = decodeURIComponent(params.type.split(".").slice(0, -1).join("."));
+  type = czdb.value.getType(type)?.icon ?? lightStrip(type);
+  let formatStr = params.type.split(".").slice(-1)[0];
+  if (formatStr === "jpg") formatStr = "jpeg";
+  if (formatStr !== "jpeg" && formatStr !== "png" && formatStr !== "webp" && formatStr !== "avif") {
+    reply.send(`Invalid Format: ${formatStr}. Must be webp, avif, jpeg or png.`);
     return;
   }
+  const format = formatStr as Format;
 
   const cacheFilePath = path.join(
     cacheDir,
@@ -98,8 +135,8 @@ fastify.get("/:category/:size/:type", async function (request, reply) {
   if (!response) {
     // No Image Found
     reply
-      .type(`image/png`)
-      .send(createReadStream(path.join(overrideDir, `missing_${category}.png`)));
+      .type(`image/${format}`)
+      .send(createReadStream(path.join(overrideDir, `missing_${category}.${format}`)));
     return;
   }
 

@@ -1,26 +1,30 @@
 import { Button, CheckBox, Text } from "@ui-kitten/components";
 import * as React from "react";
-import { UserActivityConverterOutput, UserActivityFilters } from "./Data";
-import { TypeState } from "@cuppazee/types";
+import { TypeState } from "@cuppazee/db";
 import { useTranslation } from "react-i18next";
 import { ScrollView } from "react-native-gesture-handler";
 import Icon from "../Common/Icon";
+import { UserActivityData, UserActivityFilters, UserActivityType } from "@cuppazee/utils/lib";
 
 const types: {
   label: string;
-  value: "captures" | "deploys" | "captures_on";
+  value: UserActivityType;
 }[] = [
   {
     label: "Captures",
-    value: "captures",
+    value: UserActivityType.Capture,
   },
   {
     label: "Deploys",
-    value: "deploys",
+    value: UserActivityType.Deploy,
+  },
+  {
+    label: "Passive Deploys",
+    value: UserActivityType.PassiveDeploy,
   },
   {
     label: "Capons",
-    value: "captures_on",
+    value: UserActivityType.Capon,
   },
 ];
 
@@ -48,7 +52,7 @@ export default function UserActivityFilter({
   filters: baseFilters,
   setFilters: setBaseFilters,
 }: {
-  d: UserActivityConverterOutput;
+  d: UserActivityData;
   filters: UserActivityFilters;
   setFilters(filters: UserActivityFilters): void;
 }) {

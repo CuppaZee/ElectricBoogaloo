@@ -9,7 +9,7 @@ import Loading from "../../components/Loading";
 import { ScrollView, View } from "react-native";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
 import { pickTextColor } from "../../components/Clan/Cell";
-import { TypeState } from "@cuppazee/types/lib";
+import { TypeState } from "@cuppazee/db";
 import dayjs from "dayjs";
 import useSetting, { ClanPersonalisationAtom } from "../../hooks/useSetting";
 import { useTranslation } from "react-i18next";

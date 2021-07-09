@@ -1,0 +1,262 @@
+import {
+  TypeInterface,
+  CategoryInterface,
+  TypeTags,
+  TypeHidden,
+  TypeState,
+} from "@cuppazee/db";
+
+export const types: TypeInterface[] = [];
+export const categories: CategoryInterface[] = [
+  {
+    name: "Bouncers",
+    id: "bouncer",
+    icon: "theunicorn",
+    parents: ["root"],
+  },
+  {
+    name: "Fancy Flats",
+    id: "bouncer_fancy_flat",
+    icon: "beachflatrob",
+    parents: ["bouncer"],
+  },
+  {
+    name: "Nomads",
+    id: "bouncer_nomad",
+    icon: "nomad",
+    parents: ["bouncer"],
+  },
+  {
+    name: "TOBs",
+    id: "bouncer_tob",
+    icon: "vikerkaar",
+    parents: ["bouncer"],
+  },
+  {
+    name: "Original Myth",
+    id: "bouncer_myth_original",
+    icon: "theunicorn",
+    parents: ["bouncer"],
+  },
+  {
+    name: "Classical Myth",
+    id: "bouncer_myth_classical",
+    icon: "faun",
+    parents: ["bouncer"],
+  },
+  {
+    name: "Mirror Myth",
+    id: "bouncer_myth_mirror",
+    icon: "banshee",
+    parents: ["bouncer"],
+  },
+  {
+    name: "Modern Myth",
+    id: "bouncer_myth_modern",
+    icon: "aphrodite",
+    parents: ["bouncer"],
+  },
+  {
+    name: "Retired Bouncers",
+    id: "bouncer_retired",
+    icon: "retiredpegasus",
+    parents: ["bouncer"],
+  },
+  {
+    name: "Pouch Creature S1",
+    id: "bouncer_pouch_season_1",
+    icon: "tuli",
+    parents: ["bouncer"],
+  },
+  {
+    name: "Pouch Creature S2",
+    id: "bouncer_pouch_season_2",
+    icon: "elekter",
+    parents: ["bouncer"],
+  },
+  {
+    name: "Funfinity Stones",
+    id: "bouncer_pouch_funfinity",
+    icon: "oniks",
+    parents: ["bouncer"],
+  },
+  {
+    name: "tPOB Bouncers",
+    id: "bouncer_tpob",
+    icon: "trojanunicorn",
+    parents: ["bouncer"],
+  },
+  {
+    name: "MechZ Bouncers",
+    id: "bouncer_mechz",
+    icon: "lasershark",
+    parents: ["bouncer"],
+  },
+];
+
+import flats from "./flats";
+for (const t of flats) {
+  types.push({
+    name: t.name,
+    icons: t.icons,
+    id: t.id,
+    state: TypeState.Bouncer,
+    category: "bouncer_fancy_flat",
+    tags: [TypeTags.Bouncer, TypeTags.BouncerFlat],
+    meta: {
+      bouncer_duration: 12,
+      bouncer_lands_on: [
+        (type) => type.has_tag(t.color),
+        t.flat_type,
+        ...t.lands_on,
+      ],
+    },
+    hidden: [TypeHidden.Inventory],
+  });
+}
+
+import pouch from "./pouch";
+for (const t of pouch) {
+  types.push({
+    name: t.name,
+    icons: t.icons,
+    id: t.id,
+    state: TypeState.Bouncer,
+    category: `bouncer_pouch_${t.set}`,
+    tags: [
+      TypeTags.Bouncer,
+      TypeTags.BouncerPC,
+      {
+        season_1: TypeTags.BouncerPCS1,
+        season_2: TypeTags.BouncerPCS2,
+        funfinity: TypeTags.BouncerPCFunfinity,
+      }[t.set],
+      [
+        TypeTags.BouncerPCStageless,
+        TypeTags.BouncerPCStage1,
+        TypeTags.BouncerPCStage2,
+        TypeTags.BouncerPCStage3,
+      ][t.stage || 0],
+      ...(t.tags ?? []),
+    ],
+    meta: {
+      bouncer_duration: 12,
+      bouncer_lands_on: t.lands_on,
+      evolution_base: t.base,
+      ...(t.meta ?? {}),
+    },
+    hidden: [TypeHidden.Inventory],
+  });
+}
+
+import myths from "./myths";
+for (const t of myths) {
+  types.push({
+    name: t.name,
+    icons: t.icons,
+    id: t.id,
+    state: TypeState.Bouncer,
+    category: `bouncer_myth_${t.type}`,
+    tags: [TypeTags.Bouncer, TypeTags.BouncerMyth, TypeTags[`BouncerMyth${({
+      mirror: "Mirror",
+      original: "Original",
+      classical: "Classical",
+      modern: "Modern"
+    } as const)[t.type]}` as const], ...(t.tags ?? [])],
+    meta: {
+      bouncer_duration: 12,
+      bouncer_lands_on: t.lands_on,
+      ...(t.meta ?? {}),
+    },
+    hidden: [TypeHidden.Inventory],
+  });
+}
+
+import tobs from "./tobs";
+for (const t of tobs) {
+  types.push({
+    name: t.name,
+    icons: t.icons,
+    id: t.id,
+    state: TypeState.Bouncer,
+    category: `bouncer_tob`,
+    tags: [TypeTags.Bouncer, ...(t.tags ?? [])],
+    meta: {
+      bouncer_duration: 12,
+      bouncer_lands_on: t.lands_on,
+      ...(t.meta ?? {}),
+    },
+    hidden: [TypeHidden.Deploy, TypeHidden.Inventory],
+  });
+}
+
+import tpobs from "./tpobs";
+for (const t of tpobs) {
+  types.push({
+    name: t.name,
+    icons: t.icons,
+    id: t.id,
+    state: TypeState.Bouncer,
+    category: `bouncer_tpob`,
+    tags: [TypeTags.Bouncer, TypeTags.BouncerTPOB, ...(t.tags ?? [])],
+    meta: {
+      bouncer_duration: t.duration || 12,
+      bouncer_lands_on: t.lands_on,
+      ...(t.meta ?? {}),
+    },
+    hidden: [TypeHidden.Inventory, ...(t.hidden ?? [])],
+  });
+}
+
+import mechz from "./mechz";
+for (const t of mechz) {
+  types.push({
+    name: t.name,
+    icons: t.icons,
+    id: t.id,
+    state: TypeState.Bouncer,
+    category: `bouncer_mechz`,
+    tags: [TypeTags.Bouncer, TypeTags.BouncerTPOB, ...(t.tags ?? [])],
+    meta: {
+      bouncer_duration: t.duration || 12,
+      bouncer_lands_on: t.lands_on,
+      ...(t.meta ?? {}),
+    },
+    hidden: [TypeHidden.Inventory, ...(t.hidden ?? [])],
+  });
+}
+
+import retired from "./retired";
+for (const t of retired) {
+  types.push({
+    name: t.name,
+    icons: t.icons,
+    id: t.id,
+    state: TypeState.Bouncer,
+    category: `bouncer_retired`,
+    tags: [TypeTags.Bouncer, ...(t.tags ?? [])],
+    meta: {
+      bouncer_duration: t.duration ?? 12,
+      bouncer_lands_on: t.lands_on,
+      ...(t.meta ?? {}),
+    },
+    hidden: [TypeHidden.Deploy, TypeHidden.Inventory],
+  });
+}
+
+import nomads from "./nomads";
+for (const t of nomads) {
+  types.push({
+    name: t.name,
+    icons: t.icons,
+    id: t.id,
+    state: TypeState.Bouncer,
+    category: "bouncer_nomad",
+    tags: [TypeTags.Bouncer, TypeTags.BouncerNomad],
+    meta: {
+      bouncer_duration: 12,
+      bouncer_lands_on: t.lands_on,
+    },
+    hidden: [TypeHidden.Deploy, TypeHidden.Inventory, ...(t.hidden ?? [])],
+  });
+}

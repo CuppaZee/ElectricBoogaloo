@@ -1,23 +1,21 @@
 import { Input, Layout, ListItem, Text } from "@ui-kitten/components";
 import * as React from "react";
-import { FlatList, Image, View } from "react-native";
+import { FlatList } from "react-native";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
-import useMunzeeRequest from "../../hooks/useMunzeeRequest";
-import useSearch from "../../hooks/useSearch";
 import useTitle from "../../hooks/useTitle";
-import Fuse from "fuse.js";
-import types from "@cuppazee/types";
 import TypeImage from "../../components/Common/TypeImage";
 import { useNavigation } from "@react-navigation/native";
-import Tip from "../../components/Common/Tip";
 import { useTranslation } from "react-i18next";
-import dayjs from "dayjs";
-import Icon from "../../components/Common/Icon";
+import useDB from "../../hooks/useDB";
 
-export default function SearchScreen() {
+export default function BouncersExpiringScreen() {
   const { t } = useTranslation();
+  const db = useDB();
   useTitle(`☕ Bouncing Soon`);
-  const bouncers = useCuppaZeeRequest("bouncers/expiring", {}, true, undefined, undefined, {
+  const bouncers = useCuppaZeeRequest<{
+    data: any;
+    endpointsDown: { label: string; endpoint: string }[];
+  }>("bouncers/expiring", {}, true, undefined, undefined, {
     refetchInterval: 300000,
     keepPreviousData: true,
   });
@@ -36,6 +34,26 @@ export default function SearchScreen() {
 
   return (
     <Layout style={{ padding: 4, flex: 1 }}>
+      {bouncers.data?.endpointsDown
+        .filter(i => i.endpoint.startsWith("/munzee/specials"))
+        .map(endpoint => (
+          <Layout style={{ margin: 4, width: "100%" }}>
+            <Layout
+              level="2"
+              style={{
+                padding: 4,
+                borderRadius: 8,
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+              }}>
+              <Text category="h6" style={{ textAlign: "center", maxWidth: "100%" }}>
+                CuppaZee is currently unable to get data for {endpoint.label} from Munzee. These
+                bouncers may not show on this page.
+              </Text>
+            </Layout>
+          </Layout>
+        ))}
       <Input
         style={{ margin: 4, width: 400, maxWidth: "100%", alignSelf: "center" }}
         label={t("search:player")}
@@ -66,26 +84,25 @@ export default function SearchScreen() {
             .filter((i: any) => !player || i[6]?.toLowerCase().includes(playerS)) ?? []
         }
         keyExtractor={i => i[4].toString()}
-        renderItem={
-          ({ item, index }) => (
-            <ListItem
-              accessoryLeft={() => <TypeImage style={{ size: 32 }} icon={item[1]} />}
-              title={item[5] ? `${item[5]} by ${item[6]}` : types.getType(item[1])?.name ?? item[1]}
-              description={`${Math.floor((item[2] - now / 1000) / 60)}:${(
-                Math.floor(item[2] - now / 1000) % 60
-              )
-                .toString()
-                .padStart(2, "0")}`}
-              onPress={() => {
-                nav.navigate("Tools", {
-                  screen: "Munzee",
-                  params: {
-                    a: item[3],
-                  },
-                });
-              }}
-            />
-          )}
+        renderItem={({ item, index }) => (
+          <ListItem
+            accessoryLeft={() => <TypeImage style={{ size: 32 }} icon={item[1]} />}
+            title={item[5] ? `${item[5]} by ${item[6]}` : db.getType(item[1])?.name ?? item[1]}
+            description={`${Math.floor((item[2] - now / 1000) / 60)}:${(
+              Math.floor(item[2] - now / 1000) % 60
+            )
+              .toString()
+              .padStart(2, "0")}`}
+            onPress={() => {
+              nav.navigate("Tools", {
+                screen: "Munzee",
+                params: {
+                  a: item[3],
+                },
+              });
+            }}
+          />
+        )}
       />
     </Layout>
   );

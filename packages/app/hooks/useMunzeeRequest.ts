@@ -4,7 +4,6 @@ import stringify from "fast-json-stable-stringify";
 
 import { FetchRequest, FetchResponse, Endpoints } from "@cuppazee/api";
 import { useIsFocused } from "@react-navigation/native";
-import { loadOptions } from "@babel/core";
 
 const getMunzeeData = async <Path extends keyof Endpoints>(
   endpoint: FetchRequest<Path>["endpoint"],

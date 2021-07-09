@@ -20,7 +20,7 @@ const excludedLibs = new Set(["@cuppazee/app", "@cuppazee/clan", "@cuppazee/func
 const starredLibs = new Set([
   "@cuppazee/api",
   "@cuppazee/icons",
-  "@cuppazee/types",
+  "@cuppazee/db",
   "@eva-design/eva",
   "@expo/vector-icons",
   "@react-google-maps/api",

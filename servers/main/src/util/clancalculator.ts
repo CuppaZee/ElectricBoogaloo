@@ -5,11 +5,11 @@ import {
   StatzeePlayerDayDeploy,
   StatzeePlayerDayArchive,
 } from "@cuppazee/api/statzee/player/day";
-import db from "@cuppazee/types";
-import { TypeTags } from "@cuppazee/types/lib/munzee";
+import { TypeState, TypeTags } from "@cuppazee/db";
+import czdb from "../util/czdb";
 import { gameID } from ".";
 function g(a: { pin?: string; pin_icon?: string; icon?: string }) {
-  return db.getType(a.pin || a.pin_icon || a.icon || "");
+  return czdb.value.getType(a.pin || a.pin_icon || a.icon || "");
 }
 function points(a: any, b: any) {
   return a + Number(b.points_for_creator !== undefined ? b.points_for_creator : b.points);
@@ -41,7 +41,7 @@ var tasks: {
     function: ({ cap, dep }) =>
       [...cap, ...dep]
         .filter(
-          i => !g(i)?.has_tag(TypeTags.TypePersonal) && !g(i)?.has_tag(TypeTags.TypeUniversal)
+          i => !g(i)?.has_tag(TypeTags.TypePersonal) && !g(i)?.has_tag(TypeTags.TypeUniversal) && (!("captured_at" in i) || !g(i)?.has_tag(TypeTags.Scatter))
         )
         .reduce((a, b) => {
           a[("captured_at" in b ? b.captured_at : b.deployed_at).slice(8, 10)] = true as unknown as void;
@@ -90,6 +90,18 @@ var tasks: {
       [...cap, ...dep, ...con]
         .filter(i => g(i)?.has_tag(TypeTags.TypeDestination))
         .reduce(points, 0),
+  },
+  8: {
+    task_id: 8,
+    top: "Physical",
+    bottom: "Points",
+    icon: "https://munzee.global.ssl.fastly.net/images/pins/munzee.png",
+    icons: [
+      "https://munzee.global.ssl.fastly.net/images/pins/evolution.png",
+      "https://munzee.global.ssl.fastly.net/images/pins/evolution_filter_physical.png",
+    ],
+    function: ({ cap, dep, con }) =>
+      [...cap, ...dep, ...con].filter(i => g(i)?.state === TypeState.Physical).reduce(points, 0),
   },
   9: {
     task_id: 9,
@@ -183,7 +195,7 @@ var tasks: {
     ],
     function: ({ cap, dep, con }) =>
       [...cap, ...dep, ...con]
-        .filter(i => g(i)?.has_tag(TypeTags.TypeWeaponClan))
+        .filter(i => g(i)?.has_tag(TypeTags.TypeWeaponClan) || g(i)?.icon === "trojanunicorn")
         .reduce(points, 0),
   },
   24: {
@@ -221,7 +233,7 @@ var tasks: {
       "https://munzee.global.ssl.fastly.net/images/pins/crossbow.png",
     ],
     function: ({ cap, dep }) =>
-      [...cap, ...dep].filter(i => g(i)?.has_tag(TypeTags.TypeWeaponClan)).length,
+      [...cap, ...dep].filter(i => g(i)?.has_tag(TypeTags.TypeWeaponClan) || g(i)?.icon === "trojanunicorn").length,
   },
   27: {
     task_id: 27,
@@ -361,6 +373,8 @@ var all_tasks: {
   96: [1, 10, 24, 3, 13, 19, 30, 35, 9, 22, 23, 36],
   97: [1, 3, 7, 13, 23, 24, 28, 30, 33, 35, 36, 12, 19, 27, 31, 34],
   98: [1, 32, 3, 13, 24, 35, 37, 12, 19, 23, 28, 30, 31, 34, 36],
+  99: [1, 26, 3, 13, 19, 24, 37, 7, 23, 30, 33, 35],
+  100: [1, 12, 34, 3, 13, 24, 30, 35, 36, 37, 8, 27, 28],
 };
 
 export default function calculate(

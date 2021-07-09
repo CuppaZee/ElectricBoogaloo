@@ -82,11 +82,17 @@ const route: Route = {
             })
           }
 
-          res.redirect(
-            `${state_data.redirect}?teaken=${encodeURIComponent(
-              teaken
-            )}&username=${username}&user_id=${user_id}&state=${encodeURIComponent(state)}`
-          );
+          if (state_data.ionic) {
+            res.redirect(
+              `${state_data.redirect}?access_token=${encodeURIComponent(`${teaken}/${username}/${user_id}`)}&state=${state_data.ionic}`
+            );
+          } else {
+            res.redirect(
+              `${state_data.redirect}?teaken=${encodeURIComponent(teaken)}&code=${encodeURIComponent(
+                teaken
+              )}&username=${username}&user_id=${user_id}&state=${encodeURIComponent(state)}`
+            );
+          }
 
           const platform =
             {
@@ -94,11 +100,12 @@ const route: Route = {
               ios: "🍎",
               web: "🌐",
             }[state_data.platform as "android" | "ios" | "web"] || `[${state_data.platform}] `;
+          const app = state_data.ionic ? "🔵" : "🟢";
           let discordmessage = ``;
           if (doc_data) {
-            discordmessage = `${platform}🔁 ${username} | ${user_count} Users [#${user_number}]`;
+            discordmessage = `${app}${platform}🔁 ${username} | ${user_count} Users [#${user_number}]`;
           } else {
-            discordmessage = `${platform}🆕 ${username} | User #${user_number}`;
+            discordmessage = `${app}${platform}🆕 ${username} | User #${user_number}`;
           }
           await fetch(config.discord.authorization, {
             method: "POST",

@@ -1,1 +1,1 @@
-export default "https://server.cuppazee.app"
+export default "https://server.cuppazee.app";

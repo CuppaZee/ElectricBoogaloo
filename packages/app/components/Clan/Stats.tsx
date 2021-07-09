@@ -1,6 +1,6 @@
-import { Button, Layout, Modal, Spinner, Text, useTheme } from "@ui-kitten/components";
+import { Button, Layout, Modal, Text, useTheme } from "@ui-kitten/components";
 import React from "react";
-import { Image, PixelRatio, StyleSheet, View } from "react-native";
+import { Image, PixelRatio, View } from "react-native";
 import {
   DataCell,
   LevelCell,
@@ -9,13 +9,6 @@ import {
   TitleCell,
   UserCell,
 } from "./Cell";
-import {
-  ClanStatsConverter,
-  ClanStatsFormattedUser,
-  ClanStatsFormattedData,
-  ClanRequirementsConverter,
-  ClanShadowData,
-} from "../../components/Clan/Data";
 import useComponentSize from "../../hooks/useComponentSize";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
@@ -25,6 +18,8 @@ import SyncScrollView, { SyncScrollViewController } from "./SyncScrollView";
 import Loading from "../Loading";
 import useSetting, { ClanPersonalisationAtom, ClansAtom } from "../../hooks/useSetting";
 import Icon from "../Common/Icon";
+import { ClanShadowData, ClanStatsData, ClanStatsUser, generateClanRequirements, generateClanStats } from "@cuppazee/utils/lib";
+import useDB from "../../hooks/useDB";
 export interface ClanStatsTableProps {
   game_id: number;
   clan_id: number;
@@ -55,6 +50,8 @@ export default React.memo(
     const reverse = style.reverse;
     const compact = style.style;
 
+    const db = useDB();
+
     const theme = useTheme();
     const borderColor =
       (theme.style === "dark" ? theme["color-basic-400"] : theme["color-basic-800"])
@@ -79,12 +76,13 @@ export default React.memo(
     );
 
     const requirements = React.useMemo(
-      () => ClanRequirementsConverter(requirements_data.data?.data),
-      [requirements_data.dataUpdatedAt]
+      () => generateClanRequirements(db, requirements_data.data?.data),
+      [requirements_data.dataUpdatedAt, db]
     );
     const stats = React.useMemo(
       () =>
-        ClanStatsConverter(
+        generateClanStats(
+          db, 
           clan_data.data?.data,
           requirements_data.data?.data,
           requirements || undefined,
@@ -95,7 +93,7 @@ export default React.memo(
         clan_data.dataUpdatedAt,
         shadow_data.dataUpdatedAt,
         requirements,
-        options[actual_clan_id].shadow,
+        options[actual_clan_id].shadow,db
       ]
     );
 
@@ -122,7 +120,12 @@ export default React.memo(
       );
     }
 
-    function sort(a: ClanStatsFormattedUser, b: ClanStatsFormattedUser) {
+    const levelCount = Object.keys(requirements_data.data?.data?.data.levels ?? {}).length;
+    const levels = new Array(levelCount).fill(0).map((_, n) => n + 1);
+
+    const goalLevel = Math.min(Math.max(options[actual_clan_id].level, 0), levels.length);
+
+    function sort(a: ClanStatsUser, b: ClanStatsUser) {
       if (sortBy < 0)
         return (a.requirements[-sortBy]?.value ?? -1) - (b.requirements[-sortBy]?.value ?? -1);
       return (b.requirements[sortBy]?.value ?? -1) - (a.requirements[sortBy]?.value ?? -1);
@@ -139,22 +142,22 @@ export default React.memo(
     const main_users = [
       {
         type: options[actual_clan_id].share ? "share" : "individual",
-        level: options[actual_clan_id].level,
+        level: goalLevel,
       },
       ...Object.values(stats.users).sort(sort),
       stats,
-      { type: "group", level: options[actual_clan_id].level },
+      { type: "group", level: goalLevel },
     ];
     const main_rows = (reverse ? requirements.all : main_users) as (
       | number
-      | ClanStatsFormattedUser
-      | ClanStatsFormattedData
+      | ClanStatsUser
+      | ClanStatsData
       | { type: "group" | "individual" | "share"; level: number }
     )[];
     const main_columns = (reverse ? main_users : requirements.all) as (
       | number
-      | ClanStatsFormattedUser
-      | ClanStatsFormattedData
+      | ClanStatsUser
+      | ClanStatsData
       | { type: "group" | "individual" | "share"; level: number }
     )[];
     return (
@@ -208,7 +211,11 @@ export default React.memo(
           backdropStyle={{ backgroundColor: "#00000077" }}
           visible={modalVisible}
           onBackdropPress={() => setModalVisible(false)}>
-          <ClanSettingsModal close={() => setModalVisible(false)} clan_id={actual_clan_id} />
+          <ClanSettingsModal
+            levels={levels}
+            close={() => setModalVisible(false)}
+            clan_id={actual_clan_id}
+          />
         </Modal>
         {requirements.isAprilFools && (
           <Text style={{ padding: 4 }}>
@@ -258,7 +265,12 @@ export default React.memo(
                         : "borderBottomWidth"]: 2,
                       borderColor,
                     }}>
-                    <LevelCell level={row.level} type={row.type} />
+                    <LevelCell
+                      levels={levels}
+                      clan_id={actual_clan_id}
+                      level={row.level}
+                      type={row.type}
+                    />
                   </View>
                 ) : (
                   <UserCell key={"user_id" in row ? row.user_id : "Clan Total"} user={row} />
@@ -323,6 +335,8 @@ export default React.memo(
                         borderColor,
                       }}>
                       <LevelCell
+                        levels={levels}
+                        clan_id={actual_clan_id}
                         key={`${column.level}_${column.type}`}
                         level={column.level}
                         type={column.type}
@@ -370,6 +384,7 @@ export default React.memo(
                     </View>
                   ) : (
                     <DataCell
+                      levelCount={levelCount}
                       clan_id={actual_clan_id}
                       requirements={requirements}
                       key={key}

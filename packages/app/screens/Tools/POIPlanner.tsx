@@ -1,11 +1,8 @@
 import { MapBoundingboxV4 } from "@cuppazee/api/map/v4";
-import db from "@cuppazee/types";
-import { CurrentRenderContext, useNavigation } from "@react-navigation/native";
 import { Button, Layout, Text } from "@ui-kitten/components";
 import * as React from "react";
-import { Image, Pressable, View } from "react-native";
+import { Pressable, View } from "react-native";
 import TypeImage from "../../components/Common/TypeImage";
-import MapView from "../../components/Maps/MapView";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import useTitle from "../../hooks/useTitle";
 import Clipboard from "expo-clipboard";
@@ -14,9 +11,10 @@ import { AutoMap, Icons, Layer, Marker, Source } from "../../components/Map/Map"
 import WebMercatorViewport from "viewport-mercator-project";
 import circle from "@turf/circle";
 import { getExpandedBounds } from "./DestinationPlanner";
+import useDB from "../../hooks/useDB";
 
 export default function BouncersMapScreen() {
-  const nav = useNavigation();
+  const db = useDB();
   const [selected, setSelected] = React.useState<string>();
   const [markers, setMarkers] = React.useState<{ lat: number; lng: number; type: string }[]>([]);
   const [selectedMarker, setSelectedMarker] = React.useState<number>();

@@ -1,5 +1,4 @@
 import { MapBoundingboxV4 } from "@cuppazee/api/map/v4";
-import db from "@cuppazee/types";
 import { useNavigation } from "@react-navigation/native";
 import { Button, Layout, Text } from "@ui-kitten/components";
 import * as React from "react";
@@ -10,8 +9,10 @@ import useMunzeeRequest from "../../../hooks/useMunzeeRequest";
 import useTitle from "../../../hooks/useTitle";
 import Clipboard from "expo-clipboard";
 import Icon from "../../../components/Common/Icon";
+import useDB from "../../../hooks/useDB";
 
 export default function BouncersMapScreen() {
+  const db = useDB();
   const nav = useNavigation();
   const [selected, setSelected] = React.useState<string>();
   const [markers, setMarkers] = React.useState<{ lat: number; lng: number; type: string }[]>([]);

@@ -1,4 +1,3 @@
-import { RouteProp, useRoute } from "@react-navigation/native";
 import {
   Button,
   CheckBox,
@@ -13,7 +12,6 @@ import {
 import * as React from "react";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import useComponentSize from "../../hooks/useComponentSize";
-import { ToolsStackParamList, UserStackParamList } from "../../types";
 import useTitle from "../../hooks/useTitle";
 import Loading from "../../components/Loading";
 import { View } from "react-native";
@@ -23,7 +21,6 @@ import TypeImage from "../../components/Common/TypeImage";
 import { useTranslation } from "react-i18next";
 import Icon from "../../components/Common/Icon";
 import baseURL from "../../baseURL";
-import { useUserBookmarks } from "../../hooks/useBookmarks";
 import useUsernameSelect from "./UserSelect";
 import Select from "../../components/Common/Select";
 import useToken from "../../hooks/useToken";

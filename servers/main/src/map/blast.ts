@@ -1,7 +1,7 @@
 import { retrieve, request } from "../util";
-import types from "@cuppazee/types";
 import * as spherical from "spherical-geometry-js";
-import { PointsType, TypeState } from "@cuppazee/types/lib/munzee";
+import { TypePointsType, TypeState } from "@cuppazee/db";
+import czdb from "../util/czdb";
 import { Route } from "../types";
 
 const pointsForBlast: {
@@ -142,11 +142,10 @@ const route: Route = {
         if (amount === 50000) {
           // @ts-expect-error
           const global = await request("statzee/global/types", {}, token.access_token);
-          // @ts-expect-error
           const captures = await request("user/specials", { user_id }, token.access_token);
 
           const filtered = (global?.data as any[]).filter(
-            i => types.getType(i.logo || "")?.state === TypeState.Virtual
+            i => czdb.value.getType(i.logo || "")?.state === TypeState.Virtual
           );
 
           const total = filtered.reduce((a, b) => a + Number(b.number), 0);
@@ -174,14 +173,14 @@ const route: Route = {
                 Number(current.number) -
                 ((captures?.data as any[]).find(
                   c =>
-                    types.getType(c.icon || "")?.icon &&
-                    types.getType(c.icon || "")?.icon === types.getType(current.logo || "")?.icon
+                    czdb.value.getType(c.icon || "")?.icon &&
+                    czdb.value.getType(c.icon || "")?.icon === czdb.value.getType(current.logo || "")?.icon
                 )?.count ?? 0) -
                 count;
                 
               if(next.total + currentCount < 50000) {
                 next.total += currentCount;
-                next.types[types.strip(current.logo || "")] = {
+                next.types[czdb.value.strip(current.logo || "")] = {
                   total: currentCount,
                   points: { min: 0, max: 0, avg: 0 },
                 };
@@ -189,7 +188,7 @@ const route: Route = {
                 count = 0;
               } else {
                 count += 50000 - next.total;
-                next.types[types.strip(current.logo)] = { total: 50000 - next.total, points: { min: 0, max: 0, avg: 0 } };
+                next.types[czdb.value.strip(current.logo)] = { total: 50000 - next.total, points: { min: 0, max: 0, avg: 0 } };
                 next.total = 50000;
               }
             }
@@ -284,7 +283,7 @@ const route: Route = {
             });
           var output = [];
           for (var munzee of munzees) {
-            const type = types.getType(munzee.original_pin_image ?? "")?.points;
+            const type = czdb.value.getType(munzee.original_pin_image ?? "")?.points;
             let typePoints = type
               ? {
                   min: type.capture,
@@ -299,11 +298,11 @@ const route: Route = {
                   // @ts-ignore
                   max: munzee.points[2],
                 };
-            if (type?.type === PointsType.Split) {
+            if (type?.type === TypePointsType.Split) {
               typePoints = {
-                min: type.min,
-                avg: (type.split ?? 0) / 2,
-                max: (type.split ?? 0) - (type.min ?? 0),
+                min: type?.min,
+                avg: (type?.split ?? 0) / 2,
+                max: (type?.split ?? 0) - (type?.min ?? 0),
               };
             }
             if (output.length === 0 || output[output.length - 1].total === Number(amount || 100)) {

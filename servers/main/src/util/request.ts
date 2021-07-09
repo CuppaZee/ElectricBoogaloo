@@ -20,11 +20,17 @@ export default async function <Path extends keyof Endpoints>(
         access_token: token
       })
     })
-    const dataJSON = await data.json();
-    if (logMessage && !dataJSON.data) {
-      console.log(logMessage, dataJSON);
+    const dataText = await data.text();
+    try {
+      const dataJSON = JSON.parse(dataText);
+      if (logMessage && !dataJSON.data) {
+        console.log(logMessage, dataJSON);
+      }
+      return dataJSON;
+    } catch (e) {
+      console.log('Invalid JSON from ' + endpoint + " >", dataText);
+      throw e;
     }
-    return dataJSON;
   } catch (e) {
     if (logMessage) {
       console.log(logMessage, e);

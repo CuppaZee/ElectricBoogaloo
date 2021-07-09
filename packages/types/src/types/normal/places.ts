@@ -154,6 +154,18 @@ const places: {
     id: 2690,
     points: PlacesPoints,
   },
+  {
+    name: "POI Pet",
+    icon: "poipet",
+    id: "null_poipet",
+    points: PlacesPoints,
+  },
+  {
+    name: "POI Entertainment",
+    icon: "poientertainment",
+    id: "null_poientertainment",
+    points: PlacesPoints,
+  },
 ];
 
 export default places;

@@ -29,6 +29,7 @@ export type UserStackParamList = {
   QRew: { username: string };
   Cubimals: { username: string };
   QRates: { username: string };
+  Rooms: { username: string };
 };
 
 export type DashStackParamList = {

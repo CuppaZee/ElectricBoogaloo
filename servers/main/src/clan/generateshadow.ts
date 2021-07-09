@@ -134,6 +134,32 @@ const groupsdata: {
           { clan_id: -1, clan_name: "shadow", shadow_name: "CuppaClans Shadow Crew" },
         ],
       },
+      99: {
+        name: "June 2021",
+        clans: [
+          { clan_id: 1349, clan_name: "coffee", shadow_name: "The Cup of Coffee Clan" },
+          { clan_id: 457, clan_name: "tea", shadow_name: "The Cup of Tea Clan" },
+          { clan_id: 2042, clan_name: "mocha", shadow_name: "The Cup of Mocha Clan" },
+          { clan_id: 1441, clan_name: "cocoa", shadow_name: "The Cup of Cocoa Clan" },
+          { clan_id: 1902, clan_name: "hot choc", shadow_name: "The Cup of Hot Chocolate Clan" },
+          { clan_id: 1870, clan_name: "horlicks", shadow_name: "The Cup of Horlicks Clan" },
+          { clan_id: 3224, clan_name: "latte", shadow_name: "The Cup of Latte Clan" },
+          { clan_id: -1, clan_name: "shadow", shadow_name: "CuppaClans Shadow Crew" },
+        ],
+      },
+      100: {
+        name: "July 2021",
+        clans: [
+          { clan_id: 1349, clan_name: "coffee", shadow_name: "The Cup of Coffee Clan" },
+          { clan_id: 457, clan_name: "tea", shadow_name: "The Cup of Tea Clan" },
+          { clan_id: 2042, clan_name: "mocha", shadow_name: "The Cup of Mocha Clan" },
+          { clan_id: 1441, clan_name: "cocoa", shadow_name: "The Cup of Cocoa Clan" },
+          { clan_id: 1902, clan_name: "hot choc", shadow_name: "The Cup of Hot Chocolate Clan" },
+          { clan_id: 1870, clan_name: "horlicks", shadow_name: "The Cup of Horlicks Clan" },
+          { clan_id: 3224, clan_name: "latte", shadow_name: "The Cup of Latte Clan" },
+          { clan_id: -1, clan_name: "shadow", shadow_name: "CuppaClans Shadow Crew" },
+        ],
+      },
     },
   },
   kcat: {

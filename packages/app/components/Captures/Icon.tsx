@@ -1,7 +1,7 @@
 import { Button, Layout, Popover, Text } from "@ui-kitten/components";
 import React from "react";
 import { Pressable, StyleSheet } from "react-native";
-import { Type } from "@cuppazee/types";
+import { Type } from "@cuppazee/db";
 import TypeImage from "../Common/TypeImage";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";

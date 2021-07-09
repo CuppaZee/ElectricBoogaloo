@@ -1,11 +1,11 @@
 import React from "react";
 import { Layout, Text } from "@ui-kitten/components";
 import { Pressable, View } from "react-native";
-import { UserActivityItem } from "./Data";
 import useDay from "../../hooks/useDay";
 import TypeImage from "../Common/TypeImage";
 import { useTranslation } from "react-i18next";
 import { useNavigation } from "@react-navigation/native";
+import { UserActivityItem } from "@cuppazee/utils";
 
 export default React.memo(
   function UserActivityListItem(item: UserActivityItem) {
@@ -50,14 +50,14 @@ export default React.memo(
             }}
           />
           <View style={{ flex: 1 }}>
-            {[item, ...(item.subCaptures ?? [])].map(i => (
+            {[item, ...(item.sub_captures ?? [])].map(i => (
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <View style={{ alignItems: "center", width: 50, paddingLeft: 4 }}>
                   <Text category={i.sub ? "s2" : "s1"}>
                     {i.points > 0 ? "+" : ""}
                     {i.points || t("user_activity:none")}
                   </Text>
-                  <TypeImage icon={i.pin} style={{ size: i.sub ? 24 : 32 }} />
+                  <TypeImage icon={i.icon} style={{ size: i.sub ? 24 : 32 }} />
                 </View>
                 <View style={{ padding: 4, flex: 1 }}>
                   {!i.sub && (

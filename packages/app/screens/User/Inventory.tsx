@@ -1,20 +1,19 @@
 import { RouteProp, useRoute } from "@react-navigation/native";
-import { Text, Layout, CheckBox } from "@ui-kitten/components";
+import { Text, Layout, CheckBox, Button } from "@ui-kitten/components";
 import * as React from "react";
-import { StyleSheet, ScrollView, View } from "react-native";
-import InventoryConverter, {
-  UserInventoryConvertedType,
-  UserInventoryData,
-  getCategory,
-} from "../../components/Inventory/Data";
+import { StyleSheet, ScrollView, View, Platform } from "react-native";
 import { InventoryIcon } from "../../components/Inventory/Icon";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import { UserStackParamList } from "../../types";
-import { TypeCategory, TypeState } from "@cuppazee/types";
 import useTitle from "../../hooks/useTitle";
 import { useTranslation } from "react-i18next";
 import Loading from "../../components/Loading";
+import { generateInventoryData, UserInventoryInputData } from "@cuppazee/utils";
+import useDB from "../../hooks/useDB";
+import dayjs from "dayjs";
+import { openBrowserAsync } from "expo-web-browser";
+import { openURL } from "expo-linking";
 
 export default function UserInventoryScreen() {
   const [includeZeroes, setIncludeZeroes] = React.useState(false);
@@ -23,67 +22,71 @@ export default function UserInventoryScreen() {
   const route = useRoute<RouteProp<UserStackParamList, "Inventory">>();
   useTitle(`☕ ${route.params.username} - ${t("pages:user_inventory")}`);
   const user = useMunzeeRequest("user", { username: route.params.username });
-  const data = useCuppaZeeRequest<{ data: UserInventoryData }>(
+  const data = useCuppaZeeRequest<{ data: UserInventoryInputData }>(
     "user/inventory",
     { user_id: user.data?.data?.user_id },
     user.data?.data?.user_id !== undefined,
     user.data?.data?.user_id
   );
+  const db = useDB();
   const d = React.useMemo(
-    () => (data.data?.data ? InventoryConverter(data.data?.data) : null),
-    [data.dataUpdatedAt]
+    () =>
+      data.data?.data
+        ? generateInventoryData(db, data.data.data, { hideZeroes: !includeZeroes, groupByState })
+        : null,
+    [data.dataUpdatedAt, includeZeroes, groupByState]
   );
 
-  const categories:
-    | ((
-        | {
-            state: "physical" | "virtual" | "credit";
-          }
-        | {
-            category: TypeCategory;
-          }
-      ) & {
-        types?: UserInventoryConvertedType[];
-        total?: number;
-      })[]
-    | undefined
-    | null = groupByState
-    ? [
-        {
-          state: "physical",
-          types: d?.types.filter(i => i.type?.state === TypeState.Physical),
-          total: d?.types
-            .filter(i => i.type?.state === TypeState.Physical)
-            .reduce((a, b) => a + b.amount, 0),
-        },
-        {
-          state: "virtual",
-          types: d?.types.filter(i => i.type?.state === TypeState.Virtual),
-          total: d?.types
-            .filter(i => i.type?.state === TypeState.Virtual)
-            .reduce((a, b) => a + b.amount, 0),
-        },
-        {
-          state: "credit",
-          types: d?.types.filter(
-            i => i.type?.state !== TypeState.Physical && i.type?.state !== TypeState.Virtual
-          ),
-          total: d?.types
-            .filter(
-              i => i.type?.state !== TypeState.Physical && i.type?.state !== TypeState.Virtual
-            )
-            .reduce((a, b) => a + b.amount, 0),
-        },
-      ]
-    : d?.categories
-        .map(c => ({
-          category: c,
-          types: d?.types.filter(i => getCategory(i) === c),
-          total: d?.types
-            .filter(i => getCategory(i) === c)
-            .reduce((a, b) => a + b.amount, 0),
-        }))
-        .sort((a, b) => b.total - a.total);
+  // const categories:
+  //   | ((
+  //       | {
+  //           state: "physical" | "virtual" | "credit";
+  //         }
+  //       | {
+  //           category: Category;
+  //         }
+  //     ) & {
+  //       types?: UserInventoryConvertedType[];
+  //       total?: number;
+  //     })[]
+  //   | undefined
+  //   | null = groupByState
+  //   ? [
+  //       {
+  //         state: "physical",
+  //         types: d?.types.filter(i => i.type?.state === TypeState.Physical),
+  //         total: d?.types
+  //           .filter(i => i.type?.state === TypeState.Physical)
+  //           .reduce((a, b) => a + b.amount, 0),
+  //       },
+  //       {
+  //         state: "virtual",
+  //         types: d?.types.filter(i => i.type?.state === TypeState.Virtual),
+  //         total: d?.types
+  //           .filter(i => i.type?.state === TypeState.Virtual)
+  //           .reduce((a, b) => a + b.amount, 0),
+  //       },
+  //       {
+  //         state: "credit",
+  //         types: d?.types.filter(
+  //           i => i.type?.state !== TypeState.Physical && i.type?.state !== TypeState.Virtual
+  //         ),
+  //         total: d?.types
+  //           .filter(
+  //             i => i.type?.state !== TypeState.Physical && i.type?.state !== TypeState.Virtual
+  //           )
+  //           .reduce((a, b) => a + b.amount, 0),
+  //       },
+  //     ]
+  //   : d?.categories
+  //       .map(c => ({
+  //         category: c,
+  //         types: d?.types.filter(i => getCategory(i) === c),
+  //         total: d?.types
+  //           .filter(i => getCategory(i) === c)
+  //           .reduce((a, b) => a + b.amount, 0),
+  //       }))
+  //       .sort((a, b) => b.total - a.total);
 
   if (!user.isFetched || !data.isFetched || !d) {
     return <Loading level="1" data={[user, data]} />;
@@ -107,7 +110,7 @@ export default function UserInventoryScreen() {
           </CheckBox>
         </View>
         <View style={styles.grid}>
-          {categories?.filter(includeZeroes ? () => true : i => (i.total ?? 0) > 0).map(c => (
+          {d.groups.filter(includeZeroes ? () => true : i => (i.total ?? 0) > 0).map(c => (
             <Layout
               level="3"
               style={{
@@ -123,6 +126,36 @@ export default function UserInventoryScreen() {
                   : c.state.slice(0, 1).toUpperCase() + c.state.slice(1) + "s"}{" "}
                 ({c.total || "0"})
               </Text>
+              {"category" in c && c.category.accessories && (
+                <View
+                  style={{
+                    width: "100%",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    flexWrap: "wrap",
+                  }}>
+                  {c.category.accessories.filter(i=>Platform.OS !== "web" || i.link.startsWith("http")).map(i => (
+                    <Button
+                      size="small"
+                      style={{
+                        margin: 4,
+                        ...(["primary", "success", "danger", "warning"].includes(i.color)
+                          ? {}
+                          : { backgroundColor: i.color }),
+                      }}
+                      status={
+                        ["primary", "success", "danger", "warning"].includes(i.color)
+                          ? i.color
+                          : undefined
+                      }
+                      onPress={() => {
+                        openURL(i.link.startsWith("~") ? i.link.slice(1) : i.link);
+                      }}>
+                      {i.label}
+                    </Button>
+                  ))}
+                </View>
+              )}
               <View
                 style={{
                   flexDirection: "row",
@@ -158,7 +191,7 @@ export default function UserInventoryScreen() {
                 {typeof c.title === "string" ? c.title : t(c.title[0] as any, c.title[1])}
               </Text>
               <Text category="c1" style={{ textAlign: "center" }}>
-                {c.time.format("L LT")}
+                {dayjs(c.time.valueOf()).format("L LT")}
               </Text>
               {c.description && (
                 <Text category="p1" style={{ textAlign: "center" }}>

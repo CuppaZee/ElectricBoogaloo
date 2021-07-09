@@ -1,6 +1,7 @@
 import { retrieve, request } from "../util";
 import { Route } from "../types";
 import mongo from "../util/mongo";
+import { AuthApplication } from "../util/retrieve";
 const route: Route = {
   path: "minute/clanlist",
   latest: 1,
@@ -8,7 +9,7 @@ const route: Route = {
     {
       version: 1,
       async function({ db }: any) {
-        var token = await retrieve({ user_id: 455935, teaken: false }, 60, "universal");
+        var token = await retrieve({ user_id: 455935, teaken: false }, 60, AuthApplication.Universal);
         var counter = await mongo.collection("counters").findOne({id: "clans_list"});
         var array = [];
         for (var i = counter.value; i < counter.value + 20; i++) {

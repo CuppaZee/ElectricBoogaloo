@@ -6,7 +6,6 @@ import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import useComponentSize from "../../hooks/useComponentSize";
 import { UserStackParamList } from "../../types";
 import useTitle from "../../hooks/useTitle";
-import { ActivityConverter } from "../../components/Activity/Data";
 import ChallengesConverter from "../../components/Challenges/Data";
 import useActivity from "../../hooks/useActivity";
 import Loading from "../../components/Loading";
@@ -15,6 +14,8 @@ import TypeImage from "../../components/Common/TypeImage";
 import { useTranslation } from "react-i18next";
 import getDateService from "../../components/Common/getDateService";
 import Icon from "../../components/Common/Icon";
+import { generateUserActivityData } from "@cuppazee/utils/lib";
+import useDB from "../../hooks/useDB";
 
 export default function UserChallengesScreen() {
   const { t } = useTranslation();
@@ -32,10 +33,11 @@ export default function UserChallengesScreen() {
     route.params?.username !== undefined
   );
   const data = useActivity(user.data?.data?.user_id, route.params?.date);
+  const db = useDB();
   const d = React.useMemo(
     () =>
       data.data?.data
-        ? ChallengesConverter(ActivityConverter(data.data?.data, null, { username: "sohcah" }))
+        ? ChallengesConverter(db, generateUserActivityData(db, data.data?.data, {activity: new Set(), state: new Set(), category: new Set()}, "sohcah"))
         : null,
     [data.dataUpdatedAt]
   );

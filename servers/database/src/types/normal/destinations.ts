@@ -1,0 +1,211 @@
+import {
+  TypePoints,
+  TypeHidden,
+  TypeState,
+  TypeTags,
+} from "@cuppazee/db";
+
+const destinations: {
+  name: string;
+  icons: string[];
+  id: string;
+  munzee_id?: number;
+  state: TypeState;
+  type: TypeTags;
+  size?: number;
+  star_level?: number;
+  room_of?: string | number;
+  temporary?: boolean;
+  tags?: TypeTags[];
+  hidden?: TypeHidden[];
+  points?: TypePoints;
+}[] = [
+  {
+    name: "1 Star Motel",
+    icons: ["1starmotel"],
+    id: "1starmotel",
+    munzee_id: 70,
+    star_level: 1,
+    type: TypeTags.DestinationRooms,
+    size: 5,
+    state: TypeState.Physical,
+  },
+  {
+    name: "1 Star Motel Room",
+    icons: ["1starmotelroom"],
+    id: "1starmotelroom",
+    munzee_id: 71,
+    star_level: 1,
+    room_of: 70,
+    type: TypeTags.DestinationRoom,
+    state: TypeState.Physical,
+  },
+  {
+    name: "Hotel",
+    icons: ["hotel"],
+    id: "hotel",
+    munzee_id: 170,
+    type: TypeTags.DestinationRooms,
+    size: 10,
+    state: TypeState.Physical,
+  },
+  {
+    name: "Hotel Room",
+    icons: ["hotelroom"],
+    id: "hotelroom",
+    munzee_id: 171,
+    room_of: 170,
+    type: TypeTags.DestinationRoom,
+    state: TypeState.Physical,
+  },
+  {
+    name: "3 Star Virtual Resort",
+    icons: ["3starresort", "virtual_resort"],
+    id: "3starresort",
+    munzee_id: 470,
+    type: TypeTags.DestinationRooms,
+    size: 15,
+    state: TypeState.Virtual,
+  },
+  {
+    name: "3 Star Virtual Resort Room",
+    icons: ["3starresortroom", "virtual_resort_room"],
+    id: "3starresortroom",
+    munzee_id: 471,
+    room_of: 470,
+    type: TypeTags.DestinationRoom,
+    state: TypeState.Virtual,
+  },
+  {
+    name: "Time Share",
+    icons: ["timeshare"],
+    id: "timeshare",
+    munzee_id: 970,
+    temporary: true,
+    size: 5,
+    type: TypeTags.DestinationRooms,
+    state: TypeState.Physical,
+  },
+  {
+    name: "Time Share Room",
+    icons: ["timeshareroom"],
+    id: "timeshareroom",
+    munzee_id: 971,
+    room_of: 970,
+    temporary: true,
+    type: TypeTags.DestinationRoom,
+    state: TypeState.Physical,
+  },
+  {
+    name: "Treehouse",
+    icons: ["treehouse"],
+    id: "treehouse",
+    munzee_id: 2145,
+    type: TypeTags.DestinationBouncer,
+    size: 6,
+    state: TypeState.Physical,
+  },
+  {
+    name: "Vacation Condo",
+    icons: ["vacationcondo"],
+    id: "vacationcondo",
+    munzee_id: 2183,
+    temporary: true,
+    type: TypeTags.DestinationRooms,
+    size: 5,
+    state: TypeState.Virtual,
+  },
+  {
+    name: "Vacation Condo Room",
+    icons: ["vacationcondoroom"],
+    id: "vacationcondoroom",
+    munzee_id: 2184,
+    room_of: 2183,
+    temporary: true,
+    type: TypeTags.DestinationRoom,
+    state: TypeState.Virtual,
+  },
+  {
+    name: "2 Star Motel",
+    icons: ["2starmotel"],
+    id: "2starmotel",
+    munzee_id: 2356,
+    star_level: 2,
+    type: TypeTags.DestinationRooms,
+    size: 10,
+    state: TypeState.Physical,
+  },
+  {
+    name: "2 Star Motel Room",
+    icons: ["2starmotelroom"],
+    id: "2starmotelroom",
+    munzee_id: 2357,
+    room_of: 2356,
+    star_level: 2,
+    type: TypeTags.DestinationRoom,
+    state: TypeState.Physical,
+  },
+  {
+    name: "3 Star Motel",
+    icons: ["3starmotel"],
+    id: "3starmotel",
+    munzee_id: 2358,
+    star_level: 3,
+    type: TypeTags.DestinationRooms,
+    size: 15,
+    state: TypeState.Physical,
+  },
+  {
+    name: "3 Star Motel Room",
+    icons: ["3starmotelroom"],
+    id: "3starmotelroom",
+    munzee_id: 2359,
+    room_of: 2358,
+    star_level: 3,
+    type: TypeTags.DestinationRoom,
+    state: TypeState.Physical,
+  },
+  {
+    name: "Skyland",
+    icons: ["skyland"],
+    id: "skyland",
+    munzee_id: 2426,
+    type: TypeTags.DestinationBouncer,
+    size: 6,
+    state: TypeState.Virtual,
+  },
+  {
+    name: "4 Star Virtual Resort",
+    icons: ["4starresort"],
+    id: "4starresort",
+    type: TypeTags.DestinationRooms,
+    size: 20,
+    state: TypeState.Virtual,
+  },
+  {
+    name: "5 Star Virtual Resort",
+    icons: ["5starresort"],
+    id: "5starresort",
+    type: TypeTags.DestinationRooms,
+    size: 25,
+    state: TypeState.Virtual,
+  },
+  {
+    name: "4 Star Virtual Resort Room",
+    icons: ["4starresortroom"],
+    id: "4starresortroom",
+    room_of: "null_4starresort",
+    type: TypeTags.DestinationRoom,
+    state: TypeState.Virtual,
+  },
+  {
+    name: "5 Star Virtual Resort Room",
+    icons: ["5starresortroom"],
+    id: "5starresortroom",
+    room_of: "null_5starresort",
+    type: TypeTags.DestinationRoom,
+    state: TypeState.Virtual,
+  },
+];
+
+export default destinations;

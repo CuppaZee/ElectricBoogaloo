@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CuppaZee Max Migration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</head>
+
+<body class="d-flex flex-column align-items-center justify-content-center text-center overflow-auto" style="min-height: 100vh;">
+    <h1>CuppaZee Max is moving to <code>max.cuppazee.app</code></h1>
+    <h2 id="status"></h2>
+    <h5 id="bookmarks">Note: You may need to change your bookmarks</h5>
+    <button id="cont" class="btn btn-lg btn-success mt-2" onclick="cont()">
+        Continue to max.cuppazee.app
+    </button>
+    <button id="move" class="btn btn-lg btn-success mt-2" onclick="migrate()">
+        Move your data to max.cuppazee.app
+    </button>
+    <script>
+        if (localStorage.migrated === "2") {
+            document.getElementById("status").innerText = "Your data has been moved already";
+            document.getElementById("status").classList.add("text-success");
+            document.getElementById("move").classList.remove("btn-primary");
+            document.getElementById("move").classList.add("btn-warning");
+            document.getElementById("move").classList.remove("btn-lg");
+            document.getElementById("move").innerText = "Move your data to max.cuppazee.app again (not recommended)"
+        } else {
+            document.getElementById("bookmarks").style.display = "none";
+            document.getElementById("status").innerText = "Your data hasn't been moved yet";
+            document.getElementById("cont").classList.remove("btn-primary");
+            document.getElementById("cont").classList.add("btn-warning");
+            document.getElementById("cont").classList.add("btn-sm");
+            document.getElementById("cont").classList.remove("btn-lg");
+            document.getElementById("cont").innerText = "Continue to max.cuppazee.app without moving data (not recommended)"
+        }
+        function cont() {
+            location.href = "https://max.cuppazee.app" + location.pathname
+        }
+        function migrate() {
+            const migrationData = Object.assign({}, localStorage);
+            delete migrationData["@czexpress/dbcache"]
+            localStorage.migrated = "2"
+            location.href = "https://max.cuppazee.app/migration.html?t=" + Date.now() + "#" + encodeURIComponent(JSON.stringify(migrationData))
+        }
+    </script>
+</body>
+
+</html>

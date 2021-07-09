@@ -86,3 +86,4 @@ db.sqlite
 
 /packages/app/android/app/google-services.json
 dependencies.json
+GoogleService-Info.plist

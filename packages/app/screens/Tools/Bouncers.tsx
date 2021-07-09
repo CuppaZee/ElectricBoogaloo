@@ -1,4 +1,4 @@
-import db, { TypeHidden, TypeTags, TypeState } from "@cuppazee/types";
+import { TypeHidden, TypeTags, TypeState } from "@cuppazee/db";
 import { useNavigation } from "@react-navigation/native";
 import { Layout, Text, Button } from "@ui-kitten/components";
 import * as React from "react";
@@ -9,14 +9,16 @@ import { BouncerIcon } from "../../components/Bouncers/Icon";
 import Icon from "../../components/Common/Icon";
 import Loading from "../../components/Loading";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
+import useDB from "../../hooks/useDB";
 import useTitle from "../../hooks/useTitle";
 
 export default function BouncersScreen() {
   const { t } = useTranslation();
   useTitle(`☕ ${t("pages:tools_bouncers")}`);
   const nav = useNavigation();
-  const data = useCuppaZeeRequest("bouncers/overview", {});
-  const d = React.useMemo(() => data.data ? BouncerOverviewConverter(data.data.data) : null, [data.dataUpdatedAt]);
+  const data = useCuppaZeeRequest<{ data: any; endpointsDown: { label: string; endpoint: string;}[] }>("bouncers/overview", {});
+  const db = useDB();
+  const d = React.useMemo(() => data.data ? BouncerOverviewConverter(db, data.data.data) : null, [data.dataUpdatedAt]);
   
 
   if (!data.isFetched || !d) {
@@ -35,6 +37,26 @@ export default function BouncersScreen() {
           alignItems: "flex-start",
           flexWrap: "wrap",
         }}>
+        {data.data?.endpointsDown
+          .filter(i => i.endpoint.startsWith("/munzee/specials"))
+          .map(endpoint => (
+            <Layout style={{ margin: 4, width: "100%" }}>
+              <Layout
+                level="3"
+                style={{
+                  padding: 4,
+                  borderRadius: 8,
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}>
+                <Text category="h6" style={{ textAlign: "center", maxWidth: "100%" }}>
+                  CuppaZee is currently unable to get data for {endpoint.label} from Munzee. These
+                  bouncers may incorrectly show their counts as 0.
+                </Text>
+              </Layout>
+            </Layout>
+          ))}
         {d && d.uncategoriesTypes.length > 0 && (
           <View style={{ flexGrow: 1, width: 400, maxWidth: "100%", padding: 4 }}>
             <Layout level="3" style={{ borderRadius: 8, padding: 4 }}>

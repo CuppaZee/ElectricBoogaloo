@@ -1,6 +1,7 @@
 import * as React from "react";
-import db, { Type } from "@cuppazee/types";
-import { Image, ImageProps, ImageStyle, Text, View } from "react-native";
+import { Type } from "@cuppazee/db";
+import { Image, ImageProps, ImageStyle, View } from "react-native";
+import useDB from "../../hooks/useDB";
 
 const useNewIconsServer = true;
 
@@ -12,6 +13,7 @@ type TypeImageProps = Omit<ImageProps, "style" | "source"> & {
 };
 
 export function getRemoteTypeImage(input: string | Type, iconSize = 64, category = "types") {
+  const db = useDB();
   const type = typeof input === "string" ? db.getType(input) : input;
   const icon = typeof input === "string" ? input : type?.icon ?? "";
   return type
@@ -26,6 +28,7 @@ export function getTypeImage(icon: string | Type, iconSize = 64, category = "typ
 }
 
 export default function TypeImage({ icon, iconSize, style: { size, ...style }, category, ...rest }: TypeImageProps) {
+  const db = useDB();
   const type = db.getType(icon);
   const source = getTypeImage(type || icon, iconSize, category);
   let hostIcon;

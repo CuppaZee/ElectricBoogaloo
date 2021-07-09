@@ -1,4 +1,4 @@
-import db, { Type, TypeState, TypeTags } from "@cuppazee/types";
+import { CuppaZeeDB, Type, TypeState, TypeTags } from "@cuppazee/db";
 
 export interface Types {
   title?: string;
@@ -36,7 +36,7 @@ export interface Build {
   features?: Feature[];
 }
 
-const builds: Build[] = [
+const builds: (db: CuppaZeeDB) => Build[] = db => [
   {
     build: 1,
     date: "2021-02-18",
@@ -1061,6 +1061,122 @@ const builds: Build[] = [
       {
         title: "Horus",
         types: ["horus"],
+      },
+    ],
+  },
+  {
+    build: 64,
+    date: "2021-05-18",
+    types: [
+      {
+        title: "New POIs",
+        types: ["poipet", "poientertainment"],
+      },
+      {
+        title: "Arctic L.A.S.E.R. Shark",
+        types: ["arcticlasershark"],
+      },
+    ],
+  },
+  {
+    build: 65,
+    date: "2021-05-21",
+    features: [
+      {
+        title: "Expiring Rooms!",
+        description:
+          "You can now view your expiring Timeshare and Vacation Condo Rooms on CuppaZee!",
+      },
+    ],
+  },
+  {
+    build: 66,
+    date: "2021-05-21",
+    types: [
+      {
+        title: "Baby Pandas",
+        types: ["babypanda", "albinobabypanda"],
+      },
+    ],
+  },
+  {
+    build: 67,
+    date: "2021-05-21",
+    types: [
+      {
+        title: "Skateboarding Garden Gnome",
+        types: ["skateboardinggardengnome", "gnomeheelfliphat"],
+      },
+      {
+        title: "Seth Egyptian Zodiac",
+        types: ["seth"],
+      },
+      {
+        title: "World Bicycle Day 2021",
+        types: ["championchopper", "unicornunicycle", "toytrike", "bicentennialbicycle"],
+      },
+    ],
+    improvements: [
+      {
+        description: "Added label to Expiring Rooms page with total amount of rooms",
+      },
+      {
+        description: "Improved loading speeds",
+      },
+    ],
+  },
+  {
+    build: 68,
+    date: "2021-06-07",
+    features: [
+      {
+        title: "Massive Behind-the-Scenes Work!",
+        description:
+          "I've spent a load of time reworking how CuppaZee's Munzee Types information is retrieved, along with how Activity, Inventory and Clan Stats are calculated, in order to allow for more code sharing between CuppaZee Express and CuppaZee Max, and to allow me to more quickly add information on new Munzee Types. All of these new changes have now been released, so please let me know if you spot any issues!",
+      },
+      {
+        title: "Changelog Changes",
+        description:
+          "Please be aware that due to these changes, new Munzee Types will no longer be included in OTA update changelogs, as they are now added without full OTA updates.",
+      },
+    ],
+  },
+  {
+    build: 69,
+    date: "2021-06-09",
+    improvements: [
+      {
+        description: "Re-introduced the Quick Level Switcher on Clan Stats from CuppaZee App V1",
+      },
+    ],
+  },
+  {
+    build: 70,
+    date: "2021-06-16",
+    fixes: [
+      {
+        description: "Fixed settings toggles on the Player Inventory page",
+      },
+    ],
+  },
+  {
+    build: 71,
+    date: "2021-06-19",
+    fixes: [
+      {
+        description:
+          "Fixed the Munzee creator being wrong on Bouncer Host captures on User Activity",
+        thanks: "lynnslilypad",
+      },
+    ],
+  },
+  {
+    build: 72,
+    date: "2021-07-06",
+    improvements: [
+      {
+        description:
+          "Added a notice on bouncer pages which shows when API Endpoints are down",
       },
     ],
   },

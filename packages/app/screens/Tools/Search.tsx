@@ -6,14 +6,15 @@ import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import useSearch from "../../hooks/useSearch";
 import useTitle from "../../hooks/useTitle";
 import Fuse from "fuse.js";
-import types from "@cuppazee/types";
 import TypeImage from "../../components/Common/TypeImage";
 import { useNavigation } from "@react-navigation/native";
 import Tip from "../../components/Common/Tip";
 import { useTranslation } from "react-i18next";
 import Icon from "../../components/Common/Icon";
+import useDB from "../../hooks/useDB";
 
 export default function SearchScreen() {
+  const db = useDB();
   const { t } = useTranslation();
   useTitle(`☕ ${t("pages:tools_search")}`);
   const [value, search, onValue] = useSearch(500);
@@ -26,8 +27,8 @@ export default function SearchScreen() {
       new Fuse(
         [
           ...(clans.data?.data ?? []),
-          ...types.types,
-          ...types.categories,
+          ...db.types,
+          ...db.categories,
           ...(users.data?.data?.users ?? []),
         ],
         {

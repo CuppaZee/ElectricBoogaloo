@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.0.13 - 25/05/2021
+- Added `/user/deploys/map` endpoint definitions
 ## 0.0.12 - 12/05/2021
 - Added `/user/cubimals` endpoint definitions
 - Added `/qrates` endpoint definitions

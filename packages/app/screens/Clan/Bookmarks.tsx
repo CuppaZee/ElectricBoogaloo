@@ -1,10 +1,10 @@
+import { GameID } from "@cuppazee/utils/lib";
 import { RouteProp, useIsFocused, useNavigation, useRoute } from "@react-navigation/native";
 import { Layout } from "@ui-kitten/components";
 import dayjs from "dayjs";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { ScrollView, View } from "react-native";
-import { gameIDToMonth, monthToGameID } from "../../components/Clan/Data";
 import ClanRequirementsTable from "../../components/Clan/Requirements";
 import ClanStatsTable from "../../components/Clan/Stats";
 import { useSyncScrollViewController } from "../../components/Clan/SyncScrollView";
@@ -24,10 +24,10 @@ export default function ClanBookmarksScreen() {
   const scrollViewController = useSyncScrollViewController();
   const route = useRoute<RouteProp<ClanStackParamList, "Bookmarks">>();
   const nav = useNavigation();
-  const game_id = monthToGameID(
-    route.params?.year ? Number(route.params.year) : undefined,
-    route.params?.month ? Number(route.params.month) - 1 : undefined
-  );
+  const game_id = route.params?.year ? new GameID(
+    Number(route.params.year),
+    route.params?.month ? Number(route.params.month) - 1 : dayjs.mhqNow().month(),
+  ).game_id : new GameID().game_id;
   const [style] = useSetting(ClanPersonalisationAtom);
   const [clans] = useClanBookmarks();
   const isFocused = useIsFocused();
@@ -79,16 +79,16 @@ export default function ClanBookmarksScreen() {
             value={game_id.toString()}
             onValueChange={value => {
               nav.setParams({
-                year: gameIDToMonth(Number(value)).y,
-                month: gameIDToMonth(Number(value)).m + 1,
+                year: new GameID(Number(value)).year,
+                month: new GameID(Number(value)).month + 1,
               });
             }}
-            options={new Array(monthToGameID() - 78)
+            options={new Array(new GameID().game_id - 78)
               .fill(0)
               .map((_, i) => {
-                const { m, y } = gameIDToMonth(i + 79);
+                const { month, year } = new GameID(i + 79);
                 return {
-                  label: dayjs().set("month", m).set("year", y).format("MMMM YYYY"),
+                  label: dayjs().set("month", month).set("year", year).format("MMMM YYYY"),
                   value: (i + 79).toString(),
                 };
               })

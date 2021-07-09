@@ -1,11 +1,11 @@
 import { Layout, Popover, Text } from "@ui-kitten/components";
 import React from "react";
 import { Pressable, StyleSheet } from "react-native";
-import { UserInventoryConvertedType } from "./Data";
 import TypeImage from "../Common/TypeImage";
 import { useTranslation } from "react-i18next";
+import { UserInventoryItem } from "@cuppazee/utils";
 
-export function InventoryIcon(data: UserInventoryConvertedType) {
+export function InventoryIcon(data: UserInventoryItem) {
   const { t } = useTranslation()
   const [visible, setVisible] = React.useState(false);
   return (

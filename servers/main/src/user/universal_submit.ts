@@ -2,7 +2,7 @@ import {request} from "../util";
 import types from './universal_types.json';
 import { Route } from "../types";
 import mongo from "../util/mongo";
-import db from "@cuppazee/types";
+import czdb from "../util/czdb";
 
 const route: Route = {
   path: "user/universal/submit",
@@ -16,7 +16,7 @@ const route: Route = {
         var codeData = code.match(/(?:https?:\/\/(?:www.)?)?(?:munzee.com)?\/?m\/([^/]{0,30})\/([0-9]+)\/([0-9a-zA-Z]{6})/);
         var munzee = await request('munzee', { url: `/m/${codeData[1]}/${codeData[2]}` }, access_token);
         console.log(codeData, types, munzee?.data?.pin_icon);
-        var type = types.find(i => db.strip(i.icon) === db.strip(munzee?.data?.pin_icon || ""));
+        var type = types.find(i => czdb.value.strip(i.icon) === czdb.value.strip(munzee?.data?.pin_icon || ""));
         if (!type) {
           return {
             status: "error",

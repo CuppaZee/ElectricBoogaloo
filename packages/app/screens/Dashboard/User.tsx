@@ -7,11 +7,11 @@ import { Image, Pressable, ScrollView, StyleSheet, View } from "react-native";
 import UserActivityOverview from "../../components/Activity/Overview";
 import ZeeOpsOverview from "../../components/ZeeOps/Overview";
 import { DashCardProps } from "./Dashboard";
-import db from "@cuppazee/types";
 import TypeImage from "../../components/Common/TypeImage";
 import { UserPagesNow } from "../User/Profile";
 import Icon from "../../components/Common/Icon";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
+import useDB from "../../hooks/useDB";
 
 export default React.memo(function UserDashCard({
   item,
@@ -19,6 +19,7 @@ export default React.memo(function UserDashCard({
   onInnerLayout,
   onOuterLayout,
 }: DashCardProps<{ username: string; user_id: string }>) {
+  const db = useDB();
   const { t } = useTranslation();
   const nav = useNavigation();
   const user = useMunzeeRequest("user", { username: item.username }, touched);
@@ -84,7 +85,7 @@ export default React.memo(function UserDashCard({
                 selected={false}
                 title={() => (
                   <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
-                    {t(`pages:${i.title}` as const)}
+                    {"title" in i ? t(`pages:${i.title}` as const) : i.nontranslatedtitle}
                   </Text>
                 )}
                 accessoryLeft={props => <Icon name={i.icon} {...props} />}
@@ -109,7 +110,13 @@ export default React.memo(function UserDashCard({
                 accessoryLeft={() => (
                   <Image
                     source={{ uri: user.data?.data?.clan?.logo ?? "" }}
-                    style={{ height: 32, width: 32, borderRadius: 16, marginVertical: -4, marginHorizontal: 2 }}
+                    style={{
+                      height: 32,
+                      width: 32,
+                      borderRadius: 16,
+                      marginVertical: -4,
+                      marginHorizontal: 2,
+                    }}
                   />
                 )}
                 onPress={() =>

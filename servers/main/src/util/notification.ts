@@ -8,9 +8,10 @@ export default async function (messages: ExpoPushMessage[]) {
   let tickets = [];
   for (let chunk of chunks) {
     try {
+      let to = chunk.map(i => i.to).flat();
       let ticketChunk = await expo.sendPushNotificationsAsync(chunk);
-      console.log(ticketChunk);
-      tickets.push(...ticketChunk);
+      console.log(`Sent Notifications:`, ticketChunk.length);
+      tickets.push(...ticketChunk.map((i,n)=>({...i, token: to[n] })));
     } catch (error) {
       console.error(error);
     }

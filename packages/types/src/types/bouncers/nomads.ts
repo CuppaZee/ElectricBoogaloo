@@ -332,6 +332,13 @@ const nomads: {
     state: "bouncer",
     lands_on: [type => type.has_tag(TypeTags.TypeWeaponClan) && type.state === TypeState.Virtual],
   },
+  {
+    name: "Virtual Bellhop Nomad",
+    icon: "virtualbellhopnomad",
+    id: "null_virtualbellhopnomad",
+    state: "bouncer",
+    lands_on: [type => type.has_tag(TypeTags.TypeDestination) && type.state === TypeState.Virtual],
+  },
 ];
 
 export default nomads;

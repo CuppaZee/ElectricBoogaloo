@@ -49,6 +49,17 @@ const tpobs: {
       "premium",
     ],
   },
+  {
+    name: "Arctic L.A.S.E.R. Shark",
+    icon: "arcticlasershark",
+    id: "null_arcticlasershark",
+    lands_on: [
+      type => type.has_tag(TypeTags.TypeMysteryElemental),
+      type => type.has_tag(TypeTags.TypeWeaponZeeops),
+      "joystick",
+      "joystick_virtual",
+    ],
+  },
 ];
 
 

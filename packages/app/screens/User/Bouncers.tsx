@@ -1,5 +1,5 @@
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
-import { Layout, Spinner, Text } from "@ui-kitten/components";
+import { Card, Layout, Spinner, Text } from "@ui-kitten/components";
 import * as React from "react";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
@@ -7,7 +7,6 @@ import useComponentSize from "../../hooks/useComponentSize";
 import { UserStackParamList } from "../../types";
 import useTitle from "../../hooks/useTitle";
 import { Pressable, ScrollView, View } from "react-native";
-import MapView from "../../components/Maps/MapView";
 import { UserDeploys } from "@cuppazee/api/user/deploys";
 import { MunzeeSpecialBouncer } from "@cuppazee/api/munzee/specials";
 import TypeImage from "../../components/Common/TypeImage";
@@ -15,7 +14,7 @@ import useDay from "../../hooks/useDay";
 import Loading from "../../components/Loading";
 import { useTranslation } from "react-i18next";
 import { AutoMap, Icons, Layer, Source } from "../../components/Map/Map";
-import db from "@cuppazee/types/lib";
+import useDB from "../../hooks/useDB";
 
 type Bouncer = NonNullable<UserDeploys["response"]["data"]>["munzees"][0] & {
   bouncer?: MunzeeSpecialBouncer & { hash: string };
@@ -32,6 +31,7 @@ type Bouncer = NonNullable<UserDeploys["response"]["data"]>["munzees"][0] & {
 };
 
 export default function UserBouncersScreen() {
+  const db = useDB();
   const { t } = useTranslation();
   const nav = useNavigation();
   const day = useDay();
@@ -43,7 +43,7 @@ export default function UserBouncersScreen() {
     { username: route.params?.username },
     route.params?.username !== undefined
   );
-  const data = useCuppaZeeRequest<{ data: Bouncer[] }>(
+  const data = useCuppaZeeRequest<{ data: Bouncer[]; endpointsDown: { label: string; endpoint: string}[] }>(
     "user/bouncers",
     {
       user_id: user.data?.data?.user_id,
@@ -61,6 +61,18 @@ export default function UserBouncersScreen() {
   return (
     <Layout onLayout={onLayout} style={{ flex: 1, flexDirection: "row" }}>
       <ScrollView style={{ flex: 1 }} contentContainerStyle={{ padding: 4 }}>
+        {data.data?.endpointsDown
+          .filter(i => i.endpoint.startsWith("/munzee/specials"))
+          .map(endpoint => (
+            <Layout style={{ margin: 4 }}>
+              <Layout level="3" style={{ padding: 4, borderRadius: 8, flexDirection: "row", alignItems: "center", justifyContent: "center" }}>
+                <Text category="h6" style={{ textAlign: "center", maxWidth: "100%" }}>
+                  CuppaZee is currently unable to get data for {endpoint.label} from Munzee. These
+                  bouncers may incorrectly show as being off the map.
+                </Text>
+              </Layout>
+            </Layout>
+          ))}
         <Layout style={{ height: 400, margin: 4, borderRadius: 8 }}>
           <AutoMap
             onPress={point => {

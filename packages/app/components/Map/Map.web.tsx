@@ -1,4 +1,3 @@
-import db from "@cuppazee/types/lib";
 import { Button, Layout, Modal, useTheme } from "@ui-kitten/components";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -8,7 +7,6 @@ import ReactMapGL, {
   Layer as GLLayer,
   Marker as GLMarker,
   ScaleControl,
-  GeolocateControl,
   NavigationControl,
   MapContext,
   FlyToInterpolator,
@@ -18,6 +16,7 @@ import { View } from "react-native";
 import useSetting, { MapStyleAtom } from "../../hooks/useSetting";
 import Icon from "../Common/Icon";
 import Select from "../Common/Select";
+import useDB from "../../hooks/useDB";
 import {
   AutoMapProps,
   LayerProps,
@@ -277,12 +276,13 @@ export function Layer(props: LayerProps) {
 }
 
 export function Icons(props: IconsProps) {
+  const db = useDB();
   const context = React.useContext(MapContext);
   React.useEffect(() => {
     for (const icon of props.icons) {
       if (!context.map.hasImage(db.strip(icon))) {
         context.map.loadImage(
-          `https://icons.cuppazee.app/64/${db.strip(icon)}.png`,
+          `https://images.cuppazee.app/types/64/${db.strip(icon)}.png`,
           (error: any, image: any) => {
             if (error) return;
             context.map.addImage(db.strip(icon), image);

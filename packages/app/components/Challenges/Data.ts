@@ -1,5 +1,5 @@
-import db, { Type, TypeState, TypeTags } from "@cuppazee/types";
-import { UserActivityConverterOutput, UserActivityData, UserActivityItem } from "../Activity/Data";
+import { CuppaZeeDB, Type, TypeState, TypeTags } from "@cuppazee/db";
+import { UserActivityData, UserActivityItem } from "@cuppazee/utils/lib";
 
 export type ChallengeCategory = {
   name: string;
@@ -30,7 +30,7 @@ export type ChallengeWithCompletion = {
   categories: ChallengeCategoryWithCompletion[];
 };
 
-export const Challenges: Challenge[] = [
+export const Challenges: ((db: CuppaZeeDB) => Challenge[]) = db => [
   {
     id: "shc_lite",
     name: "Special Hunter LITE",
@@ -307,15 +307,15 @@ export const Challenges: Challenge[] = [
   },
 ];
 
-export default function ChallengesConverter(data: UserActivityConverterOutput) {
-  const challenges: ChallengeWithCompletion[] = Challenges.map(i => ({
+export default function ChallengesConverter(db: CuppaZeeDB, data?: UserActivityData) {
+  const challenges: ChallengeWithCompletion[] = Challenges(db).map(i => ({
     ...i,
     categories: i.categories.map(c => ({
       ...c,
       completion: [] as UserActivityItem[],
     })),
   }));
-  for (const item of [...data.list, ...data.list.map(i => i.subCaptures ?? [])]
+  for (const item of [...data?.list ?? [], ...data?.list.map(i => i.sub_captures ?? []) ?? []]
     .flat()
     .filter(i => i.type === "capture")) {
     for (const category of challenges.map(i => i.categories).flat()) {

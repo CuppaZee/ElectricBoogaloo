@@ -1,3 +1,4 @@
+import { CuppaZeeDB } from "@cuppazee/db";
 import { useNavigation } from "@react-navigation/core";
 import { BottomNavigation, BottomNavigationTab, Button, Layout, Text, useTheme } from "@ui-kitten/components";
 import * as React from "react";
@@ -83,7 +84,9 @@ export default function DashboardScreen() {
   const dashCards = [
     { nonUser: "tools" },
     ...(clans.length > 2 ? [{ nonUser: "clan" }] : []),
-    ...(builds.some(i => buildLoaded && i.build > build) ? [{ nonUser: "changes" }] : []),
+    ...(builds(new CuppaZeeDB([], [], [])).some(i => buildLoaded && i.build > build)
+      ? [{ nonUser: "changes" }]
+      : []),
     ...users,
   ];
   return (

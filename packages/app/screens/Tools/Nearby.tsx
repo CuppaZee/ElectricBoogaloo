@@ -1,22 +1,20 @@
-import { Layout, Spinner, Text, useTheme } from "@ui-kitten/components";
+import { Layout, Text, useTheme } from "@ui-kitten/components";
 import * as React from "react";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
 import useComponentSize from "../../hooks/useComponentSize";
 import useTitle from "../../hooks/useTitle";
 import { Platform, Pressable, ScrollView, View } from "react-native";
-import MapView from "../../components/Maps/MapView";
 import { MunzeeSpecial, MunzeeSpecialBouncer } from "@cuppazee/api/munzee/specials";
 import TypeImage from "../../components/Common/TypeImage";
 import * as Location from "expo-location";
 import * as Notifications from "expo-notifications";
-import types from "@cuppazee/types";
 import Loading from "../../components/Loading";
 import dayjs from "dayjs";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import Icon from "../../components/Common/Icon";
 import { AutoMap, Icons, Layer, Source } from "../../components/Map/Map";
-import db from "@cuppazee/types";
+import useDB from "../../hooks/useDB";
 
 type Bouncer = (MunzeeSpecialBouncer | MunzeeSpecial) & {
   hash: string;
@@ -47,16 +45,24 @@ export default function NearbyScreen() {
   const [size, onLayout] = useComponentSize();
   const theme = useTheme();
   const [settings, setSettings] = React.useState<NearbySettings>();
+  const [permissionError, setPermissionError] = React.useState(false);
+  const db = useDB();
   useTitle(`☕ ${t("pages:tools_nearby")}`);
-  const data = useCuppaZeeRequest<{ data: Bouncer[] }>(
-    "bouncers/nearby",
-    settings ?? {},
-    settings !== undefined
-  );
+  const data = useCuppaZeeRequest<{
+    data: Bouncer[];
+    endpointsDown: { label: string; endpoint: string }[];
+  }>("bouncers/nearby", settings ?? {}, settings !== undefined);
 
   React.useEffect(() => {
     (async () => {
-      await Location.requestForegroundPermissionsAsync();
+      try {
+        const perm = await Location.requestForegroundPermissionsAsync();
+        if (!perm.granted) {
+          setPermissionError(true);
+        }
+      } catch (e) {
+        setPermissionError(true);
+      }
       const loc = await Location.getCurrentPositionAsync();
       let token;
       if (Platform.OS !== "web") {
@@ -76,6 +82,14 @@ export default function NearbyScreen() {
     })();
   }, []);
 
+  if (permissionError) {
+    return (
+      <Layout style={{ flex: 1 }} onLayout={onLayout}>
+        <Text category="h6">CuppaZee couldn't get your location.</Text>
+      </Layout>
+    );
+  }
+
   if (!data.isFetched || !size || !settings) {
     return (
       <Layout style={{ flex: 1 }} onLayout={onLayout}>
@@ -86,6 +100,26 @@ export default function NearbyScreen() {
   return (
     <Layout onLayout={onLayout} style={{ flex: 1, flexDirection: "row" }}>
       <ScrollView style={{ flex: 1 }} contentContainerStyle={{ padding: 4 }}>
+        {data.data?.endpointsDown
+          .filter(i => i.endpoint.startsWith("/munzee/specials"))
+          .map(endpoint => (
+            <Layout style={{ margin: 4, width: "100%" }}>
+              <Layout
+                level="2"
+                style={{
+                  padding: 4,
+                  borderRadius: 8,
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}>
+                <Text category="h6" style={{ textAlign: "center", maxWidth: "100%" }}>
+                  CuppaZee is currently unable to get data for {endpoint.label} from Munzee. These
+                  bouncers may not show on this page.
+                </Text>
+              </Layout>
+            </Layout>
+          ))}
         <Layout style={{ height: 400, margin: 4, borderRadius: 8 }}>
           <AutoMap
             defaultViewport={{
@@ -184,7 +218,7 @@ export default function NearbyScreen() {
                     <Text category="h6">
                       {"mythological_munzee" in i
                         ? i.mythological_munzee.friendly_name
-                        : types.getType(i.logo)?.name ?? i.logo.slice(49, -4)}
+                        : db.getType(i.logo)?.name ?? i.logo.slice(49, -4)}
                       {"mythological_munzee" in i ? (
                         <Text category="s1">
                           {" "}
@@ -225,16 +259,18 @@ export default function NearbyScreen() {
                     <Text style={{ textAlign: "center" }} category="s1">
                       <Icon
                         name={
-                          ({
-                            N: "arrow-up-thick",
-                            NW: "arrow-top-left-thick",
-                            NE: "arrow-top-right-thick",
-                            W: "arrow-left-thick",
-                            E: "arrow-right-thick",
-                            SW: "arrow-bottom-left-thick",
-                            SE: "arrow-bottom-right-thick",
-                            S: "arrow-down-thick",
-                          } as const)[
+                          (
+                            {
+                              N: "arrow-up-thick",
+                              NW: "arrow-top-left-thick",
+                              NE: "arrow-top-right-thick",
+                              W: "arrow-left-thick",
+                              E: "arrow-right-thick",
+                              SW: "arrow-bottom-left-thick",
+                              SE: "arrow-bottom-right-thick",
+                              S: "arrow-down-thick",
+                            } as const
+                          )[
                             i.direction.slice(2) as
                               | "N"
                               | "NE"

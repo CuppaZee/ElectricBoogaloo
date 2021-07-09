@@ -8,10 +8,10 @@ import Loading from "../../components/Loading";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import useTitle from "../../hooks/useTitle";
 import { UserStackParamList } from "../../types";
-import db from "@cuppazee/types";
 import TypeImage from "../../components/Common/TypeImage";
 import dayjs from "dayjs";
 import Icon from "../../components/Common/Icon";
+import useDB from "../../hooks/useDB";
 
 export const UserPagesNow = [
   {
@@ -44,9 +44,15 @@ export const UserPagesNow = [
     title: "user_cubimals",
     screen: "Cubimals",
   },
+  {
+    icon: "door-open",
+    nontranslatedtitle: "Expiring Rooms",
+    screen: "Rooms",
+  },
 ] as const;
 
 export default function TabOneScreen() {
+  const db = useDB();
   const { t } = useTranslation();
   const theme = useTheme();
   const nav = useNavigation();
@@ -171,7 +177,7 @@ export default function TabOneScreen() {
                   selected={false}
                   title={() => (
                     <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
-                      {t(`pages:${i.title}` as const)}
+                      {"title" in i ? t(`pages:${i.title}` as const) : i.nontranslatedtitle}
                     </Text>
                   )}
                   accessoryLeft={props => <Icon name={i.icon} {...props} />}

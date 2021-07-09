@@ -1,12 +1,12 @@
+import { StatzeePlayerDay } from "@cuppazee/api/statzee/player/day";
 import dayjs from "dayjs";
-import { UserActivityData } from "../components/Activity/Data";
 import useCuppaZeeRequest from "./useCuppaZeeRequest";
 import useMunzeeRequest from "./useMunzeeRequest";
 import { useTeakens } from "./useToken";
 
 export default function useActivity(user_id?: number, day?: string) {
   const teakens = useTeakens();
-  const cuppazee = useCuppaZeeRequest<{ data: UserActivityData }>(
+  const cuppazee = useCuppaZeeRequest<{ data: StatzeePlayerDay["response"]["data"] }>(
     "user/activity",
     {
       user_id,

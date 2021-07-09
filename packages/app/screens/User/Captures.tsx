@@ -1,4 +1,4 @@
-import db, { TypeHidden } from "@cuppazee/types";
+import { TypeHidden } from "@cuppazee/db";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { DrawerItem, Layout, Text } from "@ui-kitten/components";
 import * as React from "react";
@@ -8,6 +8,7 @@ import { CapturesIcon } from "../../components/Captures/Icon";
 import TypeImage from "../../components/Common/TypeImage";
 import Loading from "../../components/Loading";
 import useComponentSize from "../../hooks/useComponentSize";
+import useDB from "../../hooks/useDB";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import useTitle from "../../hooks/useTitle";
 import { UserStackParamList } from "../../types";
@@ -39,6 +40,7 @@ export default function UserCapturesScreen() {
     },
     user.data?.data?.user_id !== undefined
   );
+  const db = useDB();
 
   const d = React.useMemo(
     () =>

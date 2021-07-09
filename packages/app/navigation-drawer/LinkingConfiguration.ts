@@ -37,6 +37,7 @@ export default function getConfig(notification?: NotificationResponse): LinkingO
                   QRew: ":username/qrew",
                   Cubimals: ":username/cubimals",
                   QRates: ":username/qrates",
+                  Rooms: ":username/rooms",
                 }).map(i => [
                   i[0],
                   {

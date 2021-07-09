@@ -7,24 +7,21 @@ import { UserStackParamList } from "../../types";
 import useTitle from "../../hooks/useTitle";
 import Loading from "../../components/Loading";
 import { Image, ScrollView, View } from "react-native";
-import {
-  ClanRequirementsConverter,
-  monthToGameID,
-  requirementMeta,
-} from "../../components/Clan/Data";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
 import Requirements from "../../components/Clan/Requirements";
 import { pickTextColor } from "../../components/Clan/Cell";
 import useSetting, { ClanPersonalisationAtom } from "../../hooks/useSetting";
 import { useTranslation } from "react-i18next";
 import baseURL from "../../baseURL";
+import { generateClanRequirements, GameID } from "@cuppazee/utils/lib";
+import useDB from "../../hooks/useDB";
 
 export default function UserClanScreen() {
   const { t } = useTranslation();
   const [size, onLayout] = useComponentSize();
   const route = useRoute<RouteProp<UserStackParamList, "ClanProgress">>();
   const [style] = useSetting(ClanPersonalisationAtom);
-  const game_id = monthToGameID();
+  const game_id = new GameID().game_id;
   const nav = useNavigation();
   useTitle(`☕ ${route.params.username} - ${t("pages:user_clan_progress")}`);
   const user = useMunzeeRequest(
@@ -44,9 +41,11 @@ export default function UserClanScreen() {
     game_id,
   });
 
+  const db = useDB();
+
   const requirements = React.useMemo(
-    () => ClanRequirementsConverter(requirements_data.data?.data),
-    [requirements_data.dataUpdatedAt]
+    () => generateClanRequirements(db, requirements_data.data?.data),
+    [requirements_data.dataUpdatedAt, db]
   );
   
   const isFocused = useIsFocused();
@@ -71,7 +70,7 @@ export default function UserClanScreen() {
   function calculateRequirement(requirement: number) {
     if (!requirements || !data.data) return;
     return (
-      [...requirements.tasks.individual[requirement] ?? [], Infinity].findIndex(
+      [-1, ...(requirements.tasks.individual[requirement] ?? []).slice(1), Infinity].findIndex(
         i => i > data.data.data[requirement]
       ) - 1
     );
@@ -85,7 +84,7 @@ export default function UserClanScreen() {
       <ScrollView style={{ flex: 1 }} contentContainerStyle={{ alignItems: "center" }}>
         <View style={{ width: 800, maxWidth: "100%", flexDirection: "row", flexWrap: "wrap" }}>
           {requirements.all.map(requirement => {
-            const l = levels[requirement] || -1;
+            const l = levels[requirement] ?? -1;
             return (
               <View style={{ width: 300, flexGrow: 1, maxWidth: "100%", padding: 4 }}>
                 <Layout
@@ -99,9 +98,9 @@ export default function UserClanScreen() {
                   />
                   <View style={{ paddingVertical: 8, flex: 1 }}>
                     <Text category="h6">
-                      {requirementMeta[requirement]?.top} {requirementMeta[requirement]?.bottom}
+                      {db.getClanRequirement(requirement).top} {db.getClanRequirement(requirement).bottom}
                     </Text>
-                    <Text category="s1">{data.data.data[requirement].toLocaleString()}</Text>
+                    <Text category="s1">{data.data.data[requirement]?.toLocaleString()}</Text>
                   </View>
                   {!!requirements.tasks.individual[requirement] && (
                     <Layout
@@ -116,18 +115,15 @@ export default function UserClanScreen() {
                         borderLeftWidth: style.full_background ? 0 : 4,
                         borderColor: style.colours[l] ?? "#aaaaaa",
                         backgroundColor:
-                          (style.colours[l] ?? "#aaaaaa") +
-                          (style.full_background ? "" : "22"),
+                          (style.colours[l] ?? "#aaaaaa") + (style.full_background ? "" : "22"),
                         alignItems: "center",
                       }}>
                       <Text
                         style={
                           style.full_background
                             ? {
-                              color: pickTextColor(
-                                style.colours[l] ?? "#aaaaaa"
-                              ),
-                            }
+                                color: pickTextColor(style.colours[l] ?? "#aaaaaa"),
+                              }
                             : undefined
                         }
                         category="h4">
@@ -137,7 +133,7 @@ export default function UserClanScreen() {
                   )}
                 </Layout>
               </View>
-            )
+            );
           })}
         </View>
         <View style={{ alignSelf: "stretch", padding: 4 }}>

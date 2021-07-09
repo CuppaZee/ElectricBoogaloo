@@ -82,6 +82,8 @@ export type DeviceNotificationSettings = {
   imperial?: boolean;
 
   platform?: "android_2.0.1" | "android_2.0.2" | "ios";
+
+  dnrCount?: number;
 };
 
 export type FullDeviceNotificationSettings = {
@@ -123,6 +125,6 @@ export type FullDeviceNotificationSettings = {
   imperial: boolean;
 };
 
-export default function (options?: any): Promise<DeviceNotificationSettings[]> {
-  return mongo.collection("notification_settings").find(options ?? {}).toArray()
+export default async function (options?: any): Promise<DeviceNotificationSettings[]> {
+  return (await mongo.collection<DeviceNotificationSettings>("notification_settings").find(options ?? {}).toArray()).filter(i=>!i.dnrCount || i.dnrCount < 100)
 }
