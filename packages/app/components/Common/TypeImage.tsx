@@ -3,8 +3,6 @@ import { Type } from "@cuppazee/db";
 import { Image, ImageProps, ImageStyle, View } from "react-native";
 import useDB from "../../hooks/useDB";
 
-const useNewIconsServer = true;
-
 type TypeImageProps = Omit<ImageProps, "style" | "source"> & {
   category?: "types" | "cubimals";
   style: Omit<ImageStyle, "height" | "width"> & { size: number };

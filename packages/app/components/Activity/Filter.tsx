@@ -1,10 +1,10 @@
-import { Button, CheckBox, Text } from "@ui-kitten/components";
 import * as React from "react";
 import { TypeState } from "@cuppazee/db";
 import { useTranslation } from "react-i18next";
 import { ScrollView } from "react-native-gesture-handler";
 import Icon from "../Common/Icon";
 import { UserActivityData, UserActivityFilters, UserActivityType } from "@cuppazee/utils/lib";
+import { Button, Checkbox, Heading } from "native-base";
 
 const types: {
   label: string;
@@ -64,34 +64,56 @@ export default function UserActivityFilter({
   return (
     <ScrollView style={{ flex: 1 }} contentContainerStyle={{ padding: 4 }}>
       <Button
+        startIcon={<Icon style={{ height: 24 }} name="content-save" />}
         onPress={() => setBaseFilters(filters)}
-        accessoryLeft={props => <Icon {...props} name="content-save" />}
-        size="small"
-        appearance="outline">
+        size="sm">
         {t("user_activity:filter_save")}
       </Button>
-      <Text category="s1" style={{ padding: 4 }}>
+      <Heading fontSize="lg" style={{ padding: 4 }}>
         {t("user_activity:filter_types")}
-      </Text>
-      {types.map(i => (
-        <CheckBox
-          key={i.value}
-          style={{ margin: 4 }}
-          checked={filters.activity.has(i.value)}
-          onChange={() => {
-            if (filters.activity.has(i.value)) {
-              filters.activity.delete(i.value);
-            } else {
-              filters.activity.add(i.value);
-            }
-            setFilters({ ...filters });
-          }}>
-          {i.label}
-        </CheckBox>
-      ))}
-      <Text category="s1" style={{ padding: 4 }}>
+      </Heading>
+      <Checkbox.Group
+        value={Array.from(filters.activity)}
+        onChange={arr => {
+          setFilters({ ...filters, activity: new Set(arr) });
+        }}>
+        {types.map(i => (
+          <Checkbox key={i.value} style={{ margin: 4 }} value={i.value}>
+            {i.label}
+          </Checkbox>
+        ))}
+      </Checkbox.Group>
+      <Heading fontSize="lg" style={{ padding: 4 }}>
         {t("user_activity:filter_state")}
-      </Text>
+      </Heading>
+      <Checkbox.Group
+        value={Array.from(filters.state).map(i => i.toString())}
+        onChange={(arr: any[]) => {
+          setFilters({ ...filters, state: new Set(arr.map(i => Number(i))) });
+        }}>
+        {states.map(i => (
+          <Checkbox key={i.value} style={{ margin: 4 }} value={i.value.toString()}>
+            {i.label}
+          </Checkbox>
+        ))}
+      </Checkbox.Group>
+      <Heading fontSize="lg" style={{ padding: 4 }}>
+        {t("user_activity:filter_category")}
+      </Heading>
+      <Checkbox.Group
+        value={Array.from(filters.category).map(i=>i.id)}
+        onChange={(arr: any[]) => {
+          setFilters({ ...filters, category: new Set(arr.map(i=>d.categories.find(c=>c.id === i) as any)) });
+        }}>
+        {d.categories.map(i => (
+          <Checkbox key={i.id} style={{ margin: 4 }} value={i.id}>
+            {i.name}
+          </Checkbox>
+        ))}
+      </Checkbox.Group>
+      {/* <Heading fontSize="lg" style={{ padding: 4 }}>
+        {t("user_activity:filter_state")}
+      </Heading>
       {states.map(i => (
         <CheckBox
           key={i.value}
@@ -108,9 +130,9 @@ export default function UserActivityFilter({
           {i.label}
         </CheckBox>
       ))}
-      <Text category="s1" style={{ padding: 4 }}>
+      <Heading fontSize="lg" style={{ padding: 4 }}>
         {t("user_activity:filter_category")}
-      </Text>
+      </Heading>
       {d.categories.map(i => (
         <CheckBox
           key={i.id}
@@ -126,7 +148,7 @@ export default function UserActivityFilter({
           }}>
           {i.name}
         </CheckBox>
-      ))}
+      ))} */}
     </ScrollView>
   );
 }

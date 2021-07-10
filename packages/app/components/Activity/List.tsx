@@ -5,9 +5,7 @@ import {
 } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import {
-  Button,
   Datepicker,
-  Layout,
 } from "@ui-kitten/components";
 import dayjs from "dayjs";
 import * as React from "react";
@@ -19,6 +17,7 @@ import getDateService from "../Common/getDateService";
 import { useTranslation } from "react-i18next";
 import Icon from "../Common/Icon";
 import { UserActivityData } from "@cuppazee/utils/lib";
+import { Box, Button } from "native-base";
 
 export default function UserActivityList({
   d,
@@ -39,8 +38,9 @@ export default function UserActivityList({
       style={{ flex: 1 }}
       contentContainerStyle={{ padding: 8, alignItems: "stretch" }}
       ListHeaderComponent={() => (
-        <Layout
-          level="3"
+        <Box
+          bg="coolGray.200"
+          _dark={{ bg: "coolGray.800" }}
           style={{
             margin: 4,
             borderRadius: 4,
@@ -57,9 +57,8 @@ export default function UserActivityList({
           {toggleFilterModal && (
             <Button
               onPress={() => toggleFilterModal()}
-              size="small"
-              appearance="ghost"
-              accessoryLeft={props => <Icon {...props} name="filter" />}>
+              size="sm"
+              startIcon={<Icon style={{ height: 24 }} name="filter" />}>
               {t("user_activity:filter_edit")}
             </Button>
           )}
@@ -68,7 +67,7 @@ export default function UserActivityList({
             day={route.params.date ?? dayjs.mhqNow().format("YYYY-MM-DD")}
             activityData={d}
           />
-        </Layout>
+        </Box>
       )}
       data={d?.list}
       keyExtractor={i => i.key}

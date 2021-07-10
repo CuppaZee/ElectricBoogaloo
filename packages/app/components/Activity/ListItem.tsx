@@ -1,11 +1,11 @@
 import React from "react";
-import { Layout, Text } from "@ui-kitten/components";
 import { Pressable, View } from "react-native";
 import useDay from "../../hooks/useDay";
 import TypeImage from "../Common/TypeImage";
 import { useTranslation } from "react-i18next";
 import { useNavigation } from "@react-navigation/native";
 import { UserActivityItem } from "@cuppazee/utils";
+import { Box, Heading, Text } from "native-base";
 
 export default React.memo(
   function UserActivityListItem(item: UserActivityItem) {
@@ -23,8 +23,9 @@ export default React.memo(
             },
           })
         }>
-        <Layout
-          level="3"
+        <Box
+          bg="coolGray.200"
+          _dark={{ bg: "coolGray.800" }}
           style={{
             margin: 4,
             borderRadius: 4,
@@ -53,7 +54,7 @@ export default React.memo(
             {[item, ...(item.sub_captures ?? [])].map(i => (
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <View style={{ alignItems: "center", width: 50, paddingLeft: 4 }}>
-                  <Text category={i.sub ? "s2" : "s1"}>
+                  <Text fontSize={i.sub ? "xs" : "sm"}>
                     {i.points > 0 ? "+" : ""}
                     {i.points || t("user_activity:none")}
                   </Text>
@@ -61,7 +62,7 @@ export default React.memo(
                 </View>
                 <View style={{ padding: 4, flex: 1 }}>
                   {!i.sub && (
-                    <Text category="c1">
+                    <Text fontSize="sm">
                       {
                         {
                           capture: t("user_activity:activity_capture"),
@@ -73,9 +74,9 @@ export default React.memo(
                       }
                     </Text>
                   )}
-                  <Text category="s1">{i.name}</Text>
+                  <Heading fontSize="md">{i.name}</Heading>
                   {i.type === "capture" && (
-                    <Text category="c1">
+                    <Text fontSize="sm">
                       {t("user_activity:owned_by_user", { user: i.creator || "" })}
                     </Text>
                   )}
@@ -84,14 +85,14 @@ export default React.memo(
             ))}
           </View>
           <View style={{ paddingHorizontal: 4, paddingRight: 8 }}>
-            <Text style={{ textAlign: "right" }} category="s1">
+            <Text style={{ textAlign: "right" }} fontSize="sm">
               {day(item.time).format("HH:mm")}
             </Text>
-            <Text style={{ textAlign: "right" }} category="c1">
+            <Text style={{ textAlign: "right" }} fontSize="md">
               {day(item.time).mhq().format("HH:mm [MHQ]")}
             </Text>
           </View>
-        </Layout>
+        </Box>
       </Pressable>
     );
   },

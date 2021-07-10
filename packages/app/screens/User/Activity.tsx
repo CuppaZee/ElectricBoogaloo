@@ -1,5 +1,4 @@
 import { RouteProp, useRoute } from "@react-navigation/native";
-import { Layout, Modal, Text } from "@ui-kitten/components";
 import dayjs from "dayjs";
 import * as React from "react";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
@@ -14,6 +13,7 @@ import { useTranslation } from "react-i18next";
 import useModalSafeArea from "../../hooks/useModalSafeArea";
 import { generateUserActivityData, UserActivityFilters } from "@cuppazee/utils";
 import useDB from "../../hooks/useDB";
+import { Box, Modal } from "native-base";
 
 export default function UserActivityScreen() {
   const { t } = useTranslation();
@@ -48,35 +48,46 @@ export default function UserActivityScreen() {
 
   if (!user.isFetched || !data.isFetched || !d || !size) {
     return (
-      <Layout style={{ flex: 1 }} onLayout={onLayout}>
+      <Box bg="coolGray.100" _dark={{bg: "coolGray.900" }} style={{ flex: 1 }} onLayout={onLayout}>
         <Loading data={[user, data]} />
-      </Layout>
+      </Box>
     );
   }
   return (
-    <Layout onLayout={onLayout} style={{ flex: 1, flexDirection: "row" }}>
+    <Box
+      bg="coolGray.100"
+      _dark={{ bg: "coolGray.900" }}
+      onLayout={onLayout}
+      style={{ flex: 1, flexDirection: "row" }}>
       <UserActivityList
         toggleFilterModal={(size?.width || 0) > 720 ? undefined : () => setVisible(!visible)}
         d={d}
         user_id={user.data?.data?.user_id ?? 0}
       />
       {(size?.width || 0) > 720 ? (
-        <Layout level="3" style={{ width: 300 }}>
+        <Box bg="coolGray.200" _dark={{ bg: "coolGray.800" }} style={{ width: 300 }}>
           <UserActivityFilter d={d} filters={filters} setFilters={setFilters} />
-        </Layout>
+        </Box>
       ) : (
         <Modal
-          // style={{ justifyContent: "center", alignItems: "center", height: "100%" }}
-          visible={visible}
-          backdropStyle={{ backgroundColor: "#0007" }}
-          onBackdropPress={() => setVisible(false)}>
-          <Layout
-            level="3"
-              style={[modalSafeArea, { width: 300, borderRadius: 8 }]}>
-              <UserActivityFilter d={d} filters={filters} setFilters={(value) => { setFilters(value); setVisible(false) }} />
-          </Layout>
+          isOpen={visible}
+          // backdropStyle={{ backgroundColor: "#0007" }}
+          onClose={() => setVisible(false)}>
+          <Box
+            bg="coolGray.200"
+            _dark={{ bg: "coolGray.800" }}
+            style={[modalSafeArea, { width: 300, borderRadius: 8 }]}>
+            <UserActivityFilter
+              d={d}
+              filters={filters}
+              setFilters={value => {
+                setFilters(value);
+                setVisible(false);
+              }}
+            />
+          </Box>
         </Modal>
       )}
-    </Layout>
+    </Box>
   );
 }

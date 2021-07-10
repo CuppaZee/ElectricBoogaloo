@@ -1,5 +1,4 @@
 import React, { useMemo } from "react";
-import { Button, Layout, Popover, Text } from "@ui-kitten/components";
 import { Pressable, View } from "react-native";
 import TypeImage from "../Common/TypeImage";
 import { useTranslation } from "react-i18next";
@@ -9,6 +8,7 @@ import { useNavigation } from "@react-navigation/native";
 import Icon from "../Common/Icon";
 import useDB from "../../hooks/useDB";
 import { generateUserActivityData, UserActivityData } from "@cuppazee/utils/lib";
+import { Box, Button, Heading, Popover, Text } from "native-base";
 
 export type UserActivityOverviewProps = {
   user_id: number;
@@ -30,32 +30,28 @@ const UserActivityOverviewItem = React.memo(
   function ({ icon, data, count }: UserActivityOverviewItemProps) {
     const db = useDB();
     const { t } = useTranslation();
-    const [visible, setVisible] = React.useState(false);
     const nav = useNavigation();
     return (
       <Popover
-        visible={visible}
-        anchor={() => (
-          <Pressable onPress={() => setVisible(true)}>
-            <View style={{ padding: 0, alignItems: "center" }}>
+        trigger={triggerProps => (
+          <Pressable {...triggerProps}>
+            <Box style={{ padding: 0, alignItems: "center" }}>
               <TypeImage icon={icon} style={{ size: count > 30 ? 24 : 32 }} />
               <Text style={{ textAlign: "center", fontSize: count > 30 ? 12 : 16 }}>
                 {data.count.toLocaleString()}
               </Text>
-            </View>
+            </Box>
           </Pressable>
-        )}
-        onBackdropPress={() => setVisible(false)}>
-        <Layout style={{ padding: 4 }}>
-          <Text style={{ textAlign: "center" }} category="h6">
+        )}>
+        <Popover.Content bg="coolGray.400" _dark={{ bg: "coolGray.600" }} style={{ padding: 4 }}>
+          <Heading style={{ textAlign: "center" }} fontSize="lg">
             {data.count.toLocaleString()}x {db.getType(icon)?.name || db.strip(icon)}
-          </Text>
-          <Text style={{ textAlign: "center" }} category="s1">
+          </Heading>
+          <Heading style={{ textAlign: "center" }} fontSize="md">
             {t("user_activity:overview_points", { count: data.points })}
-          </Text>
+          </Heading>
           <Button
             style={{ margin: 4 }}
-            appearance="outline"
             onPress={() =>
               nav.navigate("Tools", {
                 screen: "TypeMunzee",
@@ -64,10 +60,10 @@ const UserActivityOverviewItem = React.memo(
                 },
               })
             }
-            accessoryLeft={props => <Icon {...props} name="database" />}>
+            startIcon={<Icon style={{ height: 24 }} name="database" />}>
             {t("user_activity:type_info")}
           </Button>
-        </Layout>
+        </Popover.Content>
       </Popover>
     );
   },
@@ -95,13 +91,13 @@ export default function UserActivityOverview({ user_id, day, activityData }: Use
   }
   return (
     <View style={{ padding: 4 }}>
-      <Text category="h6" style={{ textAlign: "center" }}>
+      <Heading fontSize="lg" style={{ textAlign: "center" }}>
         {t("user_activity:overview_points", { count: d.points })}
-      </Text>
-      <Text category="s1" style={{ textAlign: "center" }}>
+      </Heading>
+      <Heading fontSize="md" style={{ textAlign: "center" }}>
         {t("user_activity:overview_captures", { count: d.overview.capture?.count ?? 0 })} (
         {t("user_activity:overview_points", { count: d.overview.capture?.points ?? 0 })})
-      </Text>
+      </Heading>
       <View
         style={{
           flexDirection: "row",
@@ -112,10 +108,10 @@ export default function UserActivityOverview({ user_id, day, activityData }: Use
           <UserActivityOverviewItem key={i[0]} icon={i[0]} data={i[1]} count={a.length} />
         ))}
       </View>
-      <Text category="s1" style={{ textAlign: "center" }}>
+      <Heading fontSize="md" style={{ textAlign: "center" }}>
         {t("user_activity:overview_deploys", { count: d.overview.deploy?.count ?? 0 })} (
         {t("user_activity:overview_points", { count: d.overview.deploy?.points ?? 0 })})
-      </Text>
+      </Heading>
       <View
         style={{
           flexDirection: "row",
@@ -126,12 +122,12 @@ export default function UserActivityOverview({ user_id, day, activityData }: Use
           <UserActivityOverviewItem key={i[0]} icon={i[0]} data={i[1]} count={a.length} />
         ))}
       </View>
-      <Text category="s1" style={{ textAlign: "center" }}>
+      <Heading fontSize="md" style={{ textAlign: "center" }}>
         {t("user_activity:overview_passive_deploys", {
           count: d.overview.passive_deploy?.count ?? 0,
         })}{" "}
         ({t("user_activity:overview_points", { count: d.overview.passive_deploy?.points ?? 0 })})
-      </Text>
+      </Heading>
       <View
         style={{
           flexDirection: "row",
@@ -142,10 +138,10 @@ export default function UserActivityOverview({ user_id, day, activityData }: Use
           <UserActivityOverviewItem key={i[0]} icon={i[0]} data={i[1]} count={a.length} />
         ))}
       </View>
-      <Text category="s1" style={{ textAlign: "center" }}>
+      <Heading fontSize="md" style={{ textAlign: "center" }}>
         {t("user_activity:overview_capons", { count: d.overview.capon?.count ?? 0 })} (
         {t("user_activity:overview_points", { count: d.overview.capon?.points ?? 0 })})
-      </Text>
+      </Heading>
       <View
         style={{
           flexDirection: "row",
