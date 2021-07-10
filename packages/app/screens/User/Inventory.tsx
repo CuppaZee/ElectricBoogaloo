@@ -1,5 +1,4 @@
 import { RouteProp, useRoute } from "@react-navigation/native";
-import { Text, Layout, CheckBox, Button } from "@ui-kitten/components";
 import * as React from "react";
 import { StyleSheet, ScrollView, View, Platform } from "react-native";
 import { InventoryIcon } from "../../components/Inventory/Icon";
@@ -12,8 +11,8 @@ import Loading from "../../components/Loading";
 import { generateInventoryData, UserInventoryInputData } from "@cuppazee/utils";
 import useDB from "../../hooks/useDB";
 import dayjs from "dayjs";
-import { openBrowserAsync } from "expo-web-browser";
 import { openURL } from "expo-linking";
+import { Box, Button, Checkbox, Heading, Text } from "native-base";
 
 export default function UserInventoryScreen() {
   const [includeZeroes, setIncludeZeroes] = React.useState(false);
@@ -93,26 +92,29 @@ export default function UserInventoryScreen() {
   }
 
   return (
-    <Layout style={{ flex: 1 }}>
+    <Box bg="coolGray.100" _dark={{ bg: "coolGray.900" }} style={{ flex: 1 }}>
       <ScrollView style={{ flex: 1 }}>
         <View style={{ flexDirection: "row", padding: 4 }}>
-          <CheckBox
-            checked={includeZeroes}
+          <Checkbox
+            value="zero"
+            isChecked={includeZeroes}
             onChange={i => setIncludeZeroes(i)}
             style={{ margin: 8 }}>
             {t("user_inventory:settings_zero")}
-          </CheckBox>
-          <CheckBox
-            checked={!groupByState}
+          </Checkbox>
+          <Checkbox
+            value="group"
+            isChecked={!groupByState}
             onChange={i => setGroupByState(!i)}
             style={{ margin: 8 }}>
             {t("user_inventory:settings_group")}
-          </CheckBox>
+          </Checkbox>
         </View>
         <View style={styles.grid}>
           {d.groups.filter(includeZeroes ? () => true : i => (i.total ?? 0) > 0).map(c => (
-            <Layout
-              level="3"
+            <Box
+              bg="coolGray.200"
+              _dark={{ bg: "coolGray.800" }}
               style={{
                 width: 400,
                 flexGrow: 1,
@@ -120,12 +122,12 @@ export default function UserInventoryScreen() {
                 margin: 4,
                 borderRadius: 4,
               }}>
-              <Text category="h6" style={{ textAlign: "center" }}>
+              <Heading fontSize="lg" style={{ textAlign: "center" }}>
                 {"category" in c
                   ? c.category.name
                   : c.state.slice(0, 1).toUpperCase() + c.state.slice(1) + "s"}{" "}
                 ({c.total || "0"})
-              </Text>
+              </Heading>
               {"category" in c && c.category.accessories && (
                 <View
                   style={{
@@ -136,14 +138,14 @@ export default function UserInventoryScreen() {
                   }}>
                   {c.category.accessories.filter(i=>Platform.OS !== "web" || i.link.startsWith("http")).map(i => (
                     <Button
-                      size="small"
+                      size="sm"
                       style={{
                         margin: 4,
                         ...(["primary", "success", "danger", "warning"].includes(i.color)
                           ? {}
                           : { backgroundColor: i.color }),
                       }}
-                      status={
+                      color={
                         ["primary", "success", "danger", "warning"].includes(i.color)
                           ? i.color
                           : undefined
@@ -170,16 +172,17 @@ export default function UserInventoryScreen() {
                     <InventoryIcon {...i} />
                   ))}
               </View>
-            </Layout>
+            </Box>
           ))}
         </View>
-        <Text style={{ textAlign: "center" }} category="h5">
+        <Heading style={{ textAlign: "center" }} fontSize="xl">
           {t("user_inventory:history")}
-        </Text>
+        </Heading>
         <View style={styles.grid}>
           {d?.history.map(c => (
-            <Layout
-              level="3"
+            <Box
+              bg="coolGray.200"
+              _dark={{bg:"coolGray.800"}}
               style={{
                 width: 400,
                 flexGrow: 1,
@@ -187,14 +190,14 @@ export default function UserInventoryScreen() {
                 margin: 4,
                 borderRadius: 4,
               }}>
-              <Text category="h6" style={{ textAlign: "center" }}>
+              <Heading fontSize="lg" style={{ textAlign: "center" }}>
                 {typeof c.title === "string" ? c.title : t(c.title[0] as any, c.title[1])}
-              </Text>
-              <Text category="c1" style={{ textAlign: "center" }}>
+              </Heading>
+              <Heading fontSize="md" style={{ textAlign: "center" }}>
                 {dayjs(c.time.valueOf()).format("L LT")}
-              </Text>
+              </Heading>
               {c.description && (
-                <Text category="p1" style={{ textAlign: "center" }}>
+                <Text fontSize="sm" style={{ textAlign: "center" }}>
                   {c.description}
                 </Text>
               )}
@@ -211,11 +214,11 @@ export default function UserInventoryScreen() {
                     <InventoryIcon {...i} />
                   ))}
               </View>
-            </Layout>
+            </Box>
           ))}
         </View>
       </ScrollView>
-    </Layout>
+    </Box>
   );
 }
 
