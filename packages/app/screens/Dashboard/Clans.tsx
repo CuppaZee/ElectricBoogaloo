@@ -1,5 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
-import { Layout, Text, DrawerItem } from "@ui-kitten/components";
+import { DrawerItem } from "@ui-kitten/components";
+import { Box, Heading } from "native-base";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 import { Image, StyleSheet, ScrollView, View } from "react-native";
@@ -13,12 +14,12 @@ export default React.memo(function ClansDashCard(props: DashCardProps<unknown>) 
   const nav = useNavigation();
   const [clans] = useClanBookmarks();
   return (
-    <Layout level="3" style={[styles.card, { flex: 1 }]}>
+    <Box bg="coolGray.200" _dark={{ bg: "coolGray.800" }} style={[styles.card, { flex: 1 }]}>
       <ScrollView onLayout={props.onOuterLayout} style={{ flex: 1 }}>
         <View onLayout={props.onInnerLayout} style={{ padding: 4 }}>
-          <Text style={{ marginLeft: 4 }} category="h5">
+          <Heading style={{ marginLeft: 4 }} fontSize="xl">
             {t("dashboard:clans")}
-          </Text>
+          </Heading>
           <Tip
             wrapperStyle={{ margin: 4 }}
             id="drawer_clan_bookmarks"
@@ -29,9 +30,9 @@ export default React.memo(function ClansDashCard(props: DashCardProps<unknown>) 
             style={{ backgroundColor: "transparent" }}
             selected={false}
             title={() => (
-              <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
+              <Heading style={{ flex: 1, marginLeft: 4 }} fontSize="md">
                 {t("pages:clan_requirements")}
-              </Text>
+              </Heading>
             )}
             accessoryLeft={props => <Icon name="star" {...props} />}
             onPress={() =>
@@ -46,9 +47,9 @@ export default React.memo(function ClansDashCard(props: DashCardProps<unknown>) 
               style={{ backgroundColor: "transparent" }}
               selected={false}
               title={() => (
-                <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
+                <Heading style={{ flex: 1, marginLeft: 4 }} fontSize="md">
                   {t("pages:clan_bookmarks")}
-                </Text>
+                </Heading>
               )}
               accessoryLeft={props => <Icon name="bookmark" {...props} />}
               onPress={() =>
@@ -64,9 +65,9 @@ export default React.memo(function ClansDashCard(props: DashCardProps<unknown>) 
               style={{ backgroundColor: "transparent" }}
               selected={false}
               title={() => (
-                <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
+                <Heading style={{ flex: 1, marginLeft: 4 }} fontSize="md">
                   {clan.name}
-                </Text>
+                </Heading>
               )}
               accessoryLeft={() => (
                 <Image
@@ -94,7 +95,7 @@ export default React.memo(function ClansDashCard(props: DashCardProps<unknown>) 
           ))}
         </View>
       </ScrollView>
-    </Layout>
+    </Box>
   );
 }, () => true)
 

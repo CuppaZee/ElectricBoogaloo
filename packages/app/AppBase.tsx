@@ -21,6 +21,7 @@ import { useTranslation } from "react-i18next";
 import "expo-firebase-analytics";
 import * as Sentry from "sentry-expo";
 import EvaWrapper from "./EvaWrapper";
+import { extendTheme, NativeBaseProvider } from "native-base";
 
 Sentry.init({
   dsn: "https://7823a6409bf1417dafa6f3e3ab47b6ed@o444031.ingest.sentry.io/5418530",
@@ -49,13 +50,20 @@ function AppBase() {
     }
   }, [liveLocationErrorLoaded]);
   const { i18n } = useTranslation();
+  const nativeBaseTheme = extendTheme({
+    config: {
+      initialColorMode: "dark"
+    }
+  })
 
   return (
     <>
-      <EvaWrapper>
-        <Navigation key={i18n.language} colorScheme={colorScheme} />
-        <StatusBar />
-      </EvaWrapper>
+      <NativeBaseProvider theme={nativeBaseTheme}>
+        <EvaWrapper>
+          <Navigation key={i18n.language} colorScheme={colorScheme} />
+          <StatusBar />
+        </EvaWrapper>
+      </NativeBaseProvider>
     </>
   );
 }

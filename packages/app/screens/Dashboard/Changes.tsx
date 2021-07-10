@@ -1,4 +1,3 @@
-import { Button, Layout, Text } from "@ui-kitten/components";
 import dayjs from "dayjs";
 import * as React from "react";
 import { StyleSheet, ScrollView, View, Image } from "react-native";
@@ -7,28 +6,32 @@ import TypeImage from "../../components/Common/TypeImage";
 import { DashCardProps } from "./Dashboard";
 import useSetting, { BuildAtom } from "../../hooks/useSetting";
 import useDB from "../../hooks/useDB";
+import { Box, Button, Heading, Text } from "native-base";
 
 function BuildCard(build: Build) {
   const db = useDB();
   return (
-    <Layout level="4" style={{ margin: 4, padding: 4, borderRadius: 8 }}>
-      <Text category="h4" style={{ textAlign: "center" }}>
+    <Box
+      bg="coolGray.300"
+      _dark={{ bg: "coolGray.700" }}
+      style={{ margin: 4, padding: 4, borderRadius: 8 }}>
+      <Heading fontSize="xl" style={{ textAlign: "center" }}>
         Build {build.build}
-      </Text>
-      <Text category="c1" style={{ textAlign: "center" }}>
+      </Heading>
+      <Heading fontSize="md" style={{ textAlign: "center" }}>
         {dayjs(build.date).format("L")}
-      </Text>
+      </Heading>
       {build.features && (
         <View style={{ paddingVertical: 8 }}>
-          <Text category="h5" style={{ textAlign: "center" }}>
+          <Heading fontSize="lg" style={{ textAlign: "center" }}>
             New Features
-          </Text>
+          </Heading>
           {build.features.map(feature => (
             <View key={feature.title}>
-              <Text category="h6" style={{ textAlign: "center" }}>
+              <Heading fontSize="md" style={{ textAlign: "center" }}>
                 {feature.title}
-              </Text>
-              <Text category="p1" style={{ textAlign: "center" }}>
+              </Heading>
+              <Text fontSize="sm" style={{ textAlign: "center" }}>
                 {feature.description}
               </Text>
               {feature.image && (
@@ -55,18 +58,18 @@ function BuildCard(build: Build) {
       )}
       {build.types && (
         <View style={{ paddingVertical: 8 }}>
-          <Text category="h6" style={{ textAlign: "center" }}>
+          <Heading fontSize="lg" style={{ textAlign: "center" }}>
             New Munzee Types
-          </Text>
+          </Heading>
           {build.types.map((type, typeIndex) => (
             <View key={type.title || type.description || typeIndex}>
               {type.title && (
-                <Text category="s1" style={{ textAlign: "center" }}>
+                <Heading fontSize="md" style={{ textAlign: "center" }}>
                   {type.title}
-                </Text>
+                </Heading>
               )}
               {type.description && (
-                <Text category="p1" style={{ textAlign: "center" }}>
+                <Text fontSize="sm" style={{ textAlign: "center" }}>
                   {type.description}
                 </Text>
               )}
@@ -87,16 +90,16 @@ function BuildCard(build: Build) {
       )}
       {build.improvements && (
         <View style={{ paddingVertical: 8 }}>
-          <Text category="h6" style={{ textAlign: "center" }}>
+          <Heading fontSize="lg" style={{ textAlign: "center" }}>
             Improvements
-          </Text>
+          </Heading>
           {build.improvements.map(improvement => (
             <View key={improvement.description}>
-              <Text category="p1" style={{ textAlign: "center" }}>
+              <Text fontSize="sm" style={{ textAlign: "center" }}>
                 {improvement.description}
               </Text>
               {improvement.thanks && (
-                <Text category="p2" style={{ textAlign: "center" }}>
+                <Text fontSize="sm" style={{ textAlign: "center" }}>
                   Thanks to {improvement.thanks}
                 </Text>
               )}
@@ -106,16 +109,16 @@ function BuildCard(build: Build) {
       )}
       {build.fixes && (
         <View style={{ paddingVertical: 8 }}>
-          <Text category="h6" style={{ textAlign: "center" }}>
+          <Heading fontSize="lg" style={{ textAlign: "center" }}>
             Bug Fixes
-          </Text>
+          </Heading>
           {build.fixes.map(fix => (
             <View key={fix.description}>
-              <Text category="p1" style={{ textAlign: "center" }}>
+              <Text fontSize="sm" style={{ textAlign: "center" }}>
                 {fix.description}
               </Text>
               {fix.thanks && (
-                <Text category="p2" style={{ textAlign: "center" }}>
+                <Text fontSize="sm" style={{ textAlign: "center" }}>
                   Thanks to {fix.thanks}
                 </Text>
               )}
@@ -123,7 +126,7 @@ function BuildCard(build: Build) {
           ))}
         </View>
       )}
-    </Layout>
+    </Box>
   );
 }
 
@@ -132,23 +135,22 @@ export default React.memo(function ChangesDashCard(props: DashCardProps<unknown>
   const db = useDB();
   const buildsList = React.useMemo(() => builds(db), [db]);
   return (
-    <Layout level="3" style={[styles.card, { flex: 1 }]}>
+    <Box bg="coolGray.200" _dark={{ bg: "coolGray.800" }} style={[styles.card, { flex: 1 }]}>
       <ScrollView onLayout={props.onOuterLayout} style={{ flex: 1 }}>
         <View onLayout={props.onInnerLayout} style={{ padding: 4 }}>
-          <Text style={{ marginLeft: 4, textAlign: "center" }} category="h5">
+          <Heading style={{ marginLeft: 4, textAlign: "center" }} fontSize="lg">
             Changes
-          </Text>
+          </Heading>
           {!!loaded &&
             buildsList.filter(i => i.build > build).map(i => <BuildCard key={i.build} {...i} />)}
         </View>
       </ScrollView>
       <Button
-        appearance="outline"
         onPress={() => setBuild(buildsList[buildsList.length - 1].build)}
         style={{ margin: 8 }}>
         Dismiss
       </Button>
-    </Layout>
+    </Box>
   );
 }, () => true)
 

@@ -1,6 +1,6 @@
 import { CuppaZeeDB } from "@cuppazee/db";
 import { useNavigation } from "@react-navigation/core";
-import { BottomNavigation, BottomNavigationTab, Button, Layout, Text, useTheme } from "@ui-kitten/components";
+import { Box, Button, Heading, Tabs, Text } from "native-base";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -90,11 +90,18 @@ export default function DashboardScreen() {
     ...users,
   ];
   return (
-    <Layout onLayout={onLayout} style={{ flex: 1, marginTop: -4 }}>
+    <Box
+      onLayout={onLayout}
+      style={{ flex: 1, marginTop: -4 }}
+      bg="coolGray.100"
+      _dark={{ bg: "coolGray.900" }}>
       {liveLocationError === "permission_failed" && (
-        <Layout style={{ margin: 8, borderRadius: 8, padding: 4 }} level="3">
-          <Text category="h5">It seems that CuppaZee no longer has Live Location access</Text>
-          <Text category="p1">
+        <Box
+          style={{ margin: 8, borderRadius: 8, padding: 4 }}
+          bg="coolGray.200"
+          _dark={{ bg: "coolGray.800" }}>
+          <Heading fontSize="xl">It seems that CuppaZee no longer has Live Location access</Heading>
+          <Text fontSize="md">
             Please head to CuppaZee's Notifications Settings page to disable Live Location, or save
             your Settings to re-enabled Live Location.
           </Text>
@@ -104,41 +111,40 @@ export default function DashboardScreen() {
                 screen: "Notifications",
               })
             }
-            appearance="outline"
             style={{ marginTop: 4 }}>
             Notification Settings
           </Button>
-        </Layout>
+        </Box>
       )}
       {liveLocationError === "updated" && (
-        <Layout style={{ margin: 8, borderRadius: 8, padding: 4 }} level="3">
-          <Text category="h5">CuppaZee has updated your Live Location settings</Text>
-          <Text category="p1">
+        <Box
+          style={{ margin: 8, borderRadius: 8, padding: 4 }}
+          bg="coolGray.200"
+          _dark={{ bg: "coolGray.800" }}>
+          <Text fontSize="xl">CuppaZee has updated your Live Location settings</Text>
+          <Text fontSize="md">
             These changes should help to prevent battery drain, and ensure that CuppaZee continues
             running smoothly.
           </Text>
-          <Button
-            onPress={() => setLiveLocationError("")}
-            appearance="outline"
-            style={{ marginTop: 4 }}>
+          <Button onPress={() => setLiveLocationError("")} style={{ marginTop: 4 }}>
             Dismiss
           </Button>
-        </Layout>
+        </Box>
       )}
       {liveLocationError === "updated_native" && (
-        <Layout style={{ margin: 8, borderRadius: 8, padding: 4 }} level="3">
-          <Text category="h5">CuppaZee has switch you to the Native Live Location system</Text>
-          <Text category="p1">
+        <Box
+          style={{ margin: 8, borderRadius: 8, padding: 4 }}
+          bg="coolGray.200"
+          _dark={{ bg: "coolGray.800" }}>
+          <Text fontSize="xl">CuppaZee has switch you to the Native Live Location system</Text>
+          <Text fontSize="md">
             These changes should help to prevent battery drain, and ensure that CuppaZee continues
             running smoothly.
           </Text>
-          <Button
-            onPress={() => setLiveLocationError("")}
-            appearance="outline"
-            style={{ marginTop: 4 }}>
+          <Button onPress={() => setLiveLocationError("")} style={{ marginTop: 4 }}>
             Dismiss
           </Button>
-        </Layout>
+        </Box>
       )}
       <WheelWrapper
         onWheel={ev => {
@@ -254,33 +260,33 @@ export default function DashboardScreen() {
         />
       </WheelWrapper>
 
-      <BottomNavigation
-        style={{ marginTop: -8 }}
-        selectedIndex={index}
-        onSelect={newIndex => {
+      <Tabs
+        align="center"
+        index={index}
+        onChange={newIndex => {
           scrollRef.current?.scrollToOffset({
             offset: (position.current || 0) + (newIndex - index) * Math.min(600, width),
           });
         }}>
-        {dashCards.map((card, cardIndex) => (
-          <BottomNavigationTab
-            key={("nonUser" in card ? card.nonUser : card.user_id) + (cardIndex === index ? "true" : "false")}
-            icon={props => {
-              if ("nonUser" in card) {
-                return (
-                  <Icon
-                    name={
-                      card.nonUser === "clan"
-                        ? "shield-half-full"
-                        : card.nonUser === "tools"
-                        ? "hammer-screwdriver"
-                        : "playlist-check"
-                    }
-                    {...props}
-                  />
-                );
-              }
-              return (
+        <Tabs.Bar style={{ marginTop: -8 }}>
+          {dashCards.map((card, cardIndex) => (
+            <Tabs.Tab
+              key={
+                ("nonUser" in card ? card.nonUser : card.user_id) +
+                (cardIndex === index ? "true" : "false")
+              }>
+              {"nonUser" in card ? (
+                <Icon
+                  name={
+                    card.nonUser === "clan"
+                      ? "shield-half-full"
+                      : card.nonUser === "tools"
+                      ? "hammer-screwdriver"
+                      : "playlist-check"
+                  }
+                  style={{ height: 24 }}
+                />
+              ) : (
                 <Image
                   style={{ height: 32, width: 32, margin: -4, borderRadius: 16 }}
                   source={{
@@ -289,11 +295,11 @@ export default function DashboardScreen() {
                     ).toString(36)}.png`,
                   }}
                 />
-              );
-            }}
-          />
-        ))}
-      </BottomNavigation>
-    </Layout>
+              )}
+            </Tabs.Tab>
+          ))}
+        </Tabs.Bar>
+      </Tabs>
+    </Box>
   );
 }

@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import { Layout, Text, DrawerItem, DrawerGroup } from "@ui-kitten/components";
+import { Box, Heading } from "native-base";
 import dayjs from "dayjs";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
@@ -12,6 +12,7 @@ import { UserPagesNow } from "../User/Profile";
 import Icon from "../../components/Common/Icon";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
 import useDB from "../../hooks/useDB";
+import { DrawerGroup, DrawerItem } from "@ui-kitten/components";
 
 export default React.memo(function UserDashCard({
   item,
@@ -24,7 +25,7 @@ export default React.memo(function UserDashCard({
   const nav = useNavigation();
   const user = useMunzeeRequest("user", { username: item.username }, touched);
   return (
-    <Layout level="3" style={[styles.card, { flex: 1 }]}>
+    <Box bg="coolGray.200" _dark={{ bg: "coolGray.800" }} style={[styles.card, { flex: 1 }]}>
       <ScrollView onLayout={onOuterLayout} style={{ flex: 1 }}>
         <View onLayout={onInnerLayout}>
           <Pressable
@@ -49,7 +50,7 @@ export default React.memo(function UserDashCard({
                   ).toString(36)}.png`,
                 }}
               />
-              <Text category="h5">{item.username}</Text>
+              <Heading fontSize="xl">{item.username}</Heading>
             </View>
           </Pressable>
           {touched ? (
@@ -66,9 +67,9 @@ export default React.memo(function UserDashCard({
               style={{ backgroundColor: "transparent" }}
               selected={false}
               title={() => (
-                <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
+                <Heading style={{ flex: 1, marginLeft: 4 }} fontSize="md">
                   {t("pages:user_activity")}
-                </Text>
+                </Heading>
               )}
               accessoryLeft={props => <Icon name="calendar" {...props} />}
               onPress={() =>
@@ -84,9 +85,9 @@ export default React.memo(function UserDashCard({
                 style={{ backgroundColor: "transparent" }}
                 selected={false}
                 title={() => (
-                  <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
+                  <Heading style={{ flex: 1, marginLeft: 4 }} fontSize="md">
                     {"title" in i ? t(`pages:${i.title}` as const) : i.nontranslatedtitle}
-                  </Text>
+                  </Heading>
                 )}
                 accessoryLeft={props => <Icon name={i.icon} {...props} />}
                 onPress={() =>
@@ -103,9 +104,9 @@ export default React.memo(function UserDashCard({
                 style={{ backgroundColor: "transparent" }}
                 selected={false}
                 title={() => (
-                  <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
+                  <Heading style={{ flex: 1, marginLeft: 4 }} fontSize="md">
                     {user.data?.data?.clan?.name}
-                  </Text>
+                  </Heading>
                 )}
                 accessoryLeft={() => (
                   <Image
@@ -132,9 +133,9 @@ export default React.memo(function UserDashCard({
                 style={{ backgroundColor: "transparent" }}
                 selected={false}
                 title={() => (
-                  <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
+                  <Heading style={{ flex: 1, marginLeft: 4 }} fontSize="md">
                     {t(`pages:user_clan_progress`)}
-                  </Text>
+                  </Heading>
                 )}
                 accessoryLeft={props => <Icon name="shield-half-full" {...props} />}
                 onPress={() =>
@@ -147,7 +148,7 @@ export default React.memo(function UserDashCard({
             )}
             {/* <DrawerGroup
               title={() => (
-                <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
+                <Heading style={{ flex: 1, marginLeft: 4 }} category="s1">
                   {t("pages:tools")}
                 </Text>
               )}
@@ -159,7 +160,7 @@ export default React.memo(function UserDashCard({
                   style={{ backgroundColor: "transparent" }}
                   selected={false}
                   title={() => (
-                    <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
+                    <Heading style={{ flex: 1, marginLeft: 4 }} category="s1">
                       {t(`pages:${i.title}` as const)}
                     </Text>
                   )}
@@ -175,9 +176,9 @@ export default React.memo(function UserDashCard({
             </DrawerGroup> */}
             <DrawerGroup
               title={() => (
-                <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
+                <Heading style={{ flex: 1, marginLeft: 4 }} fontSize="md">
                   {t("pages:user_captures")}
-                </Text>
+                </Heading>
               )}
               style={{ backgroundColor: "transparent" }}
               accessoryLeft={props => <Icon {...props} name="check-bold" />}>
@@ -190,9 +191,9 @@ export default React.memo(function UserDashCard({
                     style={{ backgroundColor: "transparent" }}
                     selected={false}
                     title={() => (
-                      <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
+                      <Heading style={{ flex: 1, marginLeft: 4 }} fontSize="md">
                         {c.name}
-                      </Text>
+                      </Heading>
                     )}
                     accessoryLeft={() => (
                       <TypeImage icon={c.icon} style={{ size: 32, marginVertical: -4 }} />
@@ -209,7 +210,7 @@ export default React.memo(function UserDashCard({
           </View>
         </View>
       </ScrollView>
-    </Layout>
+    </Box>
   );
 }, (a, b) => a.touched === b.touched && a.item.user_id === b.item.user_id);
 

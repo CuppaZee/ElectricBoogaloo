@@ -1,5 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
-import { Layout, Text, DrawerItem } from "@ui-kitten/components";
+import { DrawerItem } from "@ui-kitten/components";
+import { Box, Heading } from "native-base";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 import { Image, StyleSheet, ScrollView, View, Platform } from "react-native";
@@ -123,14 +124,14 @@ export default React.memo(function ToolsDashCard(props: DashCardProps<unknown>) 
   const nav = useNavigation();
   const [clans] = useClanBookmarks();
   return (
-    <Layout level="3" style={[styles.card, { flex: 1 }]}>
+    <Box bg="coolGray.200" _dark={{ bg: "coolGray.800" }} style={[styles.card, { flex: 1 }]}>
       <ScrollView onLayout={props.onOuterLayout} style={{ flex: 1 }}>
         <View onLayout={props.onInnerLayout} style={{ padding: 4 }}>
           {clans.length <= 2 && (
             <>
-              <Text style={{ marginLeft: 4 }} category="h6">
+              <Heading style={{ marginLeft: 4 }} fontSize="xl">
                 {t("dashboard:clans")}
-              </Text>
+              </Heading>
               <Tip
                 wrapperStyle={{ margin: 4 }}
                 id="drawer_clan_bookmarks"
@@ -141,9 +142,9 @@ export default React.memo(function ToolsDashCard(props: DashCardProps<unknown>) 
                 style={{ backgroundColor: "transparent" }}
                 selected={false}
                 title={() => (
-                  <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
+                  <Heading style={{ flex: 1, marginLeft: 4 }} fontSize="md">
                     {t("pages:clan_requirements")}
-                  </Text>
+                  </Heading>
                 )}
                 accessoryLeft={props => <Icon name="star" {...props} />}
                 onPress={() =>
@@ -158,9 +159,9 @@ export default React.memo(function ToolsDashCard(props: DashCardProps<unknown>) 
                   style={{ backgroundColor: "transparent" }}
                   selected={false}
                   title={() => (
-                    <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
+                    <Heading style={{ flex: 1, marginLeft: 4 }} fontSize="md">
                       {t("pages:clan_bookmarks")}
-                    </Text>
+                    </Heading>
                   )}
                   accessoryLeft={props => <Icon name="bookmark" {...props} />}
                   onPress={() =>
@@ -176,9 +177,9 @@ export default React.memo(function ToolsDashCard(props: DashCardProps<unknown>) 
                   style={{ backgroundColor: "transparent" }}
                   selected={false}
                   title={() => (
-                    <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
+                    <Heading style={{ flex: 1, marginLeft: 4 }} fontSize="md">
                       {clan.name}
-                    </Text>
+                    </Heading>
                   )}
                   accessoryLeft={() => (
                     <Image
@@ -206,24 +207,24 @@ export default React.memo(function ToolsDashCard(props: DashCardProps<unknown>) 
               ))}
             </>
           )}
-          <Text style={{ marginLeft: 4 }} category="h6">
+          <Heading style={{ marginLeft: 4 }} fontSize="xl">
             {t("pages:tools")}
-          </Text>
+          </Heading>
           {ToolsPages.map(i => (
             <DrawerItem
               key={i.screen}
               style={{ backgroundColor: "transparent" }}
               selected={false}
               title={() => (
-                <Text
+                <Heading
                   style={{
                     flex: 1,
                     marginLeft: 4,
                     opacity: "disabled" in i && i.disabled ? 0.5 : 1,
                   }}
-                  category="s1">
+                  fontSize="md">
                   {"title" in i ? t(`pages:${i.title}` as const) : i.nontranslatedtitle}
-                </Text>
+                </Heading>
               )}
               disabled={"disabled" in i && i.disabled}
               accessoryLeft={props => <Icon name={i.icon} {...props} />}
@@ -235,18 +236,18 @@ export default React.memo(function ToolsDashCard(props: DashCardProps<unknown>) 
               }
             />
           ))}
-          <Text style={{ marginLeft: 4 }} category="h6">
+          <Heading style={{ marginLeft: 4 }} fontSize="xl">
             {t("pages:tools_bouncers")}
-          </Text>
+          </Heading>
           {ToolsPagesBouncers.map(i => (
             <DrawerItem
               key={i.screen}
               style={{ backgroundColor: "transparent" }}
               selected={false}
               title={() => (
-                <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
+                <Heading style={{ flex: 1, marginLeft: 4 }} fontSize="md">
                   {"title" in i ? t(`pages:${i.title}` as const) : i.nontranslatedtitle}
-                </Text>
+                </Heading>
               )}
               accessoryLeft={props => <Icon name={i.icon} {...props} />}
               onPress={() =>
@@ -256,18 +257,18 @@ export default React.memo(function ToolsDashCard(props: DashCardProps<unknown>) 
               }
             />
           ))}
-          <Text style={{ marginLeft: 4 }} category="h6">
+          <Heading style={{ marginLeft: 4 }} fontSize="xl">
             Planners
-          </Text>
+          </Heading>
           {ToolsPagesPlanners.map(i => (
             <DrawerItem
               key={i.screen}
               style={{ backgroundColor: "transparent" }}
               selected={false}
               title={() => (
-                <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
+                <Heading style={{ flex: 1, marginLeft: 4 }} fontSize="md">
                   {"title" in i ? t(`pages:${i.title}` as const) : i.nontranslatedtitle}
-                </Text>
+                </Heading>
               )}
               accessoryLeft={props => <Icon name={i.icon} {...props} />}
               onPress={() =>
@@ -277,18 +278,18 @@ export default React.memo(function ToolsDashCard(props: DashCardProps<unknown>) 
               }
             />
           ))}
-          <Text style={{ marginLeft: 4 }} category="h6">
+          <Heading style={{ marginLeft: 4 }} fontSize="xl">
             {t("pages:settings")}
-          </Text>
+          </Heading>
           {ToolsPagesSettings.filter(i => !("hidden" in i) || !i.hidden).map(i => (
             <DrawerItem
               key={"settings_" + i.screen}
               style={{ backgroundColor: "transparent" }}
               selected={false}
               title={() => (
-                <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
+                <Heading style={{ flex: 1, marginLeft: 4 }} fontSize="md">
                   {t(`pages:${i.title}` as const)}
-                </Text>
+                </Heading>
               )}
               accessoryLeft={props => <Icon name={i.icon} {...props} />}
               onPress={() =>
@@ -298,18 +299,18 @@ export default React.memo(function ToolsDashCard(props: DashCardProps<unknown>) 
               }
             />
           ))}
-          <Text style={{ marginLeft: 4 }} category="h6">
+          <Heading style={{ marginLeft: 4 }} fontSize="xl">
             Other
-          </Text>
+          </Heading>
           {ToolsPagesOther.map(i => (
             <DrawerItem
               key={i.screen}
               style={{ backgroundColor: "transparent" }}
               selected={false}
               title={() => (
-                <Text style={{ flex: 1, marginLeft: 4 }} category="s1">
+                <Heading style={{ flex: 1, marginLeft: 4 }} fontSize="md">
                   {t(`pages:${i.title}` as const)}
-                </Text>
+                </Heading>
               )}
               accessoryLeft={props => <Icon name={i.icon} {...props} />}
               onPress={() =>
@@ -321,7 +322,7 @@ export default React.memo(function ToolsDashCard(props: DashCardProps<unknown>) 
           ))}
         </View>
       </ScrollView>
-    </Layout>
+    </Box>
   );
 }, () => true)
 
