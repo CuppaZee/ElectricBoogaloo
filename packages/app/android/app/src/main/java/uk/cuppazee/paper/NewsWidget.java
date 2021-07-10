@@ -42,8 +42,7 @@ public class NewsWidget extends AppWidgetProvider {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.news_widget_1r);
 
         RequestQueue queue = Volley.newRequestQueue(context);
-        String url = "https://server.beta.cuppazee.app/widget/news";
-
+        String url = "https://server.cuppazee.app/widget/news";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, response -> {
                     try {
