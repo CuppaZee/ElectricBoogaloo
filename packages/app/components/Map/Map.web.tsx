@@ -1,4 +1,4 @@
-import { Button, Layout, Modal, useTheme } from "@ui-kitten/components";
+import { Modal, useTheme } from "@ui-kitten/components";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import * as React from "react";
@@ -30,6 +30,7 @@ import {
 import * as Location from "expo-location";
 import { MapSearchModal } from "./MapShared";
 import circle from "@turf/circle";
+import { Box, Button } from "native-base";
 
 export function LocationPickerMap({ icon, onPositionChange, circleColor, circleRadius }: LocationPickerMapProps) {
   const [viewport, setViewport] = React.useState<MapViewport>();
@@ -179,26 +180,22 @@ export function AutoMap({
           }}
         />
       </Modal>
-      <Layout
+      <Box
+        bg="coolGray.200"
+        _dark={{ bg: "coolGray.800" }}
         style={{ position: "absolute", top: 0, right: 0, padding: 4, borderBottomLeftRadius: 8 }}>
         <View style={{ flexDirection: "row" }}>
           <Button
             style={{ margin: 4, flex: 1 }}
-            appearance="outline"
-            size="small"
-            accessoryLeft={({ style, ...props }: any) => (
-              <Icon {...props} style={[style, { marginHorizontal: 2 }]} name="magnify" />
-            )}
+            size="xs"
+            startIcon={<Icon style={{ marginHorizontal: 2, height: 24 }} name="magnify" />}
             onPress={() => setSearchModal(true)}>
             Search
           </Button>
           <Button
             style={{ margin: 4, marginLeft: 0 }}
-            appearance="outline"
-            size="small"
-            accessoryLeft={({ style, ...props }: any) => (
-              <Icon {...props} style={[style, { marginHorizontal: 2 }]} name="crosshairs-gps" />
-            )}
+            size="xs"
+            startIcon={<Icon style={{ marginHorizontal: 2, height: 24 }} name="crosshairs-gps" />}
             onPress={async () => {
               var { status } = await Location.requestForegroundPermissionsAsync();
               if (status !== "granted") {
@@ -219,16 +216,9 @@ export function AutoMap({
           />
         </View>
         <Select
-          style={{ margin: 4, minWidth: 130 }}
-          accessoryLeft={({ style, ...props }: any) => (
-            <Icon
-              {...props}
-              style={[style, { transform: [{ scale: 0.8 }], marginHorizontal: 0 }]}
-              name="map"
-            />
-          )}
-          accessoryRight={() => null as any}
-          size="small"
+          style={{ margin: 4, width: 130 }}
+          pt={0}
+          pb={0}
           value={mapStyle}
           onValueChange={(value: any) => setMapStyle(value)}
           options={[
@@ -240,7 +230,7 @@ export function AutoMap({
           ].filter(i=>i)}
         />
         {controls}
-      </Layout>
+      </Box>
     </View>
   );
 }

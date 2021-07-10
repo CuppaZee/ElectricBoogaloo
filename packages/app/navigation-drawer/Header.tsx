@@ -7,18 +7,20 @@ import day from "dayjs";
 import { ActivityIndicator, useWindowDimensions, View } from "react-native";
 import Icon from "../components/Common/Icon";
 import EvaWrapper from "../EvaWrapper";
+import { Box, Button, Heading, HStack, Text } from "native-base";
 
 function LoadIcon() {
   const loading = useIsFetching();
   const queryClient = useQueryClient();
   const theme = useTheme();
   return (
-    <TopNavigationAction
-      icon={props =>
-        loading ? (
+    <Button
+      size="sm"
+      bg="none"
+      startIcon={loading ? (
           <ActivityIndicator color={theme["color-primary-500"]} size={24} />
         ) : (
-          <Icon {...props} name="refresh" />
+          <Icon style={{ height: 24 }} name="refresh" />
         )
       }
       onPress={() =>
@@ -37,48 +39,42 @@ export default function Header(props: StackHeaderProps) {
     props.scene.descriptor.options.headerTitle?.toString() ?? props.scene.route.name
   ).split("|");
   return (
-    // <View><EvaWrapper dark>
-    <Layout style={{ paddingTop: props.insets.top }}>
-      <TopNavigation
-        alignment="center"
-        title={titleData[0] ?? ""}
-        subtitle={titleData[1] ?? day.mhqNow().format("L LT [MHQ]")}
-        accessoryLeft={() => (
-          <>
-            {dimensions.width <= 1000 && (
-              <TopNavigationAction
-                onPress={() => props.navigation.dispatch(DrawerActions.toggleDrawer())}
-                icon={props => <Icon {...props} name="menu" />}
-              />
-            )}
-            <TopNavigationAction
-              style={{ opacity: props.navigation.canGoBack() ? 1 : 0.4 }}
-              icon={props => <Icon {...props} name="arrow-left" />}
-              onPress={() => props.navigation.goBack()}
-              disabled={!props.navigation.canGoBack()}
-            />
-          </>
+    <Box bg="coolGray.200" _dark={{ bg: "coolGray.800" }} style={{ paddingTop: props.insets.top }}>
+      <HStack alignItems="center" p={1}>
+        {dimensions.width <= 1000 && (
+          <Button
+            onPress={() => props.navigation.dispatch(DrawerActions.toggleDrawer())}
+            startIcon={<Icon style={{ height: 24 }} name="menu" />}
+          />
         )}
-        accessoryRight={() => (
-          <>
-            <TopNavigationAction
-              icon={props => <Icon {...props} name="home" />}
-              onPress={() =>
-                props.navigation.reset({
-                  routes: [
-                    {
-                      name: "Root",
-                    },
-                  ],
-                })
-              }
-            />
-            <LoadIcon />
-          </>
-        )}
-      />
-    </Layout>
-    // </EvaWrapper>
-    // </View>
+        <Button
+          size="sm"
+          bg="none"
+          style={{ opacity: props.navigation.canGoBack() ? 1 : 0.4 }}
+          startIcon={<Icon style={{ height: 24 }} name="arrow-left" />}
+          onPress={() => props.navigation.goBack()}
+          disabled={!props.navigation.canGoBack()}
+        />
+        <Box flex={1}>
+          <Heading fontSize="lg">{titleData[0] ?? ""}</Heading>
+          <Text fontSize="sm">{titleData[1] ?? day.mhqNow().format("L LT [MHQ]")}</Text>
+        </Box>
+        <Button
+          size="sm"
+          bg="none"
+          startIcon={<Icon style={{ height: 24 }} name="home" />}
+          onPress={() =>
+            props.navigation.reset({
+              routes: [
+                {
+                  name: "Root",
+                },
+              ],
+            })
+          }
+        />
+        <LoadIcon />
+      </HStack>
+    </Box>
   );
 }

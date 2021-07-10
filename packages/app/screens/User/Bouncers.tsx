@@ -1,5 +1,4 @@
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
-import { Card, Layout, Spinner, Text } from "@ui-kitten/components";
 import * as React from "react";
 import useCuppaZeeRequest from "../../hooks/useCuppaZeeRequest";
 import useMunzeeRequest from "../../hooks/useMunzeeRequest";
@@ -15,6 +14,7 @@ import Loading from "../../components/Loading";
 import { useTranslation } from "react-i18next";
 import { AutoMap, Icons, Layer, Source } from "../../components/Map/Map";
 import useDB from "../../hooks/useDB";
+import { Box, Heading, Text } from "native-base";
 
 type Bouncer = NonNullable<UserDeploys["response"]["data"]>["munzees"][0] & {
   bouncer?: MunzeeSpecialBouncer & { hash: string };
@@ -53,27 +53,43 @@ export default function UserBouncersScreen() {
 
   if (!data.data || !size) {
     return (
-      <Layout style={{ flex: 1 }} onLayout={onLayout}>
+      <Box bg="coolGray.100" _dark={{bg:"coolGray.900"}} style={{ flex: 1 }} onLayout={onLayout}>
         <Loading data={[user, data]} />
-      </Layout>
+      </Box>
     );
   }
   return (
-    <Layout onLayout={onLayout} style={{ flex: 1, flexDirection: "row" }}>
+    <Box
+      bg="coolGray.100"
+      _dark={{ bg: "coolGray.900" }}
+      onLayout={onLayout}
+      style={{ flex: 1, flexDirection: "row" }}>
       <ScrollView style={{ flex: 1 }} contentContainerStyle={{ padding: 4 }}>
         {data.data?.endpointsDown
           .filter(i => i.endpoint.startsWith("/munzee/specials"))
           .map(endpoint => (
-            <Layout style={{ margin: 4 }}>
-              <Layout level="3" style={{ padding: 4, borderRadius: 8, flexDirection: "row", alignItems: "center", justifyContent: "center" }}>
-                <Text category="h6" style={{ textAlign: "center", maxWidth: "100%" }}>
+            <Box style={{ padding: 4 }}>
+              <Box
+                bg="danger.200"
+                _dark={{ bg: "danger.800" }}
+                style={{
+                  padding: 4,
+                  borderRadius: 8,
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}>
+                <Heading fontSize="lg" style={{ textAlign: "center", maxWidth: "100%" }}>
                   CuppaZee is currently unable to get data for {endpoint.label} from Munzee. These
                   bouncers may incorrectly show as being off the map.
-                </Text>
-              </Layout>
-            </Layout>
+                </Heading>
+              </Box>
+            </Box>
           ))}
-        <Layout style={{ height: 400, margin: 4, borderRadius: 8 }}>
+        <Box
+          bg="coolGray.200"
+          _dark={{ bg: "coolGray.800" }}
+          style={{ height: 400, margin: 4, borderRadius: 8 }}>
           <AutoMap
             onPress={point => {
               const munzee = point.features?.find(i => i.source === "bouncers");
@@ -121,7 +137,7 @@ export default function UserBouncersScreen() {
               />
             </Source>
           </AutoMap>
-        </Layout>
+        </Box>
         <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
           {data.data.data.map(i => (
             <Pressable
@@ -141,8 +157,9 @@ export default function UserBouncersScreen() {
                       })
                   : undefined
               }>
-              <Layout
-                level="2"
+              <Box
+                bg="coolGray.200"
+                _dark={{ bg: "coolGray.800" }}
                 style={{
                   margin: 4,
                   flexDirection: "row",
@@ -154,17 +171,17 @@ export default function UserBouncersScreen() {
                   <TypeImage icon={i.pin_icon} style={{ size: 48 }} />
                 </View>
                 <View style={{ padding: 4 }}>
-                  <Text category="h6">{i.friendly_name}</Text>
+                  <Heading fontSize="lg">{i.friendly_name}</Heading>
                   {i.bouncer ? (
                     <>
-                      <Text category="s1">
+                      <Heading fontSize="md">
                         {t("user_bouncers:host", {
                           name: i.bouncer.friendly_name,
                           creator: i.bouncer.full_url.split("/")[4],
                         })}
-                      </Text>
+                      </Heading>
                       {i.location?.record && (
-                        <Text category="s2">
+                        <Text fontSize="md">
                           {t("user_bouncers:location", {
                             town: i.location?.record?.name,
                             country: i.location?.record?.countryCode,
@@ -172,7 +189,7 @@ export default function UserBouncersScreen() {
                           })}
                         </Text>
                       )}
-                      <Text category="c1">
+                      <Text fontSize="md">
                         {t("user_bouncers:captures", {
                           number: i.number_of_captures,
                           date: i.last_captured_at ? day(i.last_captured_at).format("L LT") : "-",
@@ -181,21 +198,21 @@ export default function UserBouncersScreen() {
                     </>
                   ) : (
                     <>
-                      <Text category="s1">
+                      <Heading fontSize="md">
                         {t(
                           `user_bouncers:rest_${
                             (["a", "b", "c"] as const)[Math.floor(Math.random() * 3)]
                           }` as const
                         )}
-                      </Text>
+                      </Heading>
                     </>
                   )}
                 </View>
-              </Layout>
+              </Box>
             </Pressable>
           ))}
         </View>
       </ScrollView>
-    </Layout>
+    </Box>
   );
 }

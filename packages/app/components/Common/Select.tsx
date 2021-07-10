@@ -1,6 +1,6 @@
-import { IndexPath, Select as UIKittenSelect, SelectItem, SelectProps as UIKittenSelectProps } from "@ui-kitten/components";
 import * as React from "react";
 import Icon, { IconName } from "./Icon";
+import { Select as NativeBaseSelect, ISelectProps } from "native-base";
 
 export type SelectOption = {
   value: string;
@@ -9,7 +9,7 @@ export type SelectOption = {
 };
 
 export type SelectProps = Omit<
-  UIKittenSelectProps,
+  ISelectProps,
   "selectIndex" | "onSelect" | "children" | "multiSelect" | "value"
 > & {
   value: string;
@@ -19,19 +19,18 @@ export type SelectProps = Omit<
 
 export default function Select({ value, onValueChange, options, ...rest }: SelectProps) {
   return (
-    <UIKittenSelect
+    <NativeBaseSelect
       {...rest}
-      multiSelect={false}
-      value={options.find(i => i.value === value)?.label || value}
-      selectedIndex={new IndexPath(options.findIndex(i => i.value === value))}
-      onSelect={value => onValueChange(options[(value as IndexPath).row].value)}>
+      selectedValue={value}
+      onValueChange={value => onValueChange(value)}>
       {options.map(i => (
-        <SelectItem
+        <NativeBaseSelect.Item
           key={i.value}
-          accessoryLeft={i.icon ? props => <Icon {...props} name={i.icon} /> : undefined}
-          title={i.label}
+          startIcon={i.icon ? <Icon style={{ height: 24 }} name={i.icon} /> : undefined}
+          value={i.value}
+          label={i.label}
         />
       ))}
-    </UIKittenSelect>
+    </NativeBaseSelect>
   );
 }

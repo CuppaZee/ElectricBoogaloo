@@ -1,5 +1,5 @@
 import MapboxGL from "@react-native-mapbox-gl/maps";
-import { Button, Layout, Modal, useTheme } from "@ui-kitten/components";
+import { Modal, useTheme } from "@ui-kitten/components";
 import * as React from "react";
 import { View } from "react-native";
 import useSetting, { MapStyleAtom } from "../../hooks/useSetting";
@@ -19,6 +19,7 @@ import { MapSearchModal } from "./MapShared";
 import Icon from "../Common/Icon";
 import * as Location from "expo-location";
 import circle from "@turf/circle";
+import { Box, Button } from "native-base";
 
 MapboxGL.setAccessToken(
   "pk.eyJ1Ijoic29oY2FoIiwiYSI6ImNqeWVqcm8wdTAxc2MzaXFpa282Yzd2aHEifQ.afYbt2sVMZ-kbwdx5_PekQ"
@@ -158,26 +159,22 @@ export function AutoMap({
           }}
         />
       </Modal>
-      <Layout
+      <Box
+        bg="coolGray.200"
+        _dark={{ bg: "coolGray.800" }}
         style={{ position: "absolute", top: 0, right: 0, padding: 4, borderBottomLeftRadius: 8 }}>
         <View style={{ flexDirection: "row" }}>
           <Button
             style={{ margin: 4, flex: 1 }}
-            appearance="outline"
-            size="small"
-            accessoryLeft={({ style, ...props }: any) => (
-              <Icon {...props} style={[style, { marginHorizontal: 2 }]} name="magnify" />
-            )}
+            size="sm"
+            startIcon={<Icon style={{ marginHorizontal: 2, height: 24 }} name="magnify" />}
             onPress={() => setSearchModal(true)}>
             Search
           </Button>
           <Button
             style={{ margin: 4, marginLeft: 0 }}
-            appearance="outline"
-            size="small"
-            accessoryLeft={({ style, ...props }: any) => (
-              <Icon {...props} style={[style, { marginHorizontal: 2 }]} name="crosshairs-gps" />
-            )}
+            size="sm"
+            startIcon={<Icon style={{ marginHorizontal: 2, height: 24 }} name="crosshairs-gps" />}
             onPress={async () => {
               var { status } = await Location.requestForegroundPermissionsAsync();
               if (status !== "granted") {
@@ -195,16 +192,9 @@ export function AutoMap({
           />
         </View>
         <Select
-          style={{ margin: 4, minWidth: 130 }}
-          accessoryLeft={({ style, ...props }: any) => (
-            <Icon
-              {...props}
-              style={[style, { transform: [{ scale: 0.8 }], marginHorizontal: 0 }]}
-              name="map"
-            />
-          )}
-          accessoryRight={() => null as any}
-          size="small"
+          style={{ margin: 4, width: 130 }}
+          pt={0}
+          pb={0}
           value={
             mapStyle === "monochrome" && theme.mapboxURL === "mapbox://styles/mapbox/streets-v11"
               ? "streets"
@@ -220,7 +210,7 @@ export function AutoMap({
           ].filter(i => i)}
         />
         {controls}
-      </Layout>
+      </Box>
     </View>
   );
 }
