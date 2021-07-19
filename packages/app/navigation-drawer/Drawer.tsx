@@ -6,9 +6,10 @@ import {
   DrawerItem as UIKittenDrawerItem,
   DrawerItemProps,
   Layout,
+  Text,
 } from "@ui-kitten/components";
-import React from "react";
-import { Image, Platform, ScrollView, useWindowDimensions, View } from "react-native";
+import React, { useState } from "react";
+import { Alert, Image, Platform, ScrollView, useWindowDimensions, View } from "react-native";
 import { useClanBookmarks, useUserBookmarks } from "../hooks/useBookmarks";
 import useDay from "../hooks/useDay";
 import { useTranslation } from "react-i18next";
@@ -16,6 +17,8 @@ import Tip from "../components/Common/Tip";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../components/Common/Icon";
 import useSetting, { DrawerAtom, ReadyAtom } from "../hooks/useSetting";
+import ExpoClipboard from "expo-clipboard";
+import useDB, { dbLoadLog } from "../hooks/useDB";
 
 const DrawerItem = React.memo(
   function ({ title, style, ...props }: DrawerItemProps) {
@@ -71,6 +74,8 @@ const MainDrawerContent = function ({ page, navigation }: { page: any[]; navigat
   const day = useDay();
   const [drawerSettings, setDrawerSettings] = useSetting(DrawerAtom);
   const dimensions = useWindowDimensions();
+  const [showDBDebug, setDBDebug] = useState(false);
+  useDB();
   const open = drawerSettings.open || dimensions.width <= 1000;
   return (
     <Layout style={{ flex: 1 }}>
@@ -536,6 +541,30 @@ const MainDrawerContent = function ({ page, navigation }: { page: any[]; navigat
               screen: "Donate",
             })
           }
+        />
+        {showDBDebug && (
+          <>
+            <Text category="h6">Hello 2</Text>
+            {dbLoadLog.map(i => (
+              <View>
+                <Text category="s1">{i}</Text>
+              </View>
+            ))}
+          </>
+        )}
+        <DrawerItem
+          selected={false}
+          title="View DB Debug"
+          accessoryLeft={props => <Icon {...props} name="star" />}
+          onPress={() => {
+            // ExpoClipboard.setString(dbLoadLog.join(', \n'))
+            setDBDebug(true);
+            // if (Platform.OS === "web") {
+            //   alert("Copied to Clipboard")
+            // } else {
+            //   Alert.alert("Copied to Clipboard");
+            // }
+          }}
         />
         {dimensions.width > 1000 && <View style={{ height: 44 }} />}
       </ScrollView>
