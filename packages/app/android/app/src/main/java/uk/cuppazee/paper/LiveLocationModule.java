@@ -60,8 +60,11 @@ class Utils {
     }
 
     static boolean getRequestingLocationUpdates(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context)
-                .getBoolean(KEY_LOCATION_UPDATES_REQUESTED, false);
+        try {
+            return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(KEY_LOCATION_UPDATES_REQUESTED, false);
+        } catch (NullPointerException e) {
+            return false;
+        }
     }
 
     static void setExpoPushToken(Context context, String value) {

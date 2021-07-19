@@ -1,11 +1,12 @@
 import * as React from "react";
-import { Platform } from "react-native";
+import { Alert, AppState, Linking, Platform } from "react-native";
 import * as WebBrowser from "expo-web-browser";
 import { useAtom } from "jotai";
 import { teakensAtom, useTeakens } from "../hooks/useToken";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useUserBookmarks } from "./useBookmarks";
+import ExpoClipboard from "expo-clipboard";
 const configs = {
   main: {
     redirect_uri: "https://server.cuppazee.app/auth/auth/v1",
@@ -45,33 +46,46 @@ export default function useLogin(
   const nav = useNavigation();
   const [users, setUsers] = useUserBookmarks();
 
-  const [loading, setLoading] = React.useState<boolean>(false);
+  const [loading, setLoading] = React.useState<boolean>(true);
+  const [shouldUseAlternative, setShouldUseAlternative] = React.useState<boolean>(Platform.OS === "android");
   const [redirect, setRedirect] = React.useState<string | null>(null);
 
-  async function login() {
-    setLoading(true);
-    const response = await WebBrowser.openAuthSessionAsync(
-      `https://api.munzee.com/oauth?client_id=${encodeURIComponent(
-        config.client_id
-      )}&redirect_uri=${encodeURIComponent(
-        config.redirect_uri
-      )}&response_type=code&scope=read&state=${encodeURIComponent(
-        JSON.stringify({
-          redirect: redirectUri,
-          platform: Platform.OS,
+  
+  React.useEffect(() => {
+    async function checkClipboard() {
+      const string = await ExpoClipboard.getStringAsync();
+      if (string?.startsWith("czlogin:")) {
+        const s = string.split(":");
+        handleLogin({
+          teaken: s[1],
+          username: s[2],
+          user_id: s[3],
+        });
+      }
+    }
+    AppState.addEventListener("change", checkClipboard);
+
+    return () => {
+      AppState.removeEventListener("change", checkClipboard);
+    };
+  }, []);
+
+  React.useEffect(() => {
+    if (Platform.OS === "android") {
+      WebBrowser.getCustomTabsSupportingBrowsersAsync()
+        .then(i => {
+          if (i.browserPackages.length > 0) {
+            setShouldUseAlternative(false);
+          }
+          setLoading(false);
         })
-      )}`,
-      redirectUri
-    );
-    if (response.type !== "success") {
-      setLoading(false);
-    } else {
-      const params = Object.fromEntries(
-        response.url
-          .split("?")?.[1]
-          .split("&")
-          .map(i => i.split("=").map(i => decodeURIComponent(i))) ?? []
-      );
+        .catch(() => {
+          setLoading(false);
+        });
+    }
+  }, []);
+
+  async function handleLogin(params: any) {
       if (!params?.teaken) return setLoading(false);
       setTeakens({
         ...teakens,
@@ -104,6 +118,67 @@ export default function useLogin(
 
       setRedirect(params.username);
       setLoading(false);
+  }
+
+  async function login() {
+    if (shouldUseAlternative) {
+      const string = await ExpoClipboard.getStringAsync();
+      if (string?.startsWith("czlogin:")) {
+        const s = string.split(":");
+        handleLogin({
+          teaken: s[1],
+          username: s[2],
+          user_id: s[3],
+        });
+      }
+      Linking.openURL(
+        `https://api.munzee.com/oauth?client_id=${encodeURIComponent(
+          config.client_id
+        )}&redirect_uri=${encodeURIComponent(
+          config.redirect_uri
+        )}&response_type=code&scope=read&state=${encodeURIComponent(
+          JSON.stringify({
+            redirect: redirectUri,
+            platform: Platform.OS,
+            max_alt: true,
+          })
+        )}`
+      );
+    } else {
+      setLoading(true);
+      const response = await WebBrowser.openAuthSessionAsync(
+        `https://api.munzee.com/oauth?client_id=${encodeURIComponent(
+          config.client_id
+        )}&redirect_uri=${encodeURIComponent(
+          config.redirect_uri
+        )}&response_type=code&scope=read&state=${encodeURIComponent(
+          JSON.stringify({
+            redirect: redirectUri,
+            platform: Platform.OS,
+          })
+        )}`,
+        redirectUri
+      );
+      if (response.type !== "success") {
+        setLoading(false);
+      } else {
+        const params = Object.fromEntries(
+          response.url
+            .split("?")?.[1]
+            .split("&")
+            .map(i => i.split("=").map(i => decodeURIComponent(i))) ?? []
+        );
+        try {
+          await handleLogin(params);
+        } catch (e) {
+          setLoading(false);
+          if (Platform.OS === "web") {
+            alert("Something went wrong when logging in.");
+          } else {
+            Alert.alert("Something went wrong when logging in.");
+          }
+        }
+      }
     }
   }
   if (shouldRedirect && redirect && Object.keys(teakens.data).length > 0) {
@@ -111,5 +186,5 @@ export default function useLogin(
     nav.navigate("User", { screen: "Profile", params: { username: redirect } } as any);
   }
 
-  return [loading, login, loaded && !loading] as const;
+  return [loading, login, loaded && !loading, shouldUseAlternative, handleLogin] as const;
 }
